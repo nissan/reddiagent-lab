@@ -1,0 +1,18 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: duplicate-fallbacks
+  description: Invalid example for provider fallback guidance.
+model:
+  capability: chat
+  providers:
+    preferred: openai:gpt-4.1-mini
+    fallbacks:
+      - anthropic:claude-3-5-haiku
+      - anthropic:claude-3-5-haiku
+  requirements: {}
+harness:
+  instructions:
+    inline: Summarize supplied sources.
+  runtime:
+    target: local-python

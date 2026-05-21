@@ -28,6 +28,7 @@ _Loop 42. Anchor issue: #42._
 - specs/DOMAIN-MODEL-v0.1.md
 - specs/ADL-v0.1.md
 - specs/ADL-v0.1.schema.json
+- specs/VALIDATION-GUIDANCE-v0.1.md
 - specs/PROVIDER-MAPPING-v0.1.md
 - specs/HARNESS-LIFECYCLE-v0.1.md
 - specs/TOOL-REGISTRY-v0.1.md
@@ -45,10 +46,13 @@ _Loop 42. Anchor issue: #42._
 - examples/simple-agent.yaml
 - examples/tool-agent.yaml
 - examples/payment-agent.yaml
+- examples/invalid/
 - scripts/validate_examples.py
+- scripts/validation_guidance.py
 - scripts/run_local_agent.py
 - tests/smoke-validation.sh
 - tests/LEVEL-0-CONFORMANCE-REPORT.md
+- tests/VALIDATION-ERROR-DEMO.md
 
 ## Provider/Framework Mappings
 
@@ -71,4 +75,5 @@ _Loop 42. Anchor issue: #42._
 - retrospectives/2026-05-21-loops-2-8-foundation.md
 - retrospectives/2026-05-21-loops-9-21-sprint.md
 - retrospectives/2026-05-21-loops-22-43-sprint.md
-
+- retrospectives/2026-05-22-loops-64-83-sprint.md
+- retrospectives/2026-05-22-loops-84-103-sprint.md

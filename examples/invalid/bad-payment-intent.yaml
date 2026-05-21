@@ -1,0 +1,24 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: bad-payment-intent
+  description: Invalid example for x402 payment intent guidance.
+model:
+  capability: chat
+  providers:
+    preferred: openai:gpt-4.1-mini
+  requirements: {}
+harness:
+  instructions:
+    inline: Summarize paid sources only after budget approval.
+  runtime:
+    target: local-python
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: paid-summary
+        direction: spend
+        maxAmount: "0.10"
+        currency: USDC
+        rails: []

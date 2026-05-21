@@ -1,0 +1,20 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: bad-tool-id
+  description: Invalid example for tool guidance.
+model:
+  capability: chat
+  providers:
+    preferred: openai:gpt-4.1-mini
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: Use only approved tools.
+  tools:
+    - id: 123-search
+      type: function
+      description: Search approved local docs.
+  runtime:
+    target: local-python

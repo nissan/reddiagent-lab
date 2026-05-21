@@ -1,0 +1,15 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: bad-model-capability
+  description: Invalid example for builder-facing validation output.
+model:
+  capability: spreadsheet
+  providers:
+    preferred: openai:gpt-4.1-mini
+  requirements: {}
+harness:
+  instructions:
+    inline: Summarize supplied sources.
+  runtime:
+    target: local-python

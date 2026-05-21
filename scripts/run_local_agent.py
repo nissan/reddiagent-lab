@@ -12,6 +12,8 @@ import sys
 import jsonschema
 import yaml
 
+from validation_guidance import format_errors, render_text
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.1.schema.json"
@@ -21,11 +23,10 @@ def load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
-def validate(doc: dict) -> list[str]:
+def validate(doc: dict) -> list[jsonschema.ValidationError]:
     schema = json.loads(SCHEMA_PATH.read_text())
     validator = jsonschema.Draft202012Validator(schema)
-    errors = sorted(validator.iter_errors(doc), key=lambda e: list(e.path))
-    return [f"{'.'.join(str(p) for p in e.path) or '<root>'}: {e.message}" for e in errors]
+    return sorted(validator.iter_errors(doc), key=lambda e: list(e.path))
 
 
 def stable_id(*parts: str) -> str:
@@ -80,9 +81,7 @@ def dry_run(path: Path) -> int:
     doc = load_yaml(path)
     errors = validate(doc)
     if errors:
-        print("validation: failed")
-        for error in errors:
-            print(f"- {error}")
+        print(render_text(str(path.relative_to(ROOT)), format_errors(errors)))
         return 1
 
     metadata = doc["metadata"]

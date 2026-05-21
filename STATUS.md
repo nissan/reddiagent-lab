@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-22 01:43 AEST by Loki_
+_Last updated: 2026-05-22 07:22 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start issue #110 to build a validation error formatter that converts schema errors into builder-facing guidance, starting from examples/invalid/missing-instructions.yaml.
+- **Next action:** Start issue #131 to build a safe local tool registry execution fixture before any real external tool or payment path.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Loops 64-83 completed persistent snapshots, snapshot tests, schema tightening, invalid-example validation, data/memory/skill/deployment contracts, positioning docs, and repo health check.
+- **Last discussed:** Loops 84-103 completed builder-facing validation guidance, JSON/raw formatter modes, invalid fixtures, validation guidance tests, local-runner integration, docs/demo refresh, and sprint retrospective.
 
 ## Current Phase
 
@@ -29,10 +29,12 @@ _Last updated: 2026-05-22 01:43 AEST by Loki_
 - Domain model: specs/DOMAIN-MODEL-v0.1.md
 - ADL v0.1: specs/ADL-v0.1.md
 - Payment/reputation extension: specs/PAYMENT-REPUTATION-EXTENSION-v0.1.md
+- Validation guidance: specs/VALIDATION-GUIDANCE-v0.1.md
 - Builder journey: docs/BUILDER-JOURNEY.md
 - Simple example: examples/simple-agent.yaml
 - Tool example: examples/tool-agent.yaml
 - Payment example: examples/payment-agent.yaml
+- Invalid examples: examples/invalid/
 - Provider mapping: specs/PROVIDER-MAPPING-v0.1.md
 - Harness lifecycle: specs/HARNESS-LIFECYCLE-v0.1.md
 - Eval gates: specs/EVAL-GATES-v0.1.md
@@ -73,6 +75,7 @@ _Last updated: 2026-05-22 01:43 AEST by Loki_
 - Issue #44 next loop / Level 1 traces: https://github.com/reddinft/reddiagent-lab/issues/44
 - Issue #73 next loop / snapshots: https://github.com/reddinft/reddiagent-lab/issues/73
 - Issue #110 next loop / validation error formatter: https://github.com/reddinft/reddiagent-lab/issues/110
+- Issue #131 next loop / local tool registry execution fixture: https://github.com/reddinft/reddiagent-lab/issues/131
 
 ## Key Decisions
 
@@ -88,6 +91,8 @@ _Last updated: 2026-05-22 01:43 AEST by Loki_
 - 2026-05-21: ADL v0.1 now has JSON Schema validation and all three examples pass Level 0 conformance. Local dry-run runner works for simple/tool examples. Next step is Level 1 dry-run conformance with deterministic traces.
 - 2026-05-21: simple-agent and tool-agent now satisfy Level 1 local dry-run conformance with deterministic traces. Provider compatibility and x402 receipts are still dry-run/report-only.
 - 2026-05-22: Snapshot tests now cover simple/tool traces, provider compatibility, and payment dry-run receipt. Schema tightened policy/eval types. Next step is builder-facing validation error formatting.
+- 2026-05-22: Validation now defaults to builder-facing guidance while raw schema output and JSON guidance remain available. The same guidance is used by local runner validation failures.
+- 2026-05-22: Next implementation step is safe local tool execution via fixtures; do not add external network/tool execution or live payment behavior yet.
 
 ## Blockers & Flags
 

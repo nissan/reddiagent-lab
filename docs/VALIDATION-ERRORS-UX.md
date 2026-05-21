@@ -1,6 +1,6 @@
 # Builder UX Notes for Validation Errors
 
-_Loop 74. Anchor issues: #86/#87._
+_Updated during loops 84-103. Anchor issues: #110-#130._
 
 ## Principle
 
@@ -24,3 +24,31 @@ Builder-facing:
 - Provide a minimal valid snippet.
 - Link to the tutorial that uses the same concept.
 
+## Formatter Contract
+
+The validation formatter turns every JSON Schema failure into a builder guidance item:
+
+- problem: a short diagnosis in plain language.
+- location: the ADL path to edit.
+- why_it_matters: the product reason the field exists.
+- fix: the smallest safe repair.
+- snippet: a minimal YAML example.
+- reference: the most relevant spec, tutorial, or contract.
+- raw_message: the original schema message for debugging.
+
+CLI usage:
+
+    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
+    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py --format raw examples/invalid/missing-instructions.yaml
+    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py --format json examples/invalid/missing-instructions.yaml
+
+Default output is builder-facing text. Raw schema output remains available for implementers, and JSON output is intended for future UI/CI integration.
+
+## Covered Error Families
+
+- Missing agent instructions.
+- Unsupported model capability.
+- Unsupported runtime target.
+- Invalid tool identifiers.
+- Duplicate fallback providers.
+- Invalid x402 payment intent rails.

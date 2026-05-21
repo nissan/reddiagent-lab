@@ -34,3 +34,10 @@ The harness definition should describe the operating system around the model: to
 - Design/spec artifacts live in docs/, specs/, and spdd/prompt/.
 - Keep RAP-specific implementation in the RAP repo unless the work belongs to the agent definition/harness abstraction.
 
+## Local Validation
+
+Validate the current examples:
+
+    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
+
+Validation failures default to builder-facing guidance. Use --format raw for schema-debug output or --format json for future UI/CI integration.
