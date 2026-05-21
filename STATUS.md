@@ -3,7 +3,7 @@ _Last updated: 2026-05-21 17:20 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Open the next issue for ADL JSON Schema v0.1 and validate examples/simple-agent.yaml, examples/tool-agent.yaml, and examples/payment-agent.yaml against Level 0 conformance.
+- **Next action:** Start issue #23 for ADL JSON Schema v0.1 and validate examples/simple-agent.yaml, examples/tool-agent.yaml, and examples/payment-agent.yaml against Level 0 conformance.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Loops 9-21 completed concrete examples, provider/runtime/eval/security/observability/conformance docs, glossary, roadmap, and sprint retrospective.
 
@@ -56,6 +56,7 @@ _Last updated: 2026-05-21 17:20 AEST by Loki_
 - Issue #7 payment/reputation extension: https://github.com/reddinft/reddiagent-lab/issues/7
 - Issue #8 builder journey: https://github.com/reddinft/reddiagent-lab/issues/8
 - Issue #9 loop protocol: https://github.com/reddinft/reddiagent-lab/issues/9
+- Issue #23 next loop / ADL JSON Schema: https://github.com/reddinft/reddiagent-lab/issues/23
 
 ## Key Decisions
 
