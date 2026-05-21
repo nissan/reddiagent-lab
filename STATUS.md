@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 17:20 AEST by Loki_
+_Last updated: 2026-05-21 20:05 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start issue #23 for ADL JSON Schema v0.1 and validate examples/simple-agent.yaml, examples/tool-agent.yaml, and examples/payment-agent.yaml against Level 0 conformance.
+- **Next action:** Open the next issue for Level 1 local dry-run conformance and deterministic trace output for examples/simple-agent.yaml and examples/tool-agent.yaml.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Loops 9-21 completed concrete examples, provider/runtime/eval/security/observability/conformance docs, glossary, roadmap, and sprint retrospective.
+- **Last discussed:** Loops 22-43 completed executable schema validation, local dry-run runner, target mappings, MCP/x402/reputation specs, tutorials, repository index, and retrospective.
 
 ## Current Phase
 
@@ -57,6 +57,19 @@ _Last updated: 2026-05-21 17:20 AEST by Loki_
 - Issue #8 builder journey: https://github.com/reddinft/reddiagent-lab/issues/8
 - Issue #9 loop protocol: https://github.com/reddinft/reddiagent-lab/issues/9
 - Issue #23 next loop / ADL JSON Schema: https://github.com/reddinft/reddiagent-lab/issues/23
+- Issue #25 Level 0 report: https://github.com/reddinft/reddiagent-lab/issues/25
+- Issue #26 local runner plan: https://github.com/reddinft/reddiagent-lab/issues/26
+- Issue #27 local runner skeleton: https://github.com/reddinft/reddiagent-lab/issues/27
+- Issue #28 tool registry: https://github.com/reddinft/reddiagent-lab/issues/28
+- Issue #29 smoke validation: https://github.com/reddinft/reddiagent-lab/issues/29
+- Issue #30 compatibility report: https://github.com/reddinft/reddiagent-lab/issues/30
+- Issue #31-#36 target mappings: https://github.com/reddinft/reddiagent-lab/issues/31
+- Issue #37 MCP mapping: https://github.com/reddinft/reddiagent-lab/issues/37
+- Issue #38 x402 dry-run receipt: https://github.com/reddinft/reddiagent-lab/issues/38
+- Issue #39 reputation signals: https://github.com/reddinft/reddiagent-lab/issues/39
+- Issue #40-#41 tutorials: https://github.com/reddinft/reddiagent-lab/issues/40
+- Issue #42 repository index: https://github.com/reddinft/reddiagent-lab/issues/42
+- Issue #43 sprint synthesis: https://github.com/reddinft/reddiagent-lab/issues/43
 
 ## Key Decisions
 
@@ -69,6 +82,7 @@ _Last updated: 2026-05-21 17:20 AEST by Loki_
 - 2026-05-21: Research tiers set: deep dive, scan, watchlist. Deep dives start with LangChain/LangGraph, OpenAI Agents SDK, LlamaIndex, AWS Strands Agents, Anthropic, Gemini, OpenClaw, and regular Python tool-calling.
 - 2026-05-21: Foundation pass decided the harness is the main product surface; the model is a replaceable dependency; payment/reputation remains an extension namespace until core ADL stabilizes.
 - 2026-05-21: After 20-loop sprint, next implementation step is validator before runner; provider adapters start as compatibility reports; payment remains dry-run/intent-first until receipt and budget policy enforcement exist.
+- 2026-05-21: ADL v0.1 now has JSON Schema validation and all three examples pass Level 0 conformance. Local dry-run runner works for simple/tool examples. Next step is Level 1 dry-run conformance with deterministic traces.
 
 ## Blockers & Flags
 
