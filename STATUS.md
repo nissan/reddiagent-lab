@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 15:10 AEST by Loki_
+_Last updated: 2026-05-21 16:47 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start issue #1 research taxonomy/source map, then use issues #2-#4 for framework, platform, and homebrew/open-source research.
+- **Next action:** Start Loop 1 on issue #1 and create research/SOURCE-MAP.md before detailed framework/platform notes.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Nissan wants a separate project from Reddi Agent Protocol to research agent-building patterns and design a ReddiAgent abstraction for model plus harness plus x402-compatible payment/reputation extension.
+- **Last discussed:** Nissan wants iterative development loops with retrospective reviews at the end of each loop, updating plans as needed so context can be recovered quickly.
 
 ## Current Phase
 
@@ -19,6 +19,9 @@ _Last updated: 2026-05-21 15:10 AEST by Loki_
 - Architecture thesis: docs/ARCHITECTURE-THESIS.md
 - Research taxonomy: research/RESEARCH-TAXONOMY.md
 - Initial SPDD/OAD contract: spdd/prompt/0001-project-kickoff.md
+- Loop protocol: docs/LOOP-PROTOCOL.md
+- Retrospective template: retrospectives/TEMPLATE.md
+- Loop 0 retrospective: retrospectives/2026-05-21-loop-0-project-setup.md
 - GitHub: https://github.com/reddinft/reddiagent-lab
 - Issues: https://github.com/reddinft/reddiagent-lab/issues
 - Issue #1 planning/source map: https://github.com/reddinft/reddiagent-lab/issues/1
@@ -29,6 +32,7 @@ _Last updated: 2026-05-21 15:10 AEST by Loki_
 - Issue #6 ADL v0.1: https://github.com/reddinft/reddiagent-lab/issues/6
 - Issue #7 payment/reputation extension: https://github.com/reddinft/reddiagent-lab/issues/7
 - Issue #8 builder journey: https://github.com/reddinft/reddiagent-lab/issues/8
+- Issue #9 loop protocol: https://github.com/reddinft/reddiagent-lab/issues/9
 
 ## Key Decisions
 
@@ -37,6 +41,7 @@ _Last updated: 2026-05-21 15:10 AEST by Loki_
 - 2026-05-21: GitHub issues are the task-tracking source of truth for this project; local STATUS.md remains OpenClaw's operational resume truth.
 - 2026-05-21: x402/RAP integration belongs in ReddiAgent as an optional harness capability that can resolve to Solana, Base, Stripe, other chains, or any future x402-supported rail.
 - 2026-05-21: Initial private GitHub repo created at reddinft/reddiagent-lab with eight seed issues and Nissan invited as admin collaborator.
+- 2026-05-21: Work will proceed in issue-anchored loops; every loop closes with a retrospective, STATUS.md update, and plan/spec adjustments if assumptions changed.
 
 ## Blockers & Flags
 

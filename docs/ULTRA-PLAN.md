@@ -30,12 +30,28 @@ Deliverables:
 - Private GitHub repo.
 - Initial README.md, STATUS.md, research taxonomy, architecture thesis, and SPDD/OAD kickoff artifact.
 - GitHub issue backlog for the first research and design milestones.
+- Loop protocol and retrospective template.
 
 Acceptance:
 
 - Repo exists and is private.
 - Initial issues exist.
 - Local repo is clean after first push.
+- docs/LOOP-PROTOCOL.md defines how loops close and update the plan.
+
+## Operating Loop
+
+Work proceeds in short loops anchored to one GitHub issue.
+
+Each loop must:
+
+1. Define objective, artifacts, acceptance checks, assumptions, and risks.
+2. Produce the smallest useful research, spec, or prototype artifact.
+3. Run a verification gate appropriate to the artifact.
+4. Write a retrospective under retrospectives/.
+5. Update STATUS.md and any changed plan/spec files before the next loop.
+
+Canonical loop protocol: docs/LOOP-PROTOCOL.md
 
 ## Phase 1 - Landscape Research
 
@@ -183,4 +199,3 @@ Start with a validator plus generator. It proves the abstraction is real before 
 - Which runtime should be the first canonical output target?
 - Should payment/reputation metadata be embedded in the core schema or shipped as an extension namespace?
 - What minimum workflow makes a prosumer feel successful in under one hour?
-
