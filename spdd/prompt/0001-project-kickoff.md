@@ -13,9 +13,9 @@ DoD checklist:
 
 - [x] Local project scaffold exists.
 - [x] Initial research and architecture artifacts exist.
-- [ ] Private GitHub repo exists.
-- [ ] Initial GitHub issues exist.
-- [ ] Repo pushed and local git status clean.
+- [x] Private GitHub repo exists.
+- [x] Initial GitHub issues exist.
+- [x] Repo pushed and local git status clean after final STATUS update.
 
 ## E - Entities / Handoff Objects
 
@@ -66,13 +66,13 @@ DoD checklist:
 
 - [x] Privacy boundary: repo is private.
 - [x] Product boundary: RAP remains separate.
-- [ ] GitHub collaborator policy checked.
-- [ ] Repo pushed successfully.
-- [ ] Initial issue links recorded in STATUS.md.
+- [x] GitHub collaborator policy checked; Nissan admin invite created.
+- [x] Repo pushed successfully.
+- [x] Initial issue links recorded in STATUS.md.
 
 ## Prompt/Code Sync Log
 
 | Date | Divergence | Artifact update | Code/test update |
 |---|---|---|---|
 | 2026-05-21 | Initial scaffold before GitHub repo exists | This artifact marks GitHub tasks pending | N/A |
-
+| 2026-05-21 | GitHub repo and issues created during setup | Checked off repo/issue/collaborator tasks | Final STATUS update committed after initial push |
