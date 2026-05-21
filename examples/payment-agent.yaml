@@ -1,0 +1,55 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: paid-specialist-researcher
+  description: Performs a bounded paid research task and emits a receipt.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks:
+      - anthropic
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Complete the task within budget, use approved tools only, and emit receipt metadata."
+  tools:
+    - id: fetch_approved_url
+      type: function
+      description: Fetch one approved URL.
+  policies:
+    - id: task-budget
+      type: budget
+      rule: "Total task spend must be less than or equal to 0.25 USDC."
+    - id: human-approval
+      type: approval
+      rule: "Ask for approval before any payment above 1.00 USDC."
+  evalGates:
+    - id: receipt-required
+      type: receipt-check
+      rule: "A task receipt must be emitted before completion."
+  runtime:
+    target: hosted-container
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: pay-specialist
+        direction: spend
+        maxAmount: "0.25"
+        currency: USDC
+        rails:
+          - solana
+          - base
+          - stripe
+        requireReceipt: true
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - taskCompleted
+      - evalPassed
+      - receiptVerified
+

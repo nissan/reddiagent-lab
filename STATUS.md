@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 17:05 AEST by Loki_
+_Last updated: 2026-05-21 17:20 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start Loop 9: create concrete ADL examples, beginning with examples/simple-agent.yaml.
+- **Next action:** Open the next issue for ADL JSON Schema v0.1 and validate examples/simple-agent.yaml, examples/tool-agent.yaml, and examples/payment-agent.yaml against Level 0 conformance.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Loops 2-8 completed the foundation pass: research matrices, domain model, ADL v0.1, payment/reputation extension, and builder journey.
+- **Last discussed:** Loops 9-21 completed concrete examples, provider/runtime/eval/security/observability/conformance docs, glossary, roadmap, and sprint retrospective.
 
 ## Current Phase
 
@@ -30,8 +30,21 @@ _Last updated: 2026-05-21 17:05 AEST by Loki_
 - ADL v0.1: specs/ADL-v0.1.md
 - Payment/reputation extension: specs/PAYMENT-REPUTATION-EXTENSION-v0.1.md
 - Builder journey: docs/BUILDER-JOURNEY.md
+- Simple example: examples/simple-agent.yaml
+- Tool example: examples/tool-agent.yaml
+- Payment example: examples/payment-agent.yaml
+- Provider mapping: specs/PROVIDER-MAPPING-v0.1.md
+- Harness lifecycle: specs/HARNESS-LIFECYCLE-v0.1.md
+- Eval gates: specs/EVAL-GATES-v0.1.md
+- Runtime/deployment: specs/RUNTIME-DEPLOYMENT-v0.1.md
+- Security/permissions: specs/SECURITY-PERMISSIONS-v0.1.md
+- Observability: specs/OBSERVABILITY-v0.1.md
+- Conformance: specs/CONFORMANCE-v0.1.md
+- Glossary: docs/GLOSSARY.md
+- Roadmap: docs/ROADMAP.md
 - Loop 1 retrospective: retrospectives/2026-05-21-loop-1-source-map.md
 - Loops 2-8 retrospective: retrospectives/2026-05-21-loops-2-8-foundation.md
+- Loops 9-21 retrospective: retrospectives/2026-05-21-loops-9-21-sprint.md
 - GitHub: https://github.com/reddinft/reddiagent-lab
 - Issues: https://github.com/reddinft/reddiagent-lab/issues
 - Issue #1 planning/source map: https://github.com/reddinft/reddiagent-lab/issues/1
@@ -54,6 +67,7 @@ _Last updated: 2026-05-21 17:05 AEST by Loki_
 - 2026-05-21: Work will proceed in issue-anchored loops; every loop closes with a retrospective, STATUS.md update, and plan/spec adjustments if assumptions changed.
 - 2026-05-21: Research tiers set: deep dive, scan, watchlist. Deep dives start with LangChain/LangGraph, OpenAI Agents SDK, LlamaIndex, AWS Strands Agents, Anthropic, Gemini, OpenClaw, and regular Python tool-calling.
 - 2026-05-21: Foundation pass decided the harness is the main product surface; the model is a replaceable dependency; payment/reputation remains an extension namespace until core ADL stabilizes.
+- 2026-05-21: After 20-loop sprint, next implementation step is validator before runner; provider adapters start as compatibility reports; payment remains dry-run/intent-first until receipt and budget policy enforcement exist.
 
 ## Blockers & Flags
 
