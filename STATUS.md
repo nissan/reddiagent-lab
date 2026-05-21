@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 16:47 AEST by Loki_
+_Last updated: 2026-05-21 16:55 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start Loop 1 on issue #1 and create research/SOURCE-MAP.md before detailed framework/platform notes.
+- **Next action:** Start Loop 2 on issue #2 and create research/FRAMEWORK-MATRIX.md, beginning with LangChain/LangGraph, LlamaIndex, and AWS Strands Agents.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Nissan wants iterative development loops with retrospective reviews at the end of each loop, updating plans as needed so context can be recovered quickly.
+- **Last discussed:** Loop 1 completed the source map; next work is framework matrix first pass.
 
 ## Current Phase
 
@@ -22,6 +22,8 @@ _Last updated: 2026-05-21 16:47 AEST by Loki_
 - Loop protocol: docs/LOOP-PROTOCOL.md
 - Retrospective template: retrospectives/TEMPLATE.md
 - Loop 0 retrospective: retrospectives/2026-05-21-loop-0-project-setup.md
+- Source map: research/SOURCE-MAP.md
+- Loop 1 retrospective: retrospectives/2026-05-21-loop-1-source-map.md
 - GitHub: https://github.com/reddinft/reddiagent-lab
 - Issues: https://github.com/reddinft/reddiagent-lab/issues
 - Issue #1 planning/source map: https://github.com/reddinft/reddiagent-lab/issues/1
@@ -42,6 +44,7 @@ _Last updated: 2026-05-21 16:47 AEST by Loki_
 - 2026-05-21: x402/RAP integration belongs in ReddiAgent as an optional harness capability that can resolve to Solana, Base, Stripe, other chains, or any future x402-supported rail.
 - 2026-05-21: Initial private GitHub repo created at reddinft/reddiagent-lab with eight seed issues and Nissan invited as admin collaborator.
 - 2026-05-21: Work will proceed in issue-anchored loops; every loop closes with a retrospective, STATUS.md update, and plan/spec adjustments if assumptions changed.
+- 2026-05-21: Research tiers set: deep dive, scan, watchlist. Deep dives start with LangChain/LangGraph, OpenAI Agents SDK, LlamaIndex, AWS Strands Agents, Anthropic, Gemini, OpenClaw, and regular Python tool-calling.
 
 ## Blockers & Flags
 
