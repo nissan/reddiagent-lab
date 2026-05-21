@@ -3,7 +3,7 @@ _Last updated: 2026-05-21 20:05 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Open the next issue for Level 1 local dry-run conformance and deterministic trace output for examples/simple-agent.yaml and examples/tool-agent.yaml.
+- **Next action:** Start issue #44 for Level 1 local dry-run conformance and deterministic trace output for examples/simple-agent.yaml and examples/tool-agent.yaml.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Loops 22-43 completed executable schema validation, local dry-run runner, target mappings, MCP/x402/reputation specs, tutorials, repository index, and retrospective.
 
@@ -70,6 +70,7 @@ _Last updated: 2026-05-21 20:05 AEST by Loki_
 - Issue #40-#41 tutorials: https://github.com/reddinft/reddiagent-lab/issues/40
 - Issue #42 repository index: https://github.com/reddinft/reddiagent-lab/issues/42
 - Issue #43 sprint synthesis: https://github.com/reddinft/reddiagent-lab/issues/43
+- Issue #44 next loop / Level 1 traces: https://github.com/reddinft/reddiagent-lab/issues/44
 
 ## Key Decisions
 
