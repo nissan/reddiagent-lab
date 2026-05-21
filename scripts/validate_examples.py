@@ -13,7 +13,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.1.schema.json"
-EXAMPLES = [
+DEFAULT_EXAMPLES = [
     ROOT / "examples" / "simple-agent.yaml",
     ROOT / "examples" / "tool-agent.yaml",
     ROOT / "examples" / "payment-agent.yaml",
@@ -25,7 +25,10 @@ def main() -> int:
     validator = jsonschema.Draft202012Validator(schema)
     failed = False
 
-    for path in EXAMPLES:
+    paths = [Path(arg) for arg in sys.argv[1:]] if len(sys.argv) > 1 else DEFAULT_EXAMPLES
+    for path in paths:
+        if not path.is_absolute():
+            path = ROOT / path
         data = yaml.safe_load(path.read_text())
         errors = sorted(validator.iter_errors(data), key=lambda e: list(e.path))
         if errors:
@@ -42,4 +45,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

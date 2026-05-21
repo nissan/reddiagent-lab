@@ -1,0 +1,17 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: invalid-missing-instructions
+  description: Missing harness instructions for validation demo.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  runtime:
+    target: local-python
+extensions: {}
+

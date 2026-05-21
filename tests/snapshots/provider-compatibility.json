@@ -1,0 +1,249 @@
+[
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "openai",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "anthropic",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "gemini",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [
+      "GEMINI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "ollama",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Tool calling may require custom local harness parsing.",
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "langgraph",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [
+      "LANGGRAPH_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "local-python",
+    "supported": true,
+    "level": 0,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "openai",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "anthropic",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "gemini",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "GEMINI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "ollama",
+    "supported": true,
+    "level": 0,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "langgraph",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "LANGGRAPH_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "local-python",
+    "supported": true,
+    "level": 1,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "openai",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "anthropic",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "gemini",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "GEMINI_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "ollama",
+    "supported": true,
+    "level": 0,
+    "warnings": [
+      "Tool calling may require custom local harness parsing."
+    ],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "langgraph",
+    "supported": true,
+    "level": 2,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [
+      "LANGGRAPH_API_KEY"
+    ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "source-checker",
+    "target": "local-python",
+    "supported": true,
+    "level": 1,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python"
+  }
+]

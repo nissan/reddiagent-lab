@@ -1,0 +1,52 @@
+{
+  "agent": "simple-research-helper",
+  "description": "Answers a user question using only model reasoning and a session log.",
+  "runtime": "local-python",
+  "modelCapability": "chat",
+  "preferredProvider": "openai",
+  "fallbackProviders": [
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "toolCount": 0,
+  "policyCount": 1,
+  "evalGateCount": 1,
+  "paymentEnabled": false,
+  "mode": "dry-run",
+  "level": 1,
+  "trace": [
+    {
+      "event": "session.started",
+      "traceId": "620ebc89574fa9aa",
+      "agent": "simple-research-helper",
+      "runtime": "local-python"
+    },
+    {
+      "event": "model.resolved",
+      "traceId": "620ebc89574fa9aa",
+      "provider": "openai",
+      "capability": "chat"
+    },
+    {
+      "event": "tools.registered",
+      "traceId": "620ebc89574fa9aa",
+      "count": 0
+    },
+    {
+      "event": "policies.loaded",
+      "traceId": "620ebc89574fa9aa",
+      "count": 1
+    },
+    {
+      "event": "evals.loaded",
+      "traceId": "620ebc89574fa9aa",
+      "count": 1
+    },
+    {
+      "event": "task.dry_run_completed",
+      "traceId": "620ebc89574fa9aa",
+      "status": "pass"
+    }
+  ]
+}

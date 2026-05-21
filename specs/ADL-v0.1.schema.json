@@ -124,7 +124,7 @@
       "required": ["id", "type", "rule"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "type": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "enum": ["permission", "data-access", "budget", "approval", "network", "filesystem", "payment", "messaging"] },
         "rule": { "type": "string", "minLength": 1 }
       }
     },
@@ -134,7 +134,7 @@
       "required": ["id", "type", "rule"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "type": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "enum": ["output-check", "source-check", "tool-check", "budget-check", "receipt-check", "human-review"] },
         "rule": { "type": "string", "minLength": 1 }
       }
     },
@@ -161,4 +161,3 @@
     }
   }
 }
-

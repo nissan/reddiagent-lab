@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 20:28 AEST by Loki_
+_Last updated: 2026-05-22 01:43 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start issue #73 for persistent JSON snapshots for trace and compatibility reports, then tighten schema around policies, eval types, and extension namespaces.
+- **Next action:** Build a validation error formatter that converts schema errors into builder-facing guidance, starting from examples/invalid/missing-instructions.yaml.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Loops 44-63 completed deterministic traces, Level 1 dry-run conformance, provider compatibility reporting, dry-run receipt generation, and implementation/product docs.
+- **Last discussed:** Loops 64-83 completed persistent snapshots, snapshot tests, schema tightening, invalid-example validation, data/memory/skill/deployment contracts, positioning docs, and repo health check.
 
 ## Current Phase
 
@@ -86,6 +86,7 @@ _Last updated: 2026-05-21 20:28 AEST by Loki_
 - 2026-05-21: After 20-loop sprint, next implementation step is validator before runner; provider adapters start as compatibility reports; payment remains dry-run/intent-first until receipt and budget policy enforcement exist.
 - 2026-05-21: ADL v0.1 now has JSON Schema validation and all three examples pass Level 0 conformance. Local dry-run runner works for simple/tool examples. Next step is Level 1 dry-run conformance with deterministic traces.
 - 2026-05-21: simple-agent and tool-agent now satisfy Level 1 local dry-run conformance with deterministic traces. Provider compatibility and x402 receipts are still dry-run/report-only.
+- 2026-05-22: Snapshot tests now cover simple/tool traces, provider compatibility, and payment dry-run receipt. Schema tightened policy/eval types. Next step is builder-facing validation error formatting.
 
 ## Blockers & Flags
 
