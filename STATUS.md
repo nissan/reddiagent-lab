@@ -3,7 +3,7 @@ _Last updated: 2026-05-22 01:43 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Build a validation error formatter that converts schema errors into builder-facing guidance, starting from examples/invalid/missing-instructions.yaml.
+- **Next action:** Start issue #110 to build a validation error formatter that converts schema errors into builder-facing guidance, starting from examples/invalid/missing-instructions.yaml.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Loops 64-83 completed persistent snapshots, snapshot tests, schema tightening, invalid-example validation, data/memory/skill/deployment contracts, positioning docs, and repo health check.
 
@@ -72,6 +72,7 @@ _Last updated: 2026-05-22 01:43 AEST by Loki_
 - Issue #43 sprint synthesis: https://github.com/reddinft/reddiagent-lab/issues/43
 - Issue #44 next loop / Level 1 traces: https://github.com/reddinft/reddiagent-lab/issues/44
 - Issue #73 next loop / snapshots: https://github.com/reddinft/reddiagent-lab/issues/73
+- Issue #110 next loop / validation error formatter: https://github.com/reddinft/reddiagent-lab/issues/110
 
 ## Key Decisions
 
