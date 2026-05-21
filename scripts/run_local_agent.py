@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -27,6 +28,54 @@ def validate(doc: dict) -> list[str]:
     return [f"{'.'.join(str(p) for p in e.path) or '<root>'}: {e.message}" for e in errors]
 
 
+def stable_id(*parts: str) -> str:
+    joined = "|".join(parts)
+    return hashlib.sha256(joined.encode("utf-8")).hexdigest()[:16]
+
+
+def build_trace(doc: dict, path: Path) -> list[dict]:
+    metadata = doc["metadata"]
+    harness = doc["harness"]
+    model = doc["model"]
+    agent = metadata["name"]
+    trace_id = stable_id(agent, path.name, "dry-run")
+    events = [
+        {
+            "event": "session.started",
+            "traceId": trace_id,
+            "agent": agent,
+            "runtime": harness["runtime"]["target"],
+        },
+        {
+            "event": "model.resolved",
+            "traceId": trace_id,
+            "provider": model["providers"]["preferred"],
+            "capability": model["capability"],
+        },
+        {
+            "event": "tools.registered",
+            "traceId": trace_id,
+            "count": len(harness.get("tools", [])),
+        },
+        {
+            "event": "policies.loaded",
+            "traceId": trace_id,
+            "count": len(harness.get("policies", [])),
+        },
+        {
+            "event": "evals.loaded",
+            "traceId": trace_id,
+            "count": len(harness.get("evalGates", [])),
+        },
+        {
+            "event": "task.dry_run_completed",
+            "traceId": trace_id,
+            "status": "pass",
+        },
+    ]
+    return events
+
+
 def dry_run(path: Path) -> int:
     doc = load_yaml(path)
     errors = validate(doc)
@@ -41,6 +90,7 @@ def dry_run(path: Path) -> int:
     harness = doc["harness"]
     extensions = doc.get("extensions") or {}
 
+    trace = build_trace(doc, path)
     summary = {
         "agent": metadata["name"],
         "description": metadata["description"],
@@ -52,7 +102,9 @@ def dry_run(path: Path) -> int:
         "policyCount": len(harness.get("policies", [])),
         "evalGateCount": len(harness.get("evalGates", [])),
         "paymentEnabled": bool((extensions.get("x402") or {}).get("enabled")),
-        "mode": "dry-run"
+        "mode": "dry-run",
+        "level": 1,
+        "trace": trace,
     }
 
     print(json.dumps(summary, indent=2))
@@ -68,4 +120,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

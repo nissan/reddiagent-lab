@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-05-21 20:05 AEST by Loki_
+_Last updated: 2026-05-21 20:28 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start issue #44 for Level 1 local dry-run conformance and deterministic trace output for examples/simple-agent.yaml and examples/tool-agent.yaml.
+- **Next action:** Continue with persistent JSON snapshots for trace and compatibility reports, then tighten schema around policies, eval types, and extension namespaces.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Loops 22-43 completed executable schema validation, local dry-run runner, target mappings, MCP/x402/reputation specs, tutorials, repository index, and retrospective.
+- **Last discussed:** Loops 44-63 completed deterministic traces, Level 1 dry-run conformance, provider compatibility reporting, dry-run receipt generation, and implementation/product docs.
 
 ## Current Phase
 
@@ -84,6 +84,7 @@ _Last updated: 2026-05-21 20:05 AEST by Loki_
 - 2026-05-21: Foundation pass decided the harness is the main product surface; the model is a replaceable dependency; payment/reputation remains an extension namespace until core ADL stabilizes.
 - 2026-05-21: After 20-loop sprint, next implementation step is validator before runner; provider adapters start as compatibility reports; payment remains dry-run/intent-first until receipt and budget policy enforcement exist.
 - 2026-05-21: ADL v0.1 now has JSON Schema validation and all three examples pass Level 0 conformance. Local dry-run runner works for simple/tool examples. Next step is Level 1 dry-run conformance with deterministic traces.
+- 2026-05-21: simple-agent and tool-agent now satisfy Level 1 local dry-run conformance with deterministic traces. Provider compatibility and x402 receipts are still dry-run/report-only.
 
 ## Blockers & Flags
 
