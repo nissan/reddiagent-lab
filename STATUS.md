@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-07-12 11:25 AEST by Loki_
+_Last updated: 2026-07-12 11:50 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Start the next approved lane, issue #133 (`Map Reddi payment extension onto Google AP2 mandates + x402`), after normal preflight confirms no open PRs and clean enough workspace state. Issue #137 is complete: PR #138 merged at `92b98cd985ef996430199bc5bc71700a4c710301`, issue #137 closed completed, remote/local feature branch cleanup done.
+- **Next action:** Wait for Oli QA on draft PR #139 (`Add static AP2/x402 mandate mapping report`) for issue #133. PR head is `c6b3b40` on branch `feat/ap2-x402-mandate-report-133`; local validation passed with no paid/model test calls. Do not mark ready, merge, clean up, or advance to #132 until Oli QA passes, parent verification is posted, normal policy checks are clear, and #133 is merged/closed.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Nissan asked on 2026-07-12 to set a 30-minute development/review/approval loop like `openclaw-workspace`, targeting the ReddiAgent/RAP backlog. The #137 static x402/MCP-to-RAP bridge report lane merged after Oli QA pass; runtime execution remains blocked.
+- **Last discussed:** Nissan asked on 2026-07-12 to set a 30-minute development/review/approval loop like `openclaw-workspace`, targeting the ReddiAgent/RAP backlog. The #137 static x402/MCP-to-RAP bridge report lane merged after Oli QA pass. The #133 AP2/x402 mandate mapping lane now has draft PR #139 open and awaiting Oli QA; runtime execution remains blocked.
 
 ## Current Phase
 
@@ -180,6 +180,7 @@ _Last updated: 2026-07-12 11:25 AEST by Loki_
 - 2026-07-08: Prioritized the static x402/MCP-to-RAP bridge report as the first build after the current spec slice. Validator/generator work remains important, but the bridge now leads the immediate post-spec roadmap because it creates the cleanest adoption path from video-style paid MCP implementations into Reddi Agent Protocol.
 - 2026-07-12: Created issue #137 and scheduled a dedicated 30-minute ReddiAgent/RAP backlog lane loop. Queue is #137, then #133, #132, #135, #134, and #136 if still appropriate. The loop is OAD-gated, PR/review/approval based, and report-only/static by policy; no live MCP, runtime, wallet, facilitator, payment rail, settlement, credential, production gateway config, external-service mutation, or paid/model test call is approved.
 - 2026-07-12: PR #138 completed issue #137 with static/report-only x402/MCP-to-RAP bridge fixtures, checker, tests, and evidence. Oli blocked live x402 resource URLs under `PaymentRequired.resource`; the merged fix now fails closed on `http://`/`https://` values under `service.mcp.*` or `x402.*`. Static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. Next approved lane is #133.
+- 2026-07-12: Draft PR #139 opened for issue #133. It adds a static/report-only AP2/x402 mandate mapping checker, ready/lossy fixtures, evidence report, and x402 dry-run receipt spec extension. Local validation passed and the static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`; PR remains draft pending Oli QA.
 
 ## Blockers & Flags
 

@@ -1,0 +1,98 @@
+{
+  "agent": {
+    "id": "lossy-paid-data-agent",
+    "runtimeExecutionAllowed": true,
+    "networkAccess": true,
+    "paymentAccess": true,
+    "mcpInvocation": true
+  },
+  "reddiPaymentExtension": {
+    "intentId": "intent:lossy",
+    "cartRef": "cart:lossy",
+    "budget": {
+      "maxAmount": "unbounded",
+      "asset": "USDC",
+      "rails": ["base"]
+    },
+    "receipt": {
+      "required": true,
+      "requestHash": "sha256:request-lossy",
+      "responseHash": null,
+      "paymentRef": "0xunsafe",
+      "serviceResultStatus": "unknown",
+      "requiredEvalGateStatus": "unknown",
+      "emissionPolicy": "emit-after-payment-only"
+    }
+  },
+  "ap2": {
+    "mandates": {
+      "IntentMandate": {
+        "id": "intent:lossy",
+        "vcRef": "vc:ap2:intent:lossy",
+        "issuer": "user:lossy",
+        "subject": "agent:lossy-paid-data-agent",
+        "scope": "*",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/lossy/intent"
+      },
+      "CartMandate": {
+        "id": "cart:lossy",
+        "vcRef": "vc:ap2:cart:lossy",
+        "issuer": "merchant:lossy",
+        "subject": "user:lossy",
+        "scope": "any",
+        "cartRef": "cart:lossy",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/lossy/cart"
+      },
+      "PaymentMandate": {
+        "id": "payment:lossy",
+        "vcRef": "vc:ap2:payment:lossy",
+        "issuer": "user:lossy",
+        "subject": "agent:lossy-paid-data-agent",
+        "scope": "unrestricted",
+        "maxAmount": "unbounded",
+        "asset": "USD",
+        "settlementRail": "stripe",
+        "endpoint": "https://payments.example.invalid/settle",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/lossy/payment"
+      }
+    }
+  },
+  "x402": {
+    "PaymentRequired": {
+      "resource": "https://live-mcp.example.invalid/market_data",
+      "description": "Live market data",
+      "accepts": [
+        {
+          "rail": "base",
+          "network": "base-mainnet",
+          "asset": "USDC",
+          "amount": "unbounded",
+          "payTo": "0xUnsafePayee"
+        }
+      ],
+      "timeoutSeconds": 90
+    },
+    "PaymentSignature": {
+      "selectedRail": "base",
+      "payer": "agent:lossy-paid-data-agent",
+      "rawSignature": "redacted-placeholder",
+      "walletPrivateKey": "redacted-placeholder"
+    },
+    "PaymentResponse": {
+      "success": true,
+      "transactionHash": "0xunsafe",
+      "network": "base-mainnet",
+      "payer": "agent:lossy-paid-data-agent"
+    }
+  },
+  "rap": {
+    "facilitatorProfile": {
+      "id": "rap-facilitator-profile:lossy",
+      "mode": "live",
+      "endpoint": "https://rap.example.invalid/facilitator"
+    }
+  }
+}
