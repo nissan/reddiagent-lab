@@ -75,3 +75,22 @@ OpenAI rows may be `supported: true` only for static compatibility when no hard 
 is present. Real settlement and MCP execution remain hard unsupported features. Every OpenAI row
 continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`,
 and `mcpInvocation=false`.
+
+## Anthropic MCP Compatibility-Only Mode
+
+The `anthropic` target emits `compatibilityMode: anthropic-mcp-compatibility-only`.
+This is a static review artifact, not an Anthropic API call or MCP client invocation.
+
+The Anthropic row includes:
+
+- model profile mapping from `model.capability`, `model.providers`, and `model.requirements`;
+- system prompt mapping from `harness.instructions.inline`;
+- Claude-style tool-use schema ids from non-MCP `harness.tools`;
+- MCP declaration metadata from MCP tools, limited to `id`, `serverRef`, and `toolName`;
+- `metadataOnly` fields for Reddi policy, eval, memory, data-source, x402, receipt, and reputation semantics that a reviewed runtime adapter must enforce before execution;
+- `unsupportedExecution` for MCP tool declarations because this report does not resolve or invoke MCP servers.
+
+Anthropic rows may be `supported: true` only for static compatibility when no hard unsupported
+feature is present. Real settlement and MCP execution remain hard unsupported features. Every
+Anthropic row continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`,
+`paymentAccess=false`, and `mcpInvocation=false`.

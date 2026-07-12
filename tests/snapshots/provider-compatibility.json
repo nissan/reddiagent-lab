@@ -61,6 +61,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
@@ -79,7 +80,42 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "providerMapping": {
+      "mode": "anthropic-mcp-compatibility-only",
+      "provider": "anthropic",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemPrompt": "harness.instructions.inline",
+        "toolUseSchemas": [],
+        "mcpDeclarations": [
+          {
+            "id": "docs_search",
+            "serverRef": "approved-docs-search",
+            "toolName": "search"
+          }
+        ],
+        "sourceBoundary": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": [
+          "docs_search"
+        ]
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -268,6 +304,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
@@ -284,7 +321,39 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "providerMapping": {
+      "mode": "anthropic-mcp-compatibility-only",
+      "provider": "anthropic",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemPrompt": "harness.instructions.inline",
+        "toolUseSchemas": [
+          "fetch_approved_url"
+        ],
+        "mcpDeclarations": [],
+        "sourceBoundary": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.x402",
+          "extensions.receipts",
+          "extensions.reputation"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -455,7 +524,9 @@
     "target": "anthropic",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
@@ -468,7 +539,37 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "providerMapping": {
+      "mode": "anthropic-mcp-compatibility-only",
+      "provider": "anthropic",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic",
+          "gemini",
+          "ollama"
+        ],
+        "requirements": {
+          "toolCalling": false,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemPrompt": "harness.instructions.inline",
+        "toolUseSchemas": [],
+        "mcpDeclarations": [],
+        "sourceBoundary": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -620,7 +721,9 @@
     "target": "anthropic",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
@@ -633,7 +736,37 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "providerMapping": {
+      "mode": "anthropic-mcp-compatibility-only",
+      "provider": "anthropic",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai",
+          "gemini"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemPrompt": "harness.instructions.inline",
+        "toolUseSchemas": [
+          "search_docs"
+        ],
+        "mcpDeclarations": [],
+        "sourceBoundary": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "source-checker",
