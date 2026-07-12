@@ -203,12 +203,47 @@ def blocked_gates(doc: dict) -> list[dict]:
     return gates
 
 
+def dry_run_file_manifest(
+    source: Path,
+    agent_slug: str,
+    planned: list[dict],
+    gates: list[dict],
+    validation_status: str,
+) -> dict:
+    status_counts: dict[str, int] = {}
+    for item in planned:
+        status = item["status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+
+    return {
+        "format": "starter-code-dry-run-file-manifest-fixture",
+        "source": display_path(source),
+        "outputRoot": f"starter/{agent_slug}",
+        "manifestOnly": True,
+        "writesFiles": False,
+        "validationStatus": validation_status,
+        "fileCount": len(planned),
+        "paths": [item["path"] for item in planned],
+        "statusCounts": status_counts,
+        "blockedGateIds": [gate["id"] for gate in gates],
+        "nonGoalIds": [
+            "no-file-writes",
+            "no-dependency-install",
+            "no-provider-model-mcp-payment-calls",
+            "no-sensitive-payloads",
+        ],
+    }
+
+
 def plan_for(path: Path) -> dict:
     doc = read_adl(path)
     errors = schema_errors(doc)
     metadata = doc.get("metadata") or {}
     agent_name = metadata.get("name")
     agent_slug = slugify(agent_name)
+    validation_status = "pass" if not errors else "fail"
+    planned = [] if errors else planned_files(agent_slug, doc)
+    gates = blocked_gates(doc)
     return {
         "format": "starter-code-review-manifest",
         "source": display_path(path),
@@ -225,12 +260,13 @@ def plan_for(path: Path) -> dict:
         "model": model_profile(doc),
         "tools": tool_profile(doc),
         "validation": {
-            "status": "pass" if not errors else "fail",
+            "status": validation_status,
             "command": f"python3 scripts/validate_examples.py --format json {display_path(path)}",
             "errors": errors,
         },
-        "plannedFiles": [] if errors else planned_files(agent_slug, doc),
-        "blockedGatesBeforeGeneration": blocked_gates(doc),
+        "plannedFiles": planned,
+        "dryRunFileManifest": dry_run_file_manifest(path, agent_slug, planned, gates, validation_status),
+        "blockedGatesBeforeGeneration": gates,
         "nonGoals": [
             "Do not write starter project files from this command.",
             "Do not install dependencies or create virtual environments.",
