@@ -1,0 +1,48 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: paid-mcp-skill-agent
+  description: Lossy fixture proving SKILL.md export refuses Reddi payment and MCP runtime semantics.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks: []
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Research with a paid MCP service and emit receipt metadata."
+  tools:
+    - id: paid_lookup
+      type: mcp
+      serverRef: paid-research
+      toolName: lookup
+      description: Static paid MCP lookup declaration.
+  policies:
+    - id: bounded-spend
+      type: budget
+      rule: "Spend no more than 0.10 USDC."
+  evalGates:
+    - id: receipt-required
+      type: receipt-check
+      rule: "Receipt metadata must be present before completion."
+  runtime:
+    target: hosted-container
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: paid_lookup_intent
+        direction: spend
+        maxAmount: "0.10"
+        currency: USDC
+        rails:
+          - base
+        requireReceipt: true
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - receiptVerified

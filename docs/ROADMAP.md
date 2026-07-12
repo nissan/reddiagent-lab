@@ -101,3 +101,12 @@ Current MCP runtime handoff slice:
 - current report summary lives in `tests/MCP-RUNTIME-HANDOFF-PACKAGE-REPORT.md`;
 - readiness traces now require adapter aggregation evidence before completion;
 - static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
+
+Current Agent Skills / SKILL.md slice:
+
+- static mapping lives in `mappings/AGENT-SKILL.md`;
+- report-only checker lives in `scripts/adl_to_agent_skill.py`;
+- strict fail-on-loss export mode is available with `--export-skill-package`;
+- guard test lives in `tests/test_agent_skill_export.py`;
+- current report summary lives in `tests/AGENT-SKILL-EXPORT-REPORT.md`;
+- static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.

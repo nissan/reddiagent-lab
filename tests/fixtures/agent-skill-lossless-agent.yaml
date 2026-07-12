@@ -1,0 +1,18 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: lossless-skill-agent
+  description: Minimal ReddiAgent skill package that can export to SKILL.md without losing runtime, payment, MCP, policy, or eval semantics.
+harness:
+  instructions:
+    inline: "Use the bundled reference to answer questions about the local product taxonomy."
+extensions:
+  agentSkills:
+    license: Apache-2.0
+    compatibility: "Designed for Claude Code, OpenAI Codex, Gemini CLI, and other Agent Skills clients."
+    allowedTools:
+      - Read
+    references:
+      - references/TAXONOMY.md
+    assets:
+      - assets/example-output.json
