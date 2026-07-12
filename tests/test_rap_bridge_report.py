@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,8 +79,28 @@ def main() -> int:
     assert "Required eval gate must pass before reputation signals are RAP-ready." in reasons
     unsafe_paths = {finding["path"] for finding in unsafe_doc["unsafe"]}
     assert "service.mcp.serverUrl" in unsafe_paths
+    assert "x402.PaymentRequired.resource" in unsafe_paths
     assert "x402.facilitator.endpoint" in unsafe_paths
     assert "x402.PaymentSignature.walletPrivateKey" in unsafe_paths
+
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=True) as live_resource:
+        live_resource_doc = json.loads(
+            (ROOT / "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json").read_text()
+        )
+        live_resource_doc["x402"]["PaymentRequired"]["resource"] = (
+            "https://live-mcp.example.invalid/forecast_report"
+        )
+        json.dump(live_resource_doc, live_resource)
+        live_resource.flush()
+
+        live_resource_proc = run_case(live_resource.name)
+        assert live_resource_proc.returncode == 2
+        live_resource_report = parse_json(live_resource_proc)
+        live_resource_paths = {
+            finding["path"] for finding in live_resource_report["unsafe"]
+        }
+        assert live_resource_report["bridgeReady"] is False
+        assert "x402.PaymentRequired.resource" in live_resource_paths
 
     print("PASS RAP bridge report")
     return 0

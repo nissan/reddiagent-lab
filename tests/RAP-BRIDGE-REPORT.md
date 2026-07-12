@@ -16,7 +16,8 @@ No runtime agent was activated. No MCP server was resolved or invoked. No wallet
 ## Expected Outcomes
 
 - Ready fixture: `bridgeReady=true`; x402 vocabulary, authority, receipt, and reputation fields are preserved as RAP-ready or metadata-only.
-- Unsafe fixture: `bridgeReady=false`; live execution, wallet/facilitator/server, unbounded authority, and payment-without-service-success paths are reported as unsafe or unsupported.
+- Unsafe fixture: `bridgeReady=false`; live execution, wallet/facilitator/server, live x402 resource URLs, unbounded authority, and payment-without-service-success paths are reported as unsafe or unsupported.
+- Regression fixture mutation: an otherwise-ready bridge document with only `x402.PaymentRequired.resource=https://...` fails closed with `bridgeReady=false`.
 
 ## Boundary Flags
 

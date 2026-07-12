@@ -37,6 +37,7 @@ LIVE_ACCESS_FLAGS = {
     "paymentAccess",
     "mcpInvocation",
 }
+LIVE_ENDPOINT_SCHEMES = ("http://", "https://")
 
 
 def display_path(path: Path) -> str:
@@ -133,6 +134,19 @@ def unsafe_findings(doc: dict) -> list[dict]:
                     "unsafe",
                     path,
                     "Bridge input contains a live endpoint, executable, credential, or wallet field.",
+                )
+            )
+            continue
+        if (
+            isinstance(value, str)
+            and value.startswith(LIVE_ENDPOINT_SCHEMES)
+            and (path.startswith("service.mcp.") or path.startswith("x402."))
+        ):
+            findings.append(
+                finding(
+                    "unsafe",
+                    path,
+                    "Bridge input contains a live endpoint URL in MCP or x402 metadata.",
                 )
             )
 
