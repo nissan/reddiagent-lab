@@ -22,6 +22,7 @@ REPORT_ONLY_BOUNDARY = {
 OPENAI_COMPATIBILITY_MODE = "openai-adapter-compatibility-only"
 ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
 GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
+OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 
 
 def load_adl(path: Path) -> dict:
@@ -169,6 +170,62 @@ def gemini_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
     }
 
 
+def ollama_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
+    model = doc["model"]
+    harness = doc["harness"]
+    extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    regular_tools = [tool for tool in tools if tool.get("type") != "mcp"]
+    providers = model.get("providers", {})
+    declared_providers = [providers.get("preferred"), *providers.get("fallbacks", [])]
+
+    metadata_only = []
+    if harness.get("policies"):
+        metadata_only.append("harness.policies")
+    if harness.get("evalGates"):
+        metadata_only.append("harness.evalGates")
+    if harness.get("memory"):
+        metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
+    if extensions.get("x402"):
+        metadata_only.append("extensions.x402")
+    if extensions.get("receipts"):
+        metadata_only.append("extensions.receipts")
+    if extensions.get("reputation"):
+        metadata_only.append("extensions.reputation")
+    if mcp_tools:
+        metadata_only.append("harness.tools[type=mcp]")
+
+    return {
+        "mode": OLLAMA_COMPATIBILITY_MODE,
+        "provider": "ollama",
+        "modelProfile": {
+            "capability": model.get("capability"),
+            "preferredProvider": providers.get("preferred"),
+            "fallbackProviders": providers.get("fallbacks", []),
+            "localProviderDeclared": "ollama" in declared_providers,
+            "requirements": model.get("requirements", {}),
+        },
+        "adapterMapping": {
+            "localEndpoint": "not-probed",
+            "modelId": "metadata-only",
+            "promptTemplate": "harness.instructions.inline",
+            "toolCalls": "custom-harness-required"
+            if model.get("requirements", {}).get("toolCalling")
+            else "not-required",
+            "structuredOutput": "custom-harness-required"
+            if model.get("requirements", {}).get("structuredOutput")
+            else "not-required",
+            "stateAndMemory": "external-harness-owned",
+            "functionTools": [tool.get("id") for tool in regular_tools],
+            "metadataOnly": metadata_only,
+            "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
+        },
+        "reportOnly": True,
+    }
+
+
 def report(path: Path, target: str) -> dict:
     doc = load_adl(path)
     harness = doc["harness"]
@@ -183,12 +240,20 @@ def report(path: Path, target: str) -> dict:
     compatibility_mode = "provider-compatibility-report-only"
     provider_mapping = None
 
-    if target == "ollama" and model["requirements"].get("toolCalling"):
-        warnings.append("Tool calling may require custom local harness parsing.")
     if target == "local-python":
         level = 1 if harness["runtime"]["target"] == "local-python" else 0
     elif target == "mcp-readonly":
         level = 2 if mcp_tools else 0
+    elif target == "ollama":
+        level = 2
+        compatibility_mode = OLLAMA_COMPATIBILITY_MODE
+        provider_mapping = ollama_mapping(doc, mcp_tools)
+        warnings.append(
+            "Ollama/local compatibility is report-only; local endpoint, model id, "
+            "tool calling, structured output, memory, policy, eval, payment, receipt, "
+            "reputation, and MCP semantics remain metadata-only or external-harness-owned "
+            "unless a reviewed local adapter enforces them."
+        )
     elif target in ["openai", "anthropic", "gemini", "langgraph"]:
         level = 2
         required_secrets.append(f"{target.upper().replace('-', '_')}_API_KEY")
