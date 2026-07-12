@@ -123,6 +123,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
@@ -141,7 +142,38 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "gemini-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "gemini-provider-compatibility-only",
+      "provider": "gemini",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemInstruction": "harness.instructions.inline",
+        "functionDeclarations": [],
+        "structuredOutput": true,
+        "grounding": "not-configured",
+        "codeExecution": "unsupported",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.tools[type=mcp]"
+        ],
+        "unsupportedExecution": [
+          "docs_search"
+        ]
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -361,6 +393,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
@@ -377,7 +410,40 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "gemini-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "gemini-provider-compatibility-only",
+      "provider": "gemini",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemInstruction": "harness.instructions.inline",
+        "functionDeclarations": [
+          "fetch_approved_url"
+        ],
+        "structuredOutput": true,
+        "grounding": "not-configured",
+        "codeExecution": "unsupported",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.x402",
+          "extensions.receipts",
+          "extensions.reputation"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -576,7 +642,9 @@
     "target": "gemini",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "GEMINI_API_KEY"
@@ -589,7 +657,38 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "gemini-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "gemini-provider-compatibility-only",
+      "provider": "gemini",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic",
+          "gemini",
+          "ollama"
+        ],
+        "requirements": {
+          "toolCalling": false,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemInstruction": "harness.instructions.inline",
+        "functionDeclarations": [],
+        "structuredOutput": true,
+        "grounding": "not-configured",
+        "codeExecution": "unsupported",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -773,7 +872,9 @@
     "target": "gemini",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "GEMINI_API_KEY"
@@ -786,7 +887,38 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "gemini-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "gemini-provider-compatibility-only",
+      "provider": "gemini",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai",
+          "gemini"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "systemInstruction": "harness.instructions.inline",
+        "functionDeclarations": [
+          "search_docs"
+        ],
+        "structuredOutput": true,
+        "grounding": "not-configured",
+        "codeExecution": "unsupported",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "source-checker",

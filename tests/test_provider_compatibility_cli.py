@@ -34,11 +34,13 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
             "--target",
             "anthropic",
             "--target",
+            "gemini",
+            "--target",
             "mcp-readonly",
         ]
     )
     reports = json.loads(proc.stdout)
-    assert [item["target"] for item in reports] == ["openai", "anthropic", "mcp-readonly"]
+    assert [item["target"] for item in reports] == ["openai", "anthropic", "gemini", "mcp-readonly"]
     assert {item["agent"] for item in reports} == {"mcp-readonly-docs"}
 
     for item in reports:
@@ -54,7 +56,8 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
 
     assert reports[0]["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert reports[1]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
-    assert reports[2]["requiredSecrets"] == []
+    assert reports[2]["requiredSecrets"] == ["GEMINI_API_KEY"]
+    assert reports[3]["requiredSecrets"] == []
 
 
 def test_local_python_selector_and_summary_output_file() -> None:
@@ -203,6 +206,72 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
     assert "Payment extension is dry-run only" in payment["warnings"][1]
 
 
+def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() -> None:
+    proc = run_cli(
+        [
+            "examples/simple-agent.yaml",
+            "examples/tool-agent.yaml",
+            "examples/payment-agent.yaml",
+            "--target",
+            "gemini",
+        ]
+    )
+    reports = {item["agent"]: item for item in json.loads(proc.stdout)}
+
+    simple = reports["simple-research-helper"]
+    assert simple["target"] == "gemini"
+    assert simple["compatibilityMode"] == "gemini-provider-compatibility-only"
+    assert simple["boundary"] == {
+        "runtimeExecutionAllowed": False,
+        "networkAccess": False,
+        "paymentAccess": False,
+        "mcpInvocation": False,
+    }
+    assert simple["requiredSecrets"] == ["GEMINI_API_KEY"]
+    assert simple["providerMapping"]["reportOnly"] is True
+    assert simple["providerMapping"]["adapterMapping"]["functionDeclarations"] == []
+    assert simple["providerMapping"]["adapterMapping"]["grounding"] == "not-configured"
+    assert simple["providerMapping"]["adapterMapping"]["codeExecution"] == "unsupported"
+    assert simple["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory",
+    ]
+    assert "metadata-only or unsupported" in simple["warnings"][0]
+
+    tool = reports["source-checker"]
+    assert tool["supported"] is True
+    assert tool["providerMapping"]["adapterMapping"]["functionDeclarations"] == ["search_docs"]
+    assert tool["providerMapping"]["adapterMapping"]["structuredOutput"] is True
+
+    payment = reports["paid-specialist-researcher"]
+    assert payment["supported"] is False
+    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
+    assert "Payment extension is dry-run only" in payment["warnings"][1]
+
+
+def test_gemini_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
+    proc = run_cli(["examples/mcp-readonly-agent.yaml", "--target", "gemini"])
+    report = json.loads(proc.stdout)[0]
+    assert report["compatibilityMode"] == "gemini-provider-compatibility-only"
+    assert report["supported"] is False
+    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
+    assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.tools[type=mcp]",
+    ]
+    assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -215,6 +284,7 @@ def test_list_targets_includes_mcp_readonly() -> None:
     targets = proc.stdout.splitlines()
     assert "openai" in targets
     assert "anthropic" in targets
+    assert "gemini" in targets
     assert "local-python" in targets
     assert "mcp-readonly" in targets
 
@@ -226,6 +296,8 @@ def main() -> int:
     test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
     test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation()
     test_anthropic_compatibility_mode_preserves_payment_as_metadata_only()
+    test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics()
+    test_gemini_compatibility_mode_keeps_mcp_execution_unsupported()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")

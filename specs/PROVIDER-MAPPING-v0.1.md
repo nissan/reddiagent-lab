@@ -28,8 +28,11 @@ read credentials, activate runtimes, resolve MCP servers, or invoke tools.
 - `anthropic-mcp-compatibility-only` maps ADL instructions, Claude-style tool-use schema ids,
   MCP declaration metadata (`id`, `serverRef`, `toolName`), model profile, and Reddi metadata-only
   semantics for an Anthropic/MCP-facing review.
+- `gemini-provider-compatibility-only` maps ADL instructions, function declaration ids, model
+  profile, structured-output capability, explicit grounding/code-execution diagnostics, and Reddi
+  metadata-only semantics for a Gemini-facing review.
 
-MCP declarations remain unsupported for execution in both modes until a separate reviewed runtime
+MCP declarations remain unsupported for execution in these modes until a separate reviewed runtime
 adapter explicitly enables MCP server resolution and invocation.
 
 ## Compatibility Result

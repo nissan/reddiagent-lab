@@ -21,6 +21,7 @@ REPORT_ONLY_BOUNDARY = {
 }
 OPENAI_COMPATIBILITY_MODE = "openai-adapter-compatibility-only"
 ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
+GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 
 
 def load_adl(path: Path) -> dict:
@@ -121,6 +122,53 @@ def anthropic_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
     }
 
 
+def gemini_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
+    model = doc["model"]
+    harness = doc["harness"]
+    extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    regular_tools = [tool for tool in tools if tool.get("type") != "mcp"]
+
+    metadata_only = []
+    if harness.get("policies"):
+        metadata_only.append("harness.policies")
+    if harness.get("evalGates"):
+        metadata_only.append("harness.evalGates")
+    if harness.get("memory"):
+        metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
+    if extensions.get("x402"):
+        metadata_only.append("extensions.x402")
+    if extensions.get("receipts"):
+        metadata_only.append("extensions.receipts")
+    if extensions.get("reputation"):
+        metadata_only.append("extensions.reputation")
+    if mcp_tools:
+        metadata_only.append("harness.tools[type=mcp]")
+
+    return {
+        "mode": GEMINI_COMPATIBILITY_MODE,
+        "provider": "gemini",
+        "modelProfile": {
+            "capability": model.get("capability"),
+            "preferredProvider": model.get("providers", {}).get("preferred"),
+            "fallbackProviders": model.get("providers", {}).get("fallbacks", []),
+            "requirements": model.get("requirements", {}),
+        },
+        "adapterMapping": {
+            "systemInstruction": "harness.instructions.inline",
+            "functionDeclarations": [tool.get("id") for tool in regular_tools],
+            "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
+            "grounding": "not-configured",
+            "codeExecution": "unsupported",
+            "metadataOnly": metadata_only,
+            "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
+        },
+        "reportOnly": True,
+    }
+
+
 def report(path: Path, target: str) -> dict:
     doc = load_adl(path)
     harness = doc["harness"]
@@ -160,6 +208,15 @@ def report(path: Path, target: str) -> dict:
                 "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, "
                 "data-source, payment, receipt, reputation, and MCP semantics remain "
                 "metadata-only unless a reviewed runtime adapter enforces them."
+            )
+        if target == "gemini":
+            compatibility_mode = GEMINI_COMPATIBILITY_MODE
+            provider_mapping = gemini_mapping(doc, mcp_tools)
+            warnings.append(
+                "Gemini compatibility is report-only; Reddi policy, eval, memory, "
+                "data-source, payment, receipt, reputation, grounding, code execution, "
+                "and MCP semantics remain metadata-only or unsupported unless a reviewed "
+                "runtime adapter enforces them."
             )
     else:
         level = 0

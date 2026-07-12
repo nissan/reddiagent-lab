@@ -94,3 +94,25 @@ Anthropic rows may be `supported: true` only for static compatibility when no ha
 feature is present. Real settlement and MCP execution remain hard unsupported features. Every
 Anthropic row continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`,
 `paymentAccess=false`, and `mcpInvocation=false`.
+
+## Gemini Compatibility-Only Mode
+
+The `gemini` target emits `compatibilityMode: gemini-provider-compatibility-only`.
+This is a static review artifact, not a Gemini API call or Google runtime activation.
+
+The Gemini row includes:
+
+- model profile mapping from `model.capability`, `model.providers`, and `model.requirements`;
+- system instruction mapping from `harness.instructions.inline`;
+- function declaration ids from non-MCP `harness.tools`;
+- structured-output capability from `model.requirements.structuredOutput`;
+- explicit `grounding: not-configured` and `codeExecution: unsupported` diagnostics;
+- `metadataOnly` fields for Reddi policy, eval, memory, data-source, x402, receipt, reputation,
+  and MCP semantics that a reviewed runtime adapter must enforce before execution;
+- `unsupportedExecution` for MCP tool declarations because this report does not resolve or invoke
+  MCP servers.
+
+Gemini rows may be `supported: true` only for static compatibility when no hard unsupported feature
+is present. Real settlement and MCP execution remain hard unsupported features. Every Gemini row
+continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`,
+and `mcpInvocation=false`.
