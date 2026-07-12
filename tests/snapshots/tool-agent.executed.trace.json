@@ -1,0 +1,109 @@
+{
+  "agent": "source-checker",
+  "description": "Answers questions using one approved search tool and cites the source title.",
+  "runtime": "local-python",
+  "modelCapability": "chat",
+  "preferredProvider": "anthropic",
+  "fallbackProviders": [
+    "openai",
+    "gemini"
+  ],
+  "toolCount": 1,
+  "policyCount": 1,
+  "evalGateCount": 1,
+  "paymentEnabled": false,
+  "mode": "dry-run",
+  "level": 1,
+  "completion": {
+    "transportStatus": "pass",
+    "requiredGateStatus": "pass",
+    "status": "pass",
+    "reason": "dry-run transport completed and required gates passed"
+  },
+  "trace": [
+    {
+      "event": "session.started",
+      "traceId": "679d1dbaf4893ab4",
+      "agent": "source-checker",
+      "runtime": "local-python"
+    },
+    {
+      "event": "model.resolved",
+      "traceId": "679d1dbaf4893ab4",
+      "provider": "anthropic",
+      "capability": "chat"
+    },
+    {
+      "event": "tools.registered",
+      "traceId": "679d1dbaf4893ab4",
+      "count": 1
+    },
+    {
+      "event": "policies.loaded",
+      "traceId": "679d1dbaf4893ab4",
+      "count": 1
+    },
+    {
+      "event": "evals.loaded",
+      "traceId": "679d1dbaf4893ab4",
+      "count": 1
+    },
+    {
+      "event": "tool.executed",
+      "traceId": "679d1dbaf4893ab4",
+      "toolId": "search_docs",
+      "status": "success",
+      "inputHash": "d16a992bc62ea3d3",
+      "outputHash": "3d7893bdedc034ee"
+    },
+    {
+      "event": "source.checked",
+      "traceId": "679d1dbaf4893ab4",
+      "gateId": "approved-source-output",
+      "toolId": "search_docs",
+      "status": "pass"
+    },
+    {
+      "event": "task.dry_run_completed",
+      "traceId": "679d1dbaf4893ab4",
+      "status": "pass",
+      "reason": "dry-run transport completed and required gates passed"
+    }
+  ],
+  "toolExecution": {
+    "mode": "local-fixture",
+    "networkAccess": false,
+    "paymentAccess": false,
+    "deniedCount": 0,
+    "results": [
+      {
+        "toolId": "search_docs",
+        "status": "success",
+        "inputHash": "d16a992bc62ea3d3",
+        "outputHash": "3d7893bdedc034ee",
+        "output": {
+          "title": "Tool Registry Contract v0.1",
+          "url": "specs/TOOL-REGISTRY-v0.1.md",
+          "snippet": "Tools are typed, permissioned, observable, and replaceable harness capabilities."
+        }
+      }
+    ]
+  },
+  "sourceChecks": [
+    {
+      "gateId": "approved-source-output",
+      "toolId": "search_docs",
+      "status": "pass",
+      "title": "Tool Registry Contract v0.1",
+      "url": "specs/TOOL-REGISTRY-v0.1.md",
+      "message": "Tool output cites an approved in-repo source."
+    }
+  ],
+  "sourceCheckSummary": {
+    "total": 1,
+    "passCount": 1,
+    "failCount": 0,
+    "requiredFailureCount": 0,
+    "status": "pass"
+  }
+}
