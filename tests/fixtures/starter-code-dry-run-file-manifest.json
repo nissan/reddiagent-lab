@@ -1,0 +1,104 @@
+{
+  "examples/simple-agent.yaml": {
+    "format": "starter-code-dry-run-file-manifest-fixture",
+    "source": "examples/simple-agent.yaml",
+    "outputRoot": "starter/simple-research-helper",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "fileCount": 6,
+    "paths": [
+      "starter/simple-research-helper/README.md",
+      "starter/simple-research-helper/agent.adl.yaml",
+      "starter/simple-research-helper/src/agent_harness.py",
+      "starter/simple-research-helper/tests/test_static_contract.py",
+      "starter/simple-research-helper/.env.example",
+      "starter/simple-research-helper/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review"
+    ],
+    "nonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/tool-agent.yaml": {
+    "format": "starter-code-dry-run-file-manifest-fixture",
+    "source": "examples/tool-agent.yaml",
+    "outputRoot": "starter/source-checker",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "fileCount": 7,
+    "paths": [
+      "starter/source-checker/README.md",
+      "starter/source-checker/agent.adl.yaml",
+      "starter/source-checker/src/agent_harness.py",
+      "starter/source-checker/tests/test_static_contract.py",
+      "starter/source-checker/.env.example",
+      "starter/source-checker/fixtures/tools.json",
+      "starter/source-checker/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 3,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review"
+    ],
+    "nonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/payment-agent.yaml": {
+    "format": "starter-code-dry-run-file-manifest-fixture",
+    "source": "examples/payment-agent.yaml",
+    "outputRoot": "starter/paid-specialist-researcher",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "fileCount": 6,
+    "paths": [
+      "starter/paid-specialist-researcher/README.md",
+      "starter/paid-specialist-researcher/agent.adl.yaml",
+      "starter/paid-specialist-researcher/src/agent_harness.py",
+      "starter/paid-specialist-researcher/tests/test_static_contract.py",
+      "starter/paid-specialist-researcher/.env.example",
+      "starter/paid-specialist-researcher/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review",
+      "runtime-target-review",
+      "payment-rail-review"
+    ],
+    "nonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  }
+}

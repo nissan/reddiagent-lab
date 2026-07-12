@@ -11,6 +11,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
+DRY_RUN_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-dry-run-file-manifest.json"
 
 
 def run_plan(*paths: str) -> list[dict]:
@@ -51,12 +52,18 @@ def gate_ids(plan: dict) -> list[str]:
     return [item["id"] for item in plan["blockedGatesBeforeGeneration"]]
 
 
+def dry_run_fixture(plans: list[dict]) -> dict:
+    return {plan["source"]: plan["dryRunFileManifest"] for plan in plans}
+
+
 def main() -> int:
     plans = run_plan(
         "examples/simple-agent.yaml",
         "examples/tool-agent.yaml",
         "examples/payment-agent.yaml",
     )
+    expected_dry_run = json.loads(DRY_RUN_FIXTURE.read_text())
+    assert dry_run_fixture(plans) == expected_dry_run
     by_agent = {plan["agent"]: plan for plan in plans}
 
     simple = by_agent["simple-research-helper"]
@@ -72,6 +79,9 @@ def main() -> int:
     assert simple["tools"]["toolCount"] == 0
     assert "starter/simple-research-helper/src/agent_harness.py" in file_paths(simple)
     assert "starter/simple-research-helper/.env.example" in file_paths(simple)
+    assert simple["dryRunFileManifest"]["manifestOnly"] is True
+    assert simple["dryRunFileManifest"]["writesFiles"] is False
+    assert simple["dryRunFileManifest"]["validationStatus"] == "pass"
     assert "provider-runtime-review" in gate_ids(simple)
     assert_static_boundaries(simple)
 
@@ -104,6 +114,9 @@ def main() -> int:
     assert invalid_plan["supported"] is False
     assert invalid_plan["validation"]["status"] == "fail"
     assert invalid_plan["plannedFiles"] == []
+    assert invalid_plan["dryRunFileManifest"]["fileCount"] == 0
+    assert invalid_plan["dryRunFileManifest"]["paths"] == []
+    assert invalid_plan["dryRunFileManifest"]["validationStatus"] == "fail"
     assert "generator-implementation-review" in gate_ids(invalid_plan)
     assert_static_boundaries(invalid_plan)
 
