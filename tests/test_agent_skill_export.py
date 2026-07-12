@@ -6,12 +6,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PYTHON = "/Users/loki/.pyenv/versions/3.14.3/bin/python3"
+PYTHON = sys.executable
 
 
 def run_report(*paths: str) -> list[dict]:
