@@ -28,6 +28,12 @@ The smallest useful prosumer product is not an agent marketplace. It is a guided
 
 Report-only exports currently point to Agent Spec, A2A Agent Card, and Agent Skills / `SKILL.md` compatibility commands. The plan does not call model providers, live runtimes, MCP servers, wallets, facilitators, payment rails, or external services.
 
+## Local Validation UI Prototype
+
+`docs/adl-validation-ui.html` is a local/static prototype for the validation step in the MVP flow. It embeds bundled ADL examples, shows validation/report-only results generated from the existing Python validator, and offers browser-only prototype checks for pasted ADL. The authoritative command remains `python3 scripts/validate_examples.py --format json <adl-path>`.
+
+The UI is intentionally not deployed and does not start a server, call providers, invoke MCP, access wallets/payment rails, read credentials, or activate a runtime.
+
 ## Non-Goals
 
 - Real payments.
