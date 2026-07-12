@@ -125,6 +125,29 @@
   },
   {
     "agent": "mcp-readonly-docs",
+    "target": "mcp-readonly",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  },
+  {
+    "agent": "mcp-readonly-docs",
     "target": "local-python",
     "supported": false,
     "level": 1,
@@ -262,6 +285,27 @@
   },
   {
     "agent": "paid-specialist-researcher",
+    "target": "mcp-readonly",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  },
+  {
+    "agent": "paid-specialist-researcher",
     "target": "local-python",
     "supported": true,
     "level": 0,
@@ -374,6 +418,23 @@
   },
   {
     "agent": "simple-research-helper",
+    "target": "mcp-readonly",
+    "supported": true,
+    "level": 0,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  },
+  {
+    "agent": "simple-research-helper",
     "target": "local-python",
     "supported": true,
     "level": 1,
@@ -475,6 +536,23 @@
     "requiredSecrets": [
       "LANGGRAPH_API_KEY"
     ],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  },
+  {
+    "agent": "source-checker",
+    "target": "mcp-readonly",
+    "supported": true,
+    "level": 0,
+    "warnings": [],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
