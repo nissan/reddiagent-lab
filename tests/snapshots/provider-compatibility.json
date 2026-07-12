@@ -5,6 +5,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
@@ -22,6 +23,36 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
+    },
+    "compatibilityMode": "openai-adapter-compatibility-only",
+    "providerMapping": {
+      "mode": "openai-adapter-compatibility-only",
+      "provider": "openai",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "instructions": "harness.instructions.inline",
+        "tools": [],
+        "structuredOutput": true,
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.tools[type=mcp]"
+        ],
+        "unsupportedExecution": [
+          "docs_search"
+        ]
+      },
+      "reportOnly": true
     }
   },
   {
@@ -47,7 +78,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "mcp-readonly-docs",
@@ -72,7 +104,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "mcp-readonly-docs",
@@ -96,7 +129,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "mcp-readonly-docs",
@@ -121,7 +155,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "mcp-readonly-docs",
@@ -144,7 +179,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "mcp-readonly-docs",
@@ -167,7 +203,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -175,6 +212,7 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
@@ -190,6 +228,38 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
+    },
+    "compatibilityMode": "openai-adapter-compatibility-only",
+    "providerMapping": {
+      "mode": "openai-adapter-compatibility-only",
+      "provider": "openai",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "instructions": "harness.instructions.inline",
+        "tools": [
+          "fetch_approved_url"
+        ],
+        "structuredOutput": true,
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.x402",
+          "extensions.receipts",
+          "extensions.reputation"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
     }
   },
   {
@@ -213,7 +283,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -236,7 +307,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -258,7 +330,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -281,7 +354,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -302,7 +376,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "paid-specialist-researcher",
@@ -321,14 +396,17 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
     "target": "openai",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "OPENAI_API_KEY"
@@ -340,6 +418,36 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
+    },
+    "compatibilityMode": "openai-adapter-compatibility-only",
+    "providerMapping": {
+      "mode": "openai-adapter-compatibility-only",
+      "provider": "openai",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic",
+          "gemini",
+          "ollama"
+        ],
+        "requirements": {
+          "toolCalling": false,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "instructions": "harness.instructions.inline",
+        "tools": [],
+        "structuredOutput": true,
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
     }
   },
   {
@@ -359,7 +467,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
@@ -378,7 +487,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
@@ -395,7 +505,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
@@ -414,7 +525,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
@@ -431,7 +543,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "simple-research-helper",
@@ -448,14 +561,17 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
     "target": "openai",
     "supported": true,
     "level": 2,
-    "warnings": [],
+    "warnings": [
+      "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [
       "OPENAI_API_KEY"
@@ -467,6 +583,36 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
+    },
+    "compatibilityMode": "openai-adapter-compatibility-only",
+    "providerMapping": {
+      "mode": "openai-adapter-compatibility-only",
+      "provider": "openai",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai",
+          "gemini"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "instructions": "harness.instructions.inline",
+        "tools": [
+          "search_docs"
+        ],
+        "structuredOutput": true,
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
     }
   },
   {
@@ -486,7 +632,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
@@ -505,7 +652,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
@@ -524,7 +672,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
@@ -543,7 +692,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
@@ -560,7 +710,8 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   },
   {
     "agent": "source-checker",
@@ -577,6 +728,7 @@
       "networkAccess": false,
       "paymentAccess": false,
       "mcpInvocation": false
-    }
+    },
+    "compatibilityMode": "provider-compatibility-report-only"
   }
 ]

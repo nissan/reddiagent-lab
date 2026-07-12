@@ -17,6 +17,7 @@ Focused selector/export checks:
 - payment-agent is schema-valid but real settlement is unsupported; keep it dry-run until receipt and policy enforcement are stronger.
 - mcp-readonly-agent is schema-valid and adapter-shape-readable, but MCP execution is unsupported for every target until server resolution and source-check enforcement land.
 - `mcp-readonly` is a compatibility target for static MCP declaration review only. It does not resolve or invoke MCP servers.
+- `openai` now emits `compatibilityMode: openai-adapter-compatibility-only` with deterministic model, instruction, function-tool, metadata-only, and unsupported-execution mapping fields. It does not call OpenAI or read credentials.
 - Every provider compatibility row now carries explicit report-only boundary metadata:
   `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
 
