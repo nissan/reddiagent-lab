@@ -1,29 +1,87 @@
 {
-  "receiptVersion": "reddiagent.receipt/v0.1",
-  "mode": "dry-run",
-  "agent": "paid-specialist-researcher",
-  "taskId": "dry-run-example-task",
-  "paymentIntentId": "pay-specialist",
-  "railCandidates": [
-    "solana",
-    "base",
-    "stripe"
-  ],
-  "amount": "0.25",
-  "currency": "USDC",
-  "requestHash": "sha256:371e1d97edd8405133bf12075368e063d1e265c960aaf8cd774e8464380a0d8b",
-  "responseHash": "sha256:ab8ddd6d3e64290f8e3f6a4b6d1440d291ea5e68896ec0d6fc9fa41a86873ba8",
-  "policyResults": [
+  "source": "examples/payment-agent.yaml",
+  "mode": "static-payment-dry-run-receipt-report",
+  "status": "pass",
+  "receiptReady": true,
+  "receipt": {
+    "receiptVersion": "reddiagent.receipt/v0.2",
+    "agent": "paid-specialist-researcher",
+    "taskId": "dry-run-example-task",
+    "paymentIntentId": "pay-specialist",
+    "paymentDirection": "spend",
+    "railCandidates": [
+      "solana",
+      "base",
+      "stripe"
+    ],
+    "amount": "0.25",
+    "currency": "USDC",
+    "requestHash": "sha256:371e1d97edd8405133bf12075368e063d1e265c960aaf8cd774e8464380a0d8b",
+    "responseHash": "sha256:ab8ddd6d3e64290f8e3f6a4b6d1440d291ea5e68896ec0d6fc9fa41a86873ba8",
+    "paymentRef": "dry-run:none",
+    "settlementReference": null,
+    "serviceResultStatus": "pass",
+    "requiredEvalGateStatus": "pass",
+    "emissionPolicy": "emit-after-payment-and-service-pass",
+    "policyResults": [
+      {
+        "id": "task-budget",
+        "status": "pass"
+      }
+    ],
+    "evalResults": [
+      {
+        "id": "receipt-required",
+        "status": "pass"
+      }
+    ],
+    "reputationSignalsAllowed": [
+      "taskCompleted",
+      "evalPassed",
+      "receiptVerified"
+    ]
+  },
+  "metadataOnly": [
     {
-      "id": "task-budget",
-      "status": "pass"
+      "section": "extensions.x402",
+      "reason": "Payment intent and x402 vocabulary are preserved; no quote, proof, facilitator, wallet, or settlement path is used."
+    },
+    {
+      "section": "extensions.receipts",
+      "reason": "Receipt evidence is deterministic dry-run data only."
+    },
+    {
+      "section": "extensions.reputation",
+      "reason": "Reputation signals are allowed only after receipt and eval evidence; no reputation service is called."
+    },
+    {
+      "section": "harness.runtime",
+      "reason": "Non-local runtime targets are preserved as metadata; no runtime is activated."
     }
   ],
-  "evalResults": [
-    {
-      "id": "receipt-required",
-      "status": "pass"
-    }
-  ],
-  "settlementReference": null
+  "unsupported": [],
+  "unsafe": [],
+  "findings": [],
+  "preservedVocabulary": {
+    "x402": [
+      "PaymentRequired",
+      "PaymentSignature",
+      "PaymentResponse"
+    ],
+    "reddi": [
+      "intentId",
+      "budget",
+      "receipt",
+      "reputation"
+    ],
+    "rap": [
+      "payment-plus-service-result",
+      "required-eval-gate",
+      "authority-constraints"
+    ]
+  },
+  "runtimeExecutionAllowed": false,
+  "networkAccess": false,
+  "paymentAccess": false,
+  "mcpInvocation": false
 }
