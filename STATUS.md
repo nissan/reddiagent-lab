@@ -1,9 +1,9 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-07-12 20:00 AEST by Loki_
+_Last updated: 2026-07-12 20:03 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Wait for Oli QA on draft PR #161 for issue #155 (`Add Anthropic MCP compatibility-only mode`), then run current-head parent gates before marking ready or merging if QA passes. Runtime execution remains blocked: keep future work report-only/static unless Nissan explicitly approves otherwise.
+- **Next action:** Wait for Oli QA on draft PR #161 for issue #155 (`Add Anthropic MCP compatibility-only mode`). Do not advance to #157 until #161 receives QA, parent gates remain clean, and PR #161 is merged/closed. PR #161 is open/draft at head `82e7c468b9ce2cfd7c6d3c7488d4a5dc8144ee44`, linked to #155, mergeable, zero review threads, no review requests, and GitHub Actions `Deterministic smoke and snapshots` passed. Parent validation evidence is posted at https://github.com/reddinft/reddiagent-lab/pull/161#issuecomment-4950774060. Oli QA requested via `agent:oli:subagent:c84218f9-c88d-4eef-8bc4-a5dee0447cb5`.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Nissan asked on 2026-07-12 18:54 AEST that if the current track is complete, the loop should review the backlog, target the next priority task, and repeat going forward. Created next issue anchors #154-#158 plus #156, retargeted the existing cron to #156 -> #154 -> #155 -> #157 -> #158, and updated the cron prompt so future exhausted queues trigger backlog review and same-cron retargeting. Current queue now advances to #155 after #154 completed. Runtime execution remains blocked.
 
