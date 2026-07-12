@@ -1,0 +1,41 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: lossless-agent-spec-tool-agent
+  description: Local fixture proving function tool schemas can export losslessly for Agent Spec review.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks:
+      - anthropic
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+    contextWindow: 16000
+harness:
+  instructions:
+    inline: "Use the normalize_topic tool when the user provides an overloaded topic name."
+  tools:
+    - id: normalize_topic
+      type: function
+      description: Normalize a topic label into a canonical short name.
+      inputSchema:
+        type: object
+        properties:
+          topic:
+            type: string
+        required:
+          - topic
+      outputSchema:
+        type: object
+        properties:
+          canonicalTopic:
+            type: string
+          confidence:
+            type: number
+        required:
+          - canonicalTopic
+  runtime:
+    target: local-python
+extensions: {}

@@ -74,6 +74,8 @@ def tool_mapping(harness: dict) -> list[dict]:
                 "description": tool.get("description"),
                 "serverRef": tool.get("serverRef"),
                 "toolName": tool.get("toolName"),
+                "inputSchema": tool.get("inputSchema"),
+                "outputSchema": tool.get("outputSchema"),
                 "schema": tool.get("schema"),
             }
         )

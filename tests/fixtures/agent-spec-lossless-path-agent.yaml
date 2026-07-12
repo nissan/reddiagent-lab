@@ -1,0 +1,25 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: lossless-agent-spec-path-agent
+  description: Local fixture proving path instructions and multimodal model requirements can export losslessly.
+model:
+  capability: vision
+  providers:
+    preferred: gemini
+    fallbacks:
+      - openai
+      - ollama
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+    contextWindow: 32000
+    modalities:
+      - text
+      - image
+harness:
+  instructions:
+    path: prompts/lossless-agent-spec-path-agent.md
+  runtime:
+    target: local-python
+extensions: {}
