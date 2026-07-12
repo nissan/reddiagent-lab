@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_GATE_EVENTS = [
     ("mcp.adapter_shape_checked", "mcp-adapter-shape"),
     ("mcp.adapter_source_checked", "mcp-adapter-source-check"),
+    ("mcp.adapter_aggregation_checked", "mcp-adapter-aggregation"),
     ("mcp.server_resolution_checked", "mcp-server-resolution"),
     ("mcp.capability_policy_checked", "mcp-capability-policy"),
 ]

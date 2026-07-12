@@ -1,0 +1,75 @@
+{
+  "schema": "specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json",
+  "packageType": "mcp-runtime-handoff",
+  "packageId": "mcp-runtime-handoff-unsafe",
+  "mode": "runtime-ready",
+  "runtimeExecutionAllowed": true,
+  "networkAccess": true,
+  "paymentAccess": true,
+  "mcpInvocation": true,
+  "evidence": [
+    {
+      "gateId": "mcp-adapter-shape",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-SHAPE-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  ],
+  "serverManifest": {
+    "serverRef": "paid-docs-search",
+    "resolutionMode": "live",
+    "serverUrl": "https://mcp.example.test/sse",
+    "command": "npx paid-mcp-server",
+    "env": {
+      "MCP_TOKEN": "redacted"
+    },
+    "runtimeExecutionAllowed": true,
+    "networkAccess": true,
+    "paymentAccess": true,
+    "mcpInvocation": true,
+    "tools": [
+      {
+        "toolId": "docs_search",
+        "toolName": "search",
+        "capabilityPolicyRef": "",
+        "sourceGate": "",
+        "networkAccess": true,
+        "paymentAccess": true,
+        "mcpInvocation": true
+      }
+    ]
+  },
+  "readinessTrace": {
+    "traceId": "mcp-runtime-handoff-unsafe",
+    "events": [
+      {
+        "event": "mcp.adapter_shape_checked",
+        "gateId": "mcp-adapter-shape",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.readiness_completed",
+        "status": "pass",
+        "requiredGateStatus": "pass",
+        "networkAccess": true,
+        "mcpInvocation": true,
+        "paymentAccess": true
+      }
+    ]
+  },
+  "handoffConstraints": {
+    "requiresHumanApprovalBeforeRuntime": false,
+    "allowsServerResolution": true,
+    "allowsMcpInvocation": true,
+    "allowsNetworkAccess": true,
+    "allowsPaymentAccess": true,
+    "allowsCredentialAccess": true,
+    "requiredNotes": []
+  }
+}

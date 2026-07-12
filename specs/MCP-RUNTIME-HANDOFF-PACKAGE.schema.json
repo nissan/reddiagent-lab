@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reddiagent.local/schemas/mcp-runtime-handoff-package-v0.1",
+  "title": "MCP Runtime Handoff Package v0.1",
+  "type": "object",
+  "required": [
+    "schema",
+    "packageType",
+    "packageId",
+    "mode",
+    "runtimeExecutionAllowed",
+    "networkAccess",
+    "paymentAccess",
+    "mcpInvocation",
+    "evidence",
+    "serverManifest",
+    "readinessTrace",
+    "handoffConstraints"
+  ],
+  "properties": {
+    "schema": {
+      "const": "specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json"
+    },
+    "packageType": {
+      "const": "mcp-runtime-handoff"
+    },
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "const": "static-report-only"
+    },
+    "runtimeExecutionAllowed": {
+      "const": false
+    },
+    "networkAccess": {
+      "const": false
+    },
+    "paymentAccess": {
+      "const": false
+    },
+    "mcpInvocation": {
+      "const": false
+    }
+  }
+}

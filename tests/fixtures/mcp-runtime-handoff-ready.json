@@ -1,0 +1,172 @@
+{
+  "schema": "specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json",
+  "packageType": "mcp-runtime-handoff",
+  "packageId": "mcp-runtime-handoff-001",
+  "mode": "static-report-only",
+  "runtimeExecutionAllowed": false,
+  "networkAccess": false,
+  "paymentAccess": false,
+  "mcpInvocation": false,
+  "evidence": [
+    {
+      "gateId": "mcp-adapter-shape",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-SHAPE-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-adapter-contract",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-CONTRACT-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-adapter-error-semantics",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-ERROR-SEMANTICS-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-adapter-aggregation",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-AGGREGATION-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-adapter-source-check",
+      "status": "pass",
+      "artifact": "tests/MCP-ADAPTER-SOURCE-CHECK-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-server-resolution",
+      "status": "pass",
+      "artifact": "tests/MCP-SERVER-RESOLUTION-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-capability-policy",
+      "status": "pass",
+      "artifact": "tests/MCP-CAPABILITY-POLICY-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "gateId": "mcp-readiness-evidence",
+      "status": "pass",
+      "artifact": "tests/MCP-READINESS-EVIDENCE-REPORT.md",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  ],
+  "serverManifest": {
+    "serverRef": "approved-docs-search",
+    "resolutionMode": "static-reviewed",
+    "registryArtifact": "tests/fixtures/mcp-server-registry-approved.json",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "tools": [
+      {
+        "toolId": "docs_search",
+        "toolName": "search",
+        "capabilityPolicyRef": "mcp-docs-readonly-policy",
+        "sourceGate": "approved-source-output",
+        "inputContract": "static-fixture-only",
+        "outputContract": "source-checkable-title-url-snippet",
+        "runtimeExecutionAllowed": false,
+        "networkAccess": false,
+        "paymentAccess": false,
+        "mcpInvocation": false
+      }
+    ]
+  },
+  "readinessTrace": {
+    "traceId": "mcp-runtime-handoff-static-001",
+    "events": [
+      {
+        "event": "mcp.adapter_shape_checked",
+        "gateId": "mcp-adapter-shape",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.adapter_source_checked",
+        "gateId": "mcp-adapter-source-check",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.adapter_aggregation_checked",
+        "gateId": "mcp-adapter-aggregation",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.server_resolution_checked",
+        "gateId": "mcp-server-resolution",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.capability_policy_checked",
+        "gateId": "mcp-capability-policy",
+        "status": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      },
+      {
+        "event": "mcp.readiness_completed",
+        "status": "pass",
+        "requiredGateStatus": "pass",
+        "networkAccess": false,
+        "mcpInvocation": false,
+        "paymentAccess": false
+      }
+    ]
+  },
+  "handoffConstraints": {
+    "requiresHumanApprovalBeforeRuntime": true,
+    "allowsServerResolution": false,
+    "allowsMcpInvocation": false,
+    "allowsNetworkAccess": false,
+    "allowsPaymentAccess": false,
+    "allowsCredentialAccess": false,
+    "requiredNotes": [
+      "This package is report-only and cannot activate a live MCP runtime.",
+      "A downstream runtime must perform a separate approval, credential, and network review before use."
+    ]
+  }
+}
