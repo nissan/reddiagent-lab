@@ -118,3 +118,11 @@ Current Prosumer Builder MVP skeleton:
 - guard test lives in `tests/test_prosumer_builder_plan.py`;
 - current report summary lives in `tests/PROSUMER-BUILDER-MVP-REPORT.md`;
 - static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
+
+Current starter code generator plan:
+
+- static starter-code review manifest CLI lives in `scripts/starter_code_plan.py`;
+- it maps existing ADL examples to planned starter file paths, blocked gates, validation state, and non-goals without writing files;
+- guard test lives in `tests/test_starter_code_plan.py`;
+- current report summary lives in `tests/STARTER-CODE-PLAN-REPORT.md`;
+- static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, `mcpInvocation=false`, `writesFiles=false`, and `installsDependencies=false`.

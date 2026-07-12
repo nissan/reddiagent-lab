@@ -16,7 +16,7 @@ _Loop 62. Anchor issue: #65._
 ## Later
 
 - Real local tool execution.
-- Starter code generator.
+- Starter code generator. First report-only manifest slice drafted in issue #168; no runnable generation yet.
 - Optional ADL-to-Agent-Spec exporter expansion only for lossless ADL inputs.
 - Optional A2A runtime adapter only after Agent Card export semantics are stable and reviewed.
 - Optional Agent Skills client/runtime adapter only after `SKILL.md` export semantics are stable and reviewed.
