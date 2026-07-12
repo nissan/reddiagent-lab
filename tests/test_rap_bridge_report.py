@@ -11,7 +11,7 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PYTHON = "/Users/loki/.pyenv/versions/3.14.3/bin/python3"
+PYTHON = sys.executable
 
 
 def run_case(fixture: str) -> subprocess.CompletedProcess[str]:
