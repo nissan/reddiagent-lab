@@ -34,6 +34,7 @@
     "PaymentSignature": {
       "selectedRail": "base",
       "payer": "agent:unsafe-demo",
+      "walletAddress": "0xUnsafeWallet",
       "rawSignature": "redacted-placeholder",
       "walletPrivateKey": "redacted-placeholder"
     },
@@ -45,7 +46,8 @@
     },
     "facilitator": {
       "id": "live-facilitator",
-      "endpoint": "https://facilitator.example.invalid/settle"
+      "endpoint": "https://facilitator.example.invalid/settle",
+      "settlementEndpoint": "https://settlement.example.invalid/execute"
     }
   },
   "authority": {
@@ -67,5 +69,19 @@
   },
   "reputation": {
     "signals": ["payment_response_present"]
+  },
+  "conformance": {
+    "level": "rap-dry-run-bridge",
+    "reportOnly": false,
+    "liveBridgeAllowed": true,
+    "checks": [
+      "x402-payment-evidence",
+      "authority-mandate-bounded",
+      "receipt-payment-plus-service-result",
+      "reputation-after-receipt"
+    ],
+    "evidenceRefs": [
+      "tests/RAP-BRIDGE-REPORT.md"
+    ]
   }
 }

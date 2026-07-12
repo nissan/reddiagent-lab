@@ -21,8 +21,11 @@ LIVE_FIELD_NAMES = {
     "serverUrl",
     "url",
     "endpoint",
+    "facilitatorUrl",
     "command",
     "env",
+    "wallet",
+    "walletAddress",
     "walletPrivateKey",
     "privateKey",
     "rawSignature",
@@ -30,6 +33,9 @@ LIVE_FIELD_NAMES = {
     "credentials",
     "apiKey",
     "secret",
+    "settlementEndpoint",
+    "settlementUrl",
+    "settlementCommand",
 }
 LIVE_ACCESS_FLAGS = {
     "runtimeExecutionAllowed",
@@ -38,6 +44,13 @@ LIVE_ACCESS_FLAGS = {
     "mcpInvocation",
 }
 LIVE_ENDPOINT_SCHEMES = ("http://", "https://")
+CONFORMANCE_CHECKS = [
+    "x402-payment-evidence",
+    "authority-mandate-bounded",
+    "receipt-payment-plus-service-result",
+    "reputation-after-receipt",
+    "unsafe-live-field-scan",
+]
 
 
 def display_path(path: Path) -> str:
@@ -92,6 +105,7 @@ def required_field_findings(doc: dict) -> list[dict]:
             "receipts.requiredEvalGateStatus",
             doc.get("receipts", {}).get("requiredEvalGateStatus"),
         ),
+        ("conformance.level", doc.get("conformance", {}).get("level")),
     ]
     for path, value in required_paths:
         if value in (None, "", [], {}):
@@ -113,6 +127,21 @@ def required_field_findings(doc: dict) -> list[dict]:
                 "PaymentRequired must include accepted payment options.",
             )
         )
+    checks = doc.get("conformance", {}).get("checks")
+    if not isinstance(checks, list):
+        findings.append(
+            finding("missing", "conformance.checks", "RAP dry-run conformance checks are missing.")
+        )
+    else:
+        missing_checks = [check for check in CONFORMANCE_CHECKS if check not in checks]
+        for check in missing_checks:
+            findings.append(
+                finding(
+                    "missing",
+                    "conformance.checks",
+                    f"RAP dry-run conformance check is missing: {check}.",
+                )
+            )
     return findings
 
 
@@ -159,6 +188,23 @@ def unsafe_findings(doc: dict) -> list[dict]:
         findings.append(
             finding("unsafe", "authority.maxAmount", "Authority must define a bounded max amount.")
         )
+    conformance = doc.get("conformance", {})
+    if conformance.get("reportOnly") is not True:
+        findings.append(
+            finding(
+                "unsafe",
+                "conformance.reportOnly",
+                "RAP bridge conformance must remain report-only.",
+            )
+        )
+    if conformance.get("liveBridgeAllowed") is not False:
+        findings.append(
+            finding(
+                "unsafe",
+                "conformance.liveBridgeAllowed",
+                "RAP bridge conformance must not allow a live bridge.",
+            )
+        )
     return findings
 
 
@@ -203,6 +249,7 @@ def metadata_only(doc: dict) -> list[dict]:
         ("authority", "AP2-like mandate constraints are reviewed, not enforced by runtime."),
         ("receipts", "Receipt evidence is static handoff data."),
         ("reputation", "Reputation signals require future RAP verification."),
+        ("conformance", "Dry-run bridge conformance is static evidence only."),
     ]:
         if doc.get(section.split(".")[0]):
             entries.append({"section": section, "reason": reason})
@@ -228,6 +275,26 @@ def rap_ready(doc: dict, findings: list[dict]) -> list[str]:
     ]
 
 
+def dry_run_bridge_conformance(doc: dict, findings: list[dict]) -> dict:
+    declared = doc.get("conformance", {}).get("checks", [])
+    if not isinstance(declared, list):
+        declared = []
+    failed_paths = {item["path"] for item in findings}
+    status = "fail" if findings else "pass"
+    return {
+        "level": doc.get("conformance", {}).get("level"),
+        "status": status,
+        "reportOnly": doc.get("conformance", {}).get("reportOnly") is True,
+        "liveBridgeAllowed": doc.get("conformance", {}).get("liveBridgeAllowed") is True,
+        "requiredChecks": CONFORMANCE_CHECKS,
+        "declaredChecks": declared,
+        "passedChecks": CONFORMANCE_CHECKS if status == "pass" else [],
+        "failedChecks": [] if status == "pass" else sorted(failed_paths),
+        "evidenceRefs": doc.get("conformance", {}).get("evidenceRefs", []),
+        **BOUNDARY_FLAGS,
+    }
+
+
 def report(path: Path) -> dict:
     doc = read_json(path)
     missing = required_field_findings(doc)
@@ -241,6 +308,7 @@ def report(path: Path) -> dict:
         "status": status,
         "bridgeReady": status == "pass",
         "rapReady": rap_ready(doc, findings),
+        "dryRunBridgeConformance": dry_run_bridge_conformance(doc, findings),
         "metadataOnly": metadata_only(doc),
         "unsupported": [item for item in findings if item["category"] == "unsupported"],
         "unsafe": [item for item in findings if item["category"] == "unsafe"],
@@ -250,6 +318,7 @@ def report(path: Path) -> dict:
             "authority": ["mandateId", "scope", "maxAmount", "expiresAt", "revocationRef", "auditRef"],
             "receipts": ["requestHash", "responseHash", "paymentRef", "serviceResultStatus"],
             "reputation": doc.get("reputation", {}).get("signals", []),
+            "conformance": CONFORMANCE_CHECKS,
         },
         **BOUNDARY_FLAGS,
     }
