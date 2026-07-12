@@ -1,9 +1,9 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-07-12 12:55 AEST by Loki_
+_Last updated: 2026-07-12 12:59 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Wait for Oli QA on draft PR #141 for issue #135 (`Define the static MCP runtime handoff package`). Do not mark ready, merge, clean up, or advance to #134 until QA passes and normal parent verification is clear. Draft PR #141 is open at https://github.com/reddinft/reddiagent-lab/pull/141 on branch `feat/mcp-runtime-handoff-package-135`, head `60a61b10cb635c036187eaf45a73e3182c9ad47e`; local validation passed and evidence was posted at https://github.com/reddinft/reddiagent-lab/pull/141#issuecomment-4949694033. Local checkout is on the feature branch with only pre-existing untracked `scripts/__pycache__/` and `tests/__pycache__/`.
+- **Next action:** Start the next approved lane, issue #134 (`Align SKILL-PACKAGE-CONTRACT to the agentskills.io open standard`), after normal preflight confirms no open PRs and clean enough workspace state. Issue #135 is complete: PR #141 merged at `5db9c7addd02cffb9a26bd52b7cadabddf4c730f`, issue #135 closed completed, remote/local feature branch cleanup done. Local checkout is on `main` with only pre-existing untracked `scripts/__pycache__/` and `tests/__pycache__/`.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Nissan asked on 2026-07-12 to set a 30-minute development/review/approval loop like `openclaw-workspace`, targeting the ReddiAgent/RAP backlog. The #137 static x402/MCP-to-RAP bridge report lane and #133 AP2/x402 mandate mapping lane both merged after Oli QA pass; runtime execution remains blocked.
 
@@ -185,6 +185,7 @@ _Last updated: 2026-07-12 12:55 AEST by Loki_
 - 2026-07-12: Issue #132 implementation branch `feat/a2a-agent-card-export-132` adds static/report-only ADL -> A2A Agent Card export. The checker maps identity, capabilities, skills, security, and supported interfaces into an Agent Card review artifact, refuses lossy strict export with exit code 3, and preserves Reddi policy/eval/memory/x402/receipt/reputation semantics as metadata-only diagnostics. Static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`; no A2A runtime or endpoint is resolved or invoked.
 - 2026-07-12: PR #140 completed issue #132 with static/report-only ADL -> A2A Agent Card export, mapping docs, lossless/lossy fixtures, guard tests, smoke wiring, and evidence report. Oli QA passed, parent verification passed, and PR was squash-merged at `a810e2c107b0a1a34634f5b373ae2e9ddbb01e15`; issue #132 closed completed. Next approved lane is #135.
 - 2026-07-12: Draft PR #141 opened for issue #135. It adds a static/report-only MCP runtime handoff package schema, ready/unsafe fixtures, deterministic checker, guard test, smoke wiring, and evidence report; MCP readiness traces now require adapter aggregation evidence before completion. Local validation passed with no paid/model calls, and outputs preserve `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. PR remains draft pending Oli QA.
+- 2026-07-12: PR #141 completed issue #135 with the static/report-only MCP runtime handoff package schema, deterministic checker, ready/unsafe fixtures, guard test, smoke wiring, and evidence report. Oli QA passed, parent verification passed, and PR was squash-merged at `5db9c7addd02cffb9a26bd52b7cadabddf4c730f`; issue #135 closed completed. Static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. Next approved lane is #134.
 
 ## Blockers & Flags
 
