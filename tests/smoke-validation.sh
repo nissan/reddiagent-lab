@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 PYTHON="${PYTHON:-python3}"
 "$PYTHON" scripts/validate_examples.py
 "$PYTHON" tests/test_provider_compatibility_cli.py
+"$PYTHON" tests/test_provider_adapter_codegen_plan.py
 "$PYTHON" tests/test_validation_guidance.py
 "$PYTHON" tests/test_tool_execution.py
 "$PYTHON" tests/test_cli_usage_matrix.py

@@ -20,6 +20,6 @@ _Loop 62. Anchor issue: #65._
 - Optional ADL-to-Agent-Spec exporter expansion only for lossless ADL inputs.
 - Optional A2A runtime adapter only after Agent Card export semantics are stable and reviewed.
 - Optional Agent Skills client/runtime adapter only after `SKILL.md` export semantics are stable and reviewed.
-- Provider adapter codegen.
+- Provider adapter codegen. First compatibility-only plan drafted in issue #177; no runnable adapter code generation yet.
 - RAP dry-run bridge.
 - Prosumer UI.
