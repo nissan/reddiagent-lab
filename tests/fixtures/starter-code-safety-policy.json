@@ -15,24 +15,26 @@
     },
     "readyRequestId": "review-static-starter-manifest",
     "readyDecision": "allow",
-    "unsafeCount": 7,
+    "unsafeCount": 8,
     "unsafePolicyIds": [
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",
       "no-production-config-mutation"
     ],
     "unsafeDecisions": {
-      "deny": 7
+      "deny": 8
     },
     "policyNonGoalIds": [
       "no-file-writes",
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",
@@ -55,24 +57,26 @@
     },
     "readyRequestId": "review-static-starter-manifest",
     "readyDecision": "allow",
-    "unsafeCount": 7,
+    "unsafeCount": 8,
     "unsafePolicyIds": [
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",
       "no-production-config-mutation"
     ],
     "unsafeDecisions": {
-      "deny": 7
+      "deny": 8
     },
     "policyNonGoalIds": [
       "no-file-writes",
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",
@@ -95,24 +99,26 @@
     },
     "readyRequestId": "review-static-starter-manifest",
     "readyDecision": "allow",
-    "unsafeCount": 7,
+    "unsafeCount": 8,
     "unsafePolicyIds": [
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",
       "no-production-config-mutation"
     ],
     "unsafeDecisions": {
-      "deny": 7
+      "deny": 8
     },
     "policyNonGoalIds": [
       "no-file-writes",
       "no-dependency-install",
       "no-external-network-tool-execution",
       "no-mcp-invocation",
+      "no-provider-model-local-execution",
       "no-credential-material",
       "no-wallet-payment-settlement-access",
       "no-deployment",

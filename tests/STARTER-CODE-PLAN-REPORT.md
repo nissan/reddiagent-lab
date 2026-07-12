@@ -30,7 +30,7 @@ Every manifest preserves:
 - `examples/invalid/missing-instructions.yaml` proves invalid ADL fails closed and produces no planned starter files.
 - `tests/fixtures/starter-code-dry-run-file-manifest.json` pins dry-run file path lists, status counts, validation status, blocked gate ids, and non-goal ids for the simple/tool/payment examples.
 - `tests/fixtures/starter-code-template-contracts.json` pins template ids, planned template paths, required input refs, status counts, template non-goals, and validation status for the simple/tool/payment examples.
-- `tests/fixtures/starter-code-safety-policy.json` pins a ready static-review request plus unsafe policy ids for dependency installs, external network/tool execution, MCP invocation, credential/private material, wallet/payment/settlement access, deployment, and production config mutation.
+- `tests/fixtures/starter-code-safety-policy.json` pins a ready static-review request plus unsafe policy ids for dependency installs, external network/tool execution, MCP invocation, provider/model/local-model execution, credential/private material, wallet/payment/settlement access, deployment, and production config mutation.
 
 ## Validation
 

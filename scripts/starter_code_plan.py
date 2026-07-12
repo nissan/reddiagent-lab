@@ -90,6 +90,14 @@ SAFETY_POLICY_RULES = [
         "reason": "MCP resolution and invocation require a separate reviewed runtime lane.",
     },
     {
+        "policyId": "no-provider-model-local-execution",
+        "requestId": "call-provider-or-local-model",
+        "request": "Call a provider API, execute a model, or probe a local model endpoint from the starter.",
+        "decision": "deny",
+        "risk": "provider-model-local-execution",
+        "reason": "Provider calls, model execution, and local model probes stay blocked until a reviewed runtime adapter exists.",
+    },
+    {
         "policyId": "no-credential-material",
         "requestId": "embed-secret-material",
         "request": "Write API keys, tokens, raw prompts, or private task bodies into starter files.",
@@ -366,6 +374,7 @@ def starter_safety_policy_fixture(
             "no-dependency-install",
             "no-external-network-tool-execution",
             "no-mcp-invocation",
+            "no-provider-model-local-execution",
             "no-credential-material",
             "no-wallet-payment-settlement-access",
             "no-deployment",

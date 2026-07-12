@@ -134,8 +134,9 @@ def main() -> int:
     assert simple["templateContractFixture"]["templateCount"] == 6
     assert "starter.python_harness" in template_ids(simple)
     assert simple["starterSafetyPolicy"]["readyRequest"]["decision"] == "allow"
-    assert len(simple["starterSafetyPolicy"]["unsafeRequests"]) == 7
+    assert len(simple["starterSafetyPolicy"]["unsafeRequests"]) == 8
     assert all(request["decision"] == "deny" for request in simple["starterSafetyPolicy"]["unsafeRequests"])
+    assert "no-provider-model-local-execution" in simple["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "provider-runtime-review" in gate_ids(simple)
     assert_static_boundaries(simple)
 
@@ -151,6 +152,7 @@ def main() -> int:
     assert "starter.local_tool_fixtures" in template_ids(tool)
     assert "harness.toolFixtures" in tool["templateContractFixture"]["requiredInputRefs"]
     assert "no-external-network-tool-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
+    assert "no-provider-model-local-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
     assert tool["metadataOnlyExtensions"] == []
     assert_static_boundaries(tool)
 
@@ -173,6 +175,7 @@ def main() -> int:
         assert request["allowed"] is False
         assert "payment-rail-review" in request["blockedGateIds"]
     assert "no-wallet-payment-settlement-access" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
+    assert "no-provider-model-local-execution" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
     assert_static_boundaries(payment)
 
     invalid = run_command("--single", "examples/invalid/missing-instructions.yaml")
@@ -190,7 +193,8 @@ def main() -> int:
     assert invalid_plan["templateContractFixture"]["validationStatus"] == "fail"
     assert invalid_plan["starterSafetyPolicy"]["validationStatus"] == "fail"
     assert invalid_plan["starterSafetyPolicy"]["readyRequest"]["decision"] == "allow"
-    assert len(invalid_plan["starterSafetyPolicy"]["unsafeRequests"]) == 7
+    assert len(invalid_plan["starterSafetyPolicy"]["unsafeRequests"]) == 8
+    assert "no-provider-model-local-execution" in invalid_plan["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "generator-implementation-review" in gate_ids(invalid_plan)
     assert_static_boundaries(invalid_plan)
 
