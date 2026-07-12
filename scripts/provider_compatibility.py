@@ -12,6 +12,12 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = ["openai", "anthropic", "gemini", "ollama", "langgraph", "local-python"]
+REPORT_ONLY_BOUNDARY = {
+    "runtimeExecutionAllowed": False,
+    "networkAccess": False,
+    "paymentAccess": False,
+    "mcpInvocation": False,
+}
 
 
 def report(path: Path, target: str) -> dict:
@@ -58,6 +64,7 @@ def report(path: Path, target: str) -> dict:
         "requiredSecrets": required_secrets,
         "requiredHostedServices": required_hosted_services,
         "suggestedFallback": "local-python",
+        "boundary": REPORT_ONLY_BOUNDARY,
     }
 
 

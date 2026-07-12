@@ -16,7 +16,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -35,7 +41,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -54,7 +66,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -72,7 +90,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -91,7 +115,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -108,7 +138,13 @@
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -125,7 +161,13 @@
       "OPENAI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -142,7 +184,13 @@
       "ANTHROPIC_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -159,7 +207,13 @@
       "GEMINI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -175,7 +229,13 @@
     ],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -192,7 +252,13 @@
       "LANGGRAPH_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -205,7 +271,13 @@
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -218,7 +290,13 @@
       "OPENAI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -231,7 +309,13 @@
       "ANTHROPIC_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -244,7 +328,13 @@
       "GEMINI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -255,7 +345,13 @@
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -268,7 +364,13 @@
       "LANGGRAPH_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -279,7 +381,13 @@
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -292,7 +400,13 @@
       "OPENAI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -305,7 +419,13 @@
       "ANTHROPIC_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -318,7 +438,13 @@
       "GEMINI_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -331,7 +457,13 @@
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -344,7 +476,13 @@
       "LANGGRAPH_API_KEY"
     ],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   },
   {
     "agent": "source-checker",
@@ -355,6 +493,12 @@
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
-    "suggestedFallback": "local-python"
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
   }
 ]

@@ -27,6 +27,10 @@ def assert_snapshot(name: str, value: object) -> None:
 def main() -> int:
     assert_snapshot("simple-agent.trace.json", run_json(["scripts/run_local_agent.py", "examples/simple-agent.yaml"]))
     assert_snapshot("tool-agent.trace.json", run_json(["scripts/run_local_agent.py", "examples/tool-agent.yaml"]))
+    assert_snapshot(
+        "tool-agent.executed.trace.json",
+        run_json(["scripts/run_local_agent.py", "examples/tool-agent.yaml", "--execute-tools"]),
+    )
     assert_snapshot("provider-compatibility.json", run_json(["scripts/provider_compatibility.py"]))
     assert_snapshot("payment-agent.receipt.json", run_json(["scripts/dry_run_receipt.py"]))
     print("PASS snapshots")
@@ -35,4 +39,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
