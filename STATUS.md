@@ -3,7 +3,7 @@ _Last updated: 2026-07-12 22:39 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Wait for Oli QA on draft PR #170 (`Add Ollama provider compatibility-only mode`) at head `2a96ff551bc598428c1464ecf6e9e851126a6381`. If QA passes, rerun current-head parent gates, mark ready, merge only when policy allows, then advance to #166. Runtime execution remains blocked: keep work report-only/static unless Nissan explicitly approves otherwise.
+- **Next action:** Wait for Oli QA on draft PR #170 (`Add Ollama provider compatibility-only mode`) at the current PR head. If QA passes, rerun current-head parent gates, mark ready, merge only when policy allows, then advance to #166. Runtime execution remains blocked: keep work report-only/static unless Nissan explicitly approves otherwise.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
 - **Last discussed:** Nissan asked on 2026-07-12 18:54 AEST that if the current track is complete, the loop should review the backlog, target the next priority task, and repeat going forward. After #158 completed, reviewed GitHub open issues plus `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`; created issue anchors #164-#168 and retargeted the existing cron to #164 -> #165 -> #166 -> #167 -> #168. Runtime execution remains blocked.
 
