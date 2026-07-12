@@ -57,3 +57,21 @@ Output modes:
 
 `--output` writes the selected report to a local file. It is an export of the static report only,
 not provider code generation or runtime activation.
+
+## OpenAI Compatibility-Only Mode
+
+The `openai` target emits `compatibilityMode: openai-adapter-compatibility-only`.
+This is a static review artifact, not an OpenAI adapter invocation.
+
+The OpenAI row includes:
+
+- model profile mapping from `model.capability`, `model.providers`, and `model.requirements`;
+- instruction mapping from `harness.instructions.inline`;
+- function-tool declaration ids from non-MCP `harness.tools`;
+- `metadataOnly` fields for Reddi policy, eval, memory, x402, receipt, reputation, and MCP semantics that a reviewed runtime adapter must enforce before execution;
+- `unsupportedExecution` for MCP tool declarations because this report does not resolve or invoke MCP servers.
+
+OpenAI rows may be `supported: true` only for static compatibility when no hard unsupported feature
+is present. Real settlement and MCP execution remain hard unsupported features. Every OpenAI row
+continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`,
+and `mcpInvocation=false`.

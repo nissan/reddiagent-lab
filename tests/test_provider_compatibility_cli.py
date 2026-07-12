@@ -80,6 +80,71 @@ def test_local_python_selector_and_summary_output_file() -> None:
     assert "runtimeExecutionAllowed=false" in text
 
 
+def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
+    proc = run_cli(
+        [
+            "examples/simple-agent.yaml",
+            "examples/tool-agent.yaml",
+            "examples/payment-agent.yaml",
+            "--target",
+            "openai",
+        ]
+    )
+    reports = {item["agent"]: item for item in json.loads(proc.stdout)}
+
+    simple = reports["simple-research-helper"]
+    assert simple["target"] == "openai"
+    assert simple["compatibilityMode"] == "openai-adapter-compatibility-only"
+    assert simple["boundary"] == {
+        "runtimeExecutionAllowed": False,
+        "networkAccess": False,
+        "paymentAccess": False,
+        "mcpInvocation": False,
+    }
+    assert simple["requiredSecrets"] == ["OPENAI_API_KEY"]
+    assert simple["providerMapping"]["reportOnly"] is True
+    assert simple["providerMapping"]["adapterMapping"]["tools"] == []
+    assert simple["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory",
+    ]
+    assert "metadata-only" in simple["warnings"][0]
+
+    tool = reports["source-checker"]
+    assert tool["supported"] is True
+    assert tool["providerMapping"]["adapterMapping"]["tools"] == ["search_docs"]
+    assert tool["providerMapping"]["adapterMapping"]["structuredOutput"] is True
+    assert tool["providerMapping"]["adapterMapping"]["unsupportedExecution"] == []
+
+    payment = reports["paid-specialist-researcher"]
+    assert payment["supported"] is False
+    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
+    assert "Payment extension is dry-run only" in payment["warnings"][1]
+
+
+def test_openai_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
+    proc = run_cli(["examples/mcp-readonly-agent.yaml", "--target", "openai"])
+    report = json.loads(proc.stdout)[0]
+    assert report["compatibilityMode"] == "openai-adapter-compatibility-only"
+    assert report["supported"] is False
+    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
+    assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.tools[type=mcp]",
+    ]
+    assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -99,6 +164,8 @@ def test_list_targets_includes_mcp_readonly() -> None:
 def main() -> int:
     test_target_agent_selection_covers_provider_and_mcp_paths()
     test_local_python_selector_and_summary_output_file()
+    test_openai_compatibility_mode_maps_metadata_only_semantics()
+    test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")

@@ -19,10 +19,54 @@ REPORT_ONLY_BOUNDARY = {
     "paymentAccess": False,
     "mcpInvocation": False,
 }
+OPENAI_COMPATIBILITY_MODE = "openai-adapter-compatibility-only"
 
 
 def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
+
+
+def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
+    model = doc["model"]
+    harness = doc["harness"]
+    extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    regular_tools = [tool for tool in tools if tool.get("type") != "mcp"]
+
+    metadata_only = []
+    if harness.get("policies"):
+        metadata_only.append("harness.policies")
+    if harness.get("evalGates"):
+        metadata_only.append("harness.evalGates")
+    if harness.get("memory"):
+        metadata_only.append("harness.memory")
+    if extensions.get("x402"):
+        metadata_only.append("extensions.x402")
+    if extensions.get("receipts"):
+        metadata_only.append("extensions.receipts")
+    if extensions.get("reputation"):
+        metadata_only.append("extensions.reputation")
+    if mcp_tools:
+        metadata_only.append("harness.tools[type=mcp]")
+
+    return {
+        "mode": OPENAI_COMPATIBILITY_MODE,
+        "provider": "openai",
+        "modelProfile": {
+            "capability": model.get("capability"),
+            "preferredProvider": model.get("providers", {}).get("preferred"),
+            "fallbackProviders": model.get("providers", {}).get("fallbacks", []),
+            "requirements": model.get("requirements", {}),
+        },
+        "adapterMapping": {
+            "instructions": "harness.instructions.inline",
+            "tools": [tool.get("id") for tool in regular_tools],
+            "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
+            "metadataOnly": metadata_only,
+            "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
+        },
+        "reportOnly": True,
+    }
 
 
 def report(path: Path, target: str) -> dict:
@@ -36,6 +80,8 @@ def report(path: Path, target: str) -> dict:
     unsupported = []
     required_secrets = []
     required_hosted_services = []
+    compatibility_mode = "provider-compatibility-report-only"
+    provider_mapping = None
 
     if target == "ollama" and model["requirements"].get("toolCalling"):
         warnings.append("Tool calling may require custom local harness parsing.")
@@ -46,6 +92,15 @@ def report(path: Path, target: str) -> dict:
     elif target in ["openai", "anthropic", "gemini", "langgraph"]:
         level = 2
         required_secrets.append(f"{target.upper().replace('-', '_')}_API_KEY")
+        if target == "openai":
+            compatibility_mode = OPENAI_COMPATIBILITY_MODE
+            provider_mapping = openai_mapping(doc, mcp_tools)
+            if provider_mapping["adapterMapping"]["metadataOnly"]:
+                warnings.append(
+                    "OpenAI compatibility is report-only; Reddi policy, eval, memory, "
+                    "payment, receipt, reputation, and MCP semantics remain metadata-only "
+                    "unless a reviewed runtime adapter enforces them."
+                )
     else:
         level = 0
 
@@ -61,7 +116,7 @@ def report(path: Path, target: str) -> dict:
             f"mcp:{tool.get('serverRef', '<missing-serverRef>')}" for tool in mcp_tools
         )
 
-    return {
+    result = {
         "agent": doc["metadata"]["name"],
         "target": target,
         "supported": not unsupported,
@@ -72,7 +127,11 @@ def report(path: Path, target: str) -> dict:
         "requiredHostedServices": required_hosted_services,
         "suggestedFallback": "local-python",
         "boundary": REPORT_ONLY_BOUNDARY,
+        "compatibilityMode": compatibility_mode,
     }
+    if provider_mapping is not None:
+        result["providerMapping"] = provider_mapping
+    return result
 
 
 def selected_targets(values: list[str]) -> list[str]:
