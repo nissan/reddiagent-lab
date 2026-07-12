@@ -4,7 +4,7 @@ _Loop 62. Anchor issue: #65._
 
 ## Next
 
-- Static x402/MCP-to-RAP bridge report and fixtures.
+- Static ADL to A2A Agent Card export report and fixtures.
 - Level 1 deterministic trace tests.
 - Provider compatibility report snapshots.
 - ADL schema tightening.
@@ -19,6 +19,7 @@ _Loop 62. Anchor issue: #65._
 - Real local tool execution.
 - Starter code generator.
 - Optional ADL-to-Agent-Spec exporter expansion only for lossless ADL inputs.
+- Optional A2A runtime adapter only after Agent Card export semantics are stable and reviewed.
 - Provider adapter codegen.
 - RAP dry-run bridge.
 - Prosumer UI.

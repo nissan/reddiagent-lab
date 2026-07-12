@@ -1,0 +1,48 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: lossy-a2a-card-agent
+  description: Agent Card fixture with Reddi-only payment and policy semantics that must not export losslessly.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks:
+      - anthropic
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Use approved tools and emit receipt evidence."
+  tools:
+    - id: paid_lookup
+      type: function
+      description: Performs a paid lookup in dry-run fixtures only.
+  policies:
+    - id: bounded-payment
+      type: budget
+      rule: "Do not spend more than 0.10 USDC."
+  evalGates:
+    - id: receipt-required
+      type: receipt-check
+      rule: "A receipt must be present before completion."
+  runtime:
+    target: hosted-container
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: paid-lookup
+        direction: spend
+        maxAmount: "0.10"
+        currency: USDC
+        rails:
+          - solana
+        requireReceipt: true
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - taskCompleted
+      - receiptVerified
