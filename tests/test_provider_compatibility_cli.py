@@ -38,6 +38,8 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
             "--target",
             "ollama",
             "--target",
+            "langgraph",
+            "--target",
             "mcp-readonly",
         ]
     )
@@ -47,6 +49,7 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
         "anthropic",
         "gemini",
         "ollama",
+        "langgraph",
         "mcp-readonly",
     ]
     assert {item["agent"] for item in reports} == {"mcp-readonly-docs"}
@@ -67,6 +70,7 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
     assert reports[2]["requiredSecrets"] == ["GEMINI_API_KEY"]
     assert reports[3]["requiredSecrets"] == []
     assert reports[4]["requiredSecrets"] == []
+    assert reports[5]["requiredSecrets"] == []
 
 
 def test_local_python_selector_and_summary_output_file() -> None:
@@ -352,6 +356,86 @@ def test_ollama_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
 
 
+def test_langgraph_compatibility_report_maps_graph_state_without_generation() -> None:
+    proc = run_cli(
+        [
+            "examples/simple-agent.yaml",
+            "examples/tool-agent.yaml",
+            "examples/payment-agent.yaml",
+            "--target",
+            "langgraph",
+        ]
+    )
+    reports = {item["agent"]: item for item in json.loads(proc.stdout)}
+
+    simple = reports["simple-research-helper"]
+    assert simple["target"] == "langgraph"
+    assert simple["compatibilityMode"] == "langgraph-compatibility-report-only"
+    assert simple["boundary"] == {
+        "runtimeExecutionAllowed": False,
+        "networkAccess": False,
+        "paymentAccess": False,
+        "mcpInvocation": False,
+    }
+    assert simple["requiredSecrets"] == []
+    assert simple["providerMapping"]["reportOnly"] is True
+    assert simple["providerMapping"]["adapterMapping"]["graph"] == "not-generated"
+    assert simple["providerMapping"]["adapterMapping"]["stateSchema"] == {
+        "messages": "harness-owned",
+        "memory": "metadata-only",
+        "policyResults": "metadata-only",
+        "evalResults": "metadata-only",
+        "receipt": "not-declared",
+    }
+    assert simple["providerMapping"]["adapterMapping"]["nodes"] == ["model", "eval-gates"]
+    assert simple["providerMapping"]["adapterMapping"]["toolNodes"] == []
+    assert simple["providerMapping"]["adapterMapping"]["edges"] == "static-plan-only"
+    assert simple["providerMapping"]["adapterMapping"]["checkpointing"] == "metadata-only"
+    assert "static-plan-only" in simple["warnings"][0]
+
+    tool = reports["source-checker"]
+    assert tool["supported"] is True
+    assert tool["providerMapping"]["adapterMapping"]["nodes"] == ["model", "tools", "eval-gates"]
+    assert tool["providerMapping"]["adapterMapping"]["toolNodes"] == ["search_docs"]
+    assert tool["providerMapping"]["adapterMapping"]["checkpointing"] == "not-declared"
+
+    payment = reports["paid-specialist-researcher"]
+    assert payment["supported"] is False
+    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerMapping"]["adapterMapping"]["nodes"] == [
+        "model",
+        "tools",
+        "eval-gates",
+        "receipt-metadata",
+    ]
+    assert payment["providerMapping"]["adapterMapping"]["stateSchema"]["receipt"] == "metadata-only"
+    assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
+
+
+def test_langgraph_compatibility_report_keeps_mcp_execution_unsupported() -> None:
+    proc = run_cli(["examples/mcp-readonly-agent.yaml", "--target", "langgraph"])
+    report = json.loads(proc.stdout)[0]
+    assert report["compatibilityMode"] == "langgraph-compatibility-report-only"
+    assert report["supported"] is False
+    assert report["requiredSecrets"] == []
+    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
+    assert report["providerMapping"]["adapterMapping"]["graph"] == "not-generated"
+    assert report["providerMapping"]["adapterMapping"]["mcpToolNodes"] == ["docs_search"]
+    assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
+    assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.tools[type=mcp]",
+    ]
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -366,6 +450,7 @@ def test_list_targets_includes_mcp_readonly() -> None:
     assert "anthropic" in targets
     assert "gemini" in targets
     assert "ollama" in targets
+    assert "langgraph" in targets
     assert "local-python" in targets
     assert "mcp-readonly" in targets
 
@@ -381,6 +466,8 @@ def main() -> int:
     test_gemini_compatibility_mode_keeps_mcp_execution_unsupported()
     test_ollama_compatibility_mode_maps_local_provider_metadata_only()
     test_ollama_compatibility_mode_keeps_mcp_execution_unsupported()
+    test_langgraph_compatibility_report_maps_graph_state_without_generation()
+    test_langgraph_compatibility_report_keeps_mcp_execution_unsupported()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")
