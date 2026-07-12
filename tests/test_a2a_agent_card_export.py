@@ -99,6 +99,8 @@ def main() -> int:
     assert refusal["paymentAccess"] is False
     assert refusal["mcpInvocation"] is False
     assert "extensions.x402" in refusal["diagnostics"][0]["metadataOnlyExtensions"]
+    assert "harness.dataSources" in refusal["diagnostics"][0]["metadataOnlyExtensions"]
+    assert "mcp_runtime_invocation" in refusal["diagnostics"][0]["unsupportedFeatures"]
     assert "live_payment_execution" in refusal["diagnostics"][0]["unsupportedFeatures"]
 
     exported = run_command(
@@ -109,11 +111,23 @@ def main() -> int:
     assert exported.returncode == 0
     exported_card = json.loads(exported.stdout)
     assert exported_card["name"] == "lossless-a2a-card-agent"
+    assert exported_card["version"] == "0.2.0"
+    assert exported_card["provider"]["organization"] == "Redditech Labs"
+    assert exported_card["documentationUrl"] == "https://example.invalid/docs/lossless-a2a-card-agent"
     assert exported_card["supportedInterfaces"][0]["url"] == "https://example.invalid/a2a/lossless-a2a-card-agent"
-    assert exported_card["capabilities"]["streaming"] is False
-    assert exported_card["skills"][0]["id"] == "lossless-a2a-card-agent"
+    assert exported_card["supportedInterfaces"][1]["protocolBinding"] == "SSE"
+    assert exported_card["capabilities"]["streaming"] is True
+    assert exported_card["capabilities"]["extendedAgentCard"] is True
+    assert exported_card["capabilities"]["extensions"][0]["uri"] == "urn:reddiagent:a2a:capability:dry-run-review"
+    assert exported_card["defaultInputModes"] == ["text/plain", "application/json"]
+    assert exported_card["defaultOutputModes"] == ["application/json"]
+    assert exported_card["skills"][0]["id"] == "static_research_summary"
+    assert exported_card["skills"][0]["examples"] == ["Summarize the approved local evidence."]
+    assert exported_card["securitySchemes"]["reviewKey"]["type"] == "apiKey"
+    assert exported_card["securityRequirements"] == [{"reviewKey": []}]
     assert exported_card["metadata"]["metadataOnlySections"] == []
     assert exported_card["metadata"]["runtimeExecutionAllowed"] is False
+    assert exported_card["metadata"]["extensions"]["a2a"]["capabilities"]["streaming"] is True
 
     exported_yaml = run_command(
         "--export-agent-card",

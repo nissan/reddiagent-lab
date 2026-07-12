@@ -2,7 +2,7 @@ apiVersion: reddiagent.dev/v0.1
 kind: Agent
 metadata:
   name: lossless-a2a-card-agent
-  description: Minimal local agent used to prove strict A2A Agent Card export can emit without losing Reddi semantics.
+  description: Rich local agent used to prove strict A2A Agent Card export can emit discovery metadata without losing Reddi semantics.
 model:
   capability: chat
   providers:
@@ -14,4 +14,50 @@ model:
 harness:
   runtime:
     target: local-python
-extensions: {}
+extensions:
+  a2a:
+    version: 0.2.0
+    provider:
+      organization: Redditech Labs
+      url: https://example.invalid/reddiagent-lab
+    documentationUrl: https://example.invalid/docs/lossless-a2a-card-agent
+    defaultInputModes:
+      - text/plain
+      - application/json
+    defaultOutputModes:
+      - application/json
+    capabilities:
+      streaming: true
+      pushNotifications: false
+      extendedAgentCard: true
+      extensions:
+        - uri: urn:reddiagent:a2a:capability:dry-run-review
+          description: Static report-only review metadata.
+    supportedInterfaces:
+      - url: https://example.invalid/a2a/lossless-a2a-card-agent
+        protocolBinding: HTTP+JSON
+        protocolVersion: "1.0"
+      - url: https://example.invalid/a2a/lossless-a2a-card-agent/sse
+        protocolBinding: SSE
+        protocolVersion: "1.0"
+    skills:
+      - id: static_research_summary
+        name: Static Research Summary
+        description: Summarizes approved local fixture context for review.
+        tags:
+          - reddiagent
+          - review
+        examples:
+          - Summarize the approved local evidence.
+        inputModes:
+          - text/plain
+        outputModes:
+          - application/json
+    securitySchemes:
+      reviewKey:
+        type: apiKey
+        in: header
+        name: X-Review-Key
+        description: Placeholder review key declaration only; no credential is read.
+    securityRequirements:
+      - reviewKey: []
