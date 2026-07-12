@@ -1,0 +1,17 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: lossless-a2a-card-agent
+  description: Minimal local agent used to prove strict A2A Agent Card export can emit without losing Reddi semantics.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks: []
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  runtime:
+    target: local-python
+extensions: {}
