@@ -1,0 +1,128 @@
+{
+  "examples/simple-agent.yaml": {
+    "format": "starter-code-safety-policy-fixture",
+    "source": "examples/simple-agent.yaml",
+    "outputRoot": "starter/simple-research-helper",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "unsafeDecisions": {
+      "deny": 8
+    },
+    "policyNonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ]
+  },
+  "examples/tool-agent.yaml": {
+    "format": "starter-code-safety-policy-fixture",
+    "source": "examples/tool-agent.yaml",
+    "outputRoot": "starter/source-checker",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "unsafeDecisions": {
+      "deny": 8
+    },
+    "policyNonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ]
+  },
+  "examples/payment-agent.yaml": {
+    "format": "starter-code-safety-policy-fixture",
+    "source": "examples/payment-agent.yaml",
+    "outputRoot": "starter/paid-specialist-researcher",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "unsafeDecisions": {
+      "deny": 8
+    },
+    "policyNonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ]
+  }
+}
