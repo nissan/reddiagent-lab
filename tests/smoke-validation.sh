@@ -15,6 +15,7 @@ cd "$(dirname "$0")/.."
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_capability_policy.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_evidence.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_release.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_runtime_handoff_package.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_agent_spec_compatibility.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_a2a_agent_card_export.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_rap_bridge_report.py

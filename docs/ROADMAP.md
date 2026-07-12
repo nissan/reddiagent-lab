@@ -91,3 +91,13 @@ Current A2A Agent Card slice:
 - strict fail-on-loss export mode is available with `--export-agent-card`;
 - guard test lives in `tests/test_a2a_agent_card_export.py`;
 - current report summary lives in `tests/A2A-AGENT-CARD-EXPORT-REPORT.md`.
+
+Current MCP runtime handoff slice:
+
+- package schema lives in `specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json`;
+- report-only checker lives in `scripts/mcp_runtime_handoff_package.py`;
+- ready/unsafe fixtures live in `tests/fixtures/mcp-runtime-handoff-ready.json` and `tests/fixtures/mcp-runtime-handoff-unsafe.json`;
+- guard test lives in `tests/test_mcp_runtime_handoff_package.py`;
+- current report summary lives in `tests/MCP-RUNTIME-HANDOFF-PACKAGE-REPORT.md`;
+- readiness traces now require adapter aggregation evidence before completion;
+- static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.

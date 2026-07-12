@@ -18,6 +18,14 @@
       "paymentAccess": false
     },
     {
+      "event": "mcp.adapter_aggregation_checked",
+      "gateId": "mcp-adapter-aggregation",
+      "status": "pass",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false
+    },
+    {
       "event": "mcp.server_resolution_checked",
       "gateId": "mcp-server-resolution",
       "status": "pass",
