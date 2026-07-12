@@ -64,13 +64,24 @@
         "tools": { "type": "array", "items": { "$ref": "#/$defs/tool" } },
         "functions": { "type": "array", "items": { "$ref": "#/$defs/tool" } },
         "skills": { "type": "array", "items": { "$ref": "#/$defs/namedRef" } },
-        "dataSources": { "type": "array", "items": { "$ref": "#/$defs/namedRef" } },
+        "dataSources": { "type": "array", "items": { "$ref": "#/$defs/dataSource" } },
         "memory": {
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": false,
+          "required": ["mode"],
           "properties": {
-            "mode": { "type": "string", "enum": ["none", "session", "persistent", "external"] }
-          }
+            "mode": { "type": "string", "enum": ["none", "session", "persistent", "external"] },
+            "retention": { "type": "string", "minLength": 1 },
+            "scope": { "type": "string", "enum": ["task", "session", "project", "user", "workspace", "external"] },
+            "storageRef": { "type": "string", "minLength": 1 },
+            "privacyPolicy": { "type": "string", "minLength": 1 }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "mode": { "enum": ["persistent", "external"] } }, "required": ["mode"] },
+              "then": { "required": ["retention", "privacyPolicy"] }
+            }
+          ]
         },
         "policies": { "type": "array", "items": { "$ref": "#/$defs/policy" } },
         "evalGates": { "type": "array", "items": { "$ref": "#/$defs/evalGate" } },
@@ -104,6 +115,23 @@
         "id": { "type": "string", "minLength": 1 },
         "type": { "type": "string" },
         "description": { "type": "string" }
+      }
+    },
+    "dataSource": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "type", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
+        "type": {
+          "type": "string",
+          "enum": ["document", "file", "web", "api", "database", "vector-index", "mcp", "knowledge-base"]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "sourceRef": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 },
+        "trust": { "type": "string", "enum": ["approved", "untrusted", "unknown"] }
       }
     },
     "tool": {

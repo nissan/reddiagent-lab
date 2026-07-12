@@ -63,6 +63,18 @@ def main() -> int:
         "required format",
     )
     assert_guidance(
+        "examples/invalid/bad-data-source.yaml",
+        "harness.dataSources.0.type",
+        "specs/ADL-v0.1.md",
+        "reviewed knowledge boundary",
+    )
+    assert_guidance(
+        "examples/invalid/bad-memory.yaml",
+        "harness.memory.privacyPolicy",
+        "specs/MEMORY-CONTRACT-v0.1.md",
+        "persistent or external memory",
+    )
+    assert_guidance(
         "examples/invalid/duplicate-fallbacks.yaml",
         "model.providers.fallbacks",
         "specs/PROVIDER-MAPPING-v0.1.md",
