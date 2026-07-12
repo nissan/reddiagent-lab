@@ -43,6 +43,18 @@ read credentials, activate runtimes, resolve MCP servers, or invoke tools.
 MCP declarations remain unsupported for execution in these modes until a separate reviewed runtime
 adapter explicitly enables MCP server resolution and invocation.
 
+## Provider Adapter Codegen Plan
+
+The provider adapter codegen plan is a compatibility-only planning artifact. It summarizes future
+adapter file shapes, target-specific blockers, unsupported semantics, required secrets/hosted
+services, and validation gates from the existing provider compatibility reports. It does not write
+files, install SDKs, import provider runtimes, call providers or local endpoints, resolve MCP
+servers, read credentials, or generate runnable adapter code.
+
+Current plan target:
+
+- `provider-adapter-codegen-compatibility-only` in `scripts/provider_adapter_codegen_plan.py`
+
 ## Compatibility Result
 
 Every compile/adapter attempt should return:
