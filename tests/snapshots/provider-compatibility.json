@@ -240,14 +240,13 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
       "mcp_execution"
     ],
-    "requiredSecrets": [
-      "LANGGRAPH_API_KEY"
-    ],
+    "requiredSecrets": [],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
@@ -258,7 +257,52 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "langgraph-compatibility-report-only",
+    "providerMapping": {
+      "mode": "langgraph-compatibility-report-only",
+      "provider": "langgraph",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "graph": "not-generated",
+        "stateSchema": {
+          "messages": "harness-owned",
+          "memory": "not-declared",
+          "policyResults": "metadata-only",
+          "evalResults": "metadata-only",
+          "receipt": "not-declared"
+        },
+        "nodes": [
+          "model",
+          "eval-gates"
+        ],
+        "toolNodes": [],
+        "mcpToolNodes": [
+          "docs_search"
+        ],
+        "edges": "static-plan-only",
+        "checkpointing": "not-declared",
+        "interrupts": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.tools[type=mcp]"
+        ],
+        "unsupportedExecution": [
+          "docs_search"
+        ]
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -544,14 +588,13 @@
     "supported": false,
     "level": 2,
     "warnings": [
+      "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
       "real_settlement"
     ],
-    "requiredSecrets": [
-      "LANGGRAPH_API_KEY"
-    ],
+    "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -560,7 +603,54 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "langgraph-compatibility-report-only",
+    "providerMapping": {
+      "mode": "langgraph-compatibility-report-only",
+      "provider": "langgraph",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "graph": "not-generated",
+        "stateSchema": {
+          "messages": "harness-owned",
+          "memory": "not-declared",
+          "policyResults": "metadata-only",
+          "evalResults": "metadata-only",
+          "receipt": "metadata-only"
+        },
+        "nodes": [
+          "model",
+          "tools",
+          "eval-gates",
+          "receipt-metadata"
+        ],
+        "toolNodes": [
+          "fetch_approved_url"
+        ],
+        "mcpToolNodes": [],
+        "edges": "static-plan-only",
+        "checkpointing": "not-declared",
+        "interrupts": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.x402",
+          "extensions.receipts",
+          "extensions.reputation"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -819,11 +909,11 @@
     "target": "langgraph",
     "supported": true,
     "level": 2,
-    "warnings": [],
-    "unsupportedFeatures": [],
-    "requiredSecrets": [
-      "LANGGRAPH_API_KEY"
+    "warnings": [
+      "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them."
     ],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -832,7 +922,50 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "langgraph-compatibility-report-only",
+    "providerMapping": {
+      "mode": "langgraph-compatibility-report-only",
+      "provider": "langgraph",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic",
+          "gemini",
+          "ollama"
+        ],
+        "requirements": {
+          "toolCalling": false,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "graph": "not-generated",
+        "stateSchema": {
+          "messages": "harness-owned",
+          "memory": "metadata-only",
+          "policyResults": "metadata-only",
+          "evalResults": "metadata-only",
+          "receipt": "not-declared"
+        },
+        "nodes": [
+          "model",
+          "eval-gates"
+        ],
+        "toolNodes": [],
+        "mcpToolNodes": [],
+        "edges": "static-plan-only",
+        "checkpointing": "metadata-only",
+        "interrupts": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -1085,11 +1218,11 @@
     "target": "langgraph",
     "supported": true,
     "level": 2,
-    "warnings": [],
-    "unsupportedFeatures": [],
-    "requiredSecrets": [
-      "LANGGRAPH_API_KEY"
+    "warnings": [
+      "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them."
     ],
+    "unsupportedFeatures": [],
+    "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -1098,7 +1231,51 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "langgraph-compatibility-report-only",
+    "providerMapping": {
+      "mode": "langgraph-compatibility-report-only",
+      "provider": "langgraph",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai",
+          "gemini"
+        ],
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "graph": "not-generated",
+        "stateSchema": {
+          "messages": "harness-owned",
+          "memory": "not-declared",
+          "policyResults": "metadata-only",
+          "evalResults": "metadata-only",
+          "receipt": "not-declared"
+        },
+        "nodes": [
+          "model",
+          "tools",
+          "eval-gates"
+        ],
+        "toolNodes": [
+          "search_docs"
+        ],
+        "mcpToolNodes": [],
+        "edges": "static-plan-only",
+        "checkpointing": "not-declared",
+        "interrupts": "metadata-only",
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "source-checker",

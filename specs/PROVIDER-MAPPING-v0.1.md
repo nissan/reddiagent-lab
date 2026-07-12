@@ -34,6 +34,11 @@ read credentials, activate runtimes, resolve MCP servers, or invoke tools.
 - `ollama-local-provider-compatibility-only` maps ADL instructions, local model profile metadata,
   function tool ids, structured-output/tool-calling harness notes, and Reddi metadata-only semantics
   for a local/Ollama-facing review without probing or starting a local model runtime.
+- `langgraph-compatibility-report-only` maps ADL model profile metadata to a LangGraph-facing
+  review shape with static graph/state/node/edge/checkpoint/interrupt metadata. It does not
+  generate, compile, install, or run a graph; Reddi policy, eval, memory, x402, receipt,
+  reputation, and MCP semantics remain metadata-only or static-plan-only until a reviewed runtime
+  graph enforces them.
 
 MCP declarations remain unsupported for execution in these modes until a separate reviewed runtime
 adapter explicitly enables MCP server resolution and invocation.

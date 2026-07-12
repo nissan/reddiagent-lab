@@ -23,6 +23,7 @@ OPENAI_COMPATIBILITY_MODE = "openai-adapter-compatibility-only"
 ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
 GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
+LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 
 
 def load_adl(path: Path) -> dict:
@@ -226,6 +227,70 @@ def ollama_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
     }
 
 
+def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
+    model = doc["model"]
+    harness = doc["harness"]
+    extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    regular_tools = [tool for tool in tools if tool.get("type") != "mcp"]
+
+    metadata_only = []
+    if harness.get("policies"):
+        metadata_only.append("harness.policies")
+    if harness.get("evalGates"):
+        metadata_only.append("harness.evalGates")
+    if harness.get("memory"):
+        metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
+    if extensions.get("x402"):
+        metadata_only.append("extensions.x402")
+    if extensions.get("receipts"):
+        metadata_only.append("extensions.receipts")
+    if extensions.get("reputation"):
+        metadata_only.append("extensions.reputation")
+    if mcp_tools:
+        metadata_only.append("harness.tools[type=mcp]")
+
+    graph_nodes = ["model"]
+    if regular_tools:
+        graph_nodes.append("tools")
+    if harness.get("evalGates"):
+        graph_nodes.append("eval-gates")
+    if extensions.get("receipts"):
+        graph_nodes.append("receipt-metadata")
+
+    return {
+        "mode": LANGGRAPH_COMPATIBILITY_MODE,
+        "provider": "langgraph",
+        "modelProfile": {
+            "capability": model.get("capability"),
+            "preferredProvider": model.get("providers", {}).get("preferred"),
+            "fallbackProviders": model.get("providers", {}).get("fallbacks", []),
+            "requirements": model.get("requirements", {}),
+        },
+        "adapterMapping": {
+            "graph": "not-generated",
+            "stateSchema": {
+                "messages": "harness-owned",
+                "memory": "metadata-only" if harness.get("memory") else "not-declared",
+                "policyResults": "metadata-only" if harness.get("policies") else "not-declared",
+                "evalResults": "metadata-only" if harness.get("evalGates") else "not-declared",
+                "receipt": "metadata-only" if extensions.get("receipts") else "not-declared",
+            },
+            "nodes": graph_nodes,
+            "toolNodes": [tool.get("id") for tool in regular_tools],
+            "mcpToolNodes": [tool.get("id") for tool in mcp_tools],
+            "edges": "static-plan-only",
+            "checkpointing": "metadata-only" if harness.get("memory") else "not-declared",
+            "interrupts": "metadata-only" if harness.get("policies") else "not-declared",
+            "metadataOnly": metadata_only,
+            "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
+        },
+        "reportOnly": True,
+    }
+
+
 def report(path: Path, target: str) -> dict:
     doc = load_adl(path)
     harness = doc["harness"]
@@ -256,7 +321,8 @@ def report(path: Path, target: str) -> dict:
         )
     elif target in ["openai", "anthropic", "gemini", "langgraph"]:
         level = 2
-        required_secrets.append(f"{target.upper().replace('-', '_')}_API_KEY")
+        if target != "langgraph":
+            required_secrets.append(f"{target.upper().replace('-', '_')}_API_KEY")
         if target == "openai":
             compatibility_mode = OPENAI_COMPATIBILITY_MODE
             provider_mapping = openai_mapping(doc, mcp_tools)
@@ -282,6 +348,15 @@ def report(path: Path, target: str) -> dict:
                 "data-source, payment, receipt, reputation, grounding, code execution, "
                 "and MCP semantics remain metadata-only or unsupported unless a reviewed "
                 "runtime adapter enforces them."
+            )
+        if target == "langgraph":
+            compatibility_mode = LANGGRAPH_COMPATIBILITY_MODE
+            provider_mapping = langgraph_mapping(doc, mcp_tools)
+            warnings.append(
+                "LangGraph compatibility is report-only; graph, state, node, edge, "
+                "checkpoint, interrupt, policy, eval, memory, payment, receipt, "
+                "reputation, and MCP semantics remain metadata-only or static-plan-only "
+                "unless a reviewed runtime graph enforces them."
             )
     else:
         level = 0
