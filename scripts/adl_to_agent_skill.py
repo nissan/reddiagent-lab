@@ -130,13 +130,31 @@ def allowed_tools_value(extension: dict) -> str | None:
     return None
 
 
+def list_value(value: object) -> list:
+    return value if isinstance(value, list) else []
+
+
+def package_summary(extension: dict) -> dict:
+    return {
+        "allowedTools": list_value(extension.get("allowedTools")),
+        "toolDeclarations": list_value(extension.get("toolDeclarations")),
+        "usageNotes": list_value(extension.get("usageNotes")),
+        "constraints": list_value(extension.get("constraints")),
+        "references": list_value(extension.get("references")),
+        "scripts": list_value(extension.get("scripts")),
+        "assets": list_value(extension.get("assets")),
+    }
+
+
 def package_metadata(path: Path, doc: dict, metadata_only: list[str], unsupported: list[str]) -> dict:
+    extension = agent_skill_extension(doc)
     return {
         "reddiagent.source": display_path(path),
         "reddiagent.apiVersion": str(doc.get("apiVersion", "")),
         "reddiagent.kind": str(doc.get("kind", "")),
         "reddiagent.metadataOnlySections": json.dumps(metadata_only, separators=(",", ":")),
         "reddiagent.unsupportedFeatures": json.dumps(unsupported, separators=(",", ":")),
+        "reddiagent.agentSkillsPackage": json.dumps(package_summary(extension), separators=(",", ":"), sort_keys=True),
         "reddiagent.runtimeExecutionAllowed": "false",
         "reddiagent.networkAccess": "false",
         "reddiagent.paymentAccess": "false",
@@ -177,9 +195,28 @@ def body_sections(doc: dict, metadata_only: list[str], unsupported: list[str]) -
         "- MCP invocation is not allowed by this static export.",
     ]
 
-    references = extension.get("references") or []
-    scripts = extension.get("scripts") or []
-    assets = extension.get("assets") or []
+    tool_declarations = list_value(extension.get("toolDeclarations"))
+    usage_notes = list_value(extension.get("usageNotes"))
+    constraints = list_value(extension.get("constraints"))
+    references = list_value(extension.get("references"))
+    scripts = list_value(extension.get("scripts"))
+    assets = list_value(extension.get("assets"))
+    if tool_declarations:
+        lines.extend(["", "# Tool Declarations", ""])
+        for tool in tool_declarations:
+            tool_id = tool.get("id", "tool") if isinstance(tool, dict) else str(tool)
+            description = tool.get("description", "Static package tool declaration.") if isinstance(tool, dict) else ""
+            lines.append(f"- `{tool_id}`: {description}")
+            if isinstance(tool, dict) and tool.get("inputSchema"):
+                lines.append(f"  - Input schema: `{tool['inputSchema']}`")
+            if isinstance(tool, dict) and tool.get("outputSchema"):
+                lines.append(f"  - Output schema: `{tool['outputSchema']}`")
+    if usage_notes:
+        lines.extend(["", "# Usage Notes", ""])
+        lines.extend(f"- {item}" for item in usage_notes)
+    if constraints:
+        lines.extend(["", "# Constraints", ""])
+        lines.extend(f"- {item}" for item in constraints)
     if references:
         lines.extend(["", "# References", ""])
         lines.extend(f"- {item}" for item in references)
