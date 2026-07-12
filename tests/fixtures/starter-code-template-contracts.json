@@ -1,0 +1,158 @@
+{
+  "examples/simple-agent.yaml": {
+    "format": "starter-code-template-contract-fixture",
+    "source": "examples/simple-agent.yaml",
+    "outputRoot": "starter/simple-research-helper",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "templateCount": 6,
+    "templateIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "plannedPaths": [
+      "starter/simple-research-helper/README.md",
+      "starter/simple-research-helper/agent.adl.yaml",
+      "starter/simple-research-helper/src/agent_harness.py",
+      "starter/simple-research-helper/tests/test_static_contract.py",
+      "starter/simple-research-helper/.env.example",
+      "starter/simple-research-helper/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "requiredInputRefs": [
+      "<source-adl>",
+      "blockedGatesBeforeGeneration",
+      "boundaryFlags",
+      "harness.evalGates",
+      "harness.policies",
+      "harness.runtime",
+      "harness.tools",
+      "metadata.name",
+      "model",
+      "model.capability",
+      "validation.status"
+    ],
+    "contractNonGoalIds": [
+      "no-template-rendering",
+      "no-file-writes",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/tool-agent.yaml": {
+    "format": "starter-code-template-contract-fixture",
+    "source": "examples/tool-agent.yaml",
+    "outputRoot": "starter/source-checker",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "templateCount": 7,
+    "templateIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.local_tool_fixtures",
+      "starter.policy_eval_gate_tests"
+    ],
+    "plannedPaths": [
+      "starter/source-checker/README.md",
+      "starter/source-checker/agent.adl.yaml",
+      "starter/source-checker/src/agent_harness.py",
+      "starter/source-checker/tests/test_static_contract.py",
+      "starter/source-checker/.env.example",
+      "starter/source-checker/fixtures/tools.json",
+      "starter/source-checker/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 3,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "requiredInputRefs": [
+      "<source-adl>",
+      "blockedGatesBeforeGeneration",
+      "boundaryFlags",
+      "harness.evalGates",
+      "harness.policies",
+      "harness.runtime",
+      "harness.toolFixtures",
+      "harness.tools",
+      "metadata.name",
+      "model",
+      "model.capability",
+      "validation.status"
+    ],
+    "contractNonGoalIds": [
+      "no-template-rendering",
+      "no-file-writes",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/payment-agent.yaml": {
+    "format": "starter-code-template-contract-fixture",
+    "source": "examples/payment-agent.yaml",
+    "outputRoot": "starter/paid-specialist-researcher",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "templateCount": 6,
+    "templateIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "plannedPaths": [
+      "starter/paid-specialist-researcher/README.md",
+      "starter/paid-specialist-researcher/agent.adl.yaml",
+      "starter/paid-specialist-researcher/src/agent_harness.py",
+      "starter/paid-specialist-researcher/tests/test_static_contract.py",
+      "starter/paid-specialist-researcher/.env.example",
+      "starter/paid-specialist-researcher/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "requiredInputRefs": [
+      "<source-adl>",
+      "blockedGatesBeforeGeneration",
+      "boundaryFlags",
+      "harness.evalGates",
+      "harness.policies",
+      "harness.runtime",
+      "harness.tools",
+      "metadata.name",
+      "model",
+      "model.capability",
+      "validation.status"
+    ],
+    "contractNonGoalIds": [
+      "no-template-rendering",
+      "no-file-writes",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  }
+}

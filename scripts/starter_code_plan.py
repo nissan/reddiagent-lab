@@ -27,6 +27,43 @@ BOUNDARY_FLAGS = {
     "writesFiles": False,
     "installsDependencies": False,
 }
+BASE_TEMPLATE_CONTRACTS = [
+    {
+        "templateId": "starter.readme",
+        "pathSuffix": "README.md",
+        "inputRefs": ["metadata.name", "model.capability", "harness.runtime"],
+        "status": "review-only",
+        "purpose": "Document the static starter review package, blocked gates, and human handoff notes.",
+    },
+    {
+        "templateId": "starter.adl_copy",
+        "pathSuffix": "agent.adl.yaml",
+        "inputRefs": ["<source-adl>"],
+        "status": "review-only",
+        "purpose": "Preserve the source ADL as the canonical contract for later reviewed generation.",
+    },
+    {
+        "templateId": "starter.python_harness",
+        "pathSuffix": "src/agent_harness.py",
+        "inputRefs": ["metadata.name", "model", "harness.runtime", "harness.tools"],
+        "status": "placeholder-only",
+        "purpose": "Describe the future local harness entry point without creating runnable code.",
+    },
+    {
+        "templateId": "starter.static_contract_test",
+        "pathSuffix": "tests/test_static_contract.py",
+        "inputRefs": ["boundaryFlags", "validation.status", "blockedGatesBeforeGeneration"],
+        "status": "placeholder-only",
+        "purpose": "Pin static boundary assertions before any generator can write executable files.",
+    },
+    {
+        "templateId": "starter.env_example",
+        "pathSuffix": ".env.example",
+        "inputRefs": [],
+        "status": "withheld",
+        "purpose": "Withhold environment variable templates until a separate credential policy review.",
+    },
+]
 
 
 def display_path(path: Path) -> str:
@@ -156,6 +193,87 @@ def planned_files(agent_slug: str, doc: dict) -> list[dict]:
     return files
 
 
+def template_contracts(agent_slug: str, doc: dict, gates: list[dict]) -> list[dict]:
+    contracts = [
+        {
+            "templateId": template["templateId"],
+            "plannedPath": f"starter/{agent_slug}/{template['pathSuffix']}",
+            "status": template["status"],
+            "requiredInputs": template["inputRefs"],
+            "blockedGateIds": [gate["id"] for gate in gates],
+            "writesFiles": False,
+            "installsDependencies": False,
+            "runtimeExecutionAllowed": False,
+            "purpose": template["purpose"],
+        }
+        for template in BASE_TEMPLATE_CONTRACTS
+    ]
+    harness = doc.get("harness") or {}
+    if harness.get("toolFixtures"):
+        contracts.append(
+            {
+                "templateId": "starter.local_tool_fixtures",
+                "plannedPath": f"starter/{agent_slug}/fixtures/tools.json",
+                "status": "review-only",
+                "requiredInputs": ["harness.toolFixtures"],
+                "blockedGateIds": [gate["id"] for gate in gates],
+                "writesFiles": False,
+                "installsDependencies": False,
+                "runtimeExecutionAllowed": False,
+                "purpose": "Package deterministic local tool fixtures as data only, with no network or MCP access.",
+            }
+        )
+    if harness.get("policies") or harness.get("evalGates"):
+        contracts.append(
+            {
+                "templateId": "starter.policy_eval_gate_tests",
+                "plannedPath": f"starter/{agent_slug}/tests/test_policy_eval_gates.py",
+                "status": "placeholder-only",
+                "requiredInputs": ["harness.policies", "harness.evalGates"],
+                "blockedGateIds": [gate["id"] for gate in gates],
+                "writesFiles": False,
+                "installsDependencies": False,
+                "runtimeExecutionAllowed": False,
+                "purpose": "Describe policy and eval assertions without running the starter harness.",
+            }
+        )
+    return contracts
+
+
+def template_contract_fixture(
+    source: Path,
+    agent_slug: str,
+    contracts: list[dict],
+    validation_status: str,
+) -> dict:
+    status_counts: dict[str, int] = {}
+    for contract in contracts:
+        status = contract["status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+
+    return {
+        "format": "starter-code-template-contract-fixture",
+        "source": display_path(source),
+        "outputRoot": f"starter/{agent_slug}",
+        "manifestOnly": True,
+        "writesFiles": False,
+        "validationStatus": validation_status,
+        "templateCount": len(contracts),
+        "templateIds": [contract["templateId"] for contract in contracts],
+        "plannedPaths": [contract["plannedPath"] for contract in contracts],
+        "statusCounts": status_counts,
+        "requiredInputRefs": sorted({ref for contract in contracts for ref in contract["requiredInputs"]}),
+        "contractNonGoalIds": [
+            "no-template-rendering",
+            "no-file-writes",
+            "no-dependency-install",
+            "no-runtime-execution",
+            "no-provider-model-mcp-payment-calls",
+            "no-sensitive-payloads",
+        ],
+    }
+
+
 def blocked_gates(doc: dict) -> list[dict]:
     harness = doc.get("harness") or {}
     extensions = doc.get("extensions") or {}
@@ -244,6 +362,7 @@ def plan_for(path: Path) -> dict:
     validation_status = "pass" if not errors else "fail"
     planned = [] if errors else planned_files(agent_slug, doc)
     gates = blocked_gates(doc)
+    contracts = [] if errors else template_contracts(agent_slug, doc, gates)
     return {
         "format": "starter-code-review-manifest",
         "source": display_path(path),
@@ -266,6 +385,8 @@ def plan_for(path: Path) -> dict:
         },
         "plannedFiles": planned,
         "dryRunFileManifest": dry_run_file_manifest(path, agent_slug, planned, gates, validation_status),
+        "templateContracts": contracts,
+        "templateContractFixture": template_contract_fixture(path, agent_slug, contracts, validation_status),
         "blockedGatesBeforeGeneration": gates,
         "nonGoals": [
             "Do not write starter project files from this command.",
