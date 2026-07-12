@@ -4,7 +4,7 @@ _Loop 62. Anchor issue: #65._
 
 ## Next
 
-- Align `SKILL-PACKAGE-CONTRACT-v0.1.md` to Agent Skills / `SKILL.md` and keep the static export report current.
+- Keep the Prosumer Builder MVP skeleton aligned with validator, local dry-run traces, and report-only exports.
 - Level 1 deterministic trace tests.
 - Provider compatibility report snapshots.
 - ADL schema tightening.

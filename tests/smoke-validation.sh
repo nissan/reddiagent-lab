@@ -21,3 +21,4 @@ cd "$(dirname "$0")/.."
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_agent_skill_export.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_rap_bridge_report.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_ap2_x402_mandate_report.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_prosumer_builder_plan.py
