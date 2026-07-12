@@ -97,6 +97,31 @@ def main() -> int:
     assert exported_doc["component"]["name"] == "lossless-agent-spec-review-agent"
     assert exported_doc["component"]["metadata"]["metadataOnlySections"] == []
 
+    expanded = run_command(
+        "--export-agent-spec",
+        "tests/fixtures/agent-spec-lossless-agent.yaml",
+        "tests/fixtures/agent-spec-lossless-tool-agent.yaml",
+        "tests/fixtures/agent-spec-lossless-path-agent.yaml",
+    )
+    assert expanded.returncode == 0
+    expanded_docs = json.loads(expanded.stdout)
+    by_name = {doc["component"]["name"]: doc for doc in expanded_docs}
+    tool_doc = by_name["lossless-agent-spec-tool-agent"]
+    assert tool_doc["component"]["model"]["fallbackProviders"] == ["anthropic"]
+    assert tool_doc["component"]["model"]["requirements"]["contextWindow"] == 16000
+    assert tool_doc["component"]["tools"][0]["id"] == "normalize_topic"
+    assert tool_doc["component"]["tools"][0]["inputSchema"]["properties"]["topic"]["type"] == "string"
+    assert tool_doc["component"]["tools"][0]["outputSchema"]["properties"]["canonicalTopic"]["type"] == "string"
+    assert tool_doc["component"]["metadata"]["metadataOnlySections"] == []
+
+    path_doc = by_name["lossless-agent-spec-path-agent"]
+    assert path_doc["component"]["instructions"] == {
+        "type": "path",
+        "value": "prompts/lossless-agent-spec-path-agent.md",
+    }
+    assert path_doc["component"]["model"]["requirements"]["modalities"] == ["text", "image"]
+    assert path_doc["component"]["metadata"]["metadataOnlySections"] == []
+
     exported_yaml = run_command(
         "--export-agent-spec",
         "--output-format",
@@ -107,6 +132,17 @@ def main() -> int:
     assert exported_yaml.returncode == 0
     assert "format: agent-spec-compatible-review" in exported_yaml.stdout
     assert "name: lossless-agent-spec-review-agent" in exported_yaml.stdout
+
+    lossy_mixed_with_lossless = run_command(
+        "--export-agent-spec",
+        "tests/fixtures/agent-spec-lossless-tool-agent.yaml",
+        "examples/payment-agent.yaml",
+    )
+    assert lossy_mixed_with_lossless.returncode == 3
+    assert lossy_mixed_with_lossless.stdout == ""
+    mixed_refusal = json.loads(lossy_mixed_with_lossless.stderr)
+    assert [item["agent"] for item in mixed_refusal["diagnostics"]] == ["paid-specialist-researcher"]
+    assert "live_payment_execution" in mixed_refusal["diagnostics"][0]["unsupportedFeatures"]
 
     print("PASS Agent Spec compatibility")
     return 0

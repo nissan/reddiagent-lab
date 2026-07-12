@@ -10,6 +10,9 @@ The slice adds a static ADL-to-Agent-Spec mapping check for:
 
 - `examples/simple-agent.yaml`
 - `examples/payment-agent.yaml`
+- `tests/fixtures/agent-spec-lossless-agent.yaml`
+- `tests/fixtures/agent-spec-lossless-tool-agent.yaml`
+- `tests/fixtures/agent-spec-lossless-path-agent.yaml`
 
 It does not install PyAgentSpec, WayFlow, LangGraph adapters, AutoGen adapters, CrewAI adapters, MCP servers, payment rails, hosted services, or any Agent Spec runtime.
 
@@ -35,6 +38,14 @@ Strict export refusal check:
 
 The strict export command exits `3` and emits diagnostics to stderr when any input is not lossless. It does not emit an Agent Spec mapped document for lossy ADL.
 
+Expanded strict lossless export:
+
+```bash
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/agent_spec_compatibility.py --export-agent-spec tests/fixtures/agent-spec-lossless-agent.yaml tests/fixtures/agent-spec-lossless-tool-agent.yaml tests/fixtures/agent-spec-lossless-path-agent.yaml
+```
+
+The expanded strict export emits only static review documents and preserves supported ADL fields including model fallback providers, context window, modalities, path instructions, and function tool input/output schemas.
+
 The compatibility reports are required to include:
 
 - `target: agent-spec`
@@ -55,6 +66,10 @@ The compatibility reports are required to include:
 
 `tests/fixtures/agent-spec-lossless-agent.yaml` proves the strict exporter can emit a mapped review document when no ReddiAgent semantics are metadata-only or unsupported. JSON and YAML export paths are covered by `tests/test_agent_spec_compatibility.py`.
 
+`tests/fixtures/agent-spec-lossless-tool-agent.yaml` expands lossless coverage to function tools with ADL `inputSchema` and `outputSchema`, model fallback providers, tool-calling requirements, and a larger local context window. Strict export preserves those fields without treating them as metadata-only.
+
+`tests/fixtures/agent-spec-lossless-path-agent.yaml` expands lossless coverage to path-based instructions and multimodal model requirements. Strict export preserves the instruction path and modalities while keeping runtime execution blocked.
+
 ## Boundary
 
 This is Level 2 compatibility evidence only. It does not approve:
@@ -67,4 +82,4 @@ This is Level 2 compatibility evidence only. It does not approve:
 - filesystem mutation outside the report/check path;
 - provider adapter code generation.
 
-The strict fail-on-loss export fixture is now implemented. The next safe loop can return to the MCP handoff path: define the static MCP runtime handoff package or connect adapter aggregation evidence into readiness traces, without resolving or invoking MCP servers.
+Strict fail-on-loss export now has expanded lossless fixture coverage. The next safe Agent Spec loop can continue schema/export hardening without installing or invoking an Agent Spec runtime.
