@@ -145,6 +145,64 @@ def test_openai_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
 
 
+def test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation() -> None:
+    proc = run_cli(["examples/mcp-readonly-agent.yaml", "--target", "anthropic"])
+    report = json.loads(proc.stdout)[0]
+    assert report["target"] == "anthropic"
+    assert report["compatibilityMode"] == "anthropic-mcp-compatibility-only"
+    assert report["supported"] is False
+    assert report["boundary"] == {
+        "runtimeExecutionAllowed": False,
+        "networkAccess": False,
+        "paymentAccess": False,
+        "mcpInvocation": False,
+    }
+    assert report["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
+    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
+    assert "metadata-only" in report["warnings"][0]
+    assert report["providerMapping"]["reportOnly"] is True
+    assert report["providerMapping"]["adapterMapping"]["toolUseSchemas"] == []
+    assert report["providerMapping"]["adapterMapping"]["mcpDeclarations"] == [
+        {
+            "id": "docs_search",
+            "serverRef": "approved-docs-search",
+            "toolName": "search",
+        }
+    ]
+    assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+    ]
+    assert report["providerMapping"]["adapterMapping"]["unsupportedExecution"] == ["docs_search"]
+
+
+def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> None:
+    proc = run_cli(["examples/tool-agent.yaml", "examples/payment-agent.yaml", "--target", "anthropic"])
+    reports = {item["agent"]: item for item in json.loads(proc.stdout)}
+
+    tool = reports["source-checker"]
+    assert tool["supported"] is True
+    assert tool["providerMapping"]["adapterMapping"]["toolUseSchemas"] == ["search_docs"]
+    assert tool["providerMapping"]["adapterMapping"]["mcpDeclarations"] == []
+    assert tool["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+    ]
+
+    payment = reports["paid-specialist-researcher"]
+    assert payment["supported"] is False
+    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
+    assert "Payment extension is dry-run only" in payment["warnings"][1]
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -166,6 +224,8 @@ def main() -> int:
     test_local_python_selector_and_summary_output_file()
     test_openai_compatibility_mode_maps_metadata_only_semantics()
     test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
+    test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation()
+    test_anthropic_compatibility_mode_preserves_payment_as_metadata_only()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")

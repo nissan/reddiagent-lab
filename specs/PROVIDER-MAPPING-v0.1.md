@@ -18,6 +18,20 @@ Provider mapping explains how one ADL file can target different model providers 
 | Agent Spec | model requirements to Agent Spec LLM config | Agent/Flow components, tools, runtime adapter metadata | Reddi policy/payment/reputation/source-boundary semantics may be metadata-only |
 | Local Python | SDK/local model client | Direct loop, registry, state, policies | Least managed, easiest to inspect |
 
+## Compatibility-Only Modes
+
+Provider-specific compatibility-only modes are static report artifacts. They do not call providers,
+read credentials, activate runtimes, resolve MCP servers, or invoke tools.
+
+- `openai-adapter-compatibility-only` maps ADL instructions, non-MCP function tools, model profile,
+  and Reddi metadata-only semantics for an OpenAI-facing review.
+- `anthropic-mcp-compatibility-only` maps ADL instructions, Claude-style tool-use schema ids,
+  MCP declaration metadata (`id`, `serverRef`, `toolName`), model profile, and Reddi metadata-only
+  semantics for an Anthropic/MCP-facing review.
+
+MCP declarations remain unsupported for execution in both modes until a separate reviewed runtime
+adapter explicitly enables MCP server resolution and invocation.
+
 ## Compatibility Result
 
 Every compile/adapter attempt should return:

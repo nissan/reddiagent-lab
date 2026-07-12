@@ -18,6 +18,7 @@ Focused selector/export checks:
 - mcp-readonly-agent is schema-valid and adapter-shape-readable, but MCP execution is unsupported for every target until server resolution and source-check enforcement land.
 - `mcp-readonly` is a compatibility target for static MCP declaration review only. It does not resolve or invoke MCP servers.
 - `openai` now emits `compatibilityMode: openai-adapter-compatibility-only` with deterministic model, instruction, function-tool, metadata-only, and unsupported-execution mapping fields. It does not call OpenAI or read credentials.
+- `anthropic` now emits `compatibilityMode: anthropic-mcp-compatibility-only` with deterministic model, system prompt, tool-use schema, MCP declaration, metadata-only, and unsupported-execution mapping fields. It does not call Anthropic, read credentials, or invoke MCP.
 - Every provider compatibility row now carries explicit report-only boundary metadata:
   `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
 

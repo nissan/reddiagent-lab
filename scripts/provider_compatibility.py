@@ -20,6 +20,7 @@ REPORT_ONLY_BOUNDARY = {
     "mcpInvocation": False,
 }
 OPENAI_COMPATIBILITY_MODE = "openai-adapter-compatibility-only"
+ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
 
 
 def load_adl(path: Path) -> dict:
@@ -69,6 +70,57 @@ def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
     }
 
 
+def anthropic_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
+    model = doc["model"]
+    harness = doc["harness"]
+    extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    regular_tools = [tool for tool in tools if tool.get("type") != "mcp"]
+
+    metadata_only = []
+    if harness.get("policies"):
+        metadata_only.append("harness.policies")
+    if harness.get("evalGates"):
+        metadata_only.append("harness.evalGates")
+    if harness.get("memory"):
+        metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
+    if extensions.get("x402"):
+        metadata_only.append("extensions.x402")
+    if extensions.get("receipts"):
+        metadata_only.append("extensions.receipts")
+    if extensions.get("reputation"):
+        metadata_only.append("extensions.reputation")
+
+    return {
+        "mode": ANTHROPIC_COMPATIBILITY_MODE,
+        "provider": "anthropic",
+        "modelProfile": {
+            "capability": model.get("capability"),
+            "preferredProvider": model.get("providers", {}).get("preferred"),
+            "fallbackProviders": model.get("providers", {}).get("fallbacks", []),
+            "requirements": model.get("requirements", {}),
+        },
+        "adapterMapping": {
+            "systemPrompt": "harness.instructions.inline",
+            "toolUseSchemas": [tool.get("id") for tool in regular_tools],
+            "mcpDeclarations": [
+                {
+                    "id": tool.get("id"),
+                    "serverRef": tool.get("serverRef"),
+                    "toolName": tool.get("toolName"),
+                }
+                for tool in mcp_tools
+            ],
+            "sourceBoundary": "metadata-only",
+            "metadataOnly": metadata_only,
+            "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
+        },
+        "reportOnly": True,
+    }
+
+
 def report(path: Path, target: str) -> dict:
     doc = load_adl(path)
     harness = doc["harness"]
@@ -101,6 +153,14 @@ def report(path: Path, target: str) -> dict:
                     "payment, receipt, reputation, and MCP semantics remain metadata-only "
                     "unless a reviewed runtime adapter enforces them."
                 )
+        if target == "anthropic":
+            compatibility_mode = ANTHROPIC_COMPATIBILITY_MODE
+            provider_mapping = anthropic_mapping(doc, mcp_tools)
+            warnings.append(
+                "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, "
+                "data-source, payment, receipt, reputation, and MCP semantics remain "
+                "metadata-only unless a reviewed runtime adapter enforces them."
+            )
     else:
         level = 0
 
