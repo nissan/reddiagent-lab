@@ -74,6 +74,8 @@ def main() -> int:
     assert "extensions.x402.paymentAccess" in unsafe_paths
     assert "extensions.x402.intents[0].facilitatorUrl" in unsafe_paths
     assert "extensions.x402.intents[0].walletPrivateKey" in unsafe_paths
+    assert "extensions.x402.intents[0].settlementReference" in unsafe_paths
+    assert "extensions.x402.intents[0].paymentRef" in unsafe_paths
 
     print("PASS payment dry-run receipt")
     return 0

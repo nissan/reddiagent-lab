@@ -41,6 +41,8 @@ extensions:
         requireReceipt: false
         facilitatorUrl: https://payments.example.invalid/settle
         walletPrivateKey: redacted-placeholder
+        settlementReference: tx:static-demo-settlement-ref
+        paymentRef: tx:static-demo-payment-ref
   receipts:
     required: false
   reputation:
