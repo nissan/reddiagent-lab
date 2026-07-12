@@ -19,6 +19,8 @@ Focused selector/export checks:
 - `mcp-readonly` is a compatibility target for static MCP declaration review only. It does not resolve or invoke MCP servers.
 - `openai` now emits `compatibilityMode: openai-adapter-compatibility-only` with deterministic model, instruction, function-tool, metadata-only, and unsupported-execution mapping fields. It does not call OpenAI or read credentials.
 - `anthropic` now emits `compatibilityMode: anthropic-mcp-compatibility-only` with deterministic model, system prompt, tool-use schema, MCP declaration, metadata-only, and unsupported-execution mapping fields. It does not call Anthropic, read credentials, or invoke MCP.
+- `gemini` now emits `compatibilityMode: gemini-provider-compatibility-only` with deterministic model, system instruction, function declaration, grounding/code-execution, metadata-only, and unsupported-execution mapping fields. It does not call Gemini, read credentials, or invoke MCP.
+- `ollama` now emits `compatibilityMode: ollama-local-provider-compatibility-only` with deterministic local model profile metadata, non-probed endpoint/model fields, function-tool ids, custom-harness notes, metadata-only semantics, and unsupported-execution mapping fields. It does not start, probe, or call Ollama/local model runtimes.
 - Every provider compatibility row now carries explicit report-only boundary metadata:
   `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
 

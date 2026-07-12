@@ -179,9 +179,9 @@
     "agent": "mcp-readonly-docs",
     "target": "ollama",
     "supported": false,
-    "level": 0,
+    "level": 2,
     "warnings": [
-      "Tool calling may require custom local harness parsing.",
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
@@ -198,7 +198,41 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "ollama-local-provider-compatibility-only",
+      "provider": "ollama",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai"
+        ],
+        "localProviderDeclared": false,
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "localEndpoint": "not-probed",
+        "modelId": "metadata-only",
+        "promptTemplate": "harness.instructions.inline",
+        "toolCalls": "custom-harness-required",
+        "structuredOutput": "custom-harness-required",
+        "stateAndMemory": "external-harness-owned",
+        "functionTools": [],
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.tools[type=mcp]"
+        ],
+        "unsupportedExecution": [
+          "docs_search"
+        ]
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -449,9 +483,9 @@
     "agent": "paid-specialist-researcher",
     "target": "ollama",
     "supported": false,
-    "level": 0,
+    "level": 2,
     "warnings": [
-      "Tool calling may require custom local harness parsing.",
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
@@ -466,7 +500,43 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "ollama-local-provider-compatibility-only",
+      "provider": "ollama",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic"
+        ],
+        "localProviderDeclared": false,
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "localEndpoint": "not-probed",
+        "modelId": "metadata-only",
+        "promptTemplate": "harness.instructions.inline",
+        "toolCalls": "custom-harness-required",
+        "structuredOutput": "custom-harness-required",
+        "stateAndMemory": "external-harness-owned",
+        "functionTools": [
+          "fetch_approved_url"
+        ],
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.x402",
+          "extensions.receipts",
+          "extensions.reputation"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -694,8 +764,10 @@
     "agent": "simple-research-helper",
     "target": "ollama",
     "supported": true,
-    "level": 0,
-    "warnings": [],
+    "level": 2,
+    "warnings": [
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them."
+    ],
     "unsupportedFeatures": [],
     "requiredSecrets": [],
     "requiredHostedServices": [],
@@ -706,7 +778,41 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "ollama-local-provider-compatibility-only",
+      "provider": "ollama",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "openai",
+        "fallbackProviders": [
+          "anthropic",
+          "gemini",
+          "ollama"
+        ],
+        "localProviderDeclared": true,
+        "requirements": {
+          "toolCalling": false,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "localEndpoint": "not-probed",
+        "modelId": "metadata-only",
+        "promptTemplate": "harness.instructions.inline",
+        "toolCalls": "not-required",
+        "structuredOutput": "custom-harness-required",
+        "stateAndMemory": "external-harness-owned",
+        "functionTools": [],
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -924,9 +1030,9 @@
     "agent": "source-checker",
     "target": "ollama",
     "supported": true,
-    "level": 0,
+    "level": 2,
     "warnings": [
-      "Tool calling may require custom local harness parsing."
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them."
     ],
     "unsupportedFeatures": [],
     "requiredSecrets": [],
@@ -938,7 +1044,41 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "providerMapping": {
+      "mode": "ollama-local-provider-compatibility-only",
+      "provider": "ollama",
+      "modelProfile": {
+        "capability": "chat",
+        "preferredProvider": "anthropic",
+        "fallbackProviders": [
+          "openai",
+          "gemini"
+        ],
+        "localProviderDeclared": false,
+        "requirements": {
+          "toolCalling": true,
+          "structuredOutput": true
+        }
+      },
+      "adapterMapping": {
+        "localEndpoint": "not-probed",
+        "modelId": "metadata-only",
+        "promptTemplate": "harness.instructions.inline",
+        "toolCalls": "custom-harness-required",
+        "structuredOutput": "custom-harness-required",
+        "stateAndMemory": "external-harness-owned",
+        "functionTools": [
+          "search_docs"
+        ],
+        "metadataOnly": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "unsupportedExecution": []
+      },
+      "reportOnly": true
+    }
   },
   {
     "agent": "source-checker",

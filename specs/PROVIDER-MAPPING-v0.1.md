@@ -31,6 +31,9 @@ read credentials, activate runtimes, resolve MCP servers, or invoke tools.
 - `gemini-provider-compatibility-only` maps ADL instructions, function declaration ids, model
   profile, structured-output capability, explicit grounding/code-execution diagnostics, and Reddi
   metadata-only semantics for a Gemini-facing review.
+- `ollama-local-provider-compatibility-only` maps ADL instructions, local model profile metadata,
+  function tool ids, structured-output/tool-calling harness notes, and Reddi metadata-only semantics
+  for a local/Ollama-facing review without probing or starting a local model runtime.
 
 MCP declarations remain unsupported for execution in these modes until a separate reviewed runtime
 adapter explicitly enables MCP server resolution and invocation.
