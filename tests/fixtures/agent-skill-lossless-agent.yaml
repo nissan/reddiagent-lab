@@ -12,7 +12,29 @@ extensions:
     compatibility: "Designed for Claude Code, OpenAI Codex, Gemini CLI, and other Agent Skills clients."
     allowedTools:
       - Read
+      - Grep
+    toolDeclarations:
+      - id: inspect_taxonomy
+        description: Read bundled taxonomy references and summarize matching local product categories.
+        inputSchema: references/inspect-taxonomy-input.schema.json
+        outputSchema: references/inspect-taxonomy-output.schema.json
+      - id: compare_terms
+        description: Compare two local taxonomy terms using only bundled references.
+        inputSchema: references/compare-terms-input.schema.json
+        outputSchema: references/compare-terms-output.schema.json
+    usageNotes:
+      - Prefer bundled references over memory or web search.
+      - Ask for clarification when the requested taxonomy term is absent from bundled references.
+    constraints:
+      - Do not call network services or external tools.
+      - Do not infer payment, credential, MCP, runtime, policy, memory, or eval behavior from this package.
     references:
       - references/TAXONOMY.md
+      - references/inspect-taxonomy-input.schema.json
+      - references/inspect-taxonomy-output.schema.json
+      - references/compare-terms-input.schema.json
+      - references/compare-terms-output.schema.json
+    scripts:
+      - scripts/normalize_taxonomy.py
     assets:
       - assets/example-output.json

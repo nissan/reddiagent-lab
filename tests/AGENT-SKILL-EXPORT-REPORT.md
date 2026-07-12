@@ -1,6 +1,6 @@
 # Agent Skills / SKILL.md Export Report
 
-_Issue: #134. Generated from `scripts/adl_to_agent_skill.py` fixtures._
+_Issue: #134; expanded by #176. Generated from `scripts/adl_to_agent_skill.py` fixtures._
 
 ## Summary
 
@@ -10,8 +10,9 @@ ReddiAgent can emit a static Agent Skills package review for ADL inputs while ke
 
 - `examples/simple-agent.yaml` maps to a static `simple-research-helper/SKILL.md` review package, but strict export is lossy because model, memory, policy, eval, and runtime semantics become metadata/body notes.
 - `examples/payment-agent.yaml` maps to a static `paid-specialist-researcher/SKILL.md` review package, but strict export is refused because x402 payment, receipt, reputation, hosted runtime, and Reddi policy/eval semantics are metadata-only or unsupported for execution.
-- `tests/fixtures/agent-skill-lossless-agent.yaml` exports a lossless static package with required `name` and `description`, optional `license`, `compatibility`, `allowed-tools`, and progressive-disclosure file references.
+- `tests/fixtures/agent-skill-lossless-agent.yaml` exports a lossless static package with required `name` and `description`, optional `license`, `compatibility`, `allowed-tools`, static tool declarations, usage notes, constraints, progressive-disclosure references, script declarations, and asset declarations.
 - `tests/fixtures/agent-skill-lossy-agent.yaml` fails strict export with exit code 3 and diagnostics for live payment, MCP invocation, non-local runtime, and metadata-only ReddiAgent sections.
+- Strict package export frontmatter now includes a deterministic `reddiagent.agentSkillsPackage` metadata summary pinning safe package declarations without activating an Agent Skills client.
 
 ## Static Boundary
 

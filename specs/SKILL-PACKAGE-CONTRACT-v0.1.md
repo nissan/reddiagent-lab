@@ -1,6 +1,6 @@
 # Skill Package Contract v0.1
 
-_Loop 77. Anchor issue: #91. Updated by issue #134._
+_Loop 77. Anchor issue: #91. Updated by issues #134 and #176._
 
 ## Purpose
 
@@ -27,7 +27,7 @@ ReddiAgent remains the canonical ADL and harness contract. Agent Skills / `SKILL
 - `metadata` (optional): ReddiAgent namespaced static review metadata.
 - `allowed-tools` (optional): experimental static pre-approval hint.
 
-The body carries instructions, examples, edge cases, and relative references to bundled files.
+The body carries instructions, static tool declarations, usage notes, constraints, examples, edge cases, and relative references to bundled files.
 
 ## ReddiAgent Fields
 
@@ -36,6 +36,8 @@ The body carries instructions, examples, edge cases, and relative references to 
 - `description` maps to frontmatter `description`.
 - `prompts` map to the body or `references/`.
 - `tools` map to `allowed-tools`, `scripts/`, or metadata-only notes depending on whether they are bundled static helpers or external tools.
+- Safe package-level tool declarations map to Markdown body sections plus namespaced metadata when they describe bundled/static usage only.
+- Usage notes and constraints map to Markdown body sections plus namespaced metadata.
 - `dataSources` map to `references/` or metadata-only notes.
 - `policies` map to metadata-only notes unless the skill client can enforce them.
 - `evalGates` map to metadata-only notes unless the skill client can enforce them.

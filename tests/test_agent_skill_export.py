@@ -114,12 +114,34 @@ def main() -> int:
     package = json.loads(exported.stdout)
     assert package["skillDirectory"] == "lossless-skill-agent"
     assert package["files"][0]["path"] == "lossless-skill-agent/SKILL.md"
+    content = package["files"][0]["content"]
     frontmatter = skill_frontmatter(package)
     assert frontmatter["name"] == "lossless-skill-agent"
     assert frontmatter["license"] == "Apache-2.0"
-    assert frontmatter["allowed-tools"] == "Read"
+    assert frontmatter["allowed-tools"] == "Read Grep"
     assert frontmatter["metadata"]["reddiagent.metadataOnlySections"] == "[]"
-    assert "references/TAXONOMY.md" in package["files"][0]["content"]
+    package_summary = json.loads(frontmatter["metadata"]["reddiagent.agentSkillsPackage"])
+    assert [tool["id"] for tool in package_summary["toolDeclarations"]] == [
+        "inspect_taxonomy",
+        "compare_terms",
+    ]
+    assert package_summary["usageNotes"] == [
+        "Prefer bundled references over memory or web search.",
+        "Ask for clarification when the requested taxonomy term is absent from bundled references.",
+    ]
+    assert package_summary["constraints"] == [
+        "Do not call network services or external tools.",
+        "Do not infer payment, credential, MCP, runtime, policy, memory, or eval behavior from this package.",
+    ]
+    assert "references/TAXONOMY.md" in content
+    assert "# Tool Declarations" in content
+    assert "`inspect_taxonomy`: Read bundled taxonomy references" in content
+    assert "Input schema: `references/inspect-taxonomy-input.schema.json`" in content
+    assert "# Usage Notes" in content
+    assert "Prefer bundled references over memory or web search." in content
+    assert "# Constraints" in content
+    assert "Do not call network services or external tools." in content
+    assert "scripts/normalize_taxonomy.py (static declaration only)" in content
 
     exported_yaml = run_command(
         "--export-skill-package",

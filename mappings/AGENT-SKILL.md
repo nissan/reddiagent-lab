@@ -36,6 +36,9 @@ The target package follows the Agent Skills open format:
 | `extensions.agentSkills.license` | frontmatter `license` | supported |
 | `extensions.agentSkills.compatibility` | frontmatter `compatibility` | supported |
 | `extensions.agentSkills.allowedTools` | frontmatter `allowed-tools` | supported as experimental static text |
+| `extensions.agentSkills.toolDeclarations` | frontmatter metadata and Markdown tool declarations | supported as static package declarations only |
+| `extensions.agentSkills.usageNotes` | frontmatter metadata and Markdown usage notes | supported |
+| `extensions.agentSkills.constraints` | frontmatter metadata and Markdown constraints | supported |
 | `extensions.agentSkills.references` | Markdown body references | supported as static package declarations |
 | `extensions.agentSkills.scripts` | Markdown body script references | supported as static package declarations only |
 | `extensions.agentSkills.assets` | Markdown body asset references | supported as static package declarations only |
