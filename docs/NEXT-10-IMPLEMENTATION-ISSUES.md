@@ -10,6 +10,5 @@ _Loop 81._
 6. Provider compatibility CLI flags.
 7. OpenAI compatibility adapter.
 8. Anthropic MCP compatibility adapter.
-9. Payment dry-run receipt fixture test.
+9. Payment dry-run receipt fixture test. Done in issue #157 with `static-payment-dry-run-receipt-report` fixtures.
 10. Minimal web UI for loading and validating ADL.
-

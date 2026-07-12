@@ -11,7 +11,7 @@ _Loop 62. Anchor issue: #65._
 - Local runner plugin interface.
 - OpenAI adapter compatibility-only mode.
 - Anthropic MCP compatibility-only mode.
-- Payment dry-run receipt fixture.
+- Payment dry-run receipt fixture. Done in issue #157: refreshed deterministic positive/negative receipt reports with AP2/x402/RAP bridge boundaries.
 
 ## Later
 

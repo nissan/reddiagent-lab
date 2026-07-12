@@ -1,0 +1,48 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: unsafe-paid-agent
+  description: Negative fixture for dry-run receipt safety checks.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Attempt an unsafe payment path."
+  tools:
+    - id: fetch_approved_url
+      type: function
+      description: Fetch one approved URL.
+  policies:
+    - id: task-budget
+      type: budget
+      rule: "Task spend must be bounded."
+  evalGates:
+    - id: receipt-required
+      type: receipt-check
+      rule: "A task receipt must be emitted before completion."
+  runtime:
+    target: hosted-container
+extensions:
+  x402:
+    enabled: true
+    paymentAccess: true
+    intents:
+      - id: unsafe-pay-specialist
+        direction: spend
+        maxAmount: unbounded
+        currency: USDC
+        rails:
+          - solana
+        requireReceipt: false
+        facilitatorUrl: https://payments.example.invalid/settle
+        walletPrivateKey: redacted-placeholder
+  receipts:
+    required: false
+  reputation:
+    emitSignals:
+      - payment_response_present
