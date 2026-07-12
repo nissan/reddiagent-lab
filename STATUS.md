@@ -1,11 +1,11 @@
 # STATUS: ReddiAgent Lab
-_Last updated: 2026-07-12 15:04 AEST by Loki_
+_Last updated: 2026-07-12 15:20 AEST by Loki_
 
 ## RESUME FROM HERE
 
-- **Next action:** Approved 2026-07-12 backlog queue is complete (#137, #133, #132, #135, #134, #136 all merged/closed). 15:04 AEST no-op verification reconfirmed #137 closed completed by PR #138, no open PRs, and all approved follow-on lanes closed completed. Wait for Nissan to select the next lane before starting new work; older open issue #131 remains outside the approved queue unless Nissan retargets it. Local checkout is on `main` / origin/main with only generated/pre-existing untracked `scripts/__pycache__/` and `tests/__pycache__/`.
+- **Next action:** Monitor the retargeted 30-minute ReddiAgent/RAP backlog loop (`reddiagent-protocol-backlog-lane-loop-30min`, cron `3165bfa3-df8f-43ca-bade-67776d693591`). Nissan retargeted it at 15:15 AEST to the next priority queue: #131 completion/stale verification, then #144, #145, #147, #148, and #146. First retargeted run was force-enqueued as `manual:3165bfa3-df8f-43ca-bade-67776d693591:1783833626805:3`. Local checkout is on `main` / origin/main with only generated/pre-existing untracked `scripts/__pycache__/` and `tests/__pycache__/`.
 - **Waiting on:** Nissan to accept the admin collaborator invite if GitHub requires acceptance. Nissan may later choose whether the repo should remain under reddinft or move to an org/user namespace.
-- **Last discussed:** Nissan asked on 2026-07-12 to set a 30-minute development/review/approval loop like `openclaw-workspace`, targeting the ReddiAgent/RAP backlog. The #137 static x402/MCP-to-RAP bridge report lane and #133 AP2/x402 mandate mapping lane both merged after Oli QA pass; runtime execution remains blocked.
+- **Last discussed:** Nissan asked on 2026-07-12 15:15 AEST to review the backlog and let the loop target the next priority tasks. GitHub showed only #131 open, while docs backlog pointed to Prosumer Builder alignment, Level 1/provider snapshot refresh, ADL schema tightening, local runner plugin interface, and provider compatibility CLI flags. Created issue anchors #144-#148, retargeted the existing cron, and force-enqueued the first run. Runtime execution remains blocked.
 
 ## Current Phase
 
@@ -91,6 +91,11 @@ _Last updated: 2026-07-12 15:04 AEST by Loki_
 - Issue #135 static MCP runtime handoff package: https://github.com/reddinft/reddiagent-lab/issues/135
 - Issue #136 Prosumer Builder MVP skeleton: https://github.com/reddinft/reddiagent-lab/issues/136
 - Issue #137 x402/MCP-to-RAP bridge report: https://github.com/reddinft/reddiagent-lab/issues/137
+- Issue #144 Prosumer Builder MVP alignment: https://github.com/reddinft/reddiagent-lab/issues/144
+- Issue #145 Level 1 trace and provider compatibility snapshot refresh: https://github.com/reddinft/reddiagent-lab/issues/145
+- Issue #146 Provider compatibility CLI flags: https://github.com/reddinft/reddiagent-lab/issues/146
+- Issue #147 ADL schema tightening for dataSources and memory: https://github.com/reddinft/reddiagent-lab/issues/147
+- Issue #148 Local runner plugin interface: https://github.com/reddinft/reddiagent-lab/issues/148
 - Loops 104-128 retrospective: retrospectives/2026-05-23-loops-104-128-tool-fixture.md
 - Loops 129-153 retrospective: retrospectives/2026-05-23-loops-129-153-denied-tools.md
 - Loops 154-178 retrospective: retrospectives/2026-05-23-loops-154-178-denial-guidance.md
@@ -189,6 +194,7 @@ _Last updated: 2026-07-12 15:04 AEST by Loki_
 - 2026-07-12: PR #142 completed issue #134 with Agent Skills / `SKILL.md` alignment for `specs/SKILL-PACKAGE-CONTRACT-v0.1.md`, a static/report-only ADL -> Agent Skills package checker, lossless/lossy fixtures, guard test, smoke wiring, and evidence report. Oli QA passed, parent verification passed, and PR was squash-merged at `7856bc18618e2af431dd3662d62fc6db9c1a73be`; issue #134 closed completed. Static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. Next approved lane is #136 if still appropriate.
 - 2026-07-12: Draft PR #143 opened for issue #136. It adds a static/report-only Prosumer Builder MVP plan CLI over existing ADL examples, validation, local dry-run trace preview, and Agent Spec / A2A Agent Card / Agent Skills report commands. Local validation passed with no paid/model calls, and outputs preserve `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. PR remains draft pending Oli QA.
 - 2026-07-12: PR #143 completed issue #136 with the static/report-only Prosumer Builder MVP plan CLI, guard test, smoke-validation wiring, and evidence report. Oli QA passed, parent verification passed, and PR was squash-merged at `5df92895653797a7313e1cea66459116220eb789`; issue #136 closed completed. Static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`. The approved 2026-07-12 backlog queue is complete.
+- 2026-07-12: Nissan retargeted the 30-minute ReddiAgent/RAP loop to the next priority backlog tasks after the first approved queue completed. Created issue anchors #144-#148 from the remaining docs backlog and retargeted cron `3165bfa3-df8f-43ca-bade-67776d693591` to queue #131, #144, #145, #147, #148, #146. Issue #131 should be treated first as stale-open/completion verification because current code already appears to contain the local tool registry execution fixture. Guardrails remain spec/export/static only; no live runtime, MCP invocation, provider call, wallet/facilitator/payment rail, credential, production gateway mutation, or paid/model test call is approved.
 
 ## Blockers & Flags
 
