@@ -43,6 +43,12 @@ def main() -> int:
     assert ready_doc["mode"] == "static-x402-mcp-rap-bridge-report"
     assert ready_doc["status"] == "pass"
     assert ready_doc["bridgeReady"] is True
+    conformance = ready_doc["dryRunBridgeConformance"]
+    assert conformance["level"] == "rap-dry-run-bridge"
+    assert conformance["status"] == "pass"
+    assert conformance["reportOnly"] is True
+    assert conformance["liveBridgeAllowed"] is False
+    assert conformance["passedChecks"] == conformance["requiredChecks"]
     assert "x402Vocabulary:PaymentRequired,PaymentSignature,PaymentResponse" in ready_doc["rapReady"]
     assert "authority:bounded-mandate" in ready_doc["rapReady"]
     assert "receipts:payment-plus-service-result" in ready_doc["rapReady"]
@@ -55,6 +61,7 @@ def main() -> int:
     assert "authority" in metadata_sections
     assert "receipts" in metadata_sections
     assert "reputation" in metadata_sections
+    assert "conformance" in metadata_sections
     assert ready_doc["preservedVocabulary"]["x402"] == [
         "PaymentRequired",
         "PaymentSignature",
@@ -68,6 +75,14 @@ def main() -> int:
     unsafe_doc = parse_json(unsafe)
     assert unsafe_doc["status"] == "fail"
     assert unsafe_doc["bridgeReady"] is False
+    unsafe_conformance = unsafe_doc["dryRunBridgeConformance"]
+    assert unsafe_conformance["status"] == "fail"
+    assert unsafe_conformance["reportOnly"] is False
+    assert unsafe_conformance["liveBridgeAllowed"] is True
+    assert "unsafe-live-field-scan" not in unsafe_conformance["declaredChecks"]
+    assert "conformance.checks" in unsafe_conformance["failedChecks"]
+    assert "conformance.reportOnly" in unsafe_conformance["failedChecks"]
+    assert "conformance.liveBridgeAllowed" in unsafe_conformance["failedChecks"]
     assert unsafe_doc["rapReady"] == []
     assert_static_boundaries(unsafe_doc)
     reasons = [finding["reason"] for finding in unsafe_doc["findings"]]
@@ -77,10 +92,14 @@ def main() -> int:
     assert "Authority must define a bounded max amount." in reasons
     assert "Payment success alone cannot prove task success for RAP receipt handoff." in reasons
     assert "Required eval gate must pass before reputation signals are RAP-ready." in reasons
+    assert "RAP bridge conformance must remain report-only." in reasons
+    assert "RAP bridge conformance must not allow a live bridge." in reasons
     unsafe_paths = {finding["path"] for finding in unsafe_doc["unsafe"]}
     assert "service.mcp.serverUrl" in unsafe_paths
     assert "x402.PaymentRequired.resource" in unsafe_paths
     assert "x402.facilitator.endpoint" in unsafe_paths
+    assert "x402.facilitator.settlementEndpoint" in unsafe_paths
+    assert "x402.PaymentSignature.walletAddress" in unsafe_paths
     assert "x402.PaymentSignature.walletPrivateKey" in unsafe_paths
 
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=True) as live_resource:

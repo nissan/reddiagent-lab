@@ -80,5 +80,21 @@
       "required_eval_gate_pass"
     ],
     "disputeRef": "audit://receipts/weather-demo/disputes"
+  },
+  "conformance": {
+    "level": "rap-dry-run-bridge",
+    "reportOnly": true,
+    "liveBridgeAllowed": false,
+    "checks": [
+      "x402-payment-evidence",
+      "authority-mandate-bounded",
+      "receipt-payment-plus-service-result",
+      "reputation-after-receipt",
+      "unsafe-live-field-scan"
+    ],
+    "evidenceRefs": [
+      "specs/RAP-BRIDGE-v0.1.md",
+      "tests/RAP-BRIDGE-REPORT.md"
+    ]
   }
 }
