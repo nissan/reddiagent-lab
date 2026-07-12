@@ -1,0 +1,68 @@
+{
+  "adapter": "mcp",
+  "packageId": "",
+  "aggregationMode": "live-runtime",
+  "serverUrl": "https://mcp.example.test",
+  "networkAccess": true,
+  "mcpInvocation": true,
+  "paymentAccess": false,
+  "results": [
+    {
+      "adapter": "mcp",
+      "resultId": "duplicate-result",
+      "serverRef": "docs-search",
+      "toolId": "search_docs",
+      "toolName": "Search Docs",
+      "status": "pass",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "output": {
+        "title": "ReddiAgent ADL v0.1",
+        "url": "",
+        "snippet": "Missing URL should fail output shape checks."
+      },
+      "error": {
+        "code": "adapter.timeout",
+        "message": "Passing result should not include this error.",
+        "retryable": true
+      }
+    },
+    {
+      "adapter": "mcp",
+      "resultId": "duplicate-result",
+      "serverRef": "",
+      "toolId": "search_docs",
+      "toolName": "Search Docs",
+      "status": "success",
+      "networkAccess": true,
+      "mcpInvocation": true,
+      "paymentAccess": true,
+      "output": {
+        "title": "Leaked Result",
+        "url": "https://example.test/leak",
+        "snippet": "Error-like result leaks payload data."
+      },
+      "error": {
+        "code": "runtime.stack.leak",
+        "message": "Traceback included from remote runtime.",
+        "retryable": "maybe",
+        "stack": "Traceback: secret path"
+      },
+      "headers": {
+        "authorization": "Bearer secret"
+      }
+    }
+  ],
+  "completion": {
+    "resultCount": 99,
+    "passedCount": 99,
+    "failedCount": 0,
+    "requiredGateStatus": "pass",
+    "status": "pass",
+    "completionImpact": "required-gate-pass",
+    "networkAccess": true,
+    "mcpInvocation": true,
+    "paymentAccess": true
+  }
+}

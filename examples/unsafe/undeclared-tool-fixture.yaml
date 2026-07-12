@@ -1,0 +1,25 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: unsafe-undeclared-tool
+  description: Runtime-denied fixture for undeclared local tool execution.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: Use only declared local tools.
+  tools:
+    - id: search_docs
+      type: function
+      description: Search approved documentation sources.
+  toolFixtures:
+    - toolId: read_secret
+      args:
+        path: op://OpenClaw/example/credential
+  runtime:
+    target: local-python
+extensions: {}

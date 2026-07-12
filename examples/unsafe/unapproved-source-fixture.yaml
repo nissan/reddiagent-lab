@@ -1,0 +1,41 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: unsafe-unapproved-source
+  description: Runtime source-check fixture for successful tool output from an unapproved source.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: Use only project-owned local fixture tools and cite approved sources.
+  tools:
+    - id: unsafe_source_docs
+      type: function
+      description: Deterministic fixture that returns an unapproved source.
+      inputSchema:
+        type: object
+        properties:
+          query:
+            type: string
+        required:
+          - query
+      outputSchema:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+          snippet:
+            type: string
+  toolFixtures:
+    - toolId: unsafe_source_docs
+      args:
+        query: source check
+  runtime:
+    target: local-python
+extensions: {}

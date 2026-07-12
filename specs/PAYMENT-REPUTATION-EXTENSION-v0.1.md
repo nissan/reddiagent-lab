@@ -57,3 +57,21 @@ Useful signals:
 
 ReddiAgent describes payment/reputation requirements. Reddi Agent Protocol can provide settlement, receipts, verification, and reputation semantics.
 
+## x402/MCP To RAP Bridge
+
+An x402-paid MCP service declaration should be easy to graduate into Reddi Agent Protocol.
+
+ReddiAgent should preserve:
+
+- payment intent and budget policy;
+- x402 payment challenge/proof/response vocabulary;
+- accepted rails, assets, amounts, payer, payee, and settlement reference;
+- AP2-like authority or mandate constraints;
+- request/response hashes;
+- service-result status;
+- receipt and eval gate status;
+- reputation signals allowed after receipt verification.
+
+x402 payment evidence is not enough by itself. Spend-capable agents also need explicit authority constraints: who may spend, max amount, purpose/scope, expiry, revocation, and audit path.
+
+Until a reviewed RAP runtime exists, this bridge is static-review-only. It must not invoke MCP servers, facilitators, wallets, payment rails, credentials, or agent runtimes.

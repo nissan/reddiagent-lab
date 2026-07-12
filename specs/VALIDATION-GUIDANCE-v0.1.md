@@ -40,3 +40,24 @@ Each formatted error contains:
 - Add machine-readable severity and category fields.
 - Feed JSON output into a minimal validator UI.
 
+## Runtime Denial Guidance
+
+_Loop 154-178. Anchor issue: #131._
+
+Some builder problems are schema-valid but runtime-denied. These are not JSON Schema validation failures, but they should still explain the issue in builder-facing language.
+
+Denied local tool fixture guidance contains:
+
+- tool_id: denied tool identifier.
+- problem: plain-language denial reason.
+- why_it_matters: safety or portability rationale.
+- fix: minimal safe repair.
+- snippet: valid YAML fragment.
+- reference: relevant spec.
+
+Initial runtime-denial coverage:
+
+- undeclared fixture tool ID.
+- declared but unsupported local fixture tool.
+
+Strict mode prints denial guidance to stderr and exits with code 2. `--allow-denied-tools` includes the same guidance in each denied result for conformance tests.

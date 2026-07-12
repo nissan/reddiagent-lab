@@ -6,6 +6,8 @@ _Loop 6. Anchor issue: #6._
 
 ADL v0.1 is a portable document format for describing an agent as model needs plus harness behavior.
 
+ADL is ReddiAgent's canonical source of truth. External manifest formats such as Open Agent Specification / Agent Spec are compatibility targets, not replacements. If a target cannot enforce ReddiAgent policy, payment, receipt, source-boundary, MCP, or reputation semantics, the adapter must report the loss before export or execution.
+
 ## Top-Level Shape
 
     apiVersion: reddiagent.dev/v0.1
@@ -82,4 +84,4 @@ Extensions are namespaced. Recommended v0.1 namespaces: x402, reputation, identi
 - Unknown extension namespaces warn, not fail, unless strict mode is enabled.
 - Runtime-specific unsupported fields should produce compatibility errors.
 - Secrets must be referenced by name, not embedded.
-
+- External manifest exports must preserve Reddi-specific extensions as namespaced metadata or fail explicitly when preservation is unsafe.

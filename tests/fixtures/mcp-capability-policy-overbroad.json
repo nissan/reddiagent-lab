@@ -1,0 +1,15 @@
+{
+  "policies": [
+    {
+      "id": "mcp-docs-overbroad-policy",
+      "serverRef": "approved-docs-search",
+      "toolId": "docs_search",
+      "toolName": "search",
+      "capabilities": ["mcp.adapter.readonly", "network.fetch", "payment.spend"],
+      "sourceGate": "optional",
+      "networkAccess": true,
+      "mcpInvocation": true,
+      "paymentAccess": true
+    }
+  ]
+}

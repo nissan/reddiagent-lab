@@ -1,0 +1,71 @@
+{
+  "service": {
+    "id": "unsafe-paid-market-data",
+    "name": "Unsafe Paid Market Data MCP",
+    "mcp": {
+      "serverUrl": "https://live-mcp.example.invalid/mcp",
+      "command": "node live-server.js",
+      "env": {
+        "MCP_TOKEN": "redacted-placeholder"
+      },
+      "toolName": "quote_stream",
+      "runtimeExecutionAllowed": true,
+      "networkAccess": true,
+      "mcpInvocation": true,
+      "paymentAccess": true
+    }
+  },
+  "x402": {
+    "direction": "spend",
+    "PaymentRequired": {
+      "resource": "https://live-mcp.example.invalid/quote_stream",
+      "description": "Live market data",
+      "accepts": [
+        {
+          "rail": "base",
+          "network": "base-mainnet",
+          "asset": "USDC",
+          "amount": "unbounded",
+          "payTo": "0xUnsafePayee"
+        }
+      ],
+      "timeoutSeconds": 90
+    },
+    "PaymentSignature": {
+      "selectedRail": "base",
+      "payer": "agent:unsafe-demo",
+      "rawSignature": "redacted-placeholder",
+      "walletPrivateKey": "redacted-placeholder"
+    },
+    "PaymentResponse": {
+      "success": true,
+      "transactionHash": "0xunsafe",
+      "network": "base-mainnet",
+      "payer": "agent:unsafe-demo"
+    },
+    "facilitator": {
+      "id": "live-facilitator",
+      "endpoint": "https://facilitator.example.invalid/settle"
+    }
+  },
+  "authority": {
+    "mandateId": "mandate:unsafe",
+    "spender": "agent:unsafe-demo",
+    "scope": "*",
+    "maxAmount": null,
+    "asset": "USDC",
+    "rails": ["base"],
+    "expiresAt": null,
+    "revocationRef": null,
+    "auditRef": null
+  },
+  "receipts": {
+    "paymentRef": "0xunsafe",
+    "serviceResultStatus": "unknown",
+    "requiredEvalGateStatus": "unknown",
+    "emissionPolicy": "emit-after-payment-only"
+  },
+  "reputation": {
+    "signals": ["payment_response_present"]
+  }
+}

@@ -22,3 +22,17 @@ Adapters must report compatibility before generating code.
 
 Compatibility output follows specs/PROVIDER-COMPATIBILITY-REPORT-v0.1.md.
 
+## Read-Only Shape Checks
+
+_Loops 379-403. Anchor issue: #131._
+
+The first adapter check is a read-only shape check, not a compiler or runtime.
+
+For MCP, `scripts/adapter_readiness.py` verifies that an ADL file declares named MCP server references without embedding live execution fields. It reports:
+
+- `mode = read-only-adapter-shape`
+- `networkAccess = false`
+- `mcpInvocation = false`
+- `paymentAccess = false`
+
+Failing readiness means the adapter cannot proceed to any live runtime step.

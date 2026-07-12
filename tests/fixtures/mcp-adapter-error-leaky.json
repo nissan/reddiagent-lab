@@ -1,0 +1,21 @@
+{
+  "adapter": "mcp",
+  "serverRef": "approved-docs-search",
+  "toolId": "docs_search",
+  "toolName": "search",
+  "status": "success",
+  "completionImpact": "pass",
+  "serverUrl": "https://example.invalid/mcp",
+  "mcpInvocation": true,
+  "error": {
+    "code": "internal.exception",
+    "message": "Traceback included a bearer token.",
+    "retryable": "sometimes",
+    "stack": "Error: token=secret"
+  },
+  "output": {
+    "title": "Leaky Error Output",
+    "url": "https://example.invalid/output",
+    "snippet": "This should never be present on adapter error."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "adapter": "mcp",
+  "serverRef": "approved-docs-search",
+  "toolId": "docs_search",
+  "toolName": "search",
+  "status": "error",
+  "completionImpact": "required-gate-fail",
+  "error": {
+    "code": "adapter.timeout",
+    "message": "The static MCP adapter fixture timed out before producing source-checkable output.",
+    "retryable": true
+  },
+  "output": null,
+  "networkAccess": false,
+  "mcpInvocation": false,
+  "paymentAccess": false
+}

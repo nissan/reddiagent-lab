@@ -1,0 +1,84 @@
+{
+  "service": {
+    "id": "paid-weather-intel",
+    "name": "Paid Weather Intelligence MCP",
+    "mcp": {
+      "serverRef": "catalog:paid-weather-intel",
+      "toolName": "forecast_report",
+      "transport": "streamable-http",
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false
+    }
+  },
+  "x402": {
+    "direction": "spend",
+    "PaymentRequired": {
+      "resource": "mcp://paid-weather-intel/forecast_report",
+      "description": "Premium weather risk report",
+      "accepts": [
+        {
+          "rail": "solana",
+          "network": "solana-devnet",
+          "asset": "USDC",
+          "amount": "0.050000",
+          "payTo": "payee:paid-weather-intel"
+        },
+        {
+          "rail": "base",
+          "network": "base-sepolia",
+          "asset": "USDC",
+          "amount": "0.050000",
+          "payTo": "payee:paid-weather-intel"
+        }
+      ],
+      "timeoutSeconds": 90
+    },
+    "PaymentSignature": {
+      "selectedRail": "solana",
+      "payer": "agent:builder-demo",
+      "proofRef": "proof:sha256:static-demo-proof",
+      "authorizationRef": "mandate:weather-demo-2026-07"
+    },
+    "PaymentResponse": {
+      "success": true,
+      "transactionRef": "tx:static-demo-settlement-ref",
+      "network": "solana-devnet",
+      "payer": "agent:builder-demo"
+    },
+    "facilitator": {
+      "id": "facilitator-policy:demo-static",
+      "mode": "metadata-only",
+      "endpoint": null
+    }
+  },
+  "authority": {
+    "mandateId": "mandate:weather-demo-2026-07",
+    "spender": "agent:builder-demo",
+    "scope": "forecast_report only",
+    "maxAmount": "0.100000",
+    "asset": "USDC",
+    "rails": ["solana", "base"],
+    "expiresAt": "2026-07-31T00:00:00Z",
+    "revocationRef": "audit://mandates/weather-demo/revoke",
+    "auditRef": "audit://mandates/weather-demo/events"
+  },
+  "receipts": {
+    "requestHash": "sha256:request-demo",
+    "responseHash": "sha256:response-demo",
+    "paymentRef": "tx:static-demo-settlement-ref",
+    "serviceResultStatus": "pass",
+    "requiredEvalGateStatus": "pass",
+    "emissionPolicy": "emit-after-payment-and-service-pass"
+  },
+  "reputation": {
+    "signals": [
+      "receipt_verified",
+      "payment_response_present",
+      "service_result_pass",
+      "required_eval_gate_pass"
+    ],
+    "disputeRef": "audit://receipts/weather-demo/disputes"
+  }
+}

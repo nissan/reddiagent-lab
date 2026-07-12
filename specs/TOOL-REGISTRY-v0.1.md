@@ -40,3 +40,28 @@ Every tool call should return:
 - error
 - traceRef
 
+## Safe Local Fixture Execution
+
+_Loop 104-128. Anchor issue: #131._
+
+Before ReddiAgent supports real external tools, the local runner may execute only deterministic local fixtures.
+
+Rules:
+
+- Fixture execution is opt-in with `--execute-tools`.
+- Fixture calls must reference tools declared in `harness.tools`.
+- Fixture tools must be implemented in the project-owned local registry.
+- Fixture tools must not use network access, filesystem mutation, shell commands, payments, credentials, or messaging.
+- Fixture results must include `toolId`, `status`, `inputHash`, `outputHash`, and `output`.
+- Denied fixture results must include `toolId`, `status=denied`, `inputHash`, `outputHash`, and `error`, and must not include tool output.
+- Dry-run traces must emit `tool.executed` or `tool.denied` before `task.dry_run_completed`.
+- Strict execution fails on denied tools. `--allow-denied-tools` reports denied results for fixture testing only.
+
+Current fixture registry:
+
+- `search_docs`: searches a tiny approved in-repo documentation list and returns one source record.
+
+Denied fixture coverage:
+
+- undeclared fixture tool IDs are denied before registry dispatch.
+- declared but unsupported fixture tool IDs are denied by the local registry.
