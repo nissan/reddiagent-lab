@@ -1,0 +1,12 @@
+{
+  "adapter": "mcp",
+  "serverRef": "",
+  "toolId": "docs_search",
+  "toolName": "search",
+  "serverUrl": "https://example.invalid/mcp",
+  "networkAccess": true,
+  "output": {
+    "title": "Malformed MCP Output",
+    "snippet": "This fixture is intentionally missing a source URL."
+  }
+}

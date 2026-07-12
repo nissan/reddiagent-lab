@@ -36,6 +36,10 @@ harness:
             type: string
           snippet:
             type: string
+  toolFixtures:
+    - toolId: search_docs
+      args:
+        query: tool registry
   policies:
     - id: approved-sources-only
       type: data-access
@@ -47,4 +51,3 @@ harness:
   runtime:
     target: local-python
 extensions: {}
-

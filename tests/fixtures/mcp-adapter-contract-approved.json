@@ -1,0 +1,11 @@
+{
+  "adapter": "mcp",
+  "serverRef": "approved-docs-search",
+  "toolId": "docs_search",
+  "toolName": "search",
+  "output": {
+    "title": "Tool Registry Contract v0.1",
+    "url": "specs/TOOL-REGISTRY-v0.1.md",
+    "snippet": "Tools are typed, permissioned, observable, and replaceable harness capabilities."
+  }
+}

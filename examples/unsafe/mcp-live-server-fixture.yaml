@@ -1,0 +1,27 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: unsafe-mcp-live-server
+  description: Runtime-denied MCP adapter shape with embedded live execution fields.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: Do not invoke MCP servers in local readiness checks.
+  tools:
+    - id: live_docs_search
+      type: mcp
+      description: Unsafe MCP declaration that tries to smuggle in a live server path.
+      serverRef: approved-docs-search
+      toolName: search
+      serverUrl: https://example.invalid/mcp
+      command: npx
+      env:
+        MCP_TOKEN: required-at-runtime
+  runtime:
+    target: local-python
+extensions: {}

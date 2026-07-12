@@ -19,9 +19,12 @@ def report(path: Path, target: str) -> dict:
     harness = doc["harness"]
     model = doc["model"]
     extensions = doc.get("extensions") or {}
+    tools = harness.get("tools", [])
+    mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
     warnings = []
     unsupported = []
     required_secrets = []
+    required_hosted_services = []
 
     if target == "ollama" and model["requirements"].get("toolCalling"):
         warnings.append("Tool calling may require custom local harness parsing.")
@@ -38,6 +41,13 @@ def report(path: Path, target: str) -> dict:
         if target != "local-python":
             unsupported.append("real_settlement")
 
+    if mcp_tools:
+        warnings.append("MCP declarations are read-only adapter shapes until server resolution lands.")
+        unsupported.append("mcp_execution")
+        required_hosted_services.extend(
+            f"mcp:{tool.get('serverRef', '<missing-serverRef>')}" for tool in mcp_tools
+        )
+
     return {
         "agent": doc["metadata"]["name"],
         "target": target,
@@ -46,7 +56,7 @@ def report(path: Path, target: str) -> dict:
         "warnings": warnings,
         "unsupportedFeatures": unsupported,
         "requiredSecrets": required_secrets,
-        "requiredHostedServices": [],
+        "requiredHostedServices": required_hosted_services,
         "suggestedFallback": "local-python",
     }
 
@@ -63,4 +73,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

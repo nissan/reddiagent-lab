@@ -1,5 +1,116 @@
 [
   {
+    "agent": "mcp-readonly-docs",
+    "target": "openai",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "anthropic",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "gemini",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [
+      "GEMINI_API_KEY"
+    ],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "ollama",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Tool calling may require custom local harness parsing.",
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "langgraph",
+    "supported": false,
+    "level": 2,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [
+      "LANGGRAPH_API_KEY"
+    ],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "local-python",
+    "supported": false,
+    "level": 1,
+    "warnings": [
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "mcp_execution"
+    ],
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python"
+  },
+  {
     "agent": "paid-specialist-researcher",
     "target": "openai",
     "supported": false,

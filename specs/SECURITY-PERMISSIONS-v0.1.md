@@ -29,4 +29,10 @@ _Loop 16. Anchor issue: #17._
 - Missing policy for payment: fail.
 - Missing secret reference: fail.
 - Runtime cannot enforce permission: fail compatibility check.
-
+- MCP declarations with embedded live server URLs, commands, environment variables, headers, tokens, API keys, secrets, or credentials: fail adapter readiness.
+- Read-only adapter checks must report `networkAccess=false`, `mcpInvocation=false`, and `paymentAccess=false`.
+- MCP server references absent from the reviewed static registry: fail server resolution readiness.
+- MCP static registry entries with live URLs, commands, environment variables, headers, tokens, API keys, secrets, or credentials: fail server resolution readiness.
+- MCP tools without matching static capability policies: fail capability readiness.
+- MCP capability policies that grant network, invocation, payment, or capabilities beyond `mcp.adapter.readonly`: fail capability readiness.
+- MCP readiness evidence with missing required gate events, live-access claims, or completion status that does not match required-gate status: fail readiness evidence.

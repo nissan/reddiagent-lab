@@ -1,0 +1,11 @@
+{
+  "adapter": "mcp",
+  "serverRef": "approved-docs-search",
+  "toolId": "docs_search",
+  "toolName": "search",
+  "output": {
+    "title": "Unreviewed MCP Source",
+    "url": "https://example.invalid/mcp-source",
+    "snippet": "This deterministic fixture proves MCP-shaped output still needs source checks."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "servers": [
+    {
+      "id": "approved-docs-search",
+      "resolutionMode": "static-reviewed",
+      "allowedTools": ["search"],
+      "sourceGate": "approved-source-output",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false
+    }
+  ]
+}

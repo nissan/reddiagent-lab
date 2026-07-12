@@ -1,0 +1,15 @@
+{
+  "policies": [
+    {
+      "id": "mcp-docs-readonly-policy",
+      "serverRef": "approved-docs-search",
+      "toolId": "docs_search",
+      "toolName": "search",
+      "capabilities": ["mcp.adapter.readonly"],
+      "sourceGate": "approved-source-output",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false
+    }
+  ]
+}

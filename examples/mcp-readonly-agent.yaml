@@ -1,0 +1,41 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: mcp-readonly-docs
+  description: Read-only MCP adapter shape for approved documentation search.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+    fallbacks:
+      - openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Use the docs_search MCP tool only through a reviewed adapter. Cite approved source titles."
+  tools:
+    - id: docs_search
+      type: mcp
+      description: Search approved documentation through a named MCP server reference.
+      serverRef: approved-docs-search
+      toolName: search
+      inputSchema:
+        type: object
+        properties:
+          query:
+            type: string
+        required:
+          - query
+  policies:
+    - id: adapter-shape-only
+      type: permission
+      rule: "MCP declarations may be inspected for compatibility, but no MCP server may be invoked."
+  evalGates:
+    - id: mcp-source-boundary
+      type: source-check
+      rule: "Adapter output must later pass approved-source-output before completion."
+  runtime:
+    target: local-python
+extensions: {}

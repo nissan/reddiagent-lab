@@ -1,0 +1,14 @@
+{
+  "servers": [
+    {
+      "id": "approved-docs-search",
+      "resolutionMode": "live",
+      "url": "https://example.invalid/mcp",
+      "command": "npx",
+      "env": {
+        "MCP_TOKEN": "required-at-runtime"
+      },
+      "allowedTools": ["search"]
+    }
+  ]
+}

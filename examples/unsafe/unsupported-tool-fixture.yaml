@@ -1,0 +1,25 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: unsafe-unsupported-tool
+  description: Runtime-denied fixture for a declared but unsupported local tool.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: Use only project-owned local fixture tools.
+  tools:
+    - id: shell_exec
+      type: function
+      description: Unsafe shell execution placeholder that must not run.
+  toolFixtures:
+    - toolId: shell_exec
+      args:
+        command: whoami
+  runtime:
+    target: local-python
+extensions: {}

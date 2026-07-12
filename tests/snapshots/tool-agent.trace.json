@@ -14,6 +14,12 @@
   "paymentEnabled": false,
   "mode": "dry-run",
   "level": 1,
+  "completion": {
+    "transportStatus": "pass",
+    "requiredGateStatus": "pass",
+    "status": "pass",
+    "reason": "dry-run transport completed and required gates passed"
+  },
   "trace": [
     {
       "event": "session.started",
@@ -45,7 +51,8 @@
     {
       "event": "task.dry_run_completed",
       "traceId": "679d1dbaf4893ab4",
-      "status": "pass"
+      "status": "pass",
+      "reason": "dry-run transport completed and required gates passed"
     }
   ]
 }

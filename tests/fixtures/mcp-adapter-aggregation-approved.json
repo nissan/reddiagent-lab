@@ -1,0 +1,53 @@
+{
+  "adapter": "mcp",
+  "packageId": "mcp-static-package-001",
+  "aggregationMode": "static-reviewed",
+  "networkAccess": false,
+  "mcpInvocation": false,
+  "paymentAccess": false,
+  "results": [
+    {
+      "adapter": "mcp",
+      "resultId": "mcp-result-001",
+      "serverRef": "docs-search",
+      "toolId": "search_docs",
+      "toolName": "Search Docs",
+      "status": "pass",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "output": {
+        "title": "ReddiAgent ADL v0.1",
+        "url": "https://docs.reddiagent.local/adl-v0.1",
+        "snippet": "ADL describes the model, harness, policies, eval gates, and extensions for a ReddiAgent."
+      }
+    },
+    {
+      "adapter": "mcp",
+      "resultId": "mcp-result-002",
+      "serverRef": "docs-search",
+      "toolId": "search_docs",
+      "toolName": "Search Docs",
+      "status": "error",
+      "networkAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "error": {
+        "code": "adapter.timeout",
+        "message": "The static adapter fixture timed out before returning source-checkable output.",
+        "retryable": true
+      }
+    }
+  ],
+  "completion": {
+    "resultCount": 2,
+    "passedCount": 1,
+    "failedCount": 1,
+    "requiredGateStatus": "fail",
+    "status": "fail",
+    "completionImpact": "required-gate-fail",
+    "networkAccess": false,
+    "mcpInvocation": false,
+    "paymentAccess": false
+  }
+}

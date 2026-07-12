@@ -15,6 +15,7 @@ Provider mapping explains how one ADL file can target different model providers 
 | Gemini | model requirements to Gemini model and function declarations | Function calling, code execution, grounding where supported | Google-specific deployment and grounding surfaces |
 | Ollama | local endpoint/model id | External harness owns tools, state, evals | Tool calling may need custom parser/runtime |
 | LangGraph | model node/provider adapter | Graph nodes, state, persistence, interrupts | Graph shape may exceed generic ADL |
+| Agent Spec | model requirements to Agent Spec LLM config | Agent/Flow components, tools, runtime adapter metadata | Reddi policy/payment/reputation/source-boundary semantics may be metadata-only |
 | Local Python | SDK/local model client | Direct loop, registry, state, policies | Least managed, easiest to inspect |
 
 ## Compatibility Result
@@ -28,3 +29,8 @@ Every compile/adapter attempt should return:
 - requiredHostedServices
 - suggestedFallback
 
+Agent Spec mappings must also report:
+
+- lossless: true/false
+- metadataOnlyExtensions
+- runtimeExecutionAllowed: false until a separate runtime gate exists
