@@ -110,3 +110,11 @@ Current Agent Skills / SKILL.md slice:
 - guard test lives in `tests/test_agent_skill_export.py`;
 - current report summary lives in `tests/AGENT-SKILL-EXPORT-REPORT.md`;
 - static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
+
+Current Prosumer Builder MVP skeleton:
+
+- static builder plan CLI lives in `scripts/prosumer_builder_plan.py`;
+- it maps the eight-step MVP flow from `docs/PROSUMER-MVP.md` onto existing ADL examples, validator, local dry-run trace shape, and report-only exports;
+- guard test lives in `tests/test_prosumer_builder_plan.py`;
+- current report summary lives in `tests/PROSUMER-BUILDER-MVP-REPORT.md`;
+- static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
