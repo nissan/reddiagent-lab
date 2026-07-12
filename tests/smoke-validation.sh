@@ -25,6 +25,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_rap_bridge_report.py
 "$PYTHON" tests/test_ap2_x402_mandate_report.py
 "$PYTHON" tests/test_prosumer_builder_plan.py
+"$PYTHON" tests/test_starter_code_plan.py
 "$PYTHON" tests/test_local_runner_plugin_interface.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py
