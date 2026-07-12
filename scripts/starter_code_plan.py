@@ -64,6 +64,71 @@ BASE_TEMPLATE_CONTRACTS = [
         "purpose": "Withhold environment variable templates until a separate credential policy review.",
     },
 ]
+SAFETY_POLICY_RULES = [
+    {
+        "policyId": "no-dependency-install",
+        "requestId": "install-runtime-dependencies",
+        "request": "Install package manager dependencies for the generated starter.",
+        "decision": "deny",
+        "risk": "dependency-install",
+        "reason": "Report-only starter planning cannot run package managers or create virtual environments.",
+    },
+    {
+        "policyId": "no-external-network-tool-execution",
+        "requestId": "enable-external-tool-network",
+        "request": "Enable generated starter tools to call external network services.",
+        "decision": "deny",
+        "risk": "external-network-tool-execution",
+        "reason": "Tool execution remains limited to deterministic local fixtures and no network access.",
+    },
+    {
+        "policyId": "no-mcp-invocation",
+        "requestId": "resolve-live-mcp-server",
+        "request": "Resolve or invoke a live MCP server during starter generation.",
+        "decision": "deny",
+        "risk": "mcp-invocation",
+        "reason": "MCP resolution and invocation require a separate reviewed runtime lane.",
+    },
+    {
+        "policyId": "no-credential-material",
+        "requestId": "embed-secret-material",
+        "request": "Write API keys, tokens, raw prompts, or private task bodies into starter files.",
+        "decision": "deny",
+        "risk": "credential-or-private-material",
+        "reason": "Starter manifests may reference symbolic input names only; sensitive values are never stored.",
+    },
+    {
+        "policyId": "no-wallet-payment-settlement-access",
+        "requestId": "wire-payment-settlement",
+        "request": "Configure wallets, facilitators, payment rails, reputation settlement, or receipt submission.",
+        "decision": "deny",
+        "risk": "wallet-payment-settlement",
+        "reason": "Payment and reputation semantics remain metadata-only until a separate approved rail exists.",
+    },
+    {
+        "policyId": "no-deployment",
+        "requestId": "deploy-generated-starter",
+        "request": "Deploy, publish, or register the generated starter as a live service.",
+        "decision": "deny",
+        "risk": "deployment",
+        "reason": "Starter planning is static and cannot deploy or register live runtime endpoints.",
+    },
+    {
+        "policyId": "no-production-config-mutation",
+        "requestId": "mutate-production-config",
+        "request": "Update production gateway, cron, environment, or service configuration for the starter.",
+        "decision": "deny",
+        "risk": "production-config-mutation",
+        "reason": "Production config mutation is outside report-only fixture scope.",
+    },
+]
+READY_SAFETY_REQUEST = {
+    "requestId": "review-static-starter-manifest",
+    "request": "Review the static starter manifest, planned paths, and withheld gates without writing files.",
+    "decision": "allow",
+    "risk": "static-review",
+    "reason": "Manifest-only review preserves all boundary flags and performs no runtime action.",
+}
 
 
 def display_path(path: Path) -> str:
@@ -274,6 +339,41 @@ def template_contract_fixture(
     }
 
 
+def starter_safety_policy_fixture(
+    source: Path,
+    agent_slug: str,
+    gates: list[dict],
+    validation_status: str,
+) -> dict:
+    return {
+        "format": "starter-code-safety-policy-fixture",
+        "source": display_path(source),
+        "outputRoot": f"starter/{agent_slug}",
+        "manifestOnly": True,
+        "validationStatus": validation_status,
+        **BOUNDARY_FLAGS,
+        "readyRequest": READY_SAFETY_REQUEST,
+        "unsafeRequests": [
+            {
+                **rule,
+                "blockedGateIds": [gate["id"] for gate in gates],
+                "allowed": False,
+            }
+            for rule in SAFETY_POLICY_RULES
+        ],
+        "policyNonGoalIds": [
+            "no-file-writes",
+            "no-dependency-install",
+            "no-external-network-tool-execution",
+            "no-mcp-invocation",
+            "no-credential-material",
+            "no-wallet-payment-settlement-access",
+            "no-deployment",
+            "no-production-config-mutation",
+        ],
+    }
+
+
 def blocked_gates(doc: dict) -> list[dict]:
     harness = doc.get("harness") or {}
     extensions = doc.get("extensions") or {}
@@ -387,6 +487,7 @@ def plan_for(path: Path) -> dict:
         "dryRunFileManifest": dry_run_file_manifest(path, agent_slug, planned, gates, validation_status),
         "templateContracts": contracts,
         "templateContractFixture": template_contract_fixture(path, agent_slug, contracts, validation_status),
+        "starterSafetyPolicy": starter_safety_policy_fixture(path, agent_slug, gates, validation_status),
         "blockedGatesBeforeGeneration": gates,
         "nonGoals": [
             "Do not write starter project files from this command.",
