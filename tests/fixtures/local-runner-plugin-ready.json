@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "local-runner-plugin.v0.1",
+  "plugin": {
+    "id": "approved-doc-search",
+    "name": "Approved document search fixture",
+    "mode": "deterministic-local-fixture",
+    "entrypoint": {
+      "kind": "python-function",
+      "module": "scripts.local_tool_registry",
+      "symbol": "search_docs"
+    },
+    "tools": [
+      {
+        "id": "search_docs",
+        "description": "Search reviewed in-repo ReddiAgent docs."
+      }
+    ]
+  },
+  "capabilities": {
+    "networkAccess": false,
+    "shellAccess": false,
+    "credentialAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "filesystemMutation": false
+  },
+  "boundaries": {
+    "runtimeExecutionAllowed": false,
+    "externalExecutionAllowed": false
+  },
+  "fixtureContract": {
+    "deterministic": true,
+    "approvedSourcesOnly": true,
+    "sideEffects": "none"
+  }
+}
