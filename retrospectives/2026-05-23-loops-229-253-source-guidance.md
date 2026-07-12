@@ -1,6 +1,6 @@
 # Retrospective: Loops 229-253 - Source-Check Guidance
 
-Date: 2026-05-23  
+Date: 2026-05-23
 Anchor issue: #131
 
 ## Shipped

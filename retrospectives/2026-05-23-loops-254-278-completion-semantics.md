@@ -1,6 +1,6 @@
 # Retrospective: Loops 254-278 - Completion Semantics
 
-Date: 2026-05-23  
+Date: 2026-05-23
 Anchor issue: #131
 
 ## Shipped

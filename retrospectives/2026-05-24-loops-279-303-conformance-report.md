@@ -1,6 +1,6 @@
 # Retrospective: Loops 279-303 - Conformance Report
 
-Date: 2026-05-24  
+Date: 2026-05-24
 Anchor issue: #131
 
 ## Shipped

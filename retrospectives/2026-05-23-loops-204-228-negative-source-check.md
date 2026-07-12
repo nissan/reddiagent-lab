@@ -1,6 +1,6 @@
 # Retrospective: Loops 204-228 - Negative Source Check
 
-Date: 2026-05-23  
+Date: 2026-05-23
 Anchor issue: #131
 
 ## Shipped

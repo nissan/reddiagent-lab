@@ -1,6 +1,6 @@
 # Retrospective: Loops 329-353 - CLI Usage Matrix
 
-Date: 2026-05-24  
+Date: 2026-05-24
 Anchor issue: #131
 
 ## Shipped

@@ -1,6 +1,6 @@
 # Loops 604-628 Retrospective - Agent Spec Compatibility
 
-Date: 2026-05-31 AEST  
+Date: 2026-05-31 AEST
 Scope: Continue the ReddiAgent Lab loop after integrating Open Agent Specification into the development plan.
 
 ## Objective

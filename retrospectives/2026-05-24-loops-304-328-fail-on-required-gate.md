@@ -1,6 +1,6 @@
 # Retrospective: Loops 304-328 - Fail On Required Gate
 
-Date: 2026-05-24  
+Date: 2026-05-24
 Anchor issue: #131
 
 ## Shipped
