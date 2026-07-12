@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install deterministic test dependencies
+        run: python -m pip install --disable-pip-version-check jsonschema PyYAML
+
       - name: Compile scripts and tests
         run: python -m py_compile scripts/*.py tests/*.py
 
@@ -37,4 +40,3 @@ jobs:
         env:
           PYTHON: python
         run: bash tests/smoke-validation.sh
-
