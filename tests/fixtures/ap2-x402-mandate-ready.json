@@ -1,0 +1,114 @@
+{
+  "agent": {
+    "id": "paid-weather-planner",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false
+  },
+  "reddiPaymentExtension": {
+    "intentId": "intent:weather-demo-2026-07",
+    "cartRef": "cart:weather-demo-static",
+    "budget": {
+      "maxAmount": "0.100000",
+      "asset": "USDC",
+      "rails": ["solana", "base"],
+      "humanApprovalAbove": "1.000000"
+    },
+    "receipt": {
+      "required": true,
+      "requestHash": "sha256:request-demo",
+      "responseHash": "sha256:response-demo",
+      "paymentRef": "tx:static-demo-settlement-ref",
+      "serviceResultStatus": "pass",
+      "requiredEvalGateStatus": "pass",
+      "emissionPolicy": "emit-after-payment-and-service-pass"
+    },
+    "reputation": {
+      "signals": [
+        "receipt_verified",
+        "service_result_pass",
+        "required_eval_gate_pass"
+      ]
+    }
+  },
+  "ap2": {
+    "mandates": {
+      "IntentMandate": {
+        "id": "intent:weather-demo-2026-07",
+        "vcRef": "vc:ap2:intent:weather-demo-2026-07",
+        "issuer": "user:nissan-demo",
+        "subject": "agent:paid-weather-planner",
+        "scope": "buy one premium weather risk report for a specified location",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/weather-demo/intent"
+      },
+      "CartMandate": {
+        "id": "cart:weather-demo-static",
+        "vcRef": "vc:ap2:cart:weather-demo-static",
+        "issuer": "merchant:paid-weather-intel",
+        "subject": "user:nissan-demo",
+        "scope": "premium weather risk report, USDC 0.05, one request",
+        "cartRef": "cart:weather-demo-static",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/weather-demo/cart"
+      },
+      "PaymentMandate": {
+        "id": "payment:weather-demo-static",
+        "vcRef": "vc:ap2:payment:weather-demo-static",
+        "issuer": "user:nissan-demo",
+        "subject": "agent:paid-weather-planner",
+        "scope": "pay for the approved cart only",
+        "maxAmount": "0.100000",
+        "asset": "USDC",
+        "settlementRail": "solana",
+        "revocationRef": "audit://ap2/weather-demo/payment/revoke",
+        "expiresAt": "2026-07-31T00:00:00Z",
+        "auditRef": "audit://ap2/weather-demo/payment"
+      }
+    }
+  },
+  "x402": {
+    "PaymentRequired": {
+      "resource": "mcp://paid-weather-intel/forecast_report",
+      "description": "Premium weather risk report",
+      "accepts": [
+        {
+          "rail": "solana",
+          "network": "solana-devnet",
+          "asset": "USDC",
+          "amount": "0.050000",
+          "payTo": "payee:paid-weather-intel"
+        },
+        {
+          "rail": "base",
+          "network": "base-sepolia",
+          "asset": "USDC",
+          "amount": "0.050000",
+          "payTo": "payee:paid-weather-intel"
+        }
+      ],
+      "timeoutSeconds": 90
+    },
+    "PaymentSignature": {
+      "selectedRail": "solana",
+      "payer": "agent:paid-weather-planner",
+      "proofRef": "proof:sha256:static-demo-proof",
+      "authorizationRef": "payment:weather-demo-static"
+    },
+    "PaymentResponse": {
+      "success": true,
+      "transactionRef": "tx:static-demo-settlement-ref",
+      "network": "solana-devnet",
+      "payer": "agent:paid-weather-planner"
+    }
+  },
+  "rap": {
+    "facilitatorProfile": {
+      "id": "rap-facilitator-profile:ap2-x402-static",
+      "mode": "metadata-only",
+      "authoritySource": "ap2.mandates.PaymentMandate",
+      "receiptPolicy": "emit-after-payment-and-service-pass"
+    }
+  }
+}
