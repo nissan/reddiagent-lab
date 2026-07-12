@@ -24,34 +24,114 @@ PLAN_BOUNDARY = {
 }
 TARGET_FILE_SHAPES = {
     "openai": [
-        "adapters/openai/README.md",
-        "adapters/openai/adapter_plan.json",
-        "adapters/openai/tool_schema_review.json",
-        "tests/provider_adapter_codegen/openai_plan_test.py",
+        {
+            "path": "adapters/openai/README.md",
+            "purpose": "human review notes for the future OpenAI adapter contract",
+            "format": "markdown",
+        },
+        {
+            "path": "adapters/openai/adapter_plan.json",
+            "purpose": "metadata-only OpenAI adapter shape plan",
+            "format": "json",
+        },
+        {
+            "path": "adapters/openai/tool_schema_review.json",
+            "purpose": "function tool schema compatibility review",
+            "format": "json",
+        },
+        {
+            "path": "tests/provider_adapter_codegen/openai_plan_test.py",
+            "purpose": "future static guard test for OpenAI plan fixtures",
+            "format": "python-test",
+        },
     ],
     "anthropic": [
-        "adapters/anthropic/README.md",
-        "adapters/anthropic/adapter_plan.json",
-        "adapters/anthropic/mcp_declaration_review.json",
-        "tests/provider_adapter_codegen/anthropic_plan_test.py",
+        {
+            "path": "adapters/anthropic/README.md",
+            "purpose": "human review notes for the future Anthropic MCP adapter contract",
+            "format": "markdown",
+        },
+        {
+            "path": "adapters/anthropic/adapter_plan.json",
+            "purpose": "metadata-only Anthropic MCP adapter shape plan",
+            "format": "json",
+        },
+        {
+            "path": "adapters/anthropic/mcp_declaration_review.json",
+            "purpose": "MCP declaration compatibility review without server resolution",
+            "format": "json",
+        },
+        {
+            "path": "tests/provider_adapter_codegen/anthropic_plan_test.py",
+            "purpose": "future static guard test for Anthropic plan fixtures",
+            "format": "python-test",
+        },
     ],
     "gemini": [
-        "adapters/gemini/README.md",
-        "adapters/gemini/adapter_plan.json",
-        "adapters/gemini/function_declaration_review.json",
-        "tests/provider_adapter_codegen/gemini_plan_test.py",
+        {
+            "path": "adapters/gemini/README.md",
+            "purpose": "human review notes for the future Gemini adapter contract",
+            "format": "markdown",
+        },
+        {
+            "path": "adapters/gemini/adapter_plan.json",
+            "purpose": "metadata-only Gemini adapter shape plan",
+            "format": "json",
+        },
+        {
+            "path": "adapters/gemini/function_declaration_review.json",
+            "purpose": "Gemini function declaration compatibility review",
+            "format": "json",
+        },
+        {
+            "path": "tests/provider_adapter_codegen/gemini_plan_test.py",
+            "purpose": "future static guard test for Gemini plan fixtures",
+            "format": "python-test",
+        },
     ],
     "ollama": [
-        "adapters/ollama/README.md",
-        "adapters/ollama/adapter_plan.json",
-        "adapters/ollama/local_harness_review.json",
-        "tests/provider_adapter_codegen/ollama_plan_test.py",
+        {
+            "path": "adapters/ollama/README.md",
+            "purpose": "human review notes for the future Ollama/local adapter contract",
+            "format": "markdown",
+        },
+        {
+            "path": "adapters/ollama/adapter_plan.json",
+            "purpose": "metadata-only Ollama/local adapter shape plan",
+            "format": "json",
+        },
+        {
+            "path": "adapters/ollama/local_harness_review.json",
+            "purpose": "local harness compatibility review without endpoint probing",
+            "format": "json",
+        },
+        {
+            "path": "tests/provider_adapter_codegen/ollama_plan_test.py",
+            "purpose": "future static guard test for Ollama/local plan fixtures",
+            "format": "python-test",
+        },
     ],
     "langgraph": [
-        "adapters/langgraph/README.md",
-        "adapters/langgraph/adapter_plan.json",
-        "adapters/langgraph/static_graph_review.json",
-        "tests/provider_adapter_codegen/langgraph_plan_test.py",
+        {
+            "path": "adapters/langgraph/README.md",
+            "purpose": "human review notes for the future LangGraph adapter contract",
+            "format": "markdown",
+        },
+        {
+            "path": "adapters/langgraph/adapter_plan.json",
+            "purpose": "metadata-only LangGraph adapter shape plan",
+            "format": "json",
+        },
+        {
+            "path": "adapters/langgraph/static_graph_review.json",
+            "purpose": "static graph compatibility review without graph compilation",
+            "format": "json",
+        },
+        {
+            "path": "tests/provider_adapter_codegen/langgraph_plan_test.py",
+            "purpose": "future static guard test for LangGraph plan fixtures",
+            "format": "python-test",
+        },
     ],
 }
 TARGET_BLOCKERS = {
@@ -82,6 +162,24 @@ VALIDATION_GATES = [
     "target-specific unsupported semantics are listed before codegen",
     "payment, MCP, runtime, credential, and network boundaries remain disabled",
     "no provider SDK install/import/call occurs during validation",
+]
+MANIFEST_VALIDATION_GATES = [
+    {
+        "id": "manifest-fixture-deterministic",
+        "description": "adapter manifest fixture is derived from deterministic compatibility reports",
+    },
+    {
+        "id": "manifest-files-report-only",
+        "description": "planned adapter files are metadata entries and are not written by this plan",
+    },
+    {
+        "id": "manifest-target-support-metadata",
+        "description": "required secrets, hosted services, unsupported semantics, and blockers are explicit",
+    },
+    {
+        "id": "manifest-runtime-boundary-disabled",
+        "description": "runtime, network, MCP, payment, credential, and runnable codegen paths remain disabled",
+    },
 ]
 
 
@@ -132,12 +230,47 @@ def target_summary(target: str, reports: list[dict]) -> dict:
     }
 
 
+def target_manifest(summary: dict) -> dict:
+    blocker_ids = [
+        f"{summary['target']}-blocker-{index}"
+        for index, _ in enumerate(summary["targetBlockers"], start=1)
+    ]
+    return {
+        "target": summary["target"],
+        "manifestId": f"{summary['target']}-provider-adapter-codegen-manifest",
+        "manifestStatus": "blocked-report-only",
+        "compatibilityModes": summary["compatibilityModes"],
+        "plannedFiles": [
+            {
+                **file_shape,
+                "plannedOnly": True,
+                "generatedByThisPlan": False,
+                "validationStatus": "not-generated",
+            }
+            for file_shape in summary["plannedFileShapes"]
+        ],
+        "targetSupportMetadata": {
+            "requiredSecretRefs": summary["requiredSecrets"],
+            "hostedServiceRefs": summary["requiredHostedServices"],
+            "unsupportedSemantics": summary["unsupportedSemantics"],
+            "warningCount": summary["warningCount"],
+        },
+        "validationGateIds": [gate["id"] for gate in MANIFEST_VALIDATION_GATES],
+        "blockers": [
+            {"id": blocker_id, "description": description}
+            for blocker_id, description in zip(blocker_ids, summary["targetBlockers"])
+        ],
+        "generationAllowed": False,
+    }
+
+
 def build_plan(examples: list[Path], targets: list[str]) -> dict:
     reports = [
         provider_compatibility.report(example, target)
         for example in examples
         for target in targets
     ]
+    target_plans = [target_summary(target, reports) for target in targets]
     return {
         "planId": "provider-adapter-codegen-compatibility-only",
         "planStatus": "blocked-before-runnable-codegen",
@@ -147,7 +280,15 @@ def build_plan(examples: list[Path], targets: list[str]) -> dict:
             "targets": targets,
             "compatibilityReportCount": len(reports),
         },
-        "targetPlans": [target_summary(target, reports) for target in targets],
+        "targetPlans": target_plans,
+        "adapterManifestFixture": {
+            "schemaVersion": "provider-adapter-codegen-manifest-fixture.v0.1",
+            "fixtureId": "provider-adapter-codegen-manifest-fixtures",
+            "fixtureStatus": "blocked-report-only",
+            "boundary": PLAN_BOUNDARY,
+            "manifestValidationGates": MANIFEST_VALIDATION_GATES,
+            "targetManifests": [target_manifest(summary) for summary in target_plans],
+        },
         "validationGates": VALIDATION_GATES,
         "nonGoals": [
             "generate runnable provider adapter code",

@@ -12,6 +12,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
+MANIFEST_FIXTURE = ROOT / "tests/fixtures/provider-adapter-codegen-manifest.json"
 
 
 def run_cli(args: list[str], check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -61,7 +62,10 @@ def test_all_provider_targets_are_blocked_before_codegen() -> None:
         assert item["codegenStatus"] == "blocked-report-only"
         assert item["generationAllowed"] is False
         assert len(item["plannedFileShapes"]) == 4
-        assert any(path.endswith("_plan_test.py") for path in item["plannedFileShapes"])
+        assert any(
+            file_shape["path"].endswith("_plan_test.py")
+            for file_shape in item["plannedFileShapes"]
+        )
         assert "real_settlement" in item["unsupportedSemantics"]
         assert "mcp_execution" in item["unsupportedSemantics"]
         assert item["warningCount"] > 0
@@ -74,6 +78,41 @@ def test_all_provider_targets_are_blocked_before_codegen() -> None:
     assert targets["anthropic"]["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert "metadata_only:extensions.x402" in targets["gemini"]["unsupportedSemantics"]
     assert "unsupported_execution:docs_search" in targets["langgraph"]["unsupportedSemantics"]
+
+    fixture = json.loads(MANIFEST_FIXTURE.read_text())
+    assert plan["adapterManifestFixture"] == fixture
+    assert fixture["schemaVersion"] == "provider-adapter-codegen-manifest-fixture.v0.1"
+    assert fixture["fixtureStatus"] == "blocked-report-only"
+    assert fixture["boundary"] == plan["boundary"]
+    assert [gate["id"] for gate in fixture["manifestValidationGates"]] == [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled",
+    ]
+
+    target_manifests = {
+        item["target"]: item for item in fixture["targetManifests"]
+    }
+    assert set(target_manifests) == set(targets)
+    assert target_manifests["openai"]["manifestId"] == "openai-provider-adapter-codegen-manifest"
+    assert target_manifests["anthropic"]["targetSupportMetadata"]["requiredSecretRefs"] == [
+        "ANTHROPIC_API_KEY"
+    ]
+    assert target_manifests["ollama"]["targetSupportMetadata"]["requiredSecretRefs"] == []
+    assert target_manifests["langgraph"]["plannedFiles"][2]["path"] == (
+        "adapters/langgraph/static_graph_review.json"
+    )
+
+    for manifest in target_manifests.values():
+        assert manifest["manifestStatus"] == "blocked-report-only"
+        assert manifest["generationAllowed"] is False
+        assert len(manifest["plannedFiles"]) == 4
+        assert len(manifest["blockers"]) == 2
+        for planned_file in manifest["plannedFiles"]:
+            assert planned_file["plannedOnly"] is True
+            assert planned_file["generatedByThisPlan"] is False
+            assert planned_file["validationStatus"] == "not-generated"
 
 
 def test_target_and_agent_filters_keep_plan_static() -> None:

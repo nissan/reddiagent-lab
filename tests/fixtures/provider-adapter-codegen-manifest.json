@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "provider-adapter-codegen-manifest-fixture.v0.1",
+  "fixtureId": "provider-adapter-codegen-manifest-fixtures",
+  "fixtureStatus": "blocked-report-only",
+  "boundary": {
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "writesFiles": false,
+    "installsDependencies": false,
+    "generatesRunnableCode": false
+  },
+  "manifestValidationGates": [
+    {
+      "id": "manifest-fixture-deterministic",
+      "description": "adapter manifest fixture is derived from deterministic compatibility reports"
+    },
+    {
+      "id": "manifest-files-report-only",
+      "description": "planned adapter files are metadata entries and are not written by this plan"
+    },
+    {
+      "id": "manifest-target-support-metadata",
+      "description": "required secrets, hosted services, unsupported semantics, and blockers are explicit"
+    },
+    {
+      "id": "manifest-runtime-boundary-disabled",
+      "description": "runtime, network, MCP, payment, credential, and runnable codegen paths remain disabled"
+    }
+  ],
+  "targetManifests": [
+    {
+      "target": "openai",
+      "manifestId": "openai-provider-adapter-codegen-manifest",
+      "manifestStatus": "blocked-report-only",
+      "compatibilityModes": [
+        "openai-adapter-compatibility-only"
+      ],
+      "plannedFiles": [
+        {
+          "path": "adapters/openai/README.md",
+          "purpose": "human review notes for the future OpenAI adapter contract",
+          "format": "markdown",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/openai/adapter_plan.json",
+          "purpose": "metadata-only OpenAI adapter shape plan",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/openai/tool_schema_review.json",
+          "purpose": "function tool schema compatibility review",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "tests/provider_adapter_codegen/openai_plan_test.py",
+          "purpose": "future static guard test for OpenAI plan fixtures",
+          "format": "python-test",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        }
+      ],
+      "targetSupportMetadata": {
+        "requiredSecretRefs": [
+          "OPENAI_API_KEY"
+        ],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "unsupportedSemantics": [
+          "mcp_execution",
+          "metadata_only:extensions.receipts",
+          "metadata_only:extensions.reputation",
+          "metadata_only:extensions.x402",
+          "metadata_only:harness.evalGates",
+          "metadata_only:harness.memory",
+          "metadata_only:harness.policies",
+          "metadata_only:harness.tools[type=mcp]",
+          "real_settlement",
+          "unsupported_execution:docs_search"
+        ],
+        "warningCount": 6
+      },
+      "validationGateIds": [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled"
+      ],
+      "blockers": [
+        {
+          "id": "openai-blocker-1",
+          "description": "No reviewed OpenAI runtime adapter contract exists."
+        },
+        {
+          "id": "openai-blocker-2",
+          "description": "Required API credential handling policy is not implemented in this repo."
+        }
+      ],
+      "generationAllowed": false
+    },
+    {
+      "target": "anthropic",
+      "manifestId": "anthropic-provider-adapter-codegen-manifest",
+      "manifestStatus": "blocked-report-only",
+      "compatibilityModes": [
+        "anthropic-mcp-compatibility-only"
+      ],
+      "plannedFiles": [
+        {
+          "path": "adapters/anthropic/README.md",
+          "purpose": "human review notes for the future Anthropic MCP adapter contract",
+          "format": "markdown",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/anthropic/adapter_plan.json",
+          "purpose": "metadata-only Anthropic MCP adapter shape plan",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/anthropic/mcp_declaration_review.json",
+          "purpose": "MCP declaration compatibility review without server resolution",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "tests/provider_adapter_codegen/anthropic_plan_test.py",
+          "purpose": "future static guard test for Anthropic plan fixtures",
+          "format": "python-test",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        }
+      ],
+      "targetSupportMetadata": {
+        "requiredSecretRefs": [
+          "ANTHROPIC_API_KEY"
+        ],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "unsupportedSemantics": [
+          "mcp_execution",
+          "metadata_only:extensions.receipts",
+          "metadata_only:extensions.reputation",
+          "metadata_only:extensions.x402",
+          "metadata_only:harness.evalGates",
+          "metadata_only:harness.memory",
+          "metadata_only:harness.policies",
+          "real_settlement",
+          "unsupported_execution:docs_search"
+        ],
+        "warningCount": 6
+      },
+      "validationGateIds": [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled"
+      ],
+      "blockers": [
+        {
+          "id": "anthropic-blocker-1",
+          "description": "No reviewed Anthropic runtime adapter contract exists."
+        },
+        {
+          "id": "anthropic-blocker-2",
+          "description": "MCP declarations are metadata-only and cannot be resolved or invoked."
+        }
+      ],
+      "generationAllowed": false
+    },
+    {
+      "target": "gemini",
+      "manifestId": "gemini-provider-adapter-codegen-manifest",
+      "manifestStatus": "blocked-report-only",
+      "compatibilityModes": [
+        "gemini-provider-compatibility-only"
+      ],
+      "plannedFiles": [
+        {
+          "path": "adapters/gemini/README.md",
+          "purpose": "human review notes for the future Gemini adapter contract",
+          "format": "markdown",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/gemini/adapter_plan.json",
+          "purpose": "metadata-only Gemini adapter shape plan",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/gemini/function_declaration_review.json",
+          "purpose": "Gemini function declaration compatibility review",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "tests/provider_adapter_codegen/gemini_plan_test.py",
+          "purpose": "future static guard test for Gemini plan fixtures",
+          "format": "python-test",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        }
+      ],
+      "targetSupportMetadata": {
+        "requiredSecretRefs": [
+          "GEMINI_API_KEY"
+        ],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "unsupportedSemantics": [
+          "mcp_execution",
+          "metadata_only:extensions.receipts",
+          "metadata_only:extensions.reputation",
+          "metadata_only:extensions.x402",
+          "metadata_only:harness.evalGates",
+          "metadata_only:harness.memory",
+          "metadata_only:harness.policies",
+          "metadata_only:harness.tools[type=mcp]",
+          "real_settlement",
+          "unsupported_execution:docs_search"
+        ],
+        "warningCount": 6
+      },
+      "validationGateIds": [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled"
+      ],
+      "blockers": [
+        {
+          "id": "gemini-blocker-1",
+          "description": "No reviewed Gemini runtime adapter contract exists."
+        },
+        {
+          "id": "gemini-blocker-2",
+          "description": "Grounding and code-execution surfaces are compatibility diagnostics only."
+        }
+      ],
+      "generationAllowed": false
+    },
+    {
+      "target": "ollama",
+      "manifestId": "ollama-provider-adapter-codegen-manifest",
+      "manifestStatus": "blocked-report-only",
+      "compatibilityModes": [
+        "ollama-local-provider-compatibility-only"
+      ],
+      "plannedFiles": [
+        {
+          "path": "adapters/ollama/README.md",
+          "purpose": "human review notes for the future Ollama/local adapter contract",
+          "format": "markdown",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/ollama/adapter_plan.json",
+          "purpose": "metadata-only Ollama/local adapter shape plan",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/ollama/local_harness_review.json",
+          "purpose": "local harness compatibility review without endpoint probing",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "tests/provider_adapter_codegen/ollama_plan_test.py",
+          "purpose": "future static guard test for Ollama/local plan fixtures",
+          "format": "python-test",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        }
+      ],
+      "targetSupportMetadata": {
+        "requiredSecretRefs": [],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "unsupportedSemantics": [
+          "mcp_execution",
+          "metadata_only:extensions.receipts",
+          "metadata_only:extensions.reputation",
+          "metadata_only:extensions.x402",
+          "metadata_only:harness.evalGates",
+          "metadata_only:harness.memory",
+          "metadata_only:harness.policies",
+          "metadata_only:harness.tools[type=mcp]",
+          "real_settlement",
+          "unsupported_execution:docs_search"
+        ],
+        "warningCount": 6
+      },
+      "validationGateIds": [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled"
+      ],
+      "blockers": [
+        {
+          "id": "ollama-blocker-1",
+          "description": "No reviewed local model harness contract exists."
+        },
+        {
+          "id": "ollama-blocker-2",
+          "description": "Local endpoints and model ids must not be probed by the planner."
+        }
+      ],
+      "generationAllowed": false
+    },
+    {
+      "target": "langgraph",
+      "manifestId": "langgraph-provider-adapter-codegen-manifest",
+      "manifestStatus": "blocked-report-only",
+      "compatibilityModes": [
+        "langgraph-compatibility-report-only"
+      ],
+      "plannedFiles": [
+        {
+          "path": "adapters/langgraph/README.md",
+          "purpose": "human review notes for the future LangGraph adapter contract",
+          "format": "markdown",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/langgraph/adapter_plan.json",
+          "purpose": "metadata-only LangGraph adapter shape plan",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "adapters/langgraph/static_graph_review.json",
+          "purpose": "static graph compatibility review without graph compilation",
+          "format": "json",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        },
+        {
+          "path": "tests/provider_adapter_codegen/langgraph_plan_test.py",
+          "purpose": "future static guard test for LangGraph plan fixtures",
+          "format": "python-test",
+          "plannedOnly": true,
+          "generatedByThisPlan": false,
+          "validationStatus": "not-generated"
+        }
+      ],
+      "targetSupportMetadata": {
+        "requiredSecretRefs": [],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "unsupportedSemantics": [
+          "mcp_execution",
+          "metadata_only:extensions.receipts",
+          "metadata_only:extensions.reputation",
+          "metadata_only:extensions.x402",
+          "metadata_only:harness.evalGates",
+          "metadata_only:harness.memory",
+          "metadata_only:harness.policies",
+          "metadata_only:harness.tools[type=mcp]",
+          "real_settlement",
+          "unsupported_execution:docs_search"
+        ],
+        "warningCount": 6
+      },
+      "validationGateIds": [
+        "manifest-fixture-deterministic",
+        "manifest-files-report-only",
+        "manifest-target-support-metadata",
+        "manifest-runtime-boundary-disabled"
+      ],
+      "blockers": [
+        {
+          "id": "langgraph-blocker-1",
+          "description": "No reviewed LangGraph runtime graph contract exists."
+        },
+        {
+          "id": "langgraph-blocker-2",
+          "description": "Graph, state, checkpoint, and interrupt semantics are static-plan-only."
+        }
+      ],
+      "generationAllowed": false
+    }
+  ]
+}

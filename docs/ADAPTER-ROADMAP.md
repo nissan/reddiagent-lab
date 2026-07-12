@@ -30,6 +30,7 @@ Current provider adapter codegen plan:
 - static planner lives in `scripts/provider_adapter_codegen_plan.py`;
 - guard test lives in `tests/test_provider_adapter_codegen_plan.py`;
 - current report summary lives in `tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md`;
+- manifest fixture lives in `tests/fixtures/provider-adapter-codegen-manifest.json`;
 - static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`,
   `paymentAccess=false`, `mcpInvocation=false`, `writesFiles=false`,
   `installsDependencies=false`, and `generatesRunnableCode=false`.
