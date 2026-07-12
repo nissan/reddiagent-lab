@@ -115,6 +115,18 @@ GUIDANCE_BY_LOCATION: dict[str, dict[str, str]] = {
         "snippet": "harness:\n  tools:\n    - id: search_docs\n      type: function\n      description: Search approved project docs.",
         "reference": "specs/TOOL-REGISTRY-v0.1.md",
     },
+    "harness.dataSources": {
+        "why": "Data sources define the reviewed knowledge boundary for retrieval, source checks, and later runtime handoff.",
+        "fix": "Each data source needs id, type, and description.",
+        "snippet": "harness:\n  dataSources:\n    - id: approved_docs\n      type: document\n      description: Approved project documentation.",
+        "reference": "specs/ADL-v0.1.md",
+    },
+    "harness.memory": {
+        "why": "Memory declarations control whether information is kept only for a session or persists beyond the task.",
+        "fix": "Set a supported memory mode; persistent or external memory also needs retention and privacyPolicy.",
+        "snippet": "harness:\n  memory:\n    mode: session",
+        "reference": "specs/MEMORY-CONTRACT-v0.1.md",
+    },
     "harness.policies": {
         "why": "Policies are the guardrails that make the harness safe to run repeatedly.",
         "fix": "Each policy needs id, type, and rule.",

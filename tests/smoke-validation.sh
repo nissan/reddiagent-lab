@@ -3,6 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_validation_guidance.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_tool_execution.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_cli_usage_matrix.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_readiness_bundle.py

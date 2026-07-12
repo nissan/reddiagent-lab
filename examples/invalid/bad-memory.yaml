@@ -1,0 +1,18 @@
+apiVersion: reddiagent.dev/v0.1
+kind: Agent
+metadata:
+  name: bad-memory
+  description: Invalid example for memory guidance.
+model:
+  capability: chat
+  providers:
+    preferred: openai:gpt-4.1-mini
+  requirements: {}
+harness:
+  instructions:
+    inline: Keep relevant notes between tasks.
+  memory:
+    mode: persistent
+    retention: 30 days
+  runtime:
+    target: local-python

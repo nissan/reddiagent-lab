@@ -17,7 +17,15 @@ _Loop 76. Anchor issues: #90/#92._
 - storageRef
 - privacyPolicy
 
+Supported `scope` values:
+
+- task
+- session
+- project
+- user
+- workspace
+- external
+
 ## Rule
 
 Persistent or external memory must declare retention and privacy policy before runtime execution.
-

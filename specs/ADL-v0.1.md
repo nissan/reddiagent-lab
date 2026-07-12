@@ -74,6 +74,55 @@ Fields:
 - observability
 - recovery
 
+### dataSources
+
+Each `harness.dataSources` item declares a reviewed source the harness may use or cite.
+
+Required fields:
+
+- `id`
+- `type`
+- `description`
+
+Supported `type` values:
+
+- `document`
+- `file`
+- `web`
+- `api`
+- `database`
+- `vector-index`
+- `mcp`
+- `knowledge-base`
+
+Optional fields:
+
+- `sourceRef`
+- `path`
+- `url`
+- `trust` (`approved`, `untrusted`, or `unknown`)
+
+### memory
+
+`harness.memory` must declare `mode`.
+
+Supported `mode` values:
+
+- `none`
+- `session`
+- `persistent`
+- `external`
+
+Supported fields:
+
+- `mode`
+- `retention`
+- `scope` (`task`, `session`, `project`, `user`, `workspace`, or `external`)
+- `storageRef`
+- `privacyPolicy`
+
+Persistent or external memory must declare both `retention` and `privacyPolicy` before runtime execution is considered safe.
+
 ## Extension Section
 
 Extensions are namespaced. Recommended v0.1 namespaces: x402, reputation, identity, receipts.
