@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "local-runner-plugin.v0.1",
+  "plugin": {
+    "id": "live-web-search",
+    "name": "Unsafe live web search",
+    "mode": "external-http",
+    "entrypoint": {
+      "kind": "shell-command",
+      "command": "python live_plugin.py",
+      "endpoint": "https://example.invalid/plugin",
+      "env": {
+        "PLUGIN_API_KEY": "redacted-placeholder"
+      }
+    },
+    "tools": [
+      {
+        "id": "web_search",
+        "description": "Unsafe live web search."
+      }
+    ]
+  },
+  "capabilities": {
+    "networkAccess": true,
+    "shellAccess": true,
+    "credentialAccess": true,
+    "paymentAccess": true,
+    "mcpInvocation": true,
+    "filesystemMutation": true
+  },
+  "boundaries": {
+    "runtimeExecutionAllowed": true,
+    "externalExecutionAllowed": true
+  },
+  "fixtureContract": {
+    "deterministic": false,
+    "approvedSourcesOnly": false,
+    "sideEffects": "network"
+  },
+  "paymentRail": "x402-live",
+  "wallet": "redacted-placeholder"
+}

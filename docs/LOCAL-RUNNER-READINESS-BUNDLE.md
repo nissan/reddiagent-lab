@@ -22,7 +22,8 @@ The local-python runner can currently prove:
 - completion semantics that separate transport success from task completion;
 - optional shell failure with `--fail-on-required-gate`;
 - a documented CLI usage matrix for builder and automation behavior;
-- static MCP readiness evidence traces for adapter shape, adapter fixture contract, adapter error semantics, adapter-result aggregation, source, server registry, capability policy, and completion status.
+- static MCP readiness evidence traces for adapter shape, adapter fixture contract, adapter error semantics, adapter-result aggregation, source, server registry, capability policy, and completion status;
+- static local runner plugin declarations for deterministic local fixtures only.
 
 ## Evidence Inventory
 
@@ -43,6 +44,7 @@ The local-python runner can currently prove:
 | MCP capability policy report | `tests/MCP-CAPABILITY-POLICY-REPORT.md` | Static capability-policy fixtures pass/fail readonly MCP grants. |
 | MCP readiness evidence report | `tests/MCP-READINESS-EVIDENCE-REPORT.md` | Static readiness trace fixtures prove required MCP gates and aggregate completion status. |
 | MCP readiness release checklist | `docs/MCP-READINESS-RELEASE-CHECKLIST.md` | Review-ready aggregate checklist keeps MCP evidence and boundaries together. |
+| Local runner plugin interface report | `tests/LOCAL-RUNNER-PLUGIN-INTERFACE-REPORT.md` | Static plugin declaration fixtures pass/fail fail-closed capability checks without loading or invoking plugins. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -66,6 +68,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_capability_policy.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_evidence.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_release.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runner_plugin_interface.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
