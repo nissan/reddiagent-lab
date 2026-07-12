@@ -63,7 +63,18 @@ def main() -> int:
     assert step(simple, "tool")["selection"]["toolCount"] == 0
     assert step(simple, "validate")["status"] == "pass"
     assert step(simple, "dry_run")["status"] == "ready"
+    assert step(simple, "dry_run")["completionPreview"]["reason"] == (
+        "dry-run transport completed and required gates passed"
+    )
     assert step(simple, "dry_run")["tracePreview"][-1]["event"] == "task.dry_run_completed"
+    assert step(simple, "trace")["expectedEvents"] == [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "task.dry_run_completed",
+    ]
     assert step(simple, "export")["targets"][0]["target"] == "agent-spec"
     assert_static_boundaries(simple)
 
@@ -71,6 +82,47 @@ def main() -> int:
     assert step(tool, "tool")["selection"]["toolCount"] == 1
     assert step(tool, "tool")["selection"]["deterministicFixtureIds"] == ["search_docs"]
     assert "--execute-tools --fail-on-required-gate" in step(tool, "dry_run")["command"]
+    assert step(tool, "dry_run")["completionPreview"] == {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "reason": "dry-run transport completed and required gates passed",
+    }
+    assert step(tool, "dry_run")["toolExecutionPreview"] == {
+        "mode": "local-fixture",
+        "networkAccess": False,
+        "paymentAccess": False,
+        "deniedCount": 0,
+        "resultCount": 1,
+        "resultStatuses": [{"toolId": "search_docs", "status": "success"}],
+    }
+    assert step(tool, "dry_run")["sourceCheckSummaryPreview"] == {
+        "total": 1,
+        "passCount": 1,
+        "failCount": 0,
+        "requiredFailureCount": 0,
+        "status": "pass",
+    }
+    assert [event["event"] for event in step(tool, "dry_run")["tracePreview"]] == [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "tool.executed",
+        "source.checked",
+        "task.dry_run_completed",
+    ]
+    assert step(tool, "trace")["expectedEvents"] == [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "tool.executed",
+        "source.checked",
+        "task.dry_run_completed",
+    ]
     assert_static_boundaries(tool)
 
     payment = by_agent["paid-specialist-researcher"]
@@ -80,6 +132,8 @@ def main() -> int:
     assert "extensions.receipts" in payment["metadataOnlyExtensions"]
     assert "extensions.reputation" in payment["metadataOnlyExtensions"]
     assert step(payment, "validate")["status"] == "pass"
+    assert step(payment, "dry_run")["completionPreview"]["requiredGateStatus"] == "pass"
+    assert step(payment, "dry_run")["toolExecutionPreview"] is None
     assert step(payment, "export")["targets"][2]["target"] == "agent-skills-skill-md"
     assert_static_boundaries(payment)
 
@@ -89,6 +143,8 @@ def main() -> int:
     assert invalid_plan["supported"] is False
     assert step(invalid_plan, "validate")["status"] == "fail"
     assert step(invalid_plan, "dry_run")["status"] == "blocked"
+    assert step(invalid_plan, "dry_run")["completionPreview"] is None
+    assert step(invalid_plan, "dry_run")["tracePreview"] == []
     assert step(invalid_plan, "trace")["status"] == "blocked"
     assert invalid_plan["runtimeExecutionAllowed"] is False
     assert invalid_plan["networkAccess"] is False

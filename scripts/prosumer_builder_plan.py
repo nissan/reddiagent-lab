@@ -11,7 +11,8 @@ import sys
 import jsonschema
 import yaml
 
-from run_local_agent import build_trace
+from run_local_agent import build_trace, run_tool_fixtures
+from source_check import check_tool_sources, summarize_source_checks
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,35 +119,101 @@ def validation_step(path: Path, errors: list[str]) -> dict:
     }
 
 
-def dry_run_step(path: Path, doc: dict, errors: list[str]) -> dict:
+def dry_run_preview(path: Path, doc: dict, errors: list[str]) -> dict:
     command = f"python3 scripts/run_local_agent.py {display_path(path)}"
     harness = doc.get("harness") or {}
     if harness.get("toolFixtures"):
         command += " --execute-tools --fail-on-required-gate"
-    trace = [] if errors else build_trace(doc, path)
+    if errors:
+        return {
+            "status": "blocked",
+            "command": command,
+            "completion": None,
+            "trace": [],
+            "toolExecution": None,
+            "sourceChecks": [],
+            "sourceCheckSummary": None,
+        }
+
+    tool_results = run_tool_fixtures(doc) if harness.get("toolFixtures") else []
+    source_checks = check_tool_sources(tool_results) if tool_results else []
+    source_check_summary = summarize_source_checks(source_checks) if tool_results else None
+    denied_count = sum(1 for result in tool_results if result["status"] == "denied")
+    required_gate_status = "fail" if denied_count or (source_check_summary or {}).get("status") == "fail" else "pass"
+    completion_reason = (
+        "dry-run transport completed, but required gates failed"
+        if required_gate_status == "fail"
+        else "dry-run transport completed and required gates passed"
+    )
+    completion = {
+        "transportStatus": "pass",
+        "requiredGateStatus": required_gate_status,
+        "status": required_gate_status,
+        "reason": completion_reason,
+    }
+    tool_execution = None
+    if harness.get("toolFixtures"):
+        tool_execution = {
+            "mode": "local-fixture",
+            "networkAccess": False,
+            "paymentAccess": False,
+            "deniedCount": denied_count,
+            "resultCount": len(tool_results),
+            "resultStatuses": [
+                {"toolId": result["toolId"], "status": result["status"]}
+                for result in tool_results
+            ],
+        }
     return {
-        "id": "dry_run",
-        "label": "Dry-run locally",
-        "status": "blocked" if errors else "ready",
+        "status": "ready",
         "command": command,
-        "mode": "local-dry-run",
-        "tracePreview": trace,
+        "completion": completion,
+        "trace": build_trace(
+            doc,
+            path,
+            tool_results,
+            source_checks,
+            completion_status=completion["status"],
+            completion_reason=completion_reason,
+        ),
+        "toolExecution": tool_execution,
+        "sourceChecks": source_checks,
+        "sourceCheckSummary": source_check_summary,
     }
 
 
-def trace_step(errors: list[str]) -> dict:
+def dry_run_step(preview: dict) -> dict:
+    return {
+        "id": "dry_run",
+        "label": "Dry-run locally",
+        "status": preview["status"],
+        "command": preview["command"],
+        "mode": "local-dry-run",
+        "completionPreview": preview["completion"],
+        "toolExecutionPreview": preview["toolExecution"],
+        "sourceChecksPreview": preview["sourceChecks"],
+        "sourceCheckSummaryPreview": preview["sourceCheckSummary"],
+        "tracePreview": preview["trace"],
+    }
+
+
+def trace_step(errors: list[str], preview: dict) -> dict:
+    expected_events = [
+        event["event"]
+        for event in preview["trace"]
+    ] if not errors else [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "task.dry_run_completed",
+    ]
     return {
         "id": "trace",
         "label": "Inspect trace",
         "status": "blocked" if errors else "ready",
-        "expectedEvents": [
-            "session.started",
-            "model.resolved",
-            "tools.registered",
-            "policies.loaded",
-            "evals.loaded",
-            "task.dry_run_completed",
-        ],
+        "expectedEvents": expected_events,
     }
 
 
@@ -206,6 +273,7 @@ def plan_for(path: Path) -> dict:
     doc = read_adl(path)
     errors = schema_errors(doc)
     static_review = unsafe_or_metadata_only(doc)
+    preview = dry_run_preview(path, doc, errors)
     return {
         "format": "prosumer-builder-mvp-plan",
         "source": display_path(path),
@@ -239,8 +307,8 @@ def plan_for(path: Path) -> dict:
                 "selection": policy_eval_profile(doc),
             },
             validation_step(path, errors),
-            dry_run_step(path, doc, errors),
-            trace_step(errors),
+            dry_run_step(preview),
+            trace_step(errors, preview),
             export_step(path),
         ],
     }
