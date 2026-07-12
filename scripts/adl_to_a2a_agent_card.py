@@ -46,7 +46,8 @@ def slugify(value: str) -> str:
 
 def red_extensions(doc: dict) -> list[str]:
     extensions = doc.get("extensions") or {}
-    return [f"extensions.{key}" for key in sorted(extensions)]
+    mapped_lossless_extensions = {"a2a"}
+    return [f"extensions.{key}" for key in sorted(extensions) if key not in mapped_lossless_extensions]
 
 
 def metadata_only_sections(doc: dict) -> list[str]:

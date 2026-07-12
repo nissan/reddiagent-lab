@@ -19,6 +19,15 @@ harness:
     - id: paid_lookup
       type: function
       description: Performs a paid lookup in dry-run fixtures only.
+    - id: live_mcp_lookup
+      type: mcp
+      description: Declares an MCP lookup that must remain static in Agent Card export.
+  dataSources:
+    - id: approved-docs
+      type: web
+      description: Source-boundary fixture that must remain Reddi metadata.
+      approvedDomains:
+        - docs.example.invalid
   policies:
     - id: bounded-payment
       type: budget

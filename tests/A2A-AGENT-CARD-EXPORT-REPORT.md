@@ -19,7 +19,8 @@ The checker maps:
 
 - ADL identity to Agent Card `name` and `description`.
 - Static report interfaces to `supportedInterfaces`.
-- ADL model output requirements to `defaultOutputModes`.
+- `extensions.a2a` provider, documentation URL, capabilities, modes, interfaces, skills, and security declarations directly into the Agent Card.
+- ADL model output requirements to `defaultOutputModes` when `extensions.a2a.defaultOutputModes` is absent.
 - ADL tools to descriptive Agent Card `skills`.
 - Optional `extensions.a2a.securitySchemes` and `extensions.a2a.securityRequirements` to Agent Card security metadata.
 - Reddi-only semantics to Agent Card metadata with strict export refusal when those semantics would be lossy.
@@ -30,8 +31,8 @@ The checker maps:
 |---|---|---|
 | `examples/simple-agent.yaml` | `supported=true`, `lossless=false` | Policies, eval gates, memory, and instructions are metadata-only. |
 | `examples/payment-agent.yaml` | `supported=true`, `lossless=false` | x402, receipts, reputation, hosted runtime, policies, eval gates, instructions, and tools are metadata-only/unsupported for strict export. |
-| `tests/fixtures/a2a-agent-card-lossless-agent.yaml` | strict export passes | Emits one static Agent Card with no metadata-only sections. |
-| `tests/fixtures/a2a-agent-card-lossy-agent.yaml` | strict export exits `3` | Refuses to drop payment, receipt, reputation, policy, tool, eval, and hosted-runtime semantics. |
+| `tests/fixtures/a2a-agent-card-lossless-agent.yaml` | strict export passes | Emits one static Agent Card with rich provider, mode, interface, capability, skill, and security metadata with no metadata-only sections. |
+| `tests/fixtures/a2a-agent-card-lossy-agent.yaml` | strict export exits `3` | Refuses to drop payment, receipt, reputation, policy, source-boundary, MCP, tool, eval, and hosted-runtime semantics. |
 
 ## Validation Evidence
 

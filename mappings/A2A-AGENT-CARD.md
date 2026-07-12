@@ -20,6 +20,10 @@ The A2A v1.0 specification defines an Agent Card as a discovery manifest contain
 | `harness.tools` | `skills` | Static descriptive skill entries only. No invocation. |
 | `extensions.a2a.securitySchemes` | `securitySchemes` | Direct metadata when present. |
 | `extensions.a2a.securityRequirements` | `securityRequirements` | Direct metadata when present. |
+| `extensions.a2a.provider` | `provider` | Direct static discovery metadata when present. |
+| `extensions.a2a.documentationUrl` | `documentationUrl` | Direct static discovery metadata when present. |
+| `extensions.a2a.defaultInputModes` | `defaultInputModes` | Direct when present, otherwise `text/plain`. |
+| `extensions.a2a.defaultOutputModes` | `defaultOutputModes` | Direct when present, otherwise derived from structured-output requirements. |
 | `harness.instructions` | metadata-only section | Not an A2A execution guarantee. |
 | `harness.policies` | metadata-only section | Must remain enforced by ReddiAgent until target enforcement exists. |
 | `harness.evalGates` | metadata-only section | Must remain enforced by ReddiAgent until target evaluation exists. |
@@ -42,3 +46,5 @@ Every report and embedded Agent Card metadata block must keep these runtime boun
 `supported=true` means a static Agent Card review mapping can be produced. It does not mean runtime execution is safe. `lossless=false` means at least one ReddiAgent section is metadata-only or unsupported by the static target.
 
 Strict `--export-agent-card` mode refuses lossy ADL with exit code 3 plus diagnostics. This prevents silently dropping Reddi payment, receipt, reputation, source-boundary, MCP, policy, memory, or evaluation semantics.
+
+`extensions.a2a` is the only extension namespace treated as lossless by this target because it is directly mapped into the Agent Card review artifact. Other extension namespaces remain Reddi metadata unless a later issue adds an explicit static mapping.
