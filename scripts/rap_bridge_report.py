@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+"""Static x402/MCP-to-RAP bridge report checker."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+BOUNDARY_FLAGS = {
+    "runtimeExecutionAllowed": False,
+    "networkAccess": False,
+    "paymentAccess": False,
+    "mcpInvocation": False,
+}
+X402_OBJECTS = ["PaymentRequired", "PaymentSignature", "PaymentResponse"]
+LIVE_FIELD_NAMES = {
+    "serverUrl",
+    "url",
+    "endpoint",
+    "command",
+    "env",
+    "walletPrivateKey",
+    "privateKey",
+    "rawSignature",
+    "credential",
+    "credentials",
+    "apiKey",
+    "secret",
+}
+LIVE_ACCESS_FLAGS = {
+    "runtimeExecutionAllowed",
+    "networkAccess",
+    "paymentAccess",
+    "mcpInvocation",
+}
+
+
+def display_path(path: Path) -> str:
+    resolved = path if path.is_absolute() else ROOT / path
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
+def read_json(path: Path) -> dict:
+    resolved = path if path.is_absolute() else ROOT / path
+    return json.loads(resolved.read_text())
+
+
+def walk(obj: object, prefix: str = "") -> list[tuple[str, object]]:
+    items: list[tuple[str, object]] = []
+    if isinstance(obj, dict):
+        for key, value in obj.items():
+            path = f"{prefix}.{key}" if prefix else key
+            items.append((path, value))
+            items.extend(walk(value, path))
+    elif isinstance(obj, list):
+        for index, value in enumerate(obj):
+            path = f"{prefix}[{index}]"
+            items.append((path, value))
+            items.extend(walk(value, path))
+    return items
+
+
+def finding(category: str, path: str, reason: str, status: str = "fail") -> dict:
+    return {"category": category, "path": path, "status": status, "reason": reason}
+
+
+def required_field_findings(doc: dict) -> list[dict]:
+    findings: list[dict] = []
+    required_paths = [
+        ("service.mcp.serverRef", doc.get("service", {}).get("mcp", {}).get("serverRef")),
+        ("service.mcp.toolName", doc.get("service", {}).get("mcp", {}).get("toolName")),
+        ("x402.direction", doc.get("x402", {}).get("direction")),
+        ("authority.mandateId", doc.get("authority", {}).get("mandateId")),
+        ("authority.scope", doc.get("authority", {}).get("scope")),
+        ("authority.maxAmount", doc.get("authority", {}).get("maxAmount")),
+        ("authority.expiresAt", doc.get("authority", {}).get("expiresAt")),
+        ("authority.revocationRef", doc.get("authority", {}).get("revocationRef")),
+        ("authority.auditRef", doc.get("authority", {}).get("auditRef")),
+        ("receipts.requestHash", doc.get("receipts", {}).get("requestHash")),
+        ("receipts.responseHash", doc.get("receipts", {}).get("responseHash")),
+        ("receipts.paymentRef", doc.get("receipts", {}).get("paymentRef")),
+        ("receipts.serviceResultStatus", doc.get("receipts", {}).get("serviceResultStatus")),
+        (
+            "receipts.requiredEvalGateStatus",
+            doc.get("receipts", {}).get("requiredEvalGateStatus"),
+        ),
+    ]
+    for path, value in required_paths:
+        if value in (None, "", [], {}):
+            findings.append(finding("missing", path, "RAP bridge required field is missing."))
+
+    x402 = doc.get("x402", {})
+    for object_name in X402_OBJECTS:
+        if not isinstance(x402.get(object_name), dict):
+            findings.append(
+                finding("missing", f"x402.{object_name}", "Required x402 object is missing.")
+            )
+
+    accepts = x402.get("PaymentRequired", {}).get("accepts")
+    if not isinstance(accepts, list) or not accepts:
+        findings.append(
+            finding(
+                "missing",
+                "x402.PaymentRequired.accepts",
+                "PaymentRequired must include accepted payment options.",
+            )
+        )
+    return findings
+
+
+def unsafe_findings(doc: dict) -> list[dict]:
+    findings: list[dict] = []
+    for path, value in walk(doc):
+        key = path.split(".")[-1].split("[")[0]
+        if key in LIVE_ACCESS_FLAGS and value is not False:
+            findings.append(
+                finding(
+                    "unsafe",
+                    path,
+                    "Bridge input must not claim runtime, network, payment, or MCP access.",
+                )
+            )
+        if key in LIVE_FIELD_NAMES and value not in (None, "", [], {}):
+            findings.append(
+                finding(
+                    "unsafe",
+                    path,
+                    "Bridge input contains a live endpoint, executable, credential, or wallet field.",
+                )
+            )
+
+    authority = doc.get("authority", {})
+    if authority.get("scope") in ("*", "unrestricted", "any"):
+        findings.append(
+            finding("unsafe", "authority.scope", "Authority scope must be constrained.")
+        )
+    if authority.get("maxAmount") in (None, "", "unbounded", "unlimited"):
+        findings.append(
+            finding("unsafe", "authority.maxAmount", "Authority must define a bounded max amount.")
+        )
+    return findings
+
+
+def unsupported_findings(doc: dict) -> list[dict]:
+    findings: list[dict] = []
+    x402 = doc.get("x402", {})
+    response = x402.get("PaymentResponse", {})
+    receipts = doc.get("receipts", {})
+
+    if response.get("success") is True and receipts.get("serviceResultStatus") != "pass":
+        findings.append(
+            finding(
+                "unsupported",
+                "receipts.serviceResultStatus",
+                "Payment success alone cannot prove task success for RAP receipt handoff.",
+            )
+        )
+    if receipts.get("requiredEvalGateStatus") != "pass":
+        findings.append(
+            finding(
+                "unsupported",
+                "receipts.requiredEvalGateStatus",
+                "Required eval gate must pass before reputation signals are RAP-ready.",
+            )
+        )
+    return findings
+
+
+def metadata_only(doc: dict) -> list[dict]:
+    entries = []
+    x402 = doc.get("x402", {})
+    for object_name in X402_OBJECTS:
+        if object_name in x402:
+            entries.append(
+                {
+                    "section": f"x402.{object_name}",
+                    "reason": "Preserved as payment evidence vocabulary; no settlement is executed.",
+                }
+            )
+    for section, reason in [
+        ("x402.facilitator", "Facilitator is policy metadata only."),
+        ("authority", "AP2-like mandate constraints are reviewed, not enforced by runtime."),
+        ("receipts", "Receipt evidence is static handoff data."),
+        ("reputation", "Reputation signals require future RAP verification."),
+    ]:
+        if doc.get(section.split(".")[0]):
+            entries.append({"section": section, "reason": reason})
+    return entries
+
+
+def rap_ready(doc: dict, findings: list[dict]) -> list[str]:
+    if findings:
+        return []
+    accepts = doc["x402"]["PaymentRequired"]["accepts"]
+    rails = sorted({option.get("rail") for option in accepts if option.get("rail")})
+    assets = sorted({option.get("asset") for option in accepts if option.get("asset")})
+    signals = doc.get("reputation", {}).get("signals", [])
+    return [
+        f"paymentDirection:{doc['x402']['direction']}",
+        f"rails:{','.join(rails)}",
+        f"assets:{','.join(assets)}",
+        "x402Vocabulary:PaymentRequired,PaymentSignature,PaymentResponse",
+        "authority:bounded-mandate",
+        "receipts:payment-plus-service-result",
+        f"reputationSignals:{len(signals)}",
+        "staticBoundary:runtimeExecutionAllowed=false",
+    ]
+
+
+def report(path: Path) -> dict:
+    doc = read_json(path)
+    missing = required_field_findings(doc)
+    unsafe = unsafe_findings(doc)
+    unsupported = unsupported_findings(doc)
+    findings = missing + unsafe + unsupported
+    status = "fail" if findings else "pass"
+    return {
+        "source": display_path(path),
+        "mode": "static-x402-mcp-rap-bridge-report",
+        "status": status,
+        "bridgeReady": status == "pass",
+        "rapReady": rap_ready(doc, findings),
+        "metadataOnly": metadata_only(doc),
+        "unsupported": [item for item in findings if item["category"] == "unsupported"],
+        "unsafe": [item for item in findings if item["category"] == "unsafe"],
+        "findings": findings,
+        "preservedVocabulary": {
+            "x402": X402_OBJECTS,
+            "authority": ["mandateId", "scope", "maxAmount", "expiresAt", "revocationRef", "auditRef"],
+            "receipts": ["requestHash", "responseHash", "paymentRef", "serviceResultStatus"],
+            "reputation": doc.get("reputation", {}).get("signals", []),
+        },
+        **BOUNDARY_FLAGS,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("fixture", type=Path)
+    args = parser.parse_args()
+
+    result = report(args.fixture)
+    print(json.dumps(result, indent=2))
+    return 2 if result["status"] == "fail" else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

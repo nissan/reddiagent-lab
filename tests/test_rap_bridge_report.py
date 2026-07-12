@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Check static x402/MCP-to-RAP bridge reports."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PYTHON = "/Users/loki/.pyenv/versions/3.14.3/bin/python3"
+
+
+def run_case(fixture: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [PYTHON, "scripts/rap_bridge_report.py", fixture],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
+def parse_json(proc: subprocess.CompletedProcess[str]) -> dict:
+    assert proc.stdout, proc.stderr
+    return json.loads(proc.stdout)
+
+
+def assert_static_boundaries(report: dict) -> None:
+    assert report["runtimeExecutionAllowed"] is False
+    assert report["networkAccess"] is False
+    assert report["paymentAccess"] is False
+    assert report["mcpInvocation"] is False
+
+
+def main() -> int:
+    ready = run_case("tests/fixtures/rap-bridge-x402-paid-mcp-ready.json")
+    assert ready.returncode == 0
+    ready_doc = parse_json(ready)
+    assert ready_doc["mode"] == "static-x402-mcp-rap-bridge-report"
+    assert ready_doc["status"] == "pass"
+    assert ready_doc["bridgeReady"] is True
+    assert "x402Vocabulary:PaymentRequired,PaymentSignature,PaymentResponse" in ready_doc["rapReady"]
+    assert "authority:bounded-mandate" in ready_doc["rapReady"]
+    assert "receipts:payment-plus-service-result" in ready_doc["rapReady"]
+    assert ready_doc["unsafe"] == []
+    assert ready_doc["unsupported"] == []
+    metadata_sections = {entry["section"] for entry in ready_doc["metadataOnly"]}
+    assert "x402.PaymentRequired" in metadata_sections
+    assert "x402.PaymentSignature" in metadata_sections
+    assert "x402.PaymentResponse" in metadata_sections
+    assert "authority" in metadata_sections
+    assert "receipts" in metadata_sections
+    assert "reputation" in metadata_sections
+    assert ready_doc["preservedVocabulary"]["x402"] == [
+        "PaymentRequired",
+        "PaymentSignature",
+        "PaymentResponse",
+    ]
+    assert "receipt_verified" in ready_doc["preservedVocabulary"]["reputation"]
+    assert_static_boundaries(ready_doc)
+
+    unsafe = run_case("tests/fixtures/rap-bridge-x402-paid-mcp-unsafe.json")
+    assert unsafe.returncode == 2
+    unsafe_doc = parse_json(unsafe)
+    assert unsafe_doc["status"] == "fail"
+    assert unsafe_doc["bridgeReady"] is False
+    assert unsafe_doc["rapReady"] == []
+    assert_static_boundaries(unsafe_doc)
+    reasons = [finding["reason"] for finding in unsafe_doc["findings"]]
+    assert "Bridge input must not claim runtime, network, payment, or MCP access." in reasons
+    assert "Bridge input contains a live endpoint, executable, credential, or wallet field." in reasons
+    assert "Authority scope must be constrained." in reasons
+    assert "Authority must define a bounded max amount." in reasons
+    assert "Payment success alone cannot prove task success for RAP receipt handoff." in reasons
+    assert "Required eval gate must pass before reputation signals are RAP-ready." in reasons
+    unsafe_paths = {finding["path"] for finding in unsafe_doc["unsafe"]}
+    assert "service.mcp.serverUrl" in unsafe_paths
+    assert "x402.facilitator.endpoint" in unsafe_paths
+    assert "x402.PaymentSignature.walletPrivateKey" in unsafe_paths
+
+    print("PASS RAP bridge report")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
