@@ -14,17 +14,25 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
 HTML_PATH = ROOT / "docs" / "prosumer-builder-static-export.html"
+BLOCKED_FIXTURE_PATH = ROOT / "tests" / "fixtures" / "prosumer-builder-blocked-export-ui.json"
 
 
-def generated_html(path: Path) -> str:
+def generated_files(html_path: Path, fixture_path: Path) -> tuple[str, dict]:
     subprocess.run(
-        [PYTHON, "scripts/prosumer_builder_static_export.py", "--output", str(path)],
+        [
+            PYTHON,
+            "scripts/prosumer_builder_static_export.py",
+            "--output",
+            str(html_path),
+            "--blocked-fixture-output",
+            str(fixture_path),
+        ],
         cwd=ROOT,
         text=True,
         check=True,
         capture_output=True,
     )
-    return path.read_text()
+    return html_path.read_text(), json.loads(fixture_path.read_text())
 
 
 def manifest_from_html(rendered: str) -> dict:
@@ -42,10 +50,18 @@ def export_step(plan: dict) -> dict:
 
 def main() -> int:
     with tempfile.TemporaryDirectory() as tmp:
-        expected = generated_html(Path(tmp) / "prosumer-builder-static-export.html")
+        tmp_path = Path(tmp)
+        expected, expected_blocked_fixture = generated_files(
+            tmp_path / "prosumer-builder-static-export.html",
+            tmp_path / "prosumer-builder-blocked-export-ui.json",
+        )
 
     committed = HTML_PATH.read_text()
     assert committed == expected, "docs/prosumer-builder-static-export.html is not regenerated"
+    blocked_fixture = json.loads(BLOCKED_FIXTURE_PATH.read_text())
+    assert blocked_fixture == expected_blocked_fixture, (
+        "tests/fixtures/prosumer-builder-blocked-export-ui.json is not regenerated"
+    )
     assert "https://" not in committed
     assert "http://" not in committed
     assert "<script src=" not in committed
@@ -64,6 +80,9 @@ def main() -> int:
     assert manifest["guardrails"]["networkAccess"] is False
     assert manifest["guardrails"]["paymentAccess"] is False
     assert manifest["guardrails"]["mcpInvocation"] is False
+    assert manifest["blockedFixtureCheck"] == (
+        "tests/fixtures/prosumer-builder-blocked-export-ui.json"
+    )
     assert manifest["coveredSources"] == [
         "examples/simple-agent.yaml",
         "examples/tool-agent.yaml",
@@ -88,6 +107,68 @@ def main() -> int:
     blocked = manifest["blockedExportFixture"]
     assert blocked["supported"] is False
     assert export_step(blocked)["status"] == "blocked"
+    assert manifest["blockedExportUiFixture"] == blocked_fixture
+    assert blocked_fixture["format"] == "prosumer-builder-blocked-export-ui-fixture"
+    assert blocked_fixture["guardrails"]["localStaticFixtureOnly"] is True
+    assert blocked_fixture["guardrails"]["runtimeExecutionAllowed"] is False
+    assert blocked_fixture["guardrails"]["networkAccess"] is False
+    assert blocked_fixture["guardrails"]["paymentAccess"] is False
+    assert blocked_fixture["guardrails"]["mcpInvocation"] is False
+    assert blocked_fixture["readinessCounts"] == {
+        "blocked-before-generation": 3,
+        "blocked-by-validation": 6,
+        "metadata-only": 9,
+    }
+    assert blocked_fixture["sources"] == [
+        "examples/invalid/missing-instructions.yaml",
+        "examples/payment-agent.yaml",
+        "examples/simple-agent.yaml",
+        "examples/tool-agent.yaml",
+    ]
+    invalid_rows = [
+        row
+        for row in blocked_fixture["rows"]
+        if row["source"] == "examples/invalid/missing-instructions.yaml"
+    ]
+    assert len(invalid_rows) == 6
+    assert {row["readiness"] for row in invalid_rows} == {"blocked-by-validation"}
+    assert all(row["blockedBy"] == ["validation_failed"] for row in invalid_rows)
+    assert all(row["validationStatus"] == "fail" for row in invalid_rows)
+    assert any(
+        "harness: 'instructions' is a required property" in error
+        for row in invalid_rows
+        for error in row["validationErrors"]
+    )
+    starter_rows = [
+        row
+        for row in blocked_fixture["rows"]
+        if row["target"] == "starter-manifest"
+        and row["readiness"] == "blocked-before-generation"
+    ]
+    assert len(starter_rows) == 3
+    assert all(row["readiness"] == "blocked-before-generation" for row in starter_rows)
+    assert all(row["blockedBy"] == ["generator-implementation-review"] for row in starter_rows)
+    payment_metadata_rows = [
+        row
+        for row in blocked_fixture["rows"]
+        if row["source"] == "examples/payment-agent.yaml"
+        and row["readiness"] == "metadata-only"
+    ]
+    assert len(payment_metadata_rows) == 3
+    assert all(
+        row["blockedBy"] == ["non_local_runtime_execution", "live_payment_execution"]
+        for row in payment_metadata_rows
+    )
+    assert all(
+        row["metadataOnlyExtensions"] == [
+            "extensions.x402",
+            "extensions.receipts",
+            "extensions.reputation",
+        ]
+        for row in payment_metadata_rows
+    )
+    assert all(row["runtimeExecutionAllowed"] is False for row in blocked_fixture["rows"])
+    assert all(row["paymentAccess"] is False for row in blocked_fixture["rows"])
     assert all(plan["runtimeExecutionAllowed"] is False for plan in manifest["plans"])
 
     print("PASS Prosumer Builder static export")

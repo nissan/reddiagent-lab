@@ -14,16 +14,19 @@ from prosumer_builder_plan import BOUNDARY_FLAGS, DEFAULT_EXAMPLES, ROOT, plan_f
 
 DEFAULT_INVALID_EXAMPLE = ROOT / "examples" / "invalid" / "missing-instructions.yaml"
 DEFAULT_OUTPUT = ROOT / "docs" / "prosumer-builder-static-export.html"
+DEFAULT_BLOCKED_FIXTURE_OUTPUT = ROOT / "tests" / "fixtures" / "prosumer-builder-blocked-export-ui.json"
 
 
 def build_manifest(paths: list[Path], invalid_path: Path) -> dict:
     plans = [plan_for(path) for path in paths]
     invalid_plan = plan_for(invalid_path)
+    blocked_fixture_summary = blocked_export_fixture_summary(plans, invalid_plan)
     return {
         "format": "prosumer-builder-static-html-export-report",
         "generatedFrom": "scripts/prosumer_builder_static_export.py",
         "authoritativePlanCommand": "python3 scripts/prosumer_builder_plan.py examples/simple-agent.yaml examples/tool-agent.yaml examples/payment-agent.yaml",
         "authoritativeCheck": "tests/test_prosumer_builder_static_export.py",
+        "blockedFixtureCheck": "tests/fixtures/prosumer-builder-blocked-export-ui.json",
         "coveredSources": [plan["source"] for plan in plans],
         "blockedFixtureSource": invalid_plan["source"],
         "guardrails": {
@@ -34,7 +37,55 @@ def build_manifest(paths: list[Path], invalid_path: Path) -> dict:
         },
         "plans": plans,
         "blockedExportFixture": invalid_plan,
+        "blockedExportUiFixture": blocked_fixture_summary,
         "summary": summarize(plans, invalid_plan),
+    }
+
+
+def blocked_export_fixture_summary(plans: list[dict], invalid_plan: dict) -> dict:
+    rows = []
+    for plan in [*plans, invalid_plan]:
+        export_step = next(step for step in plan["flow"] if step["id"] == "export")
+        validation_step = next(step for step in plan["flow"] if step["id"] == "validate")
+        for row in export_step["staticUiExportMatrix"]:
+            if row["readiness"] in {"report-ready", "not-applicable"}:
+                continue
+            rows.append(
+                {
+                    "source": plan["source"],
+                    "agent": plan["agent"],
+                    "target": row["target"],
+                    "label": row["label"],
+                    "status": row["status"],
+                    "readiness": row["readiness"],
+                    "command": row["command"],
+                    "strictExportCommand": row["strictExportCommand"],
+                    "authoritativeCheck": row["authoritativeCheck"],
+                    "blockedBy": row["blockedBy"],
+                    "metadataOnlyExtensions": row["metadataOnlyExtensions"],
+                    "metadataOnlySections": row["metadataOnlySections"],
+                    "validationStatus": validation_step["status"],
+                    "validationErrors": validation_step["errors"],
+                    **BOUNDARY_FLAGS,
+                }
+            )
+    readiness_counts = {}
+    for row in rows:
+        readiness_counts[row["readiness"]] = readiness_counts.get(row["readiness"], 0) + 1
+    return {
+        "format": "prosumer-builder-blocked-export-ui-fixture",
+        "generatedFrom": "scripts/prosumer_builder_static_export.py",
+        "authoritativeCheck": "tests/test_prosumer_builder_static_export.py",
+        "rowCount": len(rows),
+        "readinessCounts": dict(sorted(readiness_counts.items())),
+        "sources": sorted({row["source"] for row in rows}),
+        "guardrails": {
+            "localStaticFixtureOnly": True,
+            "devServerStarted": False,
+            "browserAutomationRequired": False,
+            **BOUNDARY_FLAGS,
+        },
+        "rows": rows,
     }
 
 
@@ -69,6 +120,7 @@ def summarize(plans: list[dict], invalid_plan: dict) -> dict:
 def render_html(manifest: dict) -> str:
     manifest_json = json.dumps(manifest, indent=2, sort_keys=True)
     rows = "\n".join(render_agent_section(plan) for plan in manifest["plans"])
+    blocked_summary = render_blocked_summary(manifest["blockedExportUiFixture"])
     blocked = render_blocked_section(manifest["blockedExportFixture"])
     return f"""<!doctype html>
 <html lang="en">
@@ -139,6 +191,7 @@ def render_html(manifest: dict) -> str:
       </div>
     </section>
     {rows}
+    {blocked_summary}
     {blocked}
     <section class="panel">
       <h2>Embedded Fixture Manifest</h2>
@@ -191,6 +244,34 @@ def render_matrix_row(row: dict) -> str:
           </tr>"""
 
 
+def render_blocked_summary(fixture: dict) -> str:
+    rows = "\n".join(render_blocked_summary_row(row) for row in fixture["rows"])
+    return f"""<section class="panel">
+      <h2>Blocked Export UI Fixture</h2>
+      <p>{fixture["rowCount"]} blocked or metadata-only rows pinned for local UI coverage.</p>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Target</th><th>Readiness</th><th>Authoritative Check</th><th>Guardrail Reasons</th></tr>
+        </thead>
+        <tbody>
+{rows}
+        </tbody>
+      </table>
+    </section>"""
+
+
+def render_blocked_summary_row(row: dict) -> str:
+    reasons = ", ".join(row["blockedBy"]) if row["blockedBy"] else "metadata-only review required"
+    readiness_class = "bad" if row["readiness"] == "blocked-by-validation" else "warn"
+    return f"""          <tr>
+            <td><code>{html.escape(row["source"])}</code></td>
+            <td>{html.escape(row["label"])}</td>
+            <td class="{readiness_class}">{html.escape(row["readiness"])}</td>
+            <td><code>{html.escape(row["authoritativeCheck"])}</code></td>
+            <td>{html.escape(reasons)}</td>
+          </tr>"""
+
+
 def render_blocked_section(plan: dict) -> str:
     validate_step = next(step for step in plan["flow"] if step["id"] == "validate")
     return f"""<section class="panel">
@@ -206,6 +287,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("paths", nargs="*", type=Path)
     parser.add_argument("--invalid", type=Path, default=DEFAULT_INVALID_EXAMPLE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--blocked-fixture-output", type=Path, default=DEFAULT_BLOCKED_FIXTURE_OUTPUT)
     return parser.parse_args()
 
 
@@ -215,6 +297,10 @@ def main() -> int:
     manifest = build_manifest(paths, args.invalid)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_html(manifest))
+    args.blocked_fixture_output.parent.mkdir(parents=True, exist_ok=True)
+    args.blocked_fixture_output.write_text(
+        json.dumps(manifest["blockedExportUiFixture"], indent=2, sort_keys=True) + "\n"
+    )
     return 0
 
 

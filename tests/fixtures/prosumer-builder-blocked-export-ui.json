@@ -1,0 +1,478 @@
+{
+  "authoritativeCheck": "tests/test_prosumer_builder_static_export.py",
+  "format": "prosumer-builder-blocked-export-ui-fixture",
+  "generatedFrom": "scripts/prosumer_builder_static_export.py",
+  "guardrails": {
+    "browserAutomationRequired": false,
+    "devServerStarted": false,
+    "localStaticFixtureOnly": true,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "runtimeExecutionAllowed": false
+  },
+  "readinessCounts": {
+    "blocked-before-generation": 3,
+    "blocked-by-validation": 6,
+    "metadata-only": 9
+  },
+  "rowCount": 18,
+  "rows": [
+    {
+      "agent": "simple-research-helper",
+      "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
+      "blockedBy": [],
+      "command": "python3 scripts/agent_spec_compatibility.py --single examples/simple-agent.yaml",
+      "label": "Agent Spec",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/simple-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml",
+      "target": "agent-spec",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "simple-research-helper",
+      "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
+      "blockedBy": [],
+      "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/simple-agent.yaml",
+      "label": "A2A Agent Card",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/simple-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml",
+      "target": "a2a-agent-card",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "simple-research-helper",
+      "authoritativeCheck": "tests/test_agent_skill_export.py",
+      "blockedBy": [],
+      "command": "python3 scripts/adl_to_agent_skill.py --single examples/simple-agent.yaml",
+      "label": "Agent Skills / SKILL.md",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/simple-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml",
+      "target": "agent-skills-skill-md",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "simple-research-helper",
+      "authoritativeCheck": "tests/test_starter_code_plan.py",
+      "blockedBy": [
+        "generator-implementation-review"
+      ],
+      "command": "python3 scripts/starter_code_plan.py --single examples/simple-agent.yaml",
+      "label": "Starter manifest",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-before-generation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/simple-agent.yaml",
+      "status": "blocked-before-generation",
+      "strictExportCommand": null,
+      "target": "starter-manifest",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "source-checker",
+      "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
+      "blockedBy": [],
+      "command": "python3 scripts/agent_spec_compatibility.py --single examples/tool-agent.yaml",
+      "label": "Agent Spec",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/tool-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml",
+      "target": "agent-spec",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "source-checker",
+      "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
+      "blockedBy": [],
+      "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/tool-agent.yaml",
+      "label": "A2A Agent Card",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/tool-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml",
+      "target": "a2a-agent-card",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "source-checker",
+      "authoritativeCheck": "tests/test_agent_skill_export.py",
+      "blockedBy": [],
+      "command": "python3 scripts/adl_to_agent_skill.py --single examples/tool-agent.yaml",
+      "label": "Agent Skills / SKILL.md",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/tool-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml",
+      "target": "agent-skills-skill-md",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "source-checker",
+      "authoritativeCheck": "tests/test_starter_code_plan.py",
+      "blockedBy": [
+        "generator-implementation-review"
+      ],
+      "command": "python3 scripts/starter_code_plan.py --single examples/tool-agent.yaml",
+      "label": "Starter manifest",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-before-generation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/tool-agent.yaml",
+      "status": "blocked-before-generation",
+      "strictExportCommand": null,
+      "target": "starter-manifest",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "paid-specialist-researcher",
+      "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
+      "blockedBy": [
+        "non_local_runtime_execution",
+        "live_payment_execution"
+      ],
+      "command": "python3 scripts/agent_spec_compatibility.py --single examples/payment-agent.yaml",
+      "label": "Agent Spec",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/payment-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml",
+      "target": "agent-spec",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "paid-specialist-researcher",
+      "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
+      "blockedBy": [
+        "non_local_runtime_execution",
+        "live_payment_execution"
+      ],
+      "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/payment-agent.yaml",
+      "label": "A2A Agent Card",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/payment-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml",
+      "target": "a2a-agent-card",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "paid-specialist-researcher",
+      "authoritativeCheck": "tests/test_agent_skill_export.py",
+      "blockedBy": [
+        "non_local_runtime_execution",
+        "live_payment_execution"
+      ],
+      "command": "python3 scripts/adl_to_agent_skill.py --single examples/payment-agent.yaml",
+      "label": "Agent Skills / SKILL.md",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "metadata-only",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/payment-agent.yaml",
+      "status": "metadata-only",
+      "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml",
+      "target": "agent-skills-skill-md",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "paid-specialist-researcher",
+      "authoritativeCheck": "tests/test_starter_code_plan.py",
+      "blockedBy": [
+        "generator-implementation-review"
+      ],
+      "command": "python3 scripts/starter_code_plan.py --single examples/payment-agent.yaml",
+      "label": "Starter manifest",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-before-generation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/payment-agent.yaml",
+      "status": "blocked-before-generation",
+      "strictExportCommand": null,
+      "target": "starter-manifest",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/agent_spec_compatibility.py --single examples/invalid/missing-instructions.yaml",
+      "label": "Agent Spec",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml",
+      "target": "agent-spec",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/invalid/missing-instructions.yaml",
+      "label": "A2A Agent Card",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml",
+      "target": "a2a-agent-card",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_agent_skill_export.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/adl_to_agent_skill.py --single examples/invalid/missing-instructions.yaml",
+      "label": "Agent Skills / SKILL.md",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml",
+      "target": "agent-skills-skill-md",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_starter_code_plan.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/starter_code_plan.py --single examples/invalid/missing-instructions.yaml",
+      "label": "Starter manifest",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": null,
+      "target": "starter-manifest",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_provider_compatibility_cli.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/provider_compatibility.py examples/invalid/missing-instructions.yaml",
+      "label": "Provider compatibility",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": null,
+      "target": "provider-compatibility",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "tests/test_rap_bridge_report.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/rap_bridge_report.py tests/fixtures/rap-bridge-x402-paid-mcp-ready.json",
+      "label": "RAP bridge",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": null,
+      "target": "rap-bridge",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    }
+  ],
+  "sources": [
+    "examples/invalid/missing-instructions.yaml",
+    "examples/payment-agent.yaml",
+    "examples/simple-agent.yaml",
+    "examples/tool-agent.yaml"
+  ]
+}
