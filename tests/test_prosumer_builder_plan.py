@@ -47,6 +47,16 @@ def step(plan: dict, step_id: str) -> dict:
     return matches[0]
 
 
+def export_row(plan: dict, target: str) -> dict:
+    matches = [
+        item
+        for item in step(plan, "export")["staticUiExportMatrix"]
+        if item["target"] == target
+    ]
+    assert len(matches) == 1
+    return matches[0]
+
+
 def main() -> int:
     plans = run_plan(
         "examples/simple-agent.yaml",
@@ -77,6 +87,34 @@ def main() -> int:
         "task.dry_run_completed",
     ]
     assert step(simple, "export")["targets"][0]["target"] == "agent-spec"
+    assert [row["target"] for row in step(simple, "export")["staticUiExportMatrix"]] == [
+        "agent-spec",
+        "a2a-agent-card",
+        "agent-skills-skill-md",
+        "starter-manifest",
+        "provider-compatibility",
+        "rap-bridge",
+    ]
+    assert export_row(simple, "agent-spec")["readiness"] == "metadata-only"
+    assert export_row(simple, "agent-spec")["strictExportCommand"] == (
+        "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single "
+        "examples/simple-agent.yaml"
+    )
+    assert export_row(simple, "agent-spec")["authoritativeCheck"] == (
+        "tests/test_agent_spec_compatibility.py"
+    )
+    assert export_row(simple, "starter-manifest")["readiness"] == (
+        "blocked-before-generation"
+    )
+    assert export_row(simple, "starter-manifest")["blockedBy"] == [
+        "generator-implementation-review"
+    ]
+    assert export_row(simple, "provider-compatibility")["readiness"] == "report-ready"
+    assert export_row(simple, "rap-bridge")["readiness"] == "not-applicable"
+    assert export_row(simple, "rap-bridge")["blockedBy"] == [
+        "no_payment_receipt_reputation_metadata"
+    ]
+    assert export_row(simple, "rap-bridge")["runtimeExecutionAllowed"] is False
     assert_static_boundaries(simple)
 
     tool = by_agent["source-checker"]
@@ -136,6 +174,27 @@ def main() -> int:
     assert step(payment, "dry_run")["completionPreview"]["requiredGateStatus"] == "pass"
     assert step(payment, "dry_run")["toolExecutionPreview"] is None
     assert step(payment, "export")["targets"][2]["target"] == "agent-skills-skill-md"
+    assert export_row(payment, "agent-spec")["readiness"] == "metadata-only"
+    assert export_row(payment, "agent-spec")["blockedBy"] == [
+        "non_local_runtime_execution",
+        "live_payment_execution",
+    ]
+    assert export_row(payment, "agent-skills-skill-md")["metadataOnlyExtensions"] == [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
+    assert export_row(payment, "starter-manifest")["readiness"] == (
+        "blocked-before-generation"
+    )
+    assert export_row(payment, "provider-compatibility")["command"] == (
+        "python3 scripts/provider_compatibility.py examples/payment-agent.yaml"
+    )
+    assert export_row(payment, "rap-bridge")["readiness"] == "report-ready"
+    assert export_row(payment, "rap-bridge")["command"] == (
+        "python3 scripts/rap_bridge_report.py "
+        "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json"
+    )
     assert_static_boundaries(payment)
 
     invalid = run_command("--single", "examples/invalid/missing-instructions.yaml")
@@ -147,6 +206,11 @@ def main() -> int:
     assert step(invalid_plan, "dry_run")["completionPreview"] is None
     assert step(invalid_plan, "dry_run")["tracePreview"] == []
     assert step(invalid_plan, "trace")["status"] == "blocked"
+    assert step(invalid_plan, "export")["status"] == "blocked"
+    assert export_row(invalid_plan, "agent-spec")["readiness"] == "blocked-by-validation"
+    assert export_row(invalid_plan, "provider-compatibility")["blockedBy"] == [
+        "validation_failed"
+    ]
     assert invalid_plan["runtimeExecutionAllowed"] is False
     assert invalid_plan["networkAccess"] is False
     assert invalid_plan["paymentAccess"] is False

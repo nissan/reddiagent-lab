@@ -28,6 +28,50 @@ BOUNDARY_FLAGS = {
     "paymentAccess": False,
     "mcpInvocation": False,
 }
+EXPORT_MATRIX_TARGETS = [
+    {
+        "target": "agent-spec",
+        "label": "Agent Spec",
+        "commandTemplate": "python3 scripts/agent_spec_compatibility.py --single {source}",
+        "strictCommandTemplate": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single {source}",
+        "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
+    },
+    {
+        "target": "a2a-agent-card",
+        "label": "A2A Agent Card",
+        "commandTemplate": "python3 scripts/adl_to_a2a_agent_card.py --single {source}",
+        "strictCommandTemplate": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single {source}",
+        "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
+    },
+    {
+        "target": "agent-skills-skill-md",
+        "label": "Agent Skills / SKILL.md",
+        "commandTemplate": "python3 scripts/adl_to_agent_skill.py --single {source}",
+        "strictCommandTemplate": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single {source}",
+        "authoritativeCheck": "tests/test_agent_skill_export.py",
+    },
+    {
+        "target": "starter-manifest",
+        "label": "Starter manifest",
+        "commandTemplate": "python3 scripts/starter_code_plan.py --single {source}",
+        "strictCommandTemplate": None,
+        "authoritativeCheck": "tests/test_starter_code_plan.py",
+    },
+    {
+        "target": "provider-compatibility",
+        "label": "Provider compatibility",
+        "commandTemplate": "python3 scripts/provider_compatibility.py {source}",
+        "strictCommandTemplate": None,
+        "authoritativeCheck": "tests/test_provider_compatibility_cli.py",
+    },
+    {
+        "target": "rap-bridge",
+        "label": "RAP bridge",
+        "commandTemplate": "python3 scripts/rap_bridge_report.py tests/fixtures/rap-bridge-x402-paid-mcp-ready.json",
+        "strictCommandTemplate": None,
+        "authoritativeCheck": "tests/test_rap_bridge_report.py",
+    },
+]
 
 
 def display_path(path: Path) -> str:
@@ -217,29 +261,85 @@ def trace_step(errors: list[str], preview: dict) -> dict:
     }
 
 
-def export_step(path: Path) -> dict:
+def export_readiness_matrix(path: Path, doc: dict, errors: list[str]) -> list[dict]:
     source = display_path(path)
+    static_review = unsafe_or_metadata_only(doc)
+    harness = doc.get("harness") or {}
+    reddi_metadata_sections = [
+        section
+        for section, value in [
+            ("harness.policies", harness.get("policies")),
+            ("harness.evalGates", harness.get("evalGates")),
+            ("harness.memory", harness.get("memory")),
+            ("harness.dataSources", harness.get("dataSources")),
+        ]
+        if value
+    ]
+    blocked_by_validation = ["validation_failed"] if errors else []
+    has_rap_metadata = bool(
+        (doc.get("extensions") or {}).get("x402")
+        or (doc.get("extensions") or {}).get("receipts")
+        or (doc.get("extensions") or {}).get("reputation")
+    )
+    rows = []
+    for target in EXPORT_MATRIX_TARGETS:
+        target_id = target["target"]
+        command = target["commandTemplate"].format(source=source)
+        strict_template = target.get("strictCommandTemplate")
+        row = {
+            "target": target_id,
+            "label": target["label"],
+            "mode": "report-only",
+            "command": command,
+            "strictExportCommand": strict_template.format(source=source) if strict_template else None,
+            "authoritativeCheck": target["authoritativeCheck"],
+            "status": "report-ready",
+            "readiness": "report-ready",
+            "blockedBy": list(blocked_by_validation),
+            "metadataOnlyExtensions": [],
+            "metadataOnlySections": [],
+            **BOUNDARY_FLAGS,
+        }
+        if errors:
+            row["status"] = "blocked"
+            row["readiness"] = "blocked-by-validation"
+        elif target_id in {"agent-spec", "a2a-agent-card", "agent-skills-skill-md"}:
+            row["metadataOnlyExtensions"] = static_review["metadataOnlyExtensions"]
+            row["metadataOnlySections"] = [
+                *reddi_metadata_sections,
+                *static_review["metadataOnlyExtensions"],
+            ]
+            if row["metadataOnlySections"] or static_review["unsupportedFeatures"]:
+                row["status"] = "metadata-only"
+                row["readiness"] = "metadata-only"
+                row["blockedBy"] = static_review["unsupportedFeatures"]
+        elif target_id == "starter-manifest":
+            row["status"] = "blocked-before-generation"
+            row["readiness"] = "blocked-before-generation"
+            row["blockedBy"] = ["generator-implementation-review"]
+        elif target_id == "rap-bridge" and not has_rap_metadata:
+            row["status"] = "not-applicable"
+            row["readiness"] = "not-applicable"
+            row["blockedBy"] = ["no_payment_receipt_reputation_metadata"]
+        rows.append(row)
+    return rows
+
+
+def export_step(path: Path, doc: dict, errors: list[str]) -> dict:
+    matrix = export_readiness_matrix(path, doc, errors)
     return {
         "id": "export",
         "label": "Export review artifacts",
-        "status": "ready",
+        "status": "blocked" if errors else "ready",
         "targets": [
             {
-                "target": "agent-spec",
-                "command": f"python3 scripts/agent_spec_compatibility.py --single {source}",
-                "mode": "report-only",
-            },
-            {
-                "target": "a2a-agent-card",
-                "command": f"python3 scripts/adl_to_a2a_agent_card.py --single {source}",
-                "mode": "report-only",
-            },
-            {
-                "target": "agent-skills-skill-md",
-                "command": f"python3 scripts/adl_to_agent_skill.py --single {source}",
-                "mode": "report-only",
-            },
+                "target": row["target"],
+                "command": row["command"],
+                "mode": row["mode"],
+            }
+            for row in matrix
         ],
+        "staticUiExportMatrix": matrix,
     }
 
 
@@ -309,7 +409,7 @@ def plan_for(path: Path) -> dict:
             validation_step(path, errors),
             dry_run_step(preview),
             trace_step(errors, preview),
-            export_step(path),
+            export_step(path, doc, errors),
         ],
     }
 
