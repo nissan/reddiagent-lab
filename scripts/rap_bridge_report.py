@@ -255,7 +255,15 @@ def unsupported_findings(doc: dict) -> list[dict]:
         )
 
     response_ref = response.get("transactionRef") or response.get("transactionHash")
-    if response_ref and receipts.get("paymentRef") and receipts.get("paymentRef") != response_ref:
+    if not response_ref:
+        findings.append(
+            finding(
+                "unsupported",
+                "x402.PaymentResponse.transactionRef",
+                "Payment response must include a static reference for receipt binding.",
+            )
+        )
+    elif receipts.get("paymentRef") and receipts.get("paymentRef") != response_ref:
         findings.append(
             finding(
                 "unsupported",
@@ -263,15 +271,22 @@ def unsupported_findings(doc: dict) -> list[dict]:
                 "Receipt payment reference must match the static x402 payment response reference.",
             )
         )
-    if signature.get("authorizationRef") and authority.get("mandateId"):
-        if signature["authorizationRef"] != authority["mandateId"]:
-            findings.append(
-                finding(
-                    "unsupported",
-                    "x402.PaymentSignature.authorizationRef",
-                    "Payment authorization reference must match the AP2-like authority mandate.",
-                )
+    if not signature.get("authorizationRef"):
+        findings.append(
+            finding(
+                "unsupported",
+                "x402.PaymentSignature.authorizationRef",
+                "Payment signature must include an authorization reference for AP2-like authority binding.",
             )
+        )
+    elif authority.get("mandateId") and signature["authorizationRef"] != authority["mandateId"]:
+        findings.append(
+            finding(
+                "unsupported",
+                "x402.PaymentSignature.authorizationRef",
+                "Payment authorization reference must match the AP2-like authority mandate.",
+            )
+        )
     selected_rail = signature.get("selectedRail")
     accepted_rails = {
         option.get("rail")
@@ -279,7 +294,15 @@ def unsupported_findings(doc: dict) -> list[dict]:
         if isinstance(option, dict)
     }
     authority_rails = set(authority.get("rails") or [])
-    if selected_rail and (selected_rail not in accepted_rails or selected_rail not in authority_rails):
+    if not selected_rail:
+        findings.append(
+            finding(
+                "unsupported",
+                "x402.PaymentSignature.selectedRail",
+                "Payment signature must include a selected rail for receipt conformance.",
+            )
+        )
+    elif selected_rail not in accepted_rails or selected_rail not in authority_rails:
         findings.append(
             finding(
                 "unsupported",

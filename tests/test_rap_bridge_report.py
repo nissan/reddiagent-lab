@@ -36,6 +36,28 @@ def assert_static_boundaries(report: dict) -> None:
     assert report["mcpInvocation"] is False
 
 
+def assert_mutated_ready_fixture_fails(path_parts: list[str], expected_path: str) -> None:
+    mutated = json.loads(
+        (ROOT / "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json").read_text()
+    )
+    cursor = mutated
+    for part in path_parts[:-1]:
+        cursor = cursor[part]
+    cursor.pop(path_parts[-1])
+
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=True) as fixture:
+        json.dump(mutated, fixture)
+        fixture.flush()
+
+        proc = run_case(fixture.name)
+        assert proc.returncode == 2
+        report = parse_json(proc)
+        assert report["status"] == "fail"
+        assert report["bridgeReady"] is False
+        assert report["receiptReputationConformance"]["status"] == "fail"
+        assert expected_path in report["receiptReputationConformance"]["failedChecks"]
+
+
 def main() -> int:
     ready = run_case("tests/fixtures/rap-bridge-x402-paid-mcp-ready.json")
     assert ready.returncode == 0
@@ -134,6 +156,19 @@ def main() -> int:
         }
         assert live_resource_report["bridgeReady"] is False
         assert "x402.PaymentRequired.resource" in live_resource_paths
+
+    assert_mutated_ready_fixture_fails(
+        ["x402", "PaymentResponse", "transactionRef"],
+        "x402.PaymentResponse.transactionRef",
+    )
+    assert_mutated_ready_fixture_fails(
+        ["x402", "PaymentSignature", "authorizationRef"],
+        "x402.PaymentSignature.authorizationRef",
+    )
+    assert_mutated_ready_fixture_fails(
+        ["x402", "PaymentSignature", "selectedRail"],
+        "x402.PaymentSignature.selectedRail",
+    )
 
     print("PASS RAP bridge report")
     return 0
