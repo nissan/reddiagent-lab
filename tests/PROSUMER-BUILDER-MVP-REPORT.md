@@ -1,6 +1,6 @@
 # Prosumer Builder MVP Skeleton Report
 
-Generated for issue #136 and refreshed for issues #144 and #188.
+Generated for issue #136 and refreshed for issues #144, #188, and #194.
 
 ## Scope
 
@@ -8,6 +8,7 @@ Generated for issue #136 and refreshed for issues #144 and #188.
 - Inputs: `examples/simple-agent.yaml`, `examples/tool-agent.yaml`, `examples/payment-agent.yaml`
 - Flow covered: choose job, model profile, optional tool, policy/eval gate, validate, dry-run, trace, export
 - Export targets listed: Agent Spec, A2A Agent Card, Agent Skills / `SKILL.md`, starter manifest, provider compatibility, and RAP bridge
+- Static HTML export fixture: `docs/prosumer-builder-static-export.html`
 - Static UI export matrix covers readiness states:
   - `report-ready`
   - `metadata-only`
@@ -32,8 +33,10 @@ The skeleton does not call model providers, live runtimes, MCP servers, wallets,
 ## Evidence
 
 - `tests/test_prosumer_builder_plan.py` verifies the three MVP examples and one invalid fixture.
+- `tests/test_prosumer_builder_static_export.py` verifies the committed local/static HTML export fixture is regenerated from Prosumer Builder plan data.
 - Payment/x402 ADL is preserved as metadata-only/unsupported for execution.
 - Tool fixtures remain deterministic local fixture commands only.
 - `examples/tool-agent.yaml` uses `--execute-tools --fail-on-required-gate` and previews `networkAccess=false` / `paymentAccess=false`.
 - Invalid ADL examples keep dry-run and trace steps blocked.
 - `staticUiExportMatrix` pins six report-only/export targets with command, strict export command where applicable, authoritative check, blockers, metadata-only sections, and boundary flags.
+- The HTML fixture embeds the same plan JSON for simple/tool/payment examples plus an invalid blocked-export fixture without requiring a dev server, browser automation, network access, provider calls, MCP invocation, runtime activation, or payment access.

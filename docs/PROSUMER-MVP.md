@@ -28,6 +28,8 @@ The smallest useful prosumer product is not an agent marketplace. It is a guided
 
 Report-only exports currently point to Agent Spec, A2A Agent Card, Agent Skills / `SKILL.md`, starter manifest, provider compatibility, and RAP bridge checks. The export step includes a `staticUiExportMatrix` so a local UI can render each target's command, readiness state, blockers, metadata-only sections, strict export command where one exists, and authoritative test file.
 
+`docs/prosumer-builder-static-export.html` is a committed static HTML fixture for reviewing that export matrix across the simple, tool, and payment examples. It embeds the generated plan JSON and an invalid blocked-export fixture so reviewers can inspect export readiness without running a dev server or activating runtime/provider/payment paths.
+
 Matrix readiness states are local/static only:
 
 - `report-ready` for deterministic report commands.
