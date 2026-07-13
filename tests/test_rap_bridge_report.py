@@ -49,6 +49,11 @@ def main() -> int:
     assert conformance["reportOnly"] is True
     assert conformance["liveBridgeAllowed"] is False
     assert conformance["passedChecks"] == conformance["requiredChecks"]
+    receipt_reputation = ready_doc["receiptReputationConformance"]
+    expected_receipt_reputation = json.loads(
+        (ROOT / "tests/fixtures/rap-dry-run-receipt-reputation-conformance.json").read_text()
+    )
+    assert receipt_reputation == expected_receipt_reputation
     assert "x402Vocabulary:PaymentRequired,PaymentSignature,PaymentResponse" in ready_doc["rapReady"]
     assert "authority:bounded-mandate" in ready_doc["rapReady"]
     assert "receipts:payment-plus-service-result" in ready_doc["rapReady"]
@@ -80,9 +85,14 @@ def main() -> int:
     assert unsafe_conformance["reportOnly"] is False
     assert unsafe_conformance["liveBridgeAllowed"] is True
     assert "unsafe-live-field-scan" not in unsafe_conformance["declaredChecks"]
+    unsafe_receipt_reputation = unsafe_doc["receiptReputationConformance"]
+    assert unsafe_receipt_reputation["status"] == "fail"
+    assert unsafe_receipt_reputation["passedChecks"] == []
     assert "conformance.checks" in unsafe_conformance["failedChecks"]
     assert "conformance.reportOnly" in unsafe_conformance["failedChecks"]
     assert "conformance.liveBridgeAllowed" in unsafe_conformance["failedChecks"]
+    assert "receipts.emissionPolicy" in unsafe_receipt_reputation["failedChecks"]
+    assert "reputation.signals" in unsafe_receipt_reputation["failedChecks"]
     assert unsafe_doc["rapReady"] == []
     assert_static_boundaries(unsafe_doc)
     reasons = [finding["reason"] for finding in unsafe_doc["findings"]]
@@ -92,6 +102,10 @@ def main() -> int:
     assert "Authority must define a bounded max amount." in reasons
     assert "Payment success alone cannot prove task success for RAP receipt handoff." in reasons
     assert "Required eval gate must pass before reputation signals are RAP-ready." in reasons
+    assert "RAP receipts must bind payment evidence to service result and eval evidence." in reasons
+    assert "Reputation signal requires prior receipt evidence: receipt_verified." in reasons
+    assert "Reputation signal requires prior receipt evidence: required_eval_gate_pass." in reasons
+    assert "Reputation signal requires prior receipt evidence: service_result_pass." in reasons
     assert "RAP bridge conformance must remain report-only." in reasons
     assert "RAP bridge conformance must not allow a live bridge." in reasons
     unsafe_paths = {finding["path"] for finding in unsafe_doc["unsafe"]}

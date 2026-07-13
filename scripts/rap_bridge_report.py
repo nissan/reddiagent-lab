@@ -51,6 +51,18 @@ CONFORMANCE_CHECKS = [
     "reputation-after-receipt",
     "unsafe-live-field-scan",
 ]
+RECEIPT_REPUTATION_CHECKS = [
+    "x402-receipt-payment-ref-bound",
+    "ap2-authority-ref-bound",
+    "service-result-pass-required",
+    "required-eval-gate-pass-required",
+    "reputation-signals-after-receipt",
+]
+REQUIRED_REPUTATION_SIGNALS = {
+    "receipt_verified",
+    "service_result_pass",
+    "required_eval_gate_pass",
+}
 
 
 def display_path(path: Path) -> str:
@@ -211,8 +223,11 @@ def unsafe_findings(doc: dict) -> list[dict]:
 def unsupported_findings(doc: dict) -> list[dict]:
     findings: list[dict] = []
     x402 = doc.get("x402", {})
+    signature = x402.get("PaymentSignature", {})
     response = x402.get("PaymentResponse", {})
     receipts = doc.get("receipts", {})
+    authority = doc.get("authority", {})
+    reputation = doc.get("reputation", {})
 
     if response.get("success") is True and receipts.get("serviceResultStatus") != "pass":
         findings.append(
@@ -228,6 +243,57 @@ def unsupported_findings(doc: dict) -> list[dict]:
                 "unsupported",
                 "receipts.requiredEvalGateStatus",
                 "Required eval gate must pass before reputation signals are RAP-ready.",
+            )
+        )
+    if receipts.get("emissionPolicy") == "emit-after-payment-only":
+        findings.append(
+            finding(
+                "unsupported",
+                "receipts.emissionPolicy",
+                "RAP receipts must bind payment evidence to service result and eval evidence.",
+            )
+        )
+
+    response_ref = response.get("transactionRef") or response.get("transactionHash")
+    if response_ref and receipts.get("paymentRef") and receipts.get("paymentRef") != response_ref:
+        findings.append(
+            finding(
+                "unsupported",
+                "receipts.paymentRef",
+                "Receipt payment reference must match the static x402 payment response reference.",
+            )
+        )
+    if signature.get("authorizationRef") and authority.get("mandateId"):
+        if signature["authorizationRef"] != authority["mandateId"]:
+            findings.append(
+                finding(
+                    "unsupported",
+                    "x402.PaymentSignature.authorizationRef",
+                    "Payment authorization reference must match the AP2-like authority mandate.",
+                )
+            )
+    selected_rail = signature.get("selectedRail")
+    accepted_rails = {
+        option.get("rail")
+        for option in x402.get("PaymentRequired", {}).get("accepts", [])
+        if isinstance(option, dict)
+    }
+    authority_rails = set(authority.get("rails") or [])
+    if selected_rail and (selected_rail not in accepted_rails or selected_rail not in authority_rails):
+        findings.append(
+            finding(
+                "unsupported",
+                "x402.PaymentSignature.selectedRail",
+                "Selected payment rail must be accepted and authorized by the mandate.",
+            )
+        )
+    missing_signals = sorted(REQUIRED_REPUTATION_SIGNALS - set(reputation.get("signals") or []))
+    for signal in missing_signals:
+        findings.append(
+            finding(
+                "unsupported",
+                "reputation.signals",
+                f"Reputation signal requires prior receipt evidence: {signal}.",
             )
         )
     return findings
@@ -295,6 +361,62 @@ def dry_run_bridge_conformance(doc: dict, findings: list[dict]) -> dict:
     }
 
 
+def receipt_reputation_conformance(doc: dict, findings: list[dict]) -> dict:
+    x402 = doc.get("x402", {})
+    payment_required = x402.get("PaymentRequired", {})
+    payment_signature = x402.get("PaymentSignature", {})
+    payment_response = x402.get("PaymentResponse", {})
+    authority = doc.get("authority", {})
+    receipts = doc.get("receipts", {})
+    reputation = doc.get("reputation", {})
+    status = "fail" if findings else "pass"
+    accepted_options = payment_required.get("accepts", [])
+    if not isinstance(accepted_options, list):
+        accepted_options = []
+    reputation_signals = reputation.get("signals", [])
+    if not isinstance(reputation_signals, list):
+        reputation_signals = []
+    return {
+        "status": status,
+        "requiredChecks": RECEIPT_REPUTATION_CHECKS,
+        "passedChecks": RECEIPT_REPUTATION_CHECKS if status == "pass" else [],
+        "failedChecks": [] if status == "pass" else sorted({item["path"] for item in findings}),
+        "x402ReceiptEvidence": {
+            "direction": x402.get("direction"),
+            "requiredObject": "PaymentRequired",
+            "signatureObject": "PaymentSignature",
+            "responseObject": "PaymentResponse",
+            "acceptedRailCount": len(accepted_options),
+            "selectedRail": payment_signature.get("selectedRail"),
+            "paymentRef": receipts.get("paymentRef"),
+            "responseRef": payment_response.get("transactionRef")
+            or payment_response.get("transactionHash"),
+        },
+        "authorityEvidence": {
+            "mandateId": authority.get("mandateId"),
+            "authorizationRef": payment_signature.get("authorizationRef"),
+            "scope": authority.get("scope"),
+            "maxAmount": authority.get("maxAmount"),
+            "expiresAt": authority.get("expiresAt"),
+            "revocationRef": authority.get("revocationRef"),
+            "auditRef": authority.get("auditRef"),
+        },
+        "serviceResultEvidence": {
+            "requestHash": receipts.get("requestHash"),
+            "responseHash": receipts.get("responseHash"),
+            "serviceResultStatus": receipts.get("serviceResultStatus"),
+            "requiredEvalGateStatus": receipts.get("requiredEvalGateStatus"),
+            "emissionPolicy": receipts.get("emissionPolicy"),
+        },
+        "reputationEvidence": {
+            "signals": reputation_signals,
+            "requiredSignals": sorted(REQUIRED_REPUTATION_SIGNALS),
+            "disputeRef": reputation.get("disputeRef"),
+        },
+        **BOUNDARY_FLAGS,
+    }
+
+
 def report(path: Path) -> dict:
     doc = read_json(path)
     missing = required_field_findings(doc)
@@ -309,6 +431,7 @@ def report(path: Path) -> dict:
         "bridgeReady": status == "pass",
         "rapReady": rap_ready(doc, findings),
         "dryRunBridgeConformance": dry_run_bridge_conformance(doc, findings),
+        "receiptReputationConformance": receipt_reputation_conformance(doc, findings),
         "metadataOnly": metadata_only(doc),
         "unsupported": [item for item in findings if item["category"] == "unsupported"],
         "unsafe": [item for item in findings if item["category"] == "unsafe"],

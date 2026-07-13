@@ -1,0 +1,62 @@
+{
+  "status": "pass",
+  "requiredChecks": [
+    "x402-receipt-payment-ref-bound",
+    "ap2-authority-ref-bound",
+    "service-result-pass-required",
+    "required-eval-gate-pass-required",
+    "reputation-signals-after-receipt"
+  ],
+  "passedChecks": [
+    "x402-receipt-payment-ref-bound",
+    "ap2-authority-ref-bound",
+    "service-result-pass-required",
+    "required-eval-gate-pass-required",
+    "reputation-signals-after-receipt"
+  ],
+  "failedChecks": [],
+  "x402ReceiptEvidence": {
+    "direction": "spend",
+    "requiredObject": "PaymentRequired",
+    "signatureObject": "PaymentSignature",
+    "responseObject": "PaymentResponse",
+    "acceptedRailCount": 2,
+    "selectedRail": "solana",
+    "paymentRef": "tx:static-demo-settlement-ref",
+    "responseRef": "tx:static-demo-settlement-ref"
+  },
+  "authorityEvidence": {
+    "mandateId": "mandate:weather-demo-2026-07",
+    "authorizationRef": "mandate:weather-demo-2026-07",
+    "scope": "forecast_report only",
+    "maxAmount": "0.100000",
+    "expiresAt": "2026-07-31T00:00:00Z",
+    "revocationRef": "audit://mandates/weather-demo/revoke",
+    "auditRef": "audit://mandates/weather-demo/events"
+  },
+  "serviceResultEvidence": {
+    "requestHash": "sha256:request-demo",
+    "responseHash": "sha256:response-demo",
+    "serviceResultStatus": "pass",
+    "requiredEvalGateStatus": "pass",
+    "emissionPolicy": "emit-after-payment-and-service-pass"
+  },
+  "reputationEvidence": {
+    "signals": [
+      "receipt_verified",
+      "payment_response_present",
+      "service_result_pass",
+      "required_eval_gate_pass"
+    ],
+    "requiredSignals": [
+      "receipt_verified",
+      "required_eval_gate_pass",
+      "service_result_pass"
+    ],
+    "disputeRef": "audit://receipts/weather-demo/disputes"
+  },
+  "runtimeExecutionAllowed": false,
+  "networkAccess": false,
+  "paymentAccess": false,
+  "mcpInvocation": false
+}
