@@ -26,7 +26,17 @@ The smallest useful prosumer product is not an agent marketplace. It is a guided
 - `examples/payment-agent.yaml` keeps x402, receipts, and reputation as metadata-only and flags live payment execution as unsupported.
 - invalid ADL examples produce a failed validation step and block dry-run/trace preview.
 
-Report-only exports currently point to Agent Spec, A2A Agent Card, and Agent Skills / `SKILL.md` compatibility commands. The plan does not call model providers, live runtimes, MCP servers, wallets, facilitators, payment rails, or external services.
+Report-only exports currently point to Agent Spec, A2A Agent Card, Agent Skills / `SKILL.md`, starter manifest, provider compatibility, and RAP bridge checks. The export step includes a `staticUiExportMatrix` so a local UI can render each target's command, readiness state, blockers, metadata-only sections, strict export command where one exists, and authoritative test file.
+
+Matrix readiness states are local/static only:
+
+- `report-ready` for deterministic report commands.
+- `metadata-only` when a target can display ReddiAgent semantics but cannot preserve or enforce them losslessly.
+- `blocked-before-generation` for starter code review manifests that must not write files yet.
+- `blocked-by-validation` when invalid ADL blocks export review.
+- `not-applicable` when RAP bridge evidence is irrelevant for an ADL without payment, receipt, or reputation metadata.
+
+The plan does not call model providers, live runtimes, MCP servers, wallets, facilitators, payment rails, or external services.
 
 ## Local Validation UI Prototype
 
