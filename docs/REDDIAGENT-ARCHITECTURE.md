@@ -96,6 +96,8 @@ Payment and reputation are extensions, not mandatory core dependencies. `specs/P
 
 Every major box in the diagram should leave deterministic evidence in docs, specs, tests, reports, or fixtures. Current static evidence is collected under `tests/*-REPORT.md`, `tests/smoke-validation.sh`, and focused unit tests.
 
+The ADR register at `docs/adr/0000-adr-index.md` records the durable decisions behind ADL canonicality, report-only compatibility, harness-first product design, MCP/payment fail-closed boundaries, receipts/reputation, provider adapters, and Vercel eve export posture.
+
 Default guardrails for this docs lane:
 
 - no live runtime activation;
@@ -110,6 +112,7 @@ Mainnet deployment or runs remain explicitly unapproved.
 ## Canonical References
 
 - `docs/REDDIAGENT-VISION-ROADMAP.md`
+- `docs/adr/0000-adr-index.md`
 - `docs/ARCHITECTURE-THESIS.md`
 - `specs/DOMAIN-MODEL-v0.1.md`
 - `specs/ADL-v0.1.md`
