@@ -65,7 +65,7 @@ Issue #206 turns the repo's accumulated technical work into a protected, human-r
 ## Current Sequencing
 
 1. **Vision and roadmap spine:** this document, linked from the repo navigation surfaces.
-2. **Architecture diagram and explainer:** high-level view of ADL, harness, compatibility reports, runtime boundaries, and RAP bridge.
+2. **Architecture diagram and explainer:** `docs/REDDIAGENT-ARCHITECTURE.md` gives the high-level view of ADL, harness, compatibility reports, runtime boundaries, and RAP bridge.
 3. **ADR register:** initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
 4. **Protected docs package:** a publishable site bundle prepared for review, but not publicly deployed until Nissan approves location and access controls.
 5. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`.
@@ -88,6 +88,7 @@ Start with this spine, then move outward:
 
 - `docs/PRODUCT-PRINCIPLES.md` for product rules.
 - `docs/POSITIONING-MEMO.md` for short positioning.
+- `docs/REDDIAGENT-ARCHITECTURE.md` for the high-level system diagram and explainer.
 - `docs/ARCHITECTURE-THESIS.md` for the model/harness/economic-layer separation.
 - `specs/ADL-v0.1.md` for the canonical definition language.
 - `docs/PROSUMER-MVP.md` and `docs/BUILDER-JOURNEY.md` for the builder flow.
