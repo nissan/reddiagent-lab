@@ -1,0 +1,261 @@
+{
+  "mode": "provider-backed-sandbox-prototype",
+  "status": "pass",
+  "issue": 222,
+  "providerAdapter": "local-fake-provider",
+  "costEvidence": {
+    "hostedProviderCalls": 0,
+    "externalSpendUsd": 0,
+    "simulatedEstimatedCostUsd": 0.0001,
+    "pricingModel": "fake local USD 0.000001 per token for deterministic budget evidence"
+  },
+  "boundaries": {
+    "providerSandboxExecutionAllowed": true,
+    "hostedProviderModelApiCalls": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "externalSpendUsd": 0
+  },
+  "scenarios": [
+    {
+      "id": "simple-agent-fake-provider-pass",
+      "status": "pass",
+      "adl": "examples/simple-agent.yaml",
+      "provider": {
+        "adapter": "local-fake-provider",
+        "provider": "fake-openai",
+        "model": "fake-openai/gpt-sandbox-mini",
+        "hostedProviderCall": false,
+        "credentialAccess": false,
+        "networkAccess": false
+      },
+      "prompt": {
+        "task": "Explain what ReddiAgent can safely prove in this sandbox.",
+        "hash": "d814a05e107326450fa8bad56d5502837b14c8bea3cfae0ba41f5f3ada31778e",
+        "preview": "Agent: simple-research-helper\nInstructions: Answer clearly. Say when you are uncertain. Do not use external tools.\nPolic"
+      },
+      "usage": {
+        "promptTokens": 30,
+        "completionTokens": 20,
+        "totalTokens": 50,
+        "estimatedCostUsd": 5e-05
+      },
+      "budget": {
+        "limits": {
+          "maxPromptTokens": 80,
+          "maxCompletionTokens": 80,
+          "maxTotalTokens": 160,
+          "maxUsd": 0.001
+        },
+        "status": "pass",
+        "checks": [
+          {
+            "id": "prompt-token-budget",
+            "status": "pass",
+            "actual": 30,
+            "limit": 80
+          },
+          {
+            "id": "completion-token-budget",
+            "status": "pass",
+            "actual": 20,
+            "limit": 80
+          },
+          {
+            "id": "total-token-budget",
+            "status": "pass",
+            "actual": 50,
+            "limit": 160
+          },
+          {
+            "id": "estimated-cost-budget",
+            "status": "pass",
+            "actual": 5e-05,
+            "limit": 0.001
+          }
+        ]
+      },
+      "evals": {
+        "status": "pass",
+        "results": [
+          {
+            "id": "has-answer",
+            "type": "output-check",
+            "status": "pass",
+            "message": "response includes an answer or uncertainty marker",
+            "retryable": false
+          }
+        ]
+      },
+      "completion": {
+        "status": "pass",
+        "reason": "provider sandbox completed and required budget/eval gates passed"
+      },
+      "trace": [
+        {
+          "event": "provider.sandbox_started",
+          "traceId": "021b9b6bdaa389a0",
+          "agent": "simple-research-helper",
+          "provider": "fake-openai",
+          "model": "fake-openai/gpt-sandbox-mini"
+        },
+        {
+          "event": "provider.prompt_prepared",
+          "traceId": "021b9b6bdaa389a0",
+          "promptHash": "d814a05e107326450fa8bad56d5502837b14c8bea3cfae0ba41f5f3ada31778e",
+          "promptBytes": 231,
+          "promptPreview": "Agent: simple-research-helper\nInstructions: Answer clearly. Say when you are uncertain. Do not use external tools.\nPolic"
+        },
+        {
+          "event": "provider.response_received",
+          "traceId": "021b9b6bdaa389a0",
+          "responseHash": "b61f7f420dc6904de39e9c830612710f4a910162b00f2ad1af9f54617cb93f42",
+          "promptTokens": 30,
+          "completionTokens": 20,
+          "totalTokens": 50,
+          "estimatedCostUsd": 5e-05
+        },
+        {
+          "event": "budget.checked",
+          "traceId": "021b9b6bdaa389a0",
+          "status": "pass",
+          "failedCount": 0
+        },
+        {
+          "event": "eval.checked",
+          "traceId": "021b9b6bdaa389a0",
+          "status": "pass",
+          "failedCount": 0
+        },
+        {
+          "event": "provider.sandbox_completed",
+          "traceId": "021b9b6bdaa389a0",
+          "status": "pass",
+          "reason": "provider sandbox completed and required budget/eval gates passed"
+        }
+      ]
+    },
+    {
+      "id": "simple-agent-fake-provider-budget-fail",
+      "status": "pass",
+      "adl": "examples/simple-agent.yaml",
+      "provider": {
+        "adapter": "local-fake-provider",
+        "provider": "fake-openai",
+        "model": "fake-openai/gpt-sandbox-mini",
+        "hostedProviderCall": false,
+        "credentialAccess": false,
+        "networkAccess": false
+      },
+      "prompt": {
+        "task": "Explain what ReddiAgent can safely prove in this sandbox.",
+        "hash": "d814a05e107326450fa8bad56d5502837b14c8bea3cfae0ba41f5f3ada31778e",
+        "preview": "Agent: simple-research-helper\nInstructions: Answer clearly. Say when you are uncertain. Do not use external tools.\nPolic"
+      },
+      "usage": {
+        "promptTokens": 30,
+        "completionTokens": 20,
+        "totalTokens": 50,
+        "estimatedCostUsd": 5e-05
+      },
+      "budget": {
+        "limits": {
+          "maxPromptTokens": 8,
+          "maxCompletionTokens": 8,
+          "maxTotalTokens": 12,
+          "maxUsd": 1e-05
+        },
+        "status": "fail",
+        "checks": [
+          {
+            "id": "prompt-token-budget",
+            "status": "fail",
+            "actual": 30,
+            "limit": 8
+          },
+          {
+            "id": "completion-token-budget",
+            "status": "fail",
+            "actual": 20,
+            "limit": 8
+          },
+          {
+            "id": "total-token-budget",
+            "status": "fail",
+            "actual": 50,
+            "limit": 12
+          },
+          {
+            "id": "estimated-cost-budget",
+            "status": "fail",
+            "actual": 5e-05,
+            "limit": 1e-05
+          }
+        ]
+      },
+      "evals": {
+        "status": "pass",
+        "results": [
+          {
+            "id": "has-answer",
+            "type": "output-check",
+            "status": "pass",
+            "message": "response includes an answer or uncertainty marker",
+            "retryable": false
+          }
+        ]
+      },
+      "completion": {
+        "status": "fail",
+        "reason": "provider sandbox completed but required budget/eval gates failed"
+      },
+      "trace": [
+        {
+          "event": "provider.sandbox_started",
+          "traceId": "9956431efd375d60",
+          "agent": "simple-research-helper",
+          "provider": "fake-openai",
+          "model": "fake-openai/gpt-sandbox-mini"
+        },
+        {
+          "event": "provider.prompt_prepared",
+          "traceId": "9956431efd375d60",
+          "promptHash": "d814a05e107326450fa8bad56d5502837b14c8bea3cfae0ba41f5f3ada31778e",
+          "promptBytes": 231,
+          "promptPreview": "Agent: simple-research-helper\nInstructions: Answer clearly. Say when you are uncertain. Do not use external tools.\nPolic"
+        },
+        {
+          "event": "provider.response_received",
+          "traceId": "9956431efd375d60",
+          "responseHash": "b61f7f420dc6904de39e9c830612710f4a910162b00f2ad1af9f54617cb93f42",
+          "promptTokens": 30,
+          "completionTokens": 20,
+          "totalTokens": 50,
+          "estimatedCostUsd": 5e-05
+        },
+        {
+          "event": "budget.checked",
+          "traceId": "9956431efd375d60",
+          "status": "fail",
+          "failedCount": 4
+        },
+        {
+          "event": "eval.checked",
+          "traceId": "9956431efd375d60",
+          "status": "pass",
+          "failedCount": 0
+        },
+        {
+          "event": "provider.sandbox_completed",
+          "traceId": "9956431efd375d60",
+          "status": "fail",
+          "reason": "provider sandbox completed but required budget/eval gates failed"
+        }
+      ]
+    }
+  ]
+}
