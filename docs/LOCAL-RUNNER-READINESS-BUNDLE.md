@@ -25,6 +25,7 @@ The local-python runner can currently prove:
 - static MCP readiness evidence traces for adapter shape, adapter fixture contract, adapter error semantics, adapter-result aggregation, source, server registry, capability policy, and completion status;
 - static local runner plugin declarations for deterministic local fixtures only.
 - bounded executable local runtime prototype evidence for simple/tool ADL examples and fail-closed unsafe fixtures.
+- bounded provider-backed sandbox prototype evidence for fake/local provider budget, eval, and trace gates.
 
 ## Evidence Inventory
 
@@ -47,6 +48,7 @@ The local-python runner can currently prove:
 | MCP readiness release checklist | `docs/MCP-READINESS-RELEASE-CHECKLIST.md` | Review-ready aggregate checklist keeps MCP evidence and boundaries together. |
 | Local runner plugin interface report | `tests/LOCAL-RUNNER-PLUGIN-INTERFACE-REPORT.md` | Static plugin declaration fixtures pass/fail fail-closed capability checks without loading or invoking plugins. |
 | Local executable runtime prototype report | `tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md` | Simple/tool examples execute locally with explicit traces; invalid/unsafe examples fail closed. |
+| Provider sandbox prototype report | `tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md` | Fake/local provider-backed scenarios record model, prompt, budget, eval, cost, and trace evidence with no hosted provider call. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -72,6 +74,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_release.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runner_plugin_interface.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runtime_prototype.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_provider_sandbox_prototype.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
