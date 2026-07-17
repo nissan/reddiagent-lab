@@ -57,6 +57,16 @@ def export_row(plan: dict, target: str) -> dict:
     return matches[0]
 
 
+def handoff_summary(plan: dict, kind: str) -> dict:
+    matches = [
+        item
+        for item in step(plan, "export")["staticUiHandoffSummaries"]
+        if item["kind"] == kind
+    ]
+    assert len(matches) == 1
+    return matches[0]
+
+
 def main() -> int:
     plans = run_plan(
         "examples/simple-agent.yaml",
@@ -124,6 +134,20 @@ def main() -> int:
         "planned:tests/test_eve_compatibility.py"
     )
     assert export_row(simple, "vercel-eve")["runtimeExecutionAllowed"] is False
+    assert [item["kind"] for item in step(simple, "export")["staticUiHandoffSummaries"]] == [
+        "rap-bridge",
+        "provider-adapter",
+    ]
+    assert handoff_summary(simple, "rap-bridge")["readiness"] == "report-ready"
+    assert handoff_summary(simple, "rap-bridge")["runtimeExecutionAllowed"] is False
+    assert handoff_summary(simple, "provider-adapter")["readiness"] == (
+        "blocked-before-codegen"
+    )
+    assert handoff_summary(simple, "provider-adapter")["summary"]["generationAllowed"] is False
+    assert "no MCP server resolution or invocation" in handoff_summary(
+        simple,
+        "provider-adapter",
+    )["blockedLiveActionWarnings"]
     assert_static_boundaries(simple)
 
     tool = by_agent["source-checker"]
@@ -228,6 +252,7 @@ def main() -> int:
     ]
     assert export_row(invalid_plan, "vercel-eve")["readiness"] == "blocked-by-validation"
     assert export_row(invalid_plan, "vercel-eve")["blockedBy"] == ["validation_failed"]
+    assert handoff_summary(invalid_plan, "provider-adapter")["networkAccess"] is False
     assert invalid_plan["runtimeExecutionAllowed"] is False
     assert invalid_plan["networkAccess"] is False
     assert invalid_plan["paymentAccess"] is False
