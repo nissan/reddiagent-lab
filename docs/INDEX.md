@@ -8,6 +8,7 @@ _Loop 42. Anchor issue: #42._
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/OPEN-SPECS-EXPLAINER.md
+- docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md
 - docs/adr/0000-adr-index.md
 - docs/PROTECTED-DOCS-PACKAGE.md
 - docs/LOOP-PROTOCOL.md
@@ -20,6 +21,7 @@ _Loop 42. Anchor issue: #42._
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/OPEN-SPECS-EXPLAINER.md
+- docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md
 - docs/adr/0000-adr-index.md
 - docs/PROTECTED-DOCS-PACKAGE.md
 - docs/ARCHITECTURE-THESIS.md
