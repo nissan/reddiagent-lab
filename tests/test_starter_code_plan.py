@@ -14,6 +14,7 @@ PYTHON = sys.executable
 DRY_RUN_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-dry-run-file-manifest.json"
 TEMPLATE_CONTRACT_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-template-contracts.json"
 SAFETY_POLICY_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-safety-policy.json"
+PREVIEW_BUNDLE_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-preview-bundles.json"
 
 
 def run_plan(*paths: str) -> list[dict]:
@@ -70,6 +71,43 @@ def safety_policy_fixture(plans: list[dict]) -> dict:
     return {plan["source"]: safety_policy_summary(plan) for plan in plans}
 
 
+def preview_bundle_fixture(plans: list[dict]) -> dict:
+    return {plan["source"]: preview_bundle_summary(plan) for plan in plans}
+
+
+def preview_bundle_summary(plan: dict) -> dict:
+    bundle = plan["previewBundle"]
+    safety = bundle["safetyPolicyState"]
+    return {
+        "format": bundle["format"],
+        "source": bundle["source"],
+        "outputRoot": bundle["outputRoot"],
+        "bundleStatus": bundle["bundleStatus"],
+        "manifestOnly": bundle["manifestOnly"],
+        "validationStatus": bundle["validationStatus"],
+        "boundaryFlags": {
+            "runtimeExecutionAllowed": bundle["runtimeExecutionAllowed"],
+            "networkAccess": bundle["networkAccess"],
+            "paymentAccess": bundle["paymentAccess"],
+            "mcpInvocation": bundle["mcpInvocation"],
+            "writesFiles": bundle["writesFiles"],
+            "installsDependencies": bundle["installsDependencies"],
+        },
+        "plannedFileCount": len(bundle["plannedFilePreviews"]),
+        "plannedPaths": [item["path"] for item in bundle["plannedFilePreviews"]],
+        "templateContractCount": bundle["templateContractCount"],
+        "templateContractIds": bundle["templateContractIds"],
+        "blockedGateIds": bundle["blockedGateIds"],
+        "readyRequestId": safety["readyRequestId"],
+        "readyDecision": safety["readyDecision"],
+        "unsafeCount": safety["unsafeCount"],
+        "unsafeAllowed": safety["unsafeAllowed"],
+        "unsafePolicyIds": safety["unsafePolicyIds"],
+        "failClosed": bundle["failClosed"],
+        "previewNonGoalIds": bundle["previewNonGoalIds"],
+    }
+
+
 def safety_policy_summary(plan: dict) -> dict:
     policy = plan["starterSafetyPolicy"]
     decisions: dict[str, int] = {}
@@ -108,9 +146,11 @@ def main() -> int:
     expected_dry_run = json.loads(DRY_RUN_FIXTURE.read_text())
     expected_template_contracts = json.loads(TEMPLATE_CONTRACT_FIXTURE.read_text())
     expected_safety_policy = json.loads(SAFETY_POLICY_FIXTURE.read_text())
+    expected_preview_bundles = json.loads(PREVIEW_BUNDLE_FIXTURE.read_text())
     assert dry_run_fixture(plans) == expected_dry_run
     assert template_contract_fixture(plans) == expected_template_contracts
     assert safety_policy_fixture(plans) == expected_safety_policy
+    assert preview_bundle_fixture(plans) == expected_preview_bundles
     by_agent = {plan["agent"]: plan for plan in plans}
 
     simple = by_agent["simple-research-helper"]
@@ -136,6 +176,12 @@ def main() -> int:
     assert simple["starterSafetyPolicy"]["readyRequest"]["decision"] == "allow"
     assert len(simple["starterSafetyPolicy"]["unsafeRequests"]) == 8
     assert all(request["decision"] == "deny" for request in simple["starterSafetyPolicy"]["unsafeRequests"])
+    assert simple["previewBundle"]["bundleStatus"] == "ready-for-static-review"
+    assert simple["previewBundle"]["writesFiles"] is False
+    assert simple["previewBundle"]["installsDependencies"] is False
+    assert simple["previewBundle"]["safetyPolicyState"]["unsafeAllowed"] is False
+    assert simple["previewBundle"]["failClosed"]["unsafeRequestsDenied"] is True
+    assert simple["previewBundle"]["failClosed"]["liveClaimsAllowed"] is False
     assert "no-provider-model-local-execution" in simple["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "provider-runtime-review" in gate_ids(simple)
     assert_static_boundaries(simple)
@@ -150,9 +196,11 @@ def main() -> int:
     assert "starter/source-checker/fixtures/tools.json" in file_paths(tool)
     assert "starter/source-checker/tests/test_policy_eval_gates.py" in file_paths(tool)
     assert "starter.local_tool_fixtures" in template_ids(tool)
+    assert "starter.local_tool_fixtures" in tool["previewBundle"]["templateContractIds"]
     assert "harness.toolFixtures" in tool["templateContractFixture"]["requiredInputRefs"]
     assert "no-external-network-tool-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "no-provider-model-local-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
+    assert tool["previewBundle"]["safetyPolicyState"]["unsafeAllowed"] is False
     assert tool["metadataOnlyExtensions"] == []
     assert_static_boundaries(tool)
 
@@ -174,6 +222,8 @@ def main() -> int:
     for request in payment["starterSafetyPolicy"]["unsafeRequests"]:
         assert request["allowed"] is False
         assert "payment-rail-review" in request["blockedGateIds"]
+    assert "payment-rail-review" in payment["previewBundle"]["blockedGateIds"]
+    assert "wallet-payment-settlement" in payment["previewBundle"]["safetyPolicyState"]["unsafeRisks"]
     assert "no-wallet-payment-settlement-access" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "no-provider-model-local-execution" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
     assert_static_boundaries(payment)
@@ -194,6 +244,13 @@ def main() -> int:
     assert invalid_plan["starterSafetyPolicy"]["validationStatus"] == "fail"
     assert invalid_plan["starterSafetyPolicy"]["readyRequest"]["decision"] == "allow"
     assert len(invalid_plan["starterSafetyPolicy"]["unsafeRequests"]) == 8
+    assert invalid_plan["previewBundle"]["bundleStatus"] == "blocked-invalid-adl"
+    assert invalid_plan["previewBundle"]["plannedFilePreviews"] == []
+    assert invalid_plan["previewBundle"]["templateContractIds"] == []
+    assert invalid_plan["previewBundle"]["validationErrorCount"] > 0
+    assert invalid_plan["previewBundle"]["failClosed"]["invalidAdlBlocksPlannedFiles"] is True
+    assert invalid_plan["previewBundle"]["failClosed"]["unsafeRequestsDenied"] is True
+    assert invalid_plan["previewBundle"]["failClosed"]["liveClaimsAllowed"] is False
     assert "no-provider-model-local-execution" in invalid_plan["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "generator-implementation-review" in gate_ids(invalid_plan)
     assert_static_boundaries(invalid_plan)
