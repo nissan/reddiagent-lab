@@ -1,0 +1,131 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "scenarios": [
+    {
+      "id": "local-tool-runtime-rc-pass",
+      "kind": "positive",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "mainnetRequested": false,
+      "expectedStatus": "pass"
+    },
+    {
+      "id": "missing-enable-control-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "mainnetRequested": false,
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "missing-disable-control-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "mainnetRequested": false,
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "non-local-runtime-mode-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "devnet",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "mainnetRequested": false,
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "stale-readiness-evidence-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "staleReadinessReleaseId": "reddiagent-beta-stale",
+      "mainnetRequested": false,
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "missing-rollback-stop-evidence-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "missingRollbackStopEvidence": true,
+      "mainnetRequested": false,
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "mainnet-request-denied",
+      "kind": "negative",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeScenarioId": "tool-agent-execute-tools",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "mainnetRequested": true,
+      "expectedStatus": "fail"
+    }
+  ]
+}
