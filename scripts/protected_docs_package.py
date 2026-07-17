@@ -67,6 +67,7 @@ CONTENT_SECTIONS = [
             "docs/INDEX.md",
             "docs/REDDIAGENT-VISION-ROADMAP.md",
             "docs/OPEN-SPECS-EXPLAINER.md",
+            "docs/OPEN-SPEC-REVIEW-INTAKE.md",
             "docs/PROTECTED-DOCS-PACKAGE.md",
         ],
     },

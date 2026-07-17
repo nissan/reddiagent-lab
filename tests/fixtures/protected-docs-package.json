@@ -44,22 +44,22 @@
       "id": "entrypoints",
       "label": "Entrypoints",
       "status": "ready",
-      "requiredCount": 5,
+      "requiredCount": 6,
       "missing": [],
       "files": [
         {
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "3785371c6de8fa9a0c8a59d820bce7d25980c0cbe556fe2caa4cfd2eaf2f115c",
-          "bytes": 3034
+          "sha256": "20f60e64b1cb1c2464d369dc8302867a9f209e4b5be6522f55fc8339f5e9dce3",
+          "bytes": 3152
         },
         {
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "88a30c6897101a1942ed235930fbc0c4cb641a4391772c4471598636e5872720",
-          "bytes": 3408
+          "sha256": "db38cdafb782da5233bbe795476ac3746cac5f55417e894604cf7ac2bf17522f",
+          "bytes": 3476
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
@@ -72,8 +72,15 @@
           "path": "docs/OPEN-SPECS-EXPLAINER.md",
           "exists": true,
           "kind": "file",
-          "sha256": "1f1cb9ae08e272ced9344c3f97f5e4701fd00b9e03e5d07599b388fb1efbceda",
-          "bytes": 12217
+          "sha256": "07a4bace115915e10a0a5f3a2ae9969598c904d67c55428cc847ec0a5467705f",
+          "bytes": 13037
+        },
+        {
+          "path": "docs/OPEN-SPEC-REVIEW-INTAKE.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "14bd3eb923a63133a47a743122054fec7a5a7af4eafe6672f2a58fddda40ec53",
+          "bytes": 4884
         },
         {
           "path": "docs/PROTECTED-DOCS-PACKAGE.md",

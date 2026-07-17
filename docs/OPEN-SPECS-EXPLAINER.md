@@ -209,6 +209,12 @@ Reviewers should focus on these questions:
 - Are stable, experimental, report-only, executable-prototype, and future-work states clear?
 - Are devnet/prototype paths bounded, and is mainnet still excluded?
 
+## Review Submission and Intake
+
+Use `docs/OPEN-SPEC-REVIEW-INTAKE.md` and `.github/ISSUE_TEMPLATE/open-spec-review.md` to submit structured feedback. The template asks for reviewer role, target spec/mapping/example/evidence file, problem or improvement, suggested acceptance criteria, and a state classification: stable, experimental, report-only, executable prototype, or future work.
+
+Docs-only corrections should stay tied to #206 and the exact file or section they improve. Feedback that asks for runnable behavior, provider-backed sandboxes, live MCP, devnet payment handoff, credentials, deployment, observability, or beta operations should be separated into the #220 prototype/beta track rather than mixed into documentation-only fixes. Mainnet requests remain future work until fresh explicit approval exists.
+
 ## Guardrails for This Guide
 
 This guide is documentation only. It does not publish externally, deploy a docs site, select or store a password, call provider APIs, resolve or invoke live MCP servers, access credentials, touch wallets, run devnet/mainnet transactions, or activate runtime services.
