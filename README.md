@@ -2,7 +2,7 @@
 
 ReddiAgent Lab is the research and design workspace for helping prosumers understand, define, build, run, and improve AI agents.
 
-For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md`. For the high-level system view, read `docs/REDDIAGENT-ARCHITECTURE.md`. For durable architectural decisions, use the ADR register at `docs/adr/0000-adr-index.md`. For the protected publishable docs package plan, use `docs/PROTECTED-DOCS-PACKAGE.md`.
+For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md`. For the high-level system view, read `docs/REDDIAGENT-ARCHITECTURE.md`. For a builder/reviewer guide to the open specs, use `docs/OPEN-SPECS-EXPLAINER.md`. For durable architectural decisions, use the ADR register at `docs/adr/0000-adr-index.md`. For the protected publishable docs package plan, use `docs/PROTECTED-DOCS-PACKAGE.md`.
 
 It is adjacent to Reddi Agent Protocol, but intentionally separate:
 

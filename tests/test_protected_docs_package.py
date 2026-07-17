@@ -75,6 +75,7 @@ def main() -> int:
         "README.md",
         "docs/INDEX.md",
         "docs/REDDIAGENT-VISION-ROADMAP.md",
+        "docs/OPEN-SPECS-EXPLAINER.md",
         "docs/PROTECTED-DOCS-PACKAGE.md",
     ]
     assert "docs/REDDIAGENT-ARCHITECTURE.md" in paths(section(payload, "architecture"))
