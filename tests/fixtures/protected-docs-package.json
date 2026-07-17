@@ -51,15 +51,15 @@
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "dc32e18cc0303817c25ad60d254e1245e18d6e9512d59fa0013e7807a73e30ac",
-          "bytes": 2926
+          "sha256": "3785371c6de8fa9a0c8a59d820bce7d25980c0cbe556fe2caa4cfd2eaf2f115c",
+          "bytes": 3034
         },
         {
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "0503db8e70079d2febec2ea14fe27392dea4504a8d4f25e6dcaa6574812e6399",
-          "bytes": 3280
+          "sha256": "88a30c6897101a1942ed235930fbc0c4cb641a4391772c4471598636e5872720",
+          "bytes": 3408
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
