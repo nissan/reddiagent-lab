@@ -104,6 +104,57 @@
       "no-sensitive-payloads"
     ]
   },
+  "examples/mcp-readonly-agent.yaml": {
+    "format": "starter-code-template-contract-fixture",
+    "source": "examples/mcp-readonly-agent.yaml",
+    "outputRoot": "starter/mcp-readonly-docs",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "templateCount": 6,
+    "templateIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "plannedPaths": [
+      "starter/mcp-readonly-docs/README.md",
+      "starter/mcp-readonly-docs/agent.adl.yaml",
+      "starter/mcp-readonly-docs/src/agent_harness.py",
+      "starter/mcp-readonly-docs/tests/test_static_contract.py",
+      "starter/mcp-readonly-docs/.env.example",
+      "starter/mcp-readonly-docs/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "requiredInputRefs": [
+      "<source-adl>",
+      "blockedGatesBeforeGeneration",
+      "boundaryFlags",
+      "harness.evalGates",
+      "harness.policies",
+      "harness.runtime",
+      "harness.tools",
+      "metadata.name",
+      "model",
+      "model.capability",
+      "validation.status"
+    ],
+    "contractNonGoalIds": [
+      "no-template-rendering",
+      "no-file-writes",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
   "examples/payment-agent.yaml": {
     "format": "starter-code-template-contract-fixture",
     "source": "examples/payment-agent.yaml",

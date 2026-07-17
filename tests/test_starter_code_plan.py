@@ -15,6 +15,7 @@ DRY_RUN_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-dry-run-file-manif
 TEMPLATE_CONTRACT_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-template-contracts.json"
 SAFETY_POLICY_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-safety-policy.json"
 PREVIEW_BUNDLE_FIXTURE = ROOT / "tests" / "fixtures" / "starter-code-preview-bundles.json"
+EVE_SKELETON_FIXTURE = ROOT / "tests" / "fixtures" / "eve-project-skeleton-dry-run-manifests.json"
 
 
 def run_plan(*paths: str) -> list[dict]:
@@ -73,6 +74,10 @@ def safety_policy_fixture(plans: list[dict]) -> dict:
 
 def preview_bundle_fixture(plans: list[dict]) -> dict:
     return {plan["source"]: preview_bundle_summary(plan) for plan in plans}
+
+
+def eve_skeleton_fixture(plans: list[dict]) -> dict:
+    return {plan["source"]: plan["eveProjectSkeletonDryRunManifest"] for plan in plans}
 
 
 def preview_bundle_summary(plan: dict) -> dict:
@@ -141,16 +146,19 @@ def main() -> int:
     plans = run_plan(
         "examples/simple-agent.yaml",
         "examples/tool-agent.yaml",
+        "examples/mcp-readonly-agent.yaml",
         "examples/payment-agent.yaml",
     )
     expected_dry_run = json.loads(DRY_RUN_FIXTURE.read_text())
     expected_template_contracts = json.loads(TEMPLATE_CONTRACT_FIXTURE.read_text())
     expected_safety_policy = json.loads(SAFETY_POLICY_FIXTURE.read_text())
     expected_preview_bundles = json.loads(PREVIEW_BUNDLE_FIXTURE.read_text())
+    expected_eve_skeleton = json.loads(EVE_SKELETON_FIXTURE.read_text())
     assert dry_run_fixture(plans) == expected_dry_run
     assert template_contract_fixture(plans) == expected_template_contracts
     assert safety_policy_fixture(plans) == expected_safety_policy
     assert preview_bundle_fixture(plans) == expected_preview_bundles
+    assert eve_skeleton_fixture(plans) == expected_eve_skeleton
     by_agent = {plan["agent"]: plan for plan in plans}
 
     simple = by_agent["simple-research-helper"]
@@ -182,6 +190,16 @@ def main() -> int:
     assert simple["previewBundle"]["safetyPolicyState"]["unsafeAllowed"] is False
     assert simple["previewBundle"]["failClosed"]["unsafeRequestsDenied"] is True
     assert simple["previewBundle"]["failClosed"]["liveClaimsAllowed"] is False
+    assert simple["eveProjectSkeletonDryRunManifest"]["paths"] == [
+        "eve/simple-research-helper/agent/instructions.md",
+        "eve/simple-research-helper/agent/agent.ts",
+        "eve/simple-research-helper/agent/reddiagent.metadata.json",
+        "eve/simple-research-helper/evals/has_answer.eval.ts",
+    ]
+    assert simple["eveProjectSkeletonDryRunManifest"]["writesFiles"] is False
+    assert simple["eveProjectSkeletonDryRunManifest"]["installsDependencies"] is False
+    assert simple["eveProjectSkeletonDryRunManifest"]["deploymentAllowed"] is False
+    assert "eve-typescript-generation-review" in simple["eveProjectSkeletonDryRunManifest"]["blockedGateIds"]
     assert "no-provider-model-local-execution" in simple["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "provider-runtime-review" in gate_ids(simple)
     assert_static_boundaries(simple)
@@ -200,9 +218,25 @@ def main() -> int:
     assert "harness.toolFixtures" in tool["templateContractFixture"]["requiredInputRefs"]
     assert "no-external-network-tool-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "no-provider-model-local-execution" in tool["starterSafetyPolicy"]["policyNonGoalIds"]
+    assert "eve/source-checker/agent/tools/search_docs.ts" in tool["eveProjectSkeletonDryRunManifest"]["paths"]
+    assert any(
+        slot["slot"] == "agent/tools/" and slot["planned"] is True
+        for slot in tool["eveProjectSkeletonDryRunManifest"]["slotSummary"]
+    )
     assert tool["previewBundle"]["safetyPolicyState"]["unsafeAllowed"] is False
     assert tool["metadataOnlyExtensions"] == []
     assert_static_boundaries(tool)
+
+    mcp = by_agent["mcp-readonly-docs"]
+    assert "mcp_runtime_invocation" in mcp["unsupportedFeatures"]
+    assert "mcp-resolution-review" in gate_ids(mcp)
+    assert "eve/mcp-readonly-docs/agent/connections/docs_search.ts" in mcp["eveProjectSkeletonDryRunManifest"]["paths"]
+    assert any(
+        slot["slot"] == "agent/connections/" and slot["planned"] is True
+        for slot in mcp["eveProjectSkeletonDryRunManifest"]["slotSummary"]
+    )
+    assert mcp["eveProjectSkeletonDryRunManifest"]["mcpInvocation"] is False
+    assert_static_boundaries(mcp)
 
     payment = by_agent["paid-specialist-researcher"]
     assert "live_payment_execution" in payment["unsupportedFeatures"]
@@ -223,6 +257,9 @@ def main() -> int:
         assert request["allowed"] is False
         assert "payment-rail-review" in request["blockedGateIds"]
     assert "payment-rail-review" in payment["previewBundle"]["blockedGateIds"]
+    assert "eve/paid-specialist-researcher/agent/tools/fetch_approved_url.ts" in payment["eveProjectSkeletonDryRunManifest"]["paths"]
+    assert payment["eveProjectSkeletonDryRunManifest"]["paymentAccess"] is False
+    assert payment["eveProjectSkeletonDryRunManifest"]["deploymentAllowed"] is False
     assert "wallet-payment-settlement" in payment["previewBundle"]["safetyPolicyState"]["unsafeRisks"]
     assert "no-wallet-payment-settlement-access" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
     assert "no-provider-model-local-execution" in payment["starterSafetyPolicy"]["policyNonGoalIds"]
@@ -236,6 +273,12 @@ def main() -> int:
     assert invalid_plan["plannedFiles"] == []
     assert invalid_plan["dryRunFileManifest"]["fileCount"] == 0
     assert invalid_plan["dryRunFileManifest"]["paths"] == []
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["paths"] == []
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["fileCount"] == 0
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["validationStatus"] == "fail"
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["writesFiles"] is False
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["installsDependencies"] is False
+    assert invalid_plan["eveProjectSkeletonDryRunManifest"]["deploymentAllowed"] is False
     assert invalid_plan["dryRunFileManifest"]["validationStatus"] == "fail"
     assert invalid_plan["templateContracts"] == []
     assert invalid_plan["templateContractFixture"]["templateCount"] == 0
