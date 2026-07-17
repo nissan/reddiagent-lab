@@ -40,6 +40,6 @@ The skeleton does not call model providers, live runtimes, MCP servers, wallets,
 - `examples/tool-agent.yaml` uses `--execute-tools --fail-on-required-gate` and previews `networkAccess=false` / `paymentAccess=false`.
 - Invalid ADL examples keep dry-run and trace steps blocked.
 - `staticUiExportMatrix` pins seven report-only/export targets with command, strict export command where applicable, authoritative check, blockers, metadata-only sections, and boundary flags.
-- Vercel eve currently appears as a planned static report target, blocked by `eve_compatibility_report_not_implemented`, so Prosumer Builder can show the lane without implying runtime support.
+- Vercel eve appears as a static metadata-only report target with `tests/test_eve_compatibility.py` as the authoritative check; runtime, network, payment, MCP, and deployment remain blocked.
 - The HTML fixture embeds the same plan JSON for simple/tool/payment examples plus an invalid blocked-export fixture without requiring a dev server, browser automation, network access, provider calls, MCP invocation, runtime activation, or payment access.
 - The blocked-export UI fixture pins invalid ADL validation blocks, metadata-only export rows, starter-manifest pre-generation blocks, authoritative checks, static guardrail reasons, and boundary flags for report-only UI coverage.
