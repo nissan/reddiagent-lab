@@ -36,9 +36,9 @@ def main() -> int:
     assert report["status"] == "pass"
     assert report["findings"] == []
     assert report["summary"] == {
-        "failClosedScenarios": 4,
+        "failClosedScenarios": 5,
         "mainnetApproved": False,
-        "negativeScenarios": 4,
+        "negativeScenarios": 5,
         "positiveScenarios": 1,
     }
     assert report["boundaries"] == {
@@ -55,6 +55,10 @@ def main() -> int:
     results = {result["id"]: result for result in report["results"]}
     assert results["local-operator-control-drill"]["completionStatus"] == "pass"
     assert results["local-operator-control-drill"]["enabledRuntimePath"] == "local-runtime-prototype"
+    assert results["missing-disable-control-denied"]["reason"] == "operator-control-missing"
+    missing_disable_event = results["missing-disable-control-denied"]["traceEvents"][-1]
+    assert missing_disable_event["missingControls"] == ["disable-runtime-path"]
+    assert missing_disable_event["policyResults"]["requiredControlsPresent"] is False
     assert results["mainnet-enable-denied"]["reason"] == "mainnet-not-approved"
     assert results["mainnet-enable-denied"]["failClosed"] is True
     assert results["rollback-stop-missing"]["reason"] == "rollback-stop-not-verified"
@@ -62,6 +66,19 @@ def main() -> int:
     assert results["privacy-payload-denied"]["reason"] == "sensitive-payload-denied"
     all_events = {event["event"] for result in report["results"] for event in result["traceEvents"]}
     assert set(report["requiredEvents"]) <= all_events
+    required_trace_fields = set(report["requiredTraceFields"])
+    for result in report["results"]:
+        for trace_event in result["traceEvents"]:
+            assert required_trace_fields <= set(trace_event), trace_event
+            assert trace_event["releaseId"] == report["releaseId"]
+            assert trace_event["operatorId"] == "operator://local-beta"
+            assert trace_event["mainnetAllowed"] is False
+            assert trace_event["privacyRedactions"]["rawPromptLogging"] == "redacted"
+            assert "costEstimate" in trace_event
+            assert "policyResults" in trace_event
+            assert "evalResults" in trace_event
+    privacy_event = results["privacy-payload-denied"]["traceEvents"][-1]
+    assert privacy_event["privacyRedactions"]["redactedFields"] == ["rawPrompt"]
 
     unsafe = json.loads(SCENARIOS.read_text())
     unsafe["approvals"]["mainnetApproved"] = True
