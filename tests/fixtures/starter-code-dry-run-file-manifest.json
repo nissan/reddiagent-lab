@@ -66,6 +66,40 @@
       "no-sensitive-payloads"
     ]
   },
+  "examples/mcp-readonly-agent.yaml": {
+    "format": "starter-code-dry-run-file-manifest-fixture",
+    "source": "examples/mcp-readonly-agent.yaml",
+    "outputRoot": "starter/mcp-readonly-docs",
+    "manifestOnly": true,
+    "writesFiles": false,
+    "validationStatus": "pass",
+    "fileCount": 6,
+    "paths": [
+      "starter/mcp-readonly-docs/README.md",
+      "starter/mcp-readonly-docs/agent.adl.yaml",
+      "starter/mcp-readonly-docs/src/agent_harness.py",
+      "starter/mcp-readonly-docs/tests/test_static_contract.py",
+      "starter/mcp-readonly-docs/.env.example",
+      "starter/mcp-readonly-docs/tests/test_policy_eval_gates.py"
+    ],
+    "statusCounts": {
+      "review-only": 2,
+      "placeholder-only": 3,
+      "withheld": 1
+    },
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review",
+      "mcp-resolution-review"
+    ],
+    "nonGoalIds": [
+      "no-file-writes",
+      "no-dependency-install",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
   "examples/payment-agent.yaml": {
     "format": "starter-code-dry-run-file-manifest-fixture",
     "source": "examples/payment-agent.yaml",

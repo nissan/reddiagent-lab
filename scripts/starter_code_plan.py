@@ -17,6 +17,7 @@ SCHEMA_PATH = ROOT / "specs" / "ADL-v0.1.schema.json"
 DEFAULT_EXAMPLES = [
     ROOT / "examples" / "simple-agent.yaml",
     ROOT / "examples" / "tool-agent.yaml",
+    ROOT / "examples" / "mcp-readonly-agent.yaml",
     ROOT / "examples" / "payment-agent.yaml",
 ]
 BOUNDARY_FLAGS = {
@@ -26,6 +27,10 @@ BOUNDARY_FLAGS = {
     "mcpInvocation": False,
     "writesFiles": False,
     "installsDependencies": False,
+}
+EVE_BOUNDARY_FLAGS = {
+    **BOUNDARY_FLAGS,
+    "deploymentAllowed": False,
 }
 BASE_TEMPLATE_CONTRACTS = [
     {
@@ -527,6 +532,163 @@ def dry_run_file_manifest(
     }
 
 
+def eve_snake(value: str | None) -> str:
+    if not value:
+        return "item"
+    slug = "".join(char if char.isalnum() else "_" for char in value.lower()).strip("_")
+    return slug or "item"
+
+
+def eve_project_skeleton_files(agent_slug: str, doc: dict) -> list[dict]:
+    harness = doc.get("harness") or {}
+    files = [
+        {
+            "path": f"eve/{agent_slug}/agent/instructions.md",
+            "eveSlot": "agent/instructions.md",
+            "source": "harness.instructions.inline"
+            if (harness.get("instructions") or {}).get("inline")
+            else "harness.instructions.path",
+            "status": "static-content-plan",
+        },
+        {
+            "path": f"eve/{agent_slug}/agent/agent.ts",
+            "eveSlot": "agent/agent.ts",
+            "source": "model + static boundary metadata",
+            "status": "typescript-generation-blocked",
+        },
+        {
+            "path": f"eve/{agent_slug}/agent/reddiagent.metadata.json",
+            "eveSlot": "agent/reddiagent.metadata.json",
+            "source": "ReddiAgent metadata-only sections",
+            "status": "metadata-only",
+        },
+    ]
+    for tool in harness.get("tools", []) or []:
+        tool_id = tool.get("id") or tool.get("toolName") or "tool"
+        if tool.get("type") == "mcp":
+            files.append(
+                {
+                    "path": f"eve/{agent_slug}/agent/connections/{eve_snake(tool_id)}.ts",
+                    "eveSlot": "agent/connections/",
+                    "source": f"harness.tools.{tool_id}",
+                    "status": "metadata-only",
+                    "unsupportedFeature": "mcp_runtime_invocation",
+                }
+            )
+        else:
+            files.append(
+                {
+                    "path": f"eve/{agent_slug}/agent/tools/{eve_snake(tool_id)}.ts",
+                    "eveSlot": "agent/tools/",
+                    "source": f"harness.tools.{tool_id}",
+                    "status": "static-stub-plan",
+                }
+            )
+    for gate in harness.get("evalGates", []) or []:
+        gate_id = gate.get("id") or "eval"
+        files.append(
+            {
+                "path": f"eve/{agent_slug}/evals/{eve_snake(gate_id)}.eval.ts",
+                "eveSlot": "evals/",
+                "source": f"harness.evalGates.{gate_id}",
+                "status": "static-eval-plan",
+            }
+        )
+    return files
+
+
+def eve_project_skeleton_dry_run_manifest(
+    source: Path,
+    agent_slug: str,
+    doc: dict,
+    validation_status: str,
+    errors: list[str],
+) -> dict:
+    harness = doc.get("harness") or {}
+    files = [] if errors else eve_project_skeleton_files(agent_slug, doc)
+    status_counts: dict[str, int] = {}
+    for item in files:
+        status = item["status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+    has_function_tools = any((tool.get("type") != "mcp") for tool in harness.get("tools", []) or [])
+    has_mcp_tools = any((tool.get("type") == "mcp") for tool in harness.get("tools", []) or [])
+    return {
+        "format": "eve-project-skeleton-dry-run-manifest-fixture",
+        "issue": 203,
+        "source": display_path(source),
+        "outputRoot": f"eve/{agent_slug}",
+        "manifestOnly": True,
+        "validationStatus": validation_status,
+        **EVE_BOUNDARY_FLAGS,
+        "fileCount": len(files),
+        "paths": [item["path"] for item in files],
+        "statusCounts": status_counts,
+        "slotSummary": [
+            {
+                "slot": "agent/instructions.md",
+                "planned": validation_status == "pass",
+                "source": "harness.instructions",
+            },
+            {
+                "slot": "agent/tools/",
+                "planned": validation_status == "pass" and has_function_tools,
+                "source": "harness.tools[type=function]",
+            },
+            {
+                "slot": "agent/skills/",
+                "planned": False,
+                "source": None,
+                "reason": "ADL v0.1 has no native eve skills package source.",
+            },
+            {
+                "slot": "agent/connections/",
+                "planned": validation_status == "pass" and has_mcp_tools,
+                "source": "harness.tools[type=mcp]",
+            },
+            {
+                "slot": "agent/schedules/",
+                "planned": False,
+                "source": None,
+                "reason": "ADL v0.1 has no schedule declaration source.",
+            },
+            {
+                "slot": "evals/",
+                "planned": validation_status == "pass" and bool(harness.get("evalGates")),
+                "source": "harness.evalGates",
+            },
+        ],
+        "blockedGateIds": [
+            "eve-typescript-generation-review",
+            "eve-dependency-install-review",
+            "eve-deployment-review",
+        ],
+        "blockedGatesBeforeGeneration": [
+            {
+                "id": "eve-typescript-generation-review",
+                "status": "required",
+                "reason": "Runnable eve TypeScript generation requires a separate reviewed implementation lane.",
+            },
+            {
+                "id": "eve-dependency-install-review",
+                "status": "required",
+                "reason": "No eve package manager dependencies are installed in dry-run manifest mode.",
+            },
+            {
+                "id": "eve-deployment-review",
+                "status": "required",
+                "reason": "No eve dev server, deployment, or public publishing is allowed from this fixture.",
+            },
+        ],
+        "nonGoalIds": [
+            "no-eve-project-file-writes",
+            "no-eve-typescript-generation",
+            "no-eve-dependency-install",
+            "no-eve-dev-server-or-deployment",
+            "no-provider-model-mcp-payment-calls",
+        ],
+    }
+
+
 def plan_for(path: Path) -> dict:
     doc = read_adl(path)
     errors = schema_errors(doc)
@@ -570,6 +732,13 @@ def plan_for(path: Path) -> dict:
         },
         "plannedFiles": planned,
         "dryRunFileManifest": dry_run_file_manifest(path, agent_slug, planned, gates, validation_status),
+        "eveProjectSkeletonDryRunManifest": eve_project_skeleton_dry_run_manifest(
+            path,
+            agent_slug,
+            doc,
+            validation_status,
+            errors,
+        ),
         "templateContracts": contracts,
         "templateContractFixture": template_contract_fixture(path, agent_slug, contracts, validation_status),
         "starterSafetyPolicy": safety_policy,

@@ -1,0 +1,371 @@
+{
+  "examples/simple-agent.yaml": {
+    "format": "eve-project-skeleton-dry-run-manifest-fixture",
+    "issue": 203,
+    "source": "examples/simple-agent.yaml",
+    "outputRoot": "eve/simple-research-helper",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "writesFiles": false,
+    "installsDependencies": false,
+    "deploymentAllowed": false,
+    "fileCount": 4,
+    "paths": [
+      "eve/simple-research-helper/agent/instructions.md",
+      "eve/simple-research-helper/agent/agent.ts",
+      "eve/simple-research-helper/agent/reddiagent.metadata.json",
+      "eve/simple-research-helper/evals/has_answer.eval.ts"
+    ],
+    "statusCounts": {
+      "static-content-plan": 1,
+      "typescript-generation-blocked": 1,
+      "metadata-only": 1,
+      "static-eval-plan": 1
+    },
+    "slotSummary": [
+      {
+        "slot": "agent/instructions.md",
+        "planned": true,
+        "source": "harness.instructions"
+      },
+      {
+        "slot": "agent/tools/",
+        "planned": false,
+        "source": "harness.tools[type=function]"
+      },
+      {
+        "slot": "agent/skills/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no native eve skills package source."
+      },
+      {
+        "slot": "agent/connections/",
+        "planned": false,
+        "source": "harness.tools[type=mcp]"
+      },
+      {
+        "slot": "agent/schedules/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no schedule declaration source."
+      },
+      {
+        "slot": "evals/",
+        "planned": true,
+        "source": "harness.evalGates"
+      }
+    ],
+    "blockedGateIds": [
+      "eve-typescript-generation-review",
+      "eve-dependency-install-review",
+      "eve-deployment-review"
+    ],
+    "blockedGatesBeforeGeneration": [
+      {
+        "id": "eve-typescript-generation-review",
+        "status": "required",
+        "reason": "Runnable eve TypeScript generation requires a separate reviewed implementation lane."
+      },
+      {
+        "id": "eve-dependency-install-review",
+        "status": "required",
+        "reason": "No eve package manager dependencies are installed in dry-run manifest mode."
+      },
+      {
+        "id": "eve-deployment-review",
+        "status": "required",
+        "reason": "No eve dev server, deployment, or public publishing is allowed from this fixture."
+      }
+    ],
+    "nonGoalIds": [
+      "no-eve-project-file-writes",
+      "no-eve-typescript-generation",
+      "no-eve-dependency-install",
+      "no-eve-dev-server-or-deployment",
+      "no-provider-model-mcp-payment-calls"
+    ]
+  },
+  "examples/tool-agent.yaml": {
+    "format": "eve-project-skeleton-dry-run-manifest-fixture",
+    "issue": 203,
+    "source": "examples/tool-agent.yaml",
+    "outputRoot": "eve/source-checker",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "writesFiles": false,
+    "installsDependencies": false,
+    "deploymentAllowed": false,
+    "fileCount": 5,
+    "paths": [
+      "eve/source-checker/agent/instructions.md",
+      "eve/source-checker/agent/agent.ts",
+      "eve/source-checker/agent/reddiagent.metadata.json",
+      "eve/source-checker/agent/tools/search_docs.ts",
+      "eve/source-checker/evals/cite_source.eval.ts"
+    ],
+    "statusCounts": {
+      "static-content-plan": 1,
+      "typescript-generation-blocked": 1,
+      "metadata-only": 1,
+      "static-stub-plan": 1,
+      "static-eval-plan": 1
+    },
+    "slotSummary": [
+      {
+        "slot": "agent/instructions.md",
+        "planned": true,
+        "source": "harness.instructions"
+      },
+      {
+        "slot": "agent/tools/",
+        "planned": true,
+        "source": "harness.tools[type=function]"
+      },
+      {
+        "slot": "agent/skills/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no native eve skills package source."
+      },
+      {
+        "slot": "agent/connections/",
+        "planned": false,
+        "source": "harness.tools[type=mcp]"
+      },
+      {
+        "slot": "agent/schedules/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no schedule declaration source."
+      },
+      {
+        "slot": "evals/",
+        "planned": true,
+        "source": "harness.evalGates"
+      }
+    ],
+    "blockedGateIds": [
+      "eve-typescript-generation-review",
+      "eve-dependency-install-review",
+      "eve-deployment-review"
+    ],
+    "blockedGatesBeforeGeneration": [
+      {
+        "id": "eve-typescript-generation-review",
+        "status": "required",
+        "reason": "Runnable eve TypeScript generation requires a separate reviewed implementation lane."
+      },
+      {
+        "id": "eve-dependency-install-review",
+        "status": "required",
+        "reason": "No eve package manager dependencies are installed in dry-run manifest mode."
+      },
+      {
+        "id": "eve-deployment-review",
+        "status": "required",
+        "reason": "No eve dev server, deployment, or public publishing is allowed from this fixture."
+      }
+    ],
+    "nonGoalIds": [
+      "no-eve-project-file-writes",
+      "no-eve-typescript-generation",
+      "no-eve-dependency-install",
+      "no-eve-dev-server-or-deployment",
+      "no-provider-model-mcp-payment-calls"
+    ]
+  },
+  "examples/mcp-readonly-agent.yaml": {
+    "format": "eve-project-skeleton-dry-run-manifest-fixture",
+    "issue": 203,
+    "source": "examples/mcp-readonly-agent.yaml",
+    "outputRoot": "eve/mcp-readonly-docs",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "writesFiles": false,
+    "installsDependencies": false,
+    "deploymentAllowed": false,
+    "fileCount": 5,
+    "paths": [
+      "eve/mcp-readonly-docs/agent/instructions.md",
+      "eve/mcp-readonly-docs/agent/agent.ts",
+      "eve/mcp-readonly-docs/agent/reddiagent.metadata.json",
+      "eve/mcp-readonly-docs/agent/connections/docs_search.ts",
+      "eve/mcp-readonly-docs/evals/mcp_source_boundary.eval.ts"
+    ],
+    "statusCounts": {
+      "static-content-plan": 1,
+      "typescript-generation-blocked": 1,
+      "metadata-only": 2,
+      "static-eval-plan": 1
+    },
+    "slotSummary": [
+      {
+        "slot": "agent/instructions.md",
+        "planned": true,
+        "source": "harness.instructions"
+      },
+      {
+        "slot": "agent/tools/",
+        "planned": false,
+        "source": "harness.tools[type=function]"
+      },
+      {
+        "slot": "agent/skills/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no native eve skills package source."
+      },
+      {
+        "slot": "agent/connections/",
+        "planned": true,
+        "source": "harness.tools[type=mcp]"
+      },
+      {
+        "slot": "agent/schedules/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no schedule declaration source."
+      },
+      {
+        "slot": "evals/",
+        "planned": true,
+        "source": "harness.evalGates"
+      }
+    ],
+    "blockedGateIds": [
+      "eve-typescript-generation-review",
+      "eve-dependency-install-review",
+      "eve-deployment-review"
+    ],
+    "blockedGatesBeforeGeneration": [
+      {
+        "id": "eve-typescript-generation-review",
+        "status": "required",
+        "reason": "Runnable eve TypeScript generation requires a separate reviewed implementation lane."
+      },
+      {
+        "id": "eve-dependency-install-review",
+        "status": "required",
+        "reason": "No eve package manager dependencies are installed in dry-run manifest mode."
+      },
+      {
+        "id": "eve-deployment-review",
+        "status": "required",
+        "reason": "No eve dev server, deployment, or public publishing is allowed from this fixture."
+      }
+    ],
+    "nonGoalIds": [
+      "no-eve-project-file-writes",
+      "no-eve-typescript-generation",
+      "no-eve-dependency-install",
+      "no-eve-dev-server-or-deployment",
+      "no-provider-model-mcp-payment-calls"
+    ]
+  },
+  "examples/payment-agent.yaml": {
+    "format": "eve-project-skeleton-dry-run-manifest-fixture",
+    "issue": 203,
+    "source": "examples/payment-agent.yaml",
+    "outputRoot": "eve/paid-specialist-researcher",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "writesFiles": false,
+    "installsDependencies": false,
+    "deploymentAllowed": false,
+    "fileCount": 5,
+    "paths": [
+      "eve/paid-specialist-researcher/agent/instructions.md",
+      "eve/paid-specialist-researcher/agent/agent.ts",
+      "eve/paid-specialist-researcher/agent/reddiagent.metadata.json",
+      "eve/paid-specialist-researcher/agent/tools/fetch_approved_url.ts",
+      "eve/paid-specialist-researcher/evals/receipt_required.eval.ts"
+    ],
+    "statusCounts": {
+      "static-content-plan": 1,
+      "typescript-generation-blocked": 1,
+      "metadata-only": 1,
+      "static-stub-plan": 1,
+      "static-eval-plan": 1
+    },
+    "slotSummary": [
+      {
+        "slot": "agent/instructions.md",
+        "planned": true,
+        "source": "harness.instructions"
+      },
+      {
+        "slot": "agent/tools/",
+        "planned": true,
+        "source": "harness.tools[type=function]"
+      },
+      {
+        "slot": "agent/skills/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no native eve skills package source."
+      },
+      {
+        "slot": "agent/connections/",
+        "planned": false,
+        "source": "harness.tools[type=mcp]"
+      },
+      {
+        "slot": "agent/schedules/",
+        "planned": false,
+        "source": null,
+        "reason": "ADL v0.1 has no schedule declaration source."
+      },
+      {
+        "slot": "evals/",
+        "planned": true,
+        "source": "harness.evalGates"
+      }
+    ],
+    "blockedGateIds": [
+      "eve-typescript-generation-review",
+      "eve-dependency-install-review",
+      "eve-deployment-review"
+    ],
+    "blockedGatesBeforeGeneration": [
+      {
+        "id": "eve-typescript-generation-review",
+        "status": "required",
+        "reason": "Runnable eve TypeScript generation requires a separate reviewed implementation lane."
+      },
+      {
+        "id": "eve-dependency-install-review",
+        "status": "required",
+        "reason": "No eve package manager dependencies are installed in dry-run manifest mode."
+      },
+      {
+        "id": "eve-deployment-review",
+        "status": "required",
+        "reason": "No eve dev server, deployment, or public publishing is allowed from this fixture."
+      }
+    ],
+    "nonGoalIds": [
+      "no-eve-project-file-writes",
+      "no-eve-typescript-generation",
+      "no-eve-dependency-install",
+      "no-eve-dev-server-or-deployment",
+      "no-provider-model-mcp-payment-calls"
+    ]
+  }
+}

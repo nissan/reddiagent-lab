@@ -137,6 +137,75 @@
       "no-sensitive-payloads"
     ]
   },
+  "examples/mcp-readonly-agent.yaml": {
+    "format": "starter-code-preview-bundle-fixture",
+    "source": "examples/mcp-readonly-agent.yaml",
+    "outputRoot": "starter/mcp-readonly-docs",
+    "bundleStatus": "ready-for-static-review",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "plannedFileCount": 6,
+    "plannedPaths": [
+      "starter/mcp-readonly-docs/README.md",
+      "starter/mcp-readonly-docs/agent.adl.yaml",
+      "starter/mcp-readonly-docs/src/agent_harness.py",
+      "starter/mcp-readonly-docs/tests/test_static_contract.py",
+      "starter/mcp-readonly-docs/.env.example",
+      "starter/mcp-readonly-docs/tests/test_policy_eval_gates.py"
+    ],
+    "templateContractCount": 6,
+    "templateContractIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review",
+      "mcp-resolution-review"
+    ],
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafeAllowed": false,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "failClosed": {
+      "invalidAdlBlocksPlannedFiles": false,
+      "unsafeRequestsDenied": true,
+      "liveClaimsAllowed": false,
+      "writesFilesAllowed": false,
+      "installsDependenciesAllowed": false
+    },
+    "previewNonGoalIds": [
+      "no-file-writes",
+      "no-template-rendering",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
   "examples/payment-agent.yaml": {
     "format": "starter-code-preview-bundle-fixture",
     "source": "examples/payment-agent.yaml",
