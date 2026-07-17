@@ -58,8 +58,8 @@
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "db38cdafb782da5233bbe795476ac3746cac5f55417e894604cf7ac2bf17522f",
-          "bytes": 3476
+          "sha256": "04dad972ef5c191dd629e9038f47858cda9bddd0ccaba046b94b0259a2f2363c",
+          "bytes": 3679
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",

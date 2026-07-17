@@ -24,6 +24,8 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/MCP-CAPABILITY-POLICY-REPORT.md",
     "tests/MCP-READINESS-EVIDENCE-REPORT.md",
     "docs/MCP-READINESS-RELEASE-CHECKLIST.md",
+    "tests/BETA-RELEASE-READINESS-REPORT.md",
+    "docs/BETA-RELEASE-READINESS-RUNBOOK.md",
     "tests/test_tool_execution.py",
     "tests/test_cli_usage_matrix.py",
     "tests/test_readiness_bundle.py",
@@ -36,11 +38,13 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/test_mcp_capability_policy.py",
     "tests/test_mcp_readiness_evidence.py",
     "tests/test_mcp_readiness_release.py",
+    "tests/test_beta_release_readiness.py",
     "--fail-on-required-gate",
     "completion.status",
     "No live retriever.",
     "No MCP server invocation.",
     "No live x402 payment or settlement.",
+    "No mainnet deployment, settlement, or run without separate signoff.",
 ]
 
 REQUIRED_SMOKE_COMMANDS = [
@@ -57,6 +61,7 @@ REQUIRED_SMOKE_COMMANDS = [
     "tests/test_mcp_capability_policy.py",
     "tests/test_mcp_readiness_evidence.py",
     "tests/test_mcp_readiness_release.py",
+    "tests/test_beta_release_readiness.py",
 ]
 
 

@@ -12,6 +12,7 @@ _Loop 42. Anchor issue: #42._
 - docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md
 - docs/adr/0000-adr-index.md
 - docs/PROTECTED-DOCS-PACKAGE.md
+- docs/BETA-RELEASE-READINESS-RUNBOOK.md
 - docs/LOOP-PROTOCOL.md
 - docs/ROADMAP.md
 - docs/LOCAL-RUNNER-READINESS-BUNDLE.md
@@ -26,6 +27,7 @@ _Loop 42. Anchor issue: #42._
 - docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md
 - docs/adr/0000-adr-index.md
 - docs/PROTECTED-DOCS-PACKAGE.md
+- docs/BETA-RELEASE-READINESS-RUNBOOK.md
 - docs/ARCHITECTURE-THESIS.md
 - docs/ULTRA-PLAN.md
 - docs/GLOSSARY.md
@@ -81,7 +83,9 @@ _Loop 42. Anchor issue: #42._
 - tests/MCP-READINESS-EVIDENCE-REPORT.md
 - tests/AGENT-SPEC-COMPATIBILITY-REPORT.md
 - tests/PROTECTED-DOCS-PACKAGE-REPORT.md
+- tests/BETA-RELEASE-READINESS-REPORT.md
 - docs/MCP-READINESS-RELEASE-CHECKLIST.md
+- docs/BETA-RELEASE-READINESS-RUNBOOK.md
 - tests/test_readiness_bundle.py
 - tests/test_adapter_readiness.py
 - tests/test_mcp_adapter_contract.py
@@ -93,6 +97,7 @@ _Loop 42. Anchor issue: #42._
 - tests/test_mcp_readiness_evidence.py
 - tests/test_mcp_readiness_release.py
 - tests/test_agent_spec_compatibility.py
+- tests/test_beta_release_readiness.py
 - tests/LEVEL-0-CONFORMANCE-REPORT.md
 - tests/VALIDATION-ERROR-DEMO.md
 
