@@ -1,13 +1,13 @@
 # Prosumer Builder MVP Skeleton Report
 
-Generated for issue #136 and refreshed for issues #144, #188, #194, and #195.
+Generated for issue #136 and refreshed for issues #144, #188, #194, #195, and #196.
 
 ## Scope
 
 - Static CLI skeleton: `scripts/prosumer_builder_plan.py`
 - Inputs: `examples/simple-agent.yaml`, `examples/tool-agent.yaml`, `examples/payment-agent.yaml`
 - Flow covered: choose job, model profile, optional tool, policy/eval gate, validate, dry-run, trace, export
-- Export targets listed: Agent Spec, A2A Agent Card, Agent Skills / `SKILL.md`, starter manifest, provider compatibility, and RAP bridge
+- Export targets listed: Agent Spec, A2A Agent Card, Agent Skills / `SKILL.md`, starter manifest, provider compatibility, RAP bridge, and Vercel eve
 - Static HTML export fixture: `docs/prosumer-builder-static-export.html`
 - Blocked-export UI fixture: `tests/fixtures/prosumer-builder-blocked-export-ui.json`
 - Static UI export matrix covers readiness states:
@@ -39,6 +39,7 @@ The skeleton does not call model providers, live runtimes, MCP servers, wallets,
 - Tool fixtures remain deterministic local fixture commands only.
 - `examples/tool-agent.yaml` uses `--execute-tools --fail-on-required-gate` and previews `networkAccess=false` / `paymentAccess=false`.
 - Invalid ADL examples keep dry-run and trace steps blocked.
-- `staticUiExportMatrix` pins six report-only/export targets with command, strict export command where applicable, authoritative check, blockers, metadata-only sections, and boundary flags.
+- `staticUiExportMatrix` pins seven report-only/export targets with command, strict export command where applicable, authoritative check, blockers, metadata-only sections, and boundary flags.
+- Vercel eve currently appears as a planned static report target, blocked by `eve_compatibility_report_not_implemented`, so Prosumer Builder can show the lane without implying runtime support.
 - The HTML fixture embeds the same plan JSON for simple/tool/payment examples plus an invalid blocked-export fixture without requiring a dev server, browser automation, network access, provider calls, MCP invocation, runtime activation, or payment access.
 - The blocked-export UI fixture pins invalid ADL validation blocks, metadata-only export rows, starter-manifest pre-generation blocks, authoritative checks, static guardrail reasons, and boundary flags for report-only UI coverage.

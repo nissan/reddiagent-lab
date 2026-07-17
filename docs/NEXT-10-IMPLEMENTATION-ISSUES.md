@@ -12,3 +12,4 @@ _Loop 81._
 8. Anthropic MCP compatibility adapter.
 9. Payment dry-run receipt fixture test. Done in issue #157 with `static-payment-dry-run-receipt-report` fixtures.
 10. Minimal web UI for loading and validating ADL.
+11. Vercel eve static compatibility mapping/report. First research note and parity-matrix row landed in issue #196; full mapping/report is tracked by #202.

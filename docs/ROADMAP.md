@@ -10,6 +10,7 @@ _Loop 20. Anchor issue: #21._
 - Do deeper official-doc research for Tier 1 targets.
 - Add Agent Spec compatibility as a report-only Level 2 target while keeping ADL canonical.
 - Add A2A Agent Card compatibility as a report-only Level 2 export target while keeping ADL canonical.
+- Add Vercel eve as a report-only Level 2 target while keeping ADL canonical.
 
 ## Next
 
@@ -109,6 +110,21 @@ Current Agent Skills / SKILL.md slice:
 - strict fail-on-loss export mode is available with `--export-skill-package`;
 - guard test lives in `tests/test_agent_skill_export.py`;
 - current report summary lives in `tests/AGENT-SKILL-EXPORT-REPORT.md`;
+- static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
+
+Next safe Vercel eve step:
+
+- keep ADL canonical and treat eve as a static filesystem-first compatibility/export target;
+- add `mappings/EVE.md` and `scripts/eve_compatibility.py` before any strict export;
+- preserve Reddi policy, evaluation, memory, x402, receipt, reputation, source-boundary, MCP, and deployment semantics as metadata-only or unsupported unless the target can enforce them;
+- keep `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, `mcpInvocation=false`, and deployment disabled;
+- do not install or run eve, scaffold projects, install dependencies, start a dev server, call providers/models, resolve MCP servers, access credentials, or deploy.
+
+Current Vercel eve slice:
+
+- research note lives in `research/2026-07-17-vercel-eve-impact.md`;
+- static parity row is included in Prosumer Builder and `tests/fixtures/static-export-target-parity-matrix.json`;
+- full mapping/report work is tracked by issue #202 under epic #201;
 - static boundary remains `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`, and `mcpInvocation=false`.
 
 Current Prosumer Builder MVP skeleton:
