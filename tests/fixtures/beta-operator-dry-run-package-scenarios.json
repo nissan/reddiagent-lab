@@ -1,0 +1,332 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "scenarios": [
+    {
+      "id": "local-operator-dry-run-package-pass",
+      "kind": "positive",
+      "operatorIdentity": "operator://local-beta",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "pass"
+    },
+    {
+      "id": "missing-operator-identity-denied",
+      "kind": "negative",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "missing-selected-adl-path-denied",
+      "kind": "negative",
+      "operatorIdentity": "operator://local-beta",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "missing-stop-rollback-transcript-denied",
+      "kind": "negative",
+      "operatorIdentity": "operator://local-beta",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "stale-rc-gate-evidence-denied",
+      "kind": "negative",
+      "operatorIdentity": "operator://local-beta",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-stale",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "non-local-runtime-request-denied",
+      "kind": "negative",
+      "operatorIdentity": "operator://local-beta",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "devnet",
+      "environment": "local",
+      "liveRuntimeRequested": true,
+      "mainnetRequested": false,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "mainnet-request-denied",
+      "kind": "negative",
+      "operatorIdentity": "operator://local-beta",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "rcGateReleaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "liveRuntimeRequested": false,
+      "mainnetRequested": true,
+      "operatorCommandTranscript": [
+        {
+          "step": 1,
+          "command": "python scripts/beta_operator_dry_run_package.py",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "stopRollbackDryRunTranscript": [
+        {
+          "step": 1,
+          "event": "runtime.disabled",
+          "command": "operator:disable-runtime-path --mode local-only --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 2,
+          "event": "rollback.started",
+          "command": "operator:rollback --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        },
+        {
+          "step": 3,
+          "event": "rollback.completed",
+          "command": "operator:rollback-status --release reddiagent-beta-0 --dry-run",
+          "exitCode": 0,
+          "stdoutStatus": "pass"
+        }
+      ],
+      "expectedStatus": "fail"
+    }
+  ]
+}
