@@ -383,6 +383,71 @@ def starter_safety_policy_fixture(
     }
 
 
+def preview_bundle_fixture(
+    source: Path,
+    agent_slug: str,
+    planned: list[dict],
+    contracts: list[dict],
+    safety_policy: dict,
+    gates: list[dict],
+    validation_status: str,
+    errors: list[str],
+) -> dict:
+    contract_by_path = {contract["plannedPath"]: contract for contract in contracts}
+    unsafe_requests = safety_policy["unsafeRequests"]
+    return {
+        "format": "starter-code-preview-bundle-fixture",
+        "source": display_path(source),
+        "outputRoot": f"starter/{agent_slug}",
+        "bundleStatus": "ready-for-static-review" if validation_status == "pass" else "blocked-invalid-adl",
+        "manifestOnly": True,
+        **BOUNDARY_FLAGS,
+        "validationStatus": validation_status,
+        "validationErrorCount": len(errors),
+        "plannedFilePreviews": [
+            {
+                "path": item["path"],
+                "status": item["status"],
+                "templateId": contract_by_path.get(item["path"], {}).get("templateId"),
+                "writesFile": False,
+                "installsDependencies": False,
+                "purpose": item["purpose"],
+            }
+            for item in planned
+        ],
+        "templateContractIds": [contract["templateId"] for contract in contracts],
+        "templateContractCount": len(contracts),
+        "blockedGateIds": [gate["id"] for gate in gates],
+        "blockedGates": gates,
+        "safetyPolicyState": {
+            "readyRequestId": safety_policy["readyRequest"]["requestId"],
+            "readyDecision": safety_policy["readyRequest"]["decision"],
+            "unsafeCount": len(unsafe_requests),
+            "unsafeAllowed": any(request["allowed"] for request in unsafe_requests),
+            "unsafePolicyIds": [request["policyId"] for request in unsafe_requests],
+            "unsafeRisks": [request["risk"] for request in unsafe_requests],
+        },
+        "failClosed": {
+            "invalidAdlBlocksPlannedFiles": validation_status == "fail" and not planned,
+            "unsafeRequestsDenied": all(
+                request["decision"] == "deny" and request["allowed"] is False
+                for request in unsafe_requests
+            ),
+            "liveClaimsAllowed": False,
+            "writesFilesAllowed": False,
+            "installsDependenciesAllowed": False,
+        },
+        "previewNonGoalIds": [
+            "no-file-writes",
+            "no-template-rendering",
+            "no-dependency-install",
+            "no-runtime-execution",
+            "no-provider-model-mcp-payment-calls",
+            "no-sensitive-payloads",
+        ],
+    }
+
+
 def blocked_gates(doc: dict) -> list[dict]:
     harness = doc.get("harness") or {}
     extensions = doc.get("extensions") or {}
@@ -472,6 +537,17 @@ def plan_for(path: Path) -> dict:
     planned = [] if errors else planned_files(agent_slug, doc)
     gates = blocked_gates(doc)
     contracts = [] if errors else template_contracts(agent_slug, doc, gates)
+    safety_policy = starter_safety_policy_fixture(path, agent_slug, gates, validation_status)
+    preview_bundle = preview_bundle_fixture(
+        path,
+        agent_slug,
+        planned,
+        contracts,
+        safety_policy,
+        gates,
+        validation_status,
+        errors,
+    )
     return {
         "format": "starter-code-review-manifest",
         "source": display_path(path),
@@ -496,7 +572,8 @@ def plan_for(path: Path) -> dict:
         "dryRunFileManifest": dry_run_file_manifest(path, agent_slug, planned, gates, validation_status),
         "templateContracts": contracts,
         "templateContractFixture": template_contract_fixture(path, agent_slug, contracts, validation_status),
-        "starterSafetyPolicy": starter_safety_policy_fixture(path, agent_slug, gates, validation_status),
+        "starterSafetyPolicy": safety_policy,
+        "previewBundle": preview_bundle,
         "blockedGatesBeforeGeneration": gates,
         "nonGoals": [
             "Do not write starter project files from this command.",

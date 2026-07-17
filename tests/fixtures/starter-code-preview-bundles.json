@@ -1,0 +1,210 @@
+{
+  "examples/simple-agent.yaml": {
+    "format": "starter-code-preview-bundle-fixture",
+    "source": "examples/simple-agent.yaml",
+    "outputRoot": "starter/simple-research-helper",
+    "bundleStatus": "ready-for-static-review",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "plannedFileCount": 6,
+    "plannedPaths": [
+      "starter/simple-research-helper/README.md",
+      "starter/simple-research-helper/agent.adl.yaml",
+      "starter/simple-research-helper/src/agent_harness.py",
+      "starter/simple-research-helper/tests/test_static_contract.py",
+      "starter/simple-research-helper/.env.example",
+      "starter/simple-research-helper/tests/test_policy_eval_gates.py"
+    ],
+    "templateContractCount": 6,
+    "templateContractIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review"
+    ],
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafeAllowed": false,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "failClosed": {
+      "invalidAdlBlocksPlannedFiles": false,
+      "unsafeRequestsDenied": true,
+      "liveClaimsAllowed": false,
+      "writesFilesAllowed": false,
+      "installsDependenciesAllowed": false
+    },
+    "previewNonGoalIds": [
+      "no-file-writes",
+      "no-template-rendering",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/tool-agent.yaml": {
+    "format": "starter-code-preview-bundle-fixture",
+    "source": "examples/tool-agent.yaml",
+    "outputRoot": "starter/source-checker",
+    "bundleStatus": "ready-for-static-review",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "plannedFileCount": 7,
+    "plannedPaths": [
+      "starter/source-checker/README.md",
+      "starter/source-checker/agent.adl.yaml",
+      "starter/source-checker/src/agent_harness.py",
+      "starter/source-checker/tests/test_static_contract.py",
+      "starter/source-checker/.env.example",
+      "starter/source-checker/fixtures/tools.json",
+      "starter/source-checker/tests/test_policy_eval_gates.py"
+    ],
+    "templateContractCount": 7,
+    "templateContractIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.local_tool_fixtures",
+      "starter.policy_eval_gate_tests"
+    ],
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review"
+    ],
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafeAllowed": false,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "failClosed": {
+      "invalidAdlBlocksPlannedFiles": false,
+      "unsafeRequestsDenied": true,
+      "liveClaimsAllowed": false,
+      "writesFilesAllowed": false,
+      "installsDependenciesAllowed": false
+    },
+    "previewNonGoalIds": [
+      "no-file-writes",
+      "no-template-rendering",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  },
+  "examples/payment-agent.yaml": {
+    "format": "starter-code-preview-bundle-fixture",
+    "source": "examples/payment-agent.yaml",
+    "outputRoot": "starter/paid-specialist-researcher",
+    "bundleStatus": "ready-for-static-review",
+    "manifestOnly": true,
+    "validationStatus": "pass",
+    "boundaryFlags": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "writesFiles": false,
+      "installsDependencies": false
+    },
+    "plannedFileCount": 6,
+    "plannedPaths": [
+      "starter/paid-specialist-researcher/README.md",
+      "starter/paid-specialist-researcher/agent.adl.yaml",
+      "starter/paid-specialist-researcher/src/agent_harness.py",
+      "starter/paid-specialist-researcher/tests/test_static_contract.py",
+      "starter/paid-specialist-researcher/.env.example",
+      "starter/paid-specialist-researcher/tests/test_policy_eval_gates.py"
+    ],
+    "templateContractCount": 6,
+    "templateContractIds": [
+      "starter.readme",
+      "starter.adl_copy",
+      "starter.python_harness",
+      "starter.static_contract_test",
+      "starter.env_example",
+      "starter.policy_eval_gate_tests"
+    ],
+    "blockedGateIds": [
+      "generator-implementation-review",
+      "dependency-install-review",
+      "provider-runtime-review",
+      "runtime-target-review",
+      "payment-rail-review"
+    ],
+    "readyRequestId": "review-static-starter-manifest",
+    "readyDecision": "allow",
+    "unsafeCount": 8,
+    "unsafeAllowed": false,
+    "unsafePolicyIds": [
+      "no-dependency-install",
+      "no-external-network-tool-execution",
+      "no-mcp-invocation",
+      "no-provider-model-local-execution",
+      "no-credential-material",
+      "no-wallet-payment-settlement-access",
+      "no-deployment",
+      "no-production-config-mutation"
+    ],
+    "failClosed": {
+      "invalidAdlBlocksPlannedFiles": false,
+      "unsafeRequestsDenied": true,
+      "liveClaimsAllowed": false,
+      "writesFilesAllowed": false,
+      "installsDependenciesAllowed": false
+    },
+    "previewNonGoalIds": [
+      "no-file-writes",
+      "no-template-rendering",
+      "no-dependency-install",
+      "no-runtime-execution",
+      "no-provider-model-mcp-payment-calls",
+      "no-sensitive-payloads"
+    ]
+  }
+}
