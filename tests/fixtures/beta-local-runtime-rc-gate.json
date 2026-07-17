@@ -1,0 +1,2519 @@
+{
+  "boundaries": {
+    "credentialAccess": false,
+    "deterministicLocalFixturesOnly": true,
+    "devnetAccess": false,
+    "externalSpend": false,
+    "localRuntimeExecutionAllowed": true,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "providerApiAccess": false
+  },
+  "findings": [],
+  "issue": 237,
+  "mainnetStatement": "Mainnet deployment, settlement, and runtime execution are not approved; separate Nissan signoff is required.",
+  "mode": "beta-local-runtime-release-candidate-gate",
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "local-tool-runtime-rc-pass",
+      "kind": "positive",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "pass"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "operatorControls",
+          "reason": "Missing operator controls: enable-runtime-path"
+        }
+      ],
+      "id": "missing-enable-control-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "pass"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "operatorControls",
+          "reason": "Missing operator controls: disable-runtime-path"
+        }
+      ],
+      "id": "missing-disable-control-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "pass"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "runtimeMode",
+          "reason": "Runtime mode must be local-only."
+        }
+      ],
+      "id": "non-local-runtime-mode-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "pass"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "readiness.releaseId",
+          "reason": "Readiness evidence must match the selected release."
+        }
+      ],
+      "id": "stale-readiness-evidence-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-stale",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "pass"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "readiness.status",
+          "reason": "Readiness evidence must pass."
+        },
+        {
+          "path": "rollback.stopFirst",
+          "reason": "Rollback must stop runtime paths first."
+        }
+      ],
+      "id": "missing-rollback-stop-evidence-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": false,
+        "requested": false,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "fail"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": false
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    },
+    {
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01,
+        "withinCeiling": true
+      },
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "readiness.status",
+          "reason": "Readiness evidence must pass."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "Mainnet request is not approved."
+        },
+        {
+          "path": "readiness.approvals.mainnetApproved",
+          "reason": "Mainnet must remain explicitly not approved."
+        }
+      ],
+      "id": "mainnet-request-denied",
+      "kind": "negative",
+      "mainnetApproval": {
+        "approved": true,
+        "requested": true,
+        "statement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+      },
+      "operatorControlEvidence": {
+        "requiredControls": [
+          "disable-runtime-path",
+          "enable-runtime-path",
+          "force-local-only-mode",
+          "pause-mcp-invocation",
+          "pause-payment-handoff",
+          "pause-provider-calls"
+        ],
+        "resultId": "local-operator-control-drill",
+        "source": "tests/fixtures/beta-operator-control-harness.json",
+        "traceEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "policy.checked",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "amountUsd": 0.0,
+            "ceilingUsd": 0.01,
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "cost.estimated",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001",
+            "withinCeiling": true
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.enabled",
+            "incidentReference": "none",
+            "localOnly": true,
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "runtime.disabled",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "reason": "operator-drill",
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "runtimePath": "local-runtime-prototype",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ]
+      },
+      "privacyRedaction": {
+        "rawPromptLogging": "redacted",
+        "redactedFields": [],
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+        "status": "pass"
+      },
+      "readinessEvidence": {
+        "entryCriteria": 5,
+        "exitCriteria": 4,
+        "releaseId": "reddiagent-beta-0",
+        "source": "tests/fixtures/beta-release-readiness.json",
+        "status": "fail"
+      },
+      "rollbackStopEvidence": {
+        "mainnetRollback": "not-applicable-mainnet-not-approved",
+        "operatorRollbackEvents": [
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.started",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          },
+          {
+            "agentId": "reddiagent-local-beta-agent",
+            "costEstimate": {
+              "amountUsd": 0.0,
+              "ceilingUsd": 0.01,
+              "withinCeiling": true
+            },
+            "disableVerified": true,
+            "environment": "local",
+            "evalResults": {
+              "reason": "operator-control-harness",
+              "status": "not-run-before-operator-gate"
+            },
+            "event": "rollback.completed",
+            "incidentReference": "none",
+            "mainnetAllowed": false,
+            "mainnetRollback": "not-applicable-mainnet-not-approved",
+            "operatorId": "operator://local-beta",
+            "policyResults": {
+              "localOnly": true,
+              "mainnetRequested": false,
+              "requiredControlsPresent": true
+            },
+            "privacyRedactions": {
+              "rawPromptLogging": "redacted",
+              "redactedFields": [],
+              "redactedPromptRef": "prompt://redacted/local-operator-control-drill",
+              "status": "pass"
+            },
+            "releaseId": "reddiagent-beta-0",
+            "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+            "runtimeMode": "local-only",
+            "status": "pass",
+            "taskId": "local-operator-control-drill",
+            "traceId": "beta-control-trace-001"
+          }
+        ],
+        "stopFirst": true
+      },
+      "selectedRuntime": {
+        "adl": "examples/tool-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+        "completionStatus": "pass",
+        "scenarioId": "tool-agent-execute-tools",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "tool.executed",
+          "source.checked",
+          "task.dry_run_completed"
+        ]
+      },
+      "status": "fail"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 6,
+    "negativeScenarios": 6,
+    "positiveScenarios": 1
+  }
+}

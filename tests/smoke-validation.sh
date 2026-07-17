@@ -40,5 +40,6 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_live_mcp_devnet_handoff_prototype.py
 "$PYTHON" tests/test_beta_operator_control_harness.py
 "$PYTHON" tests/test_beta_release_readiness.py
+"$PYTHON" tests/test_beta_local_runtime_rc_gate.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py

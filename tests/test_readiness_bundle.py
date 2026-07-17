@@ -26,6 +26,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "docs/MCP-READINESS-RELEASE-CHECKLIST.md",
     "tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md",
     "tests/BETA-RELEASE-READINESS-REPORT.md",
+    "tests/BETA-LOCAL-RUNTIME-RC-GATE-REPORT.md",
     "docs/BETA-RELEASE-READINESS-RUNBOOK.md",
     "tests/test_tool_execution.py",
     "tests/test_cli_usage_matrix.py",
@@ -41,6 +42,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/test_mcp_readiness_release.py",
     "tests/test_beta_operator_control_harness.py",
     "tests/test_beta_release_readiness.py",
+    "tests/test_beta_local_runtime_rc_gate.py",
     "--fail-on-required-gate",
     "completion.status",
     "No live retriever.",
@@ -65,6 +67,7 @@ REQUIRED_SMOKE_COMMANDS = [
     "tests/test_mcp_readiness_release.py",
     "tests/test_beta_operator_control_harness.py",
     "tests/test_beta_release_readiness.py",
+    "tests/test_beta_local_runtime_rc_gate.py",
 ]
 
 
