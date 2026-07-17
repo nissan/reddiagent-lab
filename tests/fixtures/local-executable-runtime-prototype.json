@@ -1,0 +1,168 @@
+{
+  "mode": "local-executable-adl-runtime-prototype",
+  "status": "pass",
+  "issue": 224,
+  "supportedExamples": [
+    "examples/simple-agent.yaml",
+    "examples/tool-agent.yaml"
+  ],
+  "safetyExamples": [
+    "examples/unsafe/unsupported-tool-fixture.yaml",
+    "examples/unsafe/unapproved-source-fixture.yaml",
+    "examples/invalid/bad-runtime-target.yaml"
+  ],
+  "boundaries": {
+    "localRuntimeExecutionAllowed": true,
+    "deterministicLocalFixturesOnly": true,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "credentialAccess": false,
+    "mcpInvocation": false,
+    "mainnetAccess": false,
+    "externalExecutionAllowed": false
+  },
+  "scenarios": [
+    {
+      "id": "simple-agent-dry-run",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/simple-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "completion": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "reason": "dry-run transport completed and required gates passed"
+      },
+      "traceEvents": [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "task.dry_run_completed"
+      ],
+      "safetyGate": "supported-simple-runtime",
+      "toolExecution": null,
+      "sourceCheckSummary": null,
+      "stdoutFirstLine": null,
+      "stderrFirstLine": null
+    },
+    {
+      "id": "tool-agent-execute-tools",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/tool-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "completion": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "reason": "dry-run transport completed and required gates passed"
+      },
+      "traceEvents": [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "tool.executed",
+        "source.checked",
+        "task.dry_run_completed"
+      ],
+      "safetyGate": "approved-tool-and-source",
+      "toolExecution": {
+        "mode": "local-fixture",
+        "networkAccess": false,
+        "paymentAccess": false,
+        "deniedCount": 0
+      },
+      "sourceCheckSummary": {
+        "total": 1,
+        "passCount": 1,
+        "failCount": 0,
+        "requiredFailureCount": 0,
+        "status": "pass"
+      },
+      "stdoutFirstLine": null,
+      "stderrFirstLine": null
+    },
+    {
+      "id": "unsupported-tool-strict-denial",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/unsafe/unsupported-tool-fixture.yaml",
+      "command": "python scripts/run_local_agent.py examples/unsafe/unsupported-tool-fixture.yaml --execute-tools",
+      "exitCode": 2,
+      "expectedExitCode": 2,
+      "completion": null,
+      "traceEvents": [],
+      "safetyGate": "fail-closed-tool-denial",
+      "toolExecution": null,
+      "sourceCheckSummary": null,
+      "stdoutFirstLine": null,
+      "stderrFirstLine": "DENIED examples/unsafe/unsupported-tool-fixture.yaml"
+    },
+    {
+      "id": "unapproved-source-report-mode",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/unsafe/unapproved-source-fixture.yaml",
+      "command": "python scripts/run_local_agent.py examples/unsafe/unapproved-source-fixture.yaml --execute-tools --allow-denied-tools",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "completion": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "fail",
+        "status": "fail",
+        "reason": "dry-run transport completed, but required gates failed"
+      },
+      "traceEvents": [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "tool.executed",
+        "source.checked",
+        "task.dry_run_completed"
+      ],
+      "safetyGate": "fail-closed-source-check",
+      "toolExecution": {
+        "mode": "local-fixture",
+        "networkAccess": false,
+        "paymentAccess": false,
+        "deniedCount": 0
+      },
+      "sourceCheckSummary": {
+        "total": 1,
+        "passCount": 0,
+        "failCount": 1,
+        "requiredFailureCount": 1,
+        "status": "fail"
+      },
+      "stdoutFirstLine": null,
+      "stderrFirstLine": null
+    },
+    {
+      "id": "invalid-runtime-validation",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/invalid/bad-runtime-target.yaml",
+      "command": "python scripts/run_local_agent.py examples/invalid/bad-runtime-target.yaml",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "completion": null,
+      "traceEvents": [],
+      "safetyGate": "fail-closed-adl-validation",
+      "toolExecution": null,
+      "sourceCheckSummary": null,
+      "stdoutFirstLine": "FAIL examples/invalid/bad-runtime-target.yaml",
+      "stderrFirstLine": null
+    }
+  ]
+}
