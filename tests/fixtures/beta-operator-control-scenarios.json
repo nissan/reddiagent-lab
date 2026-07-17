@@ -48,6 +48,34 @@
       "expectedCompletionStatus": "pass"
     },
     {
+      "id": "missing-disable-control-denied",
+      "kind": "negative",
+      "traceId": "beta-control-trace-006",
+      "runtimePath": "local-runtime-prototype",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "localOnly": true,
+      "mainnetRequested": false,
+      "operatorControls": [
+        "enable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {},
+      "rollback": {
+        "stopFirst": true,
+        "disableVerified": true,
+        "reference": "rollback://beta-0/missing-disable-control"
+      },
+      "expectedCompletionStatus": "fail"
+    },
+    {
       "id": "mainnet-enable-denied",
       "kind": "negative",
       "traceId": "beta-control-trace-002",

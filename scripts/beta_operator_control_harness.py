@@ -29,6 +29,22 @@ REQUIRED_EVENTS = {
     "rollback.started",
     "rollback.completed",
 }
+REQUIRED_TRACE_FIELDS = {
+    "traceId",
+    "agentId",
+    "taskId",
+    "releaseId",
+    "operatorId",
+    "runtimeMode",
+    "environment",
+    "policyResults",
+    "evalResults",
+    "costEstimate",
+    "privacyRedactions",
+    "mainnetAllowed",
+    "rollbackReference",
+    "incidentReference",
+}
 SENSITIVE_FIELDS = {"rawPrompt", "rawSecret", "credential", "walletHandle", "paymentProof"}
 
 
@@ -40,8 +56,51 @@ def load_json(path: Path) -> dict[str, Any]:
     return doc
 
 
-def event(trace_id: str, name: str, status: str = "pass", **fields: Any) -> dict[str, Any]:
-    payload = {"event": name, "traceId": trace_id, "status": status}
+def privacy_redactions(scenario: dict[str, Any]) -> dict[str, Any]:
+    payload = scenario.get("privacyPayload", {})
+    sensitive = sorted(field for field in payload if field in SENSITIVE_FIELDS)
+    return {
+        "status": "fail" if sensitive else "pass",
+        "rawPromptLogging": "redacted",
+        "redactedFields": sensitive,
+        "redactedPromptRef": payload.get("redactedPromptRef"),
+    }
+
+
+def trace_context(doc: dict[str, Any], scenario: dict[str, Any]) -> dict[str, Any]:
+    cost = scenario["costEstimate"]
+    rollback = scenario.get("rollback", {})
+    return {
+        "traceId": scenario["traceId"],
+        "agentId": scenario.get("agentId", "reddiagent-local-beta-agent"),
+        "taskId": scenario.get("taskId", scenario["id"]),
+        "releaseId": doc.get("releaseId"),
+        "operatorId": scenario.get("operatorId", "operator://local-beta"),
+        "runtimeMode": scenario["runtimeMode"],
+        "environment": scenario["environment"],
+        "policyResults": {
+            "localOnly": scenario["localOnly"],
+            "mainnetRequested": scenario.get("mainnetRequested") is True,
+            "requiredControlsPresent": REQUIRED_CONTROLS <= set(scenario["operatorControls"]),
+        },
+        "evalResults": {
+            "status": "not-run-before-operator-gate",
+            "reason": "operator-control-harness",
+        },
+        "costEstimate": {
+            "amountUsd": cost["amountUsd"],
+            "ceilingUsd": cost["ceilingUsd"],
+            "withinCeiling": cost["amountUsd"] <= cost["ceilingUsd"],
+        },
+        "privacyRedactions": privacy_redactions(scenario),
+        "mainnetAllowed": doc.get("approvals", {}).get("mainnetApproved") is True,
+        "rollbackReference": rollback.get("reference"),
+        "incidentReference": scenario.get("incidentReference", "none"),
+    }
+
+
+def event(context: dict[str, Any], name: str, status: str = "pass", **fields: Any) -> dict[str, Any]:
+    payload = {"event": name, "status": status, **context}
     payload.update(fields)
     return payload
 
@@ -61,13 +120,13 @@ def denied_result(scenario: dict[str, Any], reason: str, trace: list[dict[str, A
 
 
 def evaluate_scenario(doc: dict[str, Any], scenario: dict[str, Any]) -> dict[str, Any]:
-    trace_id = scenario["traceId"]
+    context = trace_context(doc, scenario)
     approvals = doc["approvals"]
     cost = scenario["costEstimate"]
     controls = set(scenario["operatorControls"])
     trace = [
         event(
-            trace_id,
+            context,
             "policy.checked",
             mainnetAllowed=approvals["mainnetApproved"],
             runtimeMode=scenario["runtimeMode"],
@@ -75,7 +134,7 @@ def evaluate_scenario(doc: dict[str, Any], scenario: dict[str, Any]) -> dict[str
             localOnly=scenario["localOnly"],
         ),
         event(
-            trace_id,
+            context,
             "cost.estimated",
             amountUsd=cost["amountUsd"],
             ceilingUsd=cost["ceilingUsd"],
@@ -84,26 +143,26 @@ def evaluate_scenario(doc: dict[str, Any], scenario: dict[str, Any]) -> dict[str
     ]
 
     if scenario["environment"] == "mainnet" or scenario.get("mainnetRequested"):
-        trace.append(event(trace_id, "runtime.disabled", "fail", reason="mainnet-not-approved"))
+        trace.append(event(context, "runtime.disabled", "fail", reason="mainnet-not-approved"))
         return denied_result(scenario, "mainnet-not-approved", trace)
 
     if not scenario["localOnly"]:
-        trace.append(event(trace_id, "runtime.disabled", "fail", reason="non-local-runtime-disabled"))
+        trace.append(event(context, "runtime.disabled", "fail", reason="non-local-runtime-disabled"))
         return denied_result(scenario, "non-local-runtime-disabled", trace)
 
     if cost["amountUsd"] > cost["ceilingUsd"]:
-        trace.append(event(trace_id, "runtime.disabled", "fail", reason="cost-ceiling-exceeded"))
+        trace.append(event(context, "runtime.disabled", "fail", reason="cost-ceiling-exceeded"))
         return denied_result(scenario, "cost-ceiling-exceeded", trace)
 
     if any(field in scenario.get("privacyPayload", {}) for field in SENSITIVE_FIELDS):
-        trace.append(event(trace_id, "runtime.disabled", "fail", reason="sensitive-payload-denied"))
+        trace.append(event(context, "runtime.disabled", "fail", reason="sensitive-payload-denied"))
         return denied_result(scenario, "sensitive-payload-denied", trace)
 
     missing_controls = REQUIRED_CONTROLS - controls
     if missing_controls:
         trace.append(
             event(
-                trace_id,
+                context,
                 "runtime.disabled",
                 "fail",
                 reason="operator-control-missing",
@@ -114,22 +173,22 @@ def evaluate_scenario(doc: dict[str, Any], scenario: dict[str, Any]) -> dict[str
 
     rollback = scenario["rollback"]
     if not rollback.get("stopFirst") or not rollback.get("disableVerified"):
-        trace.append(event(trace_id, "runtime.disabled", "fail", reason="rollback-stop-not-verified"))
+        trace.append(event(context, "runtime.disabled", "fail", reason="rollback-stop-not-verified"))
         return denied_result(scenario, "rollback-stop-not-verified", trace)
 
     trace.extend(
         [
             event(
-                trace_id,
+                context,
                 "runtime.enabled",
                 runtimePath=scenario["runtimePath"],
                 runtimeMode=scenario["runtimeMode"],
                 localOnly=True,
             ),
-            event(trace_id, "runtime.disabled", runtimePath=scenario["runtimePath"], reason="operator-drill"),
-            event(trace_id, "rollback.started", rollbackReference=rollback["reference"]),
+            event(context, "runtime.disabled", runtimePath=scenario["runtimePath"], reason="operator-drill"),
+            event(context, "rollback.started", rollbackReference=rollback["reference"]),
             event(
-                trace_id,
+                context,
                 "rollback.completed",
                 rollbackReference=rollback["reference"],
                 disableVerified=True,
@@ -190,6 +249,14 @@ def collect_findings(doc: dict[str, Any], results: list[dict[str, Any]]) -> list
     all_events = {row["event"] for result in results for row in result["traceEvents"]}
     missing_events = sorted(REQUIRED_EVENTS - all_events)
     require(not missing_events, "traceEvents", f"Missing required events: {', '.join(missing_events)}")
+    for result_index, result in enumerate(results):
+        for event_index, trace_event in enumerate(result["traceEvents"]):
+            missing_fields = sorted(REQUIRED_TRACE_FIELDS - set(trace_event))
+            require(
+                not missing_fields,
+                f"results[{result_index}].traceEvents[{event_index}]",
+                f"Missing required trace fields: {', '.join(missing_fields)}",
+            )
 
     return findings
 
@@ -206,6 +273,7 @@ def build_report(doc: dict[str, Any]) -> dict[str, Any]:
         "boundaries": doc.get("boundaries"),
         "operatorControls": sorted(REQUIRED_CONTROLS),
         "requiredEvents": sorted(REQUIRED_EVENTS),
+        "requiredTraceFields": sorted(REQUIRED_TRACE_FIELDS),
         "summary": {
             "positiveScenarios": sum(1 for result in results if result["kind"] == "positive"),
             "negativeScenarios": sum(1 for result in results if result["kind"] == "negative"),

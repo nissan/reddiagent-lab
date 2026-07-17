@@ -4,7 +4,7 @@ _Issue: #235._
 
 This report covers the first executable local-only beta operator-control harness for ReddiAgent prototype runtime paths.
 
-The harness does not approve mainnet. It proves that local beta runtime controls can be evaluated deterministically, that required beta observability events are emitted, and that unsafe control requests fail closed before any external side effect.
+The harness does not approve mainnet. It proves that local beta runtime controls can be evaluated deterministically, that required beta observability events are emitted with the beta readiness trace envelope, and that unsafe control requests fail closed before any external side effect.
 
 ## Evidence
 
@@ -29,10 +29,15 @@ The harness does not approve mainnet. It proves that local beta runtime controls
 
 | Scenario | Boundary |
 |---|---|
+| `missing-disable-control-denied` | Local runtime activation fails when the disable control is missing from operator evidence. |
 | `mainnet-enable-denied` | Mainnet runtime enable is denied because mainnet remains not approved. |
 | `rollback-stop-missing` | Runtime activation fails if stop-first rollback evidence is missing. |
 | `cost-ceiling-forces-local-only` | Runtime activation fails when estimated cost exceeds the local ceiling. |
 | `privacy-payload-denied` | Runtime activation fails if raw prompt or other sensitive payload fields appear. |
+
+## Trace Contract
+
+Every harness trace event now carries the beta readiness fields `traceId`, `agentId`, `taskId`, `releaseId`, `operatorId`, `runtimeMode`, `environment`, `policyResults`, `evalResults`, `costEstimate`, `privacyRedactions`, `mainnetAllowed`, `rollbackReference`, and `incidentReference`.
 
 ## Boundaries
 
