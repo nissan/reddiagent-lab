@@ -46,6 +46,8 @@ def main() -> int:
     assert ready["approvals"]["mainnetApproved"] is False
     assert "separate signoff" in ready["approvals"]["mainnetStatement"]
     assert "tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md" in ready["requiredReleaseEvidence"]
+    assert "tests/BETA-RELEASE-READINESS-REPORT.md" in ready["requiredReleaseEvidence"]
+    assert "tests/fixtures/beta-release-readiness.json" in ready["requiredReleaseEvidence"]
     assert ready["observability"]["rawSecretLoggingAllowed"] is False
     assert ready["observability"]["rawPromptLoggingDefault"] == "redacted"
     assert ready["rollback"]["stopFirst"] is True
@@ -55,6 +57,8 @@ def main() -> int:
     unsafe["approvals"]["mainnetApproved"] = True
     unsafe["operatorControls"] = [control for control in unsafe["operatorControls"] if control["id"] != "pause-payment-handoff"]
     unsafe["observability"]["rawSecretLoggingAllowed"] = True
+    unsafe["requiredReleaseEvidence"].remove("tests/BETA-RELEASE-READINESS-REPORT.md")
+    unsafe["requiredReleaseEvidence"].remove("tests/fixtures/beta-release-readiness.json")
     unsafe["sampleTraceEvents"] = [
         event for event in unsafe["sampleTraceEvents"] if event["event"] != "runtime.disabled"
     ]
@@ -68,6 +72,7 @@ def main() -> int:
     assert unsafe_report["status"] == "fail"
     finding_paths = {finding["path"] for finding in unsafe_report["findings"]}
     assert "approvals.mainnetApproved" in finding_paths
+    assert "requiredReleaseEvidence" in finding_paths
     assert "operatorControls" in finding_paths
     assert "observability.rawSecretLoggingAllowed" in finding_paths
     assert "sampleTraceEvents" in finding_paths

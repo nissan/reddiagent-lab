@@ -69,6 +69,8 @@ REQUIRED_RELEASE_EVIDENCE = {
     "tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md",
     "tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md",
     "tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md",
+    "tests/BETA-RELEASE-READINESS-REPORT.md",
+    "tests/fixtures/beta-release-readiness.json",
     "tests/smoke-validation.sh",
 }
 
