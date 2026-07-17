@@ -67,7 +67,7 @@ Issue #206 turns the repo's accumulated technical work into a protected, human-r
 1. **Vision and roadmap spine:** this document, linked from the repo navigation surfaces.
 2. **Architecture diagram and explainer:** `docs/REDDIAGENT-ARCHITECTURE.md` gives the high-level view of ADL, harness, compatibility reports, runtime boundaries, and RAP bridge.
 3. **ADR register:** `docs/adr/0000-adr-index.md` records initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
-4. **Protected docs package:** a publishable site bundle prepared for review, but not publicly deployed until Nissan approves location and access controls.
+4. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until Nissan approves location and access controls.
 5. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`.
 
 ## Deliberately Out of Scope Until Guardrails Change
@@ -90,6 +90,7 @@ Start with this spine, then move outward:
 - `docs/POSITIONING-MEMO.md` for short positioning.
 - `docs/REDDIAGENT-ARCHITECTURE.md` for the high-level system diagram and explainer.
 - `docs/adr/0000-adr-index.md` for durable architectural decisions and rationale.
+- `docs/PROTECTED-DOCS-PACKAGE.md` for protected package access, noindex, and deployment guardrails.
 - `docs/ARCHITECTURE-THESIS.md` for the model/harness/economic-layer separation.
 - `specs/ADL-v0.1.md` for the canonical definition language.
 - `docs/PROSUMER-MVP.md` and `docs/BUILDER-JOURNEY.md` for the builder flow.
