@@ -1,0 +1,241 @@
+{
+  "documentVersion": "reddiagent.beta-readiness/v0.1",
+  "releaseId": "reddiagent-beta-0",
+  "releaseName": "ReddiAgent executable prototype beta readiness",
+  "releaseClass": "executable-beta",
+  "status": "beta-candidate",
+  "approvals": {
+    "devnetApproved": true,
+    "mainnetApproved": false,
+    "mainnetStatement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+  },
+  "requiredReleaseEvidence": [
+    "docs/LOCAL-RUNNER-READINESS-BUNDLE.md",
+    "tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md",
+    "tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md",
+    "tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md",
+    "tests/smoke-validation.sh"
+  ],
+  "betaEntryCriteria": [
+    {
+      "id": "smoke-validation-green",
+      "required": true,
+      "status": "pass",
+      "evidence": "tests/smoke-validation.sh"
+    },
+    {
+      "id": "prototype-evidence-current",
+      "required": true,
+      "status": "ready",
+      "evidence": "local, provider sandbox, and MCP/devnet prototype reports"
+    },
+    {
+      "id": "negative-fixtures-green",
+      "required": true,
+      "status": "pass",
+      "evidence": "unsafe local/runtime/MCP/devnet/mainnet fixtures fail closed"
+    },
+    {
+      "id": "operator-controls-reviewed",
+      "required": true,
+      "status": "ready",
+      "evidence": "operator controls cover enable, disable, pause, and local-only fallback"
+    },
+    {
+      "id": "mainnet-denial-explicit",
+      "required": true,
+      "status": "pass",
+      "evidence": "mainnetApproved=false and mainnet denial fixture"
+    }
+  ],
+  "betaExitCriteria": [
+    {
+      "id": "incident-free-window",
+      "required": true,
+      "target": "No unresolved severity-1 or severity-2 incidents during the beta observation window."
+    },
+    {
+      "id": "operator-stop-drill",
+      "required": true,
+      "target": "Operator stop and rollback drill completed from evidence without unbounded external side effects."
+    },
+    {
+      "id": "cost-privacy-review",
+      "required": true,
+      "target": "Cost ceiling, redaction, retention, and access-review evidence accepted."
+    },
+    {
+      "id": "rollback-evidence-current",
+      "required": true,
+      "target": "Rollback and cleanup steps remain current for each enabled runtime path."
+    }
+  ],
+  "observability": {
+    "requiredEvents": [
+      "session.started",
+      "policy.checked",
+      "eval.checked",
+      "cost.estimated",
+      "runtime.enabled",
+      "runtime.disabled",
+      "rollback.started",
+      "rollback.completed",
+      "incident.opened",
+      "task.completed",
+      "task.failed"
+    ],
+    "requiredTraceFields": [
+      "traceId",
+      "agentId",
+      "taskId",
+      "releaseId",
+      "operatorId",
+      "runtimeMode",
+      "environment",
+      "policyResults",
+      "evalResults",
+      "costEstimate",
+      "privacyRedactions",
+      "mainnetAllowed",
+      "rollbackReference",
+      "incidentReference"
+    ],
+    "rawSecretLoggingAllowed": false,
+    "rawPromptLoggingDefault": "redacted",
+    "retention": "bounded-beta-window"
+  },
+  "operatorControls": [
+    {
+      "id": "enable-runtime-path",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Enable a named beta runtime path only after readiness evidence is linked."
+    },
+    {
+      "id": "disable-runtime-path",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Disable a named runtime path immediately without deleting evidence."
+    },
+    {
+      "id": "pause-provider-calls",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Set provider-backed execution to local fake/sandbox mode."
+    },
+    {
+      "id": "pause-mcp-invocation",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Deny MCP invocation while keeping static MCP evidence checks available."
+    },
+    {
+      "id": "pause-payment-handoff",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Deny wallet, facilitator, rail, settlement, and devnet handoff access."
+    },
+    {
+      "id": "force-local-only-mode",
+      "ownerRole": "operator",
+      "auditRequired": true,
+      "effect": "Keep validation, local fixtures, and reports available while all live paths are off."
+    }
+  ],
+  "rollback": {
+    "stopFirst": true,
+    "maxDisableWindowMinutes": 15,
+    "mainnetRollback": "not-applicable-mainnet-not-approved",
+    "orderedSteps": [
+      "Disable the named runtime path.",
+      "Pause provider, MCP, and payment handoff controls for the affected environment.",
+      "Preserve trace, cost, privacy, and incident evidence without exposing secrets.",
+      "Re-run deterministic negative fixtures and smoke validation.",
+      "Document the operator decision, owner, timestamp, and next allowed runtime mode.",
+      "Re-enable only after a fresh readiness check and review."
+    ]
+  },
+  "riskAndIncidentNotes": [
+    {
+      "id": "cost",
+      "note": "Each beta runtime path must define per-run and per-window cost ceilings before live use."
+    },
+    {
+      "id": "safety",
+      "note": "Required gates fail closed; unsafe fixtures must remain in the smoke path."
+    },
+    {
+      "id": "privacy",
+      "note": "Secrets and raw payloads are redacted by default; evidence stores references, not sensitive material."
+    },
+    {
+      "id": "incident",
+      "note": "Incidents require trace preservation, operator stop evidence, and explicit restart approval."
+    }
+  ],
+  "sampleTraceEvents": [
+    {
+      "event": "session.started",
+      "traceId": "beta-trace-001",
+      "releaseId": "reddiagent-beta-0",
+      "runtimeMode": "local-only"
+    },
+    {
+      "event": "policy.checked",
+      "traceId": "beta-trace-001",
+      "status": "pass",
+      "mainnetAllowed": false
+    },
+    {
+      "event": "eval.checked",
+      "traceId": "beta-trace-001",
+      "status": "pass"
+    },
+    {
+      "event": "cost.estimated",
+      "traceId": "beta-trace-001",
+      "costEstimate": {
+        "currency": "USD",
+        "amount": 0
+      }
+    },
+    {
+      "event": "runtime.enabled",
+      "traceId": "beta-trace-001",
+      "operatorId": "operator-reviewed",
+      "runtimeMode": "local-only"
+    },
+    {
+      "event": "runtime.disabled",
+      "traceId": "beta-trace-001",
+      "operatorId": "operator-reviewed",
+      "runtimeMode": "local-only"
+    },
+    {
+      "event": "rollback.started",
+      "traceId": "beta-trace-001",
+      "rollbackReference": "rollback://beta-0/local-only"
+    },
+    {
+      "event": "rollback.completed",
+      "traceId": "beta-trace-001",
+      "rollbackReference": "rollback://beta-0/local-only",
+      "status": "pass"
+    },
+    {
+      "event": "incident.opened",
+      "traceId": "beta-trace-001",
+      "incidentReference": "incident://beta-0/example"
+    },
+    {
+      "event": "task.completed",
+      "traceId": "beta-trace-001",
+      "status": "pass"
+    },
+    {
+      "event": "task.failed",
+      "traceId": "beta-trace-001",
+      "status": "fail"
+    }
+  ]
+}

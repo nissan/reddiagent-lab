@@ -27,6 +27,7 @@ The local-python runner can currently prove:
 - bounded executable local runtime prototype evidence for simple/tool ADL examples and fail-closed unsafe fixtures.
 - bounded provider-backed sandbox prototype evidence for fake/local provider budget, eval, and trace gates.
 - bounded MCP/devnet payment handoff prototype evidence for reviewed MCP allowlists, devnet-only payment handoff policy, receipt evidence, rollback planning, and mainnet fail-closed semantics.
+- beta release readiness evidence for entry/exit criteria, observability, operator controls, rollback, incident notes, and explicit mainnet denial.
 
 ## Evidence Inventory
 
@@ -51,6 +52,8 @@ The local-python runner can currently prove:
 | Local executable runtime prototype report | `tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md` | Simple/tool examples execute locally with explicit traces; invalid/unsafe examples fail closed. |
 | Provider sandbox prototype report | `tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md` | Fake/local provider-backed scenarios record model, prompt, budget, eval, cost, and trace evidence with no hosted provider call. |
 | Live MCP/devnet handoff prototype report | `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md` | Reviewed MCP allowlist and simulated devnet payment handoff scenarios pass while mainnet and unreviewed MCP server refs fail closed. |
+| Beta release readiness runbook | `docs/BETA-RELEASE-READINESS-RUNBOOK.md` | Operator-facing beta entry/exit, observability, controls, rollback, cost, safety, privacy, incident, and mainnet denial runbook. |
+| Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -78,6 +81,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runtime_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_provider_sandbox_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
@@ -105,6 +109,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] MCP readiness evidence includes all required static gate events and matching aggregate completion status.
 - [ ] MCP readiness release checklist has been reviewed before any live MCP work is scoped.
 - [ ] MCP/devnet handoff prototype evidence keeps reviewed allowlists, rollback/cleanup, devnet/mainnet distinction, and secret-redaction assertions green before live infrastructure is touched.
+- [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 
 ## Explicit Non-Goals
 
@@ -116,7 +121,8 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - No credential lookup.
 - No messaging or filesystem mutation tool.
 - No live x402 payment or settlement.
+- No mainnet deployment, settlement, or run without separate signoff.
 
 ## Next Safe Step
 
-The next implementation step should define the static MCP runtime handoff package or connect adapter aggregation evidence into readiness traces. The first live path should only follow after the checklist above is green and the capability has an isolated fail-closed test path.
+The next implementation step should enable only the smallest reviewed beta runtime path whose readiness fixture, negative fixtures, operator controls, and rollback evidence are green. Mainnet remains blocked.
