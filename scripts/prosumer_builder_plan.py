@@ -11,6 +11,7 @@ import sys
 import jsonschema
 import yaml
 
+import rap_provider_handoff_summaries
 from run_local_agent import build_trace, run_tool_fixtures
 from source_check import check_tool_sources, summarize_source_checks
 
@@ -356,6 +357,10 @@ def export_step(path: Path, doc: dict, errors: list[str]) -> dict:
             for row in matrix
         ],
         "staticUiExportMatrix": matrix,
+        "staticUiHandoffSummaries": rap_provider_handoff_summaries.build_fixture(
+            rap_provider_handoff_summaries.DEFAULT_RAP_FIXTURE,
+            rap_provider_handoff_summaries.DEFAULT_PROVIDER_EXAMPLES,
+        )["summaries"],
     }
 
 

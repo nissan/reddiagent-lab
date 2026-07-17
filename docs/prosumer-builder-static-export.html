@@ -626,6 +626,137 @@
             &quot;target&quot;: &quot;vercel-eve&quot;
           }
         ],
+        &quot;staticUiHandoffSummaries&quot;: [
+          {
+            &quot;blockedLiveActionWarnings&quot;: [
+              &quot;no live RAP bridge execution&quot;,
+              &quot;no provider or local model call&quot;,
+              &quot;no MCP server resolution or invocation&quot;,
+              &quot;no credential lookup or storage&quot;,
+              &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+            ],
+            &quot;kind&quot;: &quot;rap-bridge&quot;,
+            &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+            &quot;mcpInvocation&quot;: false,
+            &quot;networkAccess&quot;: false,
+            &quot;paymentAccess&quot;: false,
+            &quot;readiness&quot;: &quot;report-ready&quot;,
+            &quot;runtimeExecutionAllowed&quot;: false,
+            &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+            &quot;status&quot;: &quot;pass&quot;,
+            &quot;summary&quot;: {
+              &quot;bridgeReady&quot;: true,
+              &quot;conformanceStatus&quot;: &quot;pass&quot;,
+              &quot;metadataOnlySections&quot;: [
+                &quot;x402.PaymentRequired&quot;,
+                &quot;x402.PaymentSignature&quot;,
+                &quot;x402.PaymentResponse&quot;,
+                &quot;x402.facilitator&quot;,
+                &quot;authority&quot;,
+                &quot;receipts&quot;,
+                &quot;reputation&quot;,
+                &quot;conformance&quot;
+              ],
+              &quot;rapReadyCount&quot;: 8,
+              &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+              &quot;unsafeCount&quot;: 0,
+              &quot;unsupportedCount&quot;: 0
+            },
+            &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+            &quot;validationRefs&quot;: [
+              &quot;tests/test_rap_bridge_report.py&quot;,
+              &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+              &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+            ]
+          },
+          {
+            &quot;blockedLiveActionWarnings&quot;: [
+              &quot;no live RAP bridge execution&quot;,
+              &quot;no provider or local model call&quot;,
+              &quot;no MCP server resolution or invocation&quot;,
+              &quot;no credential lookup or storage&quot;,
+              &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+            ],
+            &quot;kind&quot;: &quot;provider-adapter&quot;,
+            &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+            &quot;mcpInvocation&quot;: false,
+            &quot;networkAccess&quot;: false,
+            &quot;paymentAccess&quot;: false,
+            &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+            &quot;runtimeExecutionAllowed&quot;: false,
+            &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+            &quot;status&quot;: &quot;blocked-report-only&quot;,
+            &quot;summary&quot;: {
+              &quot;blockers&quot;: [
+                {
+                  &quot;ids&quot;: [
+                    &quot;openai-blocker-1&quot;,
+                    &quot;openai-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;openai&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;anthropic-blocker-1&quot;,
+                    &quot;anthropic-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;anthropic&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;gemini-blocker-1&quot;,
+                    &quot;gemini-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;gemini&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;ollama-blocker-1&quot;,
+                    &quot;ollama-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;ollama&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;langgraph-blocker-1&quot;,
+                    &quot;langgraph-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;langgraph&quot;
+                }
+              ],
+              &quot;generationAllowed&quot;: false,
+              &quot;hostedServiceRefs&quot;: [
+                &quot;mcp:approved-docs-search&quot;
+              ],
+              &quot;plannedFileCount&quot;: 20,
+              &quot;requiredSecretRefs&quot;: [
+                &quot;ANTHROPIC_API_KEY&quot;,
+                &quot;GEMINI_API_KEY&quot;,
+                &quot;OPENAI_API_KEY&quot;
+              ],
+              &quot;targetCount&quot;: 5,
+              &quot;targets&quot;: [
+                &quot;openai&quot;,
+                &quot;anthropic&quot;,
+                &quot;gemini&quot;,
+                &quot;ollama&quot;,
+                &quot;langgraph&quot;
+              ],
+              &quot;validationGateIds&quot;: [
+                &quot;manifest-fixture-deterministic&quot;,
+                &quot;manifest-files-report-only&quot;,
+                &quot;manifest-target-support-metadata&quot;,
+                &quot;manifest-runtime-boundary-disabled&quot;
+              ]
+            },
+            &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+            &quot;validationRefs&quot;: [
+              &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+              &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+              &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+            ]
+          }
+        ],
         &quot;status&quot;: &quot;blocked&quot;,
         &quot;targets&quot;: [
           {
@@ -1559,6 +1690,137 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
           ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
+            }
+          ],
           &quot;status&quot;: &quot;ready&quot;,
           &quot;targets&quot;: [
             {
@@ -1934,6 +2196,137 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
           ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
+            }
+          ],
           &quot;status&quot;: &quot;ready&quot;,
           &quot;targets&quot;: [
             {
@@ -2300,6 +2693,137 @@
               &quot;status&quot;: &quot;planned-static-report&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
+            }
+          ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
             }
           ],
           &quot;status&quot;: &quot;ready&quot;,
@@ -2638,6 +3162,137 @@
             &quot;target&quot;: &quot;vercel-eve&quot;
           }
         ],
+        &quot;staticUiHandoffSummaries&quot;: [
+          {
+            &quot;blockedLiveActionWarnings&quot;: [
+              &quot;no live RAP bridge execution&quot;,
+              &quot;no provider or local model call&quot;,
+              &quot;no MCP server resolution or invocation&quot;,
+              &quot;no credential lookup or storage&quot;,
+              &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+            ],
+            &quot;kind&quot;: &quot;rap-bridge&quot;,
+            &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+            &quot;mcpInvocation&quot;: false,
+            &quot;networkAccess&quot;: false,
+            &quot;paymentAccess&quot;: false,
+            &quot;readiness&quot;: &quot;report-ready&quot;,
+            &quot;runtimeExecutionAllowed&quot;: false,
+            &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+            &quot;status&quot;: &quot;pass&quot;,
+            &quot;summary&quot;: {
+              &quot;bridgeReady&quot;: true,
+              &quot;conformanceStatus&quot;: &quot;pass&quot;,
+              &quot;metadataOnlySections&quot;: [
+                &quot;x402.PaymentRequired&quot;,
+                &quot;x402.PaymentSignature&quot;,
+                &quot;x402.PaymentResponse&quot;,
+                &quot;x402.facilitator&quot;,
+                &quot;authority&quot;,
+                &quot;receipts&quot;,
+                &quot;reputation&quot;,
+                &quot;conformance&quot;
+              ],
+              &quot;rapReadyCount&quot;: 8,
+              &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+              &quot;unsafeCount&quot;: 0,
+              &quot;unsupportedCount&quot;: 0
+            },
+            &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+            &quot;validationRefs&quot;: [
+              &quot;tests/test_rap_bridge_report.py&quot;,
+              &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+              &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+            ]
+          },
+          {
+            &quot;blockedLiveActionWarnings&quot;: [
+              &quot;no live RAP bridge execution&quot;,
+              &quot;no provider or local model call&quot;,
+              &quot;no MCP server resolution or invocation&quot;,
+              &quot;no credential lookup or storage&quot;,
+              &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+            ],
+            &quot;kind&quot;: &quot;provider-adapter&quot;,
+            &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+            &quot;mcpInvocation&quot;: false,
+            &quot;networkAccess&quot;: false,
+            &quot;paymentAccess&quot;: false,
+            &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+            &quot;runtimeExecutionAllowed&quot;: false,
+            &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+            &quot;status&quot;: &quot;blocked-report-only&quot;,
+            &quot;summary&quot;: {
+              &quot;blockers&quot;: [
+                {
+                  &quot;ids&quot;: [
+                    &quot;openai-blocker-1&quot;,
+                    &quot;openai-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;openai&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;anthropic-blocker-1&quot;,
+                    &quot;anthropic-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;anthropic&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;gemini-blocker-1&quot;,
+                    &quot;gemini-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;gemini&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;ollama-blocker-1&quot;,
+                    &quot;ollama-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;ollama&quot;
+                },
+                {
+                  &quot;ids&quot;: [
+                    &quot;langgraph-blocker-1&quot;,
+                    &quot;langgraph-blocker-2&quot;
+                  ],
+                  &quot;target&quot;: &quot;langgraph&quot;
+                }
+              ],
+              &quot;generationAllowed&quot;: false,
+              &quot;hostedServiceRefs&quot;: [
+                &quot;mcp:approved-docs-search&quot;
+              ],
+              &quot;plannedFileCount&quot;: 20,
+              &quot;requiredSecretRefs&quot;: [
+                &quot;ANTHROPIC_API_KEY&quot;,
+                &quot;GEMINI_API_KEY&quot;,
+                &quot;OPENAI_API_KEY&quot;
+              ],
+              &quot;targetCount&quot;: 5,
+              &quot;targets&quot;: [
+                &quot;openai&quot;,
+                &quot;anthropic&quot;,
+                &quot;gemini&quot;,
+                &quot;ollama&quot;,
+                &quot;langgraph&quot;
+              ],
+              &quot;validationGateIds&quot;: [
+                &quot;manifest-fixture-deterministic&quot;,
+                &quot;manifest-files-report-only&quot;,
+                &quot;manifest-target-support-metadata&quot;,
+                &quot;manifest-runtime-boundary-disabled&quot;
+              ]
+            },
+            &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+            &quot;validationRefs&quot;: [
+              &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+              &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+              &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+            ]
+          }
+        ],
         &quot;status&quot;: &quot;blocked&quot;,
         &quot;targets&quot;: [
           {
@@ -3571,6 +4226,137 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
           ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
+            }
+          ],
           &quot;status&quot;: &quot;ready&quot;,
           &quot;targets&quot;: [
             {
@@ -3946,6 +4732,137 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
           ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
+            }
+          ],
           &quot;status&quot;: &quot;ready&quot;,
           &quot;targets&quot;: [
             {
@@ -4312,6 +5229,137 @@
               &quot;status&quot;: &quot;planned-static-report&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
+            }
+          ],
+          &quot;staticUiHandoffSummaries&quot;: [
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;rap-bridge&quot;,
+              &quot;label&quot;: &quot;RAP bridge handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/rap-bridge-x402-paid-mcp-ready.json&quot;,
+              &quot;status&quot;: &quot;pass&quot;,
+              &quot;summary&quot;: {
+                &quot;bridgeReady&quot;: true,
+                &quot;conformanceStatus&quot;: &quot;pass&quot;,
+                &quot;metadataOnlySections&quot;: [
+                  &quot;x402.PaymentRequired&quot;,
+                  &quot;x402.PaymentSignature&quot;,
+                  &quot;x402.PaymentResponse&quot;,
+                  &quot;x402.facilitator&quot;,
+                  &quot;authority&quot;,
+                  &quot;receipts&quot;,
+                  &quot;reputation&quot;,
+                  &quot;conformance&quot;
+                ],
+                &quot;rapReadyCount&quot;: 8,
+                &quot;receiptReputationStatus&quot;: &quot;pass&quot;,
+                &quot;unsafeCount&quot;: 0,
+                &quot;unsupportedCount&quot;: 0
+              },
+              &quot;uiBadge&quot;: &quot;ready-static-report&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_rap_bridge_report.py&quot;,
+                &quot;tests/RAP-BRIDGE-REPORT.md&quot;,
+                &quot;specs/RAP-BRIDGE-v0.1.md&quot;
+              ]
+            },
+            {
+              &quot;blockedLiveActionWarnings&quot;: [
+                &quot;no live RAP bridge execution&quot;,
+                &quot;no provider or local model call&quot;,
+                &quot;no MCP server resolution or invocation&quot;,
+                &quot;no credential lookup or storage&quot;,
+                &quot;no wallet, facilitator, payment rail, or settlement access&quot;
+              ],
+              &quot;kind&quot;: &quot;provider-adapter&quot;,
+              &quot;label&quot;: &quot;Provider adapter handoff&quot;,
+              &quot;mcpInvocation&quot;: false,
+              &quot;networkAccess&quot;: false,
+              &quot;paymentAccess&quot;: false,
+              &quot;readiness&quot;: &quot;blocked-before-codegen&quot;,
+              &quot;runtimeExecutionAllowed&quot;: false,
+              &quot;source&quot;: &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;,
+              &quot;status&quot;: &quot;blocked-report-only&quot;,
+              &quot;summary&quot;: {
+                &quot;blockers&quot;: [
+                  {
+                    &quot;ids&quot;: [
+                      &quot;openai-blocker-1&quot;,
+                      &quot;openai-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;openai&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;anthropic-blocker-1&quot;,
+                      &quot;anthropic-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;anthropic&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;gemini-blocker-1&quot;,
+                      &quot;gemini-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;gemini&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;ollama-blocker-1&quot;,
+                      &quot;ollama-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;ollama&quot;
+                  },
+                  {
+                    &quot;ids&quot;: [
+                      &quot;langgraph-blocker-1&quot;,
+                      &quot;langgraph-blocker-2&quot;
+                    ],
+                    &quot;target&quot;: &quot;langgraph&quot;
+                  }
+                ],
+                &quot;generationAllowed&quot;: false,
+                &quot;hostedServiceRefs&quot;: [
+                  &quot;mcp:approved-docs-search&quot;
+                ],
+                &quot;plannedFileCount&quot;: 20,
+                &quot;requiredSecretRefs&quot;: [
+                  &quot;ANTHROPIC_API_KEY&quot;,
+                  &quot;GEMINI_API_KEY&quot;,
+                  &quot;OPENAI_API_KEY&quot;
+                ],
+                &quot;targetCount&quot;: 5,
+                &quot;targets&quot;: [
+                  &quot;openai&quot;,
+                  &quot;anthropic&quot;,
+                  &quot;gemini&quot;,
+                  &quot;ollama&quot;,
+                  &quot;langgraph&quot;
+                ],
+                &quot;validationGateIds&quot;: [
+                  &quot;manifest-fixture-deterministic&quot;,
+                  &quot;manifest-files-report-only&quot;,
+                  &quot;manifest-target-support-metadata&quot;,
+                  &quot;manifest-runtime-boundary-disabled&quot;
+                ]
+              },
+              &quot;uiBadge&quot;: &quot;blocked-static-plan&quot;,
+              &quot;validationRefs&quot;: [
+                &quot;tests/test_provider_adapter_codegen_plan.py&quot;,
+                &quot;tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md&quot;,
+                &quot;tests/fixtures/provider-adapter-codegen-manifest.json&quot;
+              ]
             }
           ],
           &quot;status&quot;: &quot;ready&quot;,

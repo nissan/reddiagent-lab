@@ -24,6 +24,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_a2a_agent_card_export.py
 "$PYTHON" tests/test_agent_skill_export.py
 "$PYTHON" tests/test_rap_bridge_report.py
+"$PYTHON" tests/test_rap_provider_handoff_summaries.py
 "$PYTHON" tests/test_ap2_x402_mandate_report.py
 "$PYTHON" tests/test_prosumer_builder_plan.py
 "$PYTHON" tests/test_static_export_target_parity.py

@@ -1,0 +1,145 @@
+{
+  "format": "ui-safe-rap-provider-handoff-summaries",
+  "generatedFrom": "scripts/rap_provider_handoff_summaries.py",
+  "authoritativeCheck": "tests/test_rap_provider_handoff_summaries.py",
+  "guardrails": {
+    "uiSafe": true,
+    "staticFixtureOnly": true,
+    "redactsSecrets": true,
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false
+  },
+  "summaries": [
+    {
+      "kind": "rap-bridge",
+      "label": "RAP bridge handoff",
+      "source": "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json",
+      "status": "pass",
+      "readiness": "report-ready",
+      "uiBadge": "ready-static-report",
+      "summary": {
+        "bridgeReady": true,
+        "rapReadyCount": 8,
+        "metadataOnlySections": [
+          "x402.PaymentRequired",
+          "x402.PaymentSignature",
+          "x402.PaymentResponse",
+          "x402.facilitator",
+          "authority",
+          "receipts",
+          "reputation",
+          "conformance"
+        ],
+        "unsafeCount": 0,
+        "unsupportedCount": 0,
+        "conformanceStatus": "pass",
+        "receiptReputationStatus": "pass"
+      },
+      "blockedLiveActionWarnings": [
+        "no live RAP bridge execution",
+        "no provider or local model call",
+        "no MCP server resolution or invocation",
+        "no credential lookup or storage",
+        "no wallet, facilitator, payment rail, or settlement access"
+      ],
+      "validationRefs": [
+        "tests/test_rap_bridge_report.py",
+        "tests/RAP-BRIDGE-REPORT.md",
+        "specs/RAP-BRIDGE-v0.1.md"
+      ],
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    {
+      "kind": "provider-adapter",
+      "label": "Provider adapter handoff",
+      "source": "tests/fixtures/provider-adapter-codegen-manifest.json",
+      "status": "blocked-report-only",
+      "readiness": "blocked-before-codegen",
+      "uiBadge": "blocked-static-plan",
+      "summary": {
+        "targetCount": 5,
+        "targets": [
+          "openai",
+          "anthropic",
+          "gemini",
+          "ollama",
+          "langgraph"
+        ],
+        "plannedFileCount": 20,
+        "requiredSecretRefs": [
+          "ANTHROPIC_API_KEY",
+          "GEMINI_API_KEY",
+          "OPENAI_API_KEY"
+        ],
+        "hostedServiceRefs": [
+          "mcp:approved-docs-search"
+        ],
+        "validationGateIds": [
+          "manifest-fixture-deterministic",
+          "manifest-files-report-only",
+          "manifest-target-support-metadata",
+          "manifest-runtime-boundary-disabled"
+        ],
+        "blockers": [
+          {
+            "target": "openai",
+            "ids": [
+              "openai-blocker-1",
+              "openai-blocker-2"
+            ]
+          },
+          {
+            "target": "anthropic",
+            "ids": [
+              "anthropic-blocker-1",
+              "anthropic-blocker-2"
+            ]
+          },
+          {
+            "target": "gemini",
+            "ids": [
+              "gemini-blocker-1",
+              "gemini-blocker-2"
+            ]
+          },
+          {
+            "target": "ollama",
+            "ids": [
+              "ollama-blocker-1",
+              "ollama-blocker-2"
+            ]
+          },
+          {
+            "target": "langgraph",
+            "ids": [
+              "langgraph-blocker-1",
+              "langgraph-blocker-2"
+            ]
+          }
+        ],
+        "generationAllowed": false
+      },
+      "blockedLiveActionWarnings": [
+        "no live RAP bridge execution",
+        "no provider or local model call",
+        "no MCP server resolution or invocation",
+        "no credential lookup or storage",
+        "no wallet, facilitator, payment rail, or settlement access"
+      ],
+      "validationRefs": [
+        "tests/test_provider_adapter_codegen_plan.py",
+        "tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md",
+        "tests/fixtures/provider-adapter-codegen-manifest.json"
+      ],
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    }
+  ]
+}
