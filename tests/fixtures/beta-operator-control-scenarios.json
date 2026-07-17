@@ -1,0 +1,166 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "approvals": {
+    "devnetApproved": true,
+    "mainnetApproved": false,
+    "mainnetStatement": "Mainnet deployment, settlement, and runs are not approved and require separate signoff before any mainnet action."
+  },
+  "boundaries": {
+    "localOnly": true,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "providerApiAccess": false,
+    "mainnetAccess": false,
+    "externalSpend": false
+  },
+  "scenarios": [
+    {
+      "id": "local-operator-control-drill",
+      "kind": "positive",
+      "traceId": "beta-control-trace-001",
+      "runtimePath": "local-runtime-prototype",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "localOnly": true,
+      "mainnetRequested": false,
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {
+        "redactedPromptRef": "prompt://redacted/local-operator-control-drill"
+      },
+      "rollback": {
+        "stopFirst": true,
+        "disableVerified": true,
+        "reference": "rollback://beta-0/local-operator-control-drill"
+      },
+      "expectedCompletionStatus": "pass"
+    },
+    {
+      "id": "mainnet-enable-denied",
+      "kind": "negative",
+      "traceId": "beta-control-trace-002",
+      "runtimePath": "mainnet-payment-runtime",
+      "runtimeMode": "mainnet",
+      "environment": "mainnet",
+      "localOnly": false,
+      "mainnetRequested": true,
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {},
+      "rollback": {
+        "stopFirst": true,
+        "disableVerified": true,
+        "reference": "rollback://beta-0/mainnet-denied"
+      },
+      "expectedCompletionStatus": "fail"
+    },
+    {
+      "id": "rollback-stop-missing",
+      "kind": "negative",
+      "traceId": "beta-control-trace-003",
+      "runtimePath": "local-runtime-prototype",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "localOnly": true,
+      "mainnetRequested": false,
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {},
+      "rollback": {
+        "stopFirst": false,
+        "disableVerified": false,
+        "reference": "rollback://beta-0/stop-missing"
+      },
+      "expectedCompletionStatus": "fail"
+    },
+    {
+      "id": "cost-ceiling-forces-local-only",
+      "kind": "negative",
+      "traceId": "beta-control-trace-004",
+      "runtimePath": "provider-sandbox-prototype",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "localOnly": true,
+      "mainnetRequested": false,
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.02,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {},
+      "rollback": {
+        "stopFirst": true,
+        "disableVerified": true,
+        "reference": "rollback://beta-0/cost-ceiling"
+      },
+      "expectedCompletionStatus": "fail"
+    },
+    {
+      "id": "privacy-payload-denied",
+      "kind": "negative",
+      "traceId": "beta-control-trace-005",
+      "runtimePath": "local-runtime-prototype",
+      "runtimeMode": "local-only",
+      "environment": "local",
+      "localOnly": true,
+      "mainnetRequested": false,
+      "operatorControls": [
+        "enable-runtime-path",
+        "disable-runtime-path",
+        "pause-provider-calls",
+        "pause-mcp-invocation",
+        "pause-payment-handoff",
+        "force-local-only-mode"
+      ],
+      "costEstimate": {
+        "amountUsd": 0.0,
+        "ceilingUsd": 0.01
+      },
+      "privacyPayload": {
+        "rawPrompt": "do not log me"
+      },
+      "rollback": {
+        "stopFirst": true,
+        "disableVerified": true,
+        "reference": "rollback://beta-0/privacy-denied"
+      },
+      "expectedCompletionStatus": "fail"
+    }
+  ]
+}

@@ -46,6 +46,9 @@ def main() -> int:
     assert ready["approvals"]["mainnetApproved"] is False
     assert "separate signoff" in ready["approvals"]["mainnetStatement"]
     assert "tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md" in ready["requiredReleaseEvidence"]
+    assert "tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md" in ready["requiredReleaseEvidence"]
+    assert "tests/fixtures/beta-operator-control-scenarios.json" in ready["requiredReleaseEvidence"]
+    assert "tests/fixtures/beta-operator-control-harness.json" in ready["requiredReleaseEvidence"]
     assert "tests/BETA-RELEASE-READINESS-REPORT.md" in ready["requiredReleaseEvidence"]
     assert "tests/fixtures/beta-release-readiness.json" in ready["requiredReleaseEvidence"]
     assert ready["observability"]["rawSecretLoggingAllowed"] is False
@@ -58,6 +61,7 @@ def main() -> int:
     unsafe["operatorControls"] = [control for control in unsafe["operatorControls"] if control["id"] != "pause-payment-handoff"]
     unsafe["observability"]["rawSecretLoggingAllowed"] = True
     unsafe["requiredReleaseEvidence"].remove("tests/BETA-RELEASE-READINESS-REPORT.md")
+    unsafe["requiredReleaseEvidence"].remove("tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md")
     unsafe["requiredReleaseEvidence"].remove("tests/fixtures/beta-release-readiness.json")
     unsafe["sampleTraceEvents"] = [
         event for event in unsafe["sampleTraceEvents"] if event["event"] != "runtime.disabled"
