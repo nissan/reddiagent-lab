@@ -21,6 +21,7 @@ def build_manifest(paths: list[Path], invalid_path: Path) -> dict:
     plans = [plan_for(path) for path in paths]
     invalid_plan = plan_for(invalid_path)
     blocked_fixture_summary = blocked_export_fixture_summary(plans, invalid_plan)
+    eve_summaries = eve_compatibility_summaries(plans, invalid_plan)
     return {
         "format": "prosumer-builder-static-html-export-report",
         "generatedFrom": "scripts/prosumer_builder_static_export.py",
@@ -38,7 +39,42 @@ def build_manifest(paths: list[Path], invalid_path: Path) -> dict:
         "plans": plans,
         "blockedExportFixture": invalid_plan,
         "blockedExportUiFixture": blocked_fixture_summary,
+        "eveCompatibilitySummaries": eve_summaries,
         "summary": summarize(plans, invalid_plan),
+    }
+
+
+def eve_compatibility_summaries(plans: list[dict], invalid_plan: dict) -> dict:
+    rows = []
+    for plan in [*plans, invalid_plan]:
+        export_step = next(step for step in plan["flow"] if step["id"] == "export")
+        eve_row = next(
+            row for row in export_step["staticUiExportMatrix"] if row["target"] == "vercel-eve"
+        )
+        rows.append(eve_row["eveCompatibilitySummary"])
+    ui_state_counts = {}
+    lossless_state_counts = {}
+    for row in rows:
+        ui_state_counts[row["uiState"]] = ui_state_counts.get(row["uiState"], 0) + 1
+        lossless_state_counts[row["losslessState"]] = (
+            lossless_state_counts.get(row["losslessState"], 0) + 1
+        )
+    return {
+        "format": "prosumer-builder-eve-compatibility-ui-summaries",
+        "generatedFrom": "scripts/prosumer_builder_static_export.py",
+        "authoritativeCheck": "tests/test_prosumer_builder_static_export.py",
+        "sourceReportCheck": "tests/test_eve_compatibility.py",
+        "rowCount": len(rows),
+        "uiStateCounts": dict(sorted(ui_state_counts.items())),
+        "losslessStateCounts": dict(sorted(lossless_state_counts.items())),
+        "guardrails": {
+            "localStaticFixtureOnly": True,
+            "devServerStarted": False,
+            "browserAutomationRequired": False,
+            "deploymentAllowed": False,
+            **BOUNDARY_FLAGS,
+        },
+        "rows": rows,
     }
 
 
@@ -64,6 +100,7 @@ def blocked_export_fixture_summary(plans: list[dict], invalid_plan: dict) -> dic
                     "blockedBy": row["blockedBy"],
                     "metadataOnlyExtensions": row["metadataOnlyExtensions"],
                     "metadataOnlySections": row["metadataOnlySections"],
+                    "eveCompatibilitySummary": row.get("eveCompatibilitySummary"),
                     "validationStatus": validation_step["status"],
                     "validationErrors": validation_step["errors"],
                     **BOUNDARY_FLAGS,
@@ -120,6 +157,7 @@ def summarize(plans: list[dict], invalid_plan: dict) -> dict:
 def render_html(manifest: dict) -> str:
     manifest_json = json.dumps(manifest, indent=2, sort_keys=True)
     rows = "\n".join(render_agent_section(plan) for plan in manifest["plans"])
+    eve_summary = render_eve_summary(manifest["eveCompatibilitySummaries"])
     blocked_summary = render_blocked_summary(manifest["blockedExportUiFixture"])
     blocked = render_blocked_section(manifest["blockedExportFixture"])
     return f"""<!doctype html>
@@ -191,6 +229,7 @@ def render_html(manifest: dict) -> str:
       </div>
     </section>
     {rows}
+    {eve_summary}
     {blocked_summary}
     {blocked}
     <section class="panel">
@@ -269,6 +308,38 @@ def render_blocked_summary_row(row: dict) -> str:
             <td class="{readiness_class}">{html.escape(row["readiness"])}</td>
             <td><code>{html.escape(row["authoritativeCheck"])}</code></td>
             <td>{html.escape(reasons)}</td>
+          </tr>"""
+
+
+def render_eve_summary(summary: dict) -> str:
+    rows = "\n".join(render_eve_summary_row(row) for row in summary["rows"])
+    return f"""<section class="panel">
+      <h2>Vercel eve Compatibility</h2>
+      <p>{summary["rowCount"]} UI-safe static summaries generated from the eve compatibility report. These rows are for review only and never install or run eve.</p>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>State</th><th>Lossless</th><th>Unsupported</th><th>Future Work</th><th>Check</th></tr>
+        </thead>
+        <tbody>
+{rows}
+        </tbody>
+      </table>
+    </section>"""
+
+
+def render_eve_summary_row(row: dict) -> str:
+    state_class = "ok" if row["uiState"] == "lossless-static-compatible" else "warn"
+    if row["uiState"] == "blocked":
+        state_class = "bad"
+    unsupported = ", ".join(row["unsupportedFeatures"]) if row["unsupportedFeatures"] else "none"
+    future_work = ", ".join(row["futureWork"]) if row["futureWork"] else "none"
+    return f"""          <tr>
+            <td><code>{html.escape(row["source"])}</code></td>
+            <td class="{state_class}">{html.escape(row["uiState"])}</td>
+            <td>{html.escape(row["losslessState"])}</td>
+            <td>{html.escape(unsupported)}</td>
+            <td>{html.escape(future_work)}</td>
+            <td><code>{html.escape(row["authoritativeCheck"])}</code></td>
           </tr>"""
 
 

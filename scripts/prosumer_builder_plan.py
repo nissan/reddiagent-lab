@@ -11,6 +11,7 @@ import sys
 import jsonschema
 import yaml
 
+import eve_compatibility
 import rap_provider_handoff_summaries
 from run_local_agent import build_trace, run_tool_fixtures
 from source_check import check_tool_sources, summarize_source_checks
@@ -308,6 +309,8 @@ def export_readiness_matrix(path: Path, doc: dict, errors: list[str]) -> list[di
             "metadataOnlySections": [],
             **BOUNDARY_FLAGS,
         }
+        if target_id == "vercel-eve":
+            row["eveCompatibilitySummary"] = eve_compatibility_summary(path)
         if errors:
             row["status"] = "blocked"
             row["readiness"] = "blocked-by-validation"
@@ -341,6 +344,66 @@ def export_readiness_matrix(path: Path, doc: dict, errors: list[str]) -> list[di
                 row["blockedBy"] = static_review["unsupportedFeatures"]
         rows.append(row)
     return rows
+
+
+def eve_compatibility_summary(path: Path) -> dict:
+    report = eve_compatibility.report_for(path)
+    unsupported = report["unsupportedFeatures"]
+    metadata_only = report["metadataOnlySections"]
+    validation_errors = report["validationErrors"]
+    blocked_warnings = [
+        "no live eve runtime install or execution",
+        "no provider/model API call",
+        "no MCP server resolution or invocation",
+        "no credential lookup/access",
+        "no wallet, facilitator, payment rail, or settlement access",
+        "no server start, deployment, package publishing, or production gateway mutation",
+    ]
+    if report["status"] == "blocked-by-validation":
+        ui_state = "blocked"
+        lossless_state = "blocked-by-validation"
+    elif unsupported:
+        ui_state = "unsupported-runtime-features"
+        lossless_state = "not-lossless-unsupported"
+    elif metadata_only:
+        ui_state = "metadata-only"
+        lossless_state = "not-lossless-metadata-only"
+    else:
+        ui_state = "lossless-static-compatible"
+        lossless_state = "lossless-static-report"
+
+    future_work = []
+    if unsupported:
+        future_work.append("runtime enforcement for unsupported eve features")
+    if metadata_only:
+        future_work.append("native eve enforcement for ReddiAgent metadata-only sections")
+    if validation_errors:
+        future_work.append("valid ADL input before eve export review")
+    if not future_work:
+        future_work.append("strict eve export review before any generated project files")
+
+    return {
+        "target": "vercel-eve",
+        "label": "Vercel eve",
+        "source": report["source"],
+        "agent": report["agent"],
+        "status": report["status"],
+        "uiState": ui_state,
+        "losslessState": lossless_state,
+        "supported": report["supported"],
+        "metadataOnlySections": metadata_only,
+        "unsupportedFeatures": unsupported,
+        "validationErrors": validation_errors,
+        "projectRootPreview": report["projectManifest"]["projectRoot"],
+        "plannedFileCount": len(report["projectManifest"]["files"]),
+        "plannedConnectionCount": len(report["projectManifest"]["connections"]),
+        "sourceReportCommand": f"python3 scripts/eve_compatibility.py --single {report['source']}",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
+        "blockedLiveActionWarnings": blocked_warnings,
+        "futureWork": future_work,
+        "deploymentAllowed": False,
+        **BOUNDARY_FLAGS,
+    }
 
 
 def export_step(path: Path, doc: dict, errors: list[str]) -> dict:
