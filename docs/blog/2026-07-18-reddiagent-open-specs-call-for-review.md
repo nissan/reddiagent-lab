@@ -114,7 +114,7 @@ Please point to the exact file and section when possible.
 
 ## Review Intake Path
 
-The next queued issue, `#227`, will add the open-spec review submission template and intake notes. That template should turn feedback into structured review records with:
+Use `docs/OPEN-SPEC-REVIEW-INTAKE.md` and `.github/ISSUE_TEMPLATE/open-spec-review.md` to turn feedback into structured review records with:
 
 - reviewer role and target surface;
 - linked spec, mapping, example, or evidence file;
@@ -122,7 +122,7 @@ The next queued issue, `#227`, will add the open-spec review submission template
 - suggested acceptance criteria;
 - whether the feedback affects stable docs, experimental surfaces, report-only artifacts, executable prototypes, or future work.
 
-Until that intake template lands, treat this post as the draft call for review and use `#226` as the implementation anchor. Do not publish this post externally until Nissan approves the channel, copy, and timing.
+The intake notes explain how feedback flows into issues and PRs, and how #220 prototype/beta feedback should be separated from docs-only corrections. Do not publish this post externally until Nissan approves the channel, copy, and timing.
 
 ## Boundary Statement
 
