@@ -9,6 +9,7 @@ This package plan prepares ReddiAgent for partner/advisor sharing without deploy
 The protected package is a static documentation bundle that gathers:
 
 - vision and roadmap entrypoints;
+- the open specs explainer for builder and public-review readers;
 - architecture and product thesis docs;
 - ADR index and initial decisions;
 - specs, mappings, and research entrypoints;

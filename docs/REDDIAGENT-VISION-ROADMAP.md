@@ -66,9 +66,10 @@ Issue #206 turns the repo's accumulated technical work into a protected, human-r
 
 1. **Vision and roadmap spine:** this document, linked from the repo navigation surfaces.
 2. **Architecture diagram and explainer:** `docs/REDDIAGENT-ARCHITECTURE.md` gives the high-level view of ADL, harness, compatibility reports, runtime boundaries, and RAP bridge.
-3. **ADR register:** `docs/adr/0000-adr-index.md` records initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
-4. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until Nissan approves location and access controls.
-5. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`.
+3. **Open specs explainer:** `docs/OPEN-SPECS-EXPLAINER.md` gives builders and public-review readers a map for ADL, domain model, provider mappings, eval evidence, conformance, payment/RAP bridge, export targets, Vercel eve, starter manifests, and MCP handoff.
+4. **ADR register:** `docs/adr/0000-adr-index.md` records initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
+5. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until Nissan approves location and access controls.
+6. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`.
 
 ## Deliberately Out of Scope Until Guardrails Change
 
@@ -89,6 +90,7 @@ Start with this spine, then move outward:
 - `docs/PRODUCT-PRINCIPLES.md` for product rules.
 - `docs/POSITIONING-MEMO.md` for short positioning.
 - `docs/REDDIAGENT-ARCHITECTURE.md` for the high-level system diagram and explainer.
+- `docs/OPEN-SPECS-EXPLAINER.md` for the builder/public-review guide to the open specs.
 - `docs/adr/0000-adr-index.md` for durable architectural decisions and rationale.
 - `docs/PROTECTED-DOCS-PACKAGE.md` for protected package access, noindex, and deployment guardrails.
 - `docs/ARCHITECTURE-THESIS.md` for the model/harness/economic-layer separation.

@@ -4,7 +4,7 @@ _Issue #210. Parent epic: #206._
 
 ## Summary
 
-`scripts/protected_docs_package.py` builds a deterministic manifest for a protected, noindex ReddiAgent documentation package. It packages the existing vision, roadmap, architecture, ADR register, specs, mappings, research entrypoints, and evidence reports without deploying or publishing anything.
+`scripts/protected_docs_package.py` builds a deterministic manifest for a protected, noindex ReddiAgent documentation package. It packages the existing vision, roadmap, open specs explainer, architecture, ADR register, specs, mappings, research entrypoints, and evidence reports without deploying or publishing anything.
 
 ## Access and Crawling
 

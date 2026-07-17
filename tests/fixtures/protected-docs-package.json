@@ -44,36 +44,43 @@
       "id": "entrypoints",
       "label": "Entrypoints",
       "status": "ready",
-      "requiredCount": 4,
+      "requiredCount": 5,
       "missing": [],
       "files": [
         {
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "06f881148001b1827dd19ec488c935c5c589405263cbef653f7b91aa683127c0",
-          "bytes": 2842
+          "sha256": "dc32e18cc0303817c25ad60d254e1245e18d6e9512d59fa0013e7807a73e30ac",
+          "bytes": 2926
         },
         {
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "f0d77c1132995863ddbd8fba1bcd93d1f6d7058f0ad86496161ab9b7b035142b",
-          "bytes": 3218
+          "sha256": "0503db8e70079d2febec2ea14fe27392dea4504a8d4f25e6dcaa6574812e6399",
+          "bytes": 3280
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
           "exists": true,
           "kind": "file",
-          "sha256": "2f9734e4d5e6d378f381c3bf9c78b54f968e1a558f443c6988a3f053cfab8f3b",
-          "bytes": 8185
+          "sha256": "57b47dff4f381655c9db34257a7997801bf21c026e803fdbe5af5cb46f14235b",
+          "bytes": 8534
+        },
+        {
+          "path": "docs/OPEN-SPECS-EXPLAINER.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "1f1cb9ae08e272ced9344c3f97f5e4701fd00b9e03e5d07599b388fb1efbceda",
+          "bytes": 12217
         },
         {
           "path": "docs/PROTECTED-DOCS-PACKAGE.md",
           "exists": true,
           "kind": "file",
-          "sha256": "15d1e1adddaca740756627ea6a4f85560308a57bfb9bf2665035e758be386dfd",
-          "bytes": 2422
+          "sha256": "3aff3dff2ba81f474f2310276101076cb683c6745096bf6f2203fff00b533290",
+          "bytes": 2488
         }
       ]
     },
@@ -450,8 +457,8 @@
           "path": "tests/PROTECTED-DOCS-PACKAGE-REPORT.md",
           "exists": true,
           "kind": "file",
-          "sha256": "c162f1d7384ae4f07ce3b987b1ea7af875bd54b721b59a180baa620504776c7d",
-          "bytes": 1412
+          "sha256": "cf527d7241632734cd85ca496e875ea21a41ad1f4313c100d5c2244cdef4d652",
+          "bytes": 1434
         }
       ]
     }
