@@ -83,6 +83,7 @@ _Loop 42. Anchor issue: #42._
 - tests/MCP-READINESS-EVIDENCE-REPORT.md
 - tests/AGENT-SPEC-COMPATIBILITY-REPORT.md
 - tests/PROTECTED-DOCS-PACKAGE-REPORT.md
+- tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md
 - tests/BETA-RELEASE-READINESS-REPORT.md
 - docs/MCP-READINESS-RELEASE-CHECKLIST.md
 - docs/BETA-RELEASE-READINESS-RUNBOOK.md
@@ -97,6 +98,7 @@ _Loop 42. Anchor issue: #42._
 - tests/test_mcp_readiness_evidence.py
 - tests/test_mcp_readiness_release.py
 - tests/test_agent_spec_compatibility.py
+- tests/test_beta_operator_control_harness.py
 - tests/test_beta_release_readiness.py
 - tests/LEVEL-0-CONFORMANCE-REPORT.md
 - tests/VALIDATION-ERROR-DEMO.md

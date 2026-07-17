@@ -1,0 +1,239 @@
+{
+  "boundaries": {
+    "credentialAccess": false,
+    "externalSpend": false,
+    "localOnly": true,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "providerApiAccess": false
+  },
+  "findings": [],
+  "issue": 235,
+  "mode": "beta-operator-control-harness",
+  "operatorControls": [
+    "disable-runtime-path",
+    "enable-runtime-path",
+    "force-local-only-mode",
+    "pause-mcp-invocation",
+    "pause-payment-handoff",
+    "pause-provider-calls"
+  ],
+  "releaseId": "reddiagent-beta-0",
+  "requiredEvents": [
+    "cost.estimated",
+    "policy.checked",
+    "rollback.completed",
+    "rollback.started",
+    "runtime.disabled",
+    "runtime.enabled"
+  ],
+  "results": [
+    {
+      "completionStatus": "pass",
+      "enabledRuntimePath": "local-runtime-prototype",
+      "expectedCompletionStatus": "pass",
+      "failClosed": false,
+      "id": "local-operator-control-drill",
+      "kind": "positive",
+      "nextRuntimeMode": "local-only",
+      "reason": "operator-control-drill-complete",
+      "traceEvents": [
+        {
+          "environment": "local",
+          "event": "policy.checked",
+          "localOnly": true,
+          "mainnetAllowed": false,
+          "runtimeMode": "local-only",
+          "status": "pass",
+          "traceId": "beta-control-trace-001"
+        },
+        {
+          "amountUsd": 0.0,
+          "ceilingUsd": 0.01,
+          "event": "cost.estimated",
+          "status": "pass",
+          "traceId": "beta-control-trace-001",
+          "withinCeiling": true
+        },
+        {
+          "event": "runtime.enabled",
+          "localOnly": true,
+          "runtimeMode": "local-only",
+          "runtimePath": "local-runtime-prototype",
+          "status": "pass",
+          "traceId": "beta-control-trace-001"
+        },
+        {
+          "event": "runtime.disabled",
+          "reason": "operator-drill",
+          "runtimePath": "local-runtime-prototype",
+          "status": "pass",
+          "traceId": "beta-control-trace-001"
+        },
+        {
+          "event": "rollback.started",
+          "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+          "status": "pass",
+          "traceId": "beta-control-trace-001"
+        },
+        {
+          "disableVerified": true,
+          "event": "rollback.completed",
+          "mainnetRollback": "not-applicable-mainnet-not-approved",
+          "rollbackReference": "rollback://beta-0/local-operator-control-drill",
+          "status": "pass",
+          "traceId": "beta-control-trace-001"
+        }
+      ]
+    },
+    {
+      "completionStatus": "fail",
+      "enabledRuntimePath": null,
+      "expectedCompletionStatus": "fail",
+      "failClosed": true,
+      "id": "mainnet-enable-denied",
+      "kind": "negative",
+      "nextRuntimeMode": "local-only",
+      "reason": "mainnet-not-approved",
+      "traceEvents": [
+        {
+          "environment": "mainnet",
+          "event": "policy.checked",
+          "localOnly": false,
+          "mainnetAllowed": false,
+          "runtimeMode": "mainnet",
+          "status": "pass",
+          "traceId": "beta-control-trace-002"
+        },
+        {
+          "amountUsd": 0.0,
+          "ceilingUsd": 0.01,
+          "event": "cost.estimated",
+          "status": "pass",
+          "traceId": "beta-control-trace-002",
+          "withinCeiling": true
+        },
+        {
+          "event": "runtime.disabled",
+          "reason": "mainnet-not-approved",
+          "status": "fail",
+          "traceId": "beta-control-trace-002"
+        }
+      ]
+    },
+    {
+      "completionStatus": "fail",
+      "enabledRuntimePath": null,
+      "expectedCompletionStatus": "fail",
+      "failClosed": true,
+      "id": "rollback-stop-missing",
+      "kind": "negative",
+      "nextRuntimeMode": "local-only",
+      "reason": "rollback-stop-not-verified",
+      "traceEvents": [
+        {
+          "environment": "local",
+          "event": "policy.checked",
+          "localOnly": true,
+          "mainnetAllowed": false,
+          "runtimeMode": "local-only",
+          "status": "pass",
+          "traceId": "beta-control-trace-003"
+        },
+        {
+          "amountUsd": 0.0,
+          "ceilingUsd": 0.01,
+          "event": "cost.estimated",
+          "status": "pass",
+          "traceId": "beta-control-trace-003",
+          "withinCeiling": true
+        },
+        {
+          "event": "runtime.disabled",
+          "reason": "rollback-stop-not-verified",
+          "status": "fail",
+          "traceId": "beta-control-trace-003"
+        }
+      ]
+    },
+    {
+      "completionStatus": "fail",
+      "enabledRuntimePath": null,
+      "expectedCompletionStatus": "fail",
+      "failClosed": true,
+      "id": "cost-ceiling-forces-local-only",
+      "kind": "negative",
+      "nextRuntimeMode": "local-only",
+      "reason": "cost-ceiling-exceeded",
+      "traceEvents": [
+        {
+          "environment": "local",
+          "event": "policy.checked",
+          "localOnly": true,
+          "mainnetAllowed": false,
+          "runtimeMode": "local-only",
+          "status": "pass",
+          "traceId": "beta-control-trace-004"
+        },
+        {
+          "amountUsd": 0.02,
+          "ceilingUsd": 0.01,
+          "event": "cost.estimated",
+          "status": "pass",
+          "traceId": "beta-control-trace-004",
+          "withinCeiling": false
+        },
+        {
+          "event": "runtime.disabled",
+          "reason": "cost-ceiling-exceeded",
+          "status": "fail",
+          "traceId": "beta-control-trace-004"
+        }
+      ]
+    },
+    {
+      "completionStatus": "fail",
+      "enabledRuntimePath": null,
+      "expectedCompletionStatus": "fail",
+      "failClosed": true,
+      "id": "privacy-payload-denied",
+      "kind": "negative",
+      "nextRuntimeMode": "local-only",
+      "reason": "sensitive-payload-denied",
+      "traceEvents": [
+        {
+          "environment": "local",
+          "event": "policy.checked",
+          "localOnly": true,
+          "mainnetAllowed": false,
+          "runtimeMode": "local-only",
+          "status": "pass",
+          "traceId": "beta-control-trace-005"
+        },
+        {
+          "amountUsd": 0.0,
+          "ceilingUsd": 0.01,
+          "event": "cost.estimated",
+          "status": "pass",
+          "traceId": "beta-control-trace-005",
+          "withinCeiling": true
+        },
+        {
+          "event": "runtime.disabled",
+          "reason": "sensitive-payload-denied",
+          "status": "fail",
+          "traceId": "beta-control-trace-005"
+        }
+      ]
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 4,
+    "mainnetApproved": false,
+    "negativeScenarios": 4,
+    "positiveScenarios": 1
+  }
+}

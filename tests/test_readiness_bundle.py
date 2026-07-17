@@ -24,6 +24,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/MCP-CAPABILITY-POLICY-REPORT.md",
     "tests/MCP-READINESS-EVIDENCE-REPORT.md",
     "docs/MCP-READINESS-RELEASE-CHECKLIST.md",
+    "tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md",
     "tests/BETA-RELEASE-READINESS-REPORT.md",
     "docs/BETA-RELEASE-READINESS-RUNBOOK.md",
     "tests/test_tool_execution.py",
@@ -38,6 +39,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/test_mcp_capability_policy.py",
     "tests/test_mcp_readiness_evidence.py",
     "tests/test_mcp_readiness_release.py",
+    "tests/test_beta_operator_control_harness.py",
     "tests/test_beta_release_readiness.py",
     "--fail-on-required-gate",
     "completion.status",
@@ -61,6 +63,7 @@ REQUIRED_SMOKE_COMMANDS = [
     "tests/test_mcp_capability_policy.py",
     "tests/test_mcp_readiness_evidence.py",
     "tests/test_mcp_readiness_release.py",
+    "tests/test_beta_operator_control_harness.py",
     "tests/test_beta_release_readiness.py",
 ]
 

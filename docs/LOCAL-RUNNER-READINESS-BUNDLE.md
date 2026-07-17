@@ -52,6 +52,7 @@ The local-python runner can currently prove:
 | Local executable runtime prototype report | `tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md` | Simple/tool examples execute locally with explicit traces; invalid/unsafe examples fail closed. |
 | Provider sandbox prototype report | `tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md` | Fake/local provider-backed scenarios record model, prompt, budget, eval, cost, and trace evidence with no hosted provider call. |
 | Live MCP/devnet handoff prototype report | `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md` | Reviewed MCP allowlist and simulated devnet payment handoff scenarios pass while mainnet and unreviewed MCP server refs fail closed. |
+| Beta operator-control harness report | `tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md` | Local-only enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial controls are exercised with fail-closed fixtures. |
 | Beta release readiness runbook | `docs/BETA-RELEASE-READINESS-RUNBOOK.md` | Operator-facing beta entry/exit, observability, controls, rollback, cost, safety, privacy, incident, and mainnet denial runbook. |
 | Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
@@ -81,6 +82,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runtime_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_provider_sandbox_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_control_harness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
@@ -109,6 +111,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] MCP readiness evidence includes all required static gate events and matching aggregate completion status.
 - [ ] MCP readiness release checklist has been reviewed before any live MCP work is scoped.
 - [ ] MCP/devnet handoff prototype evidence keeps reviewed allowlists, rollback/cleanup, devnet/mainnet distinction, and secret-redaction assertions green before live infrastructure is touched.
+- [ ] Beta operator-control harness evidence proves enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial paths before beta runtime use.
 - [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 
 ## Explicit Non-Goals

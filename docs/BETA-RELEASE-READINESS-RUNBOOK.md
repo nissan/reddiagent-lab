@@ -36,6 +36,9 @@ A beta can exit toward a stronger release only after:
 - `tests/LOCAL-EXECUTABLE-RUNTIME-PROTOTYPE-REPORT.md`
 - `tests/PROVIDER-SANDBOX-PROTOTYPE-REPORT.md`
 - `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md`
+- `tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md`
+- `tests/fixtures/beta-operator-control-scenarios.json`
+- `tests/fixtures/beta-operator-control-harness.json`
 - `tests/BETA-RELEASE-READINESS-REPORT.md`
 - `tests/fixtures/beta-release-readiness.json`
 - `tests/smoke-validation.sh`
