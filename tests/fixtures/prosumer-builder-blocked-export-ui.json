@@ -23,6 +23,7 @@
       "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
       "blockedBy": [],
       "command": "python3 scripts/agent_spec_compatibility.py --single examples/simple-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Spec",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -47,6 +48,7 @@
       "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
       "blockedBy": [],
       "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/simple-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "A2A Agent Card",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -71,6 +73,7 @@
       "authoritativeCheck": "tests/test_agent_skill_export.py",
       "blockedBy": [],
       "command": "python3 scripts/adl_to_agent_skill.py --single examples/simple-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Skills / SKILL.md",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -97,6 +100,7 @@
         "generator-implementation-review"
       ],
       "command": "python3 scripts/starter_code_plan.py --single examples/simple-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Starter manifest",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -117,6 +121,44 @@
       "authoritativeCheck": "tests/test_eve_compatibility.py",
       "blockedBy": [],
       "command": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
+      "eveCompatibilitySummary": {
+        "agent": "simple-research-helper",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
+        "blockedLiveActionWarnings": [
+          "no live eve runtime install or execution",
+          "no provider/model API call",
+          "no MCP server resolution or invocation",
+          "no credential lookup/access",
+          "no wallet, facilitator, payment rail, or settlement access",
+          "no server start, deployment, package publishing, or production gateway mutation"
+        ],
+        "deploymentAllowed": false,
+        "futureWork": [
+          "native eve enforcement for ReddiAgent metadata-only sections"
+        ],
+        "label": "Vercel eve",
+        "losslessState": "not-lossless-metadata-only",
+        "mcpInvocation": false,
+        "metadataOnlySections": [
+          "harness.policies",
+          "harness.evalGates",
+          "harness.memory"
+        ],
+        "networkAccess": false,
+        "paymentAccess": false,
+        "plannedConnectionCount": 0,
+        "plannedFileCount": 4,
+        "projectRootPreview": "eve/simple-research-helper",
+        "runtimeExecutionAllowed": false,
+        "source": "examples/simple-agent.yaml",
+        "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
+        "status": "report-ready-with-metadata-only-semantics",
+        "supported": true,
+        "target": "vercel-eve",
+        "uiState": "metadata-only",
+        "unsupportedFeatures": [],
+        "validationErrors": []
+      },
       "label": "Vercel eve",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -141,6 +183,7 @@
       "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
       "blockedBy": [],
       "command": "python3 scripts/agent_spec_compatibility.py --single examples/tool-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Spec",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -164,6 +207,7 @@
       "authoritativeCheck": "tests/test_a2a_agent_card_export.py",
       "blockedBy": [],
       "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/tool-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "A2A Agent Card",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -187,6 +231,7 @@
       "authoritativeCheck": "tests/test_agent_skill_export.py",
       "blockedBy": [],
       "command": "python3 scripts/adl_to_agent_skill.py --single examples/tool-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Skills / SKILL.md",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -212,6 +257,7 @@
         "generator-implementation-review"
       ],
       "command": "python3 scripts/starter_code_plan.py --single examples/tool-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Starter manifest",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -232,6 +278,43 @@
       "authoritativeCheck": "tests/test_eve_compatibility.py",
       "blockedBy": [],
       "command": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
+      "eveCompatibilitySummary": {
+        "agent": "source-checker",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
+        "blockedLiveActionWarnings": [
+          "no live eve runtime install or execution",
+          "no provider/model API call",
+          "no MCP server resolution or invocation",
+          "no credential lookup/access",
+          "no wallet, facilitator, payment rail, or settlement access",
+          "no server start, deployment, package publishing, or production gateway mutation"
+        ],
+        "deploymentAllowed": false,
+        "futureWork": [
+          "native eve enforcement for ReddiAgent metadata-only sections"
+        ],
+        "label": "Vercel eve",
+        "losslessState": "not-lossless-metadata-only",
+        "mcpInvocation": false,
+        "metadataOnlySections": [
+          "harness.policies",
+          "harness.evalGates"
+        ],
+        "networkAccess": false,
+        "paymentAccess": false,
+        "plannedConnectionCount": 0,
+        "plannedFileCount": 5,
+        "projectRootPreview": "eve/source-checker",
+        "runtimeExecutionAllowed": false,
+        "source": "examples/tool-agent.yaml",
+        "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
+        "status": "report-ready-with-metadata-only-semantics",
+        "supported": true,
+        "target": "vercel-eve",
+        "uiState": "metadata-only",
+        "unsupportedFeatures": [],
+        "validationErrors": []
+      },
       "label": "Vercel eve",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -258,6 +341,7 @@
         "live_payment_execution"
       ],
       "command": "python3 scripts/agent_spec_compatibility.py --single examples/payment-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Spec",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [
@@ -291,6 +375,7 @@
         "live_payment_execution"
       ],
       "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/payment-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "A2A Agent Card",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [
@@ -324,6 +409,7 @@
         "live_payment_execution"
       ],
       "command": "python3 scripts/adl_to_agent_skill.py --single examples/payment-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Skills / SKILL.md",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [
@@ -356,6 +442,7 @@
         "generator-implementation-review"
       ],
       "command": "python3 scripts/starter_code_plan.py --single examples/payment-agent.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Starter manifest",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -379,6 +466,52 @@
         "live_payment_execution"
       ],
       "command": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
+      "eveCompatibilitySummary": {
+        "agent": "paid-specialist-researcher",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
+        "blockedLiveActionWarnings": [
+          "no live eve runtime install or execution",
+          "no provider/model API call",
+          "no MCP server resolution or invocation",
+          "no credential lookup/access",
+          "no wallet, facilitator, payment rail, or settlement access",
+          "no server start, deployment, package publishing, or production gateway mutation"
+        ],
+        "deploymentAllowed": false,
+        "futureWork": [
+          "runtime enforcement for unsupported eve features",
+          "native eve enforcement for ReddiAgent metadata-only sections"
+        ],
+        "label": "Vercel eve",
+        "losslessState": "not-lossless-unsupported",
+        "mcpInvocation": false,
+        "metadataOnlySections": [
+          "harness.policies",
+          "harness.evalGates",
+          "extensions.receipts",
+          "extensions.reputation",
+          "extensions.x402"
+        ],
+        "networkAccess": false,
+        "paymentAccess": false,
+        "plannedConnectionCount": 0,
+        "plannedFileCount": 5,
+        "projectRootPreview": "eve/paid-specialist-researcher",
+        "runtimeExecutionAllowed": false,
+        "source": "examples/payment-agent.yaml",
+        "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
+        "status": "report-ready-with-unsupported-runtime-features",
+        "supported": true,
+        "target": "vercel-eve",
+        "uiState": "unsupported-runtime-features",
+        "unsupportedFeatures": [
+          "non_local_runtime_execution",
+          "live_payment_execution",
+          "receipt_enforcement",
+          "reputation_emission"
+        ],
+        "validationErrors": []
+      },
       "label": "Vercel eve",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [
@@ -411,6 +544,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/agent_spec_compatibility.py --single examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Spec",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -435,6 +569,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/adl_to_a2a_agent_card.py --single examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": null,
       "label": "A2A Agent Card",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -459,6 +594,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/adl_to_agent_skill.py --single examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Agent Skills / SKILL.md",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -483,6 +619,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/starter_code_plan.py --single examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Starter manifest",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -507,6 +644,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/provider_compatibility.py examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": null,
       "label": "Provider compatibility",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -531,6 +669,7 @@
         "validation_failed"
       ],
       "command": "python3 scripts/rap_bridge_report.py tests/fixtures/rap-bridge-x402-paid-mcp-ready.json",
+      "eveCompatibilitySummary": null,
       "label": "RAP bridge",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],
@@ -555,6 +694,45 @@
         "validation_failed"
       ],
       "command": "python3 scripts/eve_compatibility.py --single examples/invalid/missing-instructions.yaml",
+      "eveCompatibilitySummary": {
+        "agent": "invalid-missing-instructions",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
+        "blockedLiveActionWarnings": [
+          "no live eve runtime install or execution",
+          "no provider/model API call",
+          "no MCP server resolution or invocation",
+          "no credential lookup/access",
+          "no wallet, facilitator, payment rail, or settlement access",
+          "no server start, deployment, package publishing, or production gateway mutation"
+        ],
+        "deploymentAllowed": false,
+        "futureWork": [
+          "runtime enforcement for unsupported eve features",
+          "valid ADL input before eve export review"
+        ],
+        "label": "Vercel eve",
+        "losslessState": "blocked-by-validation",
+        "mcpInvocation": false,
+        "metadataOnlySections": [],
+        "networkAccess": false,
+        "paymentAccess": false,
+        "plannedConnectionCount": 0,
+        "plannedFileCount": 3,
+        "projectRootPreview": "eve/invalid-missing-instructions",
+        "runtimeExecutionAllowed": false,
+        "source": "examples/invalid/missing-instructions.yaml",
+        "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/invalid/missing-instructions.yaml",
+        "status": "blocked-by-validation",
+        "supported": false,
+        "target": "vercel-eve",
+        "uiState": "blocked",
+        "unsupportedFeatures": [
+          "validation_failed"
+        ],
+        "validationErrors": [
+          "harness: 'instructions' is a required property"
+        ]
+      },
       "label": "Vercel eve",
       "mcpInvocation": false,
       "metadataOnlyExtensions": [],

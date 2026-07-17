@@ -81,6 +81,7 @@ def main() -> int:
     assert row(simple, "vercel-eve")["command"] == (
         "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml"
     )
+    assert row(simple, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == "metadata-only"
     assert_static_boundaries(row(simple, "vercel-eve"))
 
     assert row(payment, "agent-spec")["readiness"] == "metadata-only"
@@ -96,12 +97,16 @@ def main() -> int:
         "non_local_runtime_execution",
         "live_payment_execution",
     ]
+    assert row(payment, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == (
+        "unsupported-runtime-features"
+    )
     assert_static_boundaries(row(payment, "vercel-eve"))
 
     assert invalid["supported"] is False
     assert row(invalid, "agent-spec")["readiness"] == "blocked-by-validation"
     assert row(invalid, "vercel-eve")["readiness"] == "blocked-by-validation"
     assert row(invalid, "vercel-eve")["blockedBy"] == ["validation_failed"]
+    assert row(invalid, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == "blocked"
     assert_static_boundaries(row(invalid, "vercel-eve"))
 
     eve_summary = summary(payload, "vercel-eve")

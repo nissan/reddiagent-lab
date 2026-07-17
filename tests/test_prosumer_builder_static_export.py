@@ -90,6 +90,21 @@ def main() -> int:
     ]
     assert manifest["blockedFixtureSource"] == "examples/invalid/missing-instructions.yaml"
     assert len(manifest["plans"]) == 3
+    assert manifest["eveCompatibilitySummaries"]["format"] == (
+        "prosumer-builder-eve-compatibility-ui-summaries"
+    )
+    assert manifest["eveCompatibilitySummaries"]["guardrails"]["deploymentAllowed"] is False
+    assert manifest["eveCompatibilitySummaries"]["guardrails"]["runtimeExecutionAllowed"] is False
+    assert manifest["eveCompatibilitySummaries"]["uiStateCounts"] == {
+        "blocked": 1,
+        "metadata-only": 2,
+        "unsupported-runtime-features": 1,
+    }
+    assert manifest["eveCompatibilitySummaries"]["losslessStateCounts"] == {
+        "blocked-by-validation": 1,
+        "not-lossless-metadata-only": 2,
+        "not-lossless-unsupported": 1,
+    }
 
     by_agent = {plan["agent"]: plan for plan in manifest["plans"]}
     simple_matrix = export_step(by_agent["simple-research-helper"])["staticUiExportMatrix"]
@@ -106,6 +121,11 @@ def main() -> int:
     eve_simple = next(row for row in simple_matrix if row["target"] == "vercel-eve")
     assert eve_simple["readiness"] == "metadata-only"
     assert eve_simple["blockedBy"] == []
+    assert eve_simple["eveCompatibilitySummary"]["uiState"] == "metadata-only"
+    assert eve_simple["eveCompatibilitySummary"]["sourceReportCommand"] == (
+        "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml"
+    )
+    assert eve_simple["eveCompatibilitySummary"]["deploymentAllowed"] is False
     payment_matrix = export_step(by_agent["paid-specialist-researcher"])["staticUiExportMatrix"]
     assert next(row for row in payment_matrix if row["target"] == "rap-bridge")["readiness"] == "report-ready"
     blocked = manifest["blockedExportFixture"]
@@ -159,6 +179,14 @@ def main() -> int:
     assert next(
         row for row in eve_rows if row["source"] == "examples/payment-agent.yaml"
     )["blockedBy"] == ["non_local_runtime_execution", "live_payment_execution"]
+    assert next(
+        row for row in eve_rows if row["source"] == "examples/payment-agent.yaml"
+    )["eveCompatibilitySummary"]["uiState"] == "unsupported-runtime-features"
+    assert next(
+        row
+        for row in eve_rows
+        if row["source"] == "examples/invalid/missing-instructions.yaml"
+    )["eveCompatibilitySummary"]["uiState"] == "blocked"
     payment_metadata_rows = [
         row
         for row in blocked_fixture["rows"]

@@ -131,6 +131,20 @@ def main() -> int:
     assert export_row(simple, "vercel-eve")["authoritativeCheck"] == (
         "tests/test_eve_compatibility.py"
     )
+    assert export_row(simple, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == (
+        "metadata-only"
+    )
+    assert export_row(simple, "vercel-eve")["eveCompatibilitySummary"]["losslessState"] == (
+        "not-lossless-metadata-only"
+    )
+    assert export_row(simple, "vercel-eve")["eveCompatibilitySummary"]["futureWork"] == [
+        "native eve enforcement for ReddiAgent metadata-only sections"
+    ]
+    assert "no live eve runtime install or execution" in export_row(
+        simple,
+        "vercel-eve",
+    )["eveCompatibilitySummary"]["blockedLiveActionWarnings"]
+    assert export_row(simple, "vercel-eve")["eveCompatibilitySummary"]["deploymentAllowed"] is False
     assert export_row(simple, "vercel-eve")["runtimeExecutionAllowed"] is False
     assert [item["kind"] for item in step(simple, "export")["staticUiHandoffSummaries"]] == [
         "rap-bridge",
@@ -236,6 +250,17 @@ def main() -> int:
         "extensions.receipts",
         "extensions.reputation",
     ]
+    assert export_row(payment, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == (
+        "unsupported-runtime-features"
+    )
+    assert export_row(payment, "vercel-eve")["eveCompatibilitySummary"][
+        "unsupportedFeatures"
+    ] == [
+        "non_local_runtime_execution",
+        "live_payment_execution",
+        "receipt_enforcement",
+        "reputation_emission",
+    ]
     assert_static_boundaries(payment)
 
     invalid = run_command("--single", "examples/invalid/missing-instructions.yaml")
@@ -254,6 +279,12 @@ def main() -> int:
     ]
     assert export_row(invalid_plan, "vercel-eve")["readiness"] == "blocked-by-validation"
     assert export_row(invalid_plan, "vercel-eve")["blockedBy"] == ["validation_failed"]
+    assert export_row(invalid_plan, "vercel-eve")["eveCompatibilitySummary"]["uiState"] == (
+        "blocked"
+    )
+    assert export_row(invalid_plan, "vercel-eve")["eveCompatibilitySummary"][
+        "validationErrors"
+    ] == ["harness: 'instructions' is a required property"]
     assert handoff_summary(invalid_plan, "provider-adapter")["networkAccess"] is False
     assert invalid_plan["runtimeExecutionAllowed"] is False
     assert invalid_plan["networkAccess"] is False

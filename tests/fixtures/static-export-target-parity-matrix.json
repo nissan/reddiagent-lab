@@ -165,7 +165,45 @@
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "eveCompatibilitySummary": {
+            "target": "vercel-eve",
+            "label": "Vercel eve",
+            "source": "examples/simple-agent.yaml",
+            "agent": "simple-research-helper",
+            "status": "report-ready-with-metadata-only-semantics",
+            "uiState": "metadata-only",
+            "losslessState": "not-lossless-metadata-only",
+            "supported": true,
+            "metadataOnlySections": [
+              "harness.policies",
+              "harness.evalGates",
+              "harness.memory"
+            ],
+            "unsupportedFeatures": [],
+            "validationErrors": [],
+            "projectRootPreview": "eve/simple-research-helper",
+            "plannedFileCount": 4,
+            "plannedConnectionCount": 0,
+            "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
+            "authoritativeCheck": "tests/test_eve_compatibility.py",
+            "blockedLiveActionWarnings": [
+              "no live eve runtime install or execution",
+              "no provider/model API call",
+              "no MCP server resolution or invocation",
+              "no credential lookup/access",
+              "no wallet, facilitator, payment rail, or settlement access",
+              "no server start, deployment, package publishing, or production gateway mutation"
+            ],
+            "futureWork": [
+              "native eve enforcement for ReddiAgent metadata-only sections"
+            ],
+            "deploymentAllowed": false,
+            "runtimeExecutionAllowed": false,
+            "networkAccess": false,
+            "paymentAccess": false,
+            "mcpInvocation": false
+          }
         }
       ]
     },
@@ -309,7 +347,44 @@
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "eveCompatibilitySummary": {
+            "target": "vercel-eve",
+            "label": "Vercel eve",
+            "source": "examples/tool-agent.yaml",
+            "agent": "source-checker",
+            "status": "report-ready-with-metadata-only-semantics",
+            "uiState": "metadata-only",
+            "losslessState": "not-lossless-metadata-only",
+            "supported": true,
+            "metadataOnlySections": [
+              "harness.policies",
+              "harness.evalGates"
+            ],
+            "unsupportedFeatures": [],
+            "validationErrors": [],
+            "projectRootPreview": "eve/source-checker",
+            "plannedFileCount": 5,
+            "plannedConnectionCount": 0,
+            "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
+            "authoritativeCheck": "tests/test_eve_compatibility.py",
+            "blockedLiveActionWarnings": [
+              "no live eve runtime install or execution",
+              "no provider/model API call",
+              "no MCP server resolution or invocation",
+              "no credential lookup/access",
+              "no wallet, facilitator, payment rail, or settlement access",
+              "no server start, deployment, package publishing, or production gateway mutation"
+            ],
+            "futureWork": [
+              "native eve enforcement for ReddiAgent metadata-only sections"
+            ],
+            "deploymentAllowed": false,
+            "runtimeExecutionAllowed": false,
+            "networkAccess": false,
+            "paymentAccess": false,
+            "mcpInvocation": false
+          }
         }
       ]
     },
@@ -498,7 +573,53 @@
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "eveCompatibilitySummary": {
+            "target": "vercel-eve",
+            "label": "Vercel eve",
+            "source": "examples/payment-agent.yaml",
+            "agent": "paid-specialist-researcher",
+            "status": "report-ready-with-unsupported-runtime-features",
+            "uiState": "unsupported-runtime-features",
+            "losslessState": "not-lossless-unsupported",
+            "supported": true,
+            "metadataOnlySections": [
+              "harness.policies",
+              "harness.evalGates",
+              "extensions.receipts",
+              "extensions.reputation",
+              "extensions.x402"
+            ],
+            "unsupportedFeatures": [
+              "non_local_runtime_execution",
+              "live_payment_execution",
+              "receipt_enforcement",
+              "reputation_emission"
+            ],
+            "validationErrors": [],
+            "projectRootPreview": "eve/paid-specialist-researcher",
+            "plannedFileCount": 5,
+            "plannedConnectionCount": 0,
+            "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
+            "authoritativeCheck": "tests/test_eve_compatibility.py",
+            "blockedLiveActionWarnings": [
+              "no live eve runtime install or execution",
+              "no provider/model API call",
+              "no MCP server resolution or invocation",
+              "no credential lookup/access",
+              "no wallet, facilitator, payment rail, or settlement access",
+              "no server start, deployment, package publishing, or production gateway mutation"
+            ],
+            "futureWork": [
+              "runtime enforcement for unsupported eve features",
+              "native eve enforcement for ReddiAgent metadata-only sections"
+            ],
+            "deploymentAllowed": false,
+            "runtimeExecutionAllowed": false,
+            "networkAccess": false,
+            "paymentAccess": false,
+            "mcpInvocation": false
+          }
         }
       ]
     },
@@ -640,7 +761,46 @@
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "eveCompatibilitySummary": {
+            "target": "vercel-eve",
+            "label": "Vercel eve",
+            "source": "examples/invalid/missing-instructions.yaml",
+            "agent": "invalid-missing-instructions",
+            "status": "blocked-by-validation",
+            "uiState": "blocked",
+            "losslessState": "blocked-by-validation",
+            "supported": false,
+            "metadataOnlySections": [],
+            "unsupportedFeatures": [
+              "validation_failed"
+            ],
+            "validationErrors": [
+              "harness: 'instructions' is a required property"
+            ],
+            "projectRootPreview": "eve/invalid-missing-instructions",
+            "plannedFileCount": 3,
+            "plannedConnectionCount": 0,
+            "sourceReportCommand": "python3 scripts/eve_compatibility.py --single examples/invalid/missing-instructions.yaml",
+            "authoritativeCheck": "tests/test_eve_compatibility.py",
+            "blockedLiveActionWarnings": [
+              "no live eve runtime install or execution",
+              "no provider/model API call",
+              "no MCP server resolution or invocation",
+              "no credential lookup/access",
+              "no wallet, facilitator, payment rail, or settlement access",
+              "no server start, deployment, package publishing, or production gateway mutation"
+            ],
+            "futureWork": [
+              "runtime enforcement for unsupported eve features",
+              "valid ADL input before eve export review"
+            ],
+            "deploymentAllowed": false,
+            "runtimeExecutionAllowed": false,
+            "networkAccess": false,
+            "paymentAccess": false,
+            "mcpInvocation": false
+          }
         }
       ]
     }
