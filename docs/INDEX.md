@@ -6,6 +6,7 @@ _Loop 42. Anchor issue: #42._
 
 - STATUS.md
 - docs/REDDIAGENT-VISION-ROADMAP.md
+- docs/REDDIAGENT-ARCHITECTURE.md
 - docs/LOOP-PROTOCOL.md
 - docs/ROADMAP.md
 - docs/LOCAL-RUNNER-READINESS-BUNDLE.md
@@ -14,6 +15,7 @@ _Loop 42. Anchor issue: #42._
 
 - README.md
 - docs/REDDIAGENT-VISION-ROADMAP.md
+- docs/REDDIAGENT-ARCHITECTURE.md
 - docs/ARCHITECTURE-THESIS.md
 - docs/ULTRA-PLAN.md
 - docs/GLOSSARY.md

@@ -2,7 +2,7 @@
 
 ReddiAgent Lab is the research and design workspace for helping prosumers understand, define, build, run, and improve AI agents.
 
-For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md`.
+For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md`. For the high-level system view, read `docs/REDDIAGENT-ARCHITECTURE.md`.
 
 It is adjacent to Reddi Agent Protocol, but intentionally separate:
 
