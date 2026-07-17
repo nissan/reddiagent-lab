@@ -73,12 +73,10 @@ def main() -> int:
     payment = by_agent["paid-specialist-researcher"]
     invalid = by_agent["invalid-missing-instructions"]
 
-    assert row(simple, "vercel-eve")["readiness"] == "planned-static-report"
-    assert row(simple, "vercel-eve")["blockedBy"] == [
-        "eve_compatibility_report_not_implemented"
-    ]
+    assert row(simple, "vercel-eve")["readiness"] == "metadata-only"
+    assert row(simple, "vercel-eve")["blockedBy"] == []
     assert row(simple, "vercel-eve")["authoritativeCheck"] == (
-        "planned:tests/test_eve_compatibility.py"
+        "tests/test_eve_compatibility.py"
     )
     assert row(simple, "vercel-eve")["command"] == (
         "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml"
@@ -93,7 +91,11 @@ def main() -> int:
         "extensions.reputation",
     ]
     assert "extensions.x402" in row(payment, "vercel-eve")["metadataOnlySections"]
-    assert row(payment, "vercel-eve")["readiness"] == "planned-static-report"
+    assert row(payment, "vercel-eve")["readiness"] == "metadata-only"
+    assert row(payment, "vercel-eve")["blockedBy"] == [
+        "non_local_runtime_execution",
+        "live_payment_execution",
+    ]
     assert_static_boundaries(row(payment, "vercel-eve"))
 
     assert invalid["supported"] is False
@@ -105,11 +107,12 @@ def main() -> int:
     eve_summary = summary(payload, "vercel-eve")
     assert eve_summary["agentCount"] == 4
     assert eve_summary["readinessCounts"] == {
-        "planned-static-report": 3,
+        "metadata-only": 3,
         "blocked-by-validation": 1,
     }
     assert eve_summary["blockedBy"] == [
-        "eve_compatibility_report_not_implemented",
+        "live_payment_execution",
+        "non_local_runtime_execution",
         "validation_failed",
     ]
     assert "extensions.reputation" in eve_summary["metadataOnly"]

@@ -1,0 +1,391 @@
+[
+  {
+    "format": "vercel-eve-compatibility-report",
+    "issue": 202,
+    "target": "vercel-eve",
+    "source": "examples/simple-agent.yaml",
+    "agent": "simple-research-helper",
+    "supported": true,
+    "status": "report-ready-with-metadata-only-semantics",
+    "validationErrors": [],
+    "modelMapping": {
+      "preferredProvider": "openai",
+      "fallbackProviders": [
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "eveSlot": "agent/agent.ts model metadata",
+      "runtimeModelResolution": "not-probed"
+    },
+    "instructionMapping": {
+      "source": "harness.instructions.inline",
+      "eveSlot": "agent/instructions.md"
+    },
+    "metadataOnlySections": [
+      "harness.policies",
+      "harness.evalGates",
+      "harness.memory"
+    ],
+    "unsupportedFeatures": [],
+    "projectManifest": {
+      "projectRoot": "eve/simple-research-helper",
+      "files": [
+        {
+          "path": "agent/instructions.md",
+          "source": "harness.instructions.inline",
+          "status": "static-content-plan"
+        },
+        {
+          "path": "agent/agent.ts",
+          "source": "model + static boundary metadata",
+          "status": "static-config-plan"
+        },
+        {
+          "path": "evals/has_answer.eval.ts",
+          "source": "harness.evalGates.has-answer",
+          "status": "static-eval-plan"
+        },
+        {
+          "path": "agent/reddiagent.metadata.json",
+          "source": "ReddiAgent sections that eve cannot enforce natively",
+          "status": "metadata-only"
+        }
+      ],
+      "toolManifest": [],
+      "evalManifest": [
+        {
+          "id": "has-answer",
+          "type": "output-check",
+          "eveSlot": "evals/has_answer.eval.ts",
+          "status": "static-eval-plan"
+        }
+      ],
+      "connections": []
+    },
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "deploymentAllowed": false
+  },
+  {
+    "format": "vercel-eve-compatibility-report",
+    "issue": 202,
+    "target": "vercel-eve",
+    "source": "examples/tool-agent.yaml",
+    "agent": "source-checker",
+    "supported": true,
+    "status": "report-ready-with-metadata-only-semantics",
+    "validationErrors": [],
+    "modelMapping": {
+      "preferredProvider": "anthropic",
+      "fallbackProviders": [
+        "openai",
+        "gemini"
+      ],
+      "eveSlot": "agent/agent.ts model metadata",
+      "runtimeModelResolution": "not-probed"
+    },
+    "instructionMapping": {
+      "source": "harness.instructions.inline",
+      "eveSlot": "agent/instructions.md"
+    },
+    "metadataOnlySections": [
+      "harness.policies",
+      "harness.evalGates"
+    ],
+    "unsupportedFeatures": [],
+    "projectManifest": {
+      "projectRoot": "eve/source-checker",
+      "files": [
+        {
+          "path": "agent/instructions.md",
+          "source": "harness.instructions.inline",
+          "status": "static-content-plan"
+        },
+        {
+          "path": "agent/agent.ts",
+          "source": "model + static boundary metadata",
+          "status": "static-config-plan"
+        },
+        {
+          "path": "agent/tools/search_docs.ts",
+          "source": "harness.tools.search_docs",
+          "status": "static-stub-plan"
+        },
+        {
+          "path": "evals/cite_source.eval.ts",
+          "source": "harness.evalGates.cite-source",
+          "status": "static-eval-plan"
+        },
+        {
+          "path": "agent/reddiagent.metadata.json",
+          "source": "ReddiAgent sections that eve cannot enforce natively",
+          "status": "metadata-only"
+        }
+      ],
+      "toolManifest": [
+        {
+          "id": "search_docs",
+          "type": "function",
+          "eveSlot": "agent/tools/search_docs.ts",
+          "status": "static-stub-plan",
+          "description": "Search approved documentation sources."
+        }
+      ],
+      "evalManifest": [
+        {
+          "id": "cite-source",
+          "type": "output-check",
+          "eveSlot": "evals/cite_source.eval.ts",
+          "status": "static-eval-plan"
+        }
+      ],
+      "connections": []
+    },
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "deploymentAllowed": false
+  },
+  {
+    "format": "vercel-eve-compatibility-report",
+    "issue": 202,
+    "target": "vercel-eve",
+    "source": "examples/mcp-readonly-agent.yaml",
+    "agent": "mcp-readonly-docs",
+    "supported": true,
+    "status": "report-ready-with-unsupported-runtime-features",
+    "validationErrors": [],
+    "modelMapping": {
+      "preferredProvider": "anthropic",
+      "fallbackProviders": [
+        "openai"
+      ],
+      "eveSlot": "agent/agent.ts model metadata",
+      "runtimeModelResolution": "not-probed"
+    },
+    "instructionMapping": {
+      "source": "harness.instructions.inline",
+      "eveSlot": "agent/instructions.md"
+    },
+    "metadataOnlySections": [
+      "harness.policies",
+      "harness.evalGates"
+    ],
+    "unsupportedFeatures": [
+      "mcp_runtime_invocation"
+    ],
+    "projectManifest": {
+      "projectRoot": "eve/mcp-readonly-docs",
+      "files": [
+        {
+          "path": "agent/instructions.md",
+          "source": "harness.instructions.inline",
+          "status": "static-content-plan"
+        },
+        {
+          "path": "agent/agent.ts",
+          "source": "model + static boundary metadata",
+          "status": "static-config-plan"
+        },
+        {
+          "path": "agent/connections/docs_search.ts",
+          "source": "harness.tools.docs_search",
+          "status": "metadata-only"
+        },
+        {
+          "path": "evals/mcp_source_boundary.eval.ts",
+          "source": "harness.evalGates.mcp-source-boundary",
+          "status": "static-eval-plan"
+        },
+        {
+          "path": "agent/reddiagent.metadata.json",
+          "source": "ReddiAgent sections that eve cannot enforce natively",
+          "status": "metadata-only"
+        }
+      ],
+      "toolManifest": [
+        {
+          "id": "docs_search",
+          "type": "mcp",
+          "eveSlot": "agent/connections/docs_search.ts",
+          "status": "metadata-only",
+          "description": "Search approved documentation through a named MCP server reference.",
+          "serverRef": "approved-docs-search",
+          "toolName": "search",
+          "unsupportedFeature": "mcp_runtime_invocation"
+        }
+      ],
+      "evalManifest": [
+        {
+          "id": "mcp-source-boundary",
+          "type": "source-check",
+          "eveSlot": "evals/mcp_source_boundary.eval.ts",
+          "status": "static-eval-plan"
+        }
+      ],
+      "connections": [
+        {
+          "id": "docs_search",
+          "type": "mcp",
+          "eveSlot": "agent/connections/docs_search.ts",
+          "status": "metadata-only",
+          "description": "Search approved documentation through a named MCP server reference.",
+          "serverRef": "approved-docs-search",
+          "toolName": "search",
+          "unsupportedFeature": "mcp_runtime_invocation"
+        }
+      ]
+    },
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "deploymentAllowed": false
+  },
+  {
+    "format": "vercel-eve-compatibility-report",
+    "issue": 202,
+    "target": "vercel-eve",
+    "source": "examples/payment-agent.yaml",
+    "agent": "paid-specialist-researcher",
+    "supported": true,
+    "status": "report-ready-with-unsupported-runtime-features",
+    "validationErrors": [],
+    "modelMapping": {
+      "preferredProvider": "openai",
+      "fallbackProviders": [
+        "anthropic"
+      ],
+      "eveSlot": "agent/agent.ts model metadata",
+      "runtimeModelResolution": "not-probed"
+    },
+    "instructionMapping": {
+      "source": "harness.instructions.inline",
+      "eveSlot": "agent/instructions.md"
+    },
+    "metadataOnlySections": [
+      "harness.policies",
+      "harness.evalGates",
+      "extensions.receipts",
+      "extensions.reputation",
+      "extensions.x402"
+    ],
+    "unsupportedFeatures": [
+      "non_local_runtime_execution",
+      "live_payment_execution",
+      "receipt_enforcement",
+      "reputation_emission"
+    ],
+    "projectManifest": {
+      "projectRoot": "eve/paid-specialist-researcher",
+      "files": [
+        {
+          "path": "agent/instructions.md",
+          "source": "harness.instructions.inline",
+          "status": "static-content-plan"
+        },
+        {
+          "path": "agent/agent.ts",
+          "source": "model + static boundary metadata",
+          "status": "static-config-plan"
+        },
+        {
+          "path": "agent/tools/fetch_approved_url.ts",
+          "source": "harness.tools.fetch_approved_url",
+          "status": "static-stub-plan"
+        },
+        {
+          "path": "evals/receipt_required.eval.ts",
+          "source": "harness.evalGates.receipt-required",
+          "status": "static-eval-plan"
+        },
+        {
+          "path": "agent/reddiagent.metadata.json",
+          "source": "ReddiAgent sections that eve cannot enforce natively",
+          "status": "metadata-only"
+        }
+      ],
+      "toolManifest": [
+        {
+          "id": "fetch_approved_url",
+          "type": "function",
+          "eveSlot": "agent/tools/fetch_approved_url.ts",
+          "status": "static-stub-plan",
+          "description": "Fetch one approved URL."
+        }
+      ],
+      "evalManifest": [
+        {
+          "id": "receipt-required",
+          "type": "receipt-check",
+          "eveSlot": "evals/receipt_required.eval.ts",
+          "status": "static-eval-plan"
+        }
+      ],
+      "connections": []
+    },
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "deploymentAllowed": false
+  },
+  {
+    "format": "vercel-eve-compatibility-report",
+    "issue": 202,
+    "target": "vercel-eve",
+    "source": "examples/invalid/missing-instructions.yaml",
+    "agent": "invalid-missing-instructions",
+    "supported": false,
+    "status": "blocked-by-validation",
+    "validationErrors": [
+      "harness: 'instructions' is a required property"
+    ],
+    "modelMapping": {
+      "preferredProvider": "openai",
+      "fallbackProviders": [],
+      "eveSlot": "agent/agent.ts model metadata",
+      "runtimeModelResolution": "not-probed"
+    },
+    "instructionMapping": {
+      "source": "harness.instructions.path",
+      "eveSlot": "agent/instructions.md"
+    },
+    "metadataOnlySections": [],
+    "unsupportedFeatures": [
+      "validation_failed"
+    ],
+    "projectManifest": {
+      "projectRoot": "eve/invalid-missing-instructions",
+      "files": [
+        {
+          "path": "agent/instructions.md",
+          "source": "harness.instructions.path",
+          "status": "blocked-by-validation"
+        },
+        {
+          "path": "agent/agent.ts",
+          "source": "model + static boundary metadata",
+          "status": "blocked-by-validation"
+        },
+        {
+          "path": "agent/reddiagent.metadata.json",
+          "source": "ReddiAgent sections that eve cannot enforce natively",
+          "status": "metadata-only"
+        }
+      ],
+      "toolManifest": [],
+      "evalManifest": [],
+      "connections": []
+    },
+    "runtimeExecutionAllowed": false,
+    "networkAccess": false,
+    "paymentAccess": false,
+    "mcpInvocation": false,
+    "deploymentAllowed": false
+  }
+]

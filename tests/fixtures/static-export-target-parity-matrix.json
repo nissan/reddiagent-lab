@@ -152,12 +152,10 @@
           "mode": "report-only",
           "command": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
           "strictExportCommand": null,
-          "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
-          "status": "planned-static-report",
-          "readiness": "planned-static-report",
-          "blockedBy": [
-            "eve_compatibility_report_not_implemented"
-          ],
+          "authoritativeCheck": "tests/test_eve_compatibility.py",
+          "status": "metadata-only",
+          "readiness": "metadata-only",
+          "blockedBy": [],
           "metadataOnlyExtensions": [],
           "metadataOnlySections": [
             "harness.policies",
@@ -299,12 +297,10 @@
           "mode": "report-only",
           "command": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
           "strictExportCommand": null,
-          "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
-          "status": "planned-static-report",
-          "readiness": "planned-static-report",
-          "blockedBy": [
-            "eve_compatibility_report_not_implemented"
-          ],
+          "authoritativeCheck": "tests/test_eve_compatibility.py",
+          "status": "metadata-only",
+          "readiness": "metadata-only",
+          "blockedBy": [],
           "metadataOnlyExtensions": [],
           "metadataOnlySections": [
             "harness.policies",
@@ -480,11 +476,12 @@
           "mode": "report-only",
           "command": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
           "strictExportCommand": null,
-          "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
-          "status": "planned-static-report",
-          "readiness": "planned-static-report",
+          "authoritativeCheck": "tests/test_eve_compatibility.py",
+          "status": "metadata-only",
+          "readiness": "metadata-only",
           "blockedBy": [
-            "eve_compatibility_report_not_implemented"
+            "non_local_runtime_execution",
+            "live_payment_execution"
           ],
           "metadataOnlyExtensions": [
             "extensions.x402",
@@ -632,7 +629,7 @@
           "mode": "report-only",
           "command": "python3 scripts/eve_compatibility.py --single examples/invalid/missing-instructions.yaml",
           "strictExportCommand": null,
-          "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+          "authoritativeCheck": "tests/test_eve_compatibility.py",
           "status": "blocked",
           "readiness": "blocked-by-validation",
           "blockedBy": [
@@ -815,18 +812,19 @@
     {
       "target": "vercel-eve",
       "label": "Vercel eve",
-      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "authoritativeCheck": "tests/test_eve_compatibility.py",
       "agentCount": 4,
       "readinessCounts": {
-        "planned-static-report": 3,
+        "metadata-only": 3,
         "blocked-by-validation": 1
       },
       "statusCounts": {
-        "planned-static-report": 3,
+        "metadata-only": 3,
         "blocked": 1
       },
       "blockedBy": [
-        "eve_compatibility_report_not_implemented",
+        "live_payment_execution",
+        "non_local_runtime_execution",
         "validation_failed"
       ],
       "metadataOnly": [

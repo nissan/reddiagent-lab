@@ -126,12 +126,10 @@ def main() -> int:
         "no_payment_receipt_reputation_metadata"
     ]
     assert export_row(simple, "rap-bridge")["runtimeExecutionAllowed"] is False
-    assert export_row(simple, "vercel-eve")["readiness"] == "planned-static-report"
-    assert export_row(simple, "vercel-eve")["blockedBy"] == [
-        "eve_compatibility_report_not_implemented"
-    ]
+    assert export_row(simple, "vercel-eve")["readiness"] == "metadata-only"
+    assert export_row(simple, "vercel-eve")["blockedBy"] == []
     assert export_row(simple, "vercel-eve")["authoritativeCheck"] == (
-        "planned:tests/test_eve_compatibility.py"
+        "tests/test_eve_compatibility.py"
     )
     assert export_row(simple, "vercel-eve")["runtimeExecutionAllowed"] is False
     assert [item["kind"] for item in step(simple, "export")["staticUiHandoffSummaries"]] == [
@@ -228,7 +226,11 @@ def main() -> int:
         "python3 scripts/rap_bridge_report.py "
         "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json"
     )
-    assert export_row(payment, "vercel-eve")["readiness"] == "planned-static-report"
+    assert export_row(payment, "vercel-eve")["readiness"] == "metadata-only"
+    assert export_row(payment, "vercel-eve")["blockedBy"] == [
+        "non_local_runtime_execution",
+        "live_payment_execution",
+    ]
     assert export_row(payment, "vercel-eve")["metadataOnlyExtensions"] == [
         "extensions.x402",
         "extensions.receipts",

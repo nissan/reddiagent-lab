@@ -118,9 +118,9 @@
           </tr>
           <tr>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
+            <td class="warn">metadata-only</td>
             <td><code>python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td>none</td>
           </tr>
         </tbody>
       </table>
@@ -171,9 +171,9 @@
           </tr>
           <tr>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
+            <td class="warn">metadata-only</td>
             <td><code>python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td>none</td>
           </tr>
         </tbody>
       </table>
@@ -224,9 +224,9 @@
           </tr>
           <tr>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
+            <td class="warn">metadata-only</td>
             <td><code>python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td>non_local_runtime_execution, live_payment_execution</td>
           </tr>
         </tbody>
       </table>
@@ -270,9 +270,9 @@
           <tr>
             <td><code>examples/simple-agent.yaml</code></td>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
-            <td><code>planned:tests/test_eve_compatibility.py</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td class="warn">metadata-only</td>
+            <td><code>tests/test_eve_compatibility.py</code></td>
+            <td>metadata-only review required</td>
           </tr>
           <tr>
             <td><code>examples/tool-agent.yaml</code></td>
@@ -305,9 +305,9 @@
           <tr>
             <td><code>examples/tool-agent.yaml</code></td>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
-            <td><code>planned:tests/test_eve_compatibility.py</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td class="warn">metadata-only</td>
+            <td><code>tests/test_eve_compatibility.py</code></td>
+            <td>metadata-only review required</td>
           </tr>
           <tr>
             <td><code>examples/payment-agent.yaml</code></td>
@@ -340,9 +340,9 @@
           <tr>
             <td><code>examples/payment-agent.yaml</code></td>
             <td>Vercel eve</td>
-            <td class="warn">planned-static-report</td>
-            <td><code>planned:tests/test_eve_compatibility.py</code></td>
-            <td>eve_compatibility_report_not_implemented</td>
+            <td class="warn">metadata-only</td>
+            <td><code>tests/test_eve_compatibility.py</code></td>
+            <td>non_local_runtime_execution, live_payment_execution</td>
           </tr>
           <tr>
             <td><code>examples/invalid/missing-instructions.yaml</code></td>
@@ -390,7 +390,7 @@
             <td><code>examples/invalid/missing-instructions.yaml</code></td>
             <td>Vercel eve</td>
             <td class="bad">blocked-by-validation</td>
-            <td><code>planned:tests/test_eve_compatibility.py</code></td>
+            <td><code>tests/test_eve_compatibility.py</code></td>
             <td>validation_failed</td>
           </tr>
         </tbody>
@@ -607,7 +607,7 @@
             &quot;target&quot;: &quot;rap-bridge&quot;
           },
           {
-            &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+            &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
             &quot;blockedBy&quot;: [
               &quot;validation_failed&quot;
             ],
@@ -823,8 +823,7 @@
     &quot;readinessCounts&quot;: {
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 7,
-      &quot;metadata-only&quot;: 9,
-      &quot;planned-static-report&quot;: 3
+      &quot;metadata-only&quot;: 12
     },
     &quot;rowCount&quot;: 22,
     &quot;rows&quot;: [
@@ -924,10 +923,8 @@
       },
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-        &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
-        ],
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+        &quot;blockedBy&quot;: [],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
         &quot;mcpInvocation&quot;: false,
@@ -939,10 +936,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -1041,10 +1038,8 @@
       },
       {
         &quot;agent&quot;: &quot;source-checker&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-        &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
-        ],
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+        &quot;blockedBy&quot;: [],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
         &quot;mcpInvocation&quot;: false,
@@ -1055,10 +1050,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -1187,9 +1182,10 @@
       },
       {
         &quot;agent&quot;: &quot;paid-specialist-researcher&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
         &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
+          &quot;non_local_runtime_execution&quot;,
+          &quot;live_payment_execution&quot;
         ],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
@@ -1208,10 +1204,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -1363,7 +1359,7 @@
       },
       {
         &quot;agent&quot;: &quot;invalid-missing-instructions&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
         &quot;blockedBy&quot;: [
           &quot;validation_failed&quot;
         ],
@@ -1667,10 +1663,8 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-              &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
-              ],
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+              &quot;blockedBy&quot;: [],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
               &quot;mcpInvocation&quot;: false,
@@ -1683,9 +1677,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -2174,10 +2168,8 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-              &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
-              ],
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+              &quot;blockedBy&quot;: [],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
               &quot;mcpInvocation&quot;: false,
@@ -2189,9 +2181,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -2666,9 +2658,10 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
               &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
+                &quot;non_local_runtime_execution&quot;,
+                &quot;live_payment_execution&quot;
               ],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
@@ -2688,9 +2681,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -2897,7 +2890,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -2913,7 +2905,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -2928,7 +2919,6 @@
         &quot;readinessStates&quot;: [
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -3143,7 +3133,7 @@
             &quot;target&quot;: &quot;rap-bridge&quot;
           },
           {
-            &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+            &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
             &quot;blockedBy&quot;: [
               &quot;validation_failed&quot;
             ],
@@ -3359,8 +3349,7 @@
     &quot;readinessCounts&quot;: {
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 7,
-      &quot;metadata-only&quot;: 9,
-      &quot;planned-static-report&quot;: 3
+      &quot;metadata-only&quot;: 12
     },
     &quot;rowCount&quot;: 22,
     &quot;rows&quot;: [
@@ -3460,10 +3449,8 @@
       },
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-        &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
-        ],
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+        &quot;blockedBy&quot;: [],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
         &quot;mcpInvocation&quot;: false,
@@ -3475,10 +3462,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -3577,10 +3564,8 @@
       },
       {
         &quot;agent&quot;: &quot;source-checker&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-        &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
-        ],
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+        &quot;blockedBy&quot;: [],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
         &quot;mcpInvocation&quot;: false,
@@ -3591,10 +3576,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -3723,9 +3708,10 @@
       },
       {
         &quot;agent&quot;: &quot;paid-specialist-researcher&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
         &quot;blockedBy&quot;: [
-          &quot;eve_compatibility_report_not_implemented&quot;
+          &quot;non_local_runtime_execution&quot;,
+          &quot;live_payment_execution&quot;
         ],
         &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml&quot;,
         &quot;label&quot;: &quot;Vercel eve&quot;,
@@ -3744,10 +3730,10 @@
         ],
         &quot;networkAccess&quot;: false,
         &quot;paymentAccess&quot;: false,
-        &quot;readiness&quot;: &quot;planned-static-report&quot;,
+        &quot;readiness&quot;: &quot;metadata-only&quot;,
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
-        &quot;status&quot;: &quot;planned-static-report&quot;,
+        &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;validationErrors&quot;: [],
@@ -3899,7 +3885,7 @@
       },
       {
         &quot;agent&quot;: &quot;invalid-missing-instructions&quot;,
-        &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
         &quot;blockedBy&quot;: [
           &quot;validation_failed&quot;
         ],
@@ -4203,10 +4189,8 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-              &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
-              ],
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+              &quot;blockedBy&quot;: [],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
               &quot;mcpInvocation&quot;: false,
@@ -4219,9 +4203,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -4710,10 +4694,8 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
-              &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
-              ],
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
+              &quot;blockedBy&quot;: [],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
               &quot;mcpInvocation&quot;: false,
@@ -4725,9 +4707,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -5202,9 +5184,10 @@
               &quot;target&quot;: &quot;rap-bridge&quot;
             },
             {
-              &quot;authoritativeCheck&quot;: &quot;planned:tests/test_eve_compatibility.py&quot;,
+              &quot;authoritativeCheck&quot;: &quot;tests/test_eve_compatibility.py&quot;,
               &quot;blockedBy&quot;: [
-                &quot;eve_compatibility_report_not_implemented&quot;
+                &quot;non_local_runtime_execution&quot;,
+                &quot;live_payment_execution&quot;
               ],
               &quot;command&quot;: &quot;python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml&quot;,
               &quot;label&quot;: &quot;Vercel eve&quot;,
@@ -5224,9 +5207,9 @@
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
               &quot;paymentAccess&quot;: false,
-              &quot;readiness&quot;: &quot;planned-static-report&quot;,
+              &quot;readiness&quot;: &quot;metadata-only&quot;,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;planned-static-report&quot;,
+              &quot;status&quot;: &quot;metadata-only&quot;,
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;
             }
@@ -5433,7 +5416,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -5449,7 +5431,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -5464,7 +5445,6 @@
         &quot;readinessStates&quot;: [
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
-          &quot;planned-static-report&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,

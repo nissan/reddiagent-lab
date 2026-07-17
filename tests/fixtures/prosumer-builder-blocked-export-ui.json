@@ -14,8 +14,7 @@
   "readinessCounts": {
     "blocked-before-generation": 3,
     "blocked-by-validation": 7,
-    "metadata-only": 9,
-    "planned-static-report": 3
+    "metadata-only": 12
   },
   "rowCount": 22,
   "rows": [
@@ -115,10 +114,8 @@
     },
     {
       "agent": "simple-research-helper",
-      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
-      "blockedBy": [
-        "eve_compatibility_report_not_implemented"
-      ],
+      "authoritativeCheck": "tests/test_eve_compatibility.py",
+      "blockedBy": [],
       "command": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
       "label": "Vercel eve",
       "mcpInvocation": false,
@@ -130,10 +127,10 @@
       ],
       "networkAccess": false,
       "paymentAccess": false,
-      "readiness": "planned-static-report",
+      "readiness": "metadata-only",
       "runtimeExecutionAllowed": false,
       "source": "examples/simple-agent.yaml",
-      "status": "planned-static-report",
+      "status": "metadata-only",
       "strictExportCommand": null,
       "target": "vercel-eve",
       "validationErrors": [],
@@ -232,10 +229,8 @@
     },
     {
       "agent": "source-checker",
-      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
-      "blockedBy": [
-        "eve_compatibility_report_not_implemented"
-      ],
+      "authoritativeCheck": "tests/test_eve_compatibility.py",
+      "blockedBy": [],
       "command": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
       "label": "Vercel eve",
       "mcpInvocation": false,
@@ -246,10 +241,10 @@
       ],
       "networkAccess": false,
       "paymentAccess": false,
-      "readiness": "planned-static-report",
+      "readiness": "metadata-only",
       "runtimeExecutionAllowed": false,
       "source": "examples/tool-agent.yaml",
-      "status": "planned-static-report",
+      "status": "metadata-only",
       "strictExportCommand": null,
       "target": "vercel-eve",
       "validationErrors": [],
@@ -378,9 +373,10 @@
     },
     {
       "agent": "paid-specialist-researcher",
-      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "authoritativeCheck": "tests/test_eve_compatibility.py",
       "blockedBy": [
-        "eve_compatibility_report_not_implemented"
+        "non_local_runtime_execution",
+        "live_payment_execution"
       ],
       "command": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
       "label": "Vercel eve",
@@ -399,10 +395,10 @@
       ],
       "networkAccess": false,
       "paymentAccess": false,
-      "readiness": "planned-static-report",
+      "readiness": "metadata-only",
       "runtimeExecutionAllowed": false,
       "source": "examples/payment-agent.yaml",
-      "status": "planned-static-report",
+      "status": "metadata-only",
       "strictExportCommand": null,
       "target": "vercel-eve",
       "validationErrors": [],
@@ -554,7 +550,7 @@
     },
     {
       "agent": "invalid-missing-instructions",
-      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "authoritativeCheck": "tests/test_eve_compatibility.py",
       "blockedBy": [
         "validation_failed"
       ],

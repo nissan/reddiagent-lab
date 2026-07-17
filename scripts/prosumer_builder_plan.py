@@ -77,7 +77,7 @@ EXPORT_MATRIX_TARGETS = [
         "label": "Vercel eve",
         "commandTemplate": "python3 scripts/eve_compatibility.py --single {source}",
         "strictCommandTemplate": None,
-        "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+        "authoritativeCheck": "tests/test_eve_compatibility.py",
     },
 ]
 
@@ -330,14 +330,15 @@ def export_readiness_matrix(path: Path, doc: dict, errors: list[str]) -> list[di
             row["readiness"] = "not-applicable"
             row["blockedBy"] = ["no_payment_receipt_reputation_metadata"]
         elif target_id == "vercel-eve":
-            row["status"] = "planned-static-report"
-            row["readiness"] = "planned-static-report"
-            row["blockedBy"] = ["eve_compatibility_report_not_implemented"]
             row["metadataOnlyExtensions"] = static_review["metadataOnlyExtensions"]
             row["metadataOnlySections"] = [
                 *reddi_metadata_sections,
                 *static_review["metadataOnlyExtensions"],
             ]
+            if row["metadataOnlySections"] or static_review["unsupportedFeatures"]:
+                row["status"] = "metadata-only"
+                row["readiness"] = "metadata-only"
+                row["blockedBy"] = static_review["unsupportedFeatures"]
         rows.append(row)
     return rows
 
