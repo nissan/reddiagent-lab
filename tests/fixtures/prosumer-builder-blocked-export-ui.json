@@ -13,10 +13,11 @@
   },
   "readinessCounts": {
     "blocked-before-generation": 3,
-    "blocked-by-validation": 6,
-    "metadata-only": 9
+    "blocked-by-validation": 7,
+    "metadata-only": 9,
+    "planned-static-report": 3
   },
-  "rowCount": 18,
+  "rowCount": 22,
   "rows": [
     {
       "agent": "simple-research-helper",
@@ -113,6 +114,32 @@
       "validationStatus": "pass"
     },
     {
+      "agent": "simple-research-helper",
+      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "blockedBy": [
+        "eve_compatibility_report_not_implemented"
+      ],
+      "command": "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml",
+      "label": "Vercel eve",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "harness.memory"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "planned-static-report",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/simple-agent.yaml",
+      "status": "planned-static-report",
+      "strictExportCommand": null,
+      "target": "vercel-eve",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
       "agent": "source-checker",
       "authoritativeCheck": "tests/test_agent_spec_compatibility.py",
       "blockedBy": [],
@@ -200,6 +227,31 @@
       "status": "blocked-before-generation",
       "strictExportCommand": null,
       "target": "starter-manifest",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "source-checker",
+      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "blockedBy": [
+        "eve_compatibility_report_not_implemented"
+      ],
+      "command": "python3 scripts/eve_compatibility.py --single examples/tool-agent.yaml",
+      "label": "Vercel eve",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "planned-static-report",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/tool-agent.yaml",
+      "status": "planned-static-report",
+      "strictExportCommand": null,
+      "target": "vercel-eve",
       "validationErrors": [],
       "validationStatus": "pass"
     },
@@ -321,6 +373,38 @@
       "status": "blocked-before-generation",
       "strictExportCommand": null,
       "target": "starter-manifest",
+      "validationErrors": [],
+      "validationStatus": "pass"
+    },
+    {
+      "agent": "paid-specialist-researcher",
+      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "blockedBy": [
+        "eve_compatibility_report_not_implemented"
+      ],
+      "command": "python3 scripts/eve_compatibility.py --single examples/payment-agent.yaml",
+      "label": "Vercel eve",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "metadataOnlySections": [
+        "harness.policies",
+        "harness.evalGates",
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation"
+      ],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "planned-static-report",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/payment-agent.yaml",
+      "status": "planned-static-report",
+      "strictExportCommand": null,
+      "target": "vercel-eve",
       "validationErrors": [],
       "validationStatus": "pass"
     },
@@ -463,6 +547,30 @@
       "status": "blocked",
       "strictExportCommand": null,
       "target": "rap-bridge",
+      "validationErrors": [
+        "harness: 'instructions' is a required property"
+      ],
+      "validationStatus": "fail"
+    },
+    {
+      "agent": "invalid-missing-instructions",
+      "authoritativeCheck": "planned:tests/test_eve_compatibility.py",
+      "blockedBy": [
+        "validation_failed"
+      ],
+      "command": "python3 scripts/eve_compatibility.py --single examples/invalid/missing-instructions.yaml",
+      "label": "Vercel eve",
+      "mcpInvocation": false,
+      "metadataOnlyExtensions": [],
+      "metadataOnlySections": [],
+      "networkAccess": false,
+      "paymentAccess": false,
+      "readiness": "blocked-by-validation",
+      "runtimeExecutionAllowed": false,
+      "source": "examples/invalid/missing-instructions.yaml",
+      "status": "blocked",
+      "strictExportCommand": null,
+      "target": "vercel-eve",
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],

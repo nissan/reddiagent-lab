@@ -100,8 +100,12 @@ def main() -> int:
         "starter-manifest",
         "provider-compatibility",
         "rap-bridge",
+        "vercel-eve",
     ]
     assert simple_matrix[0]["readiness"] == "metadata-only"
+    eve_simple = next(row for row in simple_matrix if row["target"] == "vercel-eve")
+    assert eve_simple["readiness"] == "planned-static-report"
+    assert eve_simple["blockedBy"] == ["eve_compatibility_report_not_implemented"]
     payment_matrix = export_step(by_agent["paid-specialist-researcher"])["staticUiExportMatrix"]
     assert next(row for row in payment_matrix if row["target"] == "rap-bridge")["readiness"] == "report-ready"
     blocked = manifest["blockedExportFixture"]
@@ -116,8 +120,9 @@ def main() -> int:
     assert blocked_fixture["guardrails"]["mcpInvocation"] is False
     assert blocked_fixture["readinessCounts"] == {
         "blocked-before-generation": 3,
-        "blocked-by-validation": 6,
+        "blocked-by-validation": 7,
         "metadata-only": 9,
+        "planned-static-report": 3,
     }
     assert blocked_fixture["sources"] == [
         "examples/invalid/missing-instructions.yaml",
@@ -130,7 +135,7 @@ def main() -> int:
         for row in blocked_fixture["rows"]
         if row["source"] == "examples/invalid/missing-instructions.yaml"
     ]
-    assert len(invalid_rows) == 6
+    assert len(invalid_rows) == 7
     assert {row["readiness"] for row in invalid_rows} == {"blocked-by-validation"}
     assert all(row["blockedBy"] == ["validation_failed"] for row in invalid_rows)
     assert all(row["validationStatus"] == "fail" for row in invalid_rows)
@@ -148,6 +153,14 @@ def main() -> int:
     assert len(starter_rows) == 3
     assert all(row["readiness"] == "blocked-before-generation" for row in starter_rows)
     assert all(row["blockedBy"] == ["generator-implementation-review"] for row in starter_rows)
+    eve_rows = [row for row in blocked_fixture["rows"] if row["target"] == "vercel-eve"]
+    assert len(eve_rows) == 4
+    assert [row["readiness"] for row in eve_rows].count("planned-static-report") == 3
+    assert all(
+        row["blockedBy"] == ["eve_compatibility_report_not_implemented"]
+        for row in eve_rows
+        if row["readiness"] == "planned-static-report"
+    )
     payment_metadata_rows = [
         row
         for row in blocked_fixture["rows"]

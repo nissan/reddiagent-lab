@@ -94,6 +94,7 @@ def main() -> int:
         "starter-manifest",
         "provider-compatibility",
         "rap-bridge",
+        "vercel-eve",
     ]
     assert export_row(simple, "agent-spec")["readiness"] == "metadata-only"
     assert export_row(simple, "agent-spec")["strictExportCommand"] == (
@@ -115,6 +116,14 @@ def main() -> int:
         "no_payment_receipt_reputation_metadata"
     ]
     assert export_row(simple, "rap-bridge")["runtimeExecutionAllowed"] is False
+    assert export_row(simple, "vercel-eve")["readiness"] == "planned-static-report"
+    assert export_row(simple, "vercel-eve")["blockedBy"] == [
+        "eve_compatibility_report_not_implemented"
+    ]
+    assert export_row(simple, "vercel-eve")["authoritativeCheck"] == (
+        "planned:tests/test_eve_compatibility.py"
+    )
+    assert export_row(simple, "vercel-eve")["runtimeExecutionAllowed"] is False
     assert_static_boundaries(simple)
 
     tool = by_agent["source-checker"]
@@ -195,6 +204,12 @@ def main() -> int:
         "python3 scripts/rap_bridge_report.py "
         "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json"
     )
+    assert export_row(payment, "vercel-eve")["readiness"] == "planned-static-report"
+    assert export_row(payment, "vercel-eve")["metadataOnlyExtensions"] == [
+        "extensions.x402",
+        "extensions.receipts",
+        "extensions.reputation",
+    ]
     assert_static_boundaries(payment)
 
     invalid = run_command("--single", "examples/invalid/missing-instructions.yaml")
@@ -211,6 +226,8 @@ def main() -> int:
     assert export_row(invalid_plan, "provider-compatibility")["blockedBy"] == [
         "validation_failed"
     ]
+    assert export_row(invalid_plan, "vercel-eve")["readiness"] == "blocked-by-validation"
+    assert export_row(invalid_plan, "vercel-eve")["blockedBy"] == ["validation_failed"]
     assert invalid_plan["runtimeExecutionAllowed"] is False
     assert invalid_plan["networkAccess"] is False
     assert invalid_plan["paymentAccess"] is False
