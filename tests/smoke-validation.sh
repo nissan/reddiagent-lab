@@ -29,6 +29,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_ap2_x402_mandate_report.py
 "$PYTHON" tests/test_prosumer_builder_plan.py
 "$PYTHON" tests/test_static_export_target_parity.py
+"$PYTHON" tests/test_protected_docs_package.py
 "$PYTHON" tests/test_prosumer_builder_static_export.py
 "$PYTHON" tests/test_starter_code_plan.py
 "$PYTHON" tests/test_local_runner_plugin_interface.py

@@ -8,6 +8,7 @@ _Loop 42. Anchor issue: #42._
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/adr/0000-adr-index.md
+- docs/PROTECTED-DOCS-PACKAGE.md
 - docs/LOOP-PROTOCOL.md
 - docs/ROADMAP.md
 - docs/LOCAL-RUNNER-READINESS-BUNDLE.md
@@ -18,6 +19,7 @@ _Loop 42. Anchor issue: #42._
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/adr/0000-adr-index.md
+- docs/PROTECTED-DOCS-PACKAGE.md
 - docs/ARCHITECTURE-THESIS.md
 - docs/ULTRA-PLAN.md
 - docs/GLOSSARY.md
@@ -72,6 +74,7 @@ _Loop 42. Anchor issue: #42._
 - tests/MCP-CAPABILITY-POLICY-REPORT.md
 - tests/MCP-READINESS-EVIDENCE-REPORT.md
 - tests/AGENT-SPEC-COMPATIBILITY-REPORT.md
+- tests/PROTECTED-DOCS-PACKAGE-REPORT.md
 - docs/MCP-READINESS-RELEASE-CHECKLIST.md
 - tests/test_readiness_bundle.py
 - tests/test_adapter_readiness.py

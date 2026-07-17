@@ -1,0 +1,481 @@
+{
+  "format": "protected-docs-package-manifest",
+  "issue": 210,
+  "parentEpic": 206,
+  "status": "ready-for-static-package-review",
+  "packageIntent": "Prepare a protected, noindex documentation package for partner/advisor review without deploying it.",
+  "accessModel": {
+    "mode": "protected-static-share",
+    "recommendedProtection": "single shared password or equivalent platform access control selected outside this repo at publish time",
+    "passwordStorage": "do not commit or generate the password in this repository",
+    "advisorSharing": "share URL and password/access grant out-of-band after Nissan approves the deployment target",
+    "rotation": "rotate by changing the hosting/access-control layer, not repo docs"
+  },
+  "crawlerControls": {
+    "robotsTxt": "User-agent: *\nDisallow: /\n",
+    "htmlMetaRobots": "noindex, nofollow, noarchive",
+    "httpHeader": "X-Robots-Tag: noindex, nofollow, noarchive",
+    "sitemap": "omit sitemap.xml for protected package"
+  },
+  "staticPackageArtifacts": [
+    {
+      "path": "docs/publishable-package/index.html",
+      "status": "planned-static-artifact",
+      "purpose": "Partner/advisor landing page with links to packaged docs sections."
+    },
+    {
+      "path": "docs/publishable-package/robots.txt",
+      "status": "planned-static-artifact",
+      "purpose": "Default crawler exclusion for the whole protected package."
+    },
+    {
+      "path": "docs/publishable-package/noindex-headers.txt",
+      "status": "planned-static-artifact",
+      "purpose": "Hosting header reminder for X-Robots-Tag controls."
+    },
+    {
+      "path": "docs/publishable-package/package-manifest.json",
+      "status": "generated-by-this-script",
+      "purpose": "Machine-readable package contents, access model, and guardrails."
+    }
+  ],
+  "contentSections": [
+    {
+      "id": "entrypoints",
+      "label": "Entrypoints",
+      "status": "ready",
+      "requiredCount": 4,
+      "missing": [],
+      "files": [
+        {
+          "path": "README.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "06f881148001b1827dd19ec488c935c5c589405263cbef653f7b91aa683127c0",
+          "bytes": 2842
+        },
+        {
+          "path": "docs/INDEX.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "f0d77c1132995863ddbd8fba1bcd93d1f6d7058f0ad86496161ab9b7b035142b",
+          "bytes": 3218
+        },
+        {
+          "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "2f9734e4d5e6d378f381c3bf9c78b54f968e1a558f443c6988a3f053cfab8f3b",
+          "bytes": 8185
+        },
+        {
+          "path": "docs/PROTECTED-DOCS-PACKAGE.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "15d1e1adddaca740756627ea6a4f85560308a57bfb9bf2665035e758be386dfd",
+          "bytes": 2422
+        }
+      ]
+    },
+    {
+      "id": "roadmap",
+      "label": "Roadmap and backlog",
+      "status": "ready",
+      "requiredCount": 3,
+      "missing": [],
+      "files": [
+        {
+          "path": "docs/ROADMAP.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "d8bcec7ff56110e0c685a9ed9596e4cdf6597d4daf190845f013f1a585037d74",
+          "bytes": 8005
+        },
+        {
+          "path": "docs/IMPLEMENTATION-BACKLOG.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "f021842bb2e4ea18b4dfa9ff7e27aaf0dcb630d0ef9b2aea24ff43f5569bb596",
+          "bytes": 1488
+        },
+        {
+          "path": "docs/NEXT-10-IMPLEMENTATION-ISSUES.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "92031c9b6f6f1911d636f5e528d36b2c6a3fbb1cd0368a642862b1ac59962683",
+          "bytes": 661
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture",
+      "status": "ready",
+      "requiredCount": 4,
+      "missing": [],
+      "files": [
+        {
+          "path": "docs/REDDIAGENT-ARCHITECTURE.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "08fb615d751e186335d42f1baf970ab324ba387b9bc37fa233c9598029e0ff41",
+          "bytes": 6963
+        },
+        {
+          "path": "docs/ARCHITECTURE-THESIS.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "19459850b58f0a086ea1291e16c5365036ac3e8577902e440938787cf7b9e9d0",
+          "bytes": 2343
+        },
+        {
+          "path": "docs/PRODUCT-PRINCIPLES.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "4074c1d6ba40f0180edc3d21d95a998d69ebf03b7f5ff123b6c496d5265e5c11",
+          "bytes": 349
+        },
+        {
+          "path": "docs/POSITIONING-MEMO.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "1fcb399f5e37bca3c7b79d3820b40571b48b3cc4e70e20385da92a90ac1c6c83",
+          "bytes": 550
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "label": "ADR register",
+      "status": "ready",
+      "requiredCount": 8,
+      "missing": [],
+      "files": [
+        {
+          "path": "docs/adr/0000-adr-index.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "c20f349bc383160a9d809723629d876388ed63386df86fbb1ce6873b3751ce0c",
+          "bytes": 1864
+        },
+        {
+          "path": "docs/adr/0001-adl-is-the-canonical-source-of-truth.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "6489faeda1ab611e8126a913aa958bf8497ad26b944d3aeb4b4e2d591c5bf45b",
+          "bytes": 1471
+        },
+        {
+          "path": "docs/adr/0002-static-compatibility-before-runtime-execution.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "bb6c910665cfd8e6319a1849a0011d24b8cac0955d8d34c7fabccd36d14cb795",
+          "bytes": 1621
+        },
+        {
+          "path": "docs/adr/0003-harness-is-a-first-class-product-surface.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "500b13c6a2b04492630bf82c0546f267b534f0bb3eafaa3a60b146b934b584bf",
+          "bytes": 1453
+        },
+        {
+          "path": "docs/adr/0004-mcp-and-payment-boundaries-fail-closed.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "20de642db16c32f1c9fd49e7f30a589b681eb518cd166bd5b8de13d8deb47df3",
+          "bytes": 1681
+        },
+        {
+          "path": "docs/adr/0005-receipts-and-reputation-layer-above-payment-evidence.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "b0c83c8187779e9656c064dcdc0d83b4a53a78251aad0e15b5ea6742b796b296",
+          "bytes": 1449
+        },
+        {
+          "path": "docs/adr/0006-provider-adapters-start-as-compatibility-reports.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "72c0161ddf3d81af808e80ea883edfbf6645e4138f738cc262cfd3c8967cc417",
+          "bytes": 1625
+        },
+        {
+          "path": "docs/adr/0007-vercel-eve-is-a-static-export-target.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "3276a4c4761a90421ef3be4c68abdf07d5bc84e0f599d86f40b8fbbde7a0bcc3",
+          "bytes": 1430
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "label": "Specs",
+      "status": "ready",
+      "requiredCount": 11,
+      "missing": [],
+      "files": [
+        {
+          "path": "specs/ADL-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "f17d48d3070267a91bfb29ed168e3d84d2019ed2657f9f98e420a1c62da06144",
+          "bytes": 2917
+        },
+        {
+          "path": "specs/DOMAIN-MODEL-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "da6d5bd26dd74ec015bde6a6a8e8fb662465036ff954a76e4a1021180129e0bd",
+          "bytes": 1903
+        },
+        {
+          "path": "specs/PROVIDER-MAPPING-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "d944f96e833092ef87b174f3f5642db15eddc9cef245ef2fb82d1cd35d10298e",
+          "bytes": 4174
+        },
+        {
+          "path": "specs/HARNESS-LIFECYCLE-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "b11faa699d4263fb3339111154a601ea55e6680f7336a0cf674dc6255d2360eb",
+          "bytes": 1314
+        },
+        {
+          "path": "specs/RUNTIME-DEPLOYMENT-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "3c642846c1501bc0c490236db0712c774abaf66465fa64ba9c92b728aea1c4c2",
+          "bytes": 2066
+        },
+        {
+          "path": "specs/SECURITY-PERMISSIONS-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "642b5fd3d20b2549240ad9468853ca3290f6c8035fdccfc8641a7863175f2cdc",
+          "bytes": 1812
+        },
+        {
+          "path": "specs/OBSERVABILITY-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "8bdd87f81338b97ee9725d17cf48a4e99f9fa2ee5284cc63639cb99025b7c4b0",
+          "bytes": 687
+        },
+        {
+          "path": "specs/CONFORMANCE-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "e9a299642dbc237e82c83dd24349c12d9a8b9a3e6b94fa6babb044fc2d9581c1",
+          "bytes": 7184
+        },
+        {
+          "path": "specs/RAP-BRIDGE-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "1edad839c6272b5cf25691396f2201ec14cc6f41aa92c1c5dc580fdf45870c4a",
+          "bytes": 5426
+        },
+        {
+          "path": "specs/X402-DRY-RUN-RECEIPT-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "5b633937d2a4890473d6d3b6767fcbc4dd95b09b90df5261188d5edd5f6c07e3",
+          "bytes": 2344
+        },
+        {
+          "path": "specs/REPUTATION-SIGNALS-v0.1.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "83e7fef41e9631ec752be948d66b209d4e26a3920672e7b4fed3b6458881dc86",
+          "bytes": 837
+        }
+      ]
+    },
+    {
+      "id": "mappings",
+      "label": "Mappings",
+      "status": "ready",
+      "requiredCount": 7,
+      "missing": [],
+      "files": [
+        {
+          "path": "mappings/AGENT-SPEC.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "61401d8f325b61b91e3c848dc63b2f27e8f1d228ff31dea7ddcdf0f5ebee50d9",
+          "bytes": 1806
+        },
+        {
+          "path": "mappings/OPENAI.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "47edb2df05ef8b2ccc54c0b11e2428fd00d61e27232229bb6ecdf2fe36720f03",
+          "bytes": 752
+        },
+        {
+          "path": "mappings/ANTHROPIC.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "93dd4311032064a8caa33cc2cdf73cd0d58ade2a0d53ef7d1ccedab455e386d2",
+          "bytes": 1123
+        },
+        {
+          "path": "mappings/GEMINI.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "87b5f2c46594168e3f13d0289cae98a1f551e1fef8a0552af8f96bb973053f4a",
+          "bytes": 618
+        },
+        {
+          "path": "mappings/LANGGRAPH.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "e55155bf4e7a258658a49ef805d588ece687cc00b0eaea119d5d1c5164c4eab0",
+          "bytes": 666
+        },
+        {
+          "path": "mappings/LLAMAINDEX.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "f6a6cc758ed490a33da98136b2d5d241b8bc5affdc016158763f39f8fde5ec1a",
+          "bytes": 638
+        },
+        {
+          "path": "mappings/STRANDS.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "5886fcb5f2c32820f4b552ee779df4819dcb8dea280b73994c313be66d189a68",
+          "bytes": 678
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "label": "Research entrypoints",
+      "status": "ready",
+      "requiredCount": 7,
+      "missing": [],
+      "files": [
+        {
+          "path": "research/RESEARCH-TAXONOMY.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "7a9dbea41a47b2233a2813f2daf949af62828cb1f53d17ae3dcf212ece5e359c",
+          "bytes": 1588
+        },
+        {
+          "path": "research/SOURCE-MAP.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "eac264bde478f9e56dd376a3a3ec3fb97d83451667c398ee4dcdc8c2254203c3",
+          "bytes": 5918
+        },
+        {
+          "path": "research/FRAMEWORK-MATRIX.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "dbd13f13d6fa6dea9bc8d5d45dc0316013c23c9455f323e1e7144030f36bf52f",
+          "bytes": 2557
+        },
+        {
+          "path": "research/PLATFORM-MATRIX.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "58be23f84f7e3314eee68748b30a1b28ce23be2c129e736efa40b06dc965b1cc",
+          "bytes": 2035
+        },
+        {
+          "path": "research/HOMEBREW-OPEN-SOURCE-MATRIX.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "e7a1cd520cfe5017d3d58b4d1461b5da9ddfbafe252a0f324ce54d7e365ce24f",
+          "bytes": 2119
+        },
+        {
+          "path": "research/2026-07-08-x402-mcp-micropayments.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "acc8cc13a8568e4529a80ca6efba161dd372193126870abaa9c9daa33ff048f1",
+          "bytes": 5724
+        },
+        {
+          "path": "research/2026-07-17-vercel-eve-impact.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "777462b4249b1553dcc3f3de31d873b72566b731fe8af96acc1bab4052bede15",
+          "bytes": 14662
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence reports",
+      "status": "ready",
+      "requiredCount": 5,
+      "missing": [],
+      "files": [
+        {
+          "path": "tests/AGENT-SPEC-COMPATIBILITY-REPORT.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "5d5c86a63f7e6c6b1f9eb427de9464af4fc2c8ed4be31a3d2021b8fa77f805f1",
+          "bytes": 3877
+        },
+        {
+          "path": "tests/MCP-READINESS-EVIDENCE-REPORT.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "191d3453414d160eebf418f1169e369e388b43bae7c6bdeb73a660839e6fa2df",
+          "bytes": 1527
+        },
+        {
+          "path": "tests/RAP-BRIDGE-REPORT.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "380991c293a820abe26ee54fd5b1f17ecdb8f4d9abb36915e66af211fa74ba22",
+          "bytes": 3664
+        },
+        {
+          "path": "tests/STATIC-EXPORT-TARGET-PARITY-MATRIX-REPORT.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "b77cefc342c673ec18ec1860bfeda081d90519ef3638355abda61d74132563fb",
+          "bytes": 2552
+        },
+        {
+          "path": "tests/PROTECTED-DOCS-PACKAGE-REPORT.md",
+          "exists": true,
+          "kind": "file",
+          "sha256": "c162f1d7384ae4f07ce3b987b1ea7af875bd54b721b59a180baa620504776c7d",
+          "bytes": 1412
+        }
+      ]
+    }
+  ],
+  "missingRequiredFiles": [],
+  "separationOfConcerns": {
+    "publicDocsConcern": "Curated narrative and navigation surfaces only.",
+    "protectedDocsConcern": "Password/access-controlled static package with noindex controls.",
+    "runtimeCodeConcern": "Runtime code, credentials, provider calls, MCP invocation, payment rails, and deployment remain outside this package."
+  },
+  "approvalGate": {
+    "deploymentRequiresNissanApproval": true,
+    "passwordSelectionRequiresNissanApproval": true,
+    "mainnetAllowed": false,
+    "allowedNow": "static manifest review and local package planning only"
+  },
+  "runtimeExecutionAllowed": false,
+  "networkAccess": false,
+  "paymentAccess": false,
+  "mcpInvocation": false,
+  "providerModelApiCalls": false,
+  "credentialLookupOrStorage": false,
+  "deploymentAllowed": false,
+  "publishingAllowed": false,
+  "universalPasswordSelected": false,
+  "writesRuntimeCode": false
+}
