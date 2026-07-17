@@ -31,8 +31,8 @@ assignees: ""
 
 ## Suggested Acceptance Criteria
 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
 
 ## Prototype/Beta Separation
 
