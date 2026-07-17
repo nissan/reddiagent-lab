@@ -1,0 +1,295 @@
+{
+  "mode": "live-mcp-devnet-payment-handoff-prototype",
+  "status": "pass",
+  "issue": 221,
+  "approvedMcpServers": [
+    "approved-docs-search"
+  ],
+  "approvedDevnetRails": [
+    "solana-devnet"
+  ],
+  "boundaries": {
+    "prototypeExecutionAllowed": true,
+    "liveMcpResolutionAllowedByPolicy": true,
+    "liveMcpInvocationAllowedByPolicy": true,
+    "devnetPaymentHandoffAllowedByPolicy": true,
+    "networkAccessUsed": false,
+    "credentialAccessUsed": false,
+    "walletAccessUsed": false,
+    "paymentRailAccessUsed": false,
+    "mcpInvocationUsed": false,
+    "devnetAccessUsed": false,
+    "mainnetAccessUsed": false,
+    "externalSpendUsd": 0,
+    "secretMaterialLogged": false
+  },
+  "costEvidence": {
+    "externalSpendUsd": 0,
+    "devnetLamportsSpent": 0,
+    "hostedProviderCalls": 0,
+    "networkCalls": 0
+  },
+  "receiptEvidence": {
+    "count": 1,
+    "receiptHashes": [
+      "4475ae434378da645f47c8d7274101c9a28f3c5666f49c32b68380091ef9aa38"
+    ],
+    "productionSettlement": false,
+    "mainnetSettlement": false
+  },
+  "scenarios": [
+    {
+      "id": "approved-mcp-devnet-handoff",
+      "status": "pass",
+      "adl": "examples/mcp-readonly-agent.yaml",
+      "mcp": {
+        "status": "pass",
+        "reason": "MCP serverRef and toolRef are reviewed and allowlisted",
+        "serverRef": "approved-docs-search",
+        "resolutionMode": "reviewed-registry",
+        "capabilities": [
+          "mcp.adapter.readonly",
+          "source.approved-output"
+        ],
+        "mcpInvocationAllowed": true,
+        "mcpInvocationUsed": false
+      },
+      "payment": {
+        "status": "pass",
+        "reason": "devnet payment handoff is bounded and allowlisted",
+        "network": "devnet",
+        "paymentRail": "solana-devnet",
+        "amount": "0.05",
+        "limit": "0.25",
+        "currency": "USDC",
+        "settlementMode": "simulated-devnet-handoff",
+        "paymentHandoffAllowed": true,
+        "paymentRailAccessUsed": false,
+        "devnetAccess": true,
+        "mainnetAccess": false
+      },
+      "receipt": {
+        "receiptVersion": "reddiagent.devnet-handoff/v0.1",
+        "receiptId": "54d938647f76c548",
+        "network": "devnet",
+        "paymentRail": "solana-devnet",
+        "amount": "0.05",
+        "currency": "USDC",
+        "settlementReference": "devnet-simulated:21d314b2fd82708e",
+        "mcpServerRef": "approved-docs-search",
+        "toolRef": "docs_search.search",
+        "productionSettlement": false,
+        "mainnetSettlement": false,
+        "secretMaterialLogged": false
+      },
+      "rollbackPlan": {
+        "required": true,
+        "steps": [
+          "discard simulated devnet receipt evidence",
+          "revoke temporary MCP serverRef allowlist entry if added for the test",
+          "clear any temporary devnet wallet/facilitator handles before retry"
+        ],
+        "cleanupVerified": true,
+        "scope": "approved-docs-search:solana-devnet"
+      },
+      "completion": {
+        "status": "pass",
+        "reason": "approved MCP and devnet payment handoff evidence completed"
+      },
+      "trace": [
+        {
+          "event": "handoff.started",
+          "traceId": "60880cee5ca7f89e",
+          "agent": "mcp-readonly-docs",
+          "scenario": "approved-mcp-devnet-handoff"
+        },
+        {
+          "event": "mcp.allowlist_checked",
+          "traceId": "60880cee5ca7f89e",
+          "status": "pass",
+          "serverRef": "approved-docs-search",
+          "mcpInvocationAllowed": true,
+          "mcpInvocationUsed": false
+        },
+        {
+          "event": "payment.devnet_policy_checked",
+          "traceId": "60880cee5ca7f89e",
+          "status": "pass",
+          "network": "devnet",
+          "paymentHandoffAllowed": true,
+          "paymentRailAccessUsed": false,
+          "mainnetAccess": false
+        },
+        {
+          "event": "rollback.plan_registered",
+          "traceId": "60880cee5ca7f89e",
+          "status": "pass",
+          "cleanupVerified": true
+        },
+        {
+          "event": "handoff.completed",
+          "traceId": "60880cee5ca7f89e",
+          "status": "pass",
+          "reason": "approved MCP and devnet payment handoff evidence completed"
+        }
+      ]
+    },
+    {
+      "id": "mainnet-payment-denied",
+      "status": "pass",
+      "adl": "examples/payment-agent.yaml",
+      "mcp": {
+        "status": "pass",
+        "reason": "MCP serverRef and toolRef are reviewed and allowlisted",
+        "serverRef": "approved-docs-search",
+        "resolutionMode": "reviewed-registry",
+        "capabilities": [
+          "mcp.adapter.readonly",
+          "source.approved-output"
+        ],
+        "mcpInvocationAllowed": true,
+        "mcpInvocationUsed": false
+      },
+      "payment": {
+        "status": "fail",
+        "reason": "mainnet payment handoff is blocked pending separate approval",
+        "network": "mainnet",
+        "paymentHandoffAllowed": false,
+        "paymentRailAccessUsed": false,
+        "devnetAccess": false,
+        "mainnetAccess": false
+      },
+      "receipt": null,
+      "rollbackPlan": {
+        "required": true,
+        "steps": [
+          "discard simulated devnet receipt evidence",
+          "revoke temporary MCP serverRef allowlist entry if added for the test",
+          "clear any temporary devnet wallet/facilitator handles before retry"
+        ],
+        "cleanupVerified": true,
+        "scope": "approved-docs-search:solana-mainnet"
+      },
+      "completion": {
+        "status": "fail",
+        "reason": "MCP/devnet handoff failed closed before live side effects"
+      },
+      "trace": [
+        {
+          "event": "handoff.started",
+          "traceId": "ed1e380d51c8ddf8",
+          "agent": "paid-specialist-researcher",
+          "scenario": "mainnet-payment-denied"
+        },
+        {
+          "event": "mcp.allowlist_checked",
+          "traceId": "ed1e380d51c8ddf8",
+          "status": "pass",
+          "serverRef": "approved-docs-search",
+          "mcpInvocationAllowed": true,
+          "mcpInvocationUsed": false
+        },
+        {
+          "event": "payment.devnet_policy_checked",
+          "traceId": "ed1e380d51c8ddf8",
+          "status": "fail",
+          "network": "mainnet",
+          "paymentHandoffAllowed": false,
+          "paymentRailAccessUsed": false,
+          "mainnetAccess": false
+        },
+        {
+          "event": "rollback.plan_registered",
+          "traceId": "ed1e380d51c8ddf8",
+          "status": "pass",
+          "cleanupVerified": true
+        },
+        {
+          "event": "handoff.completed",
+          "traceId": "ed1e380d51c8ddf8",
+          "status": "fail",
+          "reason": "MCP/devnet handoff failed closed before live side effects"
+        }
+      ]
+    },
+    {
+      "id": "unreviewed-mcp-server-denied",
+      "status": "pass",
+      "adl": "examples/mcp-readonly-agent.yaml",
+      "mcp": {
+        "status": "fail",
+        "reason": "MCP serverRef is not in the reviewed allowlist",
+        "serverRef": "unreviewed-live-mcp",
+        "resolutionMode": "blocked",
+        "mcpInvocationAllowed": false,
+        "mcpInvocationUsed": false
+      },
+      "payment": {
+        "status": "pass",
+        "reason": "devnet payment handoff is bounded and allowlisted",
+        "network": "devnet",
+        "paymentRail": "solana-devnet",
+        "amount": "0.05",
+        "limit": "0.25",
+        "currency": "USDC",
+        "settlementMode": "simulated-devnet-handoff",
+        "paymentHandoffAllowed": true,
+        "paymentRailAccessUsed": false,
+        "devnetAccess": true,
+        "mainnetAccess": false
+      },
+      "receipt": null,
+      "rollbackPlan": {
+        "required": true,
+        "steps": [
+          "discard simulated devnet receipt evidence",
+          "revoke temporary MCP serverRef allowlist entry if added for the test",
+          "clear any temporary devnet wallet/facilitator handles before retry"
+        ],
+        "cleanupVerified": true,
+        "scope": "unreviewed-live-mcp:solana-devnet"
+      },
+      "completion": {
+        "status": "fail",
+        "reason": "MCP/devnet handoff failed closed before live side effects"
+      },
+      "trace": [
+        {
+          "event": "handoff.started",
+          "traceId": "358623358417b4a6",
+          "agent": "mcp-readonly-docs",
+          "scenario": "unreviewed-mcp-server-denied"
+        },
+        {
+          "event": "mcp.allowlist_checked",
+          "traceId": "358623358417b4a6",
+          "status": "fail",
+          "serverRef": "unreviewed-live-mcp",
+          "mcpInvocationAllowed": false,
+          "mcpInvocationUsed": false
+        },
+        {
+          "event": "payment.devnet_policy_checked",
+          "traceId": "358623358417b4a6",
+          "status": "pass",
+          "network": "devnet",
+          "paymentHandoffAllowed": true,
+          "paymentRailAccessUsed": false,
+          "mainnetAccess": false
+        },
+        {
+          "event": "rollback.plan_registered",
+          "traceId": "358623358417b4a6",
+          "status": "pass",
+          "cleanupVerified": true
+        },
+        {
+          "event": "handoff.completed",
+          "traceId": "358623358417b4a6",
+          "status": "fail",
+          "reason": "MCP/devnet handoff failed closed before live side effects"
+        }
+      ]
+    }
+  ]
+}
