@@ -51,7 +51,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -157,7 +159,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -272,7 +276,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -421,6 +427,14 @@
         {
           "path": "verifiedRoutes",
           "reason": "Missing required public route: /prosumer-builder-static-export.html"
+        },
+        {
+          "path": "verifiedRoutes",
+          "reason": "Missing required public route: /public-demo-pitch.html"
+        },
+        {
+          "path": "verifiedRoutes",
+          "reason": "Missing required public route: /healthz.html"
         }
       ],
       "id": "missing-health-route-denied",
@@ -512,7 +526,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -626,7 +642,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -749,7 +767,9 @@
           "/",
           "/adl-validation-ui.html",
           "/beta-review-ui.html",
-          "/prosumer-builder-static-export.html"
+          "/prosumer-builder-static-export.html",
+          "/public-demo-pitch.html",
+          "/healthz.html"
         ]
       },
       "environmentContract": [
@@ -822,7 +842,7 @@
       "status": "fail"
     }
   ],
-  "sourceCommit": "30559c339571854ea8d519d5781ad11ccde5f73e",
+  "sourceCommit": "c0376606ea48f65b4cbd9c6fba21307b931c5b6e",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 6,

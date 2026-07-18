@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,6 +51,18 @@ def assert_positive_mutation_fails(mutator, expected_path: str) -> None:
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
+def assert_positive_file_mutation_fails(text: str, expected_path: str) -> None:
+    scenario = positive_scenario()
+    with tempfile.TemporaryDirectory(prefix="coolify-public-demo-test-", dir=ROOT / "tests") as temp_dir:
+        rel_path = Path(temp_dir).relative_to(ROOT) / "public-artifact.html"
+        artifact = ROOT / rel_path
+        artifact.write_text(text)
+        scenario["requiredLocalFiles"] = [rel_path.as_posix()]
+        result = coolify_devnet_public_demo.build_result(scenario, "a" * 40)
+    assert result["status"] == "fail"
+    assert any(finding["path"].startswith(expected_path) for finding in result["findings"])
+
+
 def main() -> int:
     doc = run_demo()
     fixture = json.loads(FIXTURE.read_text())
@@ -76,8 +89,14 @@ def main() -> int:
     assert positive["deployment"]["imageTagPolicy"] == "source-commit-short"
     assert positive["deployment"]["healthPath"] == "/"
     assert positive["deployment"]["devnetCluster"] == "solana-devnet"
-    assert "/" in positive["deployment"]["verifiedRoutes"]
-    assert "/prosumer-builder-static-export.html" in positive["deployment"]["verifiedRoutes"]
+    assert positive["deployment"]["verifiedRoutes"] == [
+        "/",
+        "/adl-validation-ui.html",
+        "/beta-review-ui.html",
+        "/prosumer-builder-static-export.html",
+        "/public-demo-pitch.html",
+        "/healthz.html",
+    ]
     assert positive["claims"]["devnetDemo"] is True
     assert positive["claims"]["mainnetReady"] is False
     assert positive["boundaries"]["devnetAllowed"] is True
@@ -105,12 +124,17 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"repo": "https://github.com/reddinft/reddiagent-lab"}), "repo")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"branch": "main"}), "branch")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"publishDirectory": "/"}), "publishDirectory")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"verifiedRoutes": ["/", "/adl-validation-ui.html", "/beta-review-ui.html", "/prosumer-builder-static-export.html", "/healthz.html"]}), "verifiedRoutes")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"verifiedRoutes": ["/", "/adl-validation-ui.html", "/beta-review-ui.html", "/prosumer-builder-static-export.html", "/public-demo-pitch.html"]}), "verifiedRoutes")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"coolifyResourceType": "private-deploy-key"}), "coolifyResourceType")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"buildPack": "static"}), "buildPack")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"imageName": "ghcr.io/reddinft/reddiagent-devnet-demo"}), "imageName")
     assert_positive_mutation_fails(lambda scenario: scenario["claims"].update({"mainnetReady": True}), "claims.mainnetReady")
     assert_positive_mutation_fails(lambda scenario: scenario["boundaries"].update({"mainnetAccess": True}), "boundaries.mainnetAccess")
     assert_positive_mutation_fails(lambda scenario: scenario["environmentContract"][0].update({"value": "devnet"}), "environmentContract[0].value")
+    assert_positive_file_mutation_fails("<html>token=abc123</html>", "requiredLocalFiles.tests/coolify-public-demo-test-")
+    assert_positive_file_mutation_fails("<html>sk-testsecret123456</html>", "requiredLocalFiles.tests/coolify-public-demo-test-")
+    assert_positive_file_mutation_fails("<html>mainnet ready</html>", "requiredLocalFiles.tests/coolify-public-demo-test-")
     print("PASS Coolify devnet public demo readiness")
     return 0
 

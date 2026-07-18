@@ -38,7 +38,9 @@
       "/",
       "/adl-validation-ui.html",
       "/beta-review-ui.html",
-      "/prosumer-builder-static-export.html"
+      "/prosumer-builder-static-export.html",
+      "/public-demo-pitch.html",
+      "/healthz.html"
     ],
     "rollback": {
       "available": true,

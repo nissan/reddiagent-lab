@@ -16,6 +16,25 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCENARIOS = ROOT / "tests" / "fixtures" / "coolify-devnet-public-demo-scenarios.json"
 SENSITIVE_KEY = re.compile(r"(token|secret|password|private|credential|mnemonic|seed|wallet)", re.I)
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
+REQUIRED_PUBLIC_ROUTES = [
+    "/",
+    "/adl-validation-ui.html",
+    "/beta-review-ui.html",
+    "/prosumer-builder-static-export.html",
+    "/public-demo-pitch.html",
+    "/healthz.html",
+]
+PUBLIC_ARTIFACT_DENYLIST = [
+    (re.compile(r"/Users/loki"), "Public deploy artifact must not contain local workspace paths."),
+    (re.compile(r"op://"), "Public deploy artifact must not contain 1Password references."),
+    (re.compile(r"\btoken\s*=", re.I), "Public deploy artifact must not contain token assignments."),
+    (re.compile(r"\bsecret\s*=", re.I), "Public deploy artifact must not contain secret assignments."),
+    (re.compile(r"\bpassword\s*=", re.I), "Public deploy artifact must not contain password assignments."),
+    (re.compile(r"\bapi[_-]?key\s*=", re.I), "Public deploy artifact must not contain API key assignments."),
+    (re.compile(r"sk-[A-Za-z0-9_-]{8,}"), "Public deploy artifact must not contain provider secret key markers."),
+    (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "Public deploy artifact must not contain private key material."),
+    (re.compile(r"\bmainnet\s+(ready|enabled|active|live)\b", re.I), "Public deploy artifact must not claim mainnet readiness."),
+]
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -89,7 +108,7 @@ def collect_findings(scenario: dict[str, Any], commit: str) -> list[dict[str, st
     require(image_tag_policy == "source-commit-short", "imageTagPolicy", "Image tag must be derived from the source commit short SHA.")
     require(publish_directory == "/usr/share/nginx/html", "publishDirectory", "Nginx static root must be explicit.")
     require(health_path == "/", "healthPath", "Health path must be the static root page.")
-    for required_route in ["/", "/adl-validation-ui.html", "/beta-review-ui.html", "/prosumer-builder-static-export.html"]:
+    for required_route in REQUIRED_PUBLIC_ROUTES:
         require(required_route in routes, "verifiedRoutes", f"Missing required public route: {required_route}")
 
     for path in scenario.get("requiredLocalFiles", []):
@@ -97,8 +116,8 @@ def collect_findings(scenario: dict[str, Any], commit: str) -> list[dict[str, st
         require(local.exists(), f"requiredLocalFiles.{path}.exists", "Required deploy artifact is missing.")
         if local.exists():
             text = local.read_text(errors="ignore")
-            require("/Users/loki" not in text, f"requiredLocalFiles.{path}.content", "Public deploy artifact must not contain local workspace paths.")
-            require("op://" not in text, f"requiredLocalFiles.{path}.content", "Public deploy artifact must not contain 1Password references.")
+            for pattern, reason in PUBLIC_ARTIFACT_DENYLIST:
+                require(not pattern.search(text), f"requiredLocalFiles.{path}.content", reason)
 
     require(claims.get("publicDemo") is True, "claims.publicDemo", "Public demo claim must be explicit.")
     require(claims.get("devnetDemo") is True, "claims.devnetDemo", "Devnet demo claim must be explicit.")
