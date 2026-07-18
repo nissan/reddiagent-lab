@@ -202,6 +202,7 @@ def collect_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     require(network.get("ingress") in {"none", "private-vpn", "operator-ip-allowlist"}, "network.ingress", "Ingress must be none, private VPN, or operator IP allowlist.")
     require(access.get("authenticationRequired") is True, "accessControls.authenticationRequired", "Hosted operator UI evidence requires authentication.")
     require(access.get("operatorAllowlistRequired") is True, "accessControls.operatorAllowlistRequired", "Operator allowlist evidence is required.")
+    require(access.get("anonymousAccessAllowed") is False, "accessControls.anonymousAccessAllowed", "Anonymous operator UI access is not allowed.")
     require(logs.get("retained") is True, "logs.retained", "Redacted log-retention evidence is required.")
     require(logs.get("redacted") is True, "logs.redacted", "Logs must be redacted before retention.")
     require(storage.get("persistentVolume") is False, "storage.persistentVolume", "Persistent volumes are denied by default.")

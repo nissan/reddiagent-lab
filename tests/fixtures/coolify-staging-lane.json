@@ -656,6 +656,10 @@
           "reason": "Ingress must be none, private VPN, or operator IP allowlist."
         },
         {
+          "path": "accessControls.anonymousAccessAllowed",
+          "reason": "Anonymous operator UI access is not allowed."
+        },
+        {
           "path": "boundaryStatus.publicExposure",
           "reason": "publicExposure must be false."
         }

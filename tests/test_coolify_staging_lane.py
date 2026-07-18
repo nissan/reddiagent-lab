@@ -106,6 +106,7 @@ def main() -> int:
     assert "image.digest" in finding_paths["unpinned-image-denied"]
     assert "network.publicExposure" in finding_paths["public-exposure-denied"]
     assert "network.ingress" in finding_paths["public-exposure-denied"]
+    assert "accessControls.anonymousAccessAllowed" in finding_paths["public-exposure-denied"]
     assert "boundaryStatus.publicExposure" in finding_paths["public-exposure-denied"]
     assert "envContract[0].value" in finding_paths["secret-env-value-denied"]
     assert "scenario.envContract[0].value" in finding_paths["secret-env-value-denied"]
@@ -144,6 +145,7 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario["source"].update({"commit": "main"}), "source.commit")
     assert_positive_mutation_fails(lambda scenario: scenario["network"].update({"publicExposure": True}), "network.publicExposure")
     assert_positive_mutation_fails(lambda scenario: scenario["accessControls"].update({"authenticationRequired": False}), "accessControls.authenticationRequired")
+    assert_positive_mutation_fails(lambda scenario: scenario["accessControls"].update({"anonymousAccessAllowed": True}), "accessControls.anonymousAccessAllowed")
     assert_positive_mutation_fails(lambda scenario: scenario["envContract"][0].update({"value": "local-only"}), "envContract[0].value")
     assert_positive_mutation_fails(lambda scenario: scenario["logs"].update({"redacted": False}), "logs.redacted")
     assert_positive_mutation_fails(lambda scenario: scenario["storage"].update({"persistentVolume": True}), "storage.persistentVolume")
