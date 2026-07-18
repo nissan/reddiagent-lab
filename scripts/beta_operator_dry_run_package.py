@@ -31,6 +31,7 @@ REQUIRED_BOUNDARIES = {
     "externalSpend": False,
 }
 REQUIRED_STOP_EVENTS = {"runtime.disabled", "rollback.started", "rollback.completed"}
+PASS_STATUSES = {"pass", "success"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -78,6 +79,26 @@ def transcript_commands(transcript: list[dict[str, Any]]) -> list[str]:
     ]
 
 
+def transcript_entry_passes(entry: dict[str, Any]) -> bool:
+    return entry.get("exitCode") == 0 and str(entry.get("stdoutStatus", "")).lower() in PASS_STATUSES
+
+
+def passing_commands(transcript: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(entry.get("command"))
+        for entry in transcript
+        if entry.get("command") and transcript_entry_passes(entry)
+    }
+
+
+def passing_events(transcript: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(entry.get("event"))
+        for entry in transcript
+        if entry.get("event") and transcript_entry_passes(entry)
+    }
+
+
 def collect_findings(
     scenario: dict[str, Any],
     pinned_rc: dict[str, Any],
@@ -95,8 +116,12 @@ def collect_findings(
     command_transcript = scenario.get("operatorCommandTranscript", [])
     stop_transcript = scenario.get("stopRollbackDryRunTranscript", [])
     command_lines = transcript_commands(command_transcript)
+    passed_command_lines = passing_commands(command_transcript)
     stop_events = transcript_events(stop_transcript)
+    passed_stop_events = passing_events(stop_transcript)
     rc_boundaries = pinned_rc.get("boundaries", {})
+    package_command = "python scripts/beta_operator_dry_run_package.py"
+    selected_runtime_command = rc_positive.get("selectedRuntime", {}).get("command") if rc_positive else None
 
     require(pinned_rc.get("status") == "pass", "rcGate.status", "Pinned RC gate evidence must pass.")
     require(current_rc == pinned_rc, "rcGate.currentEvidence", "Current RC gate output must match the pinned artifact.")
@@ -116,19 +141,34 @@ def collect_findings(
             "Selected ADL path must match the passing RC gate runtime path.",
         )
     require(
-        "python scripts/beta_operator_dry_run_package.py" in command_lines,
+        package_command in command_lines,
         "operatorCommandTranscript",
         "Operator transcript must include the package checker command.",
     )
     require(
-        bool(rc_positive and rc_positive.get("selectedRuntime", {}).get("command") in command_lines),
+        package_command in passed_command_lines,
+        "operatorCommandTranscript.packageCommand",
+        "Package checker transcript row must exit 0 with pass/success status.",
+    )
+    require(
+        bool(selected_runtime_command and selected_runtime_command in command_lines),
         "operatorCommandTranscript",
         "Operator transcript must include the selected local runtime command from RC evidence.",
+    )
+    require(
+        bool(selected_runtime_command and selected_runtime_command in passed_command_lines),
+        "operatorCommandTranscript.selectedRuntimeCommand",
+        "Selected local runtime transcript row must exit 0 with pass/success status.",
     )
     require(
         REQUIRED_STOP_EVENTS.issubset(stop_events),
         "stopRollbackDryRunTranscript",
         "Stop/rollback dry-run transcript must include disable, rollback start, and rollback complete events.",
+    )
+    require(
+        REQUIRED_STOP_EVENTS.issubset(passed_stop_events),
+        "stopRollbackDryRunTranscript",
+        "Every required stop/rollback transcript row must exit 0 with pass/success status.",
     )
     require(scenario.get("runtimeMode") == "local-only", "runtimeMode", "Runtime mode must be local-only.")
     require(scenario.get("environment") == "local", "environment", "Environment must be local.")

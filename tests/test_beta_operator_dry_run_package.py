@@ -7,11 +7,13 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
 FIXTURE = ROOT / "tests" / "fixtures" / "beta-operator-dry-run-package.json"
+SCENARIOS = ROOT / "tests" / "fixtures" / "beta-operator-dry-run-package-scenarios.json"
 
 
 def run_package() -> dict:
@@ -23,6 +25,31 @@ def run_package() -> dict:
         check=True,
     )
     return json.loads(proc.stdout)
+
+
+def run_package_for_scenarios(doc: dict) -> dict:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        path = Path(tmpdir) / "scenarios.json"
+        path.write_text(json.dumps(doc))
+        proc = subprocess.run(
+            [PYTHON, "scripts/beta_operator_dry_run_package.py", str(path)],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+    assert proc.returncode == 3, proc.stdout
+    return json.loads(proc.stdout)
+
+
+def assert_positive_mutation_fails(mutator, expected_path: str) -> None:
+    scenarios = json.loads(SCENARIOS.read_text())
+    positive = scenarios["scenarios"][0]
+    mutator(positive)
+    doc = run_package_for_scenarios(scenarios)
+    result = doc["results"][0]
+    assert result["status"] == "fail"
+    assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
 def main() -> int:
@@ -76,6 +103,23 @@ def main() -> int:
     assert "runtimeMode" in finding_paths["non-local-runtime-request-denied"]
     assert "liveRuntimeRequested" in finding_paths["non-local-runtime-request-denied"]
     assert "mainnetRequested" in finding_paths["mainnet-request-denied"]
+
+    assert_positive_mutation_fails(
+        lambda scenario: scenario["operatorCommandTranscript"][0].update({"exitCode": 1, "stdoutStatus": "fail"}),
+        "operatorCommandTranscript.packageCommand",
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario["operatorCommandTranscript"][1].update({"exitCode": 1, "stdoutStatus": "fail"}),
+        "operatorCommandTranscript.selectedRuntimeCommand",
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario["stopRollbackDryRunTranscript"][0].update({"exitCode": 1, "stdoutStatus": "fail"}),
+        "stopRollbackDryRunTranscript",
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario["stopRollbackDryRunTranscript"][2].update({"exitCode": 1, "stdoutStatus": "fail"}),
+        "stopRollbackDryRunTranscript",
+    )
     print("PASS beta operator local dry-run package")
     return 0
 
