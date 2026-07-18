@@ -1,0 +1,263 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "archiveManifestPath": "tests/fixtures/beta-release-archive-assembler.json",
+    "requestedVerdict": "accept",
+    "expectedStatus": "pass",
+    "expectedVerdict": "accept",
+    "publicDemoMetadata": {
+      "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+      "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+      "metadataOnly": true,
+      "fetchedDuringQuickstart": false,
+      "publishedDuringQuickstart": false
+    },
+    "commands": [
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+    ],
+    "expectedOutputs": [
+      "A pass quickstart manifest with local file inventory hashes.",
+      "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+      "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+    ],
+    "selectedAdls": [
+      "examples/simple-agent.yaml",
+      "examples/tool-agent.yaml",
+      "examples/payment-agent.yaml"
+    ],
+    "operatorNextStep": "Review the generated local quickstart manifest and HTML entrypoint before any separately approved activation, deployment, publishing, payment, devnet, or mainnet step.",
+    "quickstartNotes": "Local quickstart metadata only; no runtime activation, Docker/Surfpool/Coolify start, hosted fetch, deployment, package publishing, archive publishing, or settlement is claimed.",
+    "unsafeEnvValues": {},
+    "liveRuntimeRequested": false,
+    "liveNetworkEnabled": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "deploymentClaimed": false,
+    "packagePublishingRequested": false,
+    "packagePublished": false,
+    "archivePublishingRequested": false,
+    "archivePublished": false,
+    "publicPublishingRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "expectedLocalFileHashes": [
+      {
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      {
+        "path": "tests/fixtures/beta-release-verification.json",
+        "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500"
+      },
+      {
+        "path": "tests/fixtures/beta-review-ui.json",
+        "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+      },
+      {
+        "path": "tests/fixtures/surfpool-validator-lane.json",
+        "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+      },
+      {
+        "path": "tests/fixtures/docker-testing-lane.json",
+        "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+      },
+      {
+        "path": "tests/fixtures/coolify-staging-lane.json",
+        "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+      },
+      {
+        "path": "docs/PITCH-DEMO-REFRESH.md",
+        "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754"
+      },
+      {
+        "path": "docs/public-demo-pitch.html",
+        "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3"
+      },
+      {
+        "path": "scripts/public_demo_pitch_video.sh",
+        "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567"
+      }
+    ],
+    "expectedAdlHashes": [
+      {
+        "path": "examples/simple-agent.yaml",
+        "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4"
+      },
+      {
+        "path": "examples/tool-agent.yaml",
+        "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a"
+      },
+      {
+        "path": "examples/payment-agent.yaml",
+        "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "quickstart-assemble-accept-pass"
+    },
+    {
+      "id": "missing-archive-manifest-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "archiveManifestPath": "tests/fixtures/missing-beta-release-archive-assembler.json",
+      "expectedLocalFileHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+        }
+      ]
+    },
+    {
+      "id": "stale-archive-manifest-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedLocalFileHashes": [
+        {
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "missing-pitch-page-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "localFilePathOverrides": {
+        "pitchPage": "docs/missing-public-demo-pitch.html"
+      },
+      "expectedLocalFileHashes": [
+        {
+          "path": "docs/missing-public-demo-pitch.html",
+          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3"
+        }
+      ]
+    },
+    {
+      "id": "stale-pitch-video-script-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedLocalFileHashes": [
+        {
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "missing-selected-adl-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "selectedAdls": [
+        "examples/simple-agent.yaml",
+        "examples/tool-agent.yaml"
+      ]
+    },
+    {
+      "id": "stale-selected-adl-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedAdlHashes": [
+        {
+          "path": "examples/payment-agent.yaml",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "unsafe-activation-deployment-publishing-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorNextStep": "Runtime activation completed, deployment completed, archive published, and package published."
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "bearer redacted-fixture-token"
+    },
+    {
+      "id": "unsafe-env-values-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "unsafeEnvValues": {
+        "OPENAI_API_KEY": "sk-redacted-fixture",
+        "PUBLIC_DEMO_URL": ""
+      }
+    },
+    {
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "walletRequested": true,
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true
+    },
+    {
+      "id": "devnet-mainnet-live-network-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "liveNetworkEnabled": true,
+      "devnetRequested": true,
+      "mainnetRequested": true
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "commands": [
+        "docker compose up",
+        "npm publish",
+        "curl https://frosty-prism-5q6j.here.now/"
+      ]
+    },
+    {
+      "id": "unsafe-public-demo-mutation-reject-denied",
+      "kind": "negative",
+      "requestedVerdict": "reject",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "publicPublishingRequested": true,
+      "publicDemoMetadata": {
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "metadataOnly": false,
+        "fetchedDuringQuickstart": true,
+        "publishedDuringQuickstart": true
+      }
+    }
+  ]
+}
