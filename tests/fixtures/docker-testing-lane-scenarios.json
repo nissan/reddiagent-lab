@@ -1,0 +1,219 @@
+{
+  "defaults": {
+    "composeFile": "tests/fixtures/docker-compose.reddiagent-local.yml",
+    "selectionCriteria": {
+      "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+      "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence.",
+      "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence."
+    },
+    "images": [
+      {
+        "name": "python",
+        "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "pullAllowed": false
+      }
+    ],
+    "envContract": [
+      {
+        "name": "REDDIAGENT_TEST_MODE",
+        "required": true,
+        "secretHandling": false,
+        "allowedValues": [
+          "local-only"
+        ]
+      },
+      {
+        "name": "REDDIAGENT_API_KEY",
+        "required": false,
+        "secretHandling": "provided-out-of-band"
+      }
+    ],
+    "network": {
+      "exposure": "loopback-only",
+      "hostNetwork": false,
+      "publishedPorts": []
+    },
+    "logs": {
+      "retained": true,
+      "redacted": true,
+      "paths": [
+        "tests/artifacts/docker-lane/redacted-compose-config.log",
+        "tests/artifacts/docker-lane/teardown.log"
+      ]
+    },
+    "volumes": {
+      "ephemeral": true,
+      "paths": [
+        ".tmp/reddiagent-docker-lane"
+      ],
+      "cleanupVerified": true
+    },
+    "teardown": {
+      "captured": true,
+      "containersRemoved": true,
+      "volumesRemoved": true,
+      "networksRemoved": true
+    },
+    "rollback": {
+      "available": true,
+      "cleanupVerified": true,
+      "steps": [
+        "docker compose down --volumes --remove-orphans",
+        "delete .tmp/reddiagent-docker-lane",
+        "retain redacted logs only"
+      ]
+    },
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "liveNetworkEnabled": false,
+    "productionClaimed": false,
+    "deploymentClaimed": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "settlementClaimed": false,
+    "boundaryStatus": {
+      "dependencyPulls": false,
+      "containerStarted": false,
+      "vpsMutation": false,
+      "hostedServiceUsed": false,
+      "credentialAccess": false,
+      "credentialPersisted": false,
+      "walletAccess": false,
+      "paymentRailAccess": false,
+      "facilitatorAccess": false,
+      "settlementAccess": false,
+      "liveMcpInvocation": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "mainnetAccess": false,
+      "deploymentPublished": false,
+      "packagePublished": false,
+      "externalSpend": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "local-docker-static-pass",
+      "environment": "local-docker"
+    },
+    {
+      "id": "vps-docker-selection-pass",
+      "environment": "vps-docker",
+      "selectionCriteria": {
+        "selectedBecause": "VPS Docker is selected only when long-running generated-package execution needs stable host parity."
+      }
+    },
+    {
+      "id": "unpinned-image-denied",
+      "environment": "local-docker",
+      "images": [
+        {
+          "name": "python",
+          "reference": "python:latest",
+          "digest": "",
+          "pullAllowed": false
+        }
+      ]
+    },
+    {
+      "id": "dependency-pull-denied",
+      "environment": "local-docker",
+      "images": [
+        {
+          "name": "python",
+          "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "pullAllowed": true
+        }
+      ],
+      "boundaryStatus": {
+        "dependencyPulls": true
+      }
+    },
+    {
+      "id": "host-network-denied",
+      "environment": "local-docker",
+      "network": {
+        "exposure": "public",
+        "hostNetwork": true,
+        "publishedPorts": [
+          "0.0.0.0:8080:8080"
+        ]
+      }
+    },
+    {
+      "id": "secret-env-value-denied",
+      "environment": "local-docker",
+      "envContract": [
+        {
+          "name": "REDDIAGENT_API_KEY",
+          "required": true,
+          "secretHandling": "provided-out-of-band",
+          "value": "api key should not be stored"
+        }
+      ]
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "environment": "local-docker",
+      "Authorization": "Bearer redacted fixture marker"
+    },
+    {
+      "id": "missing-cleanup-denied",
+      "environment": "local-docker",
+      "volumes": {
+        "cleanupVerified": false
+      },
+      "teardown": {
+        "captured": false,
+        "containersRemoved": false
+      },
+      "rollback": {
+        "cleanupVerified": false
+      }
+    },
+    {
+      "id": "live-network-denied",
+      "environment": "local-docker",
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "liveNetworkEnabled": true,
+      "boundaryStatus": {
+        "devnetAccess": true,
+        "mainnetAccess": true
+      }
+    },
+    {
+      "id": "production-deployment-claim-denied",
+      "environment": "vps-docker",
+      "productionClaimed": true,
+      "deploymentClaimed": true,
+      "boundaryStatus": {
+        "vpsMutation": true,
+        "deploymentPublished": true
+      }
+    },
+    {
+      "id": "payment-settlement-request-denied",
+      "environment": "local-docker",
+      "walletRequested": true,
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "paymentAccessRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true,
+      "settlementClaimed": true,
+      "boundaryStatus": {
+        "walletAccess": true,
+        "paymentRailAccess": true,
+        "facilitatorAccess": true,
+        "settlementAccess": true
+      }
+    }
+  ]
+}
