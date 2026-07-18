@@ -69,6 +69,7 @@ The local-python runner can currently prove:
 | Beta operator decision package report | `tests/BETA-OPERATOR-DECISION-PACKAGE-REPORT.md` | Local operator decision package records approve, hold, and rollback decisions against pinned review/package evidence and fail-closes live, devnet, mainnet, production, and credential-like payload requests. |
 | Beta activation preflight gate report | `tests/BETA-ACTIVATION-PREFLIGHT-GATE-REPORT.md` | Local activation preflight package records approve, hold, and rollback preflight outcomes against pinned decision/review/runtime evidence and fail-closes live, devnet, mainnet, production, and credential-like payload requests. |
 | Beta activation rehearsal package report | `tests/BETA-ACTIVATION-REHEARSAL-PACKAGE-REPORT.md` | Local activation rehearsal package emits approve, hold, and rollback operator transcripts/checklists against pinned preflight evidence and fail-closes live enablement claims, missing cues, stale evidence, and missing rollback/disable evidence. |
+| Beta activation acceptance bundle report | `tests/BETA-ACTIVATION-ACCEPTANCE-BUNDLE-REPORT.md` | Local activation acceptance bundle emits accept, hold, and rollback-required operator transcripts/checklists against pinned rehearsal evidence and fail-closes live enablement claims, missing approval identity, missing cues, stale evidence, and missing rollback/disable evidence. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -105,6 +106,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_decision_package.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_preflight_gate.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_rehearsal_package.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_acceptance_bundle.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
