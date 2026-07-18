@@ -45,7 +45,11 @@
     "devnetRequested": false,
     "mainnetRequested": false,
     "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
     "facilitatorRequested": false,
+    "settlementRequested": false,
     "settlementClaimed": false,
     "boundaryStatus": {
       "credentialAccess": false,
@@ -120,7 +124,11 @@
     },
     {
       "id": "payment-facilitator-request-denied",
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "paymentAccessRequested": true,
       "facilitatorRequested": true,
+      "settlementRequested": true,
       "settlementClaimed": true,
       "boundaryStatus": {
         "paymentRailAccess": true,

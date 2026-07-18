@@ -965,8 +965,24 @@
       "fallbackRationale": null,
       "findings": [
         {
+          "path": "paymentRequested",
+          "reason": "Payment access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "Payment rail access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "paymentAccessRequested",
+          "reason": "Payment access is not allowed for local validator lane evidence."
+        },
+        {
           "path": "facilitatorRequested",
           "reason": "Facilitator access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "Settlement access is not allowed for local validator lane evidence."
         },
         {
           "path": "settlementClaimed",
@@ -1202,7 +1218,7 @@
       "validatorPreference": "surfpool-first"
     }
   ],
-  "scenarioFixtureHash": "6b3f4f6257b520c00dcf8141514312438013a6299787eb074a5b14f94007d341",
+  "scenarioFixtureHash": "ac6aa2bd9088bdaf49cc314277dd0699ec0f055069076c8c4c4cf6263f1e1562",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 9,

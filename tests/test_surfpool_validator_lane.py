@@ -110,7 +110,11 @@ def main() -> int:
     assert "scenario.Authorization" in finding_paths["credential-like-payload-denied"]
     assert "walletRequested" in finding_paths["wallet-request-denied"]
     assert "boundaryStatus.walletAccess" in finding_paths["wallet-request-denied"]
+    assert "paymentRequested" in finding_paths["payment-facilitator-request-denied"]
+    assert "paymentRailRequested" in finding_paths["payment-facilitator-request-denied"]
+    assert "paymentAccessRequested" in finding_paths["payment-facilitator-request-denied"]
     assert "facilitatorRequested" in finding_paths["payment-facilitator-request-denied"]
+    assert "settlementRequested" in finding_paths["payment-facilitator-request-denied"]
     assert "settlementClaimed" in finding_paths["payment-facilitator-request-denied"]
     assert "devnetRequested" in finding_paths["devnet-request-denied"]
     assert "boundaryStatus.devnetAccess" in finding_paths["devnet-request-denied"]
@@ -125,7 +129,11 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario["teardown"].update({"captured": False}), "teardown.captured")
     assert_positive_mutation_fails(lambda scenario: scenario["rollback"].update({"cleanupVerified": False}), "rollback.cleanupVerified")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"walletRequested": True}), "walletRequested")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"paymentRequested": True}), "paymentRequested")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"paymentRailRequested": True}), "paymentRailRequested")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"paymentAccessRequested": True}), "paymentAccessRequested")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"facilitatorRequested": True}), "facilitatorRequested")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"settlementRequested": True}), "settlementRequested")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"settlementClaimed": True}), "settlementClaimed")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"devnetRequested": True}), "devnetRequested")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"mainnetRequested": True}), "mainnetRequested")

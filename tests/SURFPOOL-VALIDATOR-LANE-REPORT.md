@@ -28,7 +28,7 @@ Surfpool is the preferred path when RAP/payment/receipt prototypes need validato
 | `missing-teardown-denied` | fail closed | Missing validator teardown and ledger cleanup are denied. |
 | `credential-like-payload-denied` | fail closed | Credential-like payload keys/values are denied. |
 | `wallet-request-denied` | fail closed | Wallet access is denied. |
-| `payment-facilitator-request-denied` | fail closed | Payment rail, facilitator, and settlement access are denied. |
+| `payment-facilitator-request-denied` | fail closed | Standalone payment, payment rail, payment access, facilitator, settlement request, and settlement claim fields are denied. |
 | `devnet-request-denied` | fail closed | Devnet is denied by default for this local lane. |
 | `missing-state-deltas-denied` | fail closed | Lamport and token before/after evidence is required. |
 
