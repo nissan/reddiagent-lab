@@ -27,6 +27,7 @@ The local-python runner can currently prove:
 - bounded executable local runtime prototype evidence for simple/tool ADL examples and fail-closed unsafe fixtures.
 - bounded provider-backed sandbox prototype evidence for fake/local provider budget, eval, and trace gates.
 - bounded MCP/devnet payment handoff prototype evidence for reviewed MCP allowlists, devnet-only payment handoff policy, receipt evidence, rollback planning, and mainnet fail-closed semantics.
+- Surfpool-first local Solana validator lane evidence for validator startup, scenario execution, receipt capture, teardown, rollback, local cluster/account/program provenance, fallback rationale, and fail-closed network/payment boundaries.
 - beta release readiness evidence for entry/exit criteria, observability, operator controls, rollback, incident notes, and explicit mainnet denial.
 - beta local runtime RC gate evidence that merges local runtime execution, operator-control traces, readiness criteria, cost, privacy redaction, rollback stop proof, and mainnet-not-approved language.
 - beta operator local dry-run package evidence that binds the RC gate to an operator identity, selected ADL path, operator command transcript, stop/rollback dry-run transcript, and review evidence index.
@@ -60,6 +61,7 @@ The local-python runner can currently prove:
 | Provider adapter generated-code sandbox beta report | `tests/PROVIDER-ADAPTER-GENERATED-CODE-SANDBOX-BETA-REPORT.md`; `tests/test_provider_adapter_generated_code_sandbox_beta.py` | Local-only adapter stub materialization records manifest, prompt/model placeholders, budget/eval gates, file index, cleanup transcript, and fail-closed provider boundaries. |
 | RAP bridge local dry-run report | `tests/RAP-BRIDGE-LOCAL-DRY-RUN-REPORT.md`; `tests/test_rap_bridge_local_dry_run.py` | Local executable RAP bridge prototype binds one run id across trace, receipt, payment handoff, operator transcript, source, budget, rollback, and reputation evidence while fail-closing live rails. |
 | Live MCP/devnet handoff prototype report | `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md` | Reviewed MCP allowlist and simulated devnet payment handoff scenarios pass while mainnet and unreviewed MCP server refs fail closed. |
+| Surfpool validator lane report | `tests/SURFPOOL-VALIDATOR-LANE-REPORT.md`; `tests/test_surfpool_validator_lane.py` | Surfpool-first local validator evidence records startup, scenario, receipt, teardown, rollback, local state provenance, fallback rationale, deltas, and fail-closed unsafe cluster/payment/wallet/credential paths. |
 | Beta operator-control harness report | `tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md` | Local-only enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial controls are exercised with fail-closed fixtures. |
 | Beta release readiness runbook | `docs/BETA-RELEASE-READINESS-RUNBOOK.md` | Operator-facing beta entry/exit, observability, controls, rollback, cost, safety, privacy, incident, and mainnet denial runbook. |
 | Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
@@ -98,6 +100,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_provider_sandbox_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_rap_bridge_local_dry_run.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_surfpool_validator_lane.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_control_harness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_local_runtime_rc_gate.py
@@ -135,6 +138,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] MCP readiness release checklist has been reviewed before any live MCP work is scoped.
 - [ ] RAP bridge local dry-run evidence binds trace, receipt, payment handoff, operator transcript, source, budget, rollback, and reputation to one run id before any live RAP bridge path is scoped.
 - [ ] MCP/devnet handoff prototype evidence keeps reviewed allowlists, rollback/cleanup, devnet/mainnet distinction, and secret-redaction assertions green before live infrastructure is touched.
+- [ ] Surfpool local validator lane evidence keeps localnet-only cluster selection, Surfpool-first/fallback rationale, startup/scenario/receipt/teardown capture, account/program provenance, deltas, rollback cleanup, and mainnet denial green before devnet is considered.
 - [ ] Beta operator-control harness evidence proves enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial paths before beta runtime use.
 - [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 - [ ] Beta local runtime RC gate evidence links the selected ADL runtime path to current readiness, operator traces, cost/privacy review, rollback stop evidence, and mainnet-denial proof.
