@@ -1,0 +1,4027 @@
+{
+  "boundaries": {
+    "archivePublished": false,
+    "archiveWriteRequiresExplicitPath": true,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dryRunByDefault": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    273
+  ],
+  "issue": 275,
+  "mainnetStatement": "This archive assembler is local/free/dry-run by default. It does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-local-release-archive-assembler",
+  "parentEpic": 220,
+  "relatedEpic": 247,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "accept",
+      "findings": [],
+      "id": "release-archive-assemble-accept-pass",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "positive",
+      "operatorNextStep": "Reviewer may inspect this local manifest/checksum archive package only; publishing, deployment, activation, payment access, and mainnet still require separate approval.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "pass",
+      "verdict": "accept"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "28d6a842902a30a27db8ba077c070bf3563956aff3ac3c8301e331d24105d721"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": false,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/missing-beta-release-candidate-bundle.json",
+          "sha256": null,
+          "sizeBytes": null
+        }
+      ],
+      "evidenceHashes": [],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "releaseCandidateManifest.exists",
+          "reason": "Release-candidate manifest `tests/fixtures/missing-beta-release-candidate-bundle.json` is missing."
+        },
+        {
+          "path": "releaseCandidateManifest.mode",
+          "reason": "Archive assembler requires #273 release-candidate bundle output."
+        },
+        {
+          "path": "releaseCandidateManifest.status",
+          "reason": "Release-candidate manifest must pass before archive assembly."
+        },
+        {
+          "path": "releaseCandidateManifest.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.deterministicLocalOnly",
+          "reason": "RC manifest must remain deterministic/local-only."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "releaseCandidateManifest.results",
+          "reason": "RC manifest must include an accepted passing release-candidate result."
+        },
+        {
+          "path": "archiveFiles",
+          "reason": "Required evidence `docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md` is missing from the local archive file list."
+        },
+        {
+          "path": "archiveFiles",
+          "reason": "Required evidence `scripts/public_demo_walkthrough_video.sh` is missing from the local archive file list."
+        },
+        {
+          "path": "archiveFiles",
+          "reason": "Required evidence `tests/fixtures/beta-release-verification.json` is missing from the local archive file list."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/missing-beta-release-candidate-bundle.json.exists",
+          "reason": "Included archive file `tests/fixtures/missing-beta-release-candidate-bundle.json` is missing."
+        }
+      ],
+      "id": "missing-release-candidate-manifest-denied",
+      "includedFiles": [
+        "tests/fixtures/missing-beta-release-candidate-bundle.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {},
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": false,
+        "path": "tests/fixtures/missing-beta-release-candidate-bundle.json",
+        "sha256": null
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "releaseCandidateManifest.sha256",
+          "reason": "Release-candidate manifest `tests/fixtures/beta-release-candidate-bundle.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-release-candidate-manifest-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "26cbe67a7aadf951e6dcbfe6b0dd290c2e007cb8ca93ae008b58d6d2e306f382"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "contentAddressedInventory.docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md`."
+        },
+        {
+          "path": "contentAddressedInventory.scripts/public_demo_walkthrough_video.sh.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `scripts/public_demo_walkthrough_video.sh`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-activation-acceptance.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-activation-acceptance.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-activation-preflight.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-activation-preflight.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-activation-rehearsal.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-activation-rehearsal.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-local-runtime-rc-gate.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-local-runtime-rc-gate.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-operator-decision-package.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-operator-decision-package.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-operator-dry-run-package.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-operator-dry-run-package.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-release-candidate-bundle.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-release-candidate-bundle.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-release-handoff.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-release-handoff.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-release-readiness.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-release-readiness.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-release-verification.json.sha256",
+          "reason": "Included archive file `tests/fixtures/beta-release-verification.json` does not match its expected sha256 pin."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/beta-review-ui.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/beta-review-ui.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/coolify-staging-lane.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/coolify-staging-lane.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/docker-testing-lane.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/docker-testing-lane.json`."
+        },
+        {
+          "path": "contentAddressedInventory.tests/fixtures/surfpool-validator-lane.json.expectedSha256",
+          "reason": "Expected sha256 pin is required for included file `tests/fixtures/surfpool-validator-lane.json`."
+        }
+      ],
+      "id": "stale-included-file-hash-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "observedArchiveFiles",
+          "reason": "Unexpected archive artifact `tmp/unreviewed-live-runtime.log` is not part of the release-candidate manifest."
+        }
+      ],
+      "id": "unexpected-extra-artifact-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "a34a013d3dde7b00c949b945250dc8ed25e3ee5e0e95c04098075c0e632fb80f"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveFiles",
+          "reason": "Required evidence `docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md` is missing from the local archive file list."
+        }
+      ],
+      "id": "missing-demo-evidence-denied",
+      "includedFiles": [
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-verification.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "64cdbfc358157d1be00bd662a7dbd4a1a11c60ec3858bba19c5ce2d63e5c653d"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveFiles",
+          "reason": "Required evidence `tests/fixtures/beta-release-verification.json` is missing from the local archive file list."
+        }
+      ],
+      "id": "missing-verifier-evidence-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-release-candidate-bundle.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "operatorNextStep",
+          "reason": "Archive assembler must not claim `archive published`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Archive assembler must not claim `runtime activation completed`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Archive assembler must not claim `deployment completed`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Archive assembler must not claim `package published`."
+        }
+      ],
+      "id": "unsafe-activation-deployment-publishing-claim-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in archive assembler inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in archive assembler inputs."
+        }
+      ],
+      "id": "credential-like-leakage-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.unsafeEnvValues.OPENAI_API_KEY",
+          "reason": "Credential-like values are not allowed in archive assembler inputs."
+        },
+        {
+          "path": "unsafeEnvValues.OPENAI_API_KEY",
+          "reason": "Environment evidence may include names only, not live values."
+        }
+      ],
+      "id": "unsafe-env-values-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "walletRequested",
+          "reason": "walletRequested must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "paymentRailRequested must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "facilitatorRequested must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "settlementRequested must be false or absent in archive assembler inputs."
+        }
+      ],
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "liveNetworkEnabled",
+          "reason": "liveNetworkEnabled must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in archive assembler inputs."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in archive assembler inputs."
+        }
+      ],
+      "id": "devnet-mainnet-live-network-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Hold this archive assembly. Fix missing, stale, extra, or unsafe local evidence and rerun the assembler before any live step.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "archiveMetadata": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveName": "reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
+        "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
+        "format": "manifest-and-sha256-only",
+        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+      },
+      "boundaries": {
+        "archivePublished": false,
+        "archiveWriteRequiresExplicitPath": true,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "contentAddressedInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "hashMatches": true,
+          "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "sizeBytes": 9792
+        },
+        {
+          "exists": true,
+          "expectedSha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "hashMatches": true,
+          "path": "scripts/public_demo_walkthrough_video.sh",
+          "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153",
+          "sizeBytes": 4966
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "sizeBytes": 179651
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "sizeBytes": 67295
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "sizeBytes": 121405
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "sizeBytes": 92939
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "sizeBytes": 39305
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "sizeBytes": 27711
+        },
+        {
+          "exists": true,
+          "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-candidate-bundle.json",
+          "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+          "sizeBytes": 96753
+        },
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "sizeBytes": 237067
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "sizeBytes": 7374
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "expectedSha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19",
+          "hashMatches": true,
+          "key": "handoff",
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2",
+          "hashMatches": true,
+          "key": "readiness",
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5",
+          "hashMatches": true,
+          "key": "runtimeRc",
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2",
+          "hashMatches": true,
+          "key": "runtimePackage",
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "reviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e",
+          "hashMatches": true,
+          "key": "decisionPackage",
+          "path": "tests/fixtures/beta-operator-decision-package.json",
+          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05",
+          "hashMatches": true,
+          "key": "preflight",
+          "path": "tests/fixtures/beta-activation-preflight.json",
+          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5",
+          "hashMatches": true,
+          "key": "rehearsal",
+          "path": "tests/fixtures/beta-activation-rehearsal.json",
+          "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc",
+          "hashMatches": true,
+          "key": "acceptance",
+          "path": "tests/fixtures/beta-activation-acceptance.json",
+          "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpool",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "docker",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolify",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+        }
+      ],
+      "excludedFiles": [
+        "live runtime activation outputs",
+        "credential values or secret stores",
+        "Docker/Surfpool/Coolify runtime logs from this archive run",
+        "devnet/mainnet transaction or settlement artifacts",
+        "package publishing outputs",
+        "archive publishing outputs",
+        "production gateway deployment artifacts"
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "archivePublished",
+          "reason": "archivePublished must be false or absent in archive assembler inputs."
+        }
+      ],
+      "id": "unsafe-archive-publish-reject-denied",
+      "includedFiles": [
+        "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "scripts/public_demo_walkthrough_video.sh",
+        "tests/fixtures/beta-activation-acceptance.json",
+        "tests/fixtures/beta-activation-preflight.json",
+        "tests/fixtures/beta-activation-rehearsal.json",
+        "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "tests/fixtures/beta-operator-decision-package.json",
+        "tests/fixtures/beta-operator-dry-run-package.json",
+        "tests/fixtures/beta-release-candidate-bundle.json",
+        "tests/fixtures/beta-release-handoff.json",
+        "tests/fixtures/beta-release-readiness.json",
+        "tests/fixtures/beta-release-verification.json",
+        "tests/fixtures/beta-review-ui.json",
+        "tests/fixtures/coolify-staging-lane.json",
+        "tests/fixtures/docker-testing-lane.json",
+        "tests/fixtures/surfpool-validator-lane.json"
+      ],
+      "kind": "negative",
+      "operatorNextStep": "Reject this archive assembly and regenerate the release-candidate evidence before any operator activation path is considered.",
+      "publicDemoMetadata": {
+        "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+        "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+        "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+        "verifiedAt": "2026-07-19 04:36 AEST",
+        "verifiedRoutes": [
+          "/",
+          "/media/reddiagent-demo-walkthrough.mp4",
+          "/builder-report.html",
+          "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+        ],
+        "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+        "videoEvidence": {
+          "codec": "H.264/AAC",
+          "durationSeconds": 68,
+          "fps": 30,
+          "mp4Embedded": true,
+          "qc": [
+            "ffprobe",
+            "silencedetect",
+            "blackdetect"
+          ],
+          "resolution": "1920x1080"
+        }
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseCandidateManifest": {
+        "expectedSha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-candidate-bundle.json",
+        "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
+      },
+      "releaseId": "reddiagent-beta-0",
+      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "status": "fail",
+      "verdict": "reject"
+    }
+  ],
+  "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+  "status": "pass",
+  "summary": {
+    "acceptVerdicts": 1,
+    "failClosedScenarios": 12,
+    "holdVerdicts": 11,
+    "negativeScenarios": 12,
+    "positiveScenarios": 1,
+    "rejectVerdicts": 1
+  }
+}
