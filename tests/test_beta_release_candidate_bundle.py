@@ -75,6 +75,25 @@ def assert_verifier_mutation_fails(mutator, expected_path: str) -> None:
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
+def assert_demo_mutation_fails(artifact_key: str, source_path: str, suffix: str, expected_path: str) -> None:
+    scenario = positive_scenario()
+    source = (ROOT / source_path).read_text()
+    with tempfile.TemporaryDirectory(prefix="beta-rc-demo-") as tmp:
+        demo_path = Path(tmp) / Path(source_path).name
+        demo_path.write_text(source + suffix)
+        scenario["artifactPathOverrides"] = {artifact_key: str(demo_path)}
+        scenario["expectedEvidenceHashes"] = copy.deepcopy(scenario["expectedEvidenceHashes"])
+        scenario["expectedEvidenceHashes"].append(
+            {
+                "path": str(demo_path),
+                "sha256": beta_release_candidate_bundle.digest(demo_path),
+            }
+        )
+        result = beta_release_candidate_bundle.build_result(scenario, beta_release_candidate_bundle.source_commit())
+    assert result["status"] == "fail"
+    assert expected_path in {finding["path"] for finding in result["findings"]}
+
+
 def main() -> int:
     doc = run_bundle()
     fixture = json.loads(FIXTURE.read_text())
@@ -153,8 +172,12 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"credentialPayload": "bearer token"}), "scenario.credentialPayload")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"operatorNextStep": "Package published."}), "operatorNextStep")
     assert_positive_mutation_fails(lambda scenario: scenario.setdefault("unsafeEnvValues", {}).update({"API_TOKEN": "secret-value"}), "unsafeEnvValues.API_TOKEN")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"releaseId": "reddiagent-beta-stale"}), "releaseId")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"releaseCandidateId": ""}), "releaseCandidateId")
     assert_verifier_mutation_fails(lambda verifier: verifier.update({"status": "fail"}), "verifier.status")
     assert_verifier_mutation_fails(lambda verifier: verifier["boundaries"].update({"networkAccess": True}), "verifier.boundaries.networkAccess")
+    assert_demo_mutation_fails("demoPlan", "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md", "\nDeployment completed.\n", "demoPlan")
+    assert_demo_mutation_fails("demoBuilder", "scripts/public_demo_walkthrough_video.sh", "\ntoken=abc123\n", "demoBuilder")
 
     print("PASS beta release candidate bundle")
     return 0

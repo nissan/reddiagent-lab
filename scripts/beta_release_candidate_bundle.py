@@ -21,6 +21,8 @@ REQUIRED_ARTIFACTS = {
     "demoBuilder": "scripts/public_demo_walkthrough_video.sh",
 }
 REQUIRED_VERIFIER_MODE = "beta-local-release-verification-cli"
+REQUIRED_RELEASE_ID = "reddiagent-beta-0"
+REQUIRED_RELEASE_CANDIDATE_ID = "reddiagent-beta-0-rc-local-1"
 REQUIRED_DEMO_URLS = ("publicDemoUrl", "videoDemoUrl", "publicVideoUrl")
 REQUIRED_DEMO_ROUTES = ("/", "/media/reddiagent-demo-walkthrough.mp4", "/builder-report.html")
 UNSAFE_KEYS_NORMALIZED = {
@@ -276,11 +278,19 @@ def demo_findings(scenario: dict[str, Any], file_texts: dict[str, str]) -> list[
         findings.append(finding("demoPlan.qc", "Walkthrough plan must include video QC evidence."))
     if "reddiagent-demo-walkthrough.mp4" not in file_texts.get("demoBuilder", ""):
         findings.append(finding("demoBuilder.mp4", "Walkthrough build script must emit the MP4 artifact path."))
+    for key in ("demoPlan", "demoBuilder"):
+        if key in file_texts:
+            findings.extend(sensitive_payload_findings(file_texts[key], key))
+            findings.extend(unsafe_claim_findings(file_texts[key], key))
     return findings
 
 
 def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
+    if scenario.get("releaseId") != REQUIRED_RELEASE_ID:
+        findings.append(finding("releaseId", f"Release id must be `{REQUIRED_RELEASE_ID}`."))
+    if scenario.get("releaseCandidateId") != REQUIRED_RELEASE_CANDIDATE_ID:
+        findings.append(finding("releaseCandidateId", f"Release candidate id must be `{REQUIRED_RELEASE_CANDIDATE_ID}`."))
     findings.extend(sensitive_payload_findings(scenario, "scenario"))
     findings.extend(unsafe_claim_findings(scenario.get("operatorNextStep", ""), "operatorNextStep"))
     findings.extend(unsafe_claim_findings(scenario.get("bundleNotes", ""), "bundleNotes"))

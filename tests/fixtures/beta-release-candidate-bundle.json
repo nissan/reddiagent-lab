@@ -128,7 +128,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "pass",
       "verdict": "accept",
       "verifierEvidenceHashes": [
@@ -381,7 +381,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [],
@@ -501,7 +501,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -726,7 +726,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -926,7 +926,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -1143,7 +1143,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -1356,7 +1356,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -1569,7 +1569,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -1794,7 +1794,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -2011,7 +2011,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "hold",
       "verifierEvidenceHashes": [
@@ -2220,7 +2220,7 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+      "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
       "status": "fail",
       "verdict": "reject",
       "verifierEvidenceHashes": [
@@ -2324,7 +2324,7 @@
       "verifierSourceCommit": "a1c01b7716173335ecf55c3be8bfc4f7f49d9b12"
     }
   ],
-  "sourceCommit": "4a83a746aa5e135dbe0bd158430d95de970a6111",
+  "sourceCommit": "e339f6c05b84bcfb9fbe2179679c3af7a49f3ec3",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,
