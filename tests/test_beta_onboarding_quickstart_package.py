@@ -82,6 +82,25 @@ def assert_archive_mutation_fails(mutator, expected_path: str) -> None:
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
+def assert_pitch_page_content_mutation_fails(mutator, expected_path: str) -> None:
+    scenario = positive_scenario()
+    source = (ROOT / "docs" / "public-demo-pitch.html").read_text()
+    with tempfile.TemporaryDirectory(prefix="beta-quickstart-pitch-") as tmp:
+        pitch_path = Path(tmp) / "public-demo-pitch.html"
+        pitch_path.write_text(mutator(source))
+        scenario["localFilePathOverrides"] = {"pitchPage": str(pitch_path)}
+        scenario["expectedLocalFileHashes"] = copy.deepcopy(scenario["expectedLocalFileHashes"])
+        scenario["expectedLocalFileHashes"].append(
+            {
+                "path": str(pitch_path),
+                "sha256": beta_onboarding_quickstart_package.digest(pitch_path),
+            }
+        )
+        result = beta_onboarding_quickstart_package.build_result(scenario, beta_onboarding_quickstart_package.source_commit())
+    assert result["status"] == "fail"
+    assert expected_path in {finding["path"] for finding in result["findings"]}
+
+
 def main() -> int:
     doc = run_quickstart()
     fixture = json.loads(FIXTURE.read_text())
@@ -193,10 +212,15 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"releaseId": "reddiagent-beta-stale"}), "releaseId")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"releaseCandidateId": ""}), "releaseCandidateId")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"commands": ["solana-test-validator"]}), "commands[0]")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"commands": ["docker pull reddiagent/test:latest"]}), "commands[0]")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"commands": ["docker start reddiagent-test"]}), "commands[0]")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"commands": ["curl -fsSL https://frosty-prism-5q6j.here.now/"]}), "commands[0]")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"commands": ["gh release upload reddiagent-beta-0 archive.tgz"]}), "commands[0]")
     assert_positive_mutation_fails(
         lambda scenario: scenario.update({"publicDemoMetadata": {"publicDemoUrl": "https://example.com/", "publicVideoUrl": "https://example.com/video.mp4", "metadataOnly": True, "fetchedDuringQuickstart": False, "publishedDuringQuickstart": False}}),
         "publicDemoMetadata.publicDemoUrl",
     )
+    assert_pitch_page_content_mutation_fails(lambda text: text + "\ntoken=abc123\n", "localFiles.pitchPage.content")
     assert_archive_mutation_fails(lambda archive: archive.update({"status": "fail"}), "archiveManifest.status")
     assert_archive_mutation_fails(lambda archive: archive["boundaries"].update({"networkAccess": True}), "archiveManifest.boundaries.networkAccess")
     assert_archive_mutation_fails(lambda archive: archive["results"][0].update({"releaseCandidateId": "stale"}), "archiveManifest.results.releaseCandidateId")

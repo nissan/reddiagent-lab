@@ -8,6 +8,7 @@ import hashlib
 import html
 import json
 from pathlib import Path
+import shlex
 import subprocess
 import sys
 from typing import Any
@@ -109,25 +110,25 @@ UNSAFE_FLAG_FIELDS = (
     "mainnetRequested",
     "mainnetEnabled",
 )
-UNSAFE_COMMAND_MARKERS = (
-    "docker run",
-    "docker compose up",
-    "docker-compose up",
-    "surfpool start",
-    "solana-test-validator",
+UNSAFE_COMMAND_MARKERS = {
     "coolify",
-    "here-publish",
-    "npm publish",
-    "pnpm publish",
-    "yarn publish",
-    "openclaw gateway",
-    "kubectl apply",
-    "vercel deploy",
-    "mainnet",
     "devnet",
-    "curl http",
-    "curl https",
-)
+    "here-publish",
+    "mainnet",
+    "solana-test-validator",
+}
+UNSAFE_DOCKER_SUBCOMMANDS = {"compose", "container", "pull", "run", "start"}
+UNSAFE_PACKAGE_PUBLISH_COMMANDS = {
+    ("gh", "release", "upload"),
+    ("npm", "publish"),
+    ("pnpm", "publish"),
+    ("yarn", "publish"),
+    ("vercel", "deploy"),
+    ("kubectl", "apply"),
+    ("openclaw", "gateway"),
+}
+HOSTED_FETCH_COMMANDS = {"curl", "wget"}
+REVIEWER_CONTENT_KEYS = {"pitchPlan", "pitchPage", "pitchVideoScript"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -260,6 +261,21 @@ def command_findings(commands: Any) -> list[dict[str, str]]:
         for marker in UNSAFE_COMMAND_MARKERS:
             if marker in lowered:
                 findings.append(finding(f"commands[{index}]", f"Reviewer command must not include `{marker}`."))
+        try:
+            tokens = [token.lower() for token in shlex.split(command)]
+        except ValueError:
+            tokens = lowered.split()
+        if not tokens:
+            continue
+        if tokens[0] == "docker" and any(token in UNSAFE_DOCKER_SUBCOMMANDS for token in tokens[1:]):
+            findings.append(finding(f"commands[{index}]", "Reviewer command must not pull, start, run, or compose Docker containers."))
+        if tokens[0] == "docker-compose" and "up" in tokens[1:]:
+            findings.append(finding(f"commands[{index}]", "Reviewer command must not start Docker Compose services."))
+        if tokens[0] in HOSTED_FETCH_COMMANDS and any(token.startswith(("http://", "https://")) for token in tokens[1:]):
+            findings.append(finding(f"commands[{index}]", "Reviewer command must not fetch hosted content."))
+        for unsafe in UNSAFE_PACKAGE_PUBLISH_COMMANDS:
+            if len(tokens) >= len(unsafe) and tuple(tokens[: len(unsafe)]) == unsafe:
+                findings.append(finding(f"commands[{index}]", f"Reviewer command must not run `{' '.join(unsafe)}`."))
     return findings
 
 
@@ -425,6 +441,18 @@ def required_marker_findings(file_texts: dict[str, str]) -> list[dict[str, str]]
     return findings
 
 
+def reviewer_content_findings(file_texts: dict[str, str]) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    for key in sorted(REVIEWER_CONTENT_KEYS):
+        text = file_texts.get(key)
+        if text is None:
+            continue
+        path = f"localFiles.{key}.content"
+        findings.extend(sensitive_payload_findings(text, path))
+        findings.extend(unsafe_claim_findings(text, path))
+    return findings
+
+
 def verdict_for(status: str, requested: str | None) -> str:
     if status == "pass":
         return requested if requested in {"accept", "hold"} else "accept"
@@ -460,6 +488,7 @@ def build_result(scenario: dict[str, Any], commit: str) -> dict[str, Any]:
     findings.extend(adl_findings)
     findings.extend(demo_metadata_findings(scenario.get("publicDemoMetadata", {})))
     findings.extend(required_marker_findings(file_texts))
+    findings.extend(reviewer_content_findings(file_texts))
     archive_result = accepted_archive_result(archive) or {}
     package = {
         "quickstartId": scenario.get("quickstartId"),

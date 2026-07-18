@@ -95,7 +95,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -226,7 +226,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "pass",
       "verdict": "accept"
     },
@@ -395,7 +395,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "1015d1b4c967fcdfc77f6712507dd956edf4aa4c19a0e84f326e06da7318af75",
+        "manifestSha256": "e8f6b5974ffc1b9931fd38c2267166382e99ea3beadbfa67375353f1e389d285",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -526,7 +526,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -631,7 +631,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "42bd110526c99e6449cbf7ef85943cf57956fe2313da2f33408720ab16006f76",
+        "manifestSha256": "e515b1cfdc6363f4baa03279556c8eb36e8d396781ccc3a6509bef09a9658871",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -762,7 +762,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -875,7 +875,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "9894c45aa54718be256c24d693b5bbf95e1d491f139a0ba96a54b2e5f23d6e4b",
+        "manifestSha256": "4f5da87af31f71dcf73f5a59022079d727ac0eb2f89f978f81a9377985a2cc25",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1006,7 +1006,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1111,7 +1111,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "591ac947b009b4c603fcb8b2f154a2dedc6d0f7007b8708ec1e1a46b448e2953",
+        "manifestSha256": "0a23cabc6d1972aa2cc5bfb3e2c798a41bcf71a3626b5d238ef92358075a4b5f",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1242,7 +1242,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1311,7 +1311,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d2db6a02bdf706f759565a2f397a31a52c2431d6cf7bfc58aac697d205d04a50",
+        "manifestSha256": "43272ac83e7f1b9d7be407a06a696739067ee12a54cccc6bfb06cbdc4acff7f7",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1434,7 +1434,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1511,7 +1511,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "3b79cf35ccf33efadd47c9ad47b47c70769bdac00d598da7e2a77622d0dce4a6",
+        "manifestSha256": "978d2de764318fec6052212c192bf0b0e980952621581ae7a9459755c40e3f53",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1642,7 +1642,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1723,7 +1723,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1854,7 +1854,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1927,7 +1927,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2058,7 +2058,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2131,7 +2131,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2262,7 +2262,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2347,7 +2347,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2478,7 +2478,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2555,7 +2555,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "d96daff0c40e31e4d060d53fd2b0251c84335c4276db9c40ac3fd3b4df992c0f",
+        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2686,7 +2686,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2744,19 +2744,15 @@
       "findings": [
         {
           "path": "commands[0]",
-          "reason": "Reviewer command must not include `docker compose up`."
+          "reason": "Reviewer command must not pull, start, run, or compose Docker containers."
         },
         {
           "path": "commands[1]",
-          "reason": "Reviewer command must not include `npm publish`."
+          "reason": "Reviewer command must not run `npm publish`."
         },
         {
           "path": "commands[2]",
-          "reason": "Reviewer command must not include `curl http`."
-        },
-        {
-          "path": "commands[2]",
-          "reason": "Reviewer command must not include `curl https`."
+          "reason": "Reviewer command must not fetch hosted content."
         }
       ],
       "id": "unsafe-command-denied",
@@ -2766,7 +2762,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "317864a494cc3b12696aa2ea263476a71e50a8398f95043011b729d502642f1e",
+        "manifestSha256": "93efb8cd61bf239ad2340bc393d995eb6137c41caae383d7fe4f213a499e8776",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2897,7 +2893,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2978,7 +2974,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "60605a50b99bef983074770a04c776cf309505123bc499ab3c0f6f5f58e60f49",
+        "manifestSha256": "57f233ea597a3cebac37920121c0cc386795d54458730d2150a69616f15fe8c9",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -3109,12 +3105,12 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
       "status": "fail",
       "verdict": "reject"
     }
   ],
-  "sourceCommit": "faf19371d12087b4e2c9f542e35a3d4c587a058d",
+  "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,
