@@ -122,6 +122,9 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"productionEnabled": 1}), "productionEnabled")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"mainnetEnabled": 1}), "mainnetEnabled")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"apiKey": "redacted fixture marker"}), "scenario.apiKey")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"Authorization": "redacted fixture marker"}), "scenario.Authorization")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"private_key": "redacted fixture marker"}), "scenario.private_key")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"decisionNote": "Bearer local-fixture-redacted"}), "scenario.decisionNote")
     assert_positive_mutation_fails(
         lambda scenario: scenario["boundaryStatus"].update({"credentialAccess": True}),
         "boundaryStatus.credentialAccess",

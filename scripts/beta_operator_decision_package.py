@@ -36,20 +36,38 @@ REQUIRED_BOUNDARY_FALSE = (
 SENSITIVE_KEYS = {
     "apiKey",
     "api_key",
+    "authToken",
     "authorization",
     "credential",
     "credentials",
     "password",
     "paymentProof",
     "privateKey",
+    "private_key",
     "rawPrompt",
     "rawSecret",
     "secret",
     "token",
     "walletHandle",
 }
+SENSITIVE_KEY_NORMALIZED = {
+    "apikey",
+    "authorization",
+    "authtoken",
+    "credential",
+    "credentials",
+    "password",
+    "paymentproof",
+    "privatekey",
+    "rawprompt",
+    "rawsecret",
+    "secret",
+    "token",
+    "wallethandle",
+}
 SENSITIVE_VALUE_MARKERS = (
     "begin private key",
+    "bearer ",
     "sk-",
     "ghp_",
     "xoxb-",
@@ -91,7 +109,8 @@ def sensitive_findings(value: Any, path: str = "$") -> list[dict[str, str]]:
     if isinstance(value, dict):
         for key, child in value.items():
             child_path = f"{path}.{key}"
-            if key in SENSITIVE_KEYS:
+            normalized_key = key.lower().replace("_", "").replace("-", "")
+            if key in SENSITIVE_KEYS or normalized_key in SENSITIVE_KEY_NORMALIZED:
                 findings.append(finding(child_path, "Credential-like or private payload key is not allowed."))
             findings.extend(sensitive_findings(child, child_path))
     elif isinstance(value, list):
