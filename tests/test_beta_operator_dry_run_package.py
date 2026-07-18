@@ -120,6 +120,20 @@ def main() -> int:
         lambda scenario: scenario["stopRollbackDryRunTranscript"][2].update({"exitCode": 1, "stdoutStatus": "fail"}),
         "stopRollbackDryRunTranscript",
     )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario.update({"liveRuntimeRequested": 1}),
+        "liveRuntimeRequested",
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario.update({"mainnetRequested": 1}),
+        "mainnetRequested",
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario["stopRollbackDryRunTranscript"][2].update(
+            {"command": "operator:rollback-status --release reddiagent-beta-0"}
+        ),
+        "stopRollbackDryRunTranscript",
+    )
     print("PASS beta operator local dry-run package")
     return 0
 

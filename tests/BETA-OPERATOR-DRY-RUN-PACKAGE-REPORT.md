@@ -16,7 +16,7 @@ Issue: #240
 - Selected local runtime evidence: `tests/fixtures/local-executable-runtime-prototype.json`
 
 The positive fixture selects `examples/tool-agent.yaml` and includes the package checker command, selected local runtime command, stop-first dry-run transcript, rollback completion transcript, current RC gate verification, and explicit mainnet-not-approved language.
-Every required operator command and stop/rollback transcript row must also exit `0` with a `pass` or `success` output status. Regression coverage mutates the positive fixture to prove failed package, selected runtime, disable, and rollback-completion rows fail closed.
+Every required operator command and stop/rollback transcript row must also exit `0` with a `pass` or `success` output status, and stop/rollback rows must remain explicit dry-run commands. Regression coverage mutates the positive fixture to prove failed package, selected runtime, disable, rollback-completion, truthy request flag, and missing rollback dry-run rows fail closed.
 
 ## Fail-Closed Fixtures
 
@@ -29,6 +29,8 @@ Every required operator command and stop/rollback transcript row must also exit 
 - Failed package checker transcript row
 - Failed selected runtime transcript row
 - Failed stop/rollback transcript row
+- Truthy live/mainnet request flag
+- Missing rollback dry-run command flag
 
 ## Boundaries
 

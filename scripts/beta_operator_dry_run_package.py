@@ -99,6 +99,14 @@ def passing_events(transcript: list[dict[str, Any]]) -> set[str]:
     }
 
 
+def passing_dry_run_events(transcript: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(entry.get("event"))
+        for entry in transcript
+        if entry.get("event") and "--dry-run" in str(entry.get("command", "")) and transcript_entry_passes(entry)
+    }
+
+
 def collect_findings(
     scenario: dict[str, Any],
     pinned_rc: dict[str, Any],
@@ -119,6 +127,7 @@ def collect_findings(
     passed_command_lines = passing_commands(command_transcript)
     stop_events = transcript_events(stop_transcript)
     passed_stop_events = passing_events(stop_transcript)
+    passed_dry_run_stop_events = passing_dry_run_events(stop_transcript)
     rc_boundaries = pinned_rc.get("boundaries", {})
     package_command = "python scripts/beta_operator_dry_run_package.py"
     selected_runtime_command = rc_positive.get("selectedRuntime", {}).get("command") if rc_positive else None
@@ -170,10 +179,15 @@ def collect_findings(
         "stopRollbackDryRunTranscript",
         "Every required stop/rollback transcript row must exit 0 with pass/success status.",
     )
+    require(
+        REQUIRED_STOP_EVENTS.issubset(passed_dry_run_stop_events),
+        "stopRollbackDryRunTranscript",
+        "Every required stop/rollback transcript row must be an explicit dry-run command.",
+    )
     require(scenario.get("runtimeMode") == "local-only", "runtimeMode", "Runtime mode must be local-only.")
     require(scenario.get("environment") == "local", "environment", "Environment must be local.")
-    require(scenario.get("liveRuntimeRequested") is not True, "liveRuntimeRequested", "Live runtime requests are out of scope.")
-    require(scenario.get("mainnetRequested") is not True, "mainnetRequested", "Mainnet requests require separate Nissan approval.")
+    require(scenario.get("liveRuntimeRequested") is False, "liveRuntimeRequested", "Live runtime requests are out of scope.")
+    require(scenario.get("mainnetRequested") is False, "mainnetRequested", "Mainnet requests require separate Nissan approval.")
     require(
         pinned_rc.get("mainnetStatement") and "not approved" in pinned_rc["mainnetStatement"].lower(),
         "rcGate.mainnetStatement",

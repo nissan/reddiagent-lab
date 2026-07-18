@@ -374,6 +374,10 @@
         {
           "path": "stopRollbackDryRunTranscript",
           "reason": "Every required stop/rollback transcript row must exit 0 with pass/success status."
+        },
+        {
+          "path": "stopRollbackDryRunTranscript",
+          "reason": "Every required stop/rollback transcript row must be an explicit dry-run command."
         }
       ],
       "id": "missing-stop-rollback-transcript-denied",
