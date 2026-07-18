@@ -76,6 +76,7 @@ The local-python runner can currently prove:
 | Beta activation rehearsal package report | `tests/BETA-ACTIVATION-REHEARSAL-PACKAGE-REPORT.md` | Local activation rehearsal package emits approve, hold, and rollback operator transcripts/checklists against pinned preflight evidence and fail-closes live enablement claims, missing cues, stale evidence, and missing rollback/disable evidence. |
 | Beta activation acceptance bundle report | `tests/BETA-ACTIVATION-ACCEPTANCE-BUNDLE-REPORT.md` | Local activation acceptance bundle emits accept, hold, and rollback-required operator transcripts/checklists against pinned rehearsal evidence and fail-closes live enablement claims, missing approval identity, missing cues, stale evidence, and missing rollback/disable evidence. |
 | Beta release verification CLI report | `tests/BETA-RELEASE-VERIFICATION-CLI-REPORT.md`; `tests/test_beta_release_verification_cli.py` | Local verifier consumes pinned handoff, runtime/package, and profile-selected Surfpool/Docker/Coolify evidence, hashes required artifacts, emits accept/hold/reject verdicts, and fail-closes missing/stale/unsafe release evidence before activation or deployment. |
+| Beta release candidate bundle report | `tests/BETA-RELEASE-CANDIDATE-BUNDLE-REPORT.md`; `tests/test_beta_release_candidate_bundle.py` | Local release-candidate bundle consumes pinned verifier and public demo/video evidence, emits source/release/artifact/hash/URL/include-exclude/operator manifest metadata, and fail-closes unsafe activation, deployment, publishing, credential, env, payment, devnet, mainnet, or live-network inputs. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -155,6 +156,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] Beta operator decision package evidence records approve, hold, and rollback decisions with operator identity, fixture timestamp, rollback cue, evidence hashes, and local-only boundary status.
 - [ ] Beta activation preflight evidence records approve, hold, and rollback preflight outcomes with decision/review/runtime package paths, evidence hashes, operator identity, timestamps, rollback cue, and local-only boundary status before any runtime path is enabled.
 - [ ] Beta activation rehearsal evidence records approve, hold, and rollback dry-run operator transcripts/checklists with activation cue, rollback cue, rollback/disable evidence, and no live runtime enablement claim.
+- [ ] Beta release-candidate bundle evidence records source commit, release id, artifact inventory, verifier/demo hashes, public demo URLs as metadata, included/excluded file lists, verdict, and operator next-step text before any runtime activation, deployment, publishing, payment, devnet, or mainnet path is considered.
 
 ## Explicit Non-Goals
 
