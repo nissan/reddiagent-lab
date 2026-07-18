@@ -1,7 +1,7 @@
 # Beta Activation Rehearsal Package Report
 
-Issue: #260  
-Parent: #220  
+Issue: #260
+Parent: #220
 Mode: deterministic local-only activation rehearsal package
 
 ## Evidence
