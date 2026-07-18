@@ -56,5 +56,6 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_activation_acceptance_bundle.py
 "$PYTHON" tests/test_beta_release_handoff_archive.py
 "$PYTHON" tests/test_beta_release_verification_cli.py
+"$PYTHON" tests/test_beta_release_candidate_bundle.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py

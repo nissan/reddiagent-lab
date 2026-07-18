@@ -1,0 +1,181 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "requestedVerdict": "accept",
+    "expectedStatus": "pass",
+    "expectedVerdict": "accept",
+    "liveRuntimeRequested": false,
+    "liveNetworkEnabled": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "deploymentClaimed": false,
+    "packagePublishingRequested": false,
+    "packagePublished": false,
+    "publicPublishingRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "operatorNextStep": "Review this local bundle before any separately approved activation, deployment, publishing, payment, or mainnet step.",
+    "bundleNotes": "Local release-candidate bundle metadata only; no live runtime activation, deployment, package publishing, or settlement is claimed.",
+    "unsafeEnvValues": {},
+    "publicDemoMetadata": {
+      "publicDemoUrl": "https://present-hearth-vhey.here.now/",
+      "initialStaticDemoUrl": "https://poppy-rafter-79h2.here.now/",
+      "videoDemoUrl": "https://present-hearth-vhey.here.now/",
+      "publicVideoUrl": "https://present-hearth-vhey.here.now/media/reddiagent-demo-walkthrough.mp4",
+      "verifiedAt": "2026-07-19 04:36 AEST",
+      "verifiedRoutes": [
+        "/",
+        "/media/reddiagent-demo-walkthrough.mp4",
+        "/builder-report.html",
+        "/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md"
+      ],
+      "videoEvidence": {
+        "mp4Embedded": true,
+        "codec": "H.264/AAC",
+        "resolution": "1920x1080",
+        "fps": 30,
+        "durationSeconds": 68,
+        "qc": [
+          "ffprobe",
+          "silencedetect",
+          "blackdetect"
+        ]
+      }
+    },
+    "expectedEvidenceHashes": [
+      {
+        "path": "tests/fixtures/beta-release-verification.json",
+        "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500"
+      },
+      {
+        "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+        "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+      },
+      {
+        "path": "scripts/public_demo_walkthrough_video.sh",
+        "sha256": "ce1c707e49c21fc5110a012362e135832fec2a56ea756ea51092d2515c150153"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "release-candidate-bundle-accept-pass"
+    },
+    {
+      "id": "missing-verifier-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "artifactPathOverrides": {
+        "verifier": "tests/fixtures/missing-beta-release-verification.json"
+      },
+      "expectedEvidenceHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500"
+        }
+      ]
+    },
+    {
+      "id": "stale-verifier-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedEvidenceHashes": [
+        {
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "missing-demo-plan-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "artifactPathOverrides": {
+        "demoPlan": "docs/MISSING-PUBLIC-DEMO-WALKTHROUGH-VIDEO.md"
+      },
+      "expectedEvidenceHashes": [
+        {
+          "path": "docs/MISSING-PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
+          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+        }
+      ]
+    },
+    {
+      "id": "missing-video-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "publicDemoMetadata": {
+        "videoEvidence": {
+          "mp4Embedded": false
+        }
+      }
+    },
+    {
+      "id": "unsafe-activation-deployment-publishing-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorNextStep": "Runtime activation completed, deployment completed, and package published."
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "bearer redacted-fixture-token"
+    },
+    {
+      "id": "unsafe-env-values-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "unsafeEnvValues": {
+        "OPENAI_API_KEY": "sk-redacted-fixture",
+        "PUBLIC_DEMO_URL": ""
+      }
+    },
+    {
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "walletRequested": true,
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true
+    },
+    {
+      "id": "devnet-mainnet-live-network-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "liveNetworkEnabled": true,
+      "devnetRequested": true,
+      "mainnetRequested": true
+    },
+    {
+      "id": "unsafe-reject-verdict-denied",
+      "kind": "negative",
+      "requestedVerdict": "reject",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "deploymentClaimed": true
+    }
+  ]
+}
