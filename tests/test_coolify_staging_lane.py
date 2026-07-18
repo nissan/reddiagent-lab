@@ -68,8 +68,8 @@ def main() -> int:
     }
     assert doc["summary"] == {
         "positiveScenarios": 2,
-        "negativeScenarios": 10,
-        "failClosedScenarios": 10,
+        "negativeScenarios": 12,
+        "failClosedScenarios": 12,
         "localOnlyPassScenarios": 1,
         "coolifyStagingRequiredPassScenarios": 1,
     }
@@ -91,6 +91,12 @@ def main() -> int:
     assert hosted["evidence"]["network"]["ingress"] == "operator-ip-allowlist"
     assert hosted["evidence"]["accessControls"]["authenticationRequired"] is True
     assert hosted["evidence"]["accessControls"]["operatorAllowlistRequired"] is True
+    assert hosted["evidence"]["healthChecks"]["requiredWhenHosted"] is True
+    assert hosted["evidence"]["healthChecks"]["endpoint"] == "/healthz"
+    assert hosted["evidence"]["healthChecks"]["expectedStatus"] == 200
+    assert hosted["evidence"]["healthChecks"]["requiresAuthentication"] is True
+    assert hosted["evidence"]["healthChecks"]["publicProbeAllowed"] is False
+    assert hosted["evidence"]["healthChecks"]["retainedEvidence"] == "redacted-status-and-timing"
     assert hosted["evidence"]["logs"]["redacted"] is True
     assert hosted["evidence"]["storage"]["cleanupVerified"] is True
     assert hosted["evidence"]["teardown"]["coolifyResourcesRemoved"] is True
@@ -131,6 +137,19 @@ def main() -> int:
     assert "operatorUiEvidence.screenshotRequired" in finding_paths["operator-ui-evidence-missing-denied"]
     assert "operatorUiEvidence.accessLogRequired" in finding_paths["operator-ui-evidence-missing-denied"]
     assert "operatorUiEvidence.liveSettlementClaimed" in finding_paths["operator-ui-evidence-missing-denied"]
+    assert "healthChecks" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.requiredWhenHosted" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.endpoint" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.expectedStatus" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.requiresAuthentication" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.publicProbeAllowed" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.retainedEvidence" in finding_paths["health-checks-missing-denied"]
+    assert "healthChecks.requiredWhenHosted" in finding_paths["unsafe-health-checks-denied"]
+    assert "healthChecks.endpoint" in finding_paths["unsafe-health-checks-denied"]
+    assert "healthChecks.expectedStatus" in finding_paths["unsafe-health-checks-denied"]
+    assert "healthChecks.requiresAuthentication" in finding_paths["unsafe-health-checks-denied"]
+    assert "healthChecks.publicProbeAllowed" in finding_paths["unsafe-health-checks-denied"]
+    assert "healthChecks.retainedEvidence" in finding_paths["unsafe-health-checks-denied"]
     assert "walletRequested" in finding_paths["payment-settlement-request-denied"]
     assert "paymentRequested" in finding_paths["payment-settlement-request-denied"]
     assert "paymentRailRequested" in finding_paths["payment-settlement-request-denied"]
@@ -146,6 +165,13 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario["network"].update({"publicExposure": True}), "network.publicExposure")
     assert_positive_mutation_fails(lambda scenario: scenario["accessControls"].update({"authenticationRequired": False}), "accessControls.authenticationRequired")
     assert_positive_mutation_fails(lambda scenario: scenario["accessControls"].update({"anonymousAccessAllowed": True}), "accessControls.anonymousAccessAllowed")
+    assert_positive_mutation_fails(lambda scenario: scenario.update({"healthChecks": {}}), "healthChecks")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"requiredWhenHosted": False}), "healthChecks.requiredWhenHosted")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"endpoint": "https://public.example.invalid/health"}), "healthChecks.endpoint")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"expectedStatus": 204}), "healthChecks.expectedStatus")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"requiresAuthentication": False}), "healthChecks.requiresAuthentication")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"publicProbeAllowed": True}), "healthChecks.publicProbeAllowed")
+    assert_positive_mutation_fails(lambda scenario: scenario["healthChecks"].update({"retainedEvidence": "full-response"}), "healthChecks.retainedEvidence")
     assert_positive_mutation_fails(lambda scenario: scenario["envContract"][0].update({"value": "local-only"}), "envContract[0].value")
     assert_positive_mutation_fails(lambda scenario: scenario["logs"].update({"redacted": False}), "logs.redacted")
     assert_positive_mutation_fails(lambda scenario: scenario["storage"].update({"persistentVolume": True}), "storage.persistentVolume")

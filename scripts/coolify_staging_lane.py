@@ -177,6 +177,7 @@ def collect_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     env_contract = scenario.get("envContract", [])
     network = scenario.get("network", {})
     access = scenario.get("accessControls", {})
+    health = scenario.get("healthChecks", {})
     logs = scenario.get("logs", {})
     storage = scenario.get("storage", {})
     teardown = scenario.get("teardown", {})
@@ -203,6 +204,13 @@ def collect_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     require(access.get("authenticationRequired") is True, "accessControls.authenticationRequired", "Hosted operator UI evidence requires authentication.")
     require(access.get("operatorAllowlistRequired") is True, "accessControls.operatorAllowlistRequired", "Operator allowlist evidence is required.")
     require(access.get("anonymousAccessAllowed") is False, "accessControls.anonymousAccessAllowed", "Anonymous operator UI access is not allowed.")
+    require(bool(health), "healthChecks", "Hosted staging evidence must include health-check expectations.")
+    require(health.get("requiredWhenHosted") is True, "healthChecks.requiredWhenHosted", "Hosted staging evidence requires health checks.")
+    require(health.get("endpoint") in {"/healthz", "/api/health"}, "healthChecks.endpoint", "Health-check endpoint must be explicit and non-sensitive.")
+    require(health.get("expectedStatus") == 200, "healthChecks.expectedStatus", "Health-check expected status must be 200.")
+    require(health.get("requiresAuthentication") is True, "healthChecks.requiresAuthentication", "Health checks must use authenticated or private access.")
+    require(health.get("publicProbeAllowed") is False, "healthChecks.publicProbeAllowed", "Public health probes are denied by default.")
+    require(health.get("retainedEvidence") in {"redacted-status", "redacted-status-and-timing"}, "healthChecks.retainedEvidence", "Health-check evidence must retain only redacted status/timing.")
     require(logs.get("retained") is True, "logs.retained", "Redacted log-retention evidence is required.")
     require(logs.get("redacted") is True, "logs.redacted", "Logs must be redacted before retention.")
     require(storage.get("persistentVolume") is False, "storage.persistentVolume", "Persistent volumes are denied by default.")
@@ -250,6 +258,7 @@ def build_result(scenario: dict[str, Any]) -> dict[str, Any]:
             "envContract": scenario.get("envContract"),
             "network": scenario.get("network"),
             "accessControls": scenario.get("accessControls"),
+            "healthChecks": scenario.get("healthChecks"),
             "logs": scenario.get("logs"),
             "storage": scenario.get("storage"),
             "teardown": scenario.get("teardown"),

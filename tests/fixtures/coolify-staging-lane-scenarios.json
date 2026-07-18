@@ -51,6 +51,14 @@
       "operatorAllowlistRequired": true,
       "anonymousAccessAllowed": false
     },
+    "healthChecks": {
+      "requiredWhenHosted": true,
+      "endpoint": "/healthz",
+      "expectedStatus": 200,
+      "requiresAuthentication": true,
+      "publicProbeAllowed": false,
+      "retainedEvidence": "redacted-status-and-timing"
+    },
     "logs": {
       "retained": true,
       "redacted": true,
@@ -225,6 +233,23 @@
         "screenshotRequired": false,
         "accessLogRequired": false,
         "liveSettlementClaimed": true
+      }
+    },
+    {
+      "id": "health-checks-missing-denied",
+      "laneMode": "coolify-staging-required",
+      "healthChecks": {}
+    },
+    {
+      "id": "unsafe-health-checks-denied",
+      "laneMode": "coolify-staging-required",
+      "healthChecks": {
+        "requiredWhenHosted": false,
+        "endpoint": "https://public.example.invalid/health",
+        "expectedStatus": 204,
+        "requiresAuthentication": false,
+        "publicProbeAllowed": true,
+        "retainedEvidence": "full-response"
       }
     },
     {

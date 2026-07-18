@@ -88,6 +88,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {},
         "logs": {
           "redacted": true,
@@ -211,6 +219,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -338,6 +354,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -470,6 +494,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "latest",
           "pullAllowed": false,
@@ -602,6 +634,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -737,6 +777,14 @@
             "value": "password=redacted-fixture-marker"
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -877,6 +925,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1029,6 +1085,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1177,6 +1241,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1325,6 +1397,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1461,6 +1541,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1548,6 +1636,323 @@
         "deploymentPublished": false,
         "devnetAccess": false,
         "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "publicExposure": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accessControls": {
+          "anonymousAccessAllowed": false,
+          "authenticationRequired": true,
+          "operatorAllowlistRequired": true
+        },
+        "commands": [
+          {
+            "command": "coolify lane decide --mode coolify-staging-required --local-first --no-mutate",
+            "event": "coolify.selection_recorded",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "coolify evidence render --source aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --no-deploy --no-secrets",
+            "event": "coolify.static_evidence_captured",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "coolify teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "coolify.teardown_captured",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "name": "REDDIAGENT_ENV",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "COOLIFY_OPERATOR_UI_PASSWORD",
+            "required": true,
+            "secretHandling": "provided-out-of-band"
+          },
+          {
+            "name": "REDDIAGENT_EVIDENCE_MODE",
+            "required": true,
+            "secretHandling": false
+          }
+        ],
+        "healthChecks": {},
+        "image": {
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "pullAllowed": false,
+          "reference": "ghcr.io/reddinft/reddiagent-operator-ui@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "logs": {
+          "redacted": true,
+          "retained": true,
+          "retentionDays": 7
+        },
+        "network": {
+          "allowedHostnames": [],
+          "ingress": "none",
+          "publicExposure": false,
+          "tlsRequiredWhenHosted": true
+        },
+        "operatorUiEvidence": {
+          "accessLogRequired": true,
+          "liveSettlementClaimed": false,
+          "requiredWhenHosted": true,
+          "screenshotRequired": true
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "previousSourcePinned": true
+        },
+        "source": {
+          "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "repository": "reddinft/reddiagent-lab",
+          "sourcePinning": "full-git-sha"
+        },
+        "storage": {
+          "cleanupVerified": true,
+          "persistentVolume": false,
+          "retentionDecision": "ephemeral-by-default"
+        },
+        "teardown": {
+          "captured": true,
+          "coolifyResourcesRemoved": true,
+          "dnsRemoved": true
+        },
+        "traceId": "10269f0114db69f7"
+      },
+      "findings": [
+        {
+          "path": "healthChecks",
+          "reason": "Hosted staging evidence must include health-check expectations."
+        },
+        {
+          "path": "healthChecks.requiredWhenHosted",
+          "reason": "Hosted staging evidence requires health checks."
+        },
+        {
+          "path": "healthChecks.endpoint",
+          "reason": "Health-check endpoint must be explicit and non-sensitive."
+        },
+        {
+          "path": "healthChecks.expectedStatus",
+          "reason": "Health-check expected status must be 200."
+        },
+        {
+          "path": "healthChecks.requiresAuthentication",
+          "reason": "Health checks must use authenticated or private access."
+        },
+        {
+          "path": "healthChecks.publicProbeAllowed",
+          "reason": "Public health probes are denied by default."
+        },
+        {
+          "path": "healthChecks.retainedEvidence",
+          "reason": "Health-check evidence must retain only redacted status/timing."
+        }
+      ],
+      "id": "health-checks-missing-denied",
+      "laneMode": "coolify-staging-required",
+      "selectionCriteria": {
+        "selectedBecause": "Local/static evidence is enough unless the queued task explicitly requires hosted operator UI evidence.",
+        "useCoolifyWhen": "A queued issue needs persistent reachable staging, authenticated operator UI review, or end-to-end uptime evidence after local/Docker validation passes.",
+        "useLocalWhen": "Static HTML, local Python validation, or Docker evidence can prove the requested operator behavior."
+      },
+      "serviceBoundary": {
+        "appName": "reddiagent-operator-review",
+        "runtimeBoundary": "No live runtime is started by this evidence lane.",
+        "serviceNames": [
+          "operator-ui"
+        ],
+        "type": "static-ui-artifact"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyMutated": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "publicExposure": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accessControls": {
+          "anonymousAccessAllowed": false,
+          "authenticationRequired": true,
+          "operatorAllowlistRequired": true
+        },
+        "commands": [
+          {
+            "command": "coolify lane decide --mode coolify-staging-required --local-first --no-mutate",
+            "event": "coolify.selection_recorded",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "coolify evidence render --source aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --no-deploy --no-secrets",
+            "event": "coolify.static_evidence_captured",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "coolify teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "coolify.teardown_captured",
+            "exitCode": 4,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "name": "REDDIAGENT_ENV",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "COOLIFY_OPERATOR_UI_PASSWORD",
+            "required": true,
+            "secretHandling": "provided-out-of-band"
+          },
+          {
+            "name": "REDDIAGENT_EVIDENCE_MODE",
+            "required": true,
+            "secretHandling": false
+          }
+        ],
+        "healthChecks": {
+          "endpoint": "https://public.example.invalid/health",
+          "expectedStatus": 204,
+          "publicProbeAllowed": true,
+          "requiredWhenHosted": false,
+          "requiresAuthentication": false,
+          "retainedEvidence": "full-response"
+        },
+        "image": {
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "pullAllowed": false,
+          "reference": "ghcr.io/reddinft/reddiagent-operator-ui@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "logs": {
+          "redacted": true,
+          "retained": true,
+          "retentionDays": 7
+        },
+        "network": {
+          "allowedHostnames": [],
+          "ingress": "none",
+          "publicExposure": false,
+          "tlsRequiredWhenHosted": true
+        },
+        "operatorUiEvidence": {
+          "accessLogRequired": true,
+          "liveSettlementClaimed": false,
+          "requiredWhenHosted": true,
+          "screenshotRequired": true
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "previousSourcePinned": true
+        },
+        "source": {
+          "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "repository": "reddinft/reddiagent-lab",
+          "sourcePinning": "full-git-sha"
+        },
+        "storage": {
+          "cleanupVerified": true,
+          "persistentVolume": false,
+          "retentionDecision": "ephemeral-by-default"
+        },
+        "teardown": {
+          "captured": true,
+          "coolifyResourcesRemoved": true,
+          "dnsRemoved": true
+        },
+        "traceId": "1d57093c7d3c4383"
+      },
+      "findings": [
+        {
+          "path": "healthChecks.requiredWhenHosted",
+          "reason": "Hosted staging evidence requires health checks."
+        },
+        {
+          "path": "healthChecks.endpoint",
+          "reason": "Health-check endpoint must be explicit and non-sensitive."
+        },
+        {
+          "path": "healthChecks.expectedStatus",
+          "reason": "Health-check expected status must be 200."
+        },
+        {
+          "path": "healthChecks.requiresAuthentication",
+          "reason": "Health checks must use authenticated or private access."
+        },
+        {
+          "path": "healthChecks.publicProbeAllowed",
+          "reason": "Public health probes are denied by default."
+        },
+        {
+          "path": "healthChecks.retainedEvidence",
+          "reason": "Health-check evidence must retain only redacted status/timing."
+        }
+      ],
+      "id": "unsafe-health-checks-denied",
+      "laneMode": "coolify-staging-required",
+      "selectionCriteria": {
+        "selectedBecause": "Local/static evidence is enough unless the queued task explicitly requires hosted operator UI evidence.",
+        "useCoolifyWhen": "A queued issue needs persistent reachable staging, authenticated operator UI review, or end-to-end uptime evidence after local/Docker validation passes.",
+        "useLocalWhen": "Static HTML, local Python validation, or Docker evidence can prove the requested operator behavior."
+      },
+      "serviceBoundary": {
+        "appName": "reddiagent-operator-review",
+        "runtimeBoundary": "No live runtime is started by this evidence lane.",
+        "serviceNames": [
+          "operator-ui"
+        ],
+        "type": "static-ui-artifact"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyMutated": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
         "facilitatorAccess": true,
         "hostedServiceUsed": false,
         "liveMcpInvocation": false,
@@ -1605,6 +2010,14 @@
             "secretHandling": false
           }
         ],
+        "healthChecks": {
+          "endpoint": "/healthz",
+          "expectedStatus": 200,
+          "publicProbeAllowed": false,
+          "requiredWhenHosted": true,
+          "requiresAuthentication": true,
+          "retainedEvidence": "redacted-status-and-timing"
+        },
         "image": {
           "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "pullAllowed": false,
@@ -1724,9 +2137,9 @@
   "status": "pass",
   "summary": {
     "coolifyStagingRequiredPassScenarios": 1,
-    "failClosedScenarios": 10,
+    "failClosedScenarios": 12,
     "localOnlyPassScenarios": 1,
-    "negativeScenarios": 10,
+    "negativeScenarios": 12,
     "positiveScenarios": 2
   }
 }
