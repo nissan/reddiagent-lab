@@ -17,6 +17,7 @@ The fixture and `tests/test_rap_bridge_local_dry_run.py` cover:
 - missing runtime trace;
 - unapproved payment rail;
 - wallet, facilitator, and settlement request;
+- non-boolean truthy mainnet and wallet request flags;
 - live MCP request;
 - devnet request outside this issue scope;
 - mainnet request.

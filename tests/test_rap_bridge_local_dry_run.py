@@ -141,6 +141,24 @@ def main() -> int:
         for item in wallet_request["results"][0]["findings"]
     )
 
+    truthy_mainnet_request = mutated_positive_report(
+        lambda scenario: scenario.__setitem__("mainnetRequest", 1)
+    )
+    assert truthy_mainnet_request["results"][0]["status"] == "fail"
+    assert any(
+        item["reason"] == "mainnet-denied"
+        for item in truthy_mainnet_request["results"][0]["findings"]
+    )
+
+    string_wallet_request = mutated_positive_report(
+        lambda scenario: scenario.__setitem__("walletRequest", "true")
+    )
+    assert string_wallet_request["results"][0]["status"] == "fail"
+    assert any(
+        item["reason"] == "wallet-access-denied"
+        for item in string_wallet_request["results"][0]["findings"]
+    )
+
     print("PASS RAP bridge local dry-run")
     return 0
 

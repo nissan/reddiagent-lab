@@ -102,7 +102,7 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
             )
 
     for flag, reason in FORBIDDEN_REQUEST_FLAGS.items():
-        require(scenario.get(flag) is not True, flag, reason)
+        require(scenario.get(flag) in (None, False), flag, reason)
 
     quote = scenario.get("quote", {})
     require(isinstance(quote, dict), "quote", "Quote metadata is required.")
