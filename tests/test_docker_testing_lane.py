@@ -133,6 +133,8 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario["selectionCriteria"].update({"useLocalWhen": ""}), "selectionCriteria.useLocalWhen")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"images": []}), "images")
     assert_positive_mutation_fails(lambda scenario: scenario["images"][0].update({"reference": "python:latest"}), "images[0].digest")
+    assert_positive_mutation_fails(lambda scenario: scenario["images"][0].update({"reference": "python:3.14.3-slim@sha256:", "digest": "sha256:"}), "images[0].digest")
+    assert_positive_mutation_fails(lambda scenario: scenario["images"][0].update({"digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}), "images[0].digest")
     assert_positive_mutation_fails(lambda scenario: scenario["images"][0].update({"pullAllowed": True}), "images[0].pullAllowed")
     assert_positive_mutation_fails(lambda scenario: scenario["network"].update({"hostNetwork": True}), "network.hostNetwork")
     assert_positive_mutation_fails(lambda scenario: scenario["envContract"][0].update({"value": "local-only"}), "envContract[0].value")

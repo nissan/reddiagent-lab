@@ -1,7 +1,7 @@
 # Docker Local/VPS Testing Lane Report
 
-Issue: #249  
-Parent: #247  
+Issue: #249
+Parent: #247
 Related: #220
 
 `scripts/docker_testing_lane.py` builds deterministic, local-only evidence for a Docker testing lane without pulling images, starting containers, mutating a VPS, accessing credentials, invoking live MCP, calling providers, publishing packages, deploying, or touching devnet/mainnet. The lane records when local Docker is enough versus when VPS Docker is justified, and pins the review contract for images, env vars, network exposure, logs, volumes, teardown, and rollback.

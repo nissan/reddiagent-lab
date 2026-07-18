@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,7 @@ DEFAULT_SCENARIOS = ROOT / "tests" / "fixtures" / "docker-testing-lane-scenarios
 
 ALLOWED_ENVIRONMENT = {"local-docker", "vps-docker"}
 ALLOWED_NETWORK_EXPOSURE = {"loopback-only", "isolated-bridge"}
+SHA256_DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
 REQUIRED_BOUNDARY_FALSE = (
     "dependencyPulls",
     "containerStarted",
@@ -116,7 +118,12 @@ def sensitive_findings(value: Any, path: str = "scenario") -> list[dict[str, str
 def image_has_digest(image: dict[str, Any]) -> bool:
     reference = image.get("reference", "")
     digest = image.get("digest", "")
-    return isinstance(reference, str) and "@" in reference and isinstance(digest, str) and digest.startswith("sha256:")
+    if not isinstance(reference, str) or not isinstance(digest, str):
+        return False
+    if not SHA256_DIGEST.fullmatch(digest):
+        return False
+    _, separator, reference_digest = reference.rpartition("@")
+    return bool(separator) and reference_digest == digest
 
 
 def commands(scenario: dict[str, Any], status: str) -> list[dict[str, Any]]:
