@@ -1,0 +1,250 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "releaseId": "reddiagent-beta-0",
+    "selectedAdlPath": "examples/tool-agent.yaml",
+    "sourceAcceptanceBundlePath": "tests/fixtures/beta-activation-acceptance.json",
+    "sourceRehearsalPackagePath": "tests/fixtures/beta-activation-rehearsal.json",
+    "sourcePreflightPackagePath": "tests/fixtures/beta-activation-preflight.json",
+    "sourceDecisionPackagePath": "tests/fixtures/beta-operator-decision-package.json",
+    "sourceReviewPackagePath": "tests/fixtures/beta-review-ui.json",
+    "sourceRuntimePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+    "operatorIdentity": "operator://local-beta",
+    "reviewerIdentity": "reviewer://oli-local-fixture",
+    "localApprovalFixture": "tests/fixtures/beta-activation-acceptance.json#activation-acceptance-pass",
+    "handoffTimestamp": "fixture://2026-07-18T12:58:00Z",
+    "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
+    "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+    "liveRuntimeRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "productionEnabled": false,
+    "mainnetEnabled": false,
+    "deploymentRequested": false,
+    "deploymentClaimed": false,
+    "claimsActivationOccurred": false,
+    "claimsLiveRuntimeEnablement": false,
+    "nextStepHandoff": "No live runtime enablement, no deployment, and no activation is claimed. Next step is operator/reviewer handoff review before any separately approved runtime action.",
+    "rollbackDisableEvidence": {
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "disableVerified": true,
+      "dryRunOnly": true,
+      "liveRuntimeEnabled": false
+    },
+    "boundaryStatus": {
+      "releaseHandoffArchive": true,
+      "deterministicLocalFixturesOnly": true,
+      "liveRuntimeActivation": false,
+      "networkAccess": false,
+      "credentialAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "productionGatewayAccess": false,
+      "mainnetAccess": false,
+      "externalSpend": false,
+      "deploymentPublished": false,
+      "packagePublished": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "release-handoff-accepted-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass"
+    },
+    {
+      "id": "release-handoff-hold-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "handoffOutcome": "hold",
+      "sourceAcceptanceResultId": "activation-hold-acceptance-pass"
+    },
+    {
+      "id": "release-handoff-rollback-required-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "handoffOutcome": "rollback-required",
+      "sourceAcceptanceResultId": "activation-rollback-required-acceptance-pass"
+    },
+    {
+      "id": "missing-acceptance-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "sourceAcceptanceBundlePath": "tests/fixtures/missing-beta-activation-acceptance.json"
+    },
+    {
+      "id": "mismatched-release-id-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "releaseId": "reddiagent-beta-stale"
+    },
+    {
+      "id": "mismatched-adl-path-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "selectedAdlPath": "examples/simple-agent.yaml"
+    },
+    {
+      "id": "missing-operator-identity-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "operatorIdentity": ""
+    },
+    {
+      "id": "missing-reviewer-identity-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "reviewerIdentity": "",
+      "localApprovalFixture": ""
+    },
+    {
+      "id": "missing-handoff-timestamp-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "handoffTimestamp": ""
+    },
+    {
+      "id": "missing-accepted-activation-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "acceptedActivationCue": ""
+    },
+    {
+      "id": "missing-rollback-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "rollback-required",
+      "sourceAcceptanceResultId": "activation-rollback-required-acceptance-pass",
+      "rollbackCue": "",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "",
+        "disableVerified": true,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "missing-rollback-disable-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "rollback-required",
+      "sourceAcceptanceResultId": "activation-rollback-required-acceptance-pass",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+        "disableVerified": false,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "live-runtime-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "liveRuntimeRequested": true,
+      "boundaryStatus": {
+        "liveRuntimeActivation": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "Authorization": "Bearer redacted-fixture"
+    },
+    {
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "devnetRequested": true,
+      "boundaryStatus": {
+        "devnetAccess": true
+      }
+    },
+    {
+      "id": "mainnet-production-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "mainnetRequested": true,
+      "productionEnabled": true,
+      "mainnetEnabled": true
+    },
+    {
+      "id": "deployment-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "deploymentRequested": true,
+      "deploymentClaimed": true,
+      "boundaryStatus": {
+        "deploymentPublished": true
+      }
+    },
+    {
+      "id": "activation-occurred-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "claimsActivationOccurred": true
+    },
+    {
+      "id": "live-runtime-enable-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "claimsLiveRuntimeEnablement": true
+    },
+    {
+      "id": "handoff-missing-boundary-text-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "nextStepHandoff": "Next step is operator review."
+    },
+    {
+      "id": "handoff-contradictory-activation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "nextStepHandoff": "No live runtime enablement, no deployment, and no activation is claimed. Runtime activation completed."
+    },
+    {
+      "id": "handoff-contradictory-deployment-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "handoffOutcome": "accepted",
+      "sourceAcceptanceResultId": "activation-acceptance-pass",
+      "nextStepHandoff": "No live runtime enablement, no deployment, and no activation is claimed. Deployed to production."
+    }
+  ]
+}
