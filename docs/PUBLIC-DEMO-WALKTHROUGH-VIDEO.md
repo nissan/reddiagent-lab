@@ -1,9 +1,9 @@
 # Public Demo Walkthrough Video
 
-Issue: #271  
-Public demo with draft video: https://present-hearth-vhey.here.now/  
-Initial static-only demo: https://poppy-rafter-79h2.here.now/  
-Target length: 75-90 seconds  
+Issue: #271
+Public demo with draft video: https://present-hearth-vhey.here.now/
+Initial static-only demo: https://poppy-rafter-79h2.here.now/
+Target length: 75-90 seconds
 Primary audience: builders, reviewers, and early users evaluating what ReddiAgent can do today
 Verified public routes: `/`, `/media/reddiagent-demo-walkthrough.mp4`, `/builder-report.html`, and `/reports/BETA-RELEASE-VERIFICATION-CLI-REPORT.md` returned HTTP 200 on 2026-07-19 04:36 AEST.
 
