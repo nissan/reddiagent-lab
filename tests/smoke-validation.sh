@@ -37,6 +37,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_starter_code_generation_beta.py
 "$PYTHON" tests/test_starter_package_execution_smoke_beta.py
 "$PYTHON" tests/test_provider_adapter_generated_code_sandbox_beta.py
+"$PYTHON" tests/test_rap_bridge_local_dry_run.py
 "$PYTHON" tests/test_local_runner_plugin_interface.py
 "$PYTHON" tests/test_local_runtime_prototype.py
 "$PYTHON" tests/test_provider_sandbox_prototype.py

@@ -1,0 +1,885 @@
+{
+  "credentialAccess": false,
+  "devnetAccess": false,
+  "externalSpend": false,
+  "facilitatorAccess": false,
+  "findings": [],
+  "issue": 245,
+  "liveRapBridgeCall": false,
+  "localOnly": true,
+  "mainnetAccess": false,
+  "mcpInvocation": false,
+  "mode": "rap-bridge-local-executable-dry-run-prototype",
+  "networkAccess": false,
+  "parentEpic": 220,
+  "paymentRailAccess": false,
+  "providerApiAccess": false,
+  "results": [
+    {
+      "artifact": {
+        "budgetEvidence": {
+          "budgetId": "rap-local-run-245-pass",
+          "ceilingUsd": 0,
+          "estimatedUsd": 0,
+          "runId": "rap-local-run-245-pass"
+        },
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "intent": {
+          "adl": "examples/payment-agent.yaml",
+          "dryRun": true,
+          "intentId": "rap-intent:f02e9bac1fea9de0",
+          "task": "Bind local payment-agent runtime evidence to a RAP-style dry-run handoff artifact."
+        },
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorEvidence": {
+          "commands": [
+            {
+              "command": "python scripts/rap_bridge_local_dry_run.py",
+              "dryRun": true,
+              "exitCode": 0,
+              "step": 1
+            },
+            {
+              "command": "operator:rap-bridge-handoff --dry-run --run rap-local-run-245-pass",
+              "dryRun": true,
+              "exitCode": 0,
+              "step": 2
+            }
+          ],
+          "operatorId": "operator://local-rap-bridge",
+          "runId": "rap-local-run-245-pass",
+          "transcriptId": "rap-local-run-245-pass"
+        },
+        "paymentHandoff": {
+          "handoffId": "handoff:40a93e8af9e9df2a",
+          "livePaymentPrepared": false,
+          "mode": "metadata-only",
+          "runId": "rap-local-run-245-pass",
+          "selectedRail": "dry-run-x402"
+        },
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "quote": {
+          "amount": "0.000000",
+          "currency": "USDC",
+          "expiresAfterSeconds": 300,
+          "quoteId": "quote:7501f9ddb5788de5",
+          "rail": "dry-run-x402"
+        },
+        "receipt": {
+          "paymentHandoffId": "rap-local-run-245-pass",
+          "receiptId": "receipt:024168d51dd55f36",
+          "requestHash": "sha256:rap-local-request-pass",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "sha256:rap-local-response-pass",
+          "runId": "rap-local-run-245-pass",
+          "serviceResultStatus": "pass"
+        },
+        "reputationEvidence": {
+          "emittedLive": false,
+          "runId": "rap-local-run-245-pass",
+          "signals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "source": "receipt-and-eval"
+        },
+        "rollbackEvidence": {
+          "rollbackId": "rap-local-run-245-pass",
+          "runId": "rap-local-run-245-pass",
+          "status": "pass",
+          "transcript": [
+            "operator:disable-rap-bridge --dry-run",
+            "operator:discard-local-receipt --dry-run"
+          ]
+        },
+        "runId": "rap-local-run-245-pass",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "sourceEvidence": {
+          "approvedSourceRefs": [
+            "specs/RAP-BRIDGE-v0.1.md",
+            "tests/RAP-BRIDGE-REPORT.md"
+          ],
+          "runId": "rap-local-run-245-pass",
+          "sourceCheckId": "rap-local-run-245-pass",
+          "status": "pass"
+        },
+        "traceEvents": [
+          {
+            "adl": "examples/payment-agent.yaml",
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "event": "rap_bridge.intent.accepted",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          },
+          {
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "event": "rap_bridge.quote.prepared",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "quoteRail": "dry-run-x402",
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          },
+          {
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "event": "rap_bridge.payment_handoff.prepared",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          },
+          {
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "event": "rap_bridge.receipt.emitted",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "receiptMode": "dry-run",
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          },
+          {
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "emittedLive": false,
+            "event": "rap_bridge.reputation.prepared",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          },
+          {
+            "credentialAccess": false,
+            "devnetAccess": false,
+            "event": "rap_bridge.rollback.proven",
+            "externalSpend": false,
+            "facilitatorAccess": false,
+            "liveRapBridgeCall": false,
+            "localOnly": true,
+            "mainnetAccess": false,
+            "mcpInvocation": false,
+            "networkAccess": false,
+            "paymentRailAccess": false,
+            "providerApiAccess": false,
+            "rollbackStatus": "pass",
+            "runId": "rap-local-run-245-pass",
+            "runtimeExecutionAllowed": false,
+            "settlementAccess": false,
+            "status": "pass",
+            "traceId": "rap-local-run-245-pass",
+            "walletAccess": false
+          }
+        ],
+        "walletAccess": false
+      },
+      "artifactHash": "aca3ba6f257bac5220d86d3c8ae45f7ac006e7309e524161d9ecd1a8d1926887",
+      "credentialAccess": false,
+      "devnetAccess": false,
+      "expectedStatus": "pass",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": false,
+      "findings": [],
+      "id": "local-rap-bridge-dry-run-pass",
+      "kind": "positive",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "pass",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id.",
+        "runId": "rap-local-run-245-missing-receipt",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "boundReferences.trace",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.receipt",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.paymentHandoff",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.operatorTranscript",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.rollback",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.source",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.budget",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "receipt.runId",
+          "reason": "Receipt must bind to run id."
+        },
+        {
+          "path": "receipt.traceId",
+          "reason": "Receipt must bind to trace id."
+        },
+        {
+          "path": "receipt.paymentHandoffId",
+          "reason": "Receipt must bind to payment handoff id."
+        },
+        {
+          "path": "receipt.serviceResultStatus",
+          "reason": "Receipt requires service result pass."
+        },
+        {
+          "path": "receipt.requiredEvalGateStatus",
+          "reason": "Receipt requires eval gate pass."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "missing-receipt-binding-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Runtime trace evidence is required.",
+        "runId": "rap-local-run-245-missing-trace",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "runtimeTrace",
+          "reason": "Runtime trace evidence is required."
+        }
+      ],
+      "id": "missing-runtime-trace-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Payment rail must be an approved dry-run rail.",
+        "runId": "rap-local-run-245-unapproved-rail",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "quote.rail",
+          "reason": "Payment rail must be an approved dry-run rail."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "unapproved-payment-rail-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id.",
+        "runId": "rap-local-run-245-wallet",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "boundReferences.trace",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.receipt",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.paymentHandoff",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.operatorTranscript",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.rollback",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.source",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.budget",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "walletRequest",
+          "reason": "wallet-access-denied"
+        },
+        {
+          "path": "facilitatorRequest",
+          "reason": "facilitator-access-denied"
+        },
+        {
+          "path": "settlementRequest",
+          "reason": "settlement-denied"
+        },
+        {
+          "path": "receipt.runId",
+          "reason": "Receipt must bind to run id."
+        },
+        {
+          "path": "receipt.traceId",
+          "reason": "Receipt must bind to trace id."
+        },
+        {
+          "path": "receipt.paymentHandoffId",
+          "reason": "Receipt must bind to payment handoff id."
+        },
+        {
+          "path": "receipt.serviceResultStatus",
+          "reason": "Receipt requires service result pass."
+        },
+        {
+          "path": "receipt.requiredEvalGateStatus",
+          "reason": "Receipt requires eval gate pass."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "wallet-facilitator-settlement-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id.",
+        "runId": "rap-local-run-245-live-mcp",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "boundReferences.trace",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.receipt",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.paymentHandoff",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.operatorTranscript",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.rollback",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.source",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.budget",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "liveMcpRequest",
+          "reason": "live-mcp-denied"
+        },
+        {
+          "path": "receipt.runId",
+          "reason": "Receipt must bind to run id."
+        },
+        {
+          "path": "receipt.traceId",
+          "reason": "Receipt must bind to trace id."
+        },
+        {
+          "path": "receipt.paymentHandoffId",
+          "reason": "Receipt must bind to payment handoff id."
+        },
+        {
+          "path": "receipt.serviceResultStatus",
+          "reason": "Receipt requires service result pass."
+        },
+        {
+          "path": "receipt.requiredEvalGateStatus",
+          "reason": "Receipt requires eval gate pass."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "live-mcp-request-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id.",
+        "runId": "rap-local-run-245-devnet",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "boundReferences.trace",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.receipt",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.paymentHandoff",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.operatorTranscript",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.rollback",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.source",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.budget",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "devnetRequest",
+          "reason": "devnet-denied"
+        },
+        {
+          "path": "receipt.runId",
+          "reason": "Receipt must bind to run id."
+        },
+        {
+          "path": "receipt.traceId",
+          "reason": "Receipt must bind to trace id."
+        },
+        {
+          "path": "receipt.paymentHandoffId",
+          "reason": "Receipt must bind to payment handoff id."
+        },
+        {
+          "path": "receipt.serviceResultStatus",
+          "reason": "Receipt requires service result pass."
+        },
+        {
+          "path": "receipt.requiredEvalGateStatus",
+          "reason": "Receipt requires eval gate pass."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    },
+    {
+      "artifact": null,
+      "credentialAccess": false,
+      "denialTranscript": {
+        "credentialAccess": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveActionTaken": false,
+        "liveRapBridgeCall": false,
+        "localOnly": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "nextMode": "local-only",
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id.",
+        "runId": "rap-local-run-245-mainnet",
+        "runtimeExecutionAllowed": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "devnetAccess": false,
+      "expectedStatus": "fail",
+      "externalSpend": false,
+      "facilitatorAccess": false,
+      "failClosed": true,
+      "findings": [
+        {
+          "path": "boundReferences.trace",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.receipt",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.paymentHandoff",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.operatorTranscript",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.rollback",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.source",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "boundReferences.budget",
+          "reason": "Trace, receipt, payment handoff, operator, rollback, source, and budget references must bind to the same run id."
+        },
+        {
+          "path": "mainnetRequest",
+          "reason": "mainnet-denied"
+        },
+        {
+          "path": "receipt.runId",
+          "reason": "Receipt must bind to run id."
+        },
+        {
+          "path": "receipt.traceId",
+          "reason": "Receipt must bind to trace id."
+        },
+        {
+          "path": "receipt.paymentHandoffId",
+          "reason": "Receipt must bind to payment handoff id."
+        },
+        {
+          "path": "receipt.serviceResultStatus",
+          "reason": "Receipt requires service result pass."
+        },
+        {
+          "path": "receipt.requiredEvalGateStatus",
+          "reason": "Receipt requires eval gate pass."
+        },
+        {
+          "path": "runtimeTrace.events",
+          "reason": "Missing trace events: rap_bridge.intent.accepted, rap_bridge.payment_handoff.prepared, rap_bridge.quote.prepared, rap_bridge.receipt.emitted, rap_bridge.reputation.prepared, rap_bridge.rollback.proven"
+        }
+      ],
+      "id": "mainnet-request-denied",
+      "kind": "negative",
+      "liveRapBridgeCall": false,
+      "localOnly": true,
+      "mainnetAccess": false,
+      "mcpInvocation": false,
+      "networkAccess": false,
+      "paymentRailAccess": false,
+      "providerApiAccess": false,
+      "runtimeExecutionAllowed": false,
+      "settlementAccess": false,
+      "status": "fail",
+      "walletAccess": false
+    }
+  ],
+  "runtimeExecutionAllowed": false,
+  "settlementAccess": false,
+  "status": "pass",
+  "summary": {
+    "allScenarioFindings": 74,
+    "artifactHashes": [
+      "aca3ba6f257bac5220d86d3c8ae45f7ac006e7309e524161d9ecd1a8d1926887"
+    ],
+    "failClosedScenarios": 7,
+    "negativeScenarios": 7,
+    "positiveScenarios": 1
+  },
+  "walletAccess": false
+}

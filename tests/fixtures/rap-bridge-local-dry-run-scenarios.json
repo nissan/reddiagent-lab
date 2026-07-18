@@ -1,0 +1,555 @@
+{
+  "boundaries": {
+    "credentialAccess": false,
+    "devnetAccess": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveRapBridgeCall": false,
+    "localOnly": true,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "paymentRailAccess": false,
+    "providerApiAccess": false,
+    "runtimeExecutionAllowed": false,
+    "settlementAccess": false,
+    "walletAccess": false
+  },
+  "scenarios": [
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {
+        "budget": "rap-local-run-245-pass",
+        "operatorTranscript": "rap-local-run-245-pass",
+        "paymentHandoff": "rap-local-run-245-pass",
+        "receipt": "rap-local-run-245-pass",
+        "rollback": "rap-local-run-245-pass",
+        "source": "rap-local-run-245-pass",
+        "trace": "rap-local-run-245-pass"
+      },
+      "budget": {
+        "budgetId": "rap-local-run-245-pass",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-pass"
+      },
+      "expectedStatus": "pass",
+      "id": "local-rap-bridge-dry-run-pass",
+      "kind": "positive",
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "python scripts/rap_bridge_local_dry_run.py",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          },
+          {
+            "command": "operator:rap-bridge-handoff --dry-run --run rap-local-run-245-pass",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 2
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-pass",
+        "transcriptId": "rap-local-run-245-pass"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {
+        "paymentHandoffId": "rap-local-run-245-pass",
+        "receiptId": "rap-local-run-245-pass",
+        "requestHash": "sha256:rap-local-request-pass",
+        "requiredEvalGateStatus": "pass",
+        "responseHash": "sha256:rap-local-response-pass",
+        "runId": "rap-local-run-245-pass",
+        "serviceResultStatus": "pass",
+        "traceId": "rap-local-run-245-pass"
+      },
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-pass",
+        "signals": [
+          "receipt_verified",
+          "service_result_pass",
+          "required_eval_gate_pass"
+        ],
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-pass",
+        "runId": "rap-local-run-245-pass",
+        "status": "pass",
+        "transcript": [
+          "operator:disable-rap-bridge --dry-run",
+          "operator:discard-local-receipt --dry-run"
+        ]
+      },
+      "runId": "rap-local-run-245-pass",
+      "runtimeTrace": {
+        "events": [
+          {
+            "event": "rap_bridge.intent.accepted",
+            "runId": "rap-local-run-245-pass"
+          },
+          {
+            "event": "rap_bridge.quote.prepared",
+            "runId": "rap-local-run-245-pass"
+          },
+          {
+            "event": "rap_bridge.payment_handoff.prepared",
+            "runId": "rap-local-run-245-pass"
+          },
+          {
+            "event": "rap_bridge.receipt.emitted",
+            "runId": "rap-local-run-245-pass"
+          },
+          {
+            "event": "rap_bridge.reputation.prepared",
+            "runId": "rap-local-run-245-pass"
+          },
+          {
+            "event": "rap_bridge.rollback.proven",
+            "runId": "rap-local-run-245-pass"
+          }
+        ],
+        "runId": "rap-local-run-245-pass",
+        "traceId": "rap-local-run-245-pass"
+      },
+      "source": {
+        "approvedSourceRefs": [
+          "specs/RAP-BRIDGE-v0.1.md",
+          "tests/RAP-BRIDGE-REPORT.md"
+        ],
+        "runId": "rap-local-run-245-pass",
+        "sourceCheckId": "rap-local-run-245-pass",
+        "status": "pass"
+      },
+      "task": "Bind local payment-agent runtime evidence to a RAP-style dry-run handoff artifact."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {},
+      "budget": {
+        "budgetId": "rap-local-run-245-missing-receipt",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-missing-receipt"
+      },
+      "expectedStatus": "fail",
+      "id": "missing-receipt-binding-denied",
+      "kind": "negative",
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "python scripts/rap_bridge_local_dry_run.py",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-missing-receipt",
+        "transcriptId": "rap-local-run-245-missing-receipt"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {},
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-missing-receipt",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-missing-receipt",
+        "runId": "rap-local-run-245-missing-receipt",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-missing-receipt",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-missing-receipt",
+        "traceId": "rap-local-run-245-missing-receipt"
+      },
+      "source": {
+        "runId": "rap-local-run-245-missing-receipt",
+        "sourceCheckId": "rap-local-run-245-missing-receipt",
+        "status": "pass"
+      },
+      "task": "Missing receipt must fail closed."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {
+        "budget": "rap-local-run-245-missing-trace",
+        "operatorTranscript": "rap-local-run-245-missing-trace",
+        "paymentHandoff": "rap-local-run-245-missing-trace",
+        "receipt": "rap-local-run-245-missing-trace",
+        "rollback": "rap-local-run-245-missing-trace",
+        "source": "rap-local-run-245-missing-trace",
+        "trace": "rap-local-run-245-missing-trace"
+      },
+      "budget": {
+        "budgetId": "rap-local-run-245-missing-trace",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-missing-trace"
+      },
+      "expectedStatus": "fail",
+      "id": "missing-runtime-trace-denied",
+      "kind": "negative",
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "python scripts/rap_bridge_local_dry_run.py",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-missing-trace",
+        "transcriptId": "rap-local-run-245-missing-trace"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {
+        "paymentHandoffId": "rap-local-run-245-missing-trace",
+        "requestHash": "sha256:missing-trace-request",
+        "requiredEvalGateStatus": "pass",
+        "responseHash": "sha256:missing-trace-response",
+        "runId": "rap-local-run-245-missing-trace",
+        "serviceResultStatus": "pass",
+        "traceId": "rap-local-run-245-missing-trace"
+      },
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-missing-trace",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-missing-trace",
+        "runId": "rap-local-run-245-missing-trace",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-missing-trace",
+      "runtimeTrace": null,
+      "source": {
+        "runId": "rap-local-run-245-missing-trace",
+        "sourceCheckId": "rap-local-run-245-missing-trace",
+        "status": "pass"
+      },
+      "task": "Missing runtime trace must fail closed."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {
+        "budget": "rap-local-run-245-unapproved-rail",
+        "operatorTranscript": "rap-local-run-245-unapproved-rail",
+        "paymentHandoff": "rap-local-run-245-unapproved-rail",
+        "receipt": "rap-local-run-245-unapproved-rail",
+        "rollback": "rap-local-run-245-unapproved-rail",
+        "source": "rap-local-run-245-unapproved-rail",
+        "trace": "rap-local-run-245-unapproved-rail"
+      },
+      "budget": {
+        "budgetId": "rap-local-run-245-unapproved-rail",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-unapproved-rail"
+      },
+      "expectedStatus": "fail",
+      "id": "unapproved-payment-rail-denied",
+      "kind": "negative",
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "operator:rap-bridge-handoff --rail solana-devnet --dry-run",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-unapproved-rail",
+        "transcriptId": "rap-local-run-245-unapproved-rail"
+      },
+      "quote": {
+        "amount": "0.010000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "solana-devnet"
+      },
+      "receipt": {
+        "paymentHandoffId": "rap-local-run-245-unapproved-rail",
+        "requestHash": "sha256:unapproved-rail-request",
+        "requiredEvalGateStatus": "pass",
+        "responseHash": "sha256:unapproved-rail-response",
+        "runId": "rap-local-run-245-unapproved-rail",
+        "serviceResultStatus": "pass",
+        "traceId": "rap-local-run-245-unapproved-rail"
+      },
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-unapproved-rail",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-unapproved-rail",
+        "runId": "rap-local-run-245-unapproved-rail",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-unapproved-rail",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-unapproved-rail",
+        "traceId": "rap-local-run-245-unapproved-rail"
+      },
+      "source": {
+        "runId": "rap-local-run-245-unapproved-rail",
+        "sourceCheckId": "rap-local-run-245-unapproved-rail",
+        "status": "pass"
+      },
+      "task": "Unapproved rail must fail closed."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {},
+      "budget": {
+        "budgetId": "rap-local-run-245-wallet",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-wallet"
+      },
+      "expectedStatus": "fail",
+      "id": "wallet-facilitator-settlement-denied",
+      "kind": "negative",
+      "facilitatorRequest": true,
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "operator:rap-bridge-handoff --wallet live --facilitator live --settle",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-wallet",
+        "transcriptId": "rap-local-run-245-wallet"
+      },
+      "quote": {
+        "amount": "0.010000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-usdc"
+      },
+      "receipt": {},
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-wallet",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-wallet",
+        "runId": "rap-local-run-245-wallet",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-wallet",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-wallet",
+        "traceId": "rap-local-run-245-wallet"
+      },
+      "settlementRequest": true,
+      "source": {
+        "runId": "rap-local-run-245-wallet",
+        "sourceCheckId": "rap-local-run-245-wallet",
+        "status": "pass"
+      },
+      "task": "Wallet, facilitator, and settlement requests must fail closed.",
+      "walletRequest": true
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {},
+      "budget": {
+        "budgetId": "rap-local-run-245-live-mcp",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-live-mcp"
+      },
+      "expectedStatus": "fail",
+      "id": "live-mcp-request-denied",
+      "kind": "negative",
+      "liveMcpRequest": true,
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "operator:invoke-mcp --server live --dry-run",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-live-mcp",
+        "transcriptId": "rap-local-run-245-live-mcp"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {},
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-live-mcp",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-live-mcp",
+        "runId": "rap-local-run-245-live-mcp",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-live-mcp",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-live-mcp",
+        "traceId": "rap-local-run-245-live-mcp"
+      },
+      "source": {
+        "runId": "rap-local-run-245-live-mcp",
+        "sourceCheckId": "rap-local-run-245-live-mcp",
+        "status": "pass"
+      },
+      "task": "Live MCP requests must fail closed."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {},
+      "budget": {
+        "budgetId": "rap-local-run-245-devnet",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-devnet"
+      },
+      "devnetRequest": true,
+      "expectedStatus": "fail",
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "operator:rap-bridge-handoff --network devnet --dry-run",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-devnet",
+        "transcriptId": "rap-local-run-245-devnet"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {},
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-devnet",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-devnet",
+        "runId": "rap-local-run-245-devnet",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-devnet",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-devnet",
+        "traceId": "rap-local-run-245-devnet"
+      },
+      "source": {
+        "runId": "rap-local-run-245-devnet",
+        "sourceCheckId": "rap-local-run-245-devnet",
+        "status": "pass"
+      },
+      "task": "Devnet request is outside this issue scope and must fail closed."
+    },
+    {
+      "adl": "examples/payment-agent.yaml",
+      "boundReferences": {},
+      "budget": {
+        "budgetId": "rap-local-run-245-mainnet",
+        "ceilingUsd": 0,
+        "estimatedUsd": 0,
+        "runId": "rap-local-run-245-mainnet"
+      },
+      "expectedStatus": "fail",
+      "id": "mainnet-request-denied",
+      "kind": "negative",
+      "mainnetRequest": true,
+      "operatorTranscript": {
+        "commands": [
+          {
+            "command": "operator:rap-bridge-handoff --network mainnet --dry-run",
+            "dryRun": true,
+            "exitCode": 0,
+            "step": 1
+          }
+        ],
+        "operatorId": "operator://local-rap-bridge",
+        "runId": "rap-local-run-245-mainnet",
+        "transcriptId": "rap-local-run-245-mainnet"
+      },
+      "quote": {
+        "amount": "0.000000",
+        "currency": "USDC",
+        "expiresAfterSeconds": 300,
+        "rail": "dry-run-x402"
+      },
+      "receipt": {},
+      "reputation": {
+        "emittedLive": false,
+        "runId": "rap-local-run-245-mainnet",
+        "source": "receipt-and-eval"
+      },
+      "rollback": {
+        "rollbackId": "rap-local-run-245-mainnet",
+        "runId": "rap-local-run-245-mainnet",
+        "status": "pass"
+      },
+      "runId": "rap-local-run-245-mainnet",
+      "runtimeTrace": {
+        "events": [],
+        "runId": "rap-local-run-245-mainnet",
+        "traceId": "rap-local-run-245-mainnet"
+      },
+      "source": {
+        "runId": "rap-local-run-245-mainnet",
+        "sourceCheckId": "rap-local-run-245-mainnet",
+        "status": "pass"
+      },
+      "task": "Mainnet remains blocked and must fail closed."
+    }
+  ]
+}
