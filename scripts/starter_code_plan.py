@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
+import shutil
 import sys
 
 import jsonschema
@@ -27,6 +29,17 @@ BOUNDARY_FLAGS = {
     "mcpInvocation": False,
     "writesFiles": False,
     "installsDependencies": False,
+}
+GENERATION_BOUNDARY_FLAGS = {
+    **BOUNDARY_FLAGS,
+    "writesFiles": True,
+}
+BLOCKED_BETA_REQUESTS = {
+    "request_dependency_install": "no-dependency-install",
+    "request_provider_call": "no-provider-model-local-execution",
+    "request_live_mcp": "no-mcp-invocation",
+    "request_live_payment": "no-wallet-payment-settlement-access",
+    "request_mainnet": "no-mainnet",
 }
 EVE_BOUNDARY_FLAGS = {
     **BOUNDARY_FLAGS,
@@ -172,6 +185,10 @@ def slugify(name: str | None) -> str:
     if not name:
         return "unnamed-agent"
     return "".join(char if char.isalnum() else "-" for char in name.lower()).strip("-")
+
+
+def stable_json(value: object) -> str:
+    return json.dumps(value, indent=2, sort_keys=True) + "\n"
 
 
 def model_profile(doc: dict) -> dict:
@@ -753,15 +770,323 @@ def plan_for(path: Path) -> dict:
     }
 
 
+def safe_relative_package_dir(value: str, agent_slug: str) -> Path:
+    raw = value or agent_slug
+    path = Path(raw)
+    if path.is_absolute() or any(part == ".." for part in path.parts):
+        raise ValueError("--package-dir must be a safe relative path with no path traversal")
+    if str(path).strip() in {"", "."}:
+        raise ValueError("--package-dir must name a package directory")
+    return path
+
+
+def require_output_dir(path: Path | None) -> Path:
+    if path is None:
+        raise ValueError("--output-dir is required for --generate-beta")
+    resolved = path.resolve()
+    if not resolved.exists() or not resolved.is_dir():
+        raise ValueError("--output-dir must be an existing explicit temporary directory")
+    return resolved
+
+
+def blocked_request_findings(args: argparse.Namespace) -> list[dict]:
+    findings = []
+    for attr, policy_id in BLOCKED_BETA_REQUESTS.items():
+        if getattr(args, attr):
+            findings.append(
+                {
+                    "requestFlag": attr.replace("_", "-"),
+                    "policyId": policy_id,
+                    "status": "blocked",
+                    "allowed": False,
+                }
+            )
+    return findings
+
+
+def file_template_id(path: str) -> str:
+    mapping = {
+        "README.md": "starter.readme",
+        "agent.adl.yaml": "starter.adl_copy",
+        "src/agent_harness.py": "starter.python_harness",
+        "tests/test_static_contract.py": "starter.static_contract_test",
+        ".env.example": "starter.env_example",
+        "fixtures/tools.json": "starter.local_tool_fixtures",
+        "tests/test_policy_eval_gates.py": "starter.policy_eval_gate_tests",
+    }
+    for suffix, template_id in mapping.items():
+        if path.endswith(suffix):
+            return template_id
+    raise ValueError(f"no template id for generated path: {path}")
+
+
+def render_readme(plan: dict) -> str:
+    return f"""# {plan["agent"]} starter
+
+This local beta package was generated from `{plan["source"]}`.
+
+It is runnable only as a deterministic local scaffold. It does not install
+dependencies, call model providers, resolve MCP servers, use payment rails,
+touch credentials, deploy, or use devnet/mainnet.
+
+Run the local contract check:
+
+```bash
+python3 tests/test_static_contract.py
+```
+"""
+
+
+def render_harness(plan: dict, doc: dict) -> str:
+    instructions = ((doc.get("harness") or {}).get("instructions") or {}).get("inline", "")
+    return f'''#!/usr/bin/env python3
+"""Deterministic local starter harness for {plan["agent"]}."""
+
+from __future__ import annotations
+
+import json
+
+
+AGENT_NAME = {plan["agent"]!r}
+INSTRUCTIONS = {instructions!r}
+BOUNDARY_FLAGS = {{
+    "runtimeExecutionAllowed": False,
+    "networkAccess": False,
+    "paymentAccess": False,
+    "mcpInvocation": False,
+    "installsDependencies": False,
+}}
+
+
+def run_response(prompt: str) -> dict:
+    return {{
+        "agent": AGENT_NAME,
+        "status": "local-deterministic-response",
+        "prompt": prompt,
+        "instructions": INSTRUCTIONS,
+        "boundaryFlags": BOUNDARY_FLAGS,
+    }}
+
+
+if __name__ == "__main__":
+    print(json.dumps(run_response("local beta smoke"), indent=2, sort_keys=True))
+'''
+
+
+def render_static_contract(plan: dict) -> str:
+    return f'''#!/usr/bin/env python3
+"""Static checks for the generated {plan["agent"]} starter package."""
+
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main() -> int:
+    required = [
+        "README.md",
+        "agent.adl.yaml",
+        "src/agent_harness.py",
+        "tests/test_static_contract.py",
+    ]
+    for relative in required:
+        assert (ROOT / relative).exists(), relative
+    assert not (ROOT / "package-lock.json").exists()
+    assert not (ROOT / "node_modules").exists()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+'''
+
+
+def render_policy_eval_tests(plan: dict, doc: dict) -> str:
+    policies = (doc.get("harness") or {}).get("policies") or []
+    gates = (doc.get("harness") or {}).get("evalGates") or []
+    return f'''#!/usr/bin/env python3
+"""Policy/eval gate inventory for {plan["agent"]}."""
+
+POLICY_IDS = {json.dumps([policy.get("id") for policy in policies], sort_keys=True)}
+EVAL_GATE_IDS = {json.dumps([gate.get("id") for gate in gates], sort_keys=True)}
+
+
+def main() -> int:
+    assert POLICY_IDS or EVAL_GATE_IDS
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+'''
+
+
+def starter_file_contents(plan: dict, source_path: Path, doc: dict) -> dict[str, str]:
+    contents = {
+        "README.md": render_readme(plan),
+        "agent.adl.yaml": source_path.read_text(),
+        "src/agent_harness.py": render_harness(plan, doc),
+        "tests/test_static_contract.py": render_static_contract(plan),
+        ".env.example": "# No credentials are required for this local beta starter.\n",
+    }
+    harness = doc.get("harness") or {}
+    if harness.get("toolFixtures"):
+        contents["fixtures/tools.json"] = stable_json(harness["toolFixtures"])
+    if harness.get("policies") or harness.get("evalGates"):
+        contents["tests/test_policy_eval_gates.py"] = render_policy_eval_tests(plan, doc)
+    return contents
+
+
+def write_starter_package(plan: dict, source_path: Path, doc: dict, output_dir: Path, package_dir: Path) -> dict:
+    package_root = (output_dir / package_dir).resolve()
+    output_root = output_dir.resolve()
+    if output_root != package_root and output_root not in package_root.parents:
+        raise ValueError("resolved package directory escaped --output-dir")
+    if package_root.exists():
+        raise ValueError("package directory already exists; remove it or choose a fresh temp output")
+
+    contents = starter_file_contents(plan, source_path, doc)
+    generated_files = []
+    for relative, content in sorted(contents.items()):
+        target = package_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content)
+        stat = target.stat()
+        generated_files.append(
+            {
+                "path": str((package_dir / relative).as_posix()),
+                "templateId": file_template_id(str(package_dir / relative)),
+                "bytes": stat.st_size,
+                "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+            }
+        )
+
+    return {
+        "packageRoot": str(package_root),
+        "fileCount": len(generated_files),
+        "files": generated_files,
+    }
+
+
+def generation_artifact(
+    plan: dict,
+    source_path: Path,
+    output_dir: Path,
+    package_dir: Path,
+    generated_manifest: dict,
+    delete_after: bool,
+) -> dict:
+    delete_command = f"rm -rf {generated_manifest['packageRoot']}"
+    transcript = [
+        {
+            "step": "prepare-delete",
+            "command": delete_command,
+            "executed": False,
+            "reason": "Generated package is left in temp output for local inspection by default.",
+        }
+    ]
+    if delete_after:
+        shutil.rmtree(generated_manifest["packageRoot"])
+        transcript.append(
+            {
+                "step": "delete-temp-output",
+                "command": delete_command,
+                "executed": True,
+                "exitCode": 0,
+            }
+        )
+    return {
+        "format": "starter-code-generation-beta-artifact",
+        "issue": 242,
+        "source": display_path(source_path),
+        "agent": plan["agent"],
+        "status": "generated-local-beta",
+        **GENERATION_BOUNDARY_FLAGS,
+        "outputDir": str(output_dir),
+        "packageDir": str(package_dir.as_posix()),
+        "generatedFileManifest": generated_manifest,
+        "templateIds": sorted({item["templateId"] for item in generated_manifest["files"]}),
+        "safetyPolicyGates": {
+            "readyRequest": plan["starterSafetyPolicy"]["readyRequest"],
+            "unsafeRequests": plan["starterSafetyPolicy"]["unsafeRequests"],
+            "blockedGateIds": [gate["id"] for gate in plan["blockedGatesBeforeGeneration"]],
+        },
+        "blockedLiveClaims": {
+            "dependencyInstall": False,
+            "providerModelCall": False,
+            "liveMcpInvocation": False,
+            "walletPaymentSettlement": False,
+            "mainnet": False,
+            "deployment": False,
+        },
+        "rollbackDeleteTranscript": transcript,
+    }
+
+
+def generate_beta(args: argparse.Namespace) -> tuple[int, dict]:
+    output_dir = require_output_dir(args.output_dir)
+    blocked = blocked_request_findings(args)
+    if blocked:
+        return 3, {
+            "format": "starter-code-generation-beta-artifact",
+            "issue": 242,
+            "status": "blocked-unsafe-request",
+            **BOUNDARY_FLAGS,
+            "blockedRequests": blocked,
+        }
+    if len(args.paths) != 1:
+        raise ValueError("--generate-beta requires exactly one ADL path")
+    source_path = args.paths[0]
+    plan = plan_for(source_path)
+    if not plan["supported"]:
+        return 1, {
+            "format": "starter-code-generation-beta-artifact",
+            "issue": 242,
+            "source": display_path(source_path),
+            "status": "blocked-invalid-adl",
+            **BOUNDARY_FLAGS,
+            "validation": plan["validation"],
+        }
+    doc = read_adl(source_path)
+    package_dir = safe_relative_package_dir(args.package_dir, slugify(plan["agent"]))
+    generated_manifest = write_starter_package(plan, source_path, doc, output_dir, package_dir)
+    return 0, generation_artifact(
+        plan,
+        source_path,
+        output_dir,
+        package_dir,
+        generated_manifest,
+        args.delete_after,
+    )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("paths", nargs="*", type=Path)
     parser.add_argument("--single", action="store_true", help="Emit one manifest object instead of a list.")
+    parser.add_argument("--generate-beta", action="store_true", help="Write a local beta starter package.")
+    parser.add_argument("--output-dir", type=Path, help="Existing explicit temp output directory for beta generation.")
+    parser.add_argument("--package-dir", default="", help="Safe relative package directory under --output-dir.")
+    parser.add_argument("--delete-after", action="store_true", help="Delete generated temp package after artifact capture.")
+    parser.add_argument("--request-dependency-install", action="store_true")
+    parser.add_argument("--request-provider-call", action="store_true")
+    parser.add_argument("--request-live-mcp", action="store_true")
+    parser.add_argument("--request-live-payment", action="store_true")
+    parser.add_argument("--request-mainnet", action="store_true")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    if args.generate_beta:
+        try:
+            code, payload = generate_beta(args)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+        print(json.dumps(payload, indent=2, sort_keys=True))
+        return code
     paths = args.paths if args.paths else DEFAULT_EXAMPLES
     if args.single and len(paths) != 1:
         print("--single requires exactly one ADL path", file=sys.stderr)
