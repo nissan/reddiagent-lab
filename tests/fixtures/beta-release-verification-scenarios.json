@@ -1,0 +1,157 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "profile": "local-only",
+    "releaseId": "reddiagent-beta-0",
+    "requestedVerdict": "accept",
+    "expectedStatus": "pass",
+    "expectedVerdict": "accept",
+    "liveRuntimeRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "liveNetworkEnabled": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "settlementClaimed": false,
+    "deploymentRequested": false,
+    "deploymentClaimed": false,
+    "productionClaimed": false,
+    "operatorFacingNextStep": "Review the local verifier output before any separately approved activation or deployment step.",
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-release-handoff.json",
+        "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+      },
+      {
+        "path": "tests/fixtures/beta-release-readiness.json",
+        "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+      },
+      {
+        "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+        "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+      },
+      {
+        "path": "tests/fixtures/beta-operator-dry-run-package.json",
+        "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+      },
+      {
+        "path": "tests/fixtures/beta-review-ui.json",
+        "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+      },
+      {
+        "path": "tests/fixtures/beta-operator-decision-package.json",
+        "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+      },
+      {
+        "path": "tests/fixtures/beta-activation-preflight.json",
+        "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+      },
+      {
+        "path": "tests/fixtures/beta-activation-rehearsal.json",
+        "sha256": "b80620f43467ce2b7b1c3ac474669e15fabc204593dbed22cba3e4a3849a78e5"
+      },
+      {
+        "path": "tests/fixtures/beta-activation-acceptance.json",
+        "sha256": "e05837f995325d4327ccad047b604f24275841ec89abffaadd4695f0fc3a52fc"
+      },
+      {
+        "path": "tests/fixtures/surfpool-validator-lane.json",
+        "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d"
+      },
+      {
+        "path": "tests/fixtures/docker-testing-lane.json",
+        "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75"
+      },
+      {
+        "path": "tests/fixtures/coolify-staging-lane.json",
+        "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "local-only-verification-accept-pass"
+    },
+    {
+      "id": "local-validator-verification-accept-pass",
+      "profile": "local-validator"
+    },
+    {
+      "id": "docker-verification-accept-pass",
+      "profile": "docker"
+    },
+    {
+      "id": "coolify-verification-accept-pass",
+      "profile": "coolify"
+    },
+    {
+      "id": "full-profile-verification-accept-pass",
+      "profile": "full"
+    },
+    {
+      "id": "missing-handoff-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "artifactPathOverrides": {
+        "handoff": "tests/fixtures/missing-beta-release-handoff.json"
+      },
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-release-handoff.json",
+          "sha256": "573e4e806bdbfe754c8d573d032d43e0181d129453fb5d66f1b63666412c8b19"
+        }
+      ]
+    },
+    {
+      "id": "stale-handoff-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-release-handoff.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "missing-rollback-teardown-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "profile": "full",
+      "expectedArtifactHashes": []
+    },
+    {
+      "id": "unsafe-activation-deployment-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorFacingNextStep": "Runtime activation completed and deployment completed."
+    },
+    {
+      "id": "unsafe-network-payment-credential-mainnet-flags-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "liveNetworkEnabled": true,
+      "paymentRequested": true,
+      "mainnetRequested": true,
+      "apiKey": "redacted fixture marker"
+    },
+    {
+      "id": "unsafe-reject-verdict-denied",
+      "kind": "negative",
+      "requestedVerdict": "reject",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "deploymentClaimed": true
+    }
+  ]
+}
