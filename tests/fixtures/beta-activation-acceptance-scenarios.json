@@ -1,0 +1,216 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "releaseId": "reddiagent-beta-0",
+    "selectedAdlPath": "examples/tool-agent.yaml",
+    "sourceRehearsalPackagePath": "tests/fixtures/beta-activation-rehearsal.json",
+    "sourcePreflightPackagePath": "tests/fixtures/beta-activation-preflight.json",
+    "sourceDecisionPackagePath": "tests/fixtures/beta-operator-decision-package.json",
+    "sourceReviewPackagePath": "tests/fixtures/beta-review-ui.json",
+    "sourceRuntimePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+    "operatorIdentity": "operator://local-beta",
+    "reviewerIdentity": "reviewer://oli-local-fixture",
+    "localApprovalFixture": "tests/fixtures/beta-activation-rehearsal.json#activation-approve-rehearsal-pass",
+    "acceptanceTimestamp": "fixture://2026-07-18T10:43:00Z",
+    "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
+    "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+    "liveRuntimeRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "productionEnabled": false,
+    "mainnetEnabled": false,
+    "claimsLiveRuntimeEnablement": false,
+    "nextStepHandoff": "No live runtime enablement is claimed. Next step is operator review of this dry-run bundle before any separately approved runtime action.",
+    "rollbackDisableEvidence": {
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "disableVerified": true,
+      "dryRunOnly": true,
+      "liveRuntimeEnabled": false
+    },
+    "boundaryStatus": {
+      "activationAcceptanceBundle": true,
+      "deterministicLocalFixturesOnly": true,
+      "liveRuntimeActivation": false,
+      "networkAccess": false,
+      "credentialAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "productionGatewayAccess": false,
+      "mainnetAccess": false,
+      "externalSpend": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "activation-acceptance-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass"
+    },
+    {
+      "id": "activation-hold-acceptance-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "acceptanceOutcome": "hold",
+      "sourceRehearsalResultId": "activation-hold-rehearsal-pass"
+    },
+    {
+      "id": "activation-rollback-required-acceptance-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "acceptanceOutcome": "rollback-required",
+      "sourceRehearsalResultId": "activation-rollback-rehearsal-pass"
+    },
+    {
+      "id": "missing-rehearsal-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "sourceRehearsalPackagePath": "tests/fixtures/missing-beta-activation-rehearsal.json"
+    },
+    {
+      "id": "mismatched-release-id-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "releaseId": "reddiagent-beta-stale"
+    },
+    {
+      "id": "mismatched-adl-path-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "selectedAdlPath": "examples/simple-agent.yaml"
+    },
+    {
+      "id": "missing-operator-identity-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "operatorIdentity": ""
+    },
+    {
+      "id": "missing-reviewer-identity-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "reviewerIdentity": "",
+      "localApprovalFixture": ""
+    },
+    {
+      "id": "missing-accepted-activation-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "acceptedActivationCue": ""
+    },
+    {
+      "id": "missing-rollback-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "rollback-required",
+      "sourceRehearsalResultId": "activation-rollback-rehearsal-pass",
+      "rollbackCue": "",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "",
+        "disableVerified": true,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "missing-rollback-disable-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+        "disableVerified": false,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "live-runtime-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "liveRuntimeRequested": true,
+      "boundaryStatus": {
+        "liveRuntimeActivation": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "Authorization": "Bearer redacted-fixture"
+    },
+    {
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "devnetRequested": true,
+      "boundaryStatus": {
+        "devnetAccess": true
+      }
+    },
+    {
+      "id": "mainnet-production-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "mainnetRequested": true,
+      "productionEnabled": true,
+      "mainnetEnabled": true
+    },
+    {
+      "id": "live-runtime-enable-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "claimsLiveRuntimeEnablement": true
+    },
+    {
+      "id": "handoff-live-enable-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "nextStepHandoff": "Runtime activation completed."
+    },
+    {
+      "id": "handoff-contradictory-runtime-activation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "nextStepHandoff": "No live runtime enablement is claimed. Runtime activation completed."
+    },
+    {
+      "id": "handoff-contradictory-production-enabled-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "nextStepHandoff": "No live runtime enablement is claimed. Production gateway enabled."
+    }
+  ]
+}
