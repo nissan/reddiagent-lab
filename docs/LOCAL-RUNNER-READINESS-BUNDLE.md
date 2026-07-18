@@ -36,6 +36,7 @@ The local-python runner can currently prove:
 - local beta operator decision package evidence that records approve, hold, and rollback decisions against the selected ADL path, release id, source package, evidence hashes, operator identity, fixture timestamp, rollback cue, and boundary status.
 - local beta activation preflight evidence that binds approve, hold, and rollback preflight outcomes to the decision package, review/runtime package paths, evidence hashes, operator identity, source decision timestamp, preflight timestamp, rollback cue, and boundary status before any runtime enablement.
 - local beta activation rehearsal evidence that turns the preflight output into approve, hold, and rollback dry-run operator transcripts/checklists with activation and rollback cues, rollback/disable proof, and no live runtime enablement claim.
+- Coolify public devnet demo readiness evidence for a public preview URL, explicit nginx Dockerfile entrypoint, loopback-registry Docker Image deployment, root health route, devnet-only demo scope, rollback/teardown metadata, and fail-closed public claim boundaries.
 
 ## Evidence Inventory
 
@@ -78,6 +79,7 @@ The local-python runner can currently prove:
 | Beta release verification CLI report | `tests/BETA-RELEASE-VERIFICATION-CLI-REPORT.md`; `tests/test_beta_release_verification_cli.py` | Local verifier consumes pinned handoff, runtime/package, and profile-selected Surfpool/Docker/Coolify evidence, hashes required artifacts, emits accept/hold/reject verdicts, and fail-closes missing/stale/unsafe release evidence before activation or deployment. |
 | Beta release candidate bundle report | `tests/BETA-RELEASE-CANDIDATE-BUNDLE-REPORT.md`; `tests/test_beta_release_candidate_bundle.py` | Local release-candidate bundle consumes pinned verifier and public demo/video evidence, emits source/release/artifact/hash/URL/include-exclude/operator manifest metadata, and fail-closes unsafe activation, deployment, publishing, credential, env, payment, devnet, mainnet, or live-network inputs. |
 | Beta release archive assembler report | `tests/BETA-RELEASE-ARCHIVE-ASSEMBLER-REPORT.md`; `tests/test_beta_release_archive_assembler.py` | Local archive assembler consumes the pinned release-candidate manifest, emits deterministic archive metadata, content-addressed inventory, manifest/checksum paths, verdict, and operator next-step text, and fail-closes stale/missing/extra/unsafe archive inputs before publishing or activation. |
+| Coolify public devnet demo report | `tests/COOLIFY-DEVNET-PUBLIC-DEMO-REPORT.md`; `tests/test_coolify_devnet_public_demo.py` | Public Coolify devnet demo readiness records preview URL, explicit nginx Dockerfile entrypoint, loopback-registry Docker Image deployment, root health route, environment names without values, rollback/teardown metadata, and fail-closed mainnet/payment/credential/provider/MCP/production claims. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -118,6 +120,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_preflight_gate.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_rehearsal_package.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_acceptance_bundle.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_coolify_devnet_public_demo.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
@@ -159,6 +162,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] Beta activation rehearsal evidence records approve, hold, and rollback dry-run operator transcripts/checklists with activation cue, rollback cue, rollback/disable evidence, and no live runtime enablement claim.
 - [ ] Beta release-candidate bundle evidence records source commit, release id, artifact inventory, verifier/demo hashes, public demo URLs as metadata, included/excluded file lists, verdict, and operator next-step text before any runtime activation, deployment, publishing, payment, devnet, or mainnet path is considered.
 - [ ] Beta release archive assembler evidence records deterministic archive path/name metadata, content-addressed inventory, included/excluded file lists, manifest/checksum hashes, release/source identifiers, verdict, and operator next-step text before any archive/package publishing, runtime activation, deployment, payment, devnet, or mainnet path is considered.
+- [ ] Coolify public devnet demo evidence records the public preview URL, explicit nginx Dockerfile build path, root health route, route checks, redacted environment contract, rollback/teardown notes, and explicit mainnet/payment/settlement/provider/MCP denials before inviting external reviewers.
 
 ## Explicit Non-Goals
 

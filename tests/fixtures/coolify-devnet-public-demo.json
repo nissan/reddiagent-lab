@@ -1,0 +1,832 @@
+{
+  "findings": [],
+  "issue": 280,
+  "mainnetStatement": "Mainnet remains blocked and is not enabled by this public devnet demo.",
+  "mode": "coolify-devnet-public-demo-readiness",
+  "parentEpic": 220,
+  "relatedEpics": [
+    247
+  ],
+  "results": [
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": false,
+        "providerProductCall": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": false,
+        "paymentEnabled": false,
+        "productionReady": false,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "coolify-devnet-public-demo-pass",
+      "kind": "positive",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "pass"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": true,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": false,
+        "providerProductCall": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": true,
+        "paymentEnabled": false,
+        "productionReady": false,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "claims.mainnetReady",
+          "reason": "Mainnet readiness must stay false."
+        },
+        {
+          "path": "boundaries.mainnetAccess",
+          "reason": "mainnetAccess must be false."
+        }
+      ],
+      "id": "mainnet-claim-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": true,
+        "productionGatewayMutation": false,
+        "providerProductCall": false,
+        "settlementAccess": true,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": false,
+        "paymentEnabled": true,
+        "productionReady": false,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": true
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "claims.settlementEnabled",
+          "reason": "Settlement must stay disabled."
+        },
+        {
+          "path": "claims.paymentEnabled",
+          "reason": "Payment access must stay disabled."
+        },
+        {
+          "path": "boundaries.paymentRailAccess",
+          "reason": "paymentRailAccess must be false."
+        },
+        {
+          "path": "boundaries.settlementAccess",
+          "reason": "settlementAccess must be false."
+        }
+      ],
+      "id": "payment-settlement-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": false,
+        "providerProductCall": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": false,
+        "paymentEnabled": false,
+        "productionReady": false,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "healthPath",
+          "reason": "Health path must be the static root page."
+        },
+        {
+          "path": "verifiedRoutes",
+          "reason": "Missing required public route: /beta-review-ui.html"
+        },
+        {
+          "path": "verifiedRoutes",
+          "reason": "Missing required public route: /prosumer-builder-static-export.html"
+        }
+      ],
+      "id": "missing-health-route-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": true,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": false,
+        "providerProductCall": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": false,
+        "paymentEnabled": false,
+        "productionReady": false,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "COOLIFY_TOKEN",
+          "required": true,
+          "value": "secret-value"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "boundaries.credentialValuesEmbedded",
+          "reason": "credentialValuesEmbedded must be false."
+        },
+        {
+          "path": "environmentContract[0].value",
+          "reason": "Public metadata must not store env values."
+        },
+        {
+          "path": "environmentContract[0].name",
+          "reason": "Secret-like env names are not allowed in public metadata."
+        }
+      ],
+      "id": "credential-value-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": true,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": false,
+        "providerProductCall": true,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": true,
+        "mainnetReady": false,
+        "paymentEnabled": false,
+        "productionReady": false,
+        "providerProductCallsEnabled": true,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "claims.liveMcpEnabled",
+          "reason": "Live MCP invocation must stay disabled."
+        },
+        {
+          "path": "claims.providerProductCallsEnabled",
+          "reason": "Provider product calls must stay disabled."
+        },
+        {
+          "path": "boundaries.liveMcpInvocation",
+          "reason": "liveMcpInvocation must be false."
+        },
+        {
+          "path": "boundaries.providerProductCall",
+          "reason": "providerProductCall must be false."
+        }
+      ],
+      "id": "provider-mcp-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "coolifyPublicUrlAllowed": true,
+        "credentialValuesEmbedded": false,
+        "devnetAllowed": true,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "productionGatewayMutation": true,
+        "providerProductCall": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "claims": {
+        "devnetDemo": true,
+        "liveMcpEnabled": false,
+        "mainnetReady": false,
+        "paymentEnabled": false,
+        "productionReady": true,
+        "providerProductCallsEnabled": false,
+        "publicDemo": true,
+        "settlementEnabled": false
+      },
+      "deployment": {
+        "appName": "reddiagent-devnet-demo-image",
+        "branch": "feat/public-coolify-devnet-demo-280",
+        "buildPack": "dockerimage",
+        "coolifyResourceType": "dockerimage",
+        "devnetCluster": "solana-devnet",
+        "dockerfilePath": "/Dockerfile",
+        "healthPath": "/",
+        "imageName": "localhost:5000/reddiagent-devnet-demo",
+        "imageTagPolicy": "source-commit-short",
+        "projectName": "reddiagent-lab",
+        "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+        "publishDirectory": "/usr/share/nginx/html",
+        "repo": "git@github.com:reddinft/reddiagent-lab.git",
+        "verifiedRoutes": [
+          "/",
+          "/adl-validation-ui.html",
+          "/beta-review-ui.html",
+          "/prosumer-builder-static-export.html"
+        ]
+      },
+      "environmentContract": [
+        {
+          "name": "REDDIAGENT_DEMO_CLUSTER",
+          "required": true,
+          "valuePolicy": "literal-devnet"
+        },
+        {
+          "name": "REDDIAGENT_MAINNET_ENABLED",
+          "required": true,
+          "valuePolicy": "literal-false"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "claims.productionReady",
+          "reason": "Production readiness must stay false."
+        },
+        {
+          "path": "boundaries.productionGatewayMutation",
+          "reason": "productionGatewayMutation must be false."
+        }
+      ],
+      "id": "unsafe-production-gateway-denied",
+      "kind": "negative",
+      "requiredLocalFileInventory": [
+        {
+          "exists": true,
+          "path": "Dockerfile",
+          "sha256": "fa942d1244c9a3e7b94c1b76055456f20b1ada72d422ad91233ee7ecf8507cd7"
+        },
+        {
+          "exists": true,
+          "path": "docs/index.html",
+          "sha256": "6731fca0ca230128a07f9a0a78d9a0a99a03ad09b4ec0d98599413049daa7936"
+        },
+        {
+          "exists": true,
+          "path": "docs/healthz.html",
+          "sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+        },
+        {
+          "exists": true,
+          "path": "docs/adl-validation-ui.html",
+          "sha256": "0754541a943377189ecda1f53d1a895cc19880b98ec1b1426af15d435f606c31"
+        },
+        {
+          "exists": true,
+          "path": "docs/beta-review-ui.html",
+          "sha256": "b1e265253ebfe7fdf0df8c09923a5f98e132923457f6b9086e0e77ee01098166"
+        },
+        {
+          "exists": true,
+          "path": "docs/prosumer-builder-static-export.html",
+          "sha256": "a6763d23bc4e9fd05d19aba9b56fda0e4e66f975f10b622e500d18b144134da1"
+        },
+        {
+          "exists": true,
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
+        }
+      ],
+      "rollback": {
+        "available": true,
+        "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted",
+        "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo"
+      },
+      "status": "fail"
+    }
+  ],
+  "sourceCommit": "30559c339571854ea8d519d5781ad11ccde5f73e",
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 6,
+    "negativeScenarios": 6,
+    "positiveScenarios": 1
+  }
+}

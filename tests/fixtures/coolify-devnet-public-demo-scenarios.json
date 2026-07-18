@@ -1,0 +1,153 @@
+{
+  "defaults": {
+    "projectName": "reddiagent-lab",
+    "appName": "reddiagent-devnet-demo-image",
+    "publicUrl": "https://reddiagent-devnet.preview.reddi.tech/",
+    "repo": "git@github.com:reddinft/reddiagent-lab.git",
+    "branch": "feat/public-coolify-devnet-demo-280",
+    "coolifyResourceType": "dockerimage",
+    "buildPack": "dockerimage",
+    "dockerfilePath": "/Dockerfile",
+    "imageName": "localhost:5000/reddiagent-devnet-demo",
+    "imageTagPolicy": "source-commit-short",
+    "publishDirectory": "/usr/share/nginx/html",
+    "healthPath": "/",
+    "devnetCluster": "solana-devnet",
+    "environmentContract": [
+      {
+        "name": "REDDIAGENT_DEMO_CLUSTER",
+        "required": true,
+        "valuePolicy": "literal-devnet"
+      },
+      {
+        "name": "REDDIAGENT_MAINNET_ENABLED",
+        "required": true,
+        "valuePolicy": "literal-false"
+      }
+    ],
+    "requiredLocalFiles": [
+      "Dockerfile",
+      "docs/index.html",
+      "docs/healthz.html",
+      "docs/adl-validation-ui.html",
+      "docs/beta-review-ui.html",
+      "docs/prosumer-builder-static-export.html",
+      "docs/public-demo-pitch.html"
+    ],
+    "verifiedRoutes": [
+      "/",
+      "/adl-validation-ui.html",
+      "/beta-review-ui.html",
+      "/prosumer-builder-static-export.html"
+    ],
+    "rollback": {
+      "available": true,
+      "teardownCommand": "coolify stop reddiagent-devnet-demo && coolify remove reddiagent-devnet-demo",
+      "dnsRollback": "remove reddiagent-devnet.preview.reddi.tech route if the app is deleted"
+    },
+    "claims": {
+      "publicDemo": true,
+      "devnetDemo": true,
+      "mainnetReady": false,
+      "productionReady": false,
+      "settlementEnabled": false,
+      "paymentEnabled": false,
+      "liveMcpEnabled": false,
+      "providerProductCallsEnabled": false
+    },
+    "boundaries": {
+      "coolifyPublicUrlAllowed": true,
+      "devnetAllowed": true,
+      "mainnetAccess": false,
+      "walletAccess": false,
+      "paymentRailAccess": false,
+      "facilitatorAccess": false,
+      "settlementAccess": false,
+      "credentialValuesEmbedded": false,
+      "liveMcpInvocation": false,
+      "providerProductCall": false,
+      "packagePublished": false,
+      "productionGatewayMutation": false
+    },
+    "expectedStatus": "pass"
+  },
+  "scenarios": [
+    {
+      "id": "coolify-devnet-public-demo-pass",
+      "kind": "positive"
+    },
+    {
+      "id": "mainnet-claim-denied",
+      "kind": "negative",
+      "claims": {
+        "mainnetReady": true
+      },
+      "boundaries": {
+        "mainnetAccess": true
+      },
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "payment-settlement-denied",
+      "kind": "negative",
+      "claims": {
+        "settlementEnabled": true,
+        "paymentEnabled": true
+      },
+      "boundaries": {
+        "paymentRailAccess": true,
+        "settlementAccess": true
+      },
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "missing-health-route-denied",
+      "kind": "negative",
+      "verifiedRoutes": [
+        "/",
+        "/adl-validation-ui.html"
+      ],
+      "healthPath": "",
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "credential-value-denied",
+      "kind": "negative",
+      "environmentContract": [
+        {
+          "name": "COOLIFY_TOKEN",
+          "required": true,
+          "value": "secret-value"
+        }
+      ],
+      "boundaries": {
+        "credentialValuesEmbedded": true
+      },
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "provider-mcp-denied",
+      "kind": "negative",
+      "claims": {
+        "liveMcpEnabled": true,
+        "providerProductCallsEnabled": true
+      },
+      "boundaries": {
+        "liveMcpInvocation": true,
+        "providerProductCall": true
+      },
+      "expectedStatus": "fail"
+    },
+    {
+      "id": "unsafe-production-gateway-denied",
+      "kind": "negative",
+      "claims": {
+        "productionReady": true
+      },
+      "boundaries": {
+        "productionGatewayMutation": true
+      },
+      "expectedStatus": "fail"
+    }
+  ]
+}
