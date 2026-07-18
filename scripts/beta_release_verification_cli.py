@@ -41,23 +41,45 @@ OPTIONAL_ENV_ARTIFACTS = {
 REQUIRED_BOUNDARY_FALSE = (
     "liveRuntimeActivation",
     "networkAccess",
+    "networkAccessUsed",
     "credentialAccess",
+    "credentialAccessUsed",
+    "credentialPersisted",
     "mcpInvocation",
     "paymentAccess",
     "providerApiAccess",
+    "providerApiAccessUsed",
     "devnetAccess",
+    "devnetAccessUsed",
     "productionGatewayAccess",
     "mainnetAccess",
+    "mainnetAccessUsed",
     "externalSpend",
     "deploymentPublished",
     "packagePublished",
     "hostedServiceUsed",
+    "hostedServiceUsedByThisScript",
     "publicExposure",
     "walletAccess",
+    "walletAccessUsed",
     "paymentRailAccess",
+    "paymentRailAccessUsed",
     "facilitatorAccess",
+    "facilitatorAccessUsed",
     "settlementAccess",
+    "settlementAccessUsed",
     "liveMcpInvocation",
+    "liveMcpInvocationUsed",
+    "validatorStartedByThisScript",
+    "containerStarted",
+    "containerStartedByThisScript",
+    "dockerPulledByThisScript",
+    "coolifyMutated",
+    "coolifyMutatedByThisScript",
+    "dependenciesInstalled",
+    "dependencyPulls",
+    "vpsMutation",
+    "vpsMutatedByThisScript",
 )
 UNSAFE_KEYS_NORMALIZED = {
     "apikey",
@@ -273,15 +295,21 @@ def failed_negative_results(doc: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
+def boundary_findings(boundaries: Any, path: str) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    if not isinstance(boundaries, dict):
+        return findings
+    for field in REQUIRED_BOUNDARY_FALSE:
+        if field in boundaries and boundaries.get(field) is not False:
+            findings.append(finding(f"{path}.{field}", f"{field} must be false."))
+    return findings
+
+
 def evidence_guardrail_findings(key: str, doc: dict[str, Any]) -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
     if doc.get("status") not in ALLOWED_TOP_LEVEL_STATUS:
         findings.append(finding(f"{key}.status", "Required evidence artifact must have a passing or candidate-ready top-level status."))
-    boundaries = doc.get("boundaries", {})
-    if isinstance(boundaries, dict):
-        for field in REQUIRED_BOUNDARY_FALSE:
-            if field in boundaries and boundaries.get(field) is not False:
-                findings.append(finding(f"{key}.boundaries.{field}", f"{field} must be false."))
+    findings.extend(boundary_findings(doc.get("boundaries", {}), f"{key}.boundaries"))
 
     for field in UNSAFE_FLAG_FIELDS:
         if doc.get(field) not in (None, False):
@@ -293,11 +321,8 @@ def evidence_guardrail_findings(key: str, doc: dict[str, Any]) -> list[dict[str,
         for field in UNSAFE_FLAG_FIELDS:
             if result.get(field) not in (None, False):
                 findings.append(finding(f"{key}.results[{index}].{field}", f"{field} must be false or absent in passing evidence."))
-        boundaries = result.get("boundaryStatus", {})
-        if isinstance(boundaries, dict):
-            for field in REQUIRED_BOUNDARY_FALSE:
-                if field in boundaries and boundaries.get(field) is not False:
-                    findings.append(finding(f"{key}.results[{index}].boundaryStatus.{field}", f"{field} must be false."))
+        findings.extend(boundary_findings(result.get("boundaryStatus", {}), f"{key}.results[{index}].boundaryStatus"))
+        findings.extend(boundary_findings(result.get("boundaries", {}), f"{key}.results[{index}].boundaries"))
         findings.extend(sensitive_payload_findings(result, f"{key}.results[{index}]"))
         findings.extend(unsafe_claim_findings(result, f"{key}.results[{index}]"))
     return findings

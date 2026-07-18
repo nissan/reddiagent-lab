@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 
+import copy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +54,27 @@ def assert_positive_mutation_fails(mutator, expected_path: str, profile: str = "
     scenario = positive_scenario(profile)
     mutator(scenario)
     result = beta_release_verification_cli.build_result(scenario, beta_release_verification_cli.source_commit())
+    assert result["status"] == "fail"
+    assert expected_path in {finding["path"] for finding in result["findings"]}
+
+
+def artifact_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def assert_required_artifact_mutation_fails(artifact_key: str, mutator, expected_path: str) -> None:
+    scenario = positive_scenario("full")
+    original_path = ROOT / beta_release_verification_cli.OPTIONAL_ENV_ARTIFACTS[artifact_key]
+    mutated_doc = json.loads(original_path.read_text())
+    mutator(mutated_doc)
+    with tempfile.TemporaryDirectory(prefix="beta-verifier-artifact-") as tmp:
+        mutated_path = Path(tmp) / f"{artifact_key}.json"
+        mutated_path.write_text(json.dumps(mutated_doc, indent=2, sort_keys=True) + "\n")
+        expected_hashes = copy.deepcopy(scenario["expectedArtifactHashes"])
+        expected_hashes.append({"path": str(mutated_path), "sha256": artifact_sha256(mutated_path)})
+        scenario["artifactPathOverrides"] = {artifact_key: str(mutated_path)}
+        scenario["expectedArtifactHashes"] = expected_hashes
+        result = beta_release_verification_cli.build_result(scenario, beta_release_verification_cli.source_commit())
     assert result["status"] == "fail"
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
@@ -120,6 +144,41 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"operatorFacingNextStep": "Deployment completed."}), "operatorFacingNextStep")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"expectedArtifactHashes": []}), "artifacts.handoff.expectedSha256")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"expectedArtifactHashes": []}), "artifacts.surfpool.expectedSha256", "full")
+    assert_required_artifact_mutation_fails(
+        "surfpool",
+        lambda doc: doc["boundaries"].update({"networkAccessUsed": True}),
+        "surfpool.boundaries.networkAccessUsed",
+    )
+    assert_required_artifact_mutation_fails(
+        "surfpool",
+        lambda doc: doc["boundaries"].update({"validatorStartedByThisScript": True}),
+        "surfpool.boundaries.validatorStartedByThisScript",
+    )
+    assert_required_artifact_mutation_fails(
+        "surfpool",
+        lambda doc: doc["results"][0]["boundaries"].update({"devnetAccess": True}),
+        "surfpool.results[0].boundaries.devnetAccess",
+    )
+    assert_required_artifact_mutation_fails(
+        "docker",
+        lambda doc: doc["boundaries"].update({"dependenciesInstalled": True}),
+        "docker.boundaries.dependenciesInstalled",
+    )
+    assert_required_artifact_mutation_fails(
+        "docker",
+        lambda doc: doc["results"][0]["boundaries"].update({"containerStarted": True}),
+        "docker.results[0].boundaries.containerStarted",
+    )
+    assert_required_artifact_mutation_fails(
+        "coolify",
+        lambda doc: doc["boundaries"].update({"networkAccessUsed": True}),
+        "coolify.boundaries.networkAccessUsed",
+    )
+    assert_required_artifact_mutation_fails(
+        "coolify",
+        lambda doc: doc["boundaries"].update({"coolifyMutatedByThisScript": True}),
+        "coolify.boundaries.coolifyMutatedByThisScript",
+    )
 
     print("PASS beta release verification CLI")
     return 0
