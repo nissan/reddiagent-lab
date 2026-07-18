@@ -1,0 +1,990 @@
+{
+  "boundaries": {
+    "credentialAccess": false,
+    "deterministicLocalFixturesOnly": true,
+    "devnetAccess": false,
+    "externalSpend": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "operatorDecisionPackage": true,
+    "paymentAccess": false,
+    "productionGatewayAccess": false,
+    "providerApiAccess": false
+  },
+  "findings": [],
+  "issue": 256,
+  "mainnetStatement": "Production and mainnet enablement remain not approved; this package records only local beta operator decisions.",
+  "mode": "beta-local-operator-decision-package",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:41:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "operator-approve-decision-pass",
+      "kind": "positive",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "pass"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "hold",
+      "decisionTimestamp": "fixture://2026-07-18T06:42:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "operator-hold-decision-pass",
+      "kind": "positive",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "pass"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "rollback",
+      "decisionTimestamp": "fixture://2026-07-18T06:43:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "operator-rollback-decision-pass",
+      "kind": "positive",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "pass"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:44:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "operatorIdentity",
+          "reason": "Operator identity is required."
+        }
+      ],
+      "id": "missing-operator-identity-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": null,
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "rollback",
+      "decisionTimestamp": "fixture://2026-07-18T06:45:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "rollbackCue",
+          "reason": "Rollback decisions require an explicit rollback cue."
+        }
+      ],
+      "id": "missing-rollback-cue-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:46:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "releaseId",
+          "reason": "Decision release id must match the reviewed package."
+        }
+      ],
+      "id": "stale-review-package-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-stale",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": true,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:47:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "liveRuntimeRequested",
+          "reason": "Live runtime requests are out of scope."
+        },
+        {
+          "path": "boundaryStatus.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must be false."
+        }
+      ],
+      "id": "live-runtime-request-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": true,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": true,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:48:00Z",
+      "devnetRequested": true,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "devnetRequested",
+          "reason": "Devnet requests are not part of this local decision package."
+        },
+        {
+          "path": "boundaryStatus.devnetAccess",
+          "reason": "devnetAccess must be false."
+        }
+      ],
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": true,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": true,
+        "providerApiAccess": false
+      },
+      "decision": "approve",
+      "decisionTimestamp": "fixture://2026-07-18T06:49:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "mainnetRequested",
+          "reason": "Mainnet requests require fresh Nissan approval."
+        },
+        {
+          "path": "productionEnabled",
+          "reason": "Production enablement is not allowed."
+        },
+        {
+          "path": "mainnetEnabled",
+          "reason": "Mainnet enablement is not allowed."
+        },
+        {
+          "path": "boundaryStatus.productionGatewayAccess",
+          "reason": "productionGatewayAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.mainnetAccess",
+          "reason": "mainnetAccess must be false."
+        }
+      ],
+      "id": "mainnet-production-claim-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": true,
+      "mainnetRequested": true,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": true,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    },
+    {
+      "boundaryStatus": {
+        "credentialAccess": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "mcpInvocation": false,
+        "networkAccess": false,
+        "operatorDecisionPackage": true,
+        "paymentAccess": false,
+        "productionGatewayAccess": false,
+        "providerApiAccess": false
+      },
+      "decision": "hold",
+      "decisionTimestamp": "fixture://2026-07-18T06:50:00Z",
+      "devnetRequested": false,
+      "evidenceHashes": [
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-review-ui.json",
+          "purpose": "Pinned #246 beta review UI/package artifact.",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package.json",
+          "purpose": "Source operator dry-run package artifact.",
+          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-decision-package-scenarios.json",
+          "purpose": "Operator decision package scenario inputs.",
+          "sha256": "b525c44b29df92de6dd151885bab34699fa2ef04c2adf5cc6301cc32e6957b78"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate.json",
+          "purpose": "Pinned beta RC gate artifact from #237.",
+          "sha256": "7959dd9924b07ebb7fc50f671b88b5dace49244d04c6e9515b8d611a8b57d6c5"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-local-runtime-rc-gate-scenarios.json",
+          "purpose": "RC gate scenario inputs.",
+          "sha256": "fe72341ad8a8b327c6cf48e9ca4b15346b1705a8ac6f3ec4c067b2ec751858f6"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-release-readiness.json",
+          "purpose": "Readiness, approvals, rollback, cost, and privacy evidence.",
+          "sha256": "52c218baf138c29e3a8c296caab43d2048181c32c3023b8f12d9f9f96cb938e2"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-control-harness.json",
+          "purpose": "Operator-control trace evidence.",
+          "sha256": "4cc0b690fc6c464b6ad354ee1b670e6b2e97afa09a279a7c8d39596cfbed3c2b"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Selected local runtime dry-run evidence.",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/beta-operator-dry-run-package-scenarios.json",
+          "purpose": "Operator package scenario inputs.",
+          "sha256": "e76efaea2eca1d3006de4ea87c4b605917e9874dbc94098d28238d0378be71bf"
+        }
+      ],
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenario.rawSecret",
+          "reason": "Credential-like or private payload key is not allowed."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "liveRuntimeRequested": false,
+      "mainnetEnabled": false,
+      "mainnetRequested": false,
+      "operatorIdentity": "operator://local-beta",
+      "productionEnabled": false,
+      "releaseId": "reddiagent-beta-0",
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "selectedAdlPath": "examples/tool-agent.yaml",
+      "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+      "status": "fail"
+    }
+  ],
+  "reviewPackageEvidence": {
+    "currentEvidenceMatchesPinned": true,
+    "releaseId": "reddiagent-beta-0",
+    "selectedAdlPath": "examples/tool-agent.yaml",
+    "source": "tests/fixtures/beta-review-ui.json",
+    "sourcePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+    "status": "pass"
+  },
+  "status": "pass",
+  "summary": {
+    "approveDecisions": 6,
+    "failClosedScenarios": 7,
+    "holdDecisions": 2,
+    "negativeScenarios": 7,
+    "positiveScenarios": 3,
+    "rollbackDecisions": 2
+  }
+}
