@@ -28,6 +28,7 @@ The local-python runner can currently prove:
 - bounded provider-backed sandbox prototype evidence for fake/local provider budget, eval, and trace gates.
 - bounded MCP/devnet payment handoff prototype evidence for reviewed MCP allowlists, devnet-only payment handoff policy, receipt evidence, rollback planning, and mainnet fail-closed semantics.
 - Surfpool-first local Solana validator lane evidence for validator startup, scenario execution, receipt capture, teardown, rollback, local cluster/account/program provenance, fallback rationale, and fail-closed network/payment boundaries.
+- Coolify hosted staging/operator UI lane evidence for local-first selection, app/service boundary, source/image pinning, env contracts without values, private access controls, logs, storage cleanup, teardown, rollback, and operator UI evidence expectations.
 - beta release readiness evidence for entry/exit criteria, observability, operator controls, rollback, incident notes, and explicit mainnet denial.
 - beta local runtime RC gate evidence that merges local runtime execution, operator-control traces, readiness criteria, cost, privacy redaction, rollback stop proof, and mainnet-not-approved language.
 - beta operator local dry-run package evidence that binds the RC gate to an operator identity, selected ADL path, operator command transcript, stop/rollback dry-run transcript, and review evidence index.
@@ -63,6 +64,7 @@ The local-python runner can currently prove:
 | Live MCP/devnet handoff prototype report | `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md` | Reviewed MCP allowlist and simulated devnet payment handoff scenarios pass while mainnet and unreviewed MCP server refs fail closed. |
 | Surfpool validator lane report | `tests/SURFPOOL-VALIDATOR-LANE-REPORT.md`; `tests/test_surfpool_validator_lane.py` | Surfpool-first local validator evidence records startup, scenario, receipt, teardown, rollback, local state provenance, fallback rationale, deltas, and fail-closed unsafe cluster/payment/wallet/credential paths. |
 | Docker testing lane report | `tests/DOCKER-TESTING-LANE-REPORT.md`; `tests/test_docker_testing_lane.py` | Docker local/VPS evidence records selection criteria, pinned image digests, env contract, network exposure, redacted logs, ephemeral volume cleanup, teardown, rollback, and fail-closed unsafe image/network/secret/live-network/payment paths without pulling images or starting containers. |
+| Coolify staging lane report | `tests/COOLIFY-STAGING-LANE-REPORT.md`; `tests/test_coolify_staging_lane.py` | Coolify hosted staging/operator UI evidence records local-first selection, app/service boundary, source/image pins, env contracts without values, access controls, logs, storage cleanup, teardown, rollback, and fail-closed unsafe public/secret/live-network/payment paths without deploying or mutating Coolify. |
 | Beta operator-control harness report | `tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md` | Local-only enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial controls are exercised with fail-closed fixtures. |
 | Beta release readiness runbook | `docs/BETA-RELEASE-READINESS-RUNBOOK.md` | Operator-facing beta entry/exit, observability, controls, rollback, cost, safety, privacy, incident, and mainnet denial runbook. |
 | Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
@@ -103,6 +105,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_surfpool_validator_lane.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_docker_testing_lane.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_coolify_staging_lane.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_control_harness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_local_runtime_rc_gate.py
@@ -142,6 +145,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] MCP/devnet handoff prototype evidence keeps reviewed allowlists, rollback/cleanup, devnet/mainnet distinction, and secret-redaction assertions green before live infrastructure is touched.
 - [ ] Surfpool local validator lane evidence keeps localnet-only cluster selection, Surfpool-first/fallback rationale, startup/scenario/receipt/teardown capture, account/program provenance, deltas, rollback cleanup, and mainnet denial green before devnet is considered.
 - [ ] Docker local/VPS lane evidence keeps local-first selection, VPS-only escalation criteria, pinned image digests, env names without values, loopback/isolated networking, redacted logs, ephemeral volume cleanup, teardown, rollback, and mainnet denial green before containers or VPS hosts are touched.
+- [ ] Coolify hosted staging/operator UI lane evidence keeps local-first selection, Coolify-only escalation criteria, app/service boundary, pinned source/image inputs, env names without values, private access controls, redacted logs, storage cleanup, teardown, rollback, operator UI evidence, and mainnet denial green before hosted services are touched.
 - [ ] Beta operator-control harness evidence proves enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial paths before beta runtime use.
 - [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 - [ ] Beta local runtime RC gate evidence links the selected ADL runtime path to current readiness, operator traces, cost/privacy review, rollback stop evidence, and mainnet-denial proof.

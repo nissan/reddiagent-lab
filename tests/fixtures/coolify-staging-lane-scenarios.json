@@ -1,0 +1,248 @@
+{
+  "defaults": {
+    "selectionCriteria": {
+      "useLocalWhen": "Static HTML, local Python validation, or Docker evidence can prove the requested operator behavior.",
+      "useCoolifyWhen": "A queued issue needs persistent reachable staging, authenticated operator UI review, or end-to-end uptime evidence after local/Docker validation passes.",
+      "selectedBecause": "Local/static evidence is enough unless the queued task explicitly requires hosted operator UI evidence."
+    },
+    "serviceBoundary": {
+      "type": "static-ui-artifact",
+      "appName": "reddiagent-operator-review",
+      "serviceNames": [
+        "operator-ui"
+      ],
+      "runtimeBoundary": "No live runtime is started by this evidence lane."
+    },
+    "source": {
+      "repository": "reddinft/reddiagent-lab",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sourcePinning": "full-git-sha"
+    },
+    "image": {
+      "reference": "ghcr.io/reddinft/reddiagent-operator-ui@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pullAllowed": false
+    },
+    "envContract": [
+      {
+        "name": "REDDIAGENT_ENV",
+        "required": true,
+        "secretHandling": false
+      },
+      {
+        "name": "COOLIFY_OPERATOR_UI_PASSWORD",
+        "required": true,
+        "secretHandling": "provided-out-of-band"
+      },
+      {
+        "name": "REDDIAGENT_EVIDENCE_MODE",
+        "required": true,
+        "secretHandling": false
+      }
+    ],
+    "network": {
+      "publicExposure": false,
+      "ingress": "none",
+      "allowedHostnames": [],
+      "tlsRequiredWhenHosted": true
+    },
+    "accessControls": {
+      "authenticationRequired": true,
+      "operatorAllowlistRequired": true,
+      "anonymousAccessAllowed": false
+    },
+    "logs": {
+      "retained": true,
+      "redacted": true,
+      "retentionDays": 7
+    },
+    "storage": {
+      "persistentVolume": false,
+      "cleanupVerified": true,
+      "retentionDecision": "ephemeral-by-default"
+    },
+    "teardown": {
+      "captured": true,
+      "coolifyResourcesRemoved": true,
+      "dnsRemoved": true
+    },
+    "rollback": {
+      "available": true,
+      "cleanupVerified": true,
+      "previousSourcePinned": true
+    },
+    "operatorUiEvidence": {
+      "requiredWhenHosted": true,
+      "screenshotRequired": true,
+      "accessLogRequired": true,
+      "liveSettlementClaimed": false
+    },
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "liveNetworkEnabled": false,
+    "productionClaimed": false,
+    "deploymentClaimed": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "settlementClaimed": false,
+    "boundaryStatus": {
+      "coolifyMutated": false,
+      "hostedServiceUsed": false,
+      "deploymentPublished": false,
+      "publicExposure": false,
+      "credentialAccess": false,
+      "credentialPersisted": false,
+      "walletAccess": false,
+      "paymentRailAccess": false,
+      "facilitatorAccess": false,
+      "settlementAccess": false,
+      "liveMcpInvocation": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "mainnetAccess": false,
+      "packagePublished": false,
+      "externalSpend": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "local-static-ui-pass",
+      "laneMode": "local-only",
+      "image": {},
+      "selectionCriteria": {
+        "selectedBecause": "The operator can review the generated static beta UI artifact and evidence JSON locally."
+      }
+    },
+    {
+      "id": "coolify-staging-required-pass",
+      "laneMode": "coolify-staging-required",
+      "selectionCriteria": {
+        "selectedBecause": "A queued beta review needs stable authenticated uptime that local HTML and Docker evidence cannot prove."
+      },
+      "serviceBoundary": {
+        "type": "coolify-app",
+        "appName": "reddiagent-operator-staging",
+        "runtimeBoundary": "Coolify app boundary is defined, but this script records static evidence only."
+      },
+      "network": {
+        "ingress": "operator-ip-allowlist"
+      }
+    },
+    {
+      "id": "unpinned-source-denied",
+      "laneMode": "coolify-staging-required",
+      "source": {
+        "commit": "main"
+      }
+    },
+    {
+      "id": "unpinned-image-denied",
+      "laneMode": "coolify-staging-required",
+      "image": {
+        "reference": "ghcr.io/reddinft/reddiagent-operator-ui:latest",
+        "digest": "latest",
+        "pullAllowed": false
+      }
+    },
+    {
+      "id": "public-exposure-denied",
+      "laneMode": "coolify-staging-required",
+      "network": {
+        "publicExposure": true,
+        "ingress": "public"
+      },
+      "accessControls": {
+        "anonymousAccessAllowed": true
+      },
+      "boundaryStatus": {
+        "publicExposure": true
+      }
+    },
+    {
+      "id": "secret-env-value-denied",
+      "laneMode": "coolify-staging-required",
+      "envContract": [
+        {
+          "name": "COOLIFY_OPERATOR_UI_PASSWORD",
+          "required": true,
+          "secretHandling": "provided-out-of-band",
+          "value": "password=redacted-fixture-marker"
+        }
+      ]
+    },
+    {
+      "id": "missing-teardown-rollback-denied",
+      "laneMode": "coolify-staging-required",
+      "storage": {
+        "persistentVolume": true,
+        "cleanupVerified": false
+      },
+      "teardown": {
+        "captured": false,
+        "coolifyResourcesRemoved": false
+      },
+      "rollback": {
+        "available": false,
+        "cleanupVerified": false
+      }
+    },
+    {
+      "id": "live-network-denied",
+      "laneMode": "coolify-staging-required",
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "liveNetworkEnabled": true,
+      "boundaryStatus": {
+        "devnetAccess": true,
+        "mainnetAccess": true
+      }
+    },
+    {
+      "id": "production-deployment-claim-denied",
+      "laneMode": "coolify-staging-required",
+      "productionClaimed": true,
+      "deploymentClaimed": true,
+      "boundaryStatus": {
+        "coolifyMutated": true,
+        "hostedServiceUsed": true,
+        "deploymentPublished": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "laneMode": "coolify-staging-required",
+      "Authorization": "Bearer redacted-fixture-marker"
+    },
+    {
+      "id": "operator-ui-evidence-missing-denied",
+      "laneMode": "coolify-staging-required",
+      "operatorUiEvidence": {
+        "requiredWhenHosted": false,
+        "screenshotRequired": false,
+        "accessLogRequired": false,
+        "liveSettlementClaimed": true
+      }
+    },
+    {
+      "id": "payment-settlement-request-denied",
+      "laneMode": "coolify-staging-required",
+      "walletRequested": true,
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "paymentAccessRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true,
+      "settlementClaimed": true,
+      "boundaryStatus": {
+        "walletAccess": true,
+        "paymentRailAccess": true,
+        "facilitatorAccess": true,
+        "settlementAccess": true
+      }
+    }
+  ]
+}
