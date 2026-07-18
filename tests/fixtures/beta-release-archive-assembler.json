@@ -36,7 +36,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -351,7 +351,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "pass",
       "verdict": "accept"
     },
@@ -362,7 +362,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "28d6a842902a30a27db8ba077c070bf3563956aff3ac3c8301e331d24105d721"
+        "manifestSha256": "0fade84f7bc92779fb9ef991109cb627864bcbd5d091ec87baaf8a7abd881d12"
       },
       "boundaries": {
         "archivePublished": false,
@@ -498,7 +498,7 @@
         "sha256": null
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -509,7 +509,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -829,7 +829,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -840,7 +840,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "26cbe67a7aadf951e6dcbfe6b0dd290c2e007cb8ca93ae008b58d6d2e306f382"
+        "manifestSha256": "f001e712269cc49b0c9db36bc8fcd79c2e294044876459679b5401874213ed99"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1220,7 +1220,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1231,7 +1231,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1551,7 +1551,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1562,7 +1562,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "a34a013d3dde7b00c949b945250dc8ed25e3ee5e0e95c04098075c0e632fb80f"
+        "manifestSha256": "9092f3b2512bf05d802bfbbf894fd07d72e8086815e0e541fc7934e66a9034ed"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1765,7 +1765,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1776,7 +1776,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "64cdbfc358157d1be00bd662a7dbd4a1a11c60ec3858bba19c5ce2d63e5c653d"
+        "manifestSha256": "35b6a0bd1458c8c4fca5376c8414670247f035d31d0218bf124842c2c21c45d7"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1979,7 +1979,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1990,7 +1990,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2322,7 +2322,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2333,7 +2333,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2657,7 +2657,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2668,7 +2668,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2992,7 +2992,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3003,7 +3003,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -3339,7 +3339,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3350,7 +3350,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -3678,7 +3678,7 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3689,7 +3689,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "9dd3557c2ff060709a47447fd551305e8cb0c77093d7898fbcb3bbecb163f9f9"
+        "manifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -4009,12 +4009,12 @@
         "sha256": "8464ef66e428eb68b0ea23ab183fb1475860e016d0ebc9380264aadfa7d3d123"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+      "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
       "status": "fail",
       "verdict": "reject"
     }
   ],
-  "sourceCommit": "195f3306df348013baf3aae764aa635c155ca1f6",
+  "sourceCommit": "f7c049dc16d0cbd50af9dd59f04fada650acdab1",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,

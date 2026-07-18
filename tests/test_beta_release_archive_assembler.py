@@ -167,6 +167,20 @@ def main() -> int:
     assert "archivePublished" in finding_paths["unsafe-archive-publish-reject-denied"]
     assert results["unsafe-archive-publish-reject-denied"]["verdict"] == "reject"
 
+    with tempfile.TemporaryDirectory(prefix="beta-archive-extra-") as tmp:
+        extra = Path(tmp) / "credential-leak.txt"
+        extra.write_text("token=abc123\n")
+        scenario = positive_scenario()
+        scenario["archiveFiles"] = list(positive["includedFiles"]) + [str(extra)]
+        scenario["expectedIncludedFileHashes"] = list(scenario["expectedIncludedFileHashes"]) + [
+            {"path": str(extra), "sha256": beta_release_archive_assembler.digest(extra)}
+        ]
+        result = beta_release_archive_assembler.build_result(scenario, beta_release_archive_assembler.source_commit())
+        assert result["status"] == "fail"
+        paths = {finding["path"] for finding in result["findings"]}
+        assert "archiveFiles" in paths
+        assert f"archiveFiles.{extra}.content" in paths
+
     assert_positive_mutation_fails(lambda scenario: scenario.update({"expectedReleaseCandidateHashes": []}), "releaseCandidateManifest.expectedSha256")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"expectedIncludedFileHashes": []}), "contentAddressedInventory.docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md.expectedSha256")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"mainnetRequested": True}), "mainnetRequested")

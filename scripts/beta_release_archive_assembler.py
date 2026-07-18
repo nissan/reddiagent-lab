@@ -266,6 +266,29 @@ def expected_archive_paths(scenario: dict[str, Any], rc_result: dict[str, Any], 
     return sorted(set(rc_result.get("includedFiles", [])) | {rc_path})
 
 
+def allowed_archive_path_findings(archive_paths: list[str], rc_result: dict[str, Any], rc_path: str) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    allowed = set(rc_result.get("includedFiles", [])) | {rc_path}
+    for path_text in sorted(set(archive_paths) - allowed):
+        findings.append(finding("archiveFiles", f"Archive file `{path_text}` is not part of the accepted release-candidate manifest."))
+    return findings
+
+
+def archive_content_findings(paths: list[str]) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    for path_text in paths:
+        path = ROOT / path_text
+        if not path.exists() or not path.is_file():
+            continue
+        try:
+            payload = path.read_text(errors="ignore")
+        except OSError as exc:
+            findings.append(finding(f"archiveFiles.{path_text}", f"Archive file `{path_text}` could not be inspected: {exc}"))
+            continue
+        findings.extend(sensitive_payload_findings(payload, f"archiveFiles.{path_text}.content"))
+    return findings
+
+
 def inventory_for(paths: list[str], expected: dict[str, str]) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
     inventory: list[dict[str, Any]] = []
     findings: list[dict[str, str]] = []
@@ -351,7 +374,10 @@ def build_result(scenario: dict[str, Any], commit: str) -> dict[str, Any]:
     findings.extend(rc_manifest_findings(rc_manifest))
     rc_result = accepted_rc_result(rc_manifest) or {}
     archive_paths = expected_archive_paths(scenario, rc_result, rc_path)
+    allowed_paths = set(rc_result.get("includedFiles", [])) | {rc_path}
+    findings.extend(allowed_archive_path_findings(archive_paths, rc_result, rc_path))
     findings.extend(archive_evidence_findings(archive_paths))
+    findings.extend(archive_content_findings(sorted(set(archive_paths) - allowed_paths)))
     inventory, inventory_findings = inventory_for(archive_paths, expected_hash_map(scenario, "expectedIncludedFileHashes"))
     findings.extend(inventory_findings)
     findings.extend(extra_artifact_findings(scenario, archive_paths))
