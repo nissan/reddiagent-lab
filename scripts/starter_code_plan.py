@@ -1043,16 +1043,6 @@ def generation_artifact(
     }
 
 
-def require_package_under_output(output_dir: Path, package_dir: Path) -> Path:
-    package_root = (output_dir / package_dir).resolve()
-    output_root = output_dir.resolve()
-    if output_root != package_root and output_root not in package_root.parents:
-        raise ValueError("resolved package directory escaped --output-dir")
-    if not package_root.exists() or not package_root.is_dir():
-        raise ValueError("generated package is missing under --output-dir")
-    return package_root
-
-
 def assert_generated_files_under_output(output_dir: Path, generated_manifest: dict) -> None:
     output_root = output_dir.resolve()
     package_root = Path(generated_manifest["packageRoot"]).resolve()
@@ -1226,15 +1216,7 @@ def execution_smoke_beta(args: argparse.Namespace) -> tuple[int, dict]:
         }
     doc = read_adl(source_path)
     package_dir = safe_relative_package_dir(args.package_dir, slugify(plan["agent"]))
-    if args.skip_generation:
-        package_root = require_package_under_output(output_dir, package_dir)
-        generated_manifest = {
-            "packageRoot": str(package_root),
-            "fileCount": 0,
-            "files": [],
-        }
-    else:
-        generated_manifest = write_starter_package(plan, source_path, doc, output_dir, package_dir)
+    generated_manifest = write_starter_package(plan, source_path, doc, output_dir, package_dir)
     assert_generated_files_under_output(output_dir, generated_manifest)
     package_root = Path(generated_manifest["packageRoot"])
     command_transcript = [
@@ -1263,7 +1245,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, help="Existing explicit temp output directory for beta generation.")
     parser.add_argument("--package-dir", default="", help="Safe relative package directory under --output-dir.")
     parser.add_argument("--delete-after", action="store_true", help="Delete generated temp package after artifact capture.")
-    parser.add_argument("--skip-generation", action="store_true", help="Smoke an existing generated package under --output-dir.")
     parser.add_argument("--request-dependency-install", action="store_true")
     parser.add_argument("--request-provider-call", action="store_true")
     parser.add_argument("--request-live-mcp", action="store_true")
@@ -1276,9 +1257,6 @@ def main() -> int:
     args = parse_args()
     if args.generate_beta and args.execution_smoke_beta:
         print("--generate-beta and --execution-smoke-beta are mutually exclusive", file=sys.stderr)
-        return 2
-    if args.skip_generation and not args.execution_smoke_beta:
-        print("--skip-generation requires --execution-smoke-beta", file=sys.stderr)
         return 2
     if args.generate_beta:
         try:

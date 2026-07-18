@@ -115,16 +115,31 @@ def main() -> int:
         assert deleted_artifact["cleanupTranscript"][1]["exitCode"] == 0
         assert not Path(deleted_artifact["generatedFileManifest"]["packageRoot"]).exists()
 
+    removed_skip = run_command(
+        "--execution-smoke-beta",
+        "--skip-generation",
+        "--output-dir",
+        tempfile.gettempdir(),
+        "examples/simple-agent.yaml",
+    )
+    assert removed_skip.returncode == 2
+    assert "unrecognized arguments: --skip-generation" in removed_skip.stderr
+
     with tempfile.TemporaryDirectory(prefix="reddiagent-starter-smoke-") as temp:
-        missing_package = run_command(
+        package_root = Path(temp) / "simple-research-helper"
+        (package_root / "tests").mkdir(parents=True)
+        (package_root / "src").mkdir()
+        (package_root / "tests" / "test_static_contract.py").write_text("raise SystemExit(0)\n")
+        (package_root / "tests" / "test_policy_eval_gates.py").write_text("raise SystemExit(0)\n")
+        (package_root / "src" / "agent_harness.py").write_text("raise SystemExit(0)\n")
+        existing_package = run_command(
             "--execution-smoke-beta",
-            "--skip-generation",
             "--output-dir",
             temp,
             "examples/simple-agent.yaml",
         )
-        assert missing_package.returncode == 2
-        assert "generated package is missing" in missing_package.stderr
+        assert existing_package.returncode == 2
+        assert "package directory already exists" in existing_package.stderr
 
     unsafe_dir = run_command(
         "--execution-smoke-beta",
