@@ -1,0 +1,150 @@
+{
+  "agent": "simple-research-helper",
+  "blockedLiveClaims": {
+    "dependencyInstall": false,
+    "deployment": false,
+    "liveMcpInvocation": false,
+    "mainnet": false,
+    "providerModelCall": false,
+    "walletPaymentSettlement": false,
+    "writeOutsideTempOutput": false
+  },
+  "budgetEvidence": {
+    "dependencyInstalls": 0,
+    "mainnetCalls": 0,
+    "mcpInvocations": 0,
+    "modelCalls": 0,
+    "networkRequests": 0,
+    "paymentRailCalls": 0,
+    "providerCalls": 0
+  },
+  "cleanupTranscript": [
+    {
+      "command": "rm -rf <temp-output-dir>/simple-research-helper",
+      "executed": false,
+      "reason": "Generated package is left in temp output for local smoke inspection by default.",
+      "step": "prepare-delete"
+    }
+  ],
+  "commandTranscript": [
+    {
+      "command": [
+        "<python>",
+        "tests/test_static_contract.py"
+      ],
+      "cwd": "<temp-output-dir>/simple-research-helper",
+      "exitCode": 0,
+      "label": "static-contract",
+      "status": "pass",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "<python>",
+        "tests/test_policy_eval_gates.py"
+      ],
+      "cwd": "<temp-output-dir>/simple-research-helper",
+      "exitCode": 0,
+      "label": "policy-eval-gates",
+      "status": "pass",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "<python>",
+        "src/agent_harness.py"
+      ],
+      "cwd": "<temp-output-dir>/simple-research-helper",
+      "exitCode": 0,
+      "label": "deterministic-harness",
+      "status": "pass",
+      "stderr": "",
+      "stdout": "{\n  \"agent\": \"simple-research-helper\",\n  \"boundaryFlags\": {\n    \"installsDependencies\": false,\n    \"mcpInvocation\": false,\n    \"networkAccess\": false,\n    \"paymentAccess\": false,\n    \"runtimeExecutionAllowed\": false\n  },\n  \"instructions\": \"Answer clearly. Say when you are uncertain. Do not use external tools.\",\n  \"prompt\": \"local beta smoke\",\n  \"status\": \"local-deterministic-response\"\n}\n"
+    }
+  ],
+  "dependencyInstallRequested": false,
+  "evalEvidence": {
+    "deterministicHarness": "pass",
+    "policyEvalGateInventory": "pass",
+    "staticContract": "pass"
+  },
+  "executionMode": "local-deterministic-smoke",
+  "format": "starter-package-execution-smoke-beta-artifact",
+  "generatedFileManifest": {
+    "fileCount": 6,
+    "files": [
+      {
+        "bytes": 59,
+        "path": "simple-research-helper/.env.example",
+        "sha256": "e7f1d15d9da3e78e4093b3ec54e38777c4b653fd00f01050a7e96631872a01ab",
+        "templateId": "starter.env_example"
+      },
+      {
+        "bytes": 391,
+        "path": "simple-research-helper/README.md",
+        "sha256": "775cf3e318aa0a8223c73f1abf9fd4c2efa67eeec70e87fb5494b33591485187",
+        "templateId": "starter.readme"
+      },
+      {
+        "bytes": 839,
+        "path": "simple-research-helper/agent.adl.yaml",
+        "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+        "templateId": "starter.adl_copy"
+      },
+      {
+        "bytes": 803,
+        "path": "simple-research-helper/src/agent_harness.py",
+        "sha256": "3d8647c2d008e5e4cac8541f68009c7898292d457bf6c7aab7d7d20a3092cb1d",
+        "templateId": "starter.python_harness"
+      },
+      {
+        "bytes": 284,
+        "path": "simple-research-helper/tests/test_policy_eval_gates.py",
+        "sha256": "ccd0e6ef25d5c0253f24c22ae76fb014c6167a15e6dae28a2eace307696acdb6",
+        "templateId": "starter.policy_eval_gate_tests"
+      },
+      {
+        "bytes": 590,
+        "path": "simple-research-helper/tests/test_static_contract.py",
+        "sha256": "d258d95222a71990dacc8ef5bdf0c641616ce01c7d283a8f7ca8bcac92ab293f",
+        "templateId": "starter.static_contract_test"
+      }
+    ],
+    "packageRoot": "<temp-output-dir>/simple-research-helper"
+  },
+  "installsDependencies": false,
+  "issue": 244,
+  "liveMcpRequested": false,
+  "livePaymentRequested": false,
+  "localExecutionAllowed": true,
+  "mainnetRequested": false,
+  "mcpInvocation": false,
+  "networkAccess": false,
+  "outputDir": "<temp-output-dir>",
+  "packageDir": "simple-research-helper",
+  "paymentAccess": false,
+  "providerModelCallRequested": false,
+  "runtimeExecutionAllowed": false,
+  "source": "examples/simple-agent.yaml",
+  "status": "passed",
+  "traceEvidence": [
+    {
+      "event": "static-contract",
+      "exitCode": 0,
+      "status": "pass"
+    },
+    {
+      "event": "policy-eval-gates",
+      "exitCode": 0,
+      "status": "pass"
+    },
+    {
+      "event": "deterministic-harness",
+      "exitCode": 0,
+      "status": "pass"
+    }
+  ],
+  "writesFiles": true
+}

@@ -35,6 +35,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_prosumer_builder_static_export.py
 "$PYTHON" tests/test_starter_code_plan.py
 "$PYTHON" tests/test_starter_code_generation_beta.py
+"$PYTHON" tests/test_starter_package_execution_smoke_beta.py
 "$PYTHON" tests/test_local_runner_plugin_interface.py
 "$PYTHON" tests/test_local_runtime_prototype.py
 "$PYTHON" tests/test_provider_sandbox_prototype.py
