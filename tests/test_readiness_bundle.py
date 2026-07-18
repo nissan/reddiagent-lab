@@ -29,6 +29,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/BETA-LOCAL-RUNTIME-RC-GATE-REPORT.md",
     "tests/BETA-OPERATOR-DRY-RUN-PACKAGE-REPORT.md",
     "tests/BETA-REVIEW-UI-REPORT.md",
+    "tests/BETA-OPERATOR-DECISION-PACKAGE-REPORT.md",
     "docs/beta-review-ui.html",
     "tests/PROVIDER-ADAPTER-GENERATED-CODE-SANDBOX-BETA-REPORT.md",
     "tests/RAP-BRIDGE-LOCAL-DRY-RUN-REPORT.md",
@@ -50,6 +51,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/test_beta_local_runtime_rc_gate.py",
     "tests/test_beta_operator_dry_run_package.py",
     "tests/test_beta_review_ui.py",
+    "tests/test_beta_operator_decision_package.py",
     "tests/test_provider_adapter_generated_code_sandbox_beta.py",
     "tests/test_rap_bridge_local_dry_run.py",
     "--fail-on-required-gate",
@@ -79,6 +81,7 @@ REQUIRED_SMOKE_COMMANDS = [
     "tests/test_beta_local_runtime_rc_gate.py",
     "tests/test_beta_operator_dry_run_package.py",
     "tests/test_beta_review_ui.py",
+    "tests/test_beta_operator_decision_package.py",
     "tests/test_provider_adapter_generated_code_sandbox_beta.py",
     "tests/test_rap_bridge_local_dry_run.py",
 ]
