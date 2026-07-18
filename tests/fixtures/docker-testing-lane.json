@@ -1,0 +1,1442 @@
+{
+  "boundaries": {
+    "containerStartedByThisScript": false,
+    "credentialAccessUsed": false,
+    "deploymentPublished": false,
+    "deterministicLocalEvidenceOnly": true,
+    "devnetAccessUsed": false,
+    "dockerPulledByThisScript": false,
+    "externalSpendUsd": 0,
+    "facilitatorAccessUsed": false,
+    "liveMcpInvocationUsed": false,
+    "mainnetAccessUsed": false,
+    "networkAccessUsed": false,
+    "packagePublished": false,
+    "paymentRailAccessUsed": false,
+    "providerApiAccessUsed": false,
+    "settlementAccessUsed": false,
+    "vpsMutatedByThisScript": false,
+    "walletAccessUsed": false
+  },
+  "issue": 249,
+  "mainnetStatement": "Docker lane evidence does not enable production, live settlement, or Mainnet; Mainnet remains blocked until fresh Nissan approval.",
+  "mode": "docker-local-vps-testing-lane",
+  "parentEpic": 247,
+  "relatedEpic": 220,
+  "results": [
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "7fd9824497caf672",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [],
+      "id": "local-docker-static-pass",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "pass"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "vps-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment vps-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "f75e3919cb914add",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [],
+      "id": "vps-docker-selection-pass",
+      "selectionCriteria": {
+        "selectedBecause": "VPS Docker is selected only when long-running generated-package execution needs stable host parity.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "pass"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:latest"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "8e268fcf0fcd1d00",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "images[0].digest",
+          "reason": "Docker image references must include an exact sha256 digest."
+        }
+      ],
+      "id": "unpinned-image-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": true,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": true,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "bb0cd9ba0dc7fbf2",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "images[0].pullAllowed",
+          "reason": "This evidence lane must not pull images."
+        },
+        {
+          "path": "boundaryStatus.dependencyPulls",
+          "reason": "dependencyPulls must be false."
+        }
+      ],
+      "id": "dependency-pull-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "public",
+          "hostNetwork": true,
+          "publishedPorts": [
+            "0.0.0.0:8080:8080"
+          ]
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "7b9e29c4ca7c18b6",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "network.exposure",
+          "reason": "Network exposure must be loopback-only or isolated bridge."
+        },
+        {
+          "path": "network.hostNetwork",
+          "reason": "Host networking is not allowed."
+        },
+        {
+          "path": "network.publishedPorts",
+          "reason": "Docker lane must not publish external ports by default."
+        }
+      ],
+      "id": "host-network-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": true,
+            "secretHandling": "provided-out-of-band",
+            "value": "api key should not be stored"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "a29420f07ea5dd58",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "envContract[0].value",
+          "reason": "Environment contract must list names and requirements without secret values."
+        },
+        {
+          "path": "scenario.envContract[0].value",
+          "reason": "Credential, wallet, registry, facilitator, or secret-like values are not allowed in Docker lane evidence."
+        },
+        {
+          "path": "scenario.id",
+          "reason": "Credential, wallet, registry, facilitator, or secret-like values are not allowed in Docker lane evidence."
+        }
+      ],
+      "id": "secret-env-value-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "310d19e566c5cc76",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "scenario.Authorization",
+          "reason": "Credential, wallet, registry, facilitator, or secret-like keys are not allowed in Docker lane evidence."
+        },
+        {
+          "path": "scenario.Authorization",
+          "reason": "Credential, wallet, registry, facilitator, or secret-like values are not allowed in Docker lane evidence."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": false,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": false,
+          "containersRemoved": false,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "6e1fbac4d5c1d138",
+        "volumes": {
+          "cleanupVerified": false,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "volumes.cleanupVerified",
+          "reason": "Volume cleanup verification is required."
+        },
+        {
+          "path": "teardown.captured",
+          "reason": "Teardown evidence must be captured."
+        },
+        {
+          "path": "teardown.containersRemoved",
+          "reason": "Container cleanup verification is required."
+        },
+        {
+          "path": "rollback.cleanupVerified",
+          "reason": "Rollback cleanup must be verified."
+        }
+      ],
+      "id": "missing-cleanup-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": true,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": false,
+        "walletAccess": false
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "ee8919c8ca98a8bc",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "devnetRequested",
+          "reason": "Devnet is denied by default for Docker lane evidence."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "Mainnet remains blocked without fresh approval."
+        },
+        {
+          "path": "liveNetworkEnabled",
+          "reason": "Live network flags must be disabled by default."
+        },
+        {
+          "path": "boundaryStatus.devnetAccess",
+          "reason": "devnetAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.mainnetAccess",
+          "reason": "mainnetAccess must be false."
+        }
+      ],
+      "id": "live-network-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": true,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "vpsMutation": true,
+        "walletAccess": false
+      },
+      "environment": "vps-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment vps-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "a605a95f3b6a1313",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "productionClaimed",
+          "reason": "Docker lane evidence must not claim production enablement."
+        },
+        {
+          "path": "deploymentClaimed",
+          "reason": "Docker lane evidence must not claim deployment occurred."
+        },
+        {
+          "path": "boundaryStatus.vpsMutation",
+          "reason": "vpsMutation must be false."
+        },
+        {
+          "path": "boundaryStatus.deploymentPublished",
+          "reason": "deploymentPublished must be false."
+        }
+      ],
+      "id": "production-deployment-claim-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    },
+    {
+      "boundaries": {
+        "containerStarted": false,
+        "credentialAccess": false,
+        "credentialPersisted": false,
+        "dependencyPulls": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": true,
+        "hostedServiceUsed": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": true,
+        "providerApiAccess": false,
+        "settlementAccess": true,
+        "vpsMutation": false,
+        "walletAccess": true
+      },
+      "environment": "local-docker",
+      "evidence": {
+        "commands": [
+          {
+            "command": "docker compose -f tests/fixtures/docker-compose.reddiagent-local.yml config --no-interpolate",
+            "event": "docker.config_rendered",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "docker evidence inspect --environment local-docker --no-pull --no-start",
+            "event": "docker.static_evidence_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "docker lane teardown --dry-run --verify-volumes --retain-redacted-logs",
+            "event": "docker.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          }
+        ],
+        "envContract": [
+          {
+            "allowedValues": [
+              "local-only"
+            ],
+            "name": "REDDIAGENT_TEST_MODE",
+            "required": true,
+            "secretHandling": false
+          },
+          {
+            "name": "REDDIAGENT_API_KEY",
+            "required": false,
+            "secretHandling": "provided-out-of-band"
+          }
+        ],
+        "images": [
+          {
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "name": "python",
+            "pullAllowed": false,
+            "reference": "python:3.14.3-slim@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "logs": {
+          "paths": [
+            "tests/artifacts/docker-lane/redacted-compose-config.log",
+            "tests/artifacts/docker-lane/teardown.log"
+          ],
+          "redacted": true,
+          "retained": true
+        },
+        "network": {
+          "exposure": "loopback-only",
+          "hostNetwork": false,
+          "publishedPorts": []
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "steps": [
+            "docker compose down --volumes --remove-orphans",
+            "delete .tmp/reddiagent-docker-lane",
+            "retain redacted logs only"
+          ]
+        },
+        "teardown": {
+          "captured": true,
+          "containersRemoved": true,
+          "networksRemoved": true,
+          "volumesRemoved": true
+        },
+        "traceId": "ddd48d84b9631902",
+        "volumes": {
+          "cleanupVerified": true,
+          "ephemeral": true,
+          "paths": [
+            ".tmp/reddiagent-docker-lane"
+          ]
+        }
+      },
+      "findings": [
+        {
+          "path": "walletRequested",
+          "reason": "Wallet access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "Payment access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "Payment rail access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "paymentAccessRequested",
+          "reason": "Payment access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "Facilitator access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "Settlement access is not allowed for Docker lane evidence."
+        },
+        {
+          "path": "settlementClaimed",
+          "reason": "The lane must not claim live settlement."
+        },
+        {
+          "path": "boundaryStatus.walletAccess",
+          "reason": "walletAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.paymentRailAccess",
+          "reason": "paymentRailAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.facilitatorAccess",
+          "reason": "facilitatorAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.settlementAccess",
+          "reason": "settlementAccess must be false."
+        }
+      ],
+      "id": "payment-settlement-request-denied",
+      "selectionCriteria": {
+        "selectedBecause": "Local Docker is sufficient for deterministic #249 evidence.",
+        "useLocalWhen": "Use local Docker for short integration checks, generated-package smoke tests, and reproducible evidence that does not need uptime or operator UI parity.",
+        "useVpsWhen": "Use VPS Docker only when local Docker cannot provide runtime parity, long-running stability, or operator-visible staging evidence."
+      },
+      "status": "fail"
+    }
+  ],
+  "selectionPolicy": {
+    "preferred": "local-docker",
+    "useVpsOnlyFor": [
+      "long-running generated-package execution",
+      "host parity that local Docker cannot provide",
+      "operator-visible evidence requiring stable uptime"
+    ]
+  },
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 9,
+    "localDockerPassScenarios": 1,
+    "negativeScenarios": 9,
+    "positiveScenarios": 2,
+    "vpsDockerPassScenarios": 1
+  }
+}

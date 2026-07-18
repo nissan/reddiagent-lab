@@ -43,6 +43,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_provider_sandbox_prototype.py
 "$PYTHON" tests/test_live_mcp_devnet_handoff_prototype.py
 "$PYTHON" tests/test_surfpool_validator_lane.py
+"$PYTHON" tests/test_docker_testing_lane.py
 "$PYTHON" tests/test_beta_operator_control_harness.py
 "$PYTHON" tests/test_beta_release_readiness.py
 "$PYTHON" tests/test_beta_local_runtime_rc_gate.py

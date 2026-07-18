@@ -62,6 +62,7 @@ The local-python runner can currently prove:
 | RAP bridge local dry-run report | `tests/RAP-BRIDGE-LOCAL-DRY-RUN-REPORT.md`; `tests/test_rap_bridge_local_dry_run.py` | Local executable RAP bridge prototype binds one run id across trace, receipt, payment handoff, operator transcript, source, budget, rollback, and reputation evidence while fail-closing live rails. |
 | Live MCP/devnet handoff prototype report | `tests/LIVE-MCP-DEVNET-HANDOFF-PROTOTYPE-REPORT.md` | Reviewed MCP allowlist and simulated devnet payment handoff scenarios pass while mainnet and unreviewed MCP server refs fail closed. |
 | Surfpool validator lane report | `tests/SURFPOOL-VALIDATOR-LANE-REPORT.md`; `tests/test_surfpool_validator_lane.py` | Surfpool-first local validator evidence records startup, scenario, receipt, teardown, rollback, local state provenance, fallback rationale, deltas, and fail-closed unsafe cluster/payment/wallet/credential paths. |
+| Docker testing lane report | `tests/DOCKER-TESTING-LANE-REPORT.md`; `tests/test_docker_testing_lane.py` | Docker local/VPS evidence records selection criteria, pinned image digests, env contract, network exposure, redacted logs, ephemeral volume cleanup, teardown, rollback, and fail-closed unsafe image/network/secret/live-network/payment paths without pulling images or starting containers. |
 | Beta operator-control harness report | `tests/BETA-OPERATOR-CONTROL-HARNESS-REPORT.md` | Local-only enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial controls are exercised with fail-closed fixtures. |
 | Beta release readiness runbook | `docs/BETA-RELEASE-READINESS-RUNBOOK.md` | Operator-facing beta entry/exit, observability, controls, rollback, cost, safety, privacy, incident, and mainnet denial runbook. |
 | Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
@@ -101,6 +102,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_rap_bridge_local_dry_run.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_surfpool_validator_lane.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_docker_testing_lane.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_control_harness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_local_runtime_rc_gate.py
@@ -139,6 +141,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] RAP bridge local dry-run evidence binds trace, receipt, payment handoff, operator transcript, source, budget, rollback, and reputation to one run id before any live RAP bridge path is scoped.
 - [ ] MCP/devnet handoff prototype evidence keeps reviewed allowlists, rollback/cleanup, devnet/mainnet distinction, and secret-redaction assertions green before live infrastructure is touched.
 - [ ] Surfpool local validator lane evidence keeps localnet-only cluster selection, Surfpool-first/fallback rationale, startup/scenario/receipt/teardown capture, account/program provenance, deltas, rollback cleanup, and mainnet denial green before devnet is considered.
+- [ ] Docker local/VPS lane evidence keeps local-first selection, VPS-only escalation criteria, pinned image digests, env names without values, loopback/isolated networking, redacted logs, ephemeral volume cleanup, teardown, rollback, and mainnet denial green before containers or VPS hosts are touched.
 - [ ] Beta operator-control harness evidence proves enable, disable, pause, local-only, rollback, cost, privacy, and mainnet-denial paths before beta runtime use.
 - [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 - [ ] Beta local runtime RC gate evidence links the selected ADL runtime path to current readiness, operator traces, cost/privacy review, rollback stop evidence, and mainnet-denial proof.

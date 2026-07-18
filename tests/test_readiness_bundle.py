@@ -38,6 +38,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/RAP-BRIDGE-LOCAL-DRY-RUN-REPORT.md",
     "docs/BETA-RELEASE-READINESS-RUNBOOK.md",
     "tests/SURFPOOL-VALIDATOR-LANE-REPORT.md",
+    "tests/DOCKER-TESTING-LANE-REPORT.md",
     "tests/test_tool_execution.py",
     "tests/test_cli_usage_matrix.py",
     "tests/test_readiness_bundle.py",
@@ -62,6 +63,7 @@ REQUIRED_BUNDLE_REFERENCES = [
     "tests/test_provider_adapter_generated_code_sandbox_beta.py",
     "tests/test_rap_bridge_local_dry_run.py",
     "tests/test_surfpool_validator_lane.py",
+    "tests/test_docker_testing_lane.py",
     "--fail-on-required-gate",
     "completion.status",
     "No live retriever.",
@@ -96,6 +98,7 @@ REQUIRED_SMOKE_COMMANDS = [
     "tests/test_provider_adapter_generated_code_sandbox_beta.py",
     "tests/test_rap_bridge_local_dry_run.py",
     "tests/test_surfpool_validator_lane.py",
+    "tests/test_docker_testing_lane.py",
 ]
 
 
