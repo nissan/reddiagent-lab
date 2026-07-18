@@ -30,6 +30,7 @@ The local-python runner can currently prove:
 - beta release readiness evidence for entry/exit criteria, observability, operator controls, rollback, incident notes, and explicit mainnet denial.
 - beta local runtime RC gate evidence that merges local runtime execution, operator-control traces, readiness criteria, cost, privacy redaction, rollback stop proof, and mainnet-not-approved language.
 - beta operator local dry-run package evidence that binds the RC gate to an operator identity, selected ADL path, operator command transcript, stop/rollback dry-run transcript, and review evidence index.
+- local beta review UI evidence that lets an operator inspect runtime package artifacts, traces, metadata, boundary status, rollback cues, and fail-closed findings as a static artifact.
 
 ## Evidence Inventory
 
@@ -61,6 +62,7 @@ The local-python runner can currently prove:
 | Beta release readiness report | `tests/BETA-RELEASE-READINESS-REPORT.md` | Beta entry/exit criteria, observability schema, operator controls, rollback, incident notes, and mainnet denial are machine-checked. |
 | Beta local runtime RC gate report | `tests/BETA-LOCAL-RUNTIME-RC-GATE-REPORT.md` | Local runtime execution, operator-control traces, readiness evidence, cost, privacy, rollback, and mainnet denial are merged before a selected ADL path can pass. |
 | Beta operator local dry-run package report | `tests/BETA-OPERATOR-DRY-RUN-PACKAGE-REPORT.md` | Operator-facing dry-run package verifies RC evidence, selected ADL path, command transcripts, stop/rollback transcript, and fail-closed beta boundaries. |
+| Beta review UI report | `tests/BETA-REVIEW-UI-REPORT.md`; `docs/beta-review-ui.html` | Static local UI renders package metadata, traces/transcripts, evidence hashes, boundary status, rollback cues, and fail-closed findings without live runtime calls. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -93,6 +95,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_local_runtime_rc_gate.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_dry_run_package.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_review_ui.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
@@ -125,6 +128,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] Beta release readiness evidence covers entry/exit criteria, observability events, operator controls, rollback, incident notes, and explicit `mainnetApproved=false` before any beta runtime is enabled.
 - [ ] Beta local runtime RC gate evidence links the selected ADL runtime path to current readiness, operator traces, cost/privacy review, rollback stop evidence, and mainnet-denial proof.
 - [ ] Beta operator local dry-run package evidence binds an operator identity, selected ADL path, operator command transcript, stop/rollback dry-run transcript, and artifact evidence index before any beta runtime path is enabled.
+- [ ] Beta review UI evidence renders package metadata, local traces/transcripts, evidence hashes, fail-closed findings, and rollback cues from static artifacts only.
 
 ## Explicit Non-Goals
 
