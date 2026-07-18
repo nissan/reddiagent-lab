@@ -1,0 +1,156 @@
+{
+  "defaults": {
+    "validatorMode": "surfpool-local",
+    "cluster": {
+      "source": "localnet",
+      "endpoint": "127.0.0.1",
+      "genesisSource": "surfpool-local-fixture"
+    },
+    "surfpoolEvidencePresent": true,
+    "fallbackRationale": null,
+    "accounts": [
+      {
+        "address": "fixture://payer",
+        "source": "local-fixture",
+        "lamports": 1000000000
+      },
+      {
+        "address": "fixture://merchant",
+        "source": "local-fixture",
+        "lamports": 0
+      }
+    ],
+    "programs": [
+      {
+        "programId": "fixture://spl-token",
+        "source": "local-validator-default"
+      }
+    ],
+    "stateDeltas": {
+      "lamportsBefore": 1000000000,
+      "lamportsAfter": 999995000,
+      "tokenBefore": 0,
+      "tokenAfter": 0
+    },
+    "teardown": {
+      "captured": true,
+      "ledgerCleaned": true,
+      "processStopped": true
+    },
+    "rollback": {
+      "available": true,
+      "cleanupVerified": true,
+      "strategy": "reset-local-ledger-and-discard-receipts"
+    },
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "settlementClaimed": false,
+    "boundaryStatus": {
+      "credentialAccess": false,
+      "walletAccess": false,
+      "paymentRailAccess": false,
+      "facilitatorAccess": false,
+      "settlementAccess": false,
+      "liveMcpInvocation": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "mainnetAccess": false,
+      "deploymentPublished": false,
+      "packagePublished": false,
+      "externalSpend": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "surfpool-local-receipt-pass"
+    },
+    {
+      "id": "solana-test-validator-fallback-pass",
+      "validatorMode": "solana-test-validator-fallback",
+      "surfpoolEvidencePresent": false,
+      "fallbackRationale": "Surfpool binary unavailable in local dry-run; baseline validator behavior is sufficient for this fixture.",
+      "cluster": {
+        "source": "localnet",
+        "endpoint": "localhost",
+        "genesisSource": "solana-test-validator-default-genesis"
+      }
+    },
+    {
+      "id": "missing-surfpool-evidence-denied",
+      "surfpoolEvidencePresent": false
+    },
+    {
+      "id": "fallback-without-rationale-denied",
+      "validatorMode": "solana-test-validator-fallback",
+      "surfpoolEvidencePresent": false,
+      "fallbackRationale": ""
+    },
+    {
+      "id": "unsafe-cluster-selection-denied",
+      "cluster": {
+        "source": "mainnet-beta",
+        "endpoint": "api.mainnet-beta.solana.com",
+        "genesisSource": "live-mainnet"
+      },
+      "mainnetRequested": true,
+      "boundaryStatus": {
+        "mainnetAccess": true
+      }
+    },
+    {
+      "id": "missing-teardown-denied",
+      "teardown": {
+        "captured": false,
+        "ledgerCleaned": false,
+        "processStopped": false
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "Authorization": "Bearer redacted fixture marker"
+    },
+    {
+      "id": "wallet-request-denied",
+      "walletRequested": true,
+      "boundaryStatus": {
+        "walletAccess": true
+      }
+    },
+    {
+      "id": "payment-facilitator-request-denied",
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "paymentAccessRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true,
+      "settlementClaimed": true,
+      "boundaryStatus": {
+        "paymentRailAccess": true,
+        "facilitatorAccess": true,
+        "settlementAccess": true
+      }
+    },
+    {
+      "id": "devnet-request-denied",
+      "devnetRequested": true,
+      "boundaryStatus": {
+        "devnetAccess": true
+      }
+    },
+    {
+      "id": "missing-state-deltas-denied",
+      "stateDeltas": {
+        "lamportsBefore": null,
+        "lamportsAfter": null,
+        "tokenBefore": null,
+        "tokenAfter": null
+      }
+    }
+  ]
+}

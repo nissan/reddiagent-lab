@@ -1,0 +1,1235 @@
+{
+  "boundaries": {
+    "credentialAccessUsed": false,
+    "dependenciesInstalled": false,
+    "deploymentPublished": false,
+    "deterministicLocalEvidenceOnly": true,
+    "devnetAccessUsed": false,
+    "externalSpendUsd": 0,
+    "facilitatorAccessUsed": false,
+    "liveMcpInvocationUsed": false,
+    "mainnetAccessUsed": false,
+    "networkAccessUsed": false,
+    "packagePublished": false,
+    "paymentRailAccessUsed": false,
+    "providerApiAccessUsed": false,
+    "settlementAccessUsed": false,
+    "validatorStartedByThisScript": false,
+    "walletAccessUsed": false
+  },
+  "issue": 248,
+  "mainnetStatement": "Mainnet validator, wallet, payment rail, facilitator, and settlement access remain blocked without fresh Nissan approval.",
+  "mode": "surfpool-local-validator-testing-lane",
+  "parentEpic": 247,
+  "relatedEpic": 220,
+  "results": [
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id surfpool-local-receipt-pass --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": {
+          "credentialMaterialLogged": false,
+          "devnetUsed": false,
+          "kind": "local-validator-evidence",
+          "liveSettlement": false,
+          "mainnetUsed": false,
+          "receiptId": "7e333393c2bcd90e"
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "1b10a71bbb63eff5",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [],
+      "id": "surfpool-local-receipt-pass",
+      "status": "pass",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "localhost",
+          "genesisSource": "solana-test-validator-default-genesis",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "solana-test-validator --reset --quiet --ledger .tmp/reddiagent-validator-lane",
+            "event": "validator.startup_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id solana-test-validator-fallback-pass --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 0,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": {
+          "credentialMaterialLogged": false,
+          "devnetUsed": false,
+          "kind": "local-validator-evidence",
+          "liveSettlement": false,
+          "mainnetUsed": false,
+          "receiptId": "feeb8acb96246b01"
+        },
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "a32487b9ceb2d23f",
+        "validatorMode": "solana-test-validator-fallback"
+      },
+      "fallbackRationale": "Surfpool binary unavailable in local dry-run; baseline validator behavior is sufficient for this fixture.",
+      "findings": [],
+      "id": "solana-test-validator-fallback-pass",
+      "status": "pass",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id missing-surfpool-evidence-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "6a204e16023787b0",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "surfpoolEvidencePresent",
+          "reason": "Surfpool evidence is required unless fallback mode is explicitly selected."
+        }
+      ],
+      "id": "missing-surfpool-evidence-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "solana-test-validator --reset --quiet --ledger .tmp/reddiagent-validator-lane",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id fallback-without-rationale-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "fa6d56925e0168ca",
+        "validatorMode": "solana-test-validator-fallback"
+      },
+      "fallbackRationale": "",
+      "findings": [
+        {
+          "path": "fallbackRationale",
+          "reason": "Fallback mode requires a rationale."
+        }
+      ],
+      "id": "fallback-without-rationale-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": true,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "api.mainnet-beta.solana.com",
+          "genesisSource": "live-mainnet",
+          "source": "mainnet-beta"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id unsafe-cluster-selection-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "ddc984edc40ef804",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "cluster.source",
+          "reason": "Validator lane must use localnet only."
+        },
+        {
+          "path": "cluster.endpoint",
+          "reason": "Validator endpoint must be loopback only."
+        },
+        {
+          "path": "cluster.genesisSource",
+          "reason": "Cluster genesis source must be a local fixture or local validator default."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "Mainnet remains blocked without fresh approval."
+        },
+        {
+          "path": "boundaryStatus.mainnetAccess",
+          "reason": "mainnetAccess must be false."
+        }
+      ],
+      "id": "unsafe-cluster-selection-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id missing-teardown-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": false,
+          "ledgerCleaned": false,
+          "processStopped": false
+        },
+        "traceId": "92af56f172dc8c22",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "teardown.captured",
+          "reason": "Validator teardown evidence must be captured."
+        },
+        {
+          "path": "teardown.ledgerCleaned",
+          "reason": "Local ledger cleanup must be verified."
+        }
+      ],
+      "id": "missing-teardown-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id credential-like-payload-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "a85b6ee965874b2e",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "scenario.Authorization",
+          "reason": "Credential, wallet, facilitator, or secret-like keys are not allowed in local validator evidence."
+        },
+        {
+          "path": "scenario.Authorization",
+          "reason": "Credential, wallet, facilitator, or secret-like values are not allowed in local validator evidence."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": true
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id wallet-request-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "835f921008e106c8",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "walletRequested",
+          "reason": "Wallet access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "boundaryStatus.walletAccess",
+          "reason": "walletAccess must be false."
+        }
+      ],
+      "id": "wallet-request-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": true,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": true,
+        "providerApiAccess": false,
+        "settlementAccess": true,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id payment-facilitator-request-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "764872c05c00ea16",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "paymentRequested",
+          "reason": "Payment access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "Payment rail access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "paymentAccessRequested",
+          "reason": "Payment access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "Facilitator access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "Settlement access is not allowed for local validator lane evidence."
+        },
+        {
+          "path": "settlementClaimed",
+          "reason": "The lane must not claim live settlement."
+        },
+        {
+          "path": "boundaryStatus.paymentRailAccess",
+          "reason": "paymentRailAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.facilitatorAccess",
+          "reason": "facilitatorAccess must be false."
+        },
+        {
+          "path": "boundaryStatus.settlementAccess",
+          "reason": "settlementAccess must be false."
+        }
+      ],
+      "id": "payment-facilitator-request-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id devnet-request-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": 999995000,
+          "lamportsBefore": 1000000000,
+          "lamportsDelta": -5000,
+          "tokenAfter": 0,
+          "tokenBefore": 0,
+          "tokenDelta": 0
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "7f041f1b4590195a",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "devnetRequested",
+          "reason": "Devnet is not requested by default for this lane."
+        },
+        {
+          "path": "boundaryStatus.devnetAccess",
+          "reason": "devnetAccess must be false."
+        }
+      ],
+      "id": "devnet-request-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    },
+    {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "devnetAccess": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "mainnetAccess": false,
+        "packagePublished": false,
+        "paymentRailAccess": false,
+        "providerApiAccess": false,
+        "settlementAccess": false,
+        "walletAccess": false
+      },
+      "evidence": {
+        "accountStateSource": [
+          {
+            "address": "fixture://payer",
+            "lamports": 1000000000,
+            "source": "local-fixture"
+          },
+          {
+            "address": "fixture://merchant",
+            "lamports": 0,
+            "source": "local-fixture"
+          }
+        ],
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "genesisSource": "surfpool-local-fixture",
+          "source": "localnet"
+        },
+        "commands": [
+          {
+            "command": "surfpool start --local --no-mainnet --dry-run-evidence",
+            "event": "validator.startup_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 1
+          },
+          {
+            "command": "validator:run-scenario --id missing-state-deltas-denied --cluster localnet --dry-run",
+            "event": "validator.scenario_executed",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 2
+          },
+          {
+            "command": "validator:capture-receipt --format evidence-json --dry-run",
+            "event": "validator.receipt_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 3
+          },
+          {
+            "command": "validator:teardown --cleanup-ledger --dry-run",
+            "event": "validator.teardown_captured",
+            "exitCode": 3,
+            "networkAccessUsed": false,
+            "step": 4
+          }
+        ],
+        "programStateSource": [
+          {
+            "programId": "fixture://spl-token",
+            "source": "local-validator-default"
+          }
+        ],
+        "receipt": null,
+        "rollback": {
+          "available": true,
+          "cleanupVerified": true,
+          "strategy": "reset-local-ledger-and-discard-receipts"
+        },
+        "stateDeltas": {
+          "lamportsAfter": null,
+          "lamportsBefore": null,
+          "lamportsDelta": null,
+          "tokenAfter": null,
+          "tokenBefore": null,
+          "tokenDelta": null
+        },
+        "teardown": {
+          "captured": true,
+          "ledgerCleaned": true,
+          "processStopped": true
+        },
+        "traceId": "1e0cea9321aad963",
+        "validatorMode": "surfpool-local"
+      },
+      "fallbackRationale": null,
+      "findings": [
+        {
+          "path": "stateDeltas.lamports",
+          "reason": "Lamport before/after evidence is required, even when the delta is zero."
+        },
+        {
+          "path": "stateDeltas.tokens",
+          "reason": "Token before/after evidence is required, even when the delta is zero."
+        }
+      ],
+      "id": "missing-state-deltas-denied",
+      "status": "fail",
+      "validatorPreference": "surfpool-first"
+    }
+  ],
+  "scenarioFixtureHash": "ac6aa2bd9088bdaf49cc314277dd0699ec0f055069076c8c4c4cf6263f1e1562",
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 9,
+    "fallbackPassScenarios": 1,
+    "negativeScenarios": 9,
+    "positiveScenarios": 2,
+    "surfpoolPassScenarios": 1
+  },
+  "validatorPreference": {
+    "fallback": "solana-test-validator-fallback",
+    "fallbackPolicy": "Allowed only with explicit rationale when Surfpool is unavailable or baseline validator behavior is the test objective.",
+    "preferred": "surfpool-local"
+  }
+}
