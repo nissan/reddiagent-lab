@@ -1,0 +1,179 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "releaseId": "reddiagent-beta-0",
+    "selectedAdlPath": "examples/tool-agent.yaml",
+    "sourcePreflightPackagePath": "tests/fixtures/beta-activation-preflight.json",
+    "sourceDecisionPackagePath": "tests/fixtures/beta-operator-decision-package.json",
+    "sourceReviewPackagePath": "tests/fixtures/beta-review-ui.json",
+    "sourceRuntimePackagePath": "tests/fixtures/beta-operator-dry-run-package.json",
+    "operatorIdentity": "operator://local-beta",
+    "rehearsalTimestamp": "fixture://2026-07-18T09:31:00Z",
+    "activationCue": "activate://beta-0/local-rehearsal-only",
+    "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+    "liveRuntimeRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "productionEnabled": false,
+    "mainnetEnabled": false,
+    "claimsLiveRuntimeEnablement": false,
+    "rollbackDisableEvidence": {
+      "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+      "disableVerified": true,
+      "dryRunOnly": true,
+      "liveRuntimeEnabled": false
+    },
+    "boundaryStatus": {
+      "activationRehearsalPackage": true,
+      "deterministicLocalFixturesOnly": true,
+      "liveRuntimeActivation": false,
+      "networkAccess": false,
+      "credentialAccess": false,
+      "mcpInvocation": false,
+      "paymentAccess": false,
+      "providerApiAccess": false,
+      "devnetAccess": false,
+      "productionGatewayAccess": false,
+      "mainnetAccess": false,
+      "externalSpend": false
+    }
+  },
+  "scenarios": [
+    {
+      "id": "activation-approve-rehearsal-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass"
+    },
+    {
+      "id": "activation-hold-rehearsal-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "rehearsalOutcome": "hold",
+      "preflightResultId": "activation-hold-preflight-pass"
+    },
+    {
+      "id": "activation-rollback-rehearsal-pass",
+      "kind": "positive",
+      "expectedStatus": "pass",
+      "rehearsalOutcome": "rollback",
+      "preflightResultId": "activation-rollback-preflight-pass"
+    },
+    {
+      "id": "missing-preflight-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "sourcePreflightPackagePath": "tests/fixtures/missing-beta-activation-preflight.json"
+    },
+    {
+      "id": "mismatched-release-id-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "releaseId": "reddiagent-beta-stale"
+    },
+    {
+      "id": "mismatched-adl-path-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "selectedAdlPath": "examples/simple-agent.yaml"
+    },
+    {
+      "id": "missing-operator-identity-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "operatorIdentity": ""
+    },
+    {
+      "id": "missing-activation-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "activationCue": ""
+    },
+    {
+      "id": "missing-rollback-cue-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "rollback",
+      "preflightResultId": "activation-rollback-preflight-pass",
+      "rollbackCue": "",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "",
+        "disableVerified": true,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "live-runtime-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "liveRuntimeRequested": true,
+      "boundaryStatus": {
+        "liveRuntimeActivation": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "Authorization": "Bearer redacted-fixture"
+    },
+    {
+      "id": "devnet-request-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "devnetRequested": true,
+      "boundaryStatus": {
+        "devnetAccess": true
+      }
+    },
+    {
+      "id": "mainnet-production-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "mainnetRequested": true,
+      "productionEnabled": true,
+      "mainnetEnabled": true
+    },
+    {
+      "id": "missing-rollback-disable-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "rollbackDisableEvidence": {
+        "rollbackCue": "rollback://beta-0/local-operator-control-drill",
+        "disableVerified": false,
+        "dryRunOnly": true,
+        "liveRuntimeEnabled": false
+      }
+    },
+    {
+      "id": "live-runtime-enable-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rehearsalOutcome": "approve",
+      "preflightResultId": "activation-approve-preflight-pass",
+      "claimsLiveRuntimeEnablement": true
+    }
+  ]
+}

@@ -33,6 +33,7 @@ The local-python runner can currently prove:
 - local beta review UI evidence that lets an operator inspect runtime package artifacts, traces, metadata, boundary status, rollback cues, and fail-closed findings as a static artifact.
 - local beta operator decision package evidence that records approve, hold, and rollback decisions against the selected ADL path, release id, source package, evidence hashes, operator identity, fixture timestamp, rollback cue, and boundary status.
 - local beta activation preflight evidence that binds approve, hold, and rollback preflight outcomes to the decision package, review/runtime package paths, evidence hashes, operator identity, source decision timestamp, preflight timestamp, rollback cue, and boundary status before any runtime enablement.
+- local beta activation rehearsal evidence that turns the preflight output into approve, hold, and rollback dry-run operator transcripts/checklists with activation and rollback cues, rollback/disable proof, and no live runtime enablement claim.
 
 ## Evidence Inventory
 
@@ -67,6 +68,7 @@ The local-python runner can currently prove:
 | Beta review UI report | `tests/BETA-REVIEW-UI-REPORT.md`; `docs/beta-review-ui.html` | Static local UI renders package metadata, traces/transcripts, evidence hashes, boundary status, rollback cues, and fail-closed findings without live runtime calls. |
 | Beta operator decision package report | `tests/BETA-OPERATOR-DECISION-PACKAGE-REPORT.md` | Local operator decision package records approve, hold, and rollback decisions against pinned review/package evidence and fail-closes live, devnet, mainnet, production, and credential-like payload requests. |
 | Beta activation preflight gate report | `tests/BETA-ACTIVATION-PREFLIGHT-GATE-REPORT.md` | Local activation preflight package records approve, hold, and rollback preflight outcomes against pinned decision/review/runtime evidence and fail-closes live, devnet, mainnet, production, and credential-like payload requests. |
+| Beta activation rehearsal package report | `tests/BETA-ACTIVATION-REHEARSAL-PACKAGE-REPORT.md` | Local activation rehearsal package emits approve, hold, and rollback operator transcripts/checklists against pinned preflight evidence and fail-closes live enablement claims, missing cues, stale evidence, and missing rollback/disable evidence. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
 ## Verification Commands
@@ -102,6 +104,7 @@ Run these from the repository root:
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_review_ui.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_decision_package.py
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_preflight_gate.py
+/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_rehearsal_package.py
 bash tests/smoke-validation.sh
 /Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
 ```
@@ -137,6 +140,7 @@ Before adding any real external tool path, MCP execution, network access, shell 
 - [ ] Beta review UI evidence renders package metadata, local traces/transcripts, evidence hashes, fail-closed findings, and rollback cues from static artifacts only.
 - [ ] Beta operator decision package evidence records approve, hold, and rollback decisions with operator identity, fixture timestamp, rollback cue, evidence hashes, and local-only boundary status.
 - [ ] Beta activation preflight evidence records approve, hold, and rollback preflight outcomes with decision/review/runtime package paths, evidence hashes, operator identity, timestamps, rollback cue, and local-only boundary status before any runtime path is enabled.
+- [ ] Beta activation rehearsal evidence records approve, hold, and rollback dry-run operator transcripts/checklists with activation cue, rollback cue, rollback/disable evidence, and no live runtime enablement claim.
 
 ## Explicit Non-Goals
 
