@@ -27,6 +27,7 @@ The test covers:
 - missing `--output-dir`;
 - missing/invalid provider policy fixture;
 - valid but unapproved ADL fixture path;
+- unapproved provider policy fixture path;
 - unapproved adapter manifest fixture path;
 - credential request;
 - network/provider call request;

@@ -192,6 +192,16 @@ def validate_allowed_inputs(
     return None
 
 
+def validate_policy_fixture_path(policy_path: Path) -> dict[str, Any] | None:
+    approved = POLICY_FIXTURE.resolve()
+    if policy_path.resolve() != approved:
+        return deny(
+            "blocked-unapproved-input",
+            "provider sandbox policy input must be the approved in-repository policy fixture",
+        )
+    return None
+
+
 def adapter_plan(doc: dict[str, Any], target: str, manifest: dict[str, Any]) -> dict[str, Any]:
     model = doc.get("model") or {}
     providers = model.get("providers") or {}
@@ -361,6 +371,7 @@ def build_artifact(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
 
     adl_path = Path(args.adl)
     manifest_path = args.manifest_fixture if args.manifest_fixture.is_absolute() else ROOT / args.manifest_fixture
+    policy_path = args.provider_policy if args.provider_policy.is_absolute() else ROOT / args.provider_policy
     doc = load_adl(adl_path)
     errors = validate(doc)
     if errors:
@@ -369,6 +380,13 @@ def build_artifact(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
             "adl": display_path((ROOT / adl_path).resolve()),
             "validation": {"status": "fail", "errors": errors},
         }
+
+    if args.omit_provider_policy:
+        return 2, deny("blocked-missing-provider-policy", "provider sandbox policy is required before generation")
+
+    policy_path_error = validate_policy_fixture_path(policy_path)
+    if policy_path_error:
+        return 2, policy_path_error
 
     policy = load_json(args.provider_policy)
     policy_error = validate_policy(policy, args.target)
@@ -438,6 +456,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--target", choices=["openai", "anthropic", "gemini", "ollama", "langgraph"], default="openai")
     parser.add_argument("--manifest-fixture", type=Path, default=MANIFEST_FIXTURE)
     parser.add_argument("--provider-policy", type=Path, default=POLICY_FIXTURE)
+    parser.add_argument("--omit-provider-policy", action="store_true")
     parser.add_argument("--output-dir", type=Path, required=False)
     parser.add_argument("--package-dir")
     parser.add_argument("--delete-after", action="store_true")
