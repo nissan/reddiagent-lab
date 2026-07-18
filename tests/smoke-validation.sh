@@ -48,5 +48,6 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_operator_dry_run_package.py
 "$PYTHON" tests/test_beta_review_ui.py
 "$PYTHON" tests/test_beta_operator_decision_package.py
+"$PYTHON" tests/test_beta_activation_preflight_gate.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py
