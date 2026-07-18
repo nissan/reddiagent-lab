@@ -195,6 +195,22 @@
       "acceptanceOutcome": "accept",
       "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
       "nextStepHandoff": "Runtime activation completed."
+    },
+    {
+      "id": "handoff-contradictory-runtime-activation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "nextStepHandoff": "No live runtime enablement is claimed. Runtime activation completed."
+    },
+    {
+      "id": "handoff-contradictory-production-enabled-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "acceptanceOutcome": "accept",
+      "sourceRehearsalResultId": "activation-approve-rehearsal-pass",
+      "nextStepHandoff": "No live runtime enablement is claimed. Production gateway enabled."
     }
   ]
 }

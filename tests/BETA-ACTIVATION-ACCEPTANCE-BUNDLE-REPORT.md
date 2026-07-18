@@ -15,7 +15,7 @@ Mode: deterministic local-only activation acceptance bundle
 
 - Accept, hold, and rollback-required acceptance bundles bind to the #260 rehearsal package, inherited #258 preflight/#256 decision/review/runtime source package paths, evidence hashes, selected ADL path, release id, operator identity, reviewer identity or local approval fixture, acceptance timestamp fixture, accepted activation cue, rollback cue, rollback/disable evidence, and boundary status.
 - Operator transcripts/checklists include dry-run rehearsal inspection, accept/hold/rollback-required cue handling, and an explicit next-step handoff stating that no live runtime enablement is claimed.
-- Negative fixtures fail closed for missing/stale rehearsal evidence, mismatched release id or ADL path, missing operator identity, missing reviewer identity or local approval fixture, missing accepted activation cue, missing rollback cue, omitted rollback/disable evidence, live runtime request, credential-like payload leakage, devnet request, mainnet/production claims, and any live runtime enablement claim.
+- Negative fixtures fail closed for missing/stale rehearsal evidence, mismatched release id or ADL path, missing operator identity, missing reviewer identity or local approval fixture, missing accepted activation cue, missing rollback cue, omitted rollback/disable evidence, live runtime request, credential-like payload leakage, devnet request, mainnet/production claims, any live runtime enablement claim, and contradictory handoff text that pairs the required no-live-runtime disclaimer with activation or production enablement claims.
 
 ## Boundaries
 

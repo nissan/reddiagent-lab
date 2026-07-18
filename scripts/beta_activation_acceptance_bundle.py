@@ -44,6 +44,20 @@ SENSITIVE_KEY_NORMALIZED = beta_activation_rehearsal_package.SENSITIVE_KEY_NORMA
     "credentialpayload",
     "runtimesecret",
 }
+HANDOFF_ACTIVATION_CLAIM_MARKERS = (
+    "activation completed",
+    "activation occurred",
+    "runtime activation completed",
+    "runtime activation occurred",
+    "runtime activation succeeded",
+    "runtime enabled",
+    "live runtime enabled",
+    "live runtime activation",
+    "production enabled",
+    "production gateway enabled",
+    "mainnet enabled",
+    "mainnet activation",
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -89,6 +103,17 @@ def sensitive_findings(value: Any, path: str = "$") -> list[dict[str, str]]:
         if any(marker in lowered for marker in beta_activation_rehearsal_package.beta_activation_preflight_gate.SENSITIVE_VALUE_MARKERS):
             findings.append(finding(path, "Credential-like or private payload value is not allowed."))
     return findings
+
+
+def handoff_activation_claim_findings(handoff: Any) -> list[dict[str, str]]:
+    if not isinstance(handoff, str):
+        return []
+    lowered = handoff.lower()
+    return [
+        finding("nextStepHandoff", f"Next-step handoff must not claim activation, production, or mainnet enablement via marker `{marker}`.")
+        for marker in HANDOFF_ACTIVATION_CLAIM_MARKERS
+        if marker in lowered
+    ]
 
 
 def current_rehearsal_package() -> dict[str, Any]:
@@ -270,6 +295,7 @@ def collect_findings(
     handoff = scenario.get("nextStepHandoff", "")
     require(isinstance(handoff, str) and bool(handoff.strip()), "nextStepHandoff", "Next-step handoff text is required.")
     require("no live runtime enablement" in handoff.lower(), "nextStepHandoff", "Next-step handoff must explicitly avoid live runtime enablement claims.")
+    findings.extend(handoff_activation_claim_findings(handoff))
 
     for key in REQUIRED_BOUNDARY_FALSE:
         require(boundaries.get(key) is False, f"boundaryStatus.{key}", f"{key} must be false.")

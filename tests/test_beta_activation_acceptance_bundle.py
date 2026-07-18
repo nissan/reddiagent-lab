@@ -67,12 +67,12 @@ def main() -> int:
     assert evidence["currentEvidenceMatchesPinned"] is True
 
     assert doc["summary"] == {
-        "acceptBundles": 14,
+        "acceptBundles": 16,
         "holdBundles": 1,
         "rollbackRequiredBundles": 2,
         "positiveScenarios": 3,
-        "negativeScenarios": 14,
-        "failClosedScenarios": 14,
+        "negativeScenarios": 16,
+        "failClosedScenarios": 16,
     }
     results = {result["id"]: result for result in doc["results"]}
     expected_acceptance_status = {
@@ -133,6 +133,8 @@ def main() -> int:
     assert "mainnetEnabled" in finding_paths["mainnet-production-claim-denied"]
     assert "claimsLiveRuntimeEnablement" in finding_paths["live-runtime-enable-claim-denied"]
     assert "nextStepHandoff" in finding_paths["handoff-live-enable-claim-denied"]
+    assert "nextStepHandoff" in finding_paths["handoff-contradictory-runtime-activation-denied"]
+    assert "nextStepHandoff" in finding_paths["handoff-contradictory-production-enabled-denied"]
 
     context = source_context()
     assert_positive_mutation_fails(lambda scenario: scenario.update({"operatorIdentity": ""}), "operatorIdentity", context)
@@ -146,6 +148,20 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"mainnetRequested": 1}), "mainnetRequested", context)
     assert_positive_mutation_fails(lambda scenario: scenario.update({"apiKey": "redacted fixture marker"}), "scenario.apiKey", context)
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nextStepHandoff": "Activation completed."}), "nextStepHandoff", context)
+    assert_positive_mutation_fails(
+        lambda scenario: scenario.update(
+            {"nextStepHandoff": "No live runtime enablement is claimed. Runtime activation completed."}
+        ),
+        "nextStepHandoff",
+        context,
+    )
+    assert_positive_mutation_fails(
+        lambda scenario: scenario.update(
+            {"nextStepHandoff": "No live runtime enablement is claimed. Production gateway enabled."}
+        ),
+        "nextStepHandoff",
+        context,
+    )
     assert_positive_mutation_fails(
         lambda scenario: scenario["rollbackDisableEvidence"].update({"disableVerified": False}),
         "rollbackDisableEvidence.disableVerified",
