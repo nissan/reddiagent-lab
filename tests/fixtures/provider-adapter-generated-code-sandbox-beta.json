@@ -1,0 +1,173 @@
+{
+  "adapterManifest": {
+    "generationAllowedInSourceManifest": false,
+    "manifestId": "openai-provider-adapter-codegen-manifest",
+    "manifestStatus": "blocked-report-only",
+    "plannedFileCount": 4,
+    "source": "tests/fixtures/provider-adapter-codegen-manifest.json"
+  },
+  "adl": "examples/simple-agent.yaml",
+  "boundaries": {
+    "credentialAccess": false,
+    "deploymentAllowed": false,
+    "devnetAccess": false,
+    "externalSpendUsd": 0,
+    "hostedProviderModelApiCalls": false,
+    "installsDependencies": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "packagePublishingAllowed": false,
+    "paymentAccess": false,
+    "runtimeExecutionAllowed": false,
+    "writesFiles": true
+  },
+  "budgetAndEvalGates": {
+    "budget": [
+      {
+        "id": "max-prompt-tokens",
+        "limit": "<review-required>",
+        "status": "placeholder"
+      },
+      {
+        "id": "max-completion-tokens",
+        "limit": "<review-required>",
+        "status": "placeholder"
+      },
+      {
+        "id": "max-usd",
+        "limit": 0,
+        "status": "placeholder"
+      }
+    ],
+    "evals": [
+      {
+        "id": "has-answer",
+        "status": "placeholder",
+        "type": "output-check"
+      }
+    ]
+  },
+  "cleanupTranscript": [
+    {
+      "command": "rm -rf <temp-output-dir>/simple-research-helper-openai-adapter-sandbox",
+      "executed": false,
+      "reason": "cleanup command recorded before optional deletion",
+      "step": "prepare-delete"
+    },
+    {
+      "command": "rm -rf <temp-output-dir>/simple-research-helper-openai-adapter-sandbox",
+      "executed": true,
+      "exitCode": 0,
+      "step": "delete-generated-package"
+    }
+  ],
+  "costEvidence": {
+    "externalSpendUsd": 0,
+    "hostedProviderCalls": 0,
+    "hostedProviderModelApiCalls": false
+  },
+  "format": "provider-adapter-generated-code-sandbox-beta-artifact",
+  "generatedFileIndex": {
+    "fileCount": 4,
+    "files": [
+      {
+        "bytes": 249,
+        "path": "simple-research-helper-openai-adapter-sandbox/README.md",
+        "sha256": "1e30cf901b870ddc9c39490ecb9cef2846d20d8792a316559db302d34d3bd12e"
+      },
+      {
+        "bytes": 1314,
+        "path": "simple-research-helper-openai-adapter-sandbox/adapters/openai/adapter_manifest.json",
+        "sha256": "aee7b456372a2c041842b9c74db1cf4b1a945d01c5073cf5fe034a9ac3fd51a3"
+      },
+      {
+        "bytes": 350,
+        "path": "simple-research-helper-openai-adapter-sandbox/adapters/openai/adapter_stub.py",
+        "sha256": "8d23faca9e05fb05af9856489e4530225da2469457bff541d5c44a422a2930a2"
+      },
+      {
+        "bytes": 572,
+        "path": "simple-research-helper-openai-adapter-sandbox/tests/test_static_provider_adapter_contract.py",
+        "sha256": "f76d2d01e52357b862c7656dcbc582671111116cda4648aa803d861462a7c61d"
+      }
+    ],
+    "packageRoot": "<temp-output-dir>/simple-research-helper-openai-adapter-sandbox"
+  },
+  "issue": 243,
+  "outputDir": "<temp-output-dir>",
+  "packageDir": "simple-research-helper-openai-adapter-sandbox",
+  "promptAndModelMetadataPlaceholders": {
+    "agentName": "simple-research-helper",
+    "budgetGates": [
+      {
+        "id": "max-prompt-tokens",
+        "limit": "<review-required>",
+        "status": "placeholder"
+      },
+      {
+        "id": "max-completion-tokens",
+        "limit": "<review-required>",
+        "status": "placeholder"
+      },
+      {
+        "id": "max-usd",
+        "limit": 0,
+        "status": "placeholder"
+      }
+    ],
+    "evalGates": [
+      {
+        "id": "has-answer",
+        "status": "placeholder",
+        "type": "output-check"
+      }
+    ],
+    "manifestId": "openai-provider-adapter-codegen-manifest",
+    "manifestStatusAtGeneration": "blocked-report-only",
+    "modelMetadataPlaceholders": {
+      "credentialRef": "<withheld>",
+      "fallbackProviders": [
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "modelId": "openai/<reviewed-model-id>",
+      "preferredProvider": "openai",
+      "providerSdkVersion": "<not-installed>"
+    },
+    "promptMetadataPlaceholders": {
+      "rawPromptStored": false,
+      "systemPromptHash": "4ef5400133a61e8c5d381400859987ed34c7a5d97db10a7dc0f4e94137123106",
+      "taskBodyStored": false
+    },
+    "providerPolicy": {
+      "credentialAccessAllowed": false,
+      "dependencyInstallAllowed": false,
+      "hostedProviderCallsAllowed": false,
+      "mainnetAllowed": false,
+      "networkAccessAllowed": false
+    },
+    "target": "openai"
+  },
+  "providerPolicy": {
+    "approvedTargets": [
+      "openai",
+      "anthropic",
+      "gemini",
+      "ollama",
+      "langgraph"
+    ],
+    "controls": {
+      "allowCredentialAccess": false,
+      "allowDependencyInstall": false,
+      "allowHostedProviderCalls": false,
+      "allowMainnet": false,
+      "allowNetworkAccess": false
+    },
+    "source": "tests/fixtures/provider-adapter-sandbox-policy.json"
+  },
+  "status": "generated-local-sandbox-beta",
+  "target": "openai",
+  "writesFiles": true
+}

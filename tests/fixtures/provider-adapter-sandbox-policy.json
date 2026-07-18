@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "provider-adapter-sandbox-policy.v0.1",
+  "policyId": "provider-adapter-generated-code-sandbox-beta-policy",
+  "approvedTargets": [
+    "openai",
+    "anthropic",
+    "gemini",
+    "ollama",
+    "langgraph"
+  ],
+  "controls": {
+    "allowHostedProviderCalls": false,
+    "allowCredentialAccess": false,
+    "allowNetworkAccess": false,
+    "allowDependencyInstall": false,
+    "allowMainnet": false
+  },
+  "allowedInputs": {
+    "adlFixtures": [
+      "examples/simple-agent.yaml",
+      "examples/tool-agent.yaml",
+      "examples/mcp-readonly-agent.yaml",
+      "examples/payment-agent.yaml"
+    ],
+    "adapterManifestFixture": "tests/fixtures/provider-adapter-codegen-manifest.json"
+  }
+}
