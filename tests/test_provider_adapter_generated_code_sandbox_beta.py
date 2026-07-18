@@ -129,6 +129,29 @@ def main() -> int:
     assert missing_policy.returncode == 2
     assert load_stdout(missing_policy)["status"] == "blocked-missing-provider-policy"
 
+    with tempfile.TemporaryDirectory(prefix="reddiagent-provider-adapter-unapproved-") as temp:
+        unapproved_adl = Path(temp) / "simple-agent-copy.yaml"
+        unapproved_adl.write_text((ROOT / "examples/simple-agent.yaml").read_text())
+        unapproved = run_command(
+            "--output-dir",
+            tempfile.gettempdir(),
+            str(unapproved_adl),
+        )
+        assert unapproved.returncode == 2
+        unapproved_artifact = load_stdout(unapproved)
+        assert unapproved_artifact["status"] == "blocked-unapproved-input"
+        assert unapproved_artifact["writesFiles"] is False
+
+    unapproved_manifest = run_command(
+        "--output-dir",
+        tempfile.gettempdir(),
+        "--manifest-fixture",
+        "tests/fixtures/provider-adapter-sandbox-policy.json",
+        "examples/simple-agent.yaml",
+    )
+    assert unapproved_manifest.returncode == 2
+    assert load_stdout(unapproved_manifest)["status"] == "blocked-unapproved-input"
+
     traversal = run_command(
         "--output-dir",
         tempfile.gettempdir(),

@@ -157,6 +157,41 @@ def validate_policy(policy: dict[str, Any], target: str) -> dict[str, Any] | Non
     return None
 
 
+def validate_allowed_inputs(
+    policy: dict[str, Any],
+    adl_path: Path,
+    manifest_path: Path,
+) -> dict[str, Any] | None:
+    allowed = policy.get("allowedInputs") or {}
+    allowed_adls = set(allowed.get("adlFixtures") or [])
+    allowed_manifest = allowed.get("adapterManifestFixture")
+
+    try:
+        adl_rel = adl_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return deny(
+            "blocked-unapproved-input",
+            "ADL input must be one of the approved in-repository ADL fixtures",
+        )
+
+    try:
+        manifest_rel = manifest_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return deny(
+            "blocked-unapproved-input",
+            "adapter manifest input must be the approved in-repository manifest fixture",
+        )
+
+    if adl_rel not in allowed_adls:
+        return deny("blocked-unapproved-input", f"ADL fixture is not approved by policy: {adl_rel}")
+    if manifest_rel != allowed_manifest:
+        return deny(
+            "blocked-unapproved-input",
+            f"adapter manifest fixture is not approved by policy: {manifest_rel}",
+        )
+    return None
+
+
 def adapter_plan(doc: dict[str, Any], target: str, manifest: dict[str, Any]) -> dict[str, Any]:
     model = doc.get("model") or {}
     providers = model.get("providers") or {}
@@ -325,6 +360,7 @@ def build_artifact(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
     assert output_dir is not None
 
     adl_path = Path(args.adl)
+    manifest_path = args.manifest_fixture if args.manifest_fixture.is_absolute() else ROOT / args.manifest_fixture
     doc = load_adl(adl_path)
     errors = validate(doc)
     if errors:
@@ -338,6 +374,13 @@ def build_artifact(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
     policy_error = validate_policy(policy, args.target)
     if policy_error:
         return 2, policy_error
+    input_error = validate_allowed_inputs(
+        policy,
+        adl_path if adl_path.is_absolute() else ROOT / adl_path,
+        manifest_path,
+    )
+    if input_error:
+        return 2, input_error
 
     manifest_fixture = load_json(args.manifest_fixture)
     manifest = provider_manifest(manifest_fixture, args.target)
