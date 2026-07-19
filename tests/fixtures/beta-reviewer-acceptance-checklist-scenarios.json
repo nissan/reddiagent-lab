@@ -1,0 +1,203 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+    "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "quickstartFixturePath": "tests/fixtures/beta-onboarding-quickstart.json",
+    "requestedVerdict": "accept",
+    "expectedStatus": "pass",
+    "expectedVerdict": "accept",
+    "checklistItems": [
+      {
+        "id": "quickstart-fixture-current",
+        "label": "Pinned #279 quickstart fixture is current and accepted.",
+        "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+        "status": "checked"
+      },
+      {
+        "id": "local-file-inventory-hashes",
+        "label": "Quickstart local file inventory hashes match expected pins.",
+        "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+        "status": "checked"
+      },
+      {
+        "id": "reviewer-command-boundaries",
+        "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+        "expectedEvidence": "reviewerCommands",
+        "status": "checked"
+      },
+      {
+        "id": "operator-next-step-cue",
+        "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+        "expectedEvidence": "nextStepCue",
+        "status": "checked"
+      },
+      {
+        "id": "mainnet-remains-blocked",
+        "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+        "expectedEvidence": "mainnetStatement",
+        "status": "checked"
+      }
+    ],
+    "reviewerCommands": [
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+    ],
+    "evidencePaths": [
+      "tests/fixtures/beta-onboarding-quickstart.json",
+      "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+      "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+      "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+    ],
+    "expectedOutputs": [
+      "Accept verdict when #279 quickstart fixture is current and accepted.",
+      "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+      "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+    ],
+    "nextStepCue": "Accept, hold, or reject this local evidence package only; runtime activation, hosted publishing, package/archive publishing, payments, devnet, and mainnet still require separate gates.",
+    "reviewerNotes": "Local reviewer checklist metadata only; no runtime activation, Docker/Surfpool/Coolify start, hosted fetch, deployment, package publishing, archive publishing, or settlement is claimed.",
+    "liveRuntimeRequested": false,
+    "liveNetworkEnabled": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "paymentRailRequested": false,
+    "paymentAccessRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "deploymentClaimed": false,
+    "packagePublishingRequested": false,
+    "packagePublished": false,
+    "archivePublishingRequested": false,
+    "archivePublished": false,
+    "publicPublishingRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "expectedQuickstartHashes": [
+      {
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "reviewer-checklist-accept-pass"
+    },
+    {
+      "id": "reviewer-checklist-hold-pass",
+      "requestedVerdict": "hold",
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Hold for a second reviewer signature before any separate runtime activation gate."
+    },
+    {
+      "id": "missing-quickstart-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "quickstartFixturePath": "tests/fixtures/missing-beta-onboarding-quickstart.json",
+      "expectedQuickstartHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-onboarding-quickstart.json",
+          "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        }
+      ]
+    },
+    {
+      "id": "stale-quickstart-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedQuickstartHashes": [
+        {
+          "path": "tests/fixtures/beta-onboarding-quickstart.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "missing-required-checklist-item-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "checklistItems": [
+        {
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current.",
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "status": "checked"
+        }
+      ]
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "reviewerCommands": [
+        "docker compose up",
+        "npm publish",
+        "curl https://frosty-prism-5q6j.here.now/"
+      ]
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "bearer redacted-fixture-token"
+    },
+    {
+      "id": "runtime-container-hosted-publish-reject-denied",
+      "kind": "negative",
+      "requestedVerdict": "reject",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "liveRuntimeRequested": true,
+      "dockerStartRequested": true,
+      "surfpoolStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "publicPublishingRequested": true,
+      "deploymentRequested": true,
+      "packagePublishingRequested": true,
+      "archivePublishingRequested": true
+    },
+    {
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "walletRequested": true,
+      "paymentRequested": true,
+      "paymentRailRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true
+    },
+    {
+      "id": "devnet-mainnet-live-network-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "liveNetworkEnabled": true,
+      "devnetRequested": true,
+      "mainnetRequested": true
+    },
+    {
+      "id": "unsafe-next-step-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Runtime activation completed, deployment completed, archive published, and package published."
+    }
+  ]
+}
