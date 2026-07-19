@@ -272,8 +272,12 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     if scope.get("adlPath") != gate.REQUIRED_ADL_PATH or scope.get("reviewedCommand") != gate.LOCAL_COMMAND_PREFIX or scope.get("serviceWrapper") != "local-ephemeral-json-state":
         findings.append(finding("activationScope", "Activation scope must be the simple-agent local ephemeral service-wrapper state."))
     state = scenario.get("serviceWrapperState", {})
-    if state.get("storage") != "ephemeral-local-json" or state.get("before", {}).get("enabled") is not False:
-        findings.append(finding("serviceWrapperState.before", "Service-wrapper state must start disabled in ephemeral local JSON."))
+    if (
+        state.get("storage") != "ephemeral-local-json"
+        or state.get("before", {}).get("enabled") is not False
+        or state.get("before", {}).get("externalProcessPid") is not None
+    ):
+        findings.append(finding("serviceWrapperState.before", "Service-wrapper state must start disabled in ephemeral local JSON with no external process PID."))
     if state.get("afterEnable", {}).get("enabled") is not True or state.get("afterEnable", {}).get("externalProcessPid") is not None:
         findings.append(finding("serviceWrapperState.afterEnable", "Enable transition may only flip local wrapper state and must not start a process."))
     if state.get("afterEnable", {}).get("mutationScope") != "local-state-only":

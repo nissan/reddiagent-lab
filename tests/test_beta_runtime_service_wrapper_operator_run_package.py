@@ -171,6 +171,7 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"traceEvalSummary": {}}), "traceEvalSummary")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"rollbackDisableVerification": {}}), "rollbackDisableVerification.disableCommand")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nextStepCue": "Activation completed."}), "nextStepCue")
+    assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["before"].update({"externalProcessPid": 12345}), "serviceWrapperState.before")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterEnable"].update({"mutationScope": "host-process"}), "serviceWrapperState.afterEnable.mutationScope")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterDisable"].update({"externalProcessPid": 12345}), "serviceWrapperState.afterDisable.externalProcessPid")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterRollback"].update({"externalProcessPid": 12345}), "serviceWrapperState.afterRollback.externalProcessPid")
