@@ -1,0 +1,1508 @@
+{
+  "boundaries": {
+    "archivePublished": false,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "dryRunByDefault": true,
+    "evidenceWriteRequiresExplicitPath": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    279,
+    283
+  ],
+  "issue": 285,
+  "mainnetStatement": "This e2e acceptance smoke runner is local/free/dry-run by default. It does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-local-e2e-acceptance-smoke-runner",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "accept",
+      "findings": [],
+      "id": "e2e-acceptance-smoke-accept-pass",
+      "kind": "positive",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Accept this local e2e smoke evidence for reviewer/operator handoff only; runtime activation, hosted publishing, package/archive publishing, payment access, devnet, and mainnet remain separate gates.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "pass",
+      "verdict": "accept"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "7cbd051b961965ad615f5a38ecebac04df97c4eacd0b68ef778f9e75e3222b56",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "findings": [],
+      "id": "e2e-acceptance-smoke-hold-pass",
+      "kind": "positive",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "pass",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "3c552f39b3271f0e7399a4b6106cd6c764b2ebfc761011c1ee1079f111beed7b",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "quickstartFixture.exists",
+          "reason": "Artifact `tests/fixtures/missing-beta-onboarding-quickstart.json` is missing."
+        },
+        {
+          "path": "quickstartFixture.mode",
+          "reason": "E2E smoke requires #279 onboarding quickstart output."
+        },
+        {
+          "path": "quickstartFixture.status",
+          "reason": "Onboarding quickstart fixture must pass before e2e smoke."
+        },
+        {
+          "path": "quickstartFixture.issue",
+          "reason": "Onboarding quickstart fixture must be issue #279 evidence."
+        },
+        {
+          "path": "quickstartFixture.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "quickstartFixture.boundaries.deterministicLocalOnly",
+          "reason": "deterministicLocalOnly must remain true."
+        },
+        {
+          "path": "quickstartFixture.boundaries.dryRunByDefault",
+          "reason": "dryRunByDefault must remain true."
+        },
+        {
+          "path": "quickstartFixture.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.providerApiAccess",
+          "reason": "providerApiAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.dockerStarted",
+          "reason": "dockerStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.surfpoolStarted",
+          "reason": "surfpoolStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.coolifyDeployment",
+          "reason": "coolifyDeployment must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.walletAccess",
+          "reason": "walletAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.paymentAccess",
+          "reason": "paymentAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.facilitatorAccess",
+          "reason": "facilitatorAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.settlementAccess",
+          "reason": "settlementAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.publicPublished",
+          "reason": "publicPublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "quickstartFixture.results",
+          "reason": "Quickstart fixture must include an accepted passing quickstart result."
+        }
+      ],
+      "id": "missing-quickstart-artifact-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 0,
+        "id": null,
+        "localFileCount": 0,
+        "selectedAdlCount": 0,
+        "status": null,
+        "verdict": null
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": false,
+        "path": "tests/fixtures/missing-beta-onboarding-quickstart.json",
+        "sha256": null
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": false,
+        "path": "tests/fixtures/missing-beta-reviewer-acceptance-checklist.json",
+        "sha256": null
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "d9f70731bf596690c81e4f49fa41f68636c034fe16d4c039a210c0e252963368",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "checklistFixture.exists",
+          "reason": "Artifact `tests/fixtures/missing-beta-reviewer-acceptance-checklist.json` is missing."
+        },
+        {
+          "path": "checklistFixture.mode",
+          "reason": "E2E smoke requires #283 reviewer checklist output."
+        },
+        {
+          "path": "checklistFixture.status",
+          "reason": "Reviewer checklist fixture must pass before e2e smoke."
+        },
+        {
+          "path": "checklistFixture.issue",
+          "reason": "Reviewer checklist fixture must be issue #283 evidence."
+        },
+        {
+          "path": "checklistFixture.follows",
+          "reason": "Reviewer checklist fixture must follow #279."
+        },
+        {
+          "path": "checklistFixture.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "checklistFixture.boundaries.deterministicLocalOnly",
+          "reason": "deterministicLocalOnly must remain true."
+        },
+        {
+          "path": "checklistFixture.boundaries.dryRunByDefault",
+          "reason": "dryRunByDefault must remain true."
+        },
+        {
+          "path": "checklistFixture.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.providerApiAccess",
+          "reason": "providerApiAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.dockerStarted",
+          "reason": "dockerStarted must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.surfpoolStarted",
+          "reason": "surfpoolStarted must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.coolifyDeployment",
+          "reason": "coolifyDeployment must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.walletAccess",
+          "reason": "walletAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.paymentAccess",
+          "reason": "paymentAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.facilitatorAccess",
+          "reason": "facilitatorAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.settlementAccess",
+          "reason": "settlementAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.publicPublished",
+          "reason": "publicPublished must remain false."
+        },
+        {
+          "path": "checklistFixture.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "checklistFixture.results",
+          "reason": "Reviewer checklist fixture must include an accepted passing checklist result."
+        }
+      ],
+      "id": "missing-checklist-artifact-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 0,
+        "evidencePathCount": 0,
+        "id": null,
+        "reviewerCommandCount": 0,
+        "status": null,
+        "verdict": null
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "8c395360919fcbcf2fd33bfe67cc1cfe91c0c87284725e6bd844cfda4dc453ef",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "quickstartFixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-onboarding-quickstart.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-artifact-hash-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "0593ef7f6da820ba5f1062cba91bcb307938db991803c82f64619b3879491b3c",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "localCommands",
+          "reason": "Required local command `scripts/beta_onboarding_quickstart_package.py` is missing."
+        },
+        {
+          "path": "localCommands",
+          "reason": "Required local command `scripts/beta_reviewer_acceptance_checklist_package.py` is missing."
+        }
+      ],
+      "id": "missing-required-command-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "265faf9e1f438a6490d0ee241d9c15f2e936c5b1af6822c89dbcfc4bdee9a7b6",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "localCommands[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        },
+        {
+          "path": "localCommands[1]",
+          "reason": "Command must not run `npm publish`."
+        },
+        {
+          "path": "localCommands[2]",
+          "reason": "Command must not fetch hosted content."
+        },
+        {
+          "path": "localCommands[3]",
+          "reason": "Command must not run `openclaw gateway`."
+        },
+        {
+          "path": "localCommands",
+          "reason": "Required local command `scripts/beta_onboarding_quickstart_package.py` is missing."
+        },
+        {
+          "path": "localCommands",
+          "reason": "Required local command `scripts/beta_reviewer_acceptance_checklist_package.py` is missing."
+        }
+      ],
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "localCommands": [
+        "docker compose up",
+        "npm publish",
+        "curl https://frosty-prism-5q6j.here.now/",
+        "openclaw gateway reload"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "7cbd051b961965ad615f5a38ecebac04df97c4eacd0b68ef778f9e75e3222b56",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "06ba13ef548b4b51bc42b77a95b1a7d8e2c6b1ac9abd94ca2c0429fbc2d4506f",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "liveRuntimeRequested",
+          "reason": "liveRuntimeRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "surfpoolStartRequested",
+          "reason": "surfpoolStartRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "deploymentRequested",
+          "reason": "deploymentRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "packagePublishingRequested",
+          "reason": "packagePublishingRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "archivePublishingRequested",
+          "reason": "archivePublishingRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "publicPublishingRequested",
+          "reason": "publicPublishingRequested must be false or absent in e2e smoke inputs."
+        }
+      ],
+      "id": "runtime-container-hosted-publish-reject-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Reject this e2e smoke evidence and regenerate #279/#283 local artifacts before any runtime activation handoff.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "reject"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "7cbd051b961965ad615f5a38ecebac04df97c4eacd0b68ef778f9e75e3222b56",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "liveNetworkEnabled",
+          "reason": "liveNetworkEnabled must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "liveMcpRequested",
+          "reason": "liveMcpRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "walletRequested",
+          "reason": "walletRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "paymentRailRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "facilitatorRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "settlementRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in e2e smoke inputs."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in e2e smoke inputs."
+        }
+      ],
+      "id": "live-mcp-wallet-payment-devnet-mainnet-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "evidenceWriteRequiresExplicitPath": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistFixture": {
+        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "evidenceSha256": "7cbd051b961965ad615f5a38ecebac04df97c4eacd0b68ef778f9e75e3222b56",
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "One accept verdict when #279 and #283 artifacts are current and locally accepted.",
+        "One hold verdict for missing, stale, unsafe, ambiguous, or overclaiming local evidence.",
+        "One reject verdict for explicit runtime activation, hosted publishing, package/archive publishing, live rails, devnet, or mainnet requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "nextStepCue",
+          "reason": "E2E smoke must not claim `runtime activation completed`."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "E2E smoke must not claim `mainnet enabled`."
+        }
+      ],
+      "id": "unsafe-activation-claim-denied",
+      "kind": "negative",
+      "localCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_e2e_acceptance_smoke_runner.py --evidence-output-dir /tmp/reddiagent-beta-e2e-smoke"
+      ],
+      "nextStepCue": "Hold this e2e smoke evidence. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "requiredEvidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md",
+        "tests/BETA-E2E-ACCEPTANCE-SMOKE-REPORT.md"
+      ],
+      "reviewerChecklistAcceptedResult": {
+        "checklistItemCount": 5,
+        "evidencePathCount": 4,
+        "id": "reviewer-checklist-accept-pass",
+        "reviewerCommandCount": 2,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+      "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+      "status": "fail",
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "569e3aa42e7ad30757f4b6be32b30c1dca145fb0",
+  "status": "pass",
+  "summary": {
+    "acceptVerdicts": 1,
+    "failClosedScenarios": 9,
+    "holdVerdicts": 9,
+    "negativeScenarios": 9,
+    "positiveScenarios": 2,
+    "rejectVerdicts": 1
+  }
+}
