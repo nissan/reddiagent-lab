@@ -143,6 +143,7 @@ def main() -> int:
     assert "serviceWrapperState" in finding_paths["unsafe-service-state-denied"]
     assert "persistentMutation" in finding_paths["unsafe-service-state-denied"]
     assert "commandTranscript" in finding_paths["unsafe-transcript-denied"]
+    assert "commandTranscript.command" in finding_paths["unsafe-transcript-denied"]
     assert "localCommands[0]" in finding_paths["unsafe-transcript-denied"]
     assert "traceEvalSummary" in finding_paths["missing-trace-eval-denied"]
     assert "rollbackDisableVerification.disableCommand" in finding_paths["missing-rollback-disable-denied"]
@@ -164,11 +165,14 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"credentialPayload": "private_key"}), "scenario.credentialPayload")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"activationDecision": {"decision": "activate", "liveActionAuthorized": True}}), "activationDecision")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"commandTranscript": {"mode": "host-service", "command": "launchctl start reddiagent", "exitCode": 0}}), "commandTranscript")
+    assert_positive_mutation_fails(lambda scenario: scenario["commandTranscript"].update({"command": "docker run reddiagent"}), "commandTranscript.command")
+    assert_positive_mutation_fails(lambda scenario: scenario["commandTranscript"].update({"command": "docker run reddiagent"}), "commandTranscript.command[0]")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"traceEvalSummary": {}}), "traceEvalSummary")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"rollbackDisableVerification": {}}), "rollbackDisableVerification.disableCommand")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nextStepCue": "Activation completed."}), "nextStepCue")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["before"].update({"externalProcessPid": 12345}), "serviceWrapperState")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterRepresentedActivation"].update({"mutationScope": "host-process"}), "serviceWrapperState")
+    assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterHold"].update({"externalProcessPid": 12345}), "serviceWrapperState")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperState"]["afterRollback"].update({"externalProcessPid": 12345}), "serviceWrapperState")
 
     assert_prior_299_mutation_fails(lambda prior: prior.update({"status": "fail"}), "prior299Fixture.status")

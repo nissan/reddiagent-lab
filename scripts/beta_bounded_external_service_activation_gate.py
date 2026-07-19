@@ -24,6 +24,10 @@ REQUIRED_NEXT_STEP_CUE = (
     "Hold after this bounded external-service activation gate; create a separate Nissan-approved "
     "micro-gate before any real external service, provider, devnet, or mainnet mutation."
 )
+REQUIRED_TRANSCRIPT_COMMAND = (
+    "python scripts/beta_bounded_external_service_activation_gate.py "
+    "--output tests/fixtures/beta-bounded-external-service-activation-gate.json"
+)
 REQUIRED_OPERATOR_APPROVALS = (
     "runtime_owner_approval",
     "rollback_owner_approval",
@@ -275,6 +279,7 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         or state.get("afterRepresentedActivation", {}).get("externalProcessPid") is not None
         or state.get("afterRepresentedActivation", {}).get("mutationScope") != "local-temporary-state-only"
         or state.get("afterHold", {}).get("enabled") is not False
+        or state.get("afterHold", {}).get("externalProcessPid") is not None
         or state.get("afterRollback", {}).get("enabled") is not False
         or state.get("afterRollback", {}).get("externalProcessPid") is not None
     ):
@@ -282,6 +287,9 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
     transcript = scenario.get("commandTranscript", {})
     if transcript.get("mode") != "bounded-external-service-activation-gate" or transcript.get("exitCode") != 0:
         findings.append(finding("commandTranscript", "Command transcript must be this local bounded activation gate and exit 0."))
+    if transcript.get("command") != REQUIRED_TRANSCRIPT_COMMAND:
+        findings.append(finding("commandTranscript.command", "Command transcript must record the pinned local gate generator command."))
+    findings.extend(gate.command_findings([transcript.get("command")], "commandTranscript.command"))
     trace = scenario.get("traceEvalSummary", {})
     if trace.get("completionStatus") != "pass" or trace.get("requiredGateStatus") != "pass" or trace.get("toolExecution") is not None:
         findings.append(finding("traceEvalSummary", "Trace/eval summary must pass without tool execution."))
