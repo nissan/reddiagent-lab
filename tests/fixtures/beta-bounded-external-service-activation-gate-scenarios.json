@@ -1,0 +1,342 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+    "priorEvidenceReportPath": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+    "requestedVerdict": "hold",
+    "expectedStatus": "pass",
+    "expectedVerdict": "hold",
+    "currentOperatorApprovalState": {
+      "runtime_owner_approval": true,
+      "rollback_owner_approval": true,
+      "security_reviewer_approval": true,
+      "separate_live_activation_run_approval": true
+    },
+    "activationScope": {
+      "adlPath": "examples/simple-agent.yaml",
+      "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "serviceWrapper": "local-ephemeral-json-state",
+      "representedActivation": "local-temporary-json-gate",
+      "toolExecution": null,
+      "liveMutation": false,
+      "networkExposure": "none"
+    },
+    "commandTranscript": {
+      "mode": "bounded-external-service-activation-gate",
+      "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+      "exitCode": 0,
+      "stdoutContains": [
+        "beta-bounded-external-service-activation-gate",
+        "hold"
+      ],
+      "stderr": ""
+    },
+    "traceEvalSummary": {
+      "completionStatus": "pass",
+      "requiredGateStatus": "pass",
+      "toolExecution": null,
+      "traceEvents": [
+        "load-pinned-299-evidence",
+        "verify-299-consumed-297",
+        "verify-295-293-291-lineage",
+        "confirm-simple-agent-scope",
+        "record-before-disabled",
+        "represent-local-temporary-activation",
+        "hold-disable-local-state",
+        "rollback-local-state",
+        "fail-closed-before-real-external-service"
+      ]
+    },
+    "serviceWrapperState": {
+      "storage": "ephemeral-local-json",
+      "before": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      },
+      "afterRepresentedActivation": {
+        "enabled": true,
+        "target": "simple-agent",
+        "externalProcessPid": null,
+        "mutationScope": "local-temporary-state-only"
+      },
+      "afterHold": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      },
+      "afterRollback": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      }
+    },
+    "activationDecision": {
+      "decision": "hold",
+      "liveActionAuthorized": false,
+      "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+    },
+    "rollbackDisableVerification": {
+      "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+      "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+      "wrapperEnabledAfterRollback": false,
+      "externalProcessStarted": false,
+      "persistentMutation": false,
+      "verification": "dry-run local disable/rollback proof only; no external service was started or persisted."
+    },
+    "auditTrail": [
+      "load-pinned-299-evidence",
+      "record-before-disabled",
+      "represent-local-temporary-activation",
+      "hold-disable-local-state",
+      "rollback-local-state"
+    ],
+    "localCommands": [
+      "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+      "external-service:disable --target simple-agent --state ephemeral --dry-run",
+      "external-service:rollback --target simple-agent --state ephemeral --dry-run"
+    ],
+    "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+    "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "externalProcessStarted": false,
+    "hostProcessMutated": false,
+    "persistentMutation": false,
+    "unboundedMutation": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "serviceStartRequested": false,
+    "externalProcessStartRequested": false,
+    "hostMutationRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "hostedFetchRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "activationCompleted": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+        "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+      },
+      {
+        "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+        "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "bounded-external-activation-hold-pass"
+    },
+    {
+      "id": "bounded-external-activation-rollback-pass",
+      "requestedVerdict": "rollback",
+      "expectedVerdict": "rollback",
+      "activationDecision": {
+        "decision": "rollback",
+        "liveActionAuthorized": false,
+        "reason": "Operator requested dry-run rollback verification before any external service mutation."
+      }
+    },
+    {
+      "id": "stale-prior-299-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+          "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+        }
+      ]
+    },
+    {
+      "id": "stale-prior-299-report-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+          "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ]
+    },
+    {
+      "id": "missing-current-operator-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "currentOperatorApprovalState": {
+        "runtime_owner_approval": true,
+        "rollback_owner_approval": true,
+        "security_reviewer_approval": false,
+        "separate_live_activation_run_approval": true
+      }
+    },
+    {
+      "id": "wrong-activation-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationScope": {
+        "adlPath": "examples/tool-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+        "serviceWrapper": "host-launchagent",
+        "representedActivation": "host-process",
+        "toolExecution": "fixture",
+        "liveMutation": true,
+        "networkExposure": "loopback"
+      }
+    },
+    {
+      "id": "unsafe-service-state-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "serviceWrapperState": {
+        "storage": "ephemeral-local-json",
+        "before": {
+          "enabled": false,
+          "target": "simple-agent",
+          "externalProcessPid": null
+        },
+        "afterRepresentedActivation": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 44112,
+          "mutationScope": "host-process"
+        },
+        "afterHold": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 44112
+        },
+        "afterRollback": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 44112
+        }
+      },
+      "externalProcessStarted": true,
+      "serviceStarted": true,
+      "persistentMutation": true
+    },
+    {
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "commandTranscript": {
+        "mode": "host-external-service",
+        "command": "launchctl start reddiagent",
+        "exitCode": 0
+      },
+      "localCommands": [
+        "docker compose up"
+      ]
+    },
+    {
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "traceEvalSummary": {
+        "completionStatus": "missing",
+        "requiredGateStatus": "missing",
+        "toolExecution": "attempted"
+      }
+    },
+    {
+      "id": "missing-rollback-disable-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisableVerification": {
+        "disableCommand": "external-service:disable --target simple-agent",
+        "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+        "wrapperEnabledAfterRollback": true,
+        "externalProcessStarted": true,
+        "persistentMutation": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "Authorization: bearer token"
+    },
+    {
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "hostMutationRequested": true,
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "providerApiAccessRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "packageArchivePublishRequested": true
+    },
+    {
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationCompleted": true,
+      "nextStepCue": "Activation completed. Mainnet is ready."
+    }
+  ]
+}

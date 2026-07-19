@@ -1,0 +1,2605 @@
+{
+  "boundaries": {
+    "actualServiceMutation": false,
+    "archivePublished": false,
+    "audited": true,
+    "bounded": true,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "externalProcessStarted": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "failClosed": true,
+    "hostProcessMutated": false,
+    "hostedFetch": false,
+    "leastPrivilege": true,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "localTemporaryRepresentationOnly": true,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "persistentMutation": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "reversible": true,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "unboundedMutation": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    299,
+    297,
+    295,
+    293,
+    291,
+    289,
+    287,
+    285
+  ],
+  "issue": 301,
+  "mainnetStatement": "This bounded external-service activation gate does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-bounded-external-service-activation-gate",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "findings": [],
+      "id": "bounded-external-activation-hold-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "pass",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "rollback",
+      "findings": [],
+      "id": "bounded-external-activation-rollback-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "rollback",
+          "liveActionAuthorized": false,
+          "reason": "Operator requested dry-run rollback verification before any external service mutation."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "pass",
+      "verdict": "rollback"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "prior299Fixture.expectedSha256",
+          "reason": "Prior #299 fixture path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior299Fixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-prior-299-fixture-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "hashMatches": false,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "prior299Report.expectedSha256",
+          "reason": "Prior #299 report path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior299Report.sha256",
+          "reason": "Artifact `tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-prior-299-report-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+            "hashMatches": false,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "currentOperatorApprovalState.security_reviewer_approval",
+          "reason": "security_reviewer_approval must be recorded true for this bounded gate."
+        }
+      ],
+      "id": "missing-current-operator-approval-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": false,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationScope",
+          "reason": "Activation scope must be a local temporary simple-agent gate with no live mutation or network exposure."
+        }
+      ],
+      "id": "wrong-activation-scope-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/tool-agent.yaml",
+          "liveMutation": true,
+          "networkExposure": "loopback",
+          "representedActivation": "host-process",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+          "serviceWrapper": "host-launchagent",
+          "toolExecution": "fixture"
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "serviceStarted",
+          "reason": "serviceStarted must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "externalProcessStarted",
+          "reason": "externalProcessStarted must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "persistentMutation",
+          "reason": "persistentMutation must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "serviceWrapperState",
+          "reason": "Service-wrapper state must represent only temporary local enable, hold-disable, and rollback with no external process."
+        }
+      ],
+      "id": "unsafe-service-state-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": true,
+            "externalProcessPid": 44112,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": 44112,
+            "mutationScope": "host-process",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": true,
+            "externalProcessPid": 44112,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "commandTranscript",
+          "reason": "Command transcript must be this local bounded activation gate and exit 0."
+        },
+        {
+          "path": "localCommands[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        }
+      ],
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "launchctl start reddiagent",
+          "exitCode": 0,
+          "mode": "host-external-service",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "traceEvalSummary",
+          "reason": "Trace/eval summary must pass without tool execution."
+        }
+      ],
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "missing",
+          "requiredGateStatus": "missing",
+          "toolExecution": "attempted",
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "rollbackDisableVerification.disableCommand",
+          "reason": "Disable verification must use the pinned external-service dry-run command."
+        },
+        {
+          "path": "rollbackDisableVerification.wrapperEnabledAfterRollback",
+          "reason": "Rollback must prove disabled local state, no process start, and no persistence."
+        }
+      ],
+      "id": "missing-rollback-disable-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent",
+          "externalProcessStarted": true,
+          "persistentMutation": true,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": true
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "hostMutationRequested",
+          "reason": "hostMutationRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "providerApiAccessRequested",
+          "reason": "providerApiAccessRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "liveMcpRequested",
+          "reason": "liveMcpRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "packageArchivePublishRequested",
+          "reason": "packageArchivePublishRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in this bounded activation gate."
+        }
+      ],
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this bounded external-service activation gate; create a separate Nissan-approved micro-gate before any real external service, provider, devnet, or mainnet mutation.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationCompleted",
+          "reason": "activationCompleted must be false or absent in this bounded activation gate."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Next-step cue must require a separate approved micro-gate before real mutation or mainnet."
+        }
+      ],
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The bounded gate may represent activation in temporary local state only; real external service mutation remains held."
+        },
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "representedActivation": "local-temporary-json-gate",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "load-pinned-299-evidence",
+          "record-before-disabled",
+          "represent-local-temporary-activation",
+          "hold-disable-local-state",
+          "rollback-local-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "commandTranscript": {
+          "command": "python scripts/beta_bounded_external_service_activation_gate.py --output tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "exitCode": 0,
+          "mode": "bounded-external-service-activation-gate",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-bounded-external-service-activation-gate",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Activation completed. Mainnet is ready.",
+        "prior299Evidence": {
+          "acceptedResultId": "service-wrapper-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "priorRiskVerdict": "hold-before-external-service-mutation",
+          "report": {
+            "expectedSha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",
+            "sha256": "095db81a36cd1c606003c2b9aa7dc3ddc7abe89b8528aec0ea8b9838e8749e73"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "serviceWrapper": "local-ephemeral-json-state",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-fail-closed-before-real-external-service-activation",
+        "rollbackDisableVerification": {
+          "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "persistentMutation": false,
+          "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local disable/rollback proof only; no external service was started or persisted.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-bounded-external-service-activation-gate",
+        "serviceWrapperState": {
+          "afterHold": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterRepresentedActivation": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-temporary-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+        "sourceMergeCommit": "9d6f8d3a2f1a637420808ea60350f578dde0a26f",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-299-evidence",
+            "verify-299-consumed-297",
+            "verify-295-293-291-lineage",
+            "confirm-simple-agent-scope",
+            "record-before-disabled",
+            "represent-local-temporary-activation",
+            "hold-disable-local-state",
+            "rollback-local-state",
+            "fail-closed-before-real-external-service"
+          ]
+        }
+      },
+      "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+      "status": "fail",
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "b9f54708b79b81fbe96d32a8edeff369fcd93cf3",
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 11,
+    "holdVerdicts": 12,
+    "negativeScenarios": 11,
+    "positiveScenarios": 2,
+    "rollbackVerdicts": 1
+  }
+}
