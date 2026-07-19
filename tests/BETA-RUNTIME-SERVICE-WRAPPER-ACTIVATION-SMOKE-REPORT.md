@@ -1,7 +1,7 @@
 # Beta Runtime Service-Wrapper Activation Smoke Report
 
-Issue: #297  
-Parent: #220  
+Issue: #297
+Parent: #220
 Mode: deterministic local evidence only
 
 ## Scope
