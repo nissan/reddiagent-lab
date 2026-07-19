@@ -194,6 +194,27 @@ def main() -> int:
         "e2eSmokeFixture.results.verdict",
     )
     assert_artifact_mutation_fails(
+        ROOT / "tests" / "fixtures" / "beta-e2e-acceptance-smoke.json",
+        "e2eSmokeFixturePath",
+        "tests/fixtures/beta-e2e-acceptance-smoke.json",
+        lambda e2e: e2e["results"][0].update({"nextStepCue": "Runtime activation completed and mainnet enabled."}),
+        "e2eSmokeFixture.results.nextStepCue",
+    )
+    assert_artifact_mutation_fails(
+        ROOT / "tests" / "fixtures" / "beta-e2e-acceptance-smoke.json",
+        "e2eSmokeFixturePath",
+        "tests/fixtures/beta-e2e-acceptance-smoke.json",
+        lambda e2e: e2e["results"][0].update({"localCommands": ["docker pull reddiagent/test:latest"]}),
+        "e2eSmokeFixture.results.localCommands[0]",
+    )
+    assert_artifact_mutation_fails(
+        ROOT / "tests" / "fixtures" / "beta-e2e-acceptance-smoke.json",
+        "e2eSmokeFixturePath",
+        "tests/fixtures/beta-e2e-acceptance-smoke.json",
+        lambda e2e: e2e["results"][0].update({"credentialPayload": "token=abc123 secret=hunter2"}),
+        "e2eSmokeFixture.results.credentialPayload",
+    )
+    assert_artifact_mutation_fails(
         ROOT / "tests" / "fixtures" / "local-executable-runtime-prototype.json",
         "runtimeFixturePath",
         "tests/fixtures/local-executable-runtime-prototype.json",

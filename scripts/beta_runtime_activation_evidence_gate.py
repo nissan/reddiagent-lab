@@ -270,6 +270,9 @@ def e2e_findings(doc: dict[str, Any]) -> list[dict[str, str]]:
         findings.append(finding("e2eSmokeFixture.results.smokeId", f"Accepted smoke id must be `{REQUIRED_SMOKE_ID}`."))
     if accepted.get("verdict") != "accept" or accepted.get("status") != "pass":
         findings.append(finding("e2eSmokeFixture.results.verdict", "Accepted #285 smoke result must pass with accept verdict."))
+    findings.extend(smoke.sensitive_payload_findings(accepted, "e2eSmokeFixture.results"))
+    findings.extend(smoke.unsafe_claim_findings(accepted, "e2eSmokeFixture.results"))
+    findings.extend(command_findings(accepted.get("localCommands", []), "e2eSmokeFixture.results.localCommands"))
     return findings
 
 
