@@ -68,6 +68,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_runtime_service_activation_live_run_gate.py
 "$PYTHON" tests/test_beta_runtime_service_wrapper_activation_smoke.py
 "$PYTHON" tests/test_beta_runtime_service_wrapper_operator_run_package.py
+"$PYTHON" tests/test_beta_bounded_external_service_activation_gate.py
 "$PYTHON" tests/test_coolify_devnet_public_demo.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py
