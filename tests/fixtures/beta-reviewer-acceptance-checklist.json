@@ -152,7 +152,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "pass",
       "verdict": "accept"
     },
@@ -274,7 +274,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "pass",
       "verdict": "hold"
     },
@@ -495,7 +495,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -622,7 +622,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -737,7 +737,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -873,7 +873,7 @@
         "npm publish",
         "curl https://frosty-prism-5q6j.here.now/"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1004,7 +1004,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1159,7 +1159,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1302,7 +1302,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1437,7 +1437,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1576,12 +1576,12 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+  "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,

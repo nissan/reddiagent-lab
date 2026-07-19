@@ -197,6 +197,18 @@ def main() -> int:
     assert_quickstart_mutation_fails(lambda quickstart: quickstart["boundaries"].update({"networkAccess": True}), "quickstartFixture.boundaries.networkAccess")
     assert_quickstart_mutation_fails(lambda quickstart: quickstart["results"][0].update({"quickstartId": "stale"}), "quickstartFixture.results.quickstartId")
     assert_quickstart_mutation_fails(lambda quickstart: quickstart["results"][0].update({"localFileInventory": []}), "quickstartFixture.results.localFileInventory")
+    assert_quickstart_mutation_fails(
+        lambda quickstart: quickstart["results"][0].update(
+            {
+                "localFileInventory": [
+                    item
+                    for item in quickstart["results"][0]["localFileInventory"]
+                    if item.get("key") != "pitchPage"
+                ]
+            }
+        ),
+        "quickstartFixture.results.localFileInventory",
+    )
 
     with tempfile.TemporaryDirectory(prefix="beta-reviewer-checklist-out-") as tmp:
         written = run_checklist("--checklist-output-dir", tmp)

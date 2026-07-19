@@ -29,6 +29,17 @@ REQUIRED_CHECKLIST_ITEMS = (
     "operator-next-step-cue",
     "mainnet-remains-blocked",
 )
+REQUIRED_QUICKSTART_INVENTORY = {
+    "archiveManifest": "tests/fixtures/beta-release-archive-assembler.json",
+    "betaReviewUi": "tests/fixtures/beta-review-ui.json",
+    "coolifyEvidence": "tests/fixtures/coolify-staging-lane.json",
+    "dockerEvidence": "tests/fixtures/docker-testing-lane.json",
+    "pitchPage": "docs/public-demo-pitch.html",
+    "pitchPlan": "docs/PITCH-DEMO-REFRESH.md",
+    "pitchVideoScript": "scripts/public_demo_pitch_video.sh",
+    "releaseVerification": "tests/fixtures/beta-release-verification.json",
+    "surfpoolEvidence": "tests/fixtures/surfpool-validator-lane.json",
+}
 UNSAFE_KEYS_NORMALIZED = {
     "apikey",
     "authorization",
@@ -307,8 +318,17 @@ def quickstart_findings(quickstart: dict[str, Any]) -> list[dict[str, str]]:
         findings.append(finding("quickstartFixture.results.quickstartId", f"Quickstart id must be `{REQUIRED_QUICKSTART_ID}`."))
     if result.get("releaseCandidateId") != REQUIRED_RELEASE_CANDIDATE_ID:
         findings.append(finding("quickstartFixture.results.releaseCandidateId", f"Release candidate id must be `{REQUIRED_RELEASE_CANDIDATE_ID}`."))
-    if not result.get("localFileInventory") or not all(item.get("hashMatches") for item in result.get("localFileInventory", [])):
+    local_file_inventory = result.get("localFileInventory", [])
+    if not local_file_inventory or not all(item.get("hashMatches") for item in local_file_inventory):
         findings.append(finding("quickstartFixture.results.localFileInventory", "Accepted quickstart must include matching local file inventory hashes."))
+    inventory_paths_by_key = {
+        item.get("key"): item.get("path")
+        for item in local_file_inventory
+        if isinstance(item, dict) and item.get("key")
+    }
+    for key, required_path in REQUIRED_QUICKSTART_INVENTORY.items():
+        if inventory_paths_by_key.get(key) != required_path:
+            findings.append(finding("quickstartFixture.results.localFileInventory", f"Accepted quickstart must include `{key}` at `{required_path}`."))
     if not result.get("commands"):
         findings.append(finding("quickstartFixture.results.commands", "Accepted quickstart must include local reviewer/operator commands."))
     return findings
