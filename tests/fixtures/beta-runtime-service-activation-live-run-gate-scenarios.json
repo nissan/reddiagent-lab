@@ -1,0 +1,273 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+    "priorEvidenceReportPath": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-EVIDENCE-GATE-REPORT.md",
+    "requestedVerdict": "hold",
+    "expectedStatus": "pass",
+    "expectedVerdict": "hold",
+    "currentOperatorApprovalState": {
+      "runtime_owner_approval": true,
+      "rollback_owner_approval": true,
+      "security_reviewer_approval": true,
+      "separate_live_activation_run_approval": true
+    },
+    "activationScope": {
+      "adlPath": "examples/simple-agent.yaml",
+      "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "toolExecution": null,
+      "liveMutation": false,
+      "networkExposure": "none"
+    },
+    "boundedTranscript": {
+      "mode": "bounded-local-live-run-substitute",
+      "command": "python scripts/beta_runtime_service_activation_live_run_gate.py --output tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+      "exitCode": 0,
+      "stdoutContains": [
+        "beta-runtime-service-activation-live-run-gate",
+        "hold"
+      ],
+      "stderr": ""
+    },
+    "traceEvalSummary": {
+      "completionStatus": "pass",
+      "requiredGateStatus": "pass",
+      "toolExecution": null,
+      "traceEvents": [
+        "load-pinned-293-evidence",
+        "verify-current-operator-approvals",
+        "confirm-simple-agent-scope",
+        "bounded-local-transcript",
+        "rollback-disable-verification",
+        "hold-before-actual-service-activation"
+      ]
+    },
+    "operatorDecision": {
+      "decision": "hold",
+      "liveActionAuthorized": false,
+      "reason": "The local bounded live-run gate is complete; no actual service mutation is represented."
+    },
+    "rollbackDisableVerification": {
+      "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+      "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+      "liveRuntimeEnabledAfterRollback": false,
+      "verification": "dry-run rollback/disable proof only; no service was started."
+    },
+    "localCommands": [
+      "python scripts/beta_runtime_service_activation_live_run_gate.py --output tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+      "local-runtime:disable --target simple-agent --dry-run",
+      "local-runtime:rollback --target simple-agent --dry-run"
+    ],
+    "riskVerdict": "hold-before-actual-service-activation",
+    "nextStepCue": "Hold after this bounded local live-run gate; actual service activation remains blocked until a fresh bounded operator run explicitly starts the service with audited rollback and no mainnet risk.",
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "serviceStartRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "hostedFetchRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "activationCompleted": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+        "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+      },
+      {
+        "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-EVIDENCE-GATE-REPORT.md",
+        "sha256": "0a90b83e5ef992faa1bba8c898f380066a70e300a42f4589b63feb2ee0129a56"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "bounded-live-run-hold-pass"
+    },
+    {
+      "id": "bounded-live-run-rollback-pass",
+      "requestedVerdict": "rollback",
+      "expectedVerdict": "rollback",
+      "operatorDecision": {
+        "decision": "rollback",
+        "liveActionAuthorized": false,
+        "reason": "Operator requested dry-run rollback verification before any actual service activation."
+      }
+    },
+    {
+      "id": "stale-prior-293-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-EVIDENCE-GATE-REPORT.md",
+          "sha256": "0a90b83e5ef992faa1bba8c898f380066a70e300a42f4589b63feb2ee0129a56"
+        }
+      ]
+    },
+    {
+      "id": "stale-prior-293-report-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-EVIDENCE-GATE-REPORT.md",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ]
+    },
+    {
+      "id": "missing-current-operator-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "currentOperatorApprovalState": {
+        "runtime_owner_approval": true,
+        "rollback_owner_approval": true,
+        "security_reviewer_approval": true,
+        "separate_live_activation_run_approval": false
+      }
+    },
+    {
+      "id": "wrong-activation-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationScope": {
+        "adlPath": "examples/tool-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+        "toolExecution": "fixture",
+        "liveMutation": false,
+        "networkExposure": "none"
+      }
+    },
+    {
+      "id": "unsafe-service-mutation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "serviceStarted": true,
+      "actualServiceMutation": true,
+      "serviceStartRequested": true,
+      "operatorDecision": {
+        "decision": "activate",
+        "liveActionAuthorized": true,
+        "reason": "Start the runtime service."
+      }
+    },
+    {
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "boundedTranscript": {
+        "mode": "live-service",
+        "command": "launchctl start reddiagent",
+        "exitCode": 0
+      },
+      "localCommands": [
+        "docker compose up"
+      ]
+    },
+    {
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "traceEvalSummary": {
+        "completionStatus": "missing",
+        "requiredGateStatus": "missing",
+        "toolExecution": "attempted"
+      }
+    },
+    {
+      "id": "missing-rollback-disable-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisableVerification": {
+        "disableCommand": "live-runtime:disable",
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "Authorization: bearer token"
+    },
+    {
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "packageArchivePublishRequested": true
+    },
+    {
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationCompleted": true,
+      "nextStepCue": "Activation completed. Mainnet is ready."
+    }
+  ]
+}
