@@ -61,6 +61,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_onboarding_quickstart_package.py
 "$PYTHON" tests/test_beta_reviewer_acceptance_checklist_package.py
 "$PYTHON" tests/test_beta_e2e_acceptance_smoke_runner.py
+"$PYTHON" tests/test_beta_runtime_activation_evidence_gate.py
 "$PYTHON" tests/test_coolify_devnet_public_demo.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py
