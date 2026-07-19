@@ -130,7 +130,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -167,7 +167,7 @@
       "findings": [],
       "id": "runtime-service-approval-packet-ready-pass",
       "kind": "positive",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "pass",
       "verdict": "approval-packet-ready"
     },
@@ -264,7 +264,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -301,7 +301,7 @@
       "findings": [],
       "id": "runtime-service-approval-packet-hold-pass",
       "kind": "positive",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "pass",
       "verdict": "hold"
     },
@@ -390,7 +390,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": null,
           "acceptedCanaryResultSha256": null,
@@ -521,7 +521,7 @@
       ],
       "id": "missing-canary-evidence-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -618,7 +618,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -660,7 +660,7 @@
       ],
       "id": "stale-canary-evidence-hash-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -757,7 +757,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -799,7 +799,7 @@
       ],
       "id": "wrong-packet-id-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -895,7 +895,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -937,7 +937,7 @@
       ],
       "id": "missing-operator-approval-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1034,7 +1034,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1080,7 +1080,7 @@
       ],
       "id": "env-secret-value-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1173,7 +1173,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1215,7 +1215,7 @@
       ],
       "id": "missing-live-action-checklist-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1312,7 +1312,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1358,7 +1358,7 @@
       ],
       "id": "unsafe-command-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1455,7 +1455,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1501,7 +1501,7 @@
       ],
       "id": "credential-like-leakage-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1598,7 +1598,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1676,7 +1676,7 @@
       ],
       "id": "live-rails-reject-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1773,7 +1773,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1823,7 +1823,7 @@
       ],
       "id": "unsafe-activation-claim-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1920,7 +1920,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+        "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
           "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
@@ -1962,12 +1962,12 @@
       ],
       "id": "missing-rollback-plan-denied",
       "kind": "negative",
-      "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+      "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "fbcd4fd544868ecf0d1ea33e97ac66a1fa74bc3c",
+  "sourceCommit": "b6bbea15c7f6d255ad2fd5c5af8bf94e1de9398f",
   "status": "pass",
   "summary": {
     "approvalPacketReadyVerdicts": 1,

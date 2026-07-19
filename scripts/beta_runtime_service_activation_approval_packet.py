@@ -190,7 +190,20 @@ def canary_findings(doc: dict[str, Any]) -> list[dict[str, str]]:
     if rollback.get("liveRuntimeEnabledAfterRollback") is not False:
         findings.append(finding("canaryEvidenceFixture.results.rollbackDisableDryRunProof", "Accepted #289 rollback proof must leave live runtime disabled."))
     activation = accepted.get("activationEvidence", {})
-    if not activation.get("acceptedSourceSmoke") or not activation.get("acceptedActivationEvidenceSha256"):
+    if not isinstance(activation, dict):
+        findings.append(finding("canaryEvidenceFixture.results.activationEvidence", "Accepted #289 activation evidence must be an object."))
+        activation = {}
+    activation_fixture = activation.get("fixture")
+    if not isinstance(activation_fixture, dict) or activation_fixture.get("hashMatches") is not True:
+        findings.append(finding("canaryEvidenceFixture.results.activationEvidence.fixture", "Accepted #289 evidence must preserve the #287 activation fixture binding with hashMatches true."))
+    source_smoke = activation.get("acceptedSourceSmoke")
+    if not isinstance(source_smoke, dict):
+        findings.append(finding("canaryEvidenceFixture.results.activationEvidence.acceptedSourceSmoke", "Accepted #289 evidence must preserve the #285 smoke source binding."))
+        source_smoke = {}
+    smoke_fixture = source_smoke.get("fixture")
+    if not isinstance(smoke_fixture, dict) or smoke_fixture.get("hashMatches") is not True:
+        findings.append(finding("canaryEvidenceFixture.results.activationEvidence.acceptedSourceSmoke.fixture", "Accepted #289 evidence must preserve the #285 smoke fixture binding with hashMatches true."))
+    if not activation.get("acceptedActivationEvidenceSha256") or not source_smoke.get("acceptedEvidenceSha256"):
         findings.append(finding("canaryEvidenceFixture.results.activationEvidence.upstreamHashes", "Accepted #289 evidence must preserve upstream #287/#285 source hashes."))
     findings.extend(smoke.sensitive_payload_findings(accepted, "canaryEvidenceFixture.results"))
     findings.extend(smoke.unsafe_claim_findings(accepted, "canaryEvidenceFixture.results"))

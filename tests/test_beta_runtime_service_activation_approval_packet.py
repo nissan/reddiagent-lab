@@ -211,6 +211,10 @@ def main() -> int:
     assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["operatorControlStateAfter"].update({"runtimeEnabled": True}), "canaryEvidenceFixture.results.operatorControlStateAfter")
     assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0].update({"credentialPayload": "private key"}), "canaryEvidenceFixture.results.credentialPayload")
     assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["activationEvidence"].update({"acceptedSourceSmoke": None}), "canaryEvidenceFixture.results.activationEvidence.upstreamHashes")
+    assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["activationEvidence"].update({"fixture": None}), "canaryEvidenceFixture.results.activationEvidence.fixture")
+    assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["activationEvidence"]["fixture"].update({"hashMatches": False}), "canaryEvidenceFixture.results.activationEvidence.fixture")
+    assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["activationEvidence"]["acceptedSourceSmoke"].update({"fixture": None}), "canaryEvidenceFixture.results.activationEvidence.acceptedSourceSmoke.fixture")
+    assert_canary_mutation_fails(lambda canary_doc: canary_doc["results"][0]["activationEvidence"]["acceptedSourceSmoke"]["fixture"].update({"hashMatches": False}), "canaryEvidenceFixture.results.activationEvidence.acceptedSourceSmoke.fixture")
 
     with tempfile.TemporaryDirectory(prefix="beta-runtime-service-approval-out-") as tmp:
         written = run_packet("--packet-output-dir", tmp)
