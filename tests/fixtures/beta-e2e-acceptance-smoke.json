@@ -132,7 +132,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "pass",
       "verdict": "accept"
     },
@@ -233,7 +233,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "pass",
       "verdict": "hold"
     },
@@ -443,7 +443,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -657,7 +657,7 @@
         "verdict": null
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -763,7 +763,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -871,7 +871,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -933,19 +933,19 @@
       "findings": [
         {
           "path": "localCommands[0]",
-          "reason": "Local command must not pull, start, run, or compose Docker containers."
+          "reason": "Command must not pull, start, run, or compose Docker containers."
         },
         {
           "path": "localCommands[1]",
-          "reason": "Local command must not run `npm publish`."
+          "reason": "Command must not run `npm publish`."
         },
         {
           "path": "localCommands[2]",
-          "reason": "Local command must not fetch hosted content."
+          "reason": "Command must not fetch hosted content."
         },
         {
           "path": "localCommands[3]",
-          "reason": "Local command must not run `openclaw gateway`."
+          "reason": "Command must not run `openclaw gateway`."
         },
         {
           "path": "localCommands",
@@ -998,7 +998,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1108,7 +1108,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1242,7 +1242,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1380,7 +1380,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1490,12 +1490,12 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+      "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "ef0bf172f8b8520ef6db0ae8cba3cef543d89944",
+  "sourceCommit": "cfb0c39769db1f84b9c1bd901aea35bad483c1ea",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,

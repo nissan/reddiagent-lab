@@ -229,18 +229,18 @@ def unsafe_claim_findings(value: Any, path: str) -> list[dict[str, str]]:
     return findings
 
 
-def command_findings(commands: Any) -> list[dict[str, str]]:
+def command_findings(commands: Any, field: str = "localCommands") -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
     if not isinstance(commands, list):
-        return [finding("localCommands", "Local commands must be a list.")]
+        return [finding(field, "Commands must be a list.")]
     for index, command in enumerate(commands):
         if not isinstance(command, str) or not command.strip():
-            findings.append(finding(f"localCommands[{index}]", "Local command must be a non-empty string."))
+            findings.append(finding(f"{field}[{index}]", "Command must be a non-empty string."))
             continue
         lowered = command.lower()
         for marker in UNSAFE_COMMAND_MARKERS:
             if marker in lowered:
-                findings.append(finding(f"localCommands[{index}]", f"Local command must not include `{marker}`."))
+                findings.append(finding(f"{field}[{index}]", f"Command must not include `{marker}`."))
         try:
             tokens = [token.lower() for token in shlex.split(command)]
         except ValueError:
@@ -248,18 +248,18 @@ def command_findings(commands: Any) -> list[dict[str, str]]:
         if not tokens:
             continue
         if tokens[0] == "docker" and any(token in UNSAFE_DOCKER_SUBCOMMANDS for token in tokens[1:]):
-            findings.append(finding(f"localCommands[{index}]", "Local command must not pull, start, run, or compose Docker containers."))
+            findings.append(finding(f"{field}[{index}]", "Command must not pull, start, run, or compose Docker containers."))
         if tokens[0] == "docker-compose" and "up" in tokens[1:]:
-            findings.append(finding(f"localCommands[{index}]", "Local command must not start Docker Compose services."))
+            findings.append(finding(f"{field}[{index}]", "Command must not start Docker Compose services."))
         if tokens[0] in HOSTED_FETCH_COMMANDS and any(token.startswith(("http://", "https://")) for token in tokens[1:]):
-            findings.append(finding(f"localCommands[{index}]", "Local command must not fetch hosted content."))
+            findings.append(finding(f"{field}[{index}]", "Command must not fetch hosted content."))
         for unsafe in UNSAFE_PACKAGE_PUBLISH_COMMANDS:
             if len(tokens) >= len(unsafe) and tuple(tokens[: len(unsafe)]) == unsafe:
-                findings.append(finding(f"localCommands[{index}]", f"Local command must not run `{' '.join(unsafe)}`."))
+                findings.append(finding(f"{field}[{index}]", f"Command must not run `{' '.join(unsafe)}`."))
     command_text = "\n".join(command for command in commands if isinstance(command, str))
     for required in REQUIRED_LOCAL_COMMANDS:
         if required not in command_text:
-            findings.append(finding("localCommands", f"Required local command `{required}` is missing."))
+            findings.append(finding(field, f"Required local command `{required}` is missing."))
     return findings
 
 
@@ -397,6 +397,8 @@ def checklist_findings(checklist: dict[str, Any], quickstart_hash: str | None) -
             findings.append(finding("checklistFixture.results.checklistItems", f"Required checklist item `{item_id}` is missing."))
     if not result.get("reviewerCommands"):
         findings.append(finding("checklistFixture.results.reviewerCommands", "Checklist must include reviewer commands."))
+    else:
+        findings.extend(command_findings(result.get("reviewerCommands", []), "checklistFixture.results.reviewerCommands"))
     if REQUIRED_QUICKSTART_PATH not in result.get("evidencePaths", []):
         findings.append(finding("checklistFixture.results.evidencePaths", f"Checklist evidence paths must include `{REQUIRED_QUICKSTART_PATH}`."))
     return findings
