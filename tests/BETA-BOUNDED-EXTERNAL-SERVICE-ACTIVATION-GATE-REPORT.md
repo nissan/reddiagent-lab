@@ -1,7 +1,7 @@
 # Beta Bounded External-Service Activation Gate Report
 
-Issue: #301  
-Parent epic: #220  
+Issue: #301
+Parent epic: #220
 Mode: `beta-bounded-external-service-activation-gate`
 
 ## Summary
