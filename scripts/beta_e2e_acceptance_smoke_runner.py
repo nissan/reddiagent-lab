@@ -378,6 +378,8 @@ def checklist_findings(checklist: dict[str, Any], quickstart_hash: str | None) -
     if result is None:
         findings.append(finding("checklistFixture.results", "Reviewer checklist fixture must include an accepted passing checklist result."))
         return findings
+    findings.extend(sensitive_payload_findings(result, "checklistFixture.results"))
+    findings.extend(unsafe_claim_findings(result, "checklistFixture.results"))
     if result.get("checklistId") != REQUIRED_CHECKLIST_ID:
         findings.append(finding("checklistFixture.results.checklistId", f"Checklist id must be `{REQUIRED_CHECKLIST_ID}`."))
     if result.get("quickstartId") != REQUIRED_QUICKSTART_ID:

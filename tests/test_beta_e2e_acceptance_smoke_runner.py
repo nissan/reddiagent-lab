@@ -233,6 +233,13 @@ def main() -> int:
         lambda checklist: checklist["results"][0].update({"reviewerCommands": ["docker pull reddiagent/test:latest"]}),
         "checklistFixture.results.reviewerCommands[0]",
     )
+    assert_artifact_mutation_fails(
+        ROOT / "tests" / "fixtures" / "beta-reviewer-acceptance-checklist.json",
+        "checklistFixturePath",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        lambda checklist: checklist["results"][0].update({"nextStepCue": "Runtime activation completed and mainnet enabled."}),
+        "checklistFixture.results.nextStepCue",
+    )
 
     with tempfile.TemporaryDirectory(prefix="beta-e2e-smoke-out-") as tmp:
         written = run_smoke("--evidence-output-dir", tmp)
