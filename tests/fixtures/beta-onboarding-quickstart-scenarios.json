@@ -89,7 +89,7 @@
       },
       {
         "path": "docs/public-demo-pitch.html",
-        "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3"
+        "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
       },
       {
         "path": "scripts/public_demo_pitch_video.sh",
@@ -151,7 +151,7 @@
       "expectedLocalFileHashes": [
         {
           "path": "docs/missing-public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3"
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447"
         }
       ]
     },

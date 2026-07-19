@@ -95,7 +95,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -137,12 +137,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -226,7 +226,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "pass",
       "verdict": "accept"
     },
@@ -395,7 +395,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "e8f6b5974ffc1b9931fd38c2267166382e99ea3beadbfa67375353f1e389d285",
+        "manifestSha256": "375b9f9a98eb12e63d1eb1a74722b980c139088ee54b6f88d32f546ca215c4fd",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -441,8 +441,8 @@
           "hashMatches": false,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -526,7 +526,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -631,7 +631,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "e515b1cfdc6363f4baa03279556c8eb36e8d396781ccc3a6509bef09a9658871",
+        "manifestSha256": "c4d19dabd7a7c32f0b9080d589e3c549f7806e1149d7575bc299c5ba8e4ce9ef",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -677,8 +677,8 @@
           "hashMatches": false,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -762,7 +762,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -875,7 +875,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "4f5da87af31f71dcf73f5a59022079d727ac0eb2f89f978f81a9377985a2cc25",
+        "manifestSha256": "9534cce173f0774556916cdb40576a6c0ba9107d273cf43bcf4fa8fcb51ec83b",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -917,7 +917,7 @@
         },
         {
           "exists": false,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": false,
           "key": "pitchPage",
           "path": "docs/missing-public-demo-pitch.html",
@@ -1006,7 +1006,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1111,7 +1111,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "0a23cabc6d1972aa2cc5bfb3e2c798a41bcf71a3626b5d238ef92358075a4b5f",
+        "manifestSha256": "315fa5ac2f57a50e3f44b1e97fb6f5b23d861d4897df445d4be1ad95702c84e4",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1157,8 +1157,8 @@
           "hashMatches": false,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -1242,7 +1242,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1311,7 +1311,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "43272ac83e7f1b9d7be407a06a696739067ee12a54cccc6bfb06cbdc4acff7f7",
+        "manifestSha256": "f88a5a2a79a2b2ea1ea26a7c827f63bf826fb413d7afb9eea190b1057113be80",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1353,12 +1353,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -1434,7 +1434,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1511,7 +1511,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "978d2de764318fec6052212c192bf0b0e980952621581ae7a9459755c40e3f53",
+        "manifestSha256": "7f2d50ff3d331d1329b5ba5866a7b1dffccecfa22f201a46b7da878825d443b1",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1553,12 +1553,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -1642,7 +1642,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1723,7 +1723,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1765,12 +1765,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -1854,7 +1854,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1927,7 +1927,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -1969,12 +1969,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -2058,7 +2058,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2131,7 +2131,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2173,12 +2173,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -2262,7 +2262,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2347,7 +2347,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2389,12 +2389,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -2478,7 +2478,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2555,7 +2555,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "dc3432522a216a9fbdd9de5c0568853a0220bfee75d5784ca70bb6f1e7cc230b",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2597,12 +2597,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -2686,7 +2686,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2762,7 +2762,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "93efb8cd61bf239ad2340bc393d995eb6137c41caae383d7fe4f213a499e8776",
+        "manifestSha256": "01fa7188215cf6cbab65dda7ccc763b0023c494642f7485ba02e9af332da38e2",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -2804,12 +2804,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -2893,7 +2893,7 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2974,7 +2974,7 @@
         "format": "html-and-manifest-json",
         "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
         "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
-        "manifestSha256": "57f233ea597a3cebac37920121c0cc386795d54458730d2150a69616f15fe8c9",
+        "manifestSha256": "4ae98676673d223e321f5af912c0af71cd5f1b408804813a384261bc4f931097",
         "writeRequiresExplicitOutputDir": true
       },
       "localFileInventory": [
@@ -3016,12 +3016,12 @@
         },
         {
           "exists": true,
-          "expectedSha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
           "hashMatches": true,
           "key": "pitchPage",
           "path": "docs/public-demo-pitch.html",
-          "sha256": "25defefd67b31e17f7aa4921c7ba34fdccacad92332803379bb54534b6d5b2c3",
-          "sizeBytes": 13720
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
         },
         {
           "exists": true,
@@ -3105,12 +3105,12 @@
           "sizeBytes": 1299
         }
       ],
-      "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
       "status": "fail",
       "verdict": "reject"
     }
   ],
-  "sourceCommit": "8f0a1849c1b47bdbc66eebce9f21b46e27a62ae7",
+  "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,
