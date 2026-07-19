@@ -190,7 +190,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -208,7 +208,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "pass",
       "verdict": "hold"
     },
@@ -356,7 +356,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -374,7 +374,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "pass",
       "verdict": "rollback"
     },
@@ -531,7 +531,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -549,7 +549,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -706,7 +706,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -724,7 +724,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -877,7 +877,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -895,7 +895,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1048,7 +1048,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1066,7 +1066,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1087,8 +1087,20 @@
           "reason": "Enable transition may only flip local wrapper state and must not start a process."
         },
         {
+          "path": "serviceWrapperState.afterEnable.mutationScope",
+          "reason": "Enable transition mutation scope must remain local-state-only."
+        },
+        {
           "path": "serviceWrapperState.afterDisable",
           "reason": "Disable and rollback transitions must leave the wrapper disabled."
+        },
+        {
+          "path": "serviceWrapperState.afterDisable.externalProcessPid",
+          "reason": "Disable transition must not preserve an external process PID."
+        },
+        {
+          "path": "serviceWrapperState.afterRollback.externalProcessPid",
+          "reason": "Rollback transition must not preserve an external process PID."
         }
       ],
       "id": "unsafe-service-state-denied",
@@ -1231,7 +1243,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1249,7 +1261,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1406,7 +1418,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1424,7 +1436,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1577,7 +1589,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "missing",
@@ -1595,7 +1607,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1752,7 +1764,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1770,7 +1782,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1927,7 +1939,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1945,7 +1957,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2130,7 +2142,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -2148,7 +2160,7 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2305,7 +2317,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
         "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -2323,12 +2335,12 @@
           ]
         }
       },
-      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+  "sourceCommit": "8f2351730b2da2f2597e040da1243381d55a176f",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 11,

@@ -265,8 +265,14 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         findings.append(finding("serviceWrapperState.before", "Service-wrapper state must start disabled in ephemeral local JSON."))
     if state.get("afterEnable", {}).get("enabled") is not True or state.get("afterEnable", {}).get("externalProcessPid") is not None:
         findings.append(finding("serviceWrapperState.afterEnable", "Enable transition may only flip local wrapper state and must not start a process."))
+    if state.get("afterEnable", {}).get("mutationScope") != "local-state-only":
+        findings.append(finding("serviceWrapperState.afterEnable.mutationScope", "Enable transition mutation scope must remain local-state-only."))
     if state.get("afterDisable", {}).get("enabled") is not False or state.get("afterRollback", {}).get("enabled") is not False:
         findings.append(finding("serviceWrapperState.afterDisable", "Disable and rollback transitions must leave the wrapper disabled."))
+    if state.get("afterDisable", {}).get("externalProcessPid") is not None:
+        findings.append(finding("serviceWrapperState.afterDisable.externalProcessPid", "Disable transition must not preserve an external process PID."))
+    if state.get("afterRollback", {}).get("externalProcessPid") is not None:
+        findings.append(finding("serviceWrapperState.afterRollback.externalProcessPid", "Rollback transition must not preserve an external process PID."))
     audit = scenario.get("auditTrail", [])
     if not isinstance(audit, list) or audit != ["state-before-disabled", "enable-local-wrapper-state", "disable-local-wrapper-state", "rollback-local-wrapper-state"]:
         findings.append(finding("auditTrail", "Audit trail must record before/enable/disable/rollback state transitions exactly."))
