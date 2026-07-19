@@ -82,6 +82,26 @@ def assert_copied_packet_fixture_fails() -> None:
     assert "approvalPacketFixture.path" in {finding["path"] for finding in result["findings"]}
 
 
+def assert_same_path_rehashed_packet_fixture_fails() -> None:
+    scenario = positive_scenario()
+    original = PINNED_PACKET.read_text()
+    source = json.loads(original)
+    source["oliRegressionMarker"] = "same-path rehashed #291 packet must not pass"
+    mutated = json.dumps(source, indent=2, sort_keys=True) + "\n"
+    try:
+        PINNED_PACKET.write_text(mutated)
+        scenario["expectedArtifactHashes"] = [
+            {"path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json", "sha256": gate.digest(PINNED_PACKET)}
+        ]
+        result = service_gate.build_result(scenario, gate.source_commit())
+    finally:
+        PINNED_PACKET.write_text(original)
+    assert result["status"] == "fail"
+    finding_paths = {finding["path"] for finding in result["findings"]}
+    assert "approvalPacketFixture.expectedSha256" in finding_paths
+    assert "approvalPacketFixture.sha256" in finding_paths
+
+
 def main() -> int:
     doc = run_gate()
     fixture = json.loads(FIXTURE.read_text())
@@ -169,7 +189,7 @@ def main() -> int:
         for result_id, result in results.items()
     }
     assert "approvalPacketFixture.exists" in finding_paths["missing-approval-packet-denied"]
-    assert "approvalPacketFixture.sha256" in finding_paths["stale-approval-packet-hash-denied"]
+    assert "approvalPacketFixture.expectedSha256" in finding_paths["stale-approval-packet-hash-denied"]
     assert "runEvidenceId" in finding_paths["wrong-run-id-denied"]
     assert "operatorApprovalsRecorded.separate_live_activation_run_approval" in finding_paths["missing-operator-approval-record-denied"]
     assert "preflightChecklist" in finding_paths["thin-preflight-denied"]
@@ -201,6 +221,7 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"rollbackDisableVerification": {}}), "rollbackDisableVerification.disableCommand")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nextStepCue": "Activation completed."}), "nextStepCue")
     assert_copied_packet_fixture_fails()
+    assert_same_path_rehashed_packet_fixture_fails()
 
     assert_packet_mutation_fails(lambda packet_doc: packet_doc.update({"status": "fail"}), "approvalPacketFixture.status")
     assert_packet_mutation_fails(lambda packet_doc: packet_doc.update({"follows": [291]}), "approvalPacketFixture.follows")

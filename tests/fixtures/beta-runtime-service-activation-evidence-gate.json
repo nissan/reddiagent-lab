@@ -151,7 +151,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -166,7 +166,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "pass",
       "verdict": "hold-for-live-run"
     },
@@ -283,7 +283,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -298,7 +298,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "pass",
       "verdict": "rollback"
     },
@@ -309,6 +309,10 @@
         {
           "path": "approvalPacketFixture.path",
           "reason": "Approval packet path must be pinned to `tests/fixtures/beta-runtime-service-activation-approval-packet.json`."
+        },
+        {
+          "path": "approvalPacketFixture.expectedSha256",
+          "reason": "Approval packet expected sha256 must match the pinned #291 approval packet hash."
         },
         {
           "path": "approvalPacketFixture.exists",
@@ -502,7 +506,7 @@
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
         "selectedRuntimePath": {},
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -517,7 +521,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -526,8 +530,8 @@
       "expectedVerdict": "hold",
       "findings": [
         {
-          "path": "approvalPacketFixture.sha256",
-          "reason": "Artifact `tests/fixtures/beta-runtime-service-activation-approval-packet.json` does not match its expected sha256 pin."
+          "path": "approvalPacketFixture.expectedSha256",
+          "reason": "Approval packet expected sha256 must match the pinned #291 approval packet hash."
         }
       ],
       "id": "stale-approval-packet-hash-denied",
@@ -543,8 +547,8 @@
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
-            "hashMatches": false,
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
             "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
           },
@@ -639,7 +643,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -654,7 +658,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -776,7 +780,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -791,7 +795,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -913,7 +917,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -928,7 +932,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1045,7 +1049,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1060,7 +1064,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1194,7 +1198,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1209,7 +1213,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1339,7 +1343,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1354,7 +1358,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1476,7 +1480,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "missing",
           "requiredGateStatus": "missing",
@@ -1491,7 +1495,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1613,7 +1617,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1628,7 +1632,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1754,7 +1758,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1769,7 +1773,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1915,7 +1919,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1930,7 +1934,7 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "reject"
     },
@@ -2060,7 +2064,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -2075,12 +2079,12 @@
           ]
         }
       },
-      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+  "sourceCommit": "d27bb7ebbb83fcee60dd2914246a8f7e8bd9f675",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 12,

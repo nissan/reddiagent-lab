@@ -220,6 +220,8 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         findings.append(finding("releaseCandidateId", f"Release candidate id must be `{REQUIRED_RELEASE_CANDIDATE_ID}`."))
     if scenario.get("approvalPacketFixturePath", PINNED_APPROVAL_PACKET_PATH) != PINNED_APPROVAL_PACKET_PATH:
         findings.append(finding("approvalPacketFixture.path", f"Approval packet path must be pinned to `{PINNED_APPROVAL_PACKET_PATH}`."))
+    if expected_hash_map(scenario).get(PINNED_APPROVAL_PACKET_PATH) != PINNED_APPROVAL_PACKET_SHA256:
+        findings.append(finding("approvalPacketFixture.expectedSha256", "Approval packet expected sha256 must match the pinned #291 approval packet hash."))
     for field in UNSAFE_FLAG_FIELDS:
         if scenario.get(field) not in (None, False):
             findings.append(finding(field, f"{field} must be false or absent in this local evidence gate."))
@@ -354,7 +356,8 @@ def build_result(scenario: dict[str, Any], commit: str) -> dict[str, Any]:
     findings = scenario_findings(scenario)
     hashes = expected_hash_map(scenario)
     packet_path = scenario.get("approvalPacketFixturePath", PINNED_APPROVAL_PACKET_PATH)
-    approval_binding = gate.artifact_binding(packet_path, hashes.get(packet_path, ""), "approvalPacketFixture", findings)
+    expected_sha = PINNED_APPROVAL_PACKET_SHA256 if packet_path == PINNED_APPROVAL_PACKET_PATH else hashes.get(packet_path, "")
+    approval_binding = gate.artifact_binding(packet_path, expected_sha, "approvalPacketFixture", findings)
     approval_doc: dict[str, Any] = {}
     path = ROOT / packet_path
     if path.exists():
