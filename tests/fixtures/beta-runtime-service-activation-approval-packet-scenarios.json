@@ -1,0 +1,213 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+    "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "canaryEvidenceFixturePath": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+    "requestedVerdict": "approval-packet-ready",
+    "expectedStatus": "pass",
+    "expectedVerdict": "approval-packet-ready",
+    "requiredOperatorApprovals": [
+      "runtime_owner_approval",
+      "rollback_owner_approval",
+      "security_reviewer_approval",
+      "separate_live_activation_run_approval"
+    ],
+    "liveActionChecklist": [
+      "Confirm this approval packet and current GitHub/Oli gates are accepted.",
+      "Open a separate explicit live activation run request before touching services.",
+      "Verify operator runtime disable switch is available before any live attempt.",
+      "Record rollback owner and security reviewer approval in the separate run.",
+      "Keep mainnet blocked unless Nissan gives fresh explicit mainnet approval."
+    ],
+    "redactedEnvSecretNames": [
+      "REDDIAGENT_RUNTIME_ACTIVATION_APPROVED",
+      "REDDIAGENT_RUNTIME_DISABLE_SWITCH",
+      "REDDIAGENT_TRACE_EVIDENCE_PATH",
+      "REDDIAGENT_ROLLBACK_PLAN_PATH"
+    ],
+    "rollbackDisablePlan": {
+      "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+      "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+      "liveRuntimeEnabledAfterRollback": false,
+      "operatorEscalation": "Hold activation and require a separate reviewed live run if disable or rollback evidence is missing."
+    },
+    "dryRunCommandTranscript": {
+      "command": "python scripts/beta_runtime_service_activation_approval_packet.py --output tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+      "exitCode": 0,
+      "stdoutContains": [
+        "beta-runtime-service-activation-approval-packet",
+        "approval-packet-ready"
+      ],
+      "stderr": ""
+    },
+    "localCommands": [
+      "python scripts/beta_runtime_service_activation_approval_packet.py --output tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+      "local-runtime:disable --target simple-agent --dry-run",
+      "local-runtime:rollback --target simple-agent --dry-run"
+    ],
+    "riskVerdict": "approval-packet-ready",
+    "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
+    "liveRuntimeRequested": false,
+    "liveServiceActivationRequested": false,
+    "liveNetworkEnabled": false,
+    "serviceStartRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "hostedFetchRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+        "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "runtime-service-approval-packet-ready-pass"
+    },
+    {
+      "id": "runtime-service-approval-packet-hold-pass",
+      "requestedVerdict": "hold",
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold"
+    },
+    {
+      "id": "missing-canary-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "canaryEvidenceFixturePath": "tests/fixtures/missing-beta-runtime-activation-canary-runner.json",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-runtime-activation-canary-runner.json",
+          "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+        }
+      ]
+    },
+    {
+      "id": "stale-canary-evidence-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "wrong-packet-id-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "approvalPacketId": "stale-packet"
+    },
+    {
+      "id": "missing-operator-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "requiredOperatorApprovals": [
+        "runtime_owner_approval",
+        "rollback_owner_approval",
+        "security_reviewer_approval"
+      ]
+    },
+    {
+      "id": "env-secret-value-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "redactedEnvSecretNames": [
+        "REDDIAGENT_RUNTIME_ACTIVATION_APPROVED=true",
+        "REDDIAGENT_RUNTIME_DISABLE_SWITCH",
+        "REDDIAGENT_TRACE_EVIDENCE_PATH",
+        "REDDIAGENT_ROLLBACK_PLAN_PATH"
+      ]
+    },
+    {
+      "id": "missing-live-action-checklist-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "liveActionChecklist": [
+        "Confirm this approval packet only."
+      ]
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "localCommands": [
+        "python scripts/beta_runtime_service_activation_approval_packet.py --output tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+        "docker compose up",
+        "curl https://frosty-prism-5q6j.here.now/"
+      ]
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "bearer token"
+    },
+    {
+      "id": "live-rails-reject-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "requestedVerdict": "reject",
+      "expectedVerdict": "reject",
+      "liveRuntimeRequested": true,
+      "liveServiceActivationRequested": true,
+      "serviceStartRequested": true,
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "packageArchivePublishRequested": true
+    },
+    {
+      "id": "unsafe-activation-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "stopCue": "Runtime activation completed and mainnet enabled."
+    },
+    {
+      "id": "missing-rollback-plan-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisablePlan": {
+        "disableCommand": "live-runtime:disable",
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false
+      }
+    }
+  ]
+}
