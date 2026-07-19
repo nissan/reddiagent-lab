@@ -77,6 +77,19 @@ def assert_activation_mutation_fails(mutator, expected_path: str) -> None:
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
+def assert_copied_activation_fixture_fails() -> None:
+    scenario = positive_scenario()
+    source = ROOT / "tests" / "fixtures" / "beta-runtime-activation-evidence-gate.json"
+    with tempfile.TemporaryDirectory(prefix="beta-runtime-activation-canary-path-pin-") as tmp:
+        artifact_path = Path(tmp) / "beta-runtime-activation-evidence-gate.json"
+        artifact_path.write_text(source.read_text())
+        scenario["activationEvidenceFixturePath"] = str(artifact_path)
+        scenario["expectedArtifactHashes"] = [{"path": str(artifact_path), "sha256": gate.digest(artifact_path)}]
+        result = canary.build_result(scenario, gate.source_commit())
+    assert result["status"] == "fail"
+    assert "activationEvidenceFixture.path" in {finding["path"] for finding in result["findings"]}
+
+
 def main() -> int:
     doc = run_canary()
     fixture = json.loads(FIXTURE.read_text())
@@ -178,6 +191,7 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"localCommands": ["curl https://poppy-rafter-79h2.here.now/"]}), "localCommands[0]")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"operatorControlStateAfter": {"runtimeEnabled": True}}), "operatorControlStateAfter.runtimeEnabled")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"rollbackDisableDryRunProof": {"disableCommand": "live-runtime:disable"}}), "rollbackDisableDryRunProof.disableCommand")
+    assert_copied_activation_fixture_fails()
 
     assert_activation_mutation_fails(lambda activation: activation.update({"status": "fail"}), "activationEvidenceFixture.status")
     assert_activation_mutation_fails(lambda activation: activation["results"][0].update({"verdict": "hold"}), "activationEvidenceFixture.results.verdict")

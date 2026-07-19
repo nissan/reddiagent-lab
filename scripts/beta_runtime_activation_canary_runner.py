@@ -159,6 +159,8 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         findings.append(finding("releaseId", f"Release id must be `{REQUIRED_RELEASE_ID}`."))
     if scenario.get("releaseCandidateId") != REQUIRED_RELEASE_CANDIDATE_ID:
         findings.append(finding("releaseCandidateId", f"Release candidate id must be `{REQUIRED_RELEASE_CANDIDATE_ID}`."))
+    if scenario.get("activationEvidenceFixturePath", PINNED_ACTIVATION_PATH) != PINNED_ACTIVATION_PATH:
+        findings.append(finding("activationEvidenceFixture.path", f"Activation evidence fixture path must be pinned to `{PINNED_ACTIVATION_PATH}`."))
     for field in UNSAFE_FLAG_FIELDS:
         if scenario.get(field) not in (None, False):
             findings.append(finding(field, f"{field} must be false or absent in this local canary runner."))

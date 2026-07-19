@@ -150,7 +150,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "pass",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -276,7 +276,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "pass",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -357,6 +357,10 @@
       "expectedStatus": "fail",
       "expectedVerdict": "hold",
       "findings": [
+        {
+          "path": "activationEvidenceFixture.path",
+          "reason": "Activation evidence fixture path must be pinned to `tests/fixtures/beta-runtime-activation-evidence-gate.json`."
+        },
         {
           "path": "activationEvidenceFixture.exists",
           "reason": "Artifact `tests/fixtures/missing-beta-runtime-activation-evidence-gate.json` is missing."
@@ -487,7 +491,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": null
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -618,7 +622,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -749,7 +753,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -880,7 +884,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1011,7 +1015,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1142,7 +1146,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1281,7 +1285,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1416,7 +1420,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1579,7 +1583,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1710,7 +1714,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1721,7 +1725,7 @@
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+  "sourceCommit": "5d20189d3a56a5b872bd58149def06cf89e11a82",
   "status": "pass",
   "summary": {
     "acceptCanaryVerdicts": 1,
