@@ -1,0 +1,333 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+    "priorEvidenceReportPath": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+    "requestedVerdict": "hold",
+    "expectedStatus": "pass",
+    "expectedVerdict": "hold",
+    "currentOperatorApprovalState": {
+      "runtime_owner_approval": true,
+      "rollback_owner_approval": true,
+      "security_reviewer_approval": true,
+      "separate_live_activation_run_approval": true
+    },
+    "activationScope": {
+      "adlPath": "examples/simple-agent.yaml",
+      "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "serviceWrapper": "local-ephemeral-json-state",
+      "toolExecution": null,
+      "liveMutation": false,
+      "networkExposure": "none"
+    },
+    "serviceWrapperState": {
+      "storage": "ephemeral-local-json",
+      "before": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      },
+      "afterEnable": {
+        "enabled": true,
+        "target": "simple-agent",
+        "externalProcessPid": null,
+        "mutationScope": "local-state-only"
+      },
+      "afterDisable": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      },
+      "afterRollback": {
+        "enabled": false,
+        "target": "simple-agent",
+        "externalProcessPid": null
+      }
+    },
+    "boundedTranscript": {
+      "mode": "local-service-wrapper-state-smoke",
+      "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+      "exitCode": 0,
+      "stdoutContains": [
+        "beta-runtime-service-wrapper-activation-smoke",
+        "hold"
+      ],
+      "stderr": ""
+    },
+    "traceEvalSummary": {
+      "completionStatus": "pass",
+      "requiredGateStatus": "pass",
+      "toolExecution": null,
+      "traceEvents": [
+        "load-pinned-295-evidence",
+        "verify-current-operator-approvals",
+        "confirm-simple-agent-wrapper-scope",
+        "record-ephemeral-state-before",
+        "enable-local-wrapper-state",
+        "disable-local-wrapper-state",
+        "rollback-local-wrapper-state",
+        "hold-before-external-service-mutation"
+      ]
+    },
+    "operatorDecision": {
+      "decision": "hold",
+      "liveActionAuthorized": false,
+      "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+    },
+    "rollbackDisableVerification": {
+      "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+      "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+      "wrapperEnabledAfterRollback": false,
+      "externalProcessStarted": false,
+      "verification": "dry-run local wrapper disable/rollback proof only; no service was started."
+    },
+    "auditTrail": [
+      "state-before-disabled",
+      "enable-local-wrapper-state",
+      "disable-local-wrapper-state",
+      "rollback-local-wrapper-state"
+    ],
+    "localCommands": [
+      "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+      "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+      "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run"
+    ],
+    "riskVerdict": "hold-before-external-service-mutation",
+    "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "externalProcessStarted": false,
+    "hostProcessMutated": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "serviceStartRequested": false,
+    "externalProcessStartRequested": false,
+    "hostMutationRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "hostedFetchRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "activationCompleted": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+        "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+      },
+      {
+        "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+        "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "service-wrapper-hold-pass"
+    },
+    {
+      "id": "service-wrapper-rollback-pass",
+      "requestedVerdict": "rollback",
+      "expectedVerdict": "rollback",
+      "operatorDecision": {
+        "decision": "rollback",
+        "liveActionAuthorized": false,
+        "reason": "Operator requested dry-run wrapper rollback verification before any external service mutation."
+      }
+    },
+    {
+      "id": "stale-prior-295-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+          "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+        }
+      ]
+    },
+    {
+      "id": "stale-prior-295-report-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+          "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+        },
+        {
+          "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ]
+    },
+    {
+      "id": "missing-current-operator-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "currentOperatorApprovalState": {
+        "runtime_owner_approval": true,
+        "rollback_owner_approval": true,
+        "security_reviewer_approval": true,
+        "separate_live_activation_run_approval": false
+      }
+    },
+    {
+      "id": "wrong-wrapper-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationScope": {
+        "adlPath": "examples/tool-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+        "serviceWrapper": "host-launchagent",
+        "toolExecution": "fixture",
+        "liveMutation": false,
+        "networkExposure": "none"
+      }
+    },
+    {
+      "id": "unsafe-service-state-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "serviceWrapperState": {
+        "storage": "ephemeral-local-json",
+        "before": {
+          "enabled": false,
+          "target": "simple-agent",
+          "externalProcessPid": null
+        },
+        "afterEnable": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 31822,
+          "mutationScope": "host-process"
+        },
+        "afterDisable": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 31822
+        },
+        "afterRollback": {
+          "enabled": true,
+          "target": "simple-agent",
+          "externalProcessPid": 31822
+        }
+      },
+      "externalProcessStarted": true,
+      "serviceStarted": true
+    },
+    {
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "boundedTranscript": {
+        "mode": "host-service-wrapper",
+        "command": "launchctl start reddiagent",
+        "exitCode": 0
+      },
+      "localCommands": [
+        "docker compose up"
+      ]
+    },
+    {
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "traceEvalSummary": {
+        "completionStatus": "missing",
+        "requiredGateStatus": "missing",
+        "toolExecution": "attempted"
+      }
+    },
+    {
+      "id": "missing-rollback-disable-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisableVerification": {
+        "disableCommand": "service-wrapper:disable --target simple-agent",
+        "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+        "wrapperEnabledAfterRollback": true,
+        "externalProcessStarted": true
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "Authorization: bearer token"
+    },
+    {
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "hostMutationRequested": true,
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "providerApiAccessRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "packageArchivePublishRequested": true
+    },
+    {
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationCompleted": true,
+      "nextStepCue": "Activation completed. Mainnet is ready."
+    }
+  ]
+}
