@@ -1,0 +1,1594 @@
+{
+  "boundaries": {
+    "archivePublished": false,
+    "checklistWriteRequiresExplicitPath": true,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "dryRunByDefault": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    279
+  ],
+  "issue": 283,
+  "mainnetStatement": "This reviewer checklist package is local/free/dry-run by default. It does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-local-reviewer-acceptance-checklist-package",
+  "parentEpic": 220,
+  "relatedEpic": 247,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "accept",
+      "findings": [],
+      "id": "reviewer-checklist-accept-pass",
+      "kind": "positive",
+      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "nextStepCue": "Accept this local reviewer checklist as evidence for human review only; runtime activation, hosted publishing, package/archive publishing, payment access, devnet, and mainnet remain separate gates.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "pass",
+      "verdict": "accept"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "findings": [],
+      "id": "reviewer-checklist-hold-pass",
+      "kind": "positive",
+      "manifestSha256": "50a4f067b88126ab1e09632f8d373eb38156c835f8f6d0d09a0b3760eb874991",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "pass",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "quickstartFixture.exists",
+          "reason": "Quickstart fixture `tests/fixtures/missing-beta-onboarding-quickstart.json` is missing."
+        },
+        {
+          "path": "quickstartFixture.mode",
+          "reason": "Reviewer checklist requires #279 onboarding quickstart output."
+        },
+        {
+          "path": "quickstartFixture.status",
+          "reason": "Onboarding quickstart fixture must pass before reviewer checklist generation."
+        },
+        {
+          "path": "quickstartFixture.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "quickstartFixture.boundaries.deterministicLocalOnly",
+          "reason": "deterministicLocalOnly must remain true."
+        },
+        {
+          "path": "quickstartFixture.boundaries.dryRunByDefault",
+          "reason": "dryRunByDefault must remain true."
+        },
+        {
+          "path": "quickstartFixture.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.providerApiAccess",
+          "reason": "providerApiAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.dockerStarted",
+          "reason": "dockerStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.surfpoolStarted",
+          "reason": "surfpoolStarted must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.coolifyDeployment",
+          "reason": "coolifyDeployment must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.walletAccess",
+          "reason": "walletAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.paymentAccess",
+          "reason": "paymentAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.facilitatorAccess",
+          "reason": "facilitatorAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.settlementAccess",
+          "reason": "settlementAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.publicPublished",
+          "reason": "publicPublished must remain false."
+        },
+        {
+          "path": "quickstartFixture.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "quickstartFixture.results",
+          "reason": "Quickstart fixture must include an accepted passing quickstart result."
+        }
+      ],
+      "id": "missing-quickstart-fixture-denied",
+      "kind": "negative",
+      "manifestSha256": "47015d3e2261567bf5ea9f3e75c5cc7625f1a138476f7f9a94acb60d0fd52df9",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 0,
+        "id": null,
+        "localFileCount": 0,
+        "publicDemoMetadata": {},
+        "selectedAdlCount": 0,
+        "status": null,
+        "verdict": null
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": false,
+        "path": "tests/fixtures/missing-beta-onboarding-quickstart.json",
+        "sha256": null
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "quickstartFixture.sha256",
+          "reason": "Quickstart fixture `tests/fixtures/beta-onboarding-quickstart.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-quickstart-fixture-denied",
+      "kind": "negative",
+      "manifestSha256": "832cad66fe1f5fbdf96d9aa64fae58b544382527214e412641a5931333f7d411",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "checklistItems",
+          "reason": "Required checklist item `local-file-inventory-hashes` is missing."
+        },
+        {
+          "path": "checklistItems",
+          "reason": "Required checklist item `reviewer-command-boundaries` is missing."
+        },
+        {
+          "path": "checklistItems",
+          "reason": "Required checklist item `operator-next-step-cue` is missing."
+        },
+        {
+          "path": "checklistItems",
+          "reason": "Required checklist item `mainnet-remains-blocked` is missing."
+        }
+      ],
+      "id": "missing-required-checklist-item-denied",
+      "kind": "negative",
+      "manifestSha256": "359e1c8ec9974af3c5a11ff07c04216b17830fd5c16124ef13b893f01dcf51b5",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "reviewerCommands[0]",
+          "reason": "Reviewer command must not pull, start, run, or compose Docker containers."
+        },
+        {
+          "path": "reviewerCommands[1]",
+          "reason": "Reviewer command must not run `npm publish`."
+        },
+        {
+          "path": "reviewerCommands[2]",
+          "reason": "Reviewer command must not fetch hosted content."
+        }
+      ],
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "manifestSha256": "c06d6b9369adc898c02b979475b9e342d1793450442e48fd4a7e430c8fa0b715",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "docker compose up",
+        "npm publish",
+        "curl https://frosty-prism-5q6j.here.now/"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in reviewer checklist inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in reviewer checklist inputs."
+        }
+      ],
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "liveRuntimeRequested",
+          "reason": "liveRuntimeRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "surfpoolStartRequested",
+          "reason": "surfpoolStartRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "deploymentRequested",
+          "reason": "deploymentRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "packagePublishingRequested",
+          "reason": "packagePublishingRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "archivePublishingRequested",
+          "reason": "archivePublishingRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "publicPublishingRequested",
+          "reason": "publicPublishingRequested must be false or absent in reviewer checklist inputs."
+        }
+      ],
+      "id": "runtime-container-hosted-publish-reject-denied",
+      "kind": "negative",
+      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "nextStepCue": "Reject this reviewer checklist package and regenerate local quickstart evidence before any runtime or operator handoff.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "reject"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "walletRequested",
+          "reason": "walletRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "paymentRailRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "facilitatorRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "settlementRequested must be false or absent in reviewer checklist inputs."
+        }
+      ],
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "kind": "negative",
+      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "liveNetworkEnabled",
+          "reason": "liveNetworkEnabled must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in reviewer checklist inputs."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in reviewer checklist inputs."
+        }
+      ],
+      "id": "devnet-mainnet-live-network-denied",
+      "kind": "negative",
+      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "checklistWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
+      "checklistItems": [
+        {
+          "expectedEvidence": "tests/fixtures/beta-onboarding-quickstart.json",
+          "id": "quickstart-fixture-current",
+          "label": "Pinned #279 quickstart fixture is current and accepted.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "quickstartAcceptedResult.localFileInventory",
+          "id": "local-file-inventory-hashes",
+          "label": "Quickstart local file inventory hashes match expected pins.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "reviewerCommands",
+          "id": "reviewer-command-boundaries",
+          "label": "Reviewer commands stay local and do not fetch, publish, start services, or touch live rails.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "nextStepCue",
+          "id": "operator-next-step-cue",
+          "label": "Next step is accept, hold, or reject evidence only before runtime activation.",
+          "status": "checked"
+        },
+        {
+          "expectedEvidence": "mainnetStatement",
+          "id": "mainnet-remains-blocked",
+          "label": "Mainnet remains blocked and requires fresh Nissan approval.",
+          "status": "checked"
+        }
+      ],
+      "evidencePaths": [
+        "tests/fixtures/beta-onboarding-quickstart.json",
+        "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+        "tests/BETA-ONBOARDING-QUICKSTART-PACKAGE-REPORT.md",
+        "tests/BETA-REVIEWER-ACCEPTANCE-CHECKLIST-REPORT.md"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "Accept verdict when #279 quickstart fixture is current and accepted.",
+        "Hold verdict for missing, stale, unsafe, or overclaiming local evidence.",
+        "Reject verdict for explicit runtime, hosted publishing, package/archive publishing, or live rail mutation requests."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "nextStepCue",
+          "reason": "Reviewer checklist must not claim `runtime activation completed`."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Reviewer checklist must not claim `deployment completed`."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Reviewer checklist must not claim `archive published`."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Reviewer checklist must not claim `package published`."
+        }
+      ],
+      "id": "unsafe-next-step-claim-denied",
+      "kind": "negative",
+      "manifestSha256": "5d31783576797d16592ee11ac2dafe8eec2273b51f9a876923b95c0ca80f1d52",
+      "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "quickstartAcceptedResult": {
+        "commandCount": 4,
+        "id": "quickstart-assemble-accept-pass",
+        "localFileCount": 9,
+        "publicDemoMetadata": {
+          "fetchedDuringQuickstart": false,
+          "metadataOnly": true,
+          "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+          "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+          "publishedDuringQuickstart": false
+        },
+        "selectedAdlCount": 3,
+        "status": "pass",
+        "verdict": "accept"
+      },
+      "quickstartFixture": {
+        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-onboarding-quickstart.json",
+        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "reviewerCommands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
+      ],
+      "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+      "status": "fail",
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "b67eeb932ca50a19bcd2d4936a0011db52be13f4",
+  "status": "pass",
+  "summary": {
+    "acceptVerdicts": 1,
+    "failClosedScenarios": 9,
+    "holdVerdicts": 9,
+    "negativeScenarios": 9,
+    "positiveScenarios": 2,
+    "rejectVerdicts": 1
+  }
+}
