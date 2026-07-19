@@ -1,0 +1,310 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "runEvidenceId": "reddiagent-beta-0-external-service-activation-micro-gate",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+    "priorEvidenceReportPath": "tests/BETA-BOUNDED-EXTERNAL-SERVICE-ACTIVATION-GATE-REPORT.md",
+    "requestedVerdict": "ask-nissan-and-hold",
+    "expectedStatus": "pass",
+    "expectedVerdict": "ask-nissan-and-hold",
+    "proposedRunScope": {
+      "adlPath": "examples/simple-agent.yaml",
+      "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "serviceWrapper": "local-ephemeral-json-state",
+      "runType": "bounded-local-free-approval-gate",
+      "toolExecution": null,
+      "liveMutation": false,
+      "networkExposure": "none",
+      "estimatedCostUsd": "0.00"
+    },
+    "preconditions": {
+      "pinned301EvidencePresent": true,
+      "pinned301HashMatches": true,
+      "lineagePreserved": true,
+      "mainnetBlocked": true,
+      "credentialsNotRequired": true,
+      "noExternalServiceRunning": true
+    },
+    "nissanApproval": {
+      "required": true,
+      "status": "pending",
+      "approved": false,
+      "approvedBy": null,
+      "approvedAt": null,
+      "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?"
+    },
+    "commandTranscriptTemplate": {
+      "mode": "external-service-activation-micro-gate",
+      "command": "python scripts/beta_external_service_activation_micro_gate.py --output tests/fixtures/beta-external-service-activation-micro-gate.json",
+      "expectedExitCode": 0,
+      "stdoutMustContain": [
+        "beta-external-service-activation-micro-gate",
+        "ask-nissan-and-hold"
+      ],
+      "stderrMustBe": ""
+    },
+    "traceEvalRequirements": {
+      "requiredGateStatus": "pass",
+      "toolExecution": null,
+      "mustVerifyLineage": true,
+      "mustRejectCredentialPayloads": true,
+      "mustRejectMainnet": true,
+      "requiredTraceEvents": [
+        "load-pinned-301-evidence",
+        "verify-301-consumed-299",
+        "verify-297-295-293-291-lineage",
+        "record-proposed-run-scope",
+        "record-nissan-approval-fields",
+        "hold-before-real-mutation"
+      ]
+    },
+    "serviceWrapperExpectations": {
+      "before": {
+        "enabled": false,
+        "externalProcessPid": null
+      },
+      "after": {
+        "enabled": false,
+        "externalProcessPid": null,
+        "persistentMutation": false
+      }
+    },
+    "rollbackDisablePlan": {
+      "disableCommand": "external-service:disable --target simple-agent --state ephemeral --dry-run",
+      "rollbackCommand": "external-service:rollback --target simple-agent --state ephemeral --dry-run",
+      "requiresRealServiceStop": false,
+      "verifiedNoPersistence": true
+    },
+    "askHoldDecision": {
+      "decision": "ask-nissan-and-hold",
+      "liveActionAuthorized": false,
+      "requiresFreshNissanApproval": true,
+      "reason": "This package prepares the approval question only; it does not mutate any external service."
+    },
+    "auditTrail": [
+      "load-pinned-301-evidence",
+      "verify-301-consumed-299",
+      "verify-297-295-293-291-lineage",
+      "record-proposed-run-scope",
+      "record-nissan-approval-fields",
+      "hold-before-real-mutation"
+    ],
+    "localCommands": [
+      "python scripts/beta_external_service_activation_micro_gate.py --output tests/fixtures/beta-external-service-activation-micro-gate.json",
+      "external-service:disable --target simple-agent --state ephemeral --dry-run",
+      "external-service:rollback --target simple-agent --state ephemeral --dry-run"
+    ],
+    "riskVerdict": "hold-fail-closed-until-nissan-approval",
+    "nextStepCue": "Ask Nissan to approve the exact bounded local/free external-service activation scope; hold before any real service, provider, devnet, or mainnet mutation until that approval is explicit and fresh.",
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "externalProcessStarted": false,
+    "hostProcessMutated": false,
+    "persistentMutation": false,
+    "unboundedMutation": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "productionEscalation": false,
+    "legalRiskAccepted": false,
+    "privacyRiskAccepted": false,
+    "unboundedCostAccepted": false,
+    "serviceStartRequested": false,
+    "externalProcessStartRequested": false,
+    "hostMutationRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "hostedFetchRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "activationCompleted": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+        "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+      },
+      {
+        "path": "tests/BETA-BOUNDED-EXTERNAL-SERVICE-ACTIVATION-GATE-REPORT.md",
+        "sha256": "cf19f0f1464100ee607ee5d19b4618ecdee716da492a187f06a48c31ea46499c"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "external-service-activation-micro-gate-ask-hold-pass"
+    },
+    {
+      "id": "stale-prior-301-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-BOUNDED-EXTERNAL-SERVICE-ACTIVATION-GATE-REPORT.md",
+          "sha256": "cf19f0f1464100ee607ee5d19b4618ecdee716da492a187f06a48c31ea46499c"
+        }
+      ]
+    },
+    {
+      "id": "missing-nissan-approval-fields-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanApproval": {
+        "required": false,
+        "status": "missing",
+        "approved": false,
+        "approvedBy": null,
+        "approvedAt": null
+      }
+    },
+    {
+      "id": "premature-nissan-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanApproval": {
+        "required": true,
+        "status": "approved",
+        "approved": true,
+        "approvedBy": "Nissan",
+        "approvedAt": "2026-07-20T00:00:00+10:00"
+      }
+    },
+    {
+      "id": "broad-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "proposedRunScope": {
+        "adlPath": "examples/tool-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+        "serviceWrapper": "host-launchagent",
+        "runType": "hosted-provider-run",
+        "toolExecution": "fixture",
+        "liveMutation": true,
+        "networkExposure": "public",
+        "estimatedCostUsd": "5.00"
+      }
+    },
+    {
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "commandTranscriptTemplate": {
+        "mode": "external-service-activation-micro-gate",
+        "command": "docker run reddiagent",
+        "expectedExitCode": 0
+      },
+      "localCommands": [
+        "docker run reddiagent"
+      ]
+    },
+    {
+      "id": "missing-trace-requirements-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "traceEvalRequirements": {
+        "requiredGateStatus": "fail",
+        "toolExecution": "fixture",
+        "mustVerifyLineage": false,
+        "mustRejectCredentialPayloads": false,
+        "mustRejectMainnet": false
+      }
+    },
+    {
+      "id": "unsafe-wrapper-expectations-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "serviceWrapperExpectations": {
+        "before": {
+          "enabled": false,
+          "externalProcessPid": null
+        },
+        "after": {
+          "enabled": true,
+          "externalProcessPid": 12345,
+          "persistentMutation": true
+        }
+      }
+    },
+    {
+      "id": "missing-rollback-plan-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "rollbackDisablePlan": {
+        "disableCommand": "external-service:disable --target simple-agent",
+        "rollbackCommand": "external-service:rollback --target simple-agent",
+        "requiresRealServiceStop": true,
+        "verifiedNoPersistence": false
+      }
+    },
+    {
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "credentialPayload": "api_key=secret"
+    },
+    {
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "hostMutationRequested": true,
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "providerApiAccessRequested": true,
+      "liveMcpRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true
+    },
+    {
+      "id": "unsafe-ask-hold-decision-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "askHoldDecision": {
+        "decision": "activate",
+        "liveActionAuthorized": true,
+        "requiresFreshNissanApproval": false
+      },
+      "riskVerdict": "approved-for-live-activation",
+      "nextStepCue": "Activation completed."
+    }
+  ]
+}
