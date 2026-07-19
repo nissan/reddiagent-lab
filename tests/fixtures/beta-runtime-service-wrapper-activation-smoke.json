@@ -1,0 +1,2340 @@
+{
+  "boundaries": {
+    "actualServiceMutation": false,
+    "archivePublished": false,
+    "audited": true,
+    "bounded": true,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "ephemeralLocalWrapperStateOnly": true,
+    "externalProcessStarted": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "hostProcessMutated": false,
+    "hostedFetch": false,
+    "leastPrivilege": true,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "reversible": true,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    295,
+    293,
+    291,
+    289,
+    287,
+    285
+  ],
+  "issue": 297,
+  "mainnetStatement": "This service-wrapper smoke does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-runtime-service-wrapper-activation-smoke",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "findings": [],
+      "id": "service-wrapper-hold-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "pass",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "rollback",
+      "findings": [],
+      "id": "service-wrapper-rollback-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "rollback",
+          "liveActionAuthorized": false,
+          "reason": "Operator requested dry-run wrapper rollback verification before any external service mutation."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "pass",
+      "verdict": "rollback"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "prior295Fixture.expectedSha256",
+          "reason": "Prior #295 fixture path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior295Fixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-runtime-service-activation-live-run-gate.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-prior-295-fixture-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "hashMatches": false,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "prior295Report.expectedSha256",
+          "reason": "Prior #295 report path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior295Report.sha256",
+          "reason": "Artifact `tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-prior-295-report-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+            "hashMatches": false,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "currentOperatorApprovalState.separate_live_activation_run_approval",
+          "reason": "separate_live_activation_run_approval must be recorded true for this bounded smoke."
+        }
+      ],
+      "id": "missing-current-operator-approval-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": false
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationScope",
+          "reason": "Activation scope must be the simple-agent local ephemeral service-wrapper state."
+        }
+      ],
+      "id": "wrong-wrapper-scope-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/tool-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/tool-agent.yaml",
+          "serviceWrapper": "host-launchagent",
+          "toolExecution": "fixture"
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "serviceStarted",
+          "reason": "serviceStarted must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "externalProcessStarted",
+          "reason": "externalProcessStarted must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "serviceWrapperState.afterEnable",
+          "reason": "Enable transition may only flip local wrapper state and must not start a process."
+        },
+        {
+          "path": "serviceWrapperState.afterDisable",
+          "reason": "Disable and rollback transitions must leave the wrapper disabled."
+        }
+      ],
+      "id": "unsafe-service-state-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": true,
+            "externalProcessPid": 31822,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": 31822,
+            "mutationScope": "host-process",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": true,
+            "externalProcessPid": 31822,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "boundedTranscript",
+          "reason": "Bounded transcript must be the local service-wrapper state smoke and exit 0."
+        },
+        {
+          "path": "localCommands[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        }
+      ],
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "launchctl start reddiagent",
+          "exitCode": 0,
+          "mode": "host-service-wrapper",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "traceEvalSummary",
+          "reason": "Trace/eval summary must pass without tool execution."
+        }
+      ],
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "missing",
+          "requiredGateStatus": "missing",
+          "toolExecution": "attempted",
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "rollbackDisableVerification.disableCommand",
+          "reason": "Disable verification must use the pinned service-wrapper dry-run command."
+        },
+        {
+          "path": "rollbackDisableVerification.wrapperEnabledAfterRollback",
+          "reason": "Rollback must leave wrapper disabled and prove no external process start."
+        }
+      ],
+      "id": "missing-rollback-disable-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent",
+          "externalProcessStarted": true,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": true
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "hostMutationRequested",
+          "reason": "hostMutationRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "providerApiAccessRequested",
+          "reason": "providerApiAccessRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "liveMcpRequested",
+          "reason": "liveMcpRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "packageArchivePublishRequested",
+          "reason": "packageArchivePublishRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in this local service-wrapper smoke."
+        }
+      ],
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Hold after this local service-wrapper activation smoke; a separate bounded operator run is still required before any external service mutation, provider access, devnet run, or mainnet action.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationCompleted",
+          "reason": "activationCompleted must be false or absent in this local service-wrapper smoke."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Next-step cue must stop before external service mutation and mainnet."
+        }
+      ],
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "liveMutation": false,
+          "networkExposure": "none",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "serviceWrapper": "local-ephemeral-json-state",
+          "toolExecution": null
+        },
+        "auditTrail": [
+          "state-before-disabled",
+          "enable-local-wrapper-state",
+          "disable-local-wrapper-state",
+          "rollback-local-wrapper-state"
+        ],
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "ephemeralLocalWrapperStateOnly": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedTranscript": {
+          "command": "python scripts/beta_runtime_service_wrapper_activation_smoke.py --output tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+          "exitCode": 0,
+          "mode": "local-service-wrapper-state-smoke",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-wrapper-activation-smoke",
+            "hold"
+          ]
+        },
+        "currentOperatorApprovalState": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "nextStepCue": "Activation completed. Mainnet is ready.",
+        "operatorDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "The local service-wrapper state smoke is complete; no external process or hosted service was mutated."
+        },
+        "prior295Evidence": {
+          "acceptedResultId": "bounded-live-run-hold-pass",
+          "acceptedVerdict": "hold",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "priorRiskVerdict": "hold-before-actual-service-activation",
+          "report": {
+            "expectedSha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2",
+            "hashMatches": true,
+            "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",
+            "sha256": "a00c1bfbefec944d974dc0b7d6448a0d34efb77c33e2efdd903ea83a7c3965a2"
+          },
+          "selectedRuntimePath": {
+            "adlPath": "examples/simple-agent.yaml",
+            "liveMutation": false,
+            "networkExposure": "none",
+            "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+            "toolExecution": null
+          }
+        },
+        "riskVerdict": "hold-before-external-service-mutation",
+        "rollbackDisableVerification": {
+          "disableCommand": "service-wrapper:disable --target simple-agent --state ephemeral --dry-run",
+          "externalProcessStarted": false,
+          "rollbackCommand": "service-wrapper:rollback --target simple-agent --state ephemeral --dry-run",
+          "verification": "dry-run local wrapper disable/rollback proof only; no service was started.",
+          "wrapperEnabledAfterRollback": false
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-wrapper-activation-smoke",
+        "serviceWrapperState": {
+          "afterDisable": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "afterEnable": {
+            "enabled": true,
+            "externalProcessPid": null,
+            "mutationScope": "local-state-only",
+            "target": "simple-agent"
+          },
+          "afterRollback": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "before": {
+            "enabled": false,
+            "externalProcessPid": null,
+            "target": "simple-agent"
+          },
+          "storage": "ephemeral-local-json"
+        },
+        "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+        "sourceMergeCommit": "b759ae7ef0742a65baa9a8e18e7fe88d920ee16c",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-295-evidence",
+            "verify-current-operator-approvals",
+            "confirm-simple-agent-wrapper-scope",
+            "record-ephemeral-state-before",
+            "enable-local-wrapper-state",
+            "disable-local-wrapper-state",
+            "rollback-local-wrapper-state",
+            "hold-before-external-service-mutation"
+          ]
+        }
+      },
+      "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+      "status": "fail",
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "41dc8f53beffa9746f2e6e3e2e5283e434d03025",
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 11,
+    "holdVerdicts": 12,
+    "negativeScenarios": 11,
+    "positiveScenarios": 2,
+    "rollbackVerdicts": 1
+  }
+}
