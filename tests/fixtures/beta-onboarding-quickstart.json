@@ -1,0 +1,3123 @@
+{
+  "boundaries": {
+    "archivePublished": false,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "dryRunByDefault": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "quickstartWriteRequiresExplicitPath": true,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    275,
+    277
+  ],
+  "issue": 279,
+  "mainnetStatement": "This onboarding quickstart is local/free/dry-run by default. It does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-local-onboarding-quickstart-package",
+  "parentEpic": 220,
+  "relatedEpic": 247,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "pass",
+      "expectedVerdict": "accept",
+      "findings": [],
+      "id": "quickstart-assemble-accept-pass",
+      "kind": "positive",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Open the generated local quickstart file and inspect the listed local commands only; runtime activation, hosted publishing, package/archive publishing, payment access, devnet, and mainnet still require separate approval.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "pass",
+      "verdict": "accept"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveManifest.exists",
+          "reason": "Archive manifest `tests/fixtures/missing-beta-release-archive-assembler.json` is missing."
+        },
+        {
+          "path": "archiveManifest.mode",
+          "reason": "Quickstart requires #275 archive assembler output."
+        },
+        {
+          "path": "archiveManifest.status",
+          "reason": "Archive assembler manifest must pass before onboarding quickstart generation."
+        },
+        {
+          "path": "archiveManifest.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "archiveManifest.boundaries.deterministicLocalOnly",
+          "reason": "deterministicLocalOnly must remain true."
+        },
+        {
+          "path": "archiveManifest.boundaries.dryRunByDefault",
+          "reason": "dryRunByDefault must remain true."
+        },
+        {
+          "path": "archiveManifest.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "archiveManifest.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "archiveManifest.results",
+          "reason": "Archive manifest must include an accepted passing archive result."
+        },
+        {
+          "path": "localFiles.archiveManifest.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-archive-assembler.json`."
+        },
+        {
+          "path": "localFiles.betaReviewUi.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-review-ui.json`."
+        },
+        {
+          "path": "localFiles.coolifyEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/coolify-staging-lane.json`."
+        },
+        {
+          "path": "localFiles.dockerEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/docker-testing-lane.json`."
+        },
+        {
+          "path": "localFiles.pitchPage.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/public-demo-pitch.html`."
+        },
+        {
+          "path": "localFiles.pitchPlan.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/PITCH-DEMO-REFRESH.md`."
+        },
+        {
+          "path": "localFiles.pitchVideoScript.expectedSha256",
+          "reason": "Expected sha256 pin is required for `scripts/public_demo_pitch_video.sh`."
+        },
+        {
+          "path": "localFiles.releaseVerification.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-verification.json`."
+        },
+        {
+          "path": "localFiles.surfpoolEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/surfpool-validator-lane.json`."
+        }
+      ],
+      "id": "missing-archive-manifest-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "375b9f9a98eb12e63d1eb1a74722b980c139088ee54b6f88d32f546ca215c4fd",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": null,
+        "archiveManifestSha256": null,
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": false,
+        "path": "tests/fixtures/missing-beta-release-archive-assembler.json",
+        "sha256": null
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveManifest.sha256",
+          "reason": "Archive manifest `tests/fixtures/beta-release-archive-assembler.json` does not match its expected sha256 pin."
+        },
+        {
+          "path": "localFiles.archiveManifest.sha256",
+          "reason": "Quickstart file `tests/fixtures/beta-release-archive-assembler.json` does not match its expected sha256 pin."
+        },
+        {
+          "path": "localFiles.betaReviewUi.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-review-ui.json`."
+        },
+        {
+          "path": "localFiles.coolifyEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/coolify-staging-lane.json`."
+        },
+        {
+          "path": "localFiles.dockerEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/docker-testing-lane.json`."
+        },
+        {
+          "path": "localFiles.pitchPage.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/public-demo-pitch.html`."
+        },
+        {
+          "path": "localFiles.pitchPlan.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/PITCH-DEMO-REFRESH.md`."
+        },
+        {
+          "path": "localFiles.pitchVideoScript.expectedSha256",
+          "reason": "Expected sha256 pin is required for `scripts/public_demo_pitch_video.sh`."
+        },
+        {
+          "path": "localFiles.releaseVerification.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-verification.json`."
+        },
+        {
+          "path": "localFiles.surfpoolEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/surfpool-validator-lane.json`."
+        }
+      ],
+      "id": "stale-archive-manifest-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "c4d19dabd7a7c32f0b9080d589e3c549f7806e1149d7575bc299c5ba8e4ce9ef",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hashMatches": false,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveManifest.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-archive-assembler.json`."
+        },
+        {
+          "path": "localFiles.archiveManifest.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-archive-assembler.json`."
+        },
+        {
+          "path": "localFiles.betaReviewUi.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-review-ui.json`."
+        },
+        {
+          "path": "localFiles.coolifyEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/coolify-staging-lane.json`."
+        },
+        {
+          "path": "localFiles.dockerEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/docker-testing-lane.json`."
+        },
+        {
+          "path": "localFiles.pitchPage.exists",
+          "reason": "Required quickstart file `docs/missing-public-demo-pitch.html` is missing."
+        },
+        {
+          "path": "localFiles.pitchPlan.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/PITCH-DEMO-REFRESH.md`."
+        },
+        {
+          "path": "localFiles.pitchVideoScript.expectedSha256",
+          "reason": "Expected sha256 pin is required for `scripts/public_demo_pitch_video.sh`."
+        },
+        {
+          "path": "localFiles.releaseVerification.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-verification.json`."
+        },
+        {
+          "path": "localFiles.surfpoolEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/surfpool-validator-lane.json`."
+        },
+        {
+          "path": "pitchPage",
+          "reason": "Required pitch demo marker `ReddiAgent Public Demo` is missing."
+        },
+        {
+          "path": "pitchPage",
+          "reason": "Required pitch demo marker `Three audiences, one contract` is missing."
+        }
+      ],
+      "id": "missing-pitch-page-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "9534cce173f0774556916cdb40576a6c0ba9107d273cf43bcf4fa8fcb51ec83b",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": false,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": false,
+          "key": "pitchPage",
+          "path": "docs/missing-public-demo-pitch.html",
+          "sha256": null,
+          "sizeBytes": null
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "archiveManifest.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-archive-assembler.json`."
+        },
+        {
+          "path": "localFiles.archiveManifest.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-archive-assembler.json`."
+        },
+        {
+          "path": "localFiles.betaReviewUi.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-review-ui.json`."
+        },
+        {
+          "path": "localFiles.coolifyEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/coolify-staging-lane.json`."
+        },
+        {
+          "path": "localFiles.dockerEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/docker-testing-lane.json`."
+        },
+        {
+          "path": "localFiles.pitchPage.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/public-demo-pitch.html`."
+        },
+        {
+          "path": "localFiles.pitchPlan.expectedSha256",
+          "reason": "Expected sha256 pin is required for `docs/PITCH-DEMO-REFRESH.md`."
+        },
+        {
+          "path": "localFiles.pitchVideoScript.sha256",
+          "reason": "Quickstart file `scripts/public_demo_pitch_video.sh` does not match its expected sha256 pin."
+        },
+        {
+          "path": "localFiles.releaseVerification.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/beta-release-verification.json`."
+        },
+        {
+          "path": "localFiles.surfpoolEvidence.expectedSha256",
+          "reason": "Expected sha256 pin is required for `tests/fixtures/surfpool-validator-lane.json`."
+        }
+      ],
+      "id": "stale-pitch-video-script-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "315fa5ac2f57a50e3f44b1e97fb6f5b23d861d4897df445d4be1ad95702c84e4",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hashMatches": false,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "",
+        "hashMatches": false,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "selectedAdls",
+          "reason": "Required example ADL `examples/payment-agent.yaml` is missing from the quickstart."
+        }
+      ],
+      "id": "missing-selected-adl-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "f88a5a2a79a2b2ea1ea26a7c827f63bf826fb413d7afb9eea190b1057113be80",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "selectedAdls.examples/payment-agent.yaml.sha256",
+          "reason": "Selected example ADL `examples/payment-agent.yaml` does not match its expected sha256 pin."
+        },
+        {
+          "path": "selectedAdls.examples/simple-agent.yaml.expectedSha256",
+          "reason": "Expected sha256 pin is required for selected ADL `examples/simple-agent.yaml`."
+        },
+        {
+          "path": "selectedAdls.examples/tool-agent.yaml.expectedSha256",
+          "reason": "Expected sha256 pin is required for selected ADL `examples/tool-agent.yaml`."
+        }
+      ],
+      "id": "stale-selected-adl-hash-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "7f2d50ff3d331d1329b5ba5866a7b1dffccecfa22f201a46b7da878825d443b1",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hashMatches": false,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": null,
+          "hashMatches": false,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "operatorNextStep",
+          "reason": "Quickstart package must not claim `runtime activation completed`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Quickstart package must not claim `deployment completed`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Quickstart package must not claim `archive published`."
+        },
+        {
+          "path": "operatorNextStep",
+          "reason": "Quickstart package must not claim `package published`."
+        }
+      ],
+      "id": "unsafe-activation-deployment-publishing-claim-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in onboarding quickstart inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in onboarding quickstart inputs."
+        }
+      ],
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.unsafeEnvValues.OPENAI_API_KEY",
+          "reason": "Credential-like values are not allowed in onboarding quickstart inputs."
+        },
+        {
+          "path": "unsafeEnvValues.OPENAI_API_KEY",
+          "reason": "Environment evidence may include names only, not live values."
+        }
+      ],
+      "id": "unsafe-env-values-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "walletRequested",
+          "reason": "walletRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "paymentRailRequested",
+          "reason": "paymentRailRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "facilitatorRequested",
+          "reason": "facilitatorRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "settlementRequested",
+          "reason": "settlementRequested must be false or absent in onboarding quickstart inputs."
+        }
+      ],
+      "id": "wallet-payment-facilitator-settlement-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "liveNetworkEnabled",
+          "reason": "liveNetworkEnabled must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in onboarding quickstart inputs."
+        }
+      ],
+      "id": "devnet-mainnet-live-network-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "95df47976ef2c4cd174fb42ece44696aa6ac0bc60b5171b1798c5ef03cb8b978",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "docker compose up",
+        "npm publish",
+        "curl https://frosty-prism-5q6j.here.now/"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "commands[0]",
+          "reason": "Reviewer command must not pull, start, run, or compose Docker containers."
+        },
+        {
+          "path": "commands[1]",
+          "reason": "Reviewer command must not run `npm publish`."
+        },
+        {
+          "path": "commands[2]",
+          "reason": "Reviewer command must not fetch hosted content."
+        }
+      ],
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "01fa7188215cf6cbab65dda7ccc763b0023c494642f7485ba02e9af332da38e2",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Hold this onboarding package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": false,
+        "metadataOnly": true,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": false
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "boundaries": {
+        "archivePublished": false,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "dryRunByDefault": true,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "quickstartWriteRequiresExplicitPath": true,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "commands": [
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_archive_assembler.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_release_verification_cli.py",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py --quickstart-output-dir /tmp/reddiagent-beta-quickstart"
+      ],
+      "excludedSteps": [
+        "runtime activation",
+        "Docker image pull or container start",
+        "Surfpool or solana-test-validator start",
+        "Coolify deployment or mutation",
+        "hosted content fetch, mutation, or publication",
+        "credential lookup or storage",
+        "provider/model/API product call",
+        "live MCP invocation",
+        "wallet/payment/facilitator/settlement access",
+        "devnet or mainnet transaction",
+        "package or archive publishing",
+        "production gateway mutation"
+      ],
+      "expectedOutputs": [
+        "A pass quickstart manifest with local file inventory hashes.",
+        "A local HTML entrypoint only when --quickstart-output-dir is supplied.",
+        "Hold or reject verdicts for missing, stale, unsafe, or overclaiming evidence."
+      ],
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "publicPublishingRequested",
+          "reason": "publicPublishingRequested must be false or absent in onboarding quickstart inputs."
+        },
+        {
+          "path": "publicDemoMetadata.metadataOnly",
+          "reason": "Public demo URLs must be metadata/proof links only."
+        },
+        {
+          "path": "publicDemoMetadata.fetchedDuringQuickstart",
+          "reason": "Quickstart generation must not fetch hosted demo content."
+        },
+        {
+          "path": "publicDemoMetadata.publishedDuringQuickstart",
+          "reason": "Quickstart generation must not publish hosted demo content."
+        }
+      ],
+      "id": "unsafe-public-demo-mutation-reject-denied",
+      "kind": "negative",
+      "localEntrypoint": {
+        "defaultWrite": false,
+        "format": "html-and-manifest-json",
+        "htmlName": "reddiagent-beta-0-local-onboarding-quickstart.html",
+        "manifestName": "reddiagent-beta-0-local-onboarding-quickstart.json",
+        "manifestSha256": "4ae98676673d223e321f5af912c0af71cd5f1b408804813a384261bc4f931097",
+        "writeRequiresExplicitOutputDir": true
+      },
+      "localFileInventory": [
+        {
+          "exists": true,
+          "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "hashMatches": true,
+          "key": "archiveManifest",
+          "path": "tests/fixtures/beta-release-archive-assembler.json",
+          "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+          "sizeBytes": 174541
+        },
+        {
+          "exists": true,
+          "expectedSha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "hashMatches": true,
+          "key": "betaReviewUi",
+          "path": "tests/fixtures/beta-review-ui.json",
+          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a",
+          "sizeBytes": 5825
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "hashMatches": true,
+          "key": "coolifyEvidence",
+          "path": "tests/fixtures/coolify-staging-lane.json",
+          "sha256": "e8e86d5ebde217f2afc92fee835b713f9d50b6853fab7b1337270f77221853fa",
+          "sizeBytes": 74119
+        },
+        {
+          "exists": true,
+          "expectedSha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "hashMatches": true,
+          "key": "dockerEvidence",
+          "path": "tests/fixtures/docker-testing-lane.json",
+          "sha256": "12e23da9310a42e743b9ca790508d8fcedb640562cd8e4f054bf1ac840c45d75",
+          "sizeBytes": 48343
+        },
+        {
+          "exists": true,
+          "expectedSha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "hashMatches": true,
+          "key": "pitchPage",
+          "path": "docs/public-demo-pitch.html",
+          "sha256": "883ca37b14616601e6fcf06126eb9938651efa3414c993f0b8d7a1b85865c447",
+          "sizeBytes": 13736
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "hashMatches": true,
+          "key": "pitchPlan",
+          "path": "docs/PITCH-DEMO-REFRESH.md",
+          "sha256": "c81621a8b1488130ccf8080dbe40b0b3cbaa8f2bf9bc72337c3d78b6f8e90754",
+          "sizeBytes": 4984
+        },
+        {
+          "exists": true,
+          "expectedSha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "hashMatches": true,
+          "key": "pitchVideoScript",
+          "path": "scripts/public_demo_pitch_video.sh",
+          "sha256": "e206ce81be087faf9c9c0edaa3deeb20e2be0dc6904456259506a9ce84871567",
+          "sizeBytes": 6991
+        },
+        {
+          "exists": true,
+          "expectedSha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "hashMatches": true,
+          "key": "releaseVerification",
+          "path": "tests/fixtures/beta-release-verification.json",
+          "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500",
+          "sizeBytes": 62138
+        },
+        {
+          "exists": true,
+          "expectedSha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "hashMatches": true,
+          "key": "surfpoolEvidence",
+          "path": "tests/fixtures/surfpool-validator-lane.json",
+          "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+          "sizeBytes": 38278
+        }
+      ],
+      "operatorNextStep": "Reject this onboarding package and regenerate local evidence before any reviewer or operator handoff.",
+      "publicDemoMetadata": {
+        "fetchedDuringQuickstart": true,
+        "metadataOnly": false,
+        "publicDemoUrl": "https://frosty-prism-5q6j.here.now/",
+        "publicVideoUrl": "https://frosty-prism-5q6j.here.now/media/reddiagent-demo-story-cut.mp4",
+        "publishedDuringQuickstart": true
+      },
+      "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
+      "releaseArchive": {
+        "archiveId": "reddiagent-beta-0-rc-local-1-local-review-archive",
+        "archiveManifestSha256": "ab4c02bc2d1eeab80a18d12a975c2c21e657dd9b7b5e9f3f7d0ca8e13e8fe67c",
+        "expectedSha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217",
+        "hashMatches": true,
+        "path": "tests/fixtures/beta-release-archive-assembler.json",
+        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "selectedAdls": [
+        {
+          "exists": true,
+          "expectedSha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "hashMatches": true,
+          "path": "examples/payment-agent.yaml",
+          "sha256": "2e9e7add090c25c0f1b85f8a7f4005361a7d1d00b46c31fdb6688762a3cf4a1b",
+          "sizeBytes": 1335
+        },
+        {
+          "exists": true,
+          "expectedSha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "hashMatches": true,
+          "path": "examples/simple-agent.yaml",
+          "sha256": "c2bc2a13f39ff6c3304d3a0fe5e9a6cd6972e279027947fc2d2317fe50771fa4",
+          "sizeBytes": 839
+        },
+        {
+          "exists": true,
+          "expectedSha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "hashMatches": true,
+          "path": "examples/tool-agent.yaml",
+          "sha256": "fd66feca6b04d56f33dd728f6a3769d0fc3c83f7338bed739d3dbe071a314c8a",
+          "sizeBytes": 1299
+        }
+      ],
+      "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+      "status": "fail",
+      "verdict": "reject"
+    }
+  ],
+  "sourceCommit": "f68f2b2b912756ace04bdad9b20fafda7fac68d2",
+  "status": "pass",
+  "summary": {
+    "acceptVerdicts": 1,
+    "failClosedScenarios": 13,
+    "holdVerdicts": 12,
+    "negativeScenarios": 13,
+    "positiveScenarios": 1,
+    "rejectVerdicts": 1
+  }
+}
