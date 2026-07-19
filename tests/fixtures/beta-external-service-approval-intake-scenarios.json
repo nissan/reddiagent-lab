@@ -1,0 +1,226 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "approvalIntakeId": "reddiagent-beta-0-external-service-approval-intake",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "d0e7b7968ef9c9e7086cbb1a9dfef5a104be6a24",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+    "priorEvidenceReportPath": "tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md",
+    "expectedStatus": "pass",
+    "expectedDecision": "hold-fail-closed",
+    "expectedRiskVerdict": "hold-fail-closed-without-fresh-nissan-approval",
+    "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+    "intakeCommand": "python scripts/beta_external_service_approval_intake.py --output tests/fixtures/beta-external-service-approval-intake.json",
+    "nissanResponse": {
+      "status": "absent",
+      "approver": null,
+      "responseText": null,
+      "timestamp": null,
+      "source": null,
+      "fresh": false,
+      "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+      "scope": null,
+      "providerEscalation": false,
+      "productionEscalation": false,
+      "devnetEscalation": false,
+      "mainnetEscalation": false,
+      "costEscalation": false,
+      "privacyEscalation": false,
+      "legalEscalation": false
+    },
+    "boundedScopeEcho": {
+      "sourceIssue": 303,
+      "adlPath": "examples/simple-agent.yaml",
+      "scope": "local/free/bounded approval only",
+      "providerEscalation": false,
+      "productionEscalation": false,
+      "devnetEscalation": false,
+      "mainnetEscalation": false,
+      "estimatedCostUsd": "0.00"
+    },
+    "preconditionEcho": {
+      "pinned303EvidencePresent": true,
+      "pinned303HashMatches": true,
+      "pinned301Consumed": true,
+      "lineagePreserved": true,
+      "mainnetBlocked": true,
+      "noRealMutation": true
+    },
+    "auditTrail": [
+      "load-pinned-303-evidence",
+      "verify-303-consumed-301",
+      "verify-299-297-295-293-291-lineage",
+      "record-exact-approval-prompt",
+      "record-nissan-response-fields",
+      "derive-approve-or-hold-decision",
+      "stop-before-real-mutation"
+    ],
+    "stopBeforeMutation": true,
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "externalProcessStarted": false,
+    "hostProcessMutated": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "persistentMutation": false,
+    "unboundedMutation": false,
+    "productionEscalation": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+        "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+      },
+      {
+        "path": "tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md",
+        "sha256": "ff96d3c6c0a8177625e4e44b2e027ca2135bbe57ab4155a0ccb22d545d7082aa"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "approval-intake-absent-response-hold-pass"
+    },
+    {
+      "id": "stale-prior-303-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md",
+          "sha256": "ff96d3c6c0a8177625e4e44b2e027ca2135bbe57ab4155a0ccb22d545d7082aa"
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-response-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "maybe",
+        "responseText": "Looks fine.",
+        "timestamp": "2026-07-20T02:36:00+10:00",
+        "source": "telegram:-5218935737:ambiguous",
+        "fresh": true
+      }
+    },
+    {
+      "id": "stale-approval-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "approved",
+        "approver": "Nissan",
+        "responseText": "I approve exactly this local free bounded scope only.",
+        "timestamp": "2026-07-17T16:07:00+10:00",
+        "source": "telegram:-5218935737:old-approval",
+        "fresh": false,
+        "scope": "exact-303-local-free-bounded-scope"
+      }
+    },
+    {
+      "id": "broader-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "approved",
+        "approver": "Nissan",
+        "responseText": "I approve this and whatever else is needed.",
+        "timestamp": "2026-07-20T02:36:00+10:00",
+        "source": "telegram:-5218935737:broad",
+        "fresh": true,
+        "scope": "broad-service-activation"
+      }
+    },
+    {
+      "id": "provider-escalation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "approved",
+        "approver": "Nissan",
+        "responseText": "I approve provider API and production activation.",
+        "timestamp": "2026-07-20T02:36:00+10:00",
+        "source": "telegram:-5218935737:provider",
+        "fresh": true,
+        "scope": "exact-303-local-free-bounded-scope",
+        "providerEscalation": true,
+        "productionEscalation": true
+      }
+    },
+    {
+      "id": "devnet-mainnet-escalation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "approved",
+        "approver": "Nissan",
+        "responseText": "I approve devnet and mainnet too.",
+        "timestamp": "2026-07-20T02:36:00+10:00",
+        "source": "telegram:-5218935737:mainnet",
+        "fresh": true,
+        "scope": "exact-303-local-free-bounded-scope",
+        "devnetEscalation": true,
+        "mainnetEscalation": true
+      }
+    },
+    {
+      "id": "cost-privacy-legal-escalation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "nissanResponse": {
+        "status": "approved",
+        "approver": "Nissan",
+        "responseText": "I approve unbounded cost, privacy, and legal risk.",
+        "timestamp": "2026-07-20T02:36:00+10:00",
+        "source": "telegram:-5218935737:risky",
+        "fresh": true,
+        "scope": "exact-303-local-free-bounded-scope",
+        "costEscalation": true,
+        "privacyEscalation": true,
+        "legalEscalation": true
+      }
+    },
+    {
+      "id": "wrong-prompt-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "approvalPrompt": "Approve provider production activation?",
+      "nissanResponse": {
+        "prompt": "Approve provider production activation?"
+      }
+    },
+    {
+      "id": "unsafe-boundary-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "actualServiceMutation": true,
+      "providerApiAccess": true,
+      "devnetAccess": true,
+      "mainnetAccess": true
+    }
+  ]
+}
