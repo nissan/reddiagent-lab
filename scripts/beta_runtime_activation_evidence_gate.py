@@ -31,7 +31,7 @@ REQUIRED_TRACE_EVENTS = [
     "evals.loaded",
     "task.dry_run_completed",
 ]
-LOCAL_COMMAND_PREFIX = f"{sys.executable} scripts/run_local_agent.py {REQUIRED_ADL_PATH}"
+LOCAL_COMMAND_PREFIX = f"python scripts/run_local_agent.py {REQUIRED_ADL_PATH}"
 UNSAFE_FLAG_FIELDS = (
     "liveRuntimeRequested",
     "liveNetworkEnabled",
