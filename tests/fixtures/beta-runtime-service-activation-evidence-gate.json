@@ -1,0 +1,2094 @@
+{
+  "boundaries": {
+    "actualServiceMutation": false,
+    "archivePublished": false,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "dryRunSubstituteOnly": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    291,
+    289,
+    287,
+    285
+  ],
+  "issue": 293,
+  "mainnetStatement": "This evidence gate does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-runtime-service-activation-evidence-gate",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold-for-live-run",
+      "findings": [],
+      "id": "runtime-service-activation-evidence-hold-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "pass",
+      "verdict": "hold-for-live-run"
+    },
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "rollback",
+      "findings": [],
+      "id": "runtime-service-activation-evidence-rollback-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "rollback",
+          "liveActionAuthorized": false,
+          "reason": "Operator requested dry-run rollback verification before any live run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "pass",
+      "verdict": "rollback"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "approvalPacketFixture.path",
+          "reason": "Approval packet path must be pinned to `tests/fixtures/beta-runtime-service-activation-approval-packet.json`."
+        },
+        {
+          "path": "approvalPacketFixture.exists",
+          "reason": "Artifact `tests/fixtures/missing-beta-runtime-service-activation-approval-packet.json` is missing."
+        },
+        {
+          "path": "approvalPacketFixture.mode",
+          "reason": "Pinned #291 fixture must be the approval packet."
+        },
+        {
+          "path": "approvalPacketFixture.issue",
+          "reason": "Pinned fixture must belong to issue #291 and parent #220."
+        },
+        {
+          "path": "approvalPacketFixture.follows",
+          "reason": "Pinned #291 packet must preserve #289/#287/#285 lineage."
+        },
+        {
+          "path": "approvalPacketFixture.status",
+          "reason": "Pinned #291 fixture must pass."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.providerApiAccess",
+          "reason": "providerApiAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.hostedFetch",
+          "reason": "hostedFetch must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.liveMcpInvocation",
+          "reason": "liveMcpInvocation must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.dockerStarted",
+          "reason": "dockerStarted must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.surfpoolStarted",
+          "reason": "surfpoolStarted must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.coolifyDeployment",
+          "reason": "coolifyDeployment must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.walletAccess",
+          "reason": "walletAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.paymentAccess",
+          "reason": "paymentAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.facilitatorAccess",
+          "reason": "facilitatorAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.settlementAccess",
+          "reason": "settlementAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.publicPublished",
+          "reason": "publicPublished must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "approvalPacketFixture.results",
+          "reason": "Pinned #291 fixture must include accepted approval-packet evidence."
+        }
+      ],
+      "id": "missing-approval-packet-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": null,
+          "acceptedResultId": null,
+          "acceptedVerdict": null,
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": false,
+            "path": "tests/fixtures/missing-beta-runtime-service-activation-approval-packet.json",
+            "sha256": null
+          },
+          "sourceEvidenceHashes": {}
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {},
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "approvalPacketFixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-runtime-service-activation-approval-packet.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-approval-packet-hash-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "hashMatches": false,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "runEvidenceId",
+          "reason": "Run evidence id must be `reddiagent-beta-0-runtime-service-activation-evidence-gate`."
+        }
+      ],
+      "id": "wrong-run-id-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "stale-run",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "operatorApprovalsRecorded.separate_live_activation_run_approval",
+          "reason": "separate_live_activation_run_approval must be recorded true."
+        }
+      ],
+      "id": "missing-operator-approval-record-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": false
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "preflightChecklist",
+          "reason": "Preflight checklist must cover approval, rollback, trace/eval, bounds, and mainnet stop conditions."
+        }
+      ],
+      "id": "thin-preflight-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Looks good."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "liveServiceActivationRequested",
+          "reason": "liveServiceActivationRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "serviceStartRequested",
+          "reason": "serviceStartRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "activationDecision.decision",
+          "reason": "This deterministic local gate may only decide hold or rollback."
+        },
+        {
+          "path": "activationDecision.liveActionAuthorized",
+          "reason": "Live action must not be authorized by this local gate."
+        }
+      ],
+      "id": "unsafe-live-decision-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "activate",
+          "liveActionAuthorized": true,
+          "reason": "Start the service now."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "reject"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "boundedRunTranscript.mode",
+          "reason": "Transcript must be the bounded dry-run substitute."
+        },
+        {
+          "path": "boundedRunTranscript.command",
+          "reason": "Transcript command must be the deterministic evidence gate command."
+        },
+        {
+          "path": "localCommands[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        }
+      ],
+      "id": "unsafe-transcript-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "docker compose up",
+          "exitCode": 0,
+          "mode": "live-service",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "traceEvalSummary",
+          "reason": "Trace/eval summary must pass without tool execution."
+        }
+      ],
+      "id": "missing-trace-eval-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "missing",
+          "requiredGateStatus": "missing",
+          "toolExecution": "attempted",
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "rollbackDisableVerification.disableCommand",
+          "reason": "Disable verification must use the pinned dry-run command."
+        }
+      ],
+      "id": "missing-rollback-verification-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "live-runtime:disable",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-like-payload-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "liveMcpRequested",
+          "reason": "liveMcpRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "packageArchivePublishRequested",
+          "reason": "packageArchivePublishRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in this local evidence gate."
+        }
+      ],
+      "id": "live-rails-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Hold after this explicit local evidence gate; live service activation still requires a separately approved bounded run with current operator approval, rollback path, trace/eval evidence, and no mainnet risk.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "reject"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationCompleted",
+          "reason": "activationCompleted must be false or absent in this local evidence gate."
+        },
+        {
+          "path": "nextStepCue",
+          "reason": "Next-step cue must stop before live activation."
+        },
+        {
+          "path": "scenario.nextStepCue",
+          "reason": "E2E smoke must not claim `runtime activation completed`."
+        }
+      ],
+      "id": "unsafe-completion-claim-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "activationDecision": {
+          "decision": "hold",
+          "liveActionAuthorized": false,
+          "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
+        },
+        "approvalPacketEvidence": {
+          "acceptedApprovalPacketSha256": "1f94072359faa601f97fd19669f7c6b75ebcd9ef8c5ec78b8e7b01ea43a0ceb3",
+          "acceptedResultId": "runtime-service-approval-packet-ready-pass",
+          "acceptedVerdict": "approval-packet-ready",
+          "fixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "sourceEvidenceHashes": {
+            "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+            "acceptedCanaryResultSha256": "ba597725741f09015cedbe981702499d2e8e32f1ba26dfb103c0a18efb1a0008",
+            "acceptedE2eSmokeSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+            "activationEvidenceFixture": {
+              "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+              "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+            },
+            "canaryFixture": {
+              "expectedSha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
+              "sha256": "221cae416825b64b41a1b117d311bfc4ded3d0e53a9d49ef43f50faea26cb8dd"
+            },
+            "e2eSmokeFixture": {
+              "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+              "hashMatches": true,
+              "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+              "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+            }
+          }
+        },
+        "approvalPacketId": "reddiagent-beta-0-runtime-service-activation-approval-packet",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "archivePublished": false,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "dryRunSubstituteOnly": true,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "hostedFetch": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "walletAccess": false
+        },
+        "boundedRunTranscript": {
+          "command": "python scripts/beta_runtime_service_activation_evidence_gate.py --output tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+          "exitCode": 0,
+          "mode": "dry-run-substitute",
+          "stderr": "",
+          "stdoutContains": [
+            "beta-runtime-service-activation-evidence-gate",
+            "hold-for-live-run"
+          ]
+        },
+        "nextStepCue": "Runtime activation completed and mainnet is ready.",
+        "operatorApprovalsRecorded": {
+          "rollback_owner_approval": true,
+          "runtime_owner_approval": true,
+          "security_reviewer_approval": true,
+          "separate_live_activation_run_approval": true
+        },
+        "preflightChecklist": [
+          "Confirm pinned #291 approval packet path and sha256 before any run evidence.",
+          "Confirm operator approval records are present and current for this local gate.",
+          "Confirm rollback and disable dry-run commands are available before any live attempt.",
+          "Confirm trace/eval evidence exists and passes without tool execution.",
+          "Use the bounded dry-run substitute transcript; do not start a service here.",
+          "Stop on any mainnet, unbounded cost, privacy, legal, credential, or unsafe live-action risk."
+        ],
+        "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+        "releaseId": "reddiagent-beta-0",
+        "riskVerdict": "hold-for-separate-live-run",
+        "rollbackDisableVerification": {
+          "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+          "liveRuntimeEnabledAfterRollback": false,
+          "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+          "verification": "dry-run rollback/disable proof only; no service was started."
+        },
+        "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
+        "selectedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "toolExecution": null
+        },
+        "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+        "traceEvalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEvents": [
+            "load-pinned-approval-packet",
+            "record-operator-approvals",
+            "preflight-checklist",
+            "dry-run-substitute",
+            "rollback-disable-verification",
+            "hold-before-live-run"
+          ]
+        }
+      },
+      "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+      "status": "fail",
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "86165ac24e034e03894803858cc3fd24004a1eaf",
+  "status": "pass",
+  "summary": {
+    "failClosedScenarios": 12,
+    "holdForLiveRunVerdicts": 1,
+    "holdVerdicts": 10,
+    "negativeScenarios": 12,
+    "positiveScenarios": 2,
+    "rejectVerdicts": 2,
+    "rollbackVerdicts": 1
+  }
+}
