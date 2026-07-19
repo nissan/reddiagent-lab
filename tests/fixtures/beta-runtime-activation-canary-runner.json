@@ -1,0 +1,1734 @@
+{
+  "boundaries": {
+    "archivePublished": false,
+    "canaryEvidenceWriteRequiresExplicitPath": true,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "inProcessRuntimeOnly": true,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    287
+  ],
+  "issue": 289,
+  "mainnetStatement": "This local canary runner does not approve or run mainnet; mainnet remains blocked until fresh Nissan approval.",
+  "mode": "beta-local-runtime-activation-canary-runner",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "pass",
+      "expectedVerdict": "accept-canary",
+      "findings": [],
+      "id": "runtime-activation-canary-accept-pass",
+      "kind": "positive",
+      "nextStepCue": "Accept this local canary evidence for reviewer/operator handoff only; true live runtime/service activation, deployment, devnet, payments, package/archive publishing, and mainnet remain separate gates.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "pass",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "accept-canary"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "findings": [],
+      "id": "runtime-activation-canary-hold-pass",
+      "kind": "positive",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "pass",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": null,
+        "acceptedResultId": null,
+        "acceptedRuntimePath": null,
+        "acceptedSourceCommit": null,
+        "acceptedSourceSmoke": null,
+        "acceptedVerdict": null,
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": false,
+          "path": "tests/fixtures/missing-beta-runtime-activation-evidence-gate.json",
+          "sha256": null
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationEvidenceFixture.exists",
+          "reason": "Artifact `tests/fixtures/missing-beta-runtime-activation-evidence-gate.json` is missing."
+        },
+        {
+          "path": "activationEvidenceFixture.mode",
+          "reason": "Pinned #287 fixture must be the activation evidence gate."
+        },
+        {
+          "path": "activationEvidenceFixture.issue",
+          "reason": "Pinned fixture must belong to issue #287 and parent #220."
+        },
+        {
+          "path": "activationEvidenceFixture.status",
+          "reason": "Pinned #287 fixture must pass."
+        },
+        {
+          "path": "activationEvidenceFixture.releaseId",
+          "reason": "Release id must be `reddiagent-beta-0`."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.serviceStarted",
+          "reason": "serviceStarted must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.networkAccess",
+          "reason": "networkAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.credentialAccess",
+          "reason": "credentialAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.providerApiAccess",
+          "reason": "providerApiAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.liveMcpInvocation",
+          "reason": "liveMcpInvocation must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.liveRuntimeActivation",
+          "reason": "liveRuntimeActivation must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.dockerStarted",
+          "reason": "dockerStarted must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.surfpoolStarted",
+          "reason": "surfpoolStarted must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.coolifyDeployment",
+          "reason": "coolifyDeployment must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.walletAccess",
+          "reason": "walletAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.paymentAccess",
+          "reason": "paymentAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.facilitatorAccess",
+          "reason": "facilitatorAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.settlementAccess",
+          "reason": "settlementAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.devnetAccess",
+          "reason": "devnetAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.mainnetAccess",
+          "reason": "mainnetAccess must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.deploymentPublished",
+          "reason": "deploymentPublished must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.packagePublished",
+          "reason": "packagePublished must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.archivePublished",
+          "reason": "archivePublished must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.publicPublished",
+          "reason": "publicPublished must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.boundaries.externalSpend",
+          "reason": "externalSpend must remain false."
+        },
+        {
+          "path": "activationEvidenceFixture.results",
+          "reason": "Pinned #287 fixture must include accepted activation evidence."
+        }
+      ],
+      "id": "missing-activation-evidence-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": null
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hashMatches": false,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "activationEvidenceFixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-runtime-activation-evidence-gate.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-activation-evidence-hash-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "stale-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "canaryId",
+          "reason": "Canary id must be `reddiagent-beta-0-local-runtime-activation-canary`."
+        }
+      ],
+      "id": "wrong-canary-id-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "operatorControlStateBefore.runtimeEnabled",
+          "reason": "Runtime must remain disabled before and after the canary."
+        }
+      ],
+      "id": "missing-before-control-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": true
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "operatorControlStateAfter.runtimeEnabled",
+          "reason": "Runtime must remain disabled before and after the canary."
+        }
+      ],
+      "id": "missing-after-control-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": true
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "rollbackDisableDryRunProof.rollbackCommand",
+          "reason": "Rollback command must be the pinned local dry-run proof."
+        }
+      ],
+      "id": "missing-rollback-proof-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "live-runtime:rollback --target simple-agent"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "localCommands[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        },
+        {
+          "path": "localCommands[1]",
+          "reason": "Command must not fetch hosted content."
+        },
+        {
+          "path": "localCommands",
+          "reason": "Canary runner must select the no-tool simple local runtime path."
+        }
+      ],
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        },
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like values are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "findings": [
+        {
+          "path": "liveRuntimeRequested",
+          "reason": "liveRuntimeRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "serviceStartRequested",
+          "reason": "serviceStartRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "dockerStartRequested",
+          "reason": "dockerStartRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "coolifyDeploymentRequested",
+          "reason": "coolifyDeploymentRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "liveMcpRequested",
+          "reason": "liveMcpRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "paymentRequested",
+          "reason": "paymentRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "devnetRequested",
+          "reason": "devnetRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "mainnetRequested",
+          "reason": "mainnetRequested must be false or absent in this local canary runner."
+        },
+        {
+          "path": "packageArchivePublishRequested",
+          "reason": "packageArchivePublishRequested must be false or absent in this local canary runner."
+        }
+      ],
+      "id": "live-rails-reject-denied",
+      "kind": "negative",
+      "nextStepCue": "Reject this canary evidence and regenerate accepted #287 activation evidence before any runtime activation handoff.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "reject"
+    },
+    {
+      "activationEvidence": {
+        "acceptedActivationEvidenceSha256": "807184e8dcd26ef26ac21666d3c06e36ecddd18e6603237113876ddf0dcca308",
+        "acceptedResultId": "runtime-activation-evidence-accept-pass",
+        "acceptedRuntimePath": {
+          "adlPath": "examples/simple-agent.yaml",
+          "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+          "runtimeFixture": {
+            "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+            "hashMatches": true,
+            "path": "tests/fixtures/local-executable-runtime-prototype.json",
+            "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          },
+          "runtimeScenarioId": "simple-agent-dry-run"
+        },
+        "acceptedSourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+        "acceptedSourceSmoke": {
+          "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+          "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
+          "acceptedVerdict": "accept",
+          "fixture": {
+            "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+            "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          }
+        },
+        "acceptedVerdict": "activate-local",
+        "fixture": {
+          "expectedSha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457",
+          "hashMatches": true,
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      },
+      "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+      "boundaries": {
+        "archivePublished": false,
+        "canaryEvidenceWriteRequiresExplicitPath": true,
+        "coolifyDeployment": false,
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalOnly": true,
+        "devnetAccess": false,
+        "dockerStarted": false,
+        "externalSpend": false,
+        "facilitatorAccess": false,
+        "inProcessRuntimeOnly": true,
+        "liveMcpInvocation": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "packagePublished": false,
+        "paymentAccess": false,
+        "providerApiAccess": false,
+        "publicPublished": false,
+        "serviceStarted": false,
+        "settlementAccess": false,
+        "surfpoolStarted": false,
+        "walletAccess": false
+      },
+      "canaryCommandTranscript": {
+        "command": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "completion": {
+          "reason": "dry-run transport completed and required gates passed",
+          "requiredGateStatus": "pass",
+          "status": "pass",
+          "transportStatus": "pass"
+        },
+        "evalSummary": {
+          "completionStatus": "pass",
+          "requiredGateStatus": "pass",
+          "toolExecution": null,
+          "traceEventCount": 6
+        },
+        "exitCode": 0,
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutSha256": "436cd90b7bed6a725654e989002916129efc947e00f02786d7e1a2f77a13fdff",
+        "traceEvents": [
+          "session.started",
+          "model.resolved",
+          "tools.registered",
+          "policies.loaded",
+          "evals.loaded",
+          "task.dry_run_completed"
+        ]
+      },
+      "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "findings": [
+        {
+          "path": "nextStepCue",
+          "reason": "E2E smoke must not claim `runtime activation completed`."
+        }
+      ],
+      "id": "unsafe-activation-claim-denied",
+      "kind": "negative",
+      "nextStepCue": "Hold this canary evidence until stale, missing, unsafe, or overclaiming local inputs are fixed.",
+      "operatorControlStateAfter": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "operatorControlStateBefore": {
+        "activationCanaryLocalOnly": true,
+        "disableSwitchAvailable": true,
+        "runtimeEnabled": false
+      },
+      "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+      "releaseId": "reddiagent-beta-0",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "liveRuntimeEnabledAfterRollback": false,
+        "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run"
+      },
+      "selectedRuntimePath": {
+        "adlPath": "examples/simple-agent.yaml",
+        "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
+        "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
+      },
+      "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+      "status": "fail",
+      "traceEvalSummary": {
+        "completionStatus": "pass",
+        "requiredGateStatus": "pass",
+        "toolExecution": null,
+        "traceEventCount": 6
+      },
+      "verdict": "hold"
+    }
+  ],
+  "sourceCommit": "e3df943a9f7b72dc910be0effae044db2122edd8",
+  "status": "pass",
+  "summary": {
+    "acceptCanaryVerdicts": 1,
+    "failClosedScenarios": 10,
+    "holdVerdicts": 10,
+    "negativeScenarios": 10,
+    "positiveScenarios": 2,
+    "rejectVerdicts": 1
+  }
+}

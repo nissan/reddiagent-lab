@@ -1,0 +1,182 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "canaryId": "reddiagent-beta-0-local-runtime-activation-canary",
+    "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "activationEvidenceFixturePath": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+    "requestedVerdict": "accept-canary",
+    "expectedStatus": "pass",
+    "expectedVerdict": "accept-canary",
+    "localCommands": [
+      "python scripts/run_local_agent.py examples/simple-agent.yaml",
+      "local-runtime:disable --target simple-agent --dry-run",
+      "local-runtime:rollback --target simple-agent --dry-run"
+    ],
+    "operatorControlStateBefore": {
+      "runtimeEnabled": false,
+      "disableSwitchAvailable": true,
+      "activationCanaryLocalOnly": true
+    },
+    "operatorControlStateAfter": {
+      "runtimeEnabled": false,
+      "disableSwitchAvailable": true,
+      "activationCanaryLocalOnly": true
+    },
+    "rollbackDisableDryRunProof": {
+      "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+      "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+      "liveRuntimeEnabledAfterRollback": false
+    },
+    "nextStepCue": "Accept this local canary evidence for reviewer/operator handoff only; true live runtime/service activation, deployment, devnet, payments, package/archive publishing, and mainnet remain separate gates.",
+    "liveRuntimeRequested": false,
+    "liveNetworkEnabled": false,
+    "serviceStartRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "packageArchivePublishRequested": false,
+    "publicPublishingRequested": false,
+    "hostedFetchRequested": false,
+    "productionClaimRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+        "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "runtime-activation-canary-accept-pass"
+    },
+    {
+      "id": "runtime-activation-canary-hold-pass",
+      "requestedVerdict": "hold",
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Hold for operator/reviewer review before any separate live runtime activation gate."
+    },
+    {
+      "id": "missing-activation-evidence-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "activationEvidenceFixturePath": "tests/fixtures/missing-beta-runtime-activation-evidence-gate.json",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-runtime-activation-evidence-gate.json",
+          "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        }
+      ]
+    },
+    {
+      "id": "stale-activation-evidence-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "wrong-canary-id-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "canaryId": "stale-canary"
+    },
+    {
+      "id": "missing-before-control-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorControlStateBefore": {
+        "runtimeEnabled": true,
+        "disableSwitchAvailable": true,
+        "activationCanaryLocalOnly": true
+      }
+    },
+    {
+      "id": "missing-after-control-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorControlStateAfter": {
+        "runtimeEnabled": true,
+        "disableSwitchAvailable": true,
+        "activationCanaryLocalOnly": true
+      }
+    },
+    {
+      "id": "missing-rollback-proof-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisableDryRunProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "rollbackCommand": "live-runtime:rollback --target simple-agent",
+        "liveRuntimeEnabledAfterRollback": false
+      }
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "localCommands": [
+        "docker compose up reddiagent",
+        "curl https://poppy-rafter-79h2.here.now/",
+        "python scripts/run_local_agent.py examples/simple-agent.yaml --execute-tools"
+      ]
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "Authorization: Bearer test-secret-token"
+    },
+    {
+      "id": "live-rails-reject-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "requestedVerdict": "reject",
+      "liveRuntimeRequested": true,
+      "serviceStartRequested": true,
+      "dockerStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "paymentRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true,
+      "packageArchivePublishRequested": true
+    },
+    {
+      "id": "unsafe-activation-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Runtime activation completed and production mainnet is enabled."
+    }
+  ]
+}
