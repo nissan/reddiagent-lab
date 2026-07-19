@@ -1,0 +1,200 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
+    "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "e2eSmokeFixturePath": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+    "runtimeFixturePath": "tests/fixtures/local-executable-runtime-prototype.json",
+    "selectedAdlPath": "examples/simple-agent.yaml",
+    "requestedVerdict": "activate-local",
+    "expectedStatus": "pass",
+    "expectedVerdict": "activate-local",
+    "localCommands": [
+      "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/simple-agent.yaml",
+      "local-runtime:disable --target simple-agent --dry-run",
+      "local-runtime:rollback --target simple-agent --dry-run"
+    ],
+    "operatorControlState": {
+      "manualApprovalRecorded": true,
+      "disableSwitchAvailable": true,
+      "rollbackCommandDryRun": true,
+      "activationCanaryLocalOnly": true,
+      "runtimeEnabled": false
+    },
+    "rollbackDisableProof": {
+      "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+      "rollbackCommand": "local-runtime:rollback --target simple-agent --dry-run",
+      "liveRuntimeEnabledAfterRollback": false
+    },
+    "nextStepCue": "Accept this local in-process activation evidence only; true live runtime/service activation, deployment, devnet, payments, and mainnet remain separate gates.",
+    "liveRuntimeRequested": false,
+    "liveNetworkEnabled": false,
+    "serviceStartRequested": false,
+    "dockerStartRequested": false,
+    "surfpoolStartRequested": false,
+    "coolifyDeploymentRequested": false,
+    "providerApiAccessRequested": false,
+    "credentialAccessRequested": false,
+    "liveMcpRequested": false,
+    "walletRequested": false,
+    "paymentRequested": false,
+    "facilitatorRequested": false,
+    "settlementRequested": false,
+    "deploymentRequested": false,
+    "packagePublishingRequested": false,
+    "archivePublishingRequested": false,
+    "publicPublishingRequested": false,
+    "devnetRequested": false,
+    "mainnetRequested": false,
+    "mainnetEnabled": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+        "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+      },
+      {
+        "path": "tests/fixtures/local-executable-runtime-prototype.json",
+        "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "runtime-activation-evidence-accept-pass"
+    },
+    {
+      "id": "runtime-activation-evidence-hold-pass",
+      "requestedVerdict": "hold",
+      "expectedStatus": "pass",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Hold for operator/reviewer review before any separate live runtime activation gate."
+    },
+    {
+      "id": "missing-e2e-artifact-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "e2eSmokeFixturePath": "tests/fixtures/missing-beta-e2e-acceptance-smoke.json",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/missing-beta-e2e-acceptance-smoke.json",
+          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+        },
+        {
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        }
+      ]
+    },
+    {
+      "id": "stale-e2e-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+        }
+      ]
+    },
+    {
+      "id": "stale-runtime-hash-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
+          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+        },
+        {
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "wrong-runtime-path-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "selectedAdlPath": "examples/tool-agent.yaml"
+    },
+    {
+      "id": "missing-control-state-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "operatorControlState": {
+        "manualApprovalRecorded": true,
+        "disableSwitchAvailable": false,
+        "rollbackCommandDryRun": true,
+        "activationCanaryLocalOnly": true,
+        "runtimeEnabled": false
+      }
+    },
+    {
+      "id": "missing-rollback-proof-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "rollbackDisableProof": {
+        "disableCommand": "local-runtime:disable --target simple-agent --dry-run",
+        "rollbackCommand": "",
+        "liveRuntimeEnabledAfterRollback": false
+      }
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "localCommands": [
+        "docker compose up",
+        "curl https://reddiagent-devnet.preview.reddi.tech/",
+        "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools"
+      ]
+    },
+    {
+      "id": "credential-like-leakage-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "credentialPayload": "bearer redacted-fixture-token"
+    },
+    {
+      "id": "runtime-container-live-rails-reject-denied",
+      "kind": "negative",
+      "requestedVerdict": "reject",
+      "expectedStatus": "fail",
+      "expectedVerdict": "reject",
+      "liveRuntimeRequested": true,
+      "serviceStartRequested": true,
+      "dockerStartRequested": true,
+      "surfpoolStartRequested": true,
+      "coolifyDeploymentRequested": true,
+      "liveMcpRequested": true,
+      "walletRequested": true,
+      "paymentRequested": true,
+      "facilitatorRequested": true,
+      "settlementRequested": true,
+      "devnetRequested": true,
+      "mainnetRequested": true
+    },
+    {
+      "id": "unsafe-activation-claim-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold",
+      "nextStepCue": "Runtime activation completed and mainnet enabled."
+    }
+  ]
+}
