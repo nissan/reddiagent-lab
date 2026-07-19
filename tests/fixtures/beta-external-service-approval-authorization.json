@@ -1,0 +1,1869 @@
+{
+  "boundaries": {
+    "actualServiceMutation": false,
+    "approvalAuthorizationOnly": true,
+    "approvalIntakeOnly": true,
+    "approvalPacketOnly": true,
+    "approvalPromptPinned": true,
+    "archivePublished": false,
+    "audited": true,
+    "bounded": true,
+    "coolifyDeployment": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalOnly": true,
+    "devnetAccess": false,
+    "dockerStarted": false,
+    "exactBoundedScopeAuthorized": true,
+    "externalProcessStarted": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "failClosed": true,
+    "hostProcessMutated": false,
+    "hostedFetch": false,
+    "leastPrivilege": true,
+    "legalRiskAccepted": false,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "localTemporaryRepresentationOnly": true,
+    "mainnetAccess": false,
+    "mainnetBlocked": true,
+    "networkAccess": false,
+    "nissanApprovalFreshnessRequired": true,
+    "nissanApprovalRequired": true,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "persistentMutation": false,
+    "privacyRiskAccepted": false,
+    "productionEscalation": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "realMutationAuthorized": false,
+    "reversible": true,
+    "serviceStarted": false,
+    "settlementAccess": false,
+    "surfpoolStarted": false,
+    "telegramApprovalBound": true,
+    "unboundedCostAccepted": false,
+    "unboundedMutation": false,
+    "walletAccess": false
+  },
+  "findings": [],
+  "follows": [
+    305,
+    303,
+    301,
+    299,
+    297,
+    295,
+    293,
+    291,
+    289,
+    287,
+    285
+  ],
+  "issue": 307,
+  "mainnetStatement": "This authorization does not approve or run mainnet; mainnet remains blocked until separate fresh Nissan approval.",
+  "mode": "beta-external-service-approval-authorization",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "results": [
+    {
+      "expectedStatus": "pass",
+      "expectedVerdict": "approve-exact-bounded-scope",
+      "findings": [],
+      "id": "approval-authorization-telegram-16856-pass",
+      "kind": "positive",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "pass",
+      "verdict": "approve-exact-bounded-scope"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "prior305Fixture.expectedSha256",
+          "reason": "Prior #305 fixture path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior305Fixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-external-service-approval-intake.json` does not match its expected sha256 pin."
+        }
+      ],
+      "id": "stale-prior-305-fixture-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "hashMatches": false,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "telegramApproval.source",
+          "reason": "Approval source must be `telegram:-5218935737:16856`."
+        }
+      ],
+      "id": "wrong-telegram-source-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:old-message",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "telegramApproval.timestamp",
+          "reason": "Approval timestamp must be `2026-07-20T07:44:18+10:00`."
+        },
+        {
+          "path": "telegramApproval.fresh",
+          "reason": "Approval must be fresh for this post-#305 authorization."
+        }
+      ],
+      "id": "stale-timestamp-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": false,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-17T16:07:00+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "approvalPrompt",
+          "reason": "Approval prompt must be exact."
+        },
+        {
+          "path": "telegramApproval.prompt",
+          "reason": "Approval must bind to the exact #303/#305 prompt."
+        }
+      ],
+      "id": "wrong-prompt-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve provider production activation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve provider production activation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "telegramApproval.responseText",
+          "reason": "Approval text must match the captured Telegram message exactly."
+        },
+        {
+          "path": "telegramApproval.scope",
+          "reason": "Approval scope must be `exact-303-local-free-bounded-scope`."
+        }
+      ],
+      "id": "broader-scope-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "Approve this and whatever else is needed.",
+          "scope": "broad-service-activation",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "telegramApproval.responseText",
+          "reason": "Approval text must match the captured Telegram message exactly."
+        },
+        {
+          "path": "telegramApproval.providerEscalation",
+          "reason": "providerEscalation must be false."
+        },
+        {
+          "path": "telegramApproval.devnetEscalation",
+          "reason": "devnetEscalation must be false."
+        },
+        {
+          "path": "telegramApproval.mainnetEscalation",
+          "reason": "mainnetEscalation must be false."
+        }
+      ],
+      "id": "provider-devnet-mainnet-escalation-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": true,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": true,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": true,
+          "responseText": "Approve provider API, devnet, and mainnet too.",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "actualServiceMutation",
+          "reason": "actualServiceMutation must be false or absent in this authorization package."
+        },
+        {
+          "path": "providerApiAccess",
+          "reason": "providerApiAccess must be false or absent in this authorization package."
+        },
+        {
+          "path": "devnetAccess",
+          "reason": "devnetAccess must be false or absent in this authorization package."
+        },
+        {
+          "path": "mainnetAccess",
+          "reason": "mainnetAccess must be false or absent in this authorization package."
+        }
+      ],
+      "id": "unsafe-boundary-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "scenario.credentialPayload",
+          "reason": "Credential-like keys are not allowed in e2e smoke inputs."
+        }
+      ],
+      "id": "credential-payload-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    },
+    {
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "findings": [
+        {
+          "path": "authorizationCommand",
+          "reason": "Authorization command must be the pinned local generator."
+        },
+        {
+          "path": "authorizationCommand[0]",
+          "reason": "Command must not pull, start, run, or compose Docker containers."
+        }
+      ],
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "runEvidence": {
+        "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+        "auditTrail": [
+          "load-pinned-305-evidence",
+          "verify-305-consumed-303",
+          "verify-301-299-297-295-293-291-lineage",
+          "bind-telegram-approval-source",
+          "verify-exact-scope-no-escalation",
+          "authorize-next-bounded-local-free-lane",
+          "keep-mainnet-blocked"
+        ],
+        "authorizationDecision": {
+          "decision": "approve-exact-bounded-scope",
+          "mainnetAuthorized": false,
+          "nextBoundedLaneAuthorized": true,
+          "realMutationAuthorizedByThisArtifact": false,
+          "scope": "exact-303-local-free-bounded-scope"
+        },
+        "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+        "boundaries": {
+          "actualServiceMutation": false,
+          "approvalAuthorizationOnly": true,
+          "approvalIntakeOnly": true,
+          "approvalPacketOnly": true,
+          "approvalPromptPinned": true,
+          "archivePublished": false,
+          "audited": true,
+          "bounded": true,
+          "coolifyDeployment": false,
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalOnly": true,
+          "devnetAccess": false,
+          "dockerStarted": false,
+          "exactBoundedScopeAuthorized": true,
+          "externalProcessStarted": false,
+          "externalSpend": false,
+          "facilitatorAccess": false,
+          "failClosed": true,
+          "hostProcessMutated": false,
+          "hostedFetch": false,
+          "leastPrivilege": true,
+          "legalRiskAccepted": false,
+          "liveMcpInvocation": false,
+          "liveRuntimeActivation": false,
+          "localTemporaryRepresentationOnly": true,
+          "mainnetAccess": false,
+          "mainnetBlocked": true,
+          "networkAccess": false,
+          "nissanApprovalFreshnessRequired": true,
+          "nissanApprovalRequired": true,
+          "packagePublished": false,
+          "paymentAccess": false,
+          "persistentMutation": false,
+          "privacyRiskAccepted": false,
+          "productionEscalation": false,
+          "providerApiAccess": false,
+          "publicPublished": false,
+          "realMutationAuthorized": false,
+          "reversible": true,
+          "serviceStarted": false,
+          "settlementAccess": false,
+          "surfpoolStarted": false,
+          "telegramApprovalBound": true,
+          "unboundedCostAccepted": false,
+          "unboundedMutation": false,
+          "walletAccess": false
+        },
+        "boundedScope": {
+          "adlPath": "examples/simple-agent.yaml",
+          "devnetEscalation": false,
+          "estimatedCostUsd": "0.00",
+          "mainnetEscalation": false,
+          "productionEscalation": false,
+          "providerEscalation": false,
+          "scope": "local/free/bounded approval only",
+          "sourceIssue": 303
+        },
+        "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+        "prior305Evidence": {
+          "acceptedResultId": "approval-intake-absent-response-hold-pass",
+          "acceptedVerdict": "hold-fail-closed",
+          "approvalPacketFixture": {
+            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
+            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+          },
+          "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "fixture": {
+            "expectedSha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-approval-intake.json",
+            "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+          },
+          "prior293Fixture": {
+            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
+            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+          },
+          "prior295Fixture": {
+            "expectedSha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
+            "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+          },
+          "prior297Fixture": {
+            "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
+            "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+          },
+          "prior299Fixture": {
+            "expectedSha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
+            "sha256": "9e386bed5d3deacc6dc7e75fccae408bcaed62cdb03279c9714d40a52ed6631c"
+          },
+          "prior301Fixture": {
+            "expectedSha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
+            "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+          },
+          "prior303Fixture": {
+            "expectedSha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d",
+            "hashMatches": true,
+            "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
+            "sha256": "b8bb3f00c0d1b723513e13a556f61c4b59c916736e08df3dea1f2c1014146d8d"
+          },
+          "report": {
+            "expectedSha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845",
+            "hashMatches": true,
+            "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+            "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+          }
+        },
+        "riskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+        "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+        "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+        "telegramApproval": {
+          "approver": "Nissan",
+          "costEscalation": false,
+          "devnetEscalation": false,
+          "fresh": true,
+          "legalEscalation": false,
+          "mainnetEscalation": false,
+          "privacyEscalation": false,
+          "productionEscalation": false,
+          "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+          "providerEscalation": false,
+          "responseText": "1. You have approval to do this, and then move on to 2",
+          "scope": "exact-303-local-free-bounded-scope",
+          "sender": "Nissan | reddi.tech labs",
+          "source": "telegram:-5218935737:16856",
+          "status": "approved",
+          "timestamp": "2026-07-20T07:44:18+10:00"
+        }
+      },
+      "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+      "status": "fail",
+      "verdict": "hold-fail-closed"
+    }
+  ],
+  "sourceCommit": "9dba530503bf8ba69d9e1c85119213b4b207f9e1",
+  "status": "pass",
+  "summary": {
+    "approveDecisions": 1,
+    "failClosedScenarios": 9,
+    "negativeScenarios": 9,
+    "positiveScenarios": 1
+  }
+}

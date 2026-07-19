@@ -1,0 +1,188 @@
+{
+  "releaseId": "reddiagent-beta-0",
+  "defaults": {
+    "kind": "positive",
+    "authorizationId": "reddiagent-beta-0-external-service-approval-authorization",
+    "releaseId": "reddiagent-beta-0",
+    "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
+    "sourceMergeCommit": "1be33d28535ccddadcf568d604bd63769df284d5",
+    "priorEvidenceFixturePath": "tests/fixtures/beta-external-service-approval-intake.json",
+    "priorEvidenceReportPath": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+    "expectedStatus": "pass",
+    "expectedVerdict": "approve-exact-bounded-scope",
+    "expectedRiskVerdict": "approved-for-exact-local-free-bounded-scope-mainnet-blocked",
+    "approvalPrompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+    "authorizationCommand": "python scripts/beta_external_service_approval_authorization.py --output tests/fixtures/beta-external-service-approval-authorization.json",
+    "telegramApproval": {
+      "status": "approved",
+      "approver": "Nissan",
+      "sender": "Nissan | reddi.tech labs",
+      "source": "telegram:-5218935737:16856",
+      "timestamp": "2026-07-20T07:44:18+10:00",
+      "responseText": "1. You have approval to do this, and then move on to 2",
+      "fresh": true,
+      "prompt": "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, with no provider/devnet/mainnet escalation?",
+      "scope": "exact-303-local-free-bounded-scope",
+      "providerEscalation": false,
+      "productionEscalation": false,
+      "devnetEscalation": false,
+      "mainnetEscalation": false,
+      "costEscalation": false,
+      "privacyEscalation": false,
+      "legalEscalation": false
+    },
+    "boundedScope": {
+      "sourceIssue": 303,
+      "adlPath": "examples/simple-agent.yaml",
+      "scope": "local/free/bounded approval only",
+      "providerEscalation": false,
+      "productionEscalation": false,
+      "devnetEscalation": false,
+      "mainnetEscalation": false,
+      "estimatedCostUsd": "0.00"
+    },
+    "auditTrail": [
+      "load-pinned-305-evidence",
+      "verify-305-consumed-303",
+      "verify-301-299-297-295-293-291-lineage",
+      "bind-telegram-approval-source",
+      "verify-exact-scope-no-escalation",
+      "authorize-next-bounded-local-free-lane",
+      "keep-mainnet-blocked"
+    ],
+    "nextStepCue": "Proceed to the next bounded local/free external-service activation evidence lane, then move on to the next #220 backlog priority; mainnet remains blocked.",
+    "actualServiceMutation": false,
+    "liveRuntimeActivation": false,
+    "serviceStarted": false,
+    "externalProcessStarted": false,
+    "hostProcessMutated": false,
+    "networkAccess": false,
+    "credentialAccess": false,
+    "providerApiAccess": false,
+    "hostedFetch": false,
+    "liveMcpInvocation": false,
+    "dockerStarted": false,
+    "surfpoolStarted": false,
+    "coolifyDeployment": false,
+    "walletAccess": false,
+    "paymentAccess": false,
+    "facilitatorAccess": false,
+    "settlementAccess": false,
+    "devnetAccess": false,
+    "mainnetAccess": false,
+    "deploymentPublished": false,
+    "packagePublished": false,
+    "archivePublished": false,
+    "publicPublished": false,
+    "externalSpend": false,
+    "persistentMutation": false,
+    "unboundedMutation": false,
+    "productionEscalation": false,
+    "expectedArtifactHashes": [
+      {
+        "path": "tests/fixtures/beta-external-service-approval-intake.json",
+        "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+      },
+      {
+        "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+        "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "approval-authorization-telegram-16856-pass"
+    },
+    {
+      "id": "stale-prior-305-fixture-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "expectedArtifactHashes": [
+        {
+          "path": "tests/fixtures/beta-external-service-approval-intake.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
+          "sha256": "25e3369bf54b53e03c42cd7573280f0ef3e940a24b6a51d50caa3fc912574845"
+        }
+      ]
+    },
+    {
+      "id": "wrong-telegram-source-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "telegramApproval": {
+        "source": "telegram:-5218935737:old-message"
+      }
+    },
+    {
+      "id": "stale-timestamp-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "telegramApproval": {
+        "timestamp": "2026-07-17T16:07:00+10:00",
+        "fresh": false
+      }
+    },
+    {
+      "id": "wrong-prompt-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "approvalPrompt": "Approve provider production activation?",
+      "telegramApproval": {
+        "prompt": "Approve provider production activation?"
+      }
+    },
+    {
+      "id": "broader-scope-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "telegramApproval": {
+        "responseText": "Approve this and whatever else is needed.",
+        "scope": "broad-service-activation"
+      }
+    },
+    {
+      "id": "provider-devnet-mainnet-escalation-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "telegramApproval": {
+        "responseText": "Approve provider API, devnet, and mainnet too.",
+        "providerEscalation": true,
+        "devnetEscalation": true,
+        "mainnetEscalation": true
+      }
+    },
+    {
+      "id": "unsafe-boundary-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "actualServiceMutation": true,
+      "providerApiAccess": true,
+      "devnetAccess": true,
+      "mainnetAccess": true
+    },
+    {
+      "id": "credential-payload-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "credentialPayload": "api_key=secret"
+    },
+    {
+      "id": "unsafe-command-denied",
+      "kind": "negative",
+      "expectedStatus": "fail",
+      "expectedVerdict": "hold-fail-closed",
+      "authorizationCommand": "docker run reddiagent"
+    }
+  ]
+}

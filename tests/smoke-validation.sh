@@ -71,6 +71,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_bounded_external_service_activation_gate.py
 "$PYTHON" tests/test_beta_external_service_activation_micro_gate.py
 "$PYTHON" tests/test_beta_external_service_approval_intake.py
+"$PYTHON" tests/test_beta_external_service_approval_authorization.py
 "$PYTHON" tests/test_coolify_devnet_public_demo.py
 "$PYTHON" tests/test_payment_dry_run_receipt.py
 "$PYTHON" tests/test_adl_validation_ui.py
