@@ -225,7 +225,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -243,7 +243,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "pass",
       "verdict": "ask-nissan-and-hold"
     },
@@ -422,7 +422,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -440,7 +440,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -450,7 +450,7 @@
       "findings": [
         {
           "path": "nissanApproval",
-          "reason": "Nissan approval fields must be present, pending, and not approved in this package."
+          "reason": "Nissan approval fields must be present, pending, not approved, and pinned to the exact bounded no-escalation ask."
         }
       ],
       "id": "missing-nissan-approval-fields-denied",
@@ -615,7 +615,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -633,7 +633,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -643,7 +643,7 @@
       "findings": [
         {
           "path": "nissanApproval",
-          "reason": "Nissan approval fields must be present, pending, and not approved in this package."
+          "reason": "Nissan approval fields must be present, pending, not approved, and pinned to the exact bounded no-escalation ask."
         }
       ],
       "id": "premature-nissan-approval-denied",
@@ -808,7 +808,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -826,7 +826,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1001,7 +1001,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1019,7 +1019,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1202,7 +1202,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1220,7 +1220,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1230,7 +1230,7 @@
       "findings": [
         {
           "path": "traceEvalRequirements",
-          "reason": "Trace/eval requirements must pass locally and reject credentials/mainnet/tool execution."
+          "reason": "Trace/eval requirements must pass locally, preserve required events, and reject credentials/mainnet/tool execution."
         }
       ],
       "id": "missing-trace-requirements-denied",
@@ -1395,7 +1395,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": false,
@@ -1413,7 +1413,7 @@
           "toolExecution": "fixture"
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1588,7 +1588,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1606,7 +1606,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1781,7 +1781,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1799,7 +1799,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1974,7 +1974,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1992,7 +1992,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -2195,7 +2195,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -2213,7 +2213,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -2396,7 +2396,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+        "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -2414,12 +2414,12 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+      "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     }
   ],
-  "sourceCommit": "ba0a73181fc81edd0704046cbec98c76731b9ff4",
+  "sourceCommit": "21b47e136c3fa24fd196d1dfefb90278c465d863",
   "status": "pass",
   "summary": {
     "askHoldVerdicts": 12,

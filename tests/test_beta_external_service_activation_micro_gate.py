@@ -69,6 +69,10 @@ def assert_prior_301_mutation_fails(mutator, expected_path: str) -> None:
     assert expected_path in {finding["path"] for finding in result["findings"]}
 
 
+def remove_approval_prompt(scenario: dict) -> None:
+    scenario["nissanApproval"].pop("approvalPrompt", None)
+
+
 def main() -> int:
     doc = run_gate()
     fixture = json.loads(FIXTURE.read_text())
@@ -109,9 +113,11 @@ def main() -> int:
     assert evidence["nissanApproval"]["required"] is True
     assert evidence["nissanApproval"]["status"] == "pending"
     assert evidence["nissanApproval"]["approved"] is False
+    assert evidence["nissanApproval"]["approvalPrompt"] == micro_gate.REQUIRED_APPROVAL_PROMPT
     assert evidence["commandTranscriptTemplate"]["mode"] == "external-service-activation-micro-gate"
     assert evidence["traceEvalRequirements"]["toolExecution"] is None
     assert evidence["traceEvalRequirements"]["mustRejectMainnet"] is True
+    assert evidence["traceEvalRequirements"]["requiredTraceEvents"] == micro_gate.REQUIRED_AUDIT_TRAIL
     assert evidence["serviceWrapperExpectations"]["before"]["enabled"] is False
     assert evidence["serviceWrapperExpectations"]["after"]["enabled"] is False
     assert evidence["rollbackDisablePlan"]["verifiedNoPersistence"] is True
@@ -149,11 +155,16 @@ def main() -> int:
     assert_positive_mutation_fails(lambda scenario: scenario.update({"mainnetRequested": True}), "mainnetRequested")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"credentialPayload": "private_key"}), "scenario.credentialPayload")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nissanApproval": {"approved": True}}), "nissanApproval")
+    assert_positive_mutation_fails(remove_approval_prompt, "nissanApproval")
+    assert_positive_mutation_fails(lambda scenario: scenario["nissanApproval"].update({"approvalPrompt": "Approve mainnet escalation."}), "nissanApproval")
+    assert_positive_mutation_fails(lambda scenario: scenario["nissanApproval"].update({"approvalPrompt": "Approve provider API product call."}), "nissanApproval")
+    assert_positive_mutation_fails(lambda scenario: scenario["nissanApproval"].update({"approvalPrompt": "Approve unbounded cost, privacy, and legal risk."}), "nissanApproval")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"proposedRunScope": {"adlPath": "examples/tool-agent.yaml"}}), "proposedRunScope")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"commandTranscriptTemplate": {"mode": "host-service", "command": "launchctl start reddiagent", "expectedExitCode": 0}}), "commandTranscriptTemplate")
     assert_positive_mutation_fails(lambda scenario: scenario["commandTranscriptTemplate"].update({"command": "docker run reddiagent"}), "commandTranscriptTemplate")
     assert_positive_mutation_fails(lambda scenario: scenario["commandTranscriptTemplate"].update({"command": "docker run reddiagent"}), "commandTranscriptTemplate.command[0]")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"traceEvalRequirements": {}}), "traceEvalRequirements")
+    assert_positive_mutation_fails(lambda scenario: scenario["traceEvalRequirements"].update({"requiredTraceEvents": []}), "traceEvalRequirements")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"rollbackDisablePlan": {}}), "rollbackDisablePlan")
     assert_positive_mutation_fails(lambda scenario: scenario.update({"nextStepCue": "Activation completed."}), "nextStepCue")
     assert_positive_mutation_fails(lambda scenario: scenario["serviceWrapperExpectations"]["after"].update({"externalProcessPid": 12345}), "serviceWrapperExpectations")

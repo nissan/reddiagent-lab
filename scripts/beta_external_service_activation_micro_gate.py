@@ -30,6 +30,10 @@ REQUIRED_NEXT_STEP_CUE = (
     "Ask Nissan to approve the exact bounded local/free external-service activation scope; hold before "
     "any real service, provider, devnet, or mainnet mutation until that approval is explicit and fresh."
 )
+REQUIRED_APPROVAL_PROMPT = (
+    "Approve exactly this local/free bounded external-service activation scope for examples/simple-agent.yaml, "
+    "with no provider/devnet/mainnet escalation?"
+)
 REQUIRED_AUDIT_TRAIL = [
     "load-pinned-301-evidence",
     "verify-301-consumed-299",
@@ -251,8 +255,9 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         or approvals.get("approved") is not False
         or approvals.get("approvedBy") is not None
         or approvals.get("approvedAt") is not None
+        or approvals.get("approvalPrompt") != REQUIRED_APPROVAL_PROMPT
     ):
-        findings.append(finding("nissanApproval", "Nissan approval fields must be present, pending, and not approved in this package."))
+        findings.append(finding("nissanApproval", "Nissan approval fields must be present, pending, not approved, and pinned to the exact bounded no-escalation ask."))
     scope = scenario.get("proposedRunScope", {})
     if (
         scope.get("adlPath") != gate.REQUIRED_ADL_PATH
@@ -287,8 +292,9 @@ def scenario_findings(scenario: dict[str, Any]) -> list[dict[str, str]]:
         or trace.get("mustVerifyLineage") is not True
         or trace.get("mustRejectCredentialPayloads") is not True
         or trace.get("mustRejectMainnet") is not True
+        or trace.get("requiredTraceEvents") != REQUIRED_AUDIT_TRAIL
     ):
-        findings.append(finding("traceEvalRequirements", "Trace/eval requirements must pass locally and reject credentials/mainnet/tool execution."))
+        findings.append(finding("traceEvalRequirements", "Trace/eval requirements must pass locally, preserve required events, and reject credentials/mainnet/tool execution."))
     wrapper = scenario.get("serviceWrapperExpectations", {})
     if (
         wrapper.get("before", {}).get("enabled") is not False
