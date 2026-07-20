@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 import sys
@@ -138,6 +139,15 @@ def test_schema_requires_policy_refs_for_unsafe_tool_metadata() -> None:
     assert any("'policyRefs' is a required property" in message for message in messages)
 
 
+def test_schema_rejects_empty_policy_refs_for_unsafe_tool_metadata() -> None:
+    document = copy.deepcopy(load_yaml(POSITIVE_TOOL_CONTRACT))
+    risky_tool = next(tool for tool in tools(document) if is_risky_tool(tool))
+    risky_tool["policyRefs"] = []
+
+    messages = [error.message for error in validator().iter_errors(document)]
+    assert any("[] should be non-empty" in message for message in messages)
+
+
 def test_schema_rejects_bad_tool_contract_metadata() -> None:
     messages = [error.message for error in schema_errors(NEGATIVE_BAD_METADATA)]
     expected_fragments = [
@@ -182,6 +192,7 @@ def main() -> int:
     test_schema_declares_tool_contract_metadata_fields()
     test_positive_tool_contract_example_validates_and_links_policies()
     test_schema_requires_policy_refs_for_unsafe_tool_metadata()
+    test_schema_rejects_empty_policy_refs_for_unsafe_tool_metadata()
     test_schema_rejects_bad_tool_contract_metadata()
     test_tool_ids_must_be_unique_within_harness()
     test_spec_documents_tool_contract_policy_linkage()
