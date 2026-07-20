@@ -16,6 +16,7 @@ Before implementation, define what a ReddiAgent validator or adapter must prove.
 - [ ] Policies cover every risky capability.
 - [ ] Payment extension has a budget policy when enabled.
 - [ ] Required eval gates are known.
+- [ ] Required eval gates are blocking and warning gates are non-blocking.
 - [ ] Runtime target is known.
 - [ ] Unsupported runtime features are reported before execution.
 - [ ] Receipt requirements are enforceable if enabled.
@@ -55,6 +56,22 @@ Level 1 local-python conformance now includes local fixture gate completion evid
 - `completion.transportStatus = pass` means the runner produced a deterministic report, not that the task completed
 
 The active evidence lives in `tests/LEVEL-1-CONFORMANCE-REPORT.md` and is enforced by `tests/test_level1.py`.
+
+## ADL v0.2 Eval-Gate Completion Contract
+
+_Anchor issue: #313._
+
+Conformance must distinguish blocking required gates from visible warning
+gates before any runtime or adapter marks a task complete:
+
+- required gate missing/fail/warn/skipped/mismatched evidence => `completion.requiredGateStatus = fail`
+- required gate pass evidence => may contribute to `completion.requiredGateStatus = pass`
+- warning gate missing/fail/warn/skipped/mismatched evidence => visible warning evidence only
+- `completion.status` mirrors `completion.requiredGateStatus`
+- `completion.transportStatus = pass` does not override required-gate failure
+
+The active ADL v0.2 schema and fixtures are enforced by
+`tests/test_adl_v02_eval_gate_completion.py`.
 
 ## Required Gate Shell Failure
 

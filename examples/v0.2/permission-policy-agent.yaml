@@ -142,6 +142,27 @@ harness:
     - id: capability-policy-check
       type: tool-check
       rule: "Every risky capability must reference a matching policy before execution."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: tool
+        targetRef: harness.tools
+      evidence:
+        ref: trace:policy.capability.checked
+        schema:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              enum:
+                - pass
+                - fail
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+        visibility: trace-and-receipt
   runtime:
     target: local-python
 extensions:

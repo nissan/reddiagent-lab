@@ -237,6 +237,27 @@ harness:
     - id: tool-contract-check
       type: tool-check
       rule: "Risky tool metadata must carry explicit policy references."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: tool
+        targetRef: harness.tools
+      evidence:
+        ref: trace:tool.contract.checked
+        schema:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              enum:
+                - pass
+                - fail
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+        visibility: trace-and-receipt
   runtime:
     target: local-python
 extensions: {}

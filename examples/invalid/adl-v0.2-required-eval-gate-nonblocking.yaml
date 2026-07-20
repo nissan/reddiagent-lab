@@ -1,0 +1,33 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: required-gate-nonblocking
+  description: Invalid required gate with non-blocking completion behavior.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Return a deterministic answer."
+  evalGates:
+    - id: required-source-check
+      type: source-check
+      rule: "Source evidence must pass before completion."
+      required: true
+      severity: warning
+      appliesTo:
+        scope: source
+      evidence:
+        ref: trace:source.checked
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: warn
+        defaultStatus: warn
+  runtime:
+    target: local-python

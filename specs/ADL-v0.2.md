@@ -203,6 +203,100 @@ harness:
         phase: before-execution
 ```
 
+## Eval Gate Completion Contract
+
+ADL v0.2 eval gates define the task completion contract before a runtime,
+adapter, or exporter treats work as complete. Each `harness.evalGates` entry
+carries:
+
+- `id`: stable gate identifier used by traces, receipts, and conformance
+  reports.
+- `type`: one of `output-check`, `source-check`, `tool-check`,
+  `budget-check`, `receipt-check`, or `human-review`.
+- `rule`: human-readable rule summary.
+- `required`: whether this gate must pass before task completion.
+- `severity`: `error` or `critical` for required gates; `info` or `warning`
+  for non-blocking gates.
+- `appliesTo`: scoped target for the gate, with `scope` set to `task`,
+  `output`, `tool`, `source`, `budget`, `receipt`, or `human-review`, and an
+  optional `targetRef`.
+- `evidence`: required evidence reference and JSON Schema. Missing evidence
+  for a required gate uses the fail-closed default status. Required gate
+  results must include the declared evidence reference; missing or mismatched
+  evidence references do not satisfy completion.
+- `retryable`: whether the harness may retry after this gate fails.
+- `onFailure`: completion behavior. Required gates must use
+  `completion: block` and `defaultStatus: fail`; warning gates must use
+  `completion: warn`.
+
+Completion is computed from gate results, not from dry-run transport success.
+If any required gate is missing, `fail`, or otherwise not `pass`, the task
+completion status is `fail`. Non-required gates remain visible in traces and
+receipts but cannot block completion. Existing local dry-run semantics remain:
+`completion.transportStatus = pass` only means deterministic validation and
+reporting completed; `completion.requiredGateStatus` and `completion.status`
+carry the task completion result.
+
+Missing evidence for a required gate uses the fail-closed default status.
+Required gate results must include the declared evidence reference.
+Non-required gates remain visible in traces and receipts but cannot block completion.
+`completion.transportStatus = pass` only means deterministic validation and reporting completed.
+
+Canonical required gate example:
+
+```yaml
+harness:
+  evalGates:
+    - id: approved-source-output
+      type: source-check
+      rule: "Outputs must cite an approved source before completion."
+      required: true
+      severity: error
+      appliesTo:
+        scope: source
+        targetRef: tool:search_docs
+      evidence:
+        ref: trace:source.checked
+        schema:
+          type: object
+          required: [status]
+          properties:
+            status:
+              enum: [pass, fail]
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+        visibility: trace-and-receipt
+```
+
+Canonical warning gate example:
+
+```yaml
+harness:
+  evalGates:
+    - id: preferred-summary-style
+      type: output-check
+      rule: "Output should include a concise summary."
+      required: false
+      severity: warning
+      appliesTo:
+        scope: output
+      evidence:
+        ref: trace:output.style_checked
+        schema:
+          type: object
+          required: [status]
+          properties:
+            status:
+              enum: [pass, warn, fail]
+      retryable: true
+      onFailure:
+        completion: warn
+        defaultStatus: warn
+        visibility: trace
+```
+
 ## Validation Principles
 
 - Missing required top-level, model, or harness fields fail validation.
@@ -218,3 +312,5 @@ harness:
   merely any existing policy id with a nearby capability type.
 - Unknown capability names and unsupported enforcement targets fail
   compatibility before any execution path.
+- Required eval gates fail closed when evidence is missing or failing; warning
+  gates remain visible and non-blocking.
