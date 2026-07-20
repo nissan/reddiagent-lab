@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
+from decimal import Decimal
 from pathlib import Path
 import sys
 
@@ -72,6 +74,45 @@ def policy_by_id(document: dict) -> dict[str, dict]:
     return {policy["id"]: policy for policy in policies(document)}
 
 
+def policy_matches_tool(policy: dict, tool_id: str) -> bool:
+    target_ref = f"tool:{tool_id}"
+    enforcement = policy.get("enforcement", {})
+    if policy.get("effect") != "allow":
+        return False
+    if enforcement.get("target") != "runtime-adapter":
+        return False
+    if enforcement.get("phase") != "before-execution":
+        return False
+    if enforcement.get("targetRef") != target_ref:
+        return False
+    if policy["capability"] == "tool":
+        return policy["resource"] == target_ref and policy["action"] == "invoke"
+    if policy["capability"] == "messaging":
+        return policy["action"] == "send"
+    return False
+
+
+def policy_matches_payment_intent(policy: dict, intent: dict) -> bool:
+    limits = policy.get("limits", {})
+    if policy.get("capability") != "payment":
+        return False
+    if policy.get("effect") != "allow":
+        return False
+    if policy.get("resource") != f"x402:intent:{intent['id']}":
+        return False
+    if policy.get("action") != intent["direction"]:
+        return False
+    if policy.get("enforcement", {}).get("target") != "policy-engine":
+        return False
+    if policy.get("enforcement", {}).get("phase") != "before-execution":
+        return False
+    if Decimal(intent["maxAmount"]) > Decimal(limits.get("maxUsd", "0")):
+        return False
+    if intent.get("requireReceipt") and limits.get("requireReceipt") is not True:
+        return False
+    return True
+
+
 def assert_policy_refs_match(document: dict) -> None:
     known = policy_by_id(document)
 
@@ -80,7 +121,10 @@ def assert_policy_refs_match(document: dict) -> None:
         assert refs, f"{tool['id']} must declare policyRefs"
         for ref in refs:
             assert ref in known, f"{tool['id']} references unknown policy {ref}"
-        assert any(known[ref]["capability"] in {"tool", "messaging", "human-approval"} for ref in refs)
+        assert any(policy_matches_tool(known[ref], tool["id"]) for ref in refs), (
+            f"{tool['id']} must reference a policy matching tool id, action, "
+            "resource, and enforcement target"
+        )
 
     x402 = document.get("extensions", {}).get("x402", {})
     for intent in x402.get("intents", []):
@@ -88,7 +132,19 @@ def assert_policy_refs_match(document: dict) -> None:
         assert refs, f"{intent['id']} must declare policyRefs"
         for ref in refs:
             assert ref in known, f"{intent['id']} references unknown policy {ref}"
-        assert any(known[ref]["capability"] == "payment" for ref in refs)
+        assert any(policy_matches_payment_intent(known[ref], intent) for ref in refs), (
+            f"{intent['id']} must reference a payment policy matching intent id, "
+            "action, limits, and enforcement target"
+        )
+
+
+def expect_policy_ref_mismatch(document: dict, expected: str) -> None:
+    try:
+        assert_policy_refs_match(document)
+    except AssertionError as error:
+        assert expected in str(error)
+    else:
+        raise AssertionError(f"{expected} mismatch must fail compatibility")
 
 
 def test_positive_policy_example_validates_and_covers_required_capabilities() -> None:
@@ -129,7 +185,7 @@ def test_spec_documents_fail_closed_policy_model() -> None:
         "limits",
         "approval",
         "enforcement",
-        "Unknown or unenforceable",
+        "Unknown, mismatched, or unenforceable",
     ]:
         assert phrase in text
 
@@ -152,23 +208,45 @@ def test_human_approval_policy_must_require_human_review() -> None:
 def test_risky_tool_capability_requires_matching_policy_ref() -> None:
     document = load_yaml(NEGATIVE_TOOL_POLICY_REF)
     assert_no_schema_errors(NEGATIVE_TOOL_POLICY_REF)
-    try:
-        assert_policy_refs_match(document)
-    except AssertionError as error:
-        assert "references unknown policy missing-policy" in str(error)
-    else:
-        raise AssertionError("missing tool policy reference must fail compatibility")
+    expect_policy_ref_mismatch(document, "references unknown policy missing-policy")
+
+
+def test_existing_tool_policy_refs_must_match_declared_capability() -> None:
+    document = load_yaml(POSITIVE_POLICY_EXAMPLE)
+
+    only_messaging = deepcopy(document)
+    only_messaging["harness"]["tools"][0]["policyRefs"] = ["allow-approved-messaging"]
+    expect_policy_ref_mismatch(only_messaging, "search_docs must reference a policy matching")
+
+    only_human_approval = deepcopy(document)
+    only_human_approval["harness"]["tools"][0]["policyRefs"] = ["require-human-approval"]
+    expect_policy_ref_mismatch(only_human_approval, "search_docs must reference a policy matching")
+
+    wrong_tool = deepcopy(document)
+    wrong_tool["harness"]["tools"][1]["policyRefs"] = ["allow-reviewed-tool"]
+    expect_policy_ref_mismatch(wrong_tool, "send_summary must reference a policy matching")
+
+    wrong_enforcement_target = deepcopy(document)
+    wrong_enforcement_target["harness"]["policies"][0]["enforcement"]["target"] = "static-validator"
+    expect_policy_ref_mismatch(wrong_enforcement_target, "search_docs must reference a policy matching")
 
 
 def test_payment_intent_requires_matching_payment_policy_ref() -> None:
     document = load_yaml(NEGATIVE_PAYMENT_POLICY_REF)
     assert_no_schema_errors(NEGATIVE_PAYMENT_POLICY_REF)
-    try:
-        assert_policy_refs_match(document)
-    except AssertionError as error:
-        assert "references unknown policy missing-payment-policy" in str(error)
-    else:
-        raise AssertionError("missing payment policy reference must fail compatibility")
+    expect_policy_ref_mismatch(document, "references unknown policy missing-payment-policy")
+
+
+def test_payment_policy_ref_must_match_intent_resource_and_limits() -> None:
+    document = load_yaml(POSITIVE_POLICY_EXAMPLE)
+
+    wrong_intent_id = deepcopy(document)
+    wrong_intent_id["extensions"]["x402"]["intents"][0]["id"] = "different-fee"
+    expect_policy_ref_mismatch(wrong_intent_id, "different-fee must reference a payment policy matching")
+
+    excessive_amount = deepcopy(document)
+    excessive_amount["extensions"]["x402"]["intents"][0]["maxAmount"] = "999.00"
+    expect_policy_ref_mismatch(excessive_amount, "review-fee must reference a payment policy matching")
 
 
 def main() -> int:
@@ -179,7 +257,9 @@ def main() -> int:
     test_unenforceable_policy_target_fails_schema_before_execution()
     test_human_approval_policy_must_require_human_review()
     test_risky_tool_capability_requires_matching_policy_ref()
+    test_existing_tool_policy_refs_must_match_declared_capability()
     test_payment_intent_requires_matching_payment_policy_ref()
+    test_payment_policy_ref_must_match_intent_resource_and_limits()
     print("PASS ADL v0.2 permission policy")
     return 0
 

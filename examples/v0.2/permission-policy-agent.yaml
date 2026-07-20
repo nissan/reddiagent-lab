@@ -114,6 +114,7 @@ harness:
       enforcement:
         target: runtime-adapter
         phase: before-execution
+        targetRef: tool:send_summary
     - id: require-human-approval
       capability: human-approval
       subject: operator
