@@ -74,10 +74,20 @@ def policy_by_id(document: dict) -> dict[str, dict]:
     return {policy["id"]: policy for policy in policies(document)}
 
 
-def policy_matches_tool(policy: dict, tool_id: str) -> bool:
+def policy_matches_tool(policy: dict, tool: dict) -> bool:
+    tool_id = tool["id"]
     target_ref = f"tool:{tool_id}"
+    expected_capability = tool.get("capability", "tool")
+    expected_action = tool.get("action", "invoke" if expected_capability == "tool" else None)
+    expected_resource = tool.get("resource", target_ref if expected_capability == "tool" else None)
     enforcement = policy.get("enforcement", {})
     if policy.get("effect") != "allow":
+        return False
+    if policy.get("capability") != expected_capability:
+        return False
+    if policy.get("action") != expected_action:
+        return False
+    if policy.get("resource") != expected_resource:
         return False
     if enforcement.get("target") != "runtime-adapter":
         return False
@@ -85,11 +95,7 @@ def policy_matches_tool(policy: dict, tool_id: str) -> bool:
         return False
     if enforcement.get("targetRef") != target_ref:
         return False
-    if policy["capability"] == "tool":
-        return policy["resource"] == target_ref and policy["action"] == "invoke"
-    if policy["capability"] == "messaging":
-        return policy["action"] == "send"
-    return False
+    return True
 
 
 def policy_matches_payment_intent(policy: dict, intent: dict) -> bool:
@@ -121,7 +127,7 @@ def assert_policy_refs_match(document: dict) -> None:
         assert refs, f"{tool['id']} must declare policyRefs"
         for ref in refs:
             assert ref in known, f"{tool['id']} references unknown policy {ref}"
-        assert any(policy_matches_tool(known[ref], tool["id"]) for ref in refs), (
+        assert any(policy_matches_tool(known[ref], tool) for ref in refs), (
             f"{tool['id']} must reference a policy matching tool id, action, "
             "resource, and enforcement target"
         )
@@ -229,6 +235,18 @@ def test_existing_tool_policy_refs_must_match_declared_capability() -> None:
     wrong_enforcement_target = deepcopy(document)
     wrong_enforcement_target["harness"]["policies"][0]["enforcement"]["target"] = "static-validator"
     expect_policy_ref_mismatch(wrong_enforcement_target, "search_docs must reference a policy matching")
+
+    wrong_messaging_resource = deepcopy(document)
+    wrong_messaging_resource["harness"]["policies"][4]["resource"] = "channel:wrong"
+    expect_policy_ref_mismatch(wrong_messaging_resource, "send_summary must reference a policy matching")
+
+    messaging_policy_on_search_tool = deepcopy(document)
+    messaging_policy_on_search_tool["harness"]["policies"][4]["enforcement"]["targetRef"] = "tool:search_docs"
+    messaging_policy_on_search_tool["harness"]["tools"][0]["policyRefs"] = ["allow-approved-messaging"]
+    expect_policy_ref_mismatch(
+        messaging_policy_on_search_tool,
+        "search_docs must reference a policy matching",
+    )
 
 
 def test_payment_intent_requires_matching_payment_policy_ref() -> None:
