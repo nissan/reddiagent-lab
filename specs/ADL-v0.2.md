@@ -107,7 +107,8 @@ free-form permission prose as the policy contract. Each policy carries:
 
 - `id`: stable policy identifier referenced by risky capabilities.
 - `capability`: typed capability, one of `tool`, `network`, `filesystem`,
-  `payment`, `messaging`, `human-approval`, `data`, `memory`, or `runtime`.
+  `payment`, `messaging`, `shell`, `human-approval`, `data`, `memory`, or
+  `runtime`.
 - `subject`: actor the policy applies to, usually `agent` or `operator`.
 - `resource`: resource or capability target, such as `tool:search_docs`,
   `./docs`, `https://docs.reddiagent.dev`, or `x402:intent:review-fee`.
@@ -134,6 +135,31 @@ limits, receipt requirement, and before-execution policy-engine enforcement.
 Unknown, mismatched, or unenforceable capability policy declarations fail
 compatibility before execution.
 
+## Tool Contract Metadata
+
+ADL v0.2 tool declarations may include static contract metadata so validators
+and adapters can fail closed before invoking a tool:
+
+- `permissions`: normalized capability tags requested by the tool. Supported
+  values are `tool`, `network`, `payment`, `shell`, `filesystem`, `messaging`,
+  `mcp`, and `mutation`.
+- `sideEffects`: bounded effect metadata with required `mode`. Supported modes
+  are `none`, `read`, `write`, `network`, `payment`, `messaging`, `shell`,
+  `filesystem`, `mcp`, and `multiple`, with optional `mutatesState`,
+  `external`, and `resources`.
+- `timeout`: execution budget with required `seconds` and optional
+  `behavior` of `fail-closed`, `cancel`, or `retry`.
+- `retryPolicy`: retry contract with required `maxAttempts`, optional
+  `backoff`, and optional `retryOn` error labels.
+- `auditLevel`: one of `none`, `metadata`, `event`, `payload-redacted`, or
+  `full`.
+
+Safe fixture tools may declare `permissions: [tool]`, `sideEffects.mode: none`,
+and no `policyRefs`. Mutating, network, payment, shell, filesystem, messaging,
+and MCP tools must declare explicit `policyRefs`; a nearby policy is not enough.
+Tool IDs must be unique across `harness.tools` and `harness.functions` so the
+harness cannot bind a policy reference to the wrong implementation.
+
 Canonical allow example:
 
 ```yaml
@@ -142,6 +168,20 @@ harness:
     - id: search_docs
       type: function
       description: Search reviewed project documents.
+      permissions:
+        - network
+      sideEffects:
+        mode: network
+        external: true
+        resources:
+          - https://docs.reddiagent.dev
+      timeout:
+        seconds: 10
+        behavior: fail-closed
+      retryPolicy:
+        maxAttempts: 1
+        backoff: none
+      auditLevel: payload-redacted
       policyRefs:
         - allow-reviewed-tool
   policies:
