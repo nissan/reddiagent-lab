@@ -135,9 +135,14 @@ def test_required_gates_must_be_blocking_fail_closed() -> None:
 
 
 def test_warning_gates_must_be_nonblocking() -> None:
-    messages = [error.message for error in schema_errors(NEGATIVE_WARNING_BLOCKING)]
+    errors = schema_errors(NEGATIVE_WARNING_BLOCKING)
+    messages = [error.message for error in errors]
     assert any("'error' is not one of ['info', 'warning']" in message for message in messages)
     assert any("'warn' was expected" in message for message in messages)
+    assert any(
+        "'warn' was expected" in error.message and list(error.path)[-1:] == ["defaultStatus"]
+        for error in errors
+    )
 
 
 def test_completion_reducer_distinguishes_required_and_warning_gates() -> None:

@@ -423,8 +423,11 @@
             "properties": {
               "severity": { "enum": ["info", "warning"] },
               "onFailure": {
-                "properties": { "completion": { "const": "warn" } },
-                "required": ["completion"]
+                "properties": {
+                  "completion": { "const": "warn" },
+                  "defaultStatus": { "const": "warn" }
+                },
+                "required": ["completion", "defaultStatus"]
               }
             }
           }

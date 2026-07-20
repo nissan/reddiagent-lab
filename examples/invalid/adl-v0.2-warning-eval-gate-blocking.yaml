@@ -28,6 +28,6 @@ harness:
       retryable: true
       onFailure:
         completion: block
-        defaultStatus: fail
+        defaultStatus: pass
   runtime:
     target: local-python
