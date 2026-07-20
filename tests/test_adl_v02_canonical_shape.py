@@ -19,6 +19,7 @@ POSITIVE_EXAMPLES = [
     ROOT / "examples" / "v0.2" / "simple-agent.yaml",
     ROOT / "examples" / "v0.2" / "path-agent.yaml",
     ROOT / "examples" / "v0.2" / "permission-policy-agent.yaml",
+    ROOT / "examples" / "v0.2" / "tool-contract-agent.yaml",
 ]
 NEGATIVE_STRING_INSTRUCTIONS = ROOT / "examples" / "invalid" / "adl-v0.2-string-instructions.yaml"
 

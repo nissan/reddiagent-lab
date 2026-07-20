@@ -174,12 +174,101 @@
         "description": { "type": "string", "minLength": 1 },
         "inputSchema": { "type": "object" },
         "outputSchema": { "type": "object" },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["tool", "network", "payment", "shell", "filesystem", "messaging", "mcp", "mutation"]
+          },
+          "uniqueItems": true
+        },
+        "sideEffects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["none", "read", "write", "network", "payment", "messaging", "shell", "filesystem", "mcp", "multiple"]
+            },
+            "mutatesState": { "type": "boolean" },
+            "external": { "type": "boolean" },
+            "resources": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            }
+          }
+        },
+        "timeout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["seconds"],
+          "properties": {
+            "seconds": { "type": "integer", "minimum": 1, "maximum": 3600 },
+            "behavior": { "type": "string", "enum": ["fail-closed", "cancel", "retry"] }
+          }
+        },
+        "retryPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maxAttempts"],
+          "properties": {
+            "maxAttempts": { "type": "integer", "minimum": 0, "maximum": 10 },
+            "backoff": { "type": "string", "enum": ["none", "fixed", "exponential"] },
+            "retryOn": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            }
+          }
+        },
+        "auditLevel": {
+          "type": "string",
+          "enum": ["none", "metadata", "event", "payload-redacted", "full"]
+        },
         "policyRefs": {
           "type": "array",
+          "minItems": 1,
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "mcp" } }, "required": ["type"] },
+          "then": { "required": ["policyRefs"] }
+        },
+        {
+          "if": {
+            "properties": {
+              "permissions": {
+                "contains": {
+                  "enum": ["network", "payment", "shell", "filesystem", "messaging", "mcp", "mutation"]
+                }
+              }
+            },
+            "required": ["permissions"]
+          },
+          "then": { "required": ["policyRefs"] }
+        },
+        {
+          "if": {
+            "properties": {
+              "sideEffects": {
+                "properties": {
+                  "mode": {
+                    "enum": ["write", "network", "payment", "messaging", "shell", "filesystem", "mcp", "multiple"]
+                  }
+                },
+                "required": ["mode"]
+              }
+            },
+            "required": ["sideEffects"]
+          },
+          "then": { "required": ["policyRefs"] }
+        }
+      ]
     },
     "policy": {
       "type": "object",
@@ -189,7 +278,7 @@
         "id": { "type": "string", "minLength": 1 },
         "capability": {
           "type": "string",
-          "enum": ["tool", "network", "filesystem", "payment", "messaging", "human-approval", "data", "memory", "runtime"]
+          "enum": ["tool", "network", "filesystem", "payment", "messaging", "shell", "human-approval", "data", "memory", "runtime"]
         },
         "subject": { "type": "string", "minLength": 1 },
         "resource": { "type": "string", "minLength": 1 },

@@ -1,0 +1,46 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: unsafe-tool-missing-policy-ref
+  description: Declares unsafe tool metadata without explicit policy references.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Do not execute."
+  tools:
+    - id: run_unreviewed_shell
+      type: native
+      description: Run an unreviewed shell command.
+      permissions:
+        - shell
+      sideEffects:
+        mode: shell
+        external: false
+      timeout:
+        seconds: 30
+        behavior: fail-closed
+      retryPolicy:
+        maxAttempts: 0
+        backoff: none
+      auditLevel: event
+  policies:
+    - id: unrelated-network-policy
+      capability: network
+      subject: agent
+      resource: https://docs.reddiagent.dev
+      action: fetch
+      effect: allow
+      scope:
+        type: task
+      enforcement:
+        target: runtime-adapter
+        phase: before-execution
+  runtime:
+    target: local-python
+extensions: {}
