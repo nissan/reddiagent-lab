@@ -86,10 +86,11 @@ def completion_for(gates: list[dict], results: dict[str, dict]) -> dict:
         result = results.get(gate_id, {})
         default_status = gate["onFailure"]["defaultStatus"]
         status = result.get("status", default_status)
+        evidence_ref_matches = result.get("evidenceRef") == gate["evidence"]["ref"]
         if gate["required"]:
-            if status != "pass":
+            if status != "pass" or not evidence_ref_matches:
                 blocking_failures.append(gate_id)
-        elif status != "pass":
+        elif status != "pass" or not evidence_ref_matches:
             warnings.append(gate_id)
 
     required_gate_status = "fail" if blocking_failures else "pass"
@@ -167,6 +168,7 @@ def test_spec_documents_eval_gate_completion_contract() -> None:
         "`required`: whether this gate must pass before task completion",
         "Missing evidence for a required gate uses the fail-closed default status",
         "Completion is computed from gate results, not from dry-run transport success",
+        "Required gate results must include the declared evidence reference",
         "Non-required gates remain visible in traces and receipts but cannot block completion",
         "`completion.transportStatus = pass` only means deterministic validation and reporting completed",
     ]:

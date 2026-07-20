@@ -221,7 +221,9 @@ carries:
   `output`, `tool`, `source`, `budget`, `receipt`, or `human-review`, and an
   optional `targetRef`.
 - `evidence`: required evidence reference and JSON Schema. Missing evidence
-  for a required gate uses the fail-closed default status.
+  for a required gate uses the fail-closed default status. Required gate
+  results must include the declared evidence reference; missing or mismatched
+  evidence references do not satisfy completion.
 - `retryable`: whether the harness may retry after this gate fails.
 - `onFailure`: completion behavior. Required gates must use
   `completion: block` and `defaultStatus: fail`; warning gates must use
@@ -236,6 +238,7 @@ reporting completed; `completion.requiredGateStatus` and `completion.status`
 carry the task completion result.
 
 Missing evidence for a required gate uses the fail-closed default status.
+Required gate results must include the declared evidence reference.
 Non-required gates remain visible in traces and receipts but cannot block completion.
 `completion.transportStatus = pass` only means deterministic validation and reporting completed.
 

@@ -33,6 +33,37 @@
       }
     },
     {
+      "id": "required-gate-pass-missing-evidence-fails-closed",
+      "results": {
+        "has-answer": {
+          "status": "pass"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "fail",
+        "status": "fail",
+        "blockingFailures": ["has-answer"],
+        "warnings": []
+      }
+    },
+    {
+      "id": "required-gate-pass-wrong-evidence-fails-closed",
+      "results": {
+        "has-answer": {
+          "status": "pass",
+          "evidenceRef": "trace:output.unrelated_check"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "fail",
+        "status": "fail",
+        "blockingFailures": ["has-answer"],
+        "warnings": []
+      }
+    },
+    {
       "id": "required-gate-missing-fails-closed",
       "results": {},
       "expected": {

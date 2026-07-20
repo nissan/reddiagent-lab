@@ -53,11 +53,12 @@ Warning gates are visible but non-blocking:
 - `severity: info` or `warning`
 - `onFailure.completion: warn`
 
-If required gate evidence is missing or the gate result is not `pass`,
+If required gate evidence is missing, does not match the gate's declared
+evidence reference, or the gate result is not `pass`,
 `completion.requiredGateStatus` and `completion.status` must be `fail` even
 when `completion.transportStatus` is `pass`. A warning gate result of `warn`,
-`fail`, or missing evidence remains trace/receipt evidence but does not block
-task completion.
+`fail`, mismatched evidence, or missing evidence remains trace/receipt evidence
+but does not block task completion.
 
 ## Local Source-Check Fixture
 

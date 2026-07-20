@@ -64,9 +64,9 @@ _Anchor issue: #313._
 Conformance must distinguish blocking required gates from visible warning
 gates before any runtime or adapter marks a task complete:
 
-- required gate missing/fail/warn/skipped evidence => `completion.requiredGateStatus = fail`
+- required gate missing/fail/warn/skipped/mismatched evidence => `completion.requiredGateStatus = fail`
 - required gate pass evidence => may contribute to `completion.requiredGateStatus = pass`
-- warning gate missing/fail/warn/skipped evidence => visible warning evidence only
+- warning gate missing/fail/warn/skipped/mismatched evidence => visible warning evidence only
 - `completion.status` mirrors `completion.requiredGateStatus`
 - `completion.transportStatus = pass` does not override required-gate failure
 
