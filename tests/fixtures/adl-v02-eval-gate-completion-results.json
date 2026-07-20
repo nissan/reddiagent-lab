@@ -62,6 +62,23 @@
         "blockingFailures": [],
         "warnings": ["preferred-summary-style"]
       }
+    },
+    {
+      "id": "warning-gate-missing-remains-visible-nonblocking",
+      "includeWarningGate": true,
+      "results": {
+        "has-answer": {
+          "status": "pass",
+          "evidenceRef": "trace:output.has_answer"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "blockingFailures": [],
+        "warnings": ["preferred-summary-style"]
+      }
     }
   ]
 }

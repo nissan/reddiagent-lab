@@ -153,7 +153,8 @@ def test_completion_reducer_distinguishes_required_and_warning_gates() -> None:
     for scenario in fixture["scenarios"]:
         gates = (
             required_gates + [warning_gate()]
-            if "preferred-summary-style" in scenario["results"]
+            if scenario.get("includeWarningGate")
+            or "preferred-summary-style" in scenario["results"]
             else required_gates
         )
         assert completion_for(gates, scenario["results"]) == scenario["expected"], scenario["id"]
