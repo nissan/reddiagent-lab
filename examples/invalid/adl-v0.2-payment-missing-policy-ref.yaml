@@ -1,0 +1,30 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: payment-missing-policy-ref
+  description: Declares a payment intent without a matching payment policy reference.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Do not execute."
+  runtime:
+    target: local-python
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: review-fee
+        direction: spend
+        maxAmount: "0.50"
+        currency: USD
+        rails:
+          - x402-dry-run
+        requireReceipt: true
+        policyRefs:
+          - missing-payment-policy

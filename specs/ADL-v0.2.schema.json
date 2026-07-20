@@ -85,7 +85,11 @@
         "skills": { "type": "array", "items": { "$ref": "#/$defs/namedRef" } },
         "dataSources": { "type": "array", "items": { "$ref": "#/$defs/dataSource" } },
         "memory": { "$ref": "#/$defs/memory" },
-        "policies": { "type": "array", "items": { "$ref": "#/$defs/policy" } },
+        "policies": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/policy" },
+          "uniqueItems": true
+        },
         "evalGates": { "type": "array", "items": { "$ref": "#/$defs/evalGate" } },
         "runtime": {
           "type": "object",
@@ -169,21 +173,98 @@
         "type": { "type": "string", "enum": ["function", "mcp", "http", "native"] },
         "description": { "type": "string", "minLength": 1 },
         "inputSchema": { "type": "object" },
-        "outputSchema": { "type": "object" }
+        "outputSchema": { "type": "object" },
+        "policyRefs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
       }
     },
     "policy": {
       "type": "object",
-      "additionalProperties": true,
-      "required": ["id", "type", "rule"],
+      "additionalProperties": false,
+      "required": ["id", "capability", "subject", "resource", "action", "effect", "scope", "enforcement"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "type": {
+        "capability": {
           "type": "string",
-          "enum": ["permission", "data-access", "budget", "approval", "network", "filesystem", "payment", "messaging"]
+          "enum": ["tool", "network", "filesystem", "payment", "messaging", "human-approval", "data", "memory", "runtime"]
         },
-        "rule": { "type": "string", "minLength": 1 }
-      }
+        "subject": { "type": "string", "minLength": 1 },
+        "resource": { "type": "string", "minLength": 1 },
+        "action": { "type": "string", "minLength": 1 },
+        "effect": { "type": "string", "enum": ["allow", "deny"] },
+        "scope": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["task", "session", "project", "workspace", "agent", "resource", "external"]
+            },
+            "value": { "type": "string", "minLength": 1 }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required"],
+          "properties": {
+            "required": { "type": "boolean" },
+            "mode": { "type": "string", "enum": ["none", "human", "operator", "policy-engine"] },
+            "threshold": { "type": "string", "minLength": 1 },
+            "approver": { "type": "string", "minLength": 1 }
+          }
+        },
+        "enforcement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target", "phase"],
+          "properties": {
+            "target": {
+              "type": "string",
+              "enum": ["static-validator", "runtime-adapter", "policy-engine", "human-review"]
+            },
+            "phase": {
+              "type": "string",
+              "enum": ["compatibility", "before-execution", "during-execution", "after-execution"]
+            },
+            "targetRef": { "type": "string", "minLength": 1 }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "capability": { "const": "human-approval" } },
+            "required": ["capability"]
+          },
+          "then": {
+            "required": ["approval"],
+            "properties": {
+              "approval": {
+                "properties": { "required": { "const": true } },
+                "required": ["required"]
+              },
+              "enforcement": {
+                "properties": { "target": { "const": "human-review" } },
+                "required": ["target"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "policyRefList": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
     },
     "evalGate": {
       "type": "object",
@@ -221,7 +302,8 @@
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
         },
-        "requireReceipt": { "type": "boolean" }
+        "requireReceipt": { "type": "boolean" },
+        "policyRefs": { "$ref": "#/$defs/policyRefList" }
       }
     }
   }

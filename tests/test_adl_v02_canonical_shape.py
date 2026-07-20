@@ -18,6 +18,7 @@ SPEC_PATH = ROOT / "specs" / "ADL-v0.2.md"
 POSITIVE_EXAMPLES = [
     ROOT / "examples" / "v0.2" / "simple-agent.yaml",
     ROOT / "examples" / "v0.2" / "path-agent.yaml",
+    ROOT / "examples" / "v0.2" / "permission-policy-agent.yaml",
 ]
 NEGATIVE_STRING_INSTRUCTIONS = ROOT / "examples" / "invalid" / "adl-v0.2-string-instructions.yaml"
 

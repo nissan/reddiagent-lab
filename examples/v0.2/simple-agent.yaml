@@ -21,8 +21,16 @@ harness:
     mode: session
   policies:
     - id: no-external-actions
-      type: permission
-      rule: "The agent may not send messages, spend money, browse, or modify files."
+      capability: network
+      subject: agent
+      resource: external-network
+      action: connect
+      effect: deny
+      scope:
+        type: task
+      enforcement:
+        target: static-validator
+        phase: compatibility
   evalGates:
     - id: has-answer
       type: output-check
