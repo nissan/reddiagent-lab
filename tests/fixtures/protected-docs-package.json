@@ -269,8 +269,8 @@
           "path": "specs/SECURITY-PERMISSIONS-v0.1.md",
           "exists": true,
           "kind": "file",
-          "sha256": "642b5fd3d20b2549240ad9468853ca3290f6c8035fdccfc8641a7863175f2cdc",
-          "bytes": 1812
+          "sha256": "e63076b4dc22c7098b813db380b9e655d032117ccd92d23e5c217d4475e46df0",
+          "bytes": 2084
         },
         {
           "path": "specs/OBSERVABILITY-v0.1.md",
@@ -283,8 +283,8 @@
           "path": "specs/CONFORMANCE-v0.1.md",
           "exists": true,
           "kind": "file",
-          "sha256": "e9a299642dbc237e82c83dd24349c12d9a8b9a3e6b94fa6babb044fc2d9581c1",
-          "bytes": 7184
+          "sha256": "585ab8d6fb2f8360516d94aa0cfb9e7a48996e2b7780527fda2ff66fc2fc1c27",
+          "bytes": 7969
         },
         {
           "path": "specs/RAP-BRIDGE-v0.1.md",

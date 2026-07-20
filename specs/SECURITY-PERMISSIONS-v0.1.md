@@ -36,3 +36,5 @@ _Loop 16. Anchor issue: #17._
 - MCP tools without matching static capability policies: fail capability readiness.
 - MCP capability policies that grant network, invocation, payment, or capabilities beyond `mcp.adapter.readonly`: fail capability readiness.
 - MCP readiness evidence with missing required gate events, live-access claims, or completion status that does not match required-gate status: fail readiness evidence.
+- ADL v0.2 required eval gates with missing/failing evidence, warning severity, non-blocking failure behavior, or non-fail default status: fail completion compatibility.
+- ADL v0.2 warning eval gates that claim blocking completion behavior: fail completion compatibility.

@@ -35,6 +35,26 @@ harness:
     - id: has-answer
       type: output-check
       rule: "Response must include an answer or a clear uncertainty statement."
+      required: true
+      severity: error
+      appliesTo:
+        scope: output
+      evidence:
+        ref: trace:output.has_answer
+        schema:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              enum:
+                - pass
+                - fail
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+        visibility: trace-and-receipt
   runtime:
     target: local-python
 extensions: {}

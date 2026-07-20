@@ -31,6 +31,34 @@ Each gate returns:
 
 Required gates must pass before task completion. Warning gates can complete but should be visible in traces and receipts.
 
+## ADL v0.2 Completion Contract
+
+_Anchor issue: #313._
+
+ADL v0.2 makes the completion rule machine-checkable. Each eval gate declares
+whether it is `required`, its `severity`, the scoped `appliesTo` target, an
+`evidence` reference plus schema, `retryable`, and `onFailure` completion
+behavior.
+
+Required gates are fail-closed:
+
+- `required: true`
+- `severity: error` or `critical`
+- `onFailure.completion: block`
+- `onFailure.defaultStatus: fail`
+
+Warning gates are visible but non-blocking:
+
+- `required: false`
+- `severity: info` or `warning`
+- `onFailure.completion: warn`
+
+If required gate evidence is missing or the gate result is not `pass`,
+`completion.requiredGateStatus` and `completion.status` must be `fail` even
+when `completion.transportStatus` is `pass`. A warning gate result of `warn`,
+`fail`, or missing evidence remains trace/receipt evidence but does not block
+task completion.
+
 ## Local Source-Check Fixture
 
 _Loop 179-203. Anchor issue: #131._

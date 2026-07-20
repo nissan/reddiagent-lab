@@ -358,15 +358,78 @@
     "evalGate": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["id", "type", "rule"],
+      "required": ["id", "type", "rule", "required", "severity", "appliesTo", "evidence", "retryable", "onFailure"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "type": {
           "type": "string",
           "enum": ["output-check", "source-check", "tool-check", "budget-check", "receipt-check", "human-review"]
         },
-        "rule": { "type": "string", "minLength": 1 }
-      }
+        "rule": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" },
+        "severity": { "type": "string", "enum": ["info", "warning", "error", "critical"] },
+        "appliesTo": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["scope"],
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": ["task", "output", "tool", "source", "budget", "receipt", "human-review"]
+            },
+            "targetRef": { "type": "string", "minLength": 1 }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["ref", "schema"],
+          "properties": {
+            "ref": { "type": "string", "minLength": 1 },
+            "schema": { "type": "object", "additionalProperties": true }
+          }
+        },
+        "retryable": { "type": "boolean" },
+        "onFailure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["completion", "defaultStatus"],
+          "properties": {
+            "completion": { "type": "string", "enum": ["block", "warn"] },
+            "defaultStatus": { "type": "string", "enum": ["pass", "fail", "warn", "skipped"] },
+            "visibility": { "type": "string", "enum": ["trace", "receipt", "trace-and-receipt"] }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": true } }, "required": ["required"] },
+          "then": {
+            "properties": {
+              "severity": { "enum": ["error", "critical"] },
+              "onFailure": {
+                "properties": {
+                  "completion": { "const": "block" },
+                  "defaultStatus": { "const": "fail" }
+                },
+                "required": ["completion", "defaultStatus"]
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "required": { "const": false } }, "required": ["required"] },
+          "then": {
+            "properties": {
+              "severity": { "enum": ["info", "warning"] },
+              "onFailure": {
+                "properties": { "completion": { "const": "warn" } },
+                "required": ["completion"]
+              }
+            }
+          }
+        }
+      ]
     },
     "x402": {
       "type": "object",

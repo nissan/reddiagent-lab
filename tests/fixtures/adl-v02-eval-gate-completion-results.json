@@ -1,0 +1,67 @@
+{
+  "scenarios": [
+    {
+      "id": "required-gate-pass",
+      "results": {
+        "has-answer": {
+          "status": "pass",
+          "evidenceRef": "trace:output.has_answer"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "blockingFailures": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "required-gate-fail-blocks-completion",
+      "results": {
+        "has-answer": {
+          "status": "fail",
+          "evidenceRef": "trace:output.has_answer"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "fail",
+        "status": "fail",
+        "blockingFailures": ["has-answer"],
+        "warnings": []
+      }
+    },
+    {
+      "id": "required-gate-missing-fails-closed",
+      "results": {},
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "fail",
+        "status": "fail",
+        "blockingFailures": ["has-answer"],
+        "warnings": []
+      }
+    },
+    {
+      "id": "warning-gate-fail-remains-visible-nonblocking",
+      "results": {
+        "has-answer": {
+          "status": "pass",
+          "evidenceRef": "trace:output.has_answer"
+        },
+        "preferred-summary-style": {
+          "status": "fail",
+          "evidenceRef": "trace:output.style_checked"
+        }
+      },
+      "expected": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "blockingFailures": [],
+        "warnings": ["preferred-summary-style"]
+      }
+    }
+  ]
+}
