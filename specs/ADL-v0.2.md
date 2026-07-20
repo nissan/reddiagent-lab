@@ -123,9 +123,16 @@ free-form permission prose as the policy contract. Each policy carries:
   `static-validator`, `runtime-adapter`, `policy-engine`, and `human-review`.
 
 Risky capabilities must reference matching policies where applicable. Tools and
-functions use `policyRefs`; payment intents use `policyRefs` under
-`extensions.x402.intents`. Unknown or unenforceable capability policy
-declarations fail compatibility before execution.
+functions use `policyRefs` and must bind to an allow policy whose capability,
+resource, action, and enforcement target match the declared tool or function.
+Plain tools default to `capability: tool`, `resource: tool:<id>`, and
+`action: invoke`; tools that model another risky capability, such as external
+messaging, declare that capability, resource, and action explicitly. Payment
+intents use `policyRefs` under `extensions.x402.intents` and must bind to a
+payment policy for the exact `x402:intent:<id>` resource, direction/action,
+limits, receipt requirement, and before-execution policy-engine enforcement.
+Unknown, mismatched, or unenforceable capability policy declarations fail
+compatibility before execution.
 
 Canonical allow example:
 
@@ -167,6 +174,7 @@ harness:
 - Permission policies must use structured capability fields rather than
   free-form prose rules.
 - Risky tool, payment, messaging, network, filesystem, and human approval
-  declarations must be explicitly bounded by enforceable policy.
+  declarations must be explicitly bounded by matching enforceable policy, not
+  merely any existing policy id with a nearby capability type.
 - Unknown capability names and unsupported enforcement targets fail
   compatibility before any execution path.
