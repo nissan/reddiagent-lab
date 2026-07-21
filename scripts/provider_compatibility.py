@@ -11,6 +11,8 @@ import sys
 import jsonschema
 import yaml
 
+from adl_v02_conformance import conformance_report
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
@@ -58,7 +60,7 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         }
         for error in errors
     ]
-    return {
+    result = {
         "agent": (doc.get("metadata") or {}).get("name", path.stem),
         "target": target,
         "supported": False,
@@ -73,6 +75,20 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         "dataSourceTypes": [],
         "sourceBoundary": [],
         "validationDiagnostics": diagnostics,
+    }
+    if doc.get("apiVersion") == "reddiagent.dev/v0.2":
+        result["conformance"] = conformance_metadata(path)
+    return result
+
+
+def conformance_metadata(path: Path) -> dict:
+    report = conformance_report(path)
+    return {
+        "requestedLevel": report["requestedLevel"],
+        "achievedLevel": report["achievedLevel"],
+        "status": report["status"],
+        "missingFieldsByLevel": report["missingFieldsByLevel"],
+        "forbiddenCapabilitiesByLevel": report["forbiddenCapabilitiesByLevel"],
     }
 
 
@@ -462,6 +478,8 @@ def report(path: Path, target: str) -> dict:
         "dataSourceTypes": [source["type"] for source in source_boundaries],
         "sourceBoundary": source_boundaries,
     }
+    if doc.get("apiVersion") == "reddiagent.dev/v0.2":
+        result["conformance"] = conformance_metadata(path)
     if provider_mapping is not None:
         result["providerMapping"] = provider_mapping
     return result

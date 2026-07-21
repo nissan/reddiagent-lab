@@ -107,6 +107,19 @@
         "recovery": { "type": "object", "additionalProperties": true }
       }
     },
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requestedLevel"],
+      "properties": {
+        "requestedLevel": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
     "extensions": {
       "type": "object",
       "additionalProperties": true,
