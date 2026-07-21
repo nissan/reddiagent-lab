@@ -99,6 +99,28 @@ def test_approved_sources_must_keep_citation_and_source_check_required() -> None
     assert "True was expected" in messages
 
 
+def test_source_ref_prefix_must_match_canonical_type() -> None:
+    doc = load_yaml(POSITIVE_SOURCE_BOUNDARY)
+    source = deepcopy(doc["harness"]["dataSources"][0])
+    source["sourceRef"] = "url:https://docs.example.test/wrong-prefix"
+    doc["harness"]["dataSources"] = [source]
+
+    errors = sorted(validator().iter_errors(doc), key=lambda error: list(error.path))
+    assert errors, "sourceRef prefixes must match data-source type"
+    assert any("'url:https://docs.example.test/wrong-prefix' does not match '^file:'" in error.message for error in errors)
+
+
+def test_source_type_rejects_foreign_shape_fields() -> None:
+    doc = load_yaml(POSITIVE_SOURCE_BOUNDARY)
+    source = deepcopy(doc["harness"]["dataSources"][0])
+    source["url"] = "https://docs.example.test/foreign-shape"
+    doc["harness"]["dataSources"] = [source]
+
+    errors = sorted(validator().iter_errors(doc), key=lambda error: list(error.path))
+    assert errors, "source shape fields must be mutually exclusive"
+    assert any("should not be valid" in error.message for error in errors)
+
+
 def test_schema_source_vocabulary_matches_spec_contract() -> None:
     schema_types = load_schema()["$defs"]["dataSource"]["properties"]["type"]["enum"]
     spec = (ROOT / "specs" / "ADL-v0.2.md").read_text()
@@ -116,6 +138,8 @@ def main() -> int:
     test_untrusted_sources_must_keep_citation_and_source_check_required()
     test_untrusted_sources_cannot_claim_approved_source_expectation()
     test_approved_sources_must_keep_citation_and_source_check_required()
+    test_source_ref_prefix_must_match_canonical_type()
+    test_source_type_rejects_foreign_shape_fields()
     test_schema_source_vocabulary_matches_spec_contract()
     print("PASS ADL v0.2 source boundary")
     return 0
