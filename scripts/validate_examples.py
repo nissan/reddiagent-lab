@@ -59,10 +59,10 @@ def main() -> int:
                 for error in errors:
                     print(f"  - {raw_error(error)}")
             elif args.format == "json":
-                guidance = [item.to_dict() for item in format_errors(errors)]
+                guidance = [item.to_dict() for item in format_errors(errors, path)]
                 print(json.dumps({"path": str(path.relative_to(ROOT)), "errors": guidance}, indent=2))
             else:
-                guidance = format_errors(errors)
+                guidance = format_errors(errors, path)
                 print(render_text(str(path.relative_to(ROOT)), guidance))
         else:
             print(f"PASS {path.relative_to(ROOT)}")

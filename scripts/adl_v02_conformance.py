@@ -13,6 +13,8 @@ from typing import Any
 import jsonschema
 import yaml
 
+from adl_diagnostics import format_validation_errors
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
@@ -127,20 +129,12 @@ def object_or_empty(value: Any) -> dict:
     return value if isinstance(value, dict) else {}
 
 
-def validation_error_path(error: jsonschema.ValidationError) -> str:
-    if error.path:
-        return ".".join(str(part) for part in error.path)
-    return "<root>"
-
-
-def schema_diagnostics(doc: dict) -> list[dict]:
+def schema_diagnostics(doc: dict, path: Path) -> list[dict]:
     if doc.get("apiVersion") != "reddiagent.dev/v0.2":
         return []
     validator = jsonschema.Draft202012Validator(load_schema())
-    return [
-        {"path": validation_error_path(error), "message": error.message}
-        for error in sorted(validator.iter_errors(doc), key=lambda item: list(item.path))
-    ]
+    errors = sorted(validator.iter_errors(doc), key=lambda item: list(item.path))
+    return format_validation_errors(errors, path)
 
 
 def has_path(doc: dict, dotted_path: str) -> bool:
@@ -411,7 +405,7 @@ def requested_level(doc: dict, override: int | None) -> int:
 
 def conformance_report(path: Path, requested: int | None = None) -> dict:
     doc = load_adl(path)
-    schema_errors = schema_diagnostics(doc)
+    schema_errors = schema_diagnostics(doc, path)
     requested_value = requested_level(doc, requested)
     missing_by_level = {
         str(level): level_missing_fields(doc, level)
