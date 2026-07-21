@@ -249,9 +249,13 @@
           "if": { "properties": { "trust": { "const": "approved" } }, "required": ["trust"] },
           "then": {
             "properties": {
+              "citationRequired": { "const": true },
               "sourceCheck": {
-                "properties": { "expectation": { "const": "approved-source" } },
-                "required": ["expectation"]
+                "properties": {
+                  "required": { "const": true },
+                  "expectation": { "const": "approved-source" }
+                },
+                "required": ["required", "expectation"]
               }
             }
           }

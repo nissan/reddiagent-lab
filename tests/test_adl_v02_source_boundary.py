@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 import sys
 
@@ -86,6 +87,18 @@ def test_untrusted_sources_cannot_claim_approved_source_expectation() -> None:
     assert any("'approved-source' is not one of ['manual-review', 'not-citable']" in error.message for error in errors)
 
 
+def test_approved_sources_must_keep_citation_and_source_check_required() -> None:
+    doc = load_yaml(POSITIVE_SOURCE_BOUNDARY)
+    source = deepcopy(doc["harness"]["dataSources"][0])
+    source["citationRequired"] = False
+    source["sourceCheck"]["required"] = False
+    doc["harness"]["dataSources"] = [source]
+
+    errors = sorted(validator().iter_errors(doc), key=lambda error: list(error.path))
+    messages = [error.message for error in errors]
+    assert "True was expected" in messages
+
+
 def test_schema_source_vocabulary_matches_spec_contract() -> None:
     schema_types = load_schema()["$defs"]["dataSource"]["properties"]["type"]["enum"]
     spec = (ROOT / "specs" / "ADL-v0.2.md").read_text()
@@ -102,6 +115,7 @@ def main() -> int:
     test_legacy_data_source_aliases_fail_validation()
     test_untrusted_sources_must_keep_citation_and_source_check_required()
     test_untrusted_sources_cannot_claim_approved_source_expectation()
+    test_approved_sources_must_keep_citation_and_source_check_required()
     test_schema_source_vocabulary_matches_spec_contract()
     print("PASS ADL v0.2 source boundary")
     return 0
