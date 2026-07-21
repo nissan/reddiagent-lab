@@ -13,6 +13,20 @@ Before compiling an ADL file to a provider or runtime, produce a compatibility r
     level: 2
     warnings: []
     unsupportedFeatures: []
+    providerResolution:
+      requestedTarget: openai
+      orderedCandidates:
+        - openai
+      selectedProvider: openai
+      selectedRole: preferred
+      hostedProvider: true
+    modelCapabilityRequirements:
+      vocabularyVersion: adl-v0.2-model-requirements
+      requested: {}
+      supportedRequirements: []
+      unsupportedRequirements: []
+      degradedRequirements: []
+      lossMetadata: []
     requiredSecrets:
       - OPENAI_API_KEY
     requiredHostedServices: []
@@ -28,7 +42,9 @@ Before compiling an ADL file to a provider or runtime, produce a compatibility r
 
 ## Required Checks
 
-- model requirements supported.
+- provider identifiers use the ADL v0.2 canonical vocabulary.
+- preferred/fallback provider resolution is reported deterministically.
+- model requirements are split into supported, unsupported, degraded, and loss metadata.
 - tool types supported.
 - runtime target supported.
 - secrets referenced, not embedded.
@@ -116,3 +132,11 @@ Gemini rows may be `supported: true` only for static compatibility when no hard 
 is present. Real settlement and MCP execution remain hard unsupported features. Every Gemini row
 continues to report `runtimeExecutionAllowed=false`, `networkAccess=false`, `paymentAccess=false`,
 and `mcpInvocation=false`.
+
+## Runtime Boundary
+
+Provider compatibility reports remain static exports. They may report required
+secrets and hosted services, but they must not read credentials, call hosted
+providers, probe local model endpoints, resolve MCP servers, invoke tools, or
+activate runtimes. Runtime execution remains blocked unless a later, explicit
+approved prototype/devnet lane grants a narrower execution boundary.

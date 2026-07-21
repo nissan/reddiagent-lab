@@ -21,8 +21,11 @@ POSITIVE_EXAMPLES = [
     ROOT / "examples" / "v0.2" / "permission-policy-agent.yaml",
     ROOT / "examples" / "v0.2" / "tool-contract-agent.yaml",
     ROOT / "examples" / "v0.2" / "source-boundary-agent.yaml",
+    ROOT / "examples" / "v0.2" / "provider-capability-agent.yaml",
 ]
 NEGATIVE_STRING_INSTRUCTIONS = ROOT / "examples" / "invalid" / "adl-v0.2-string-instructions.yaml"
+NEGATIVE_UNKNOWN_PROVIDER = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-provider-id.yaml"
+NEGATIVE_UNKNOWN_REQUIREMENT = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-model-requirement.yaml"
 
 
 def load_schema() -> dict:
@@ -81,6 +84,24 @@ def test_shape_divergence_negative_fixture_fails_clearly() -> None:
     assert "is not of type 'object'" in first.message
 
 
+def test_provider_and_requirement_vocabulary_fail_closed() -> None:
+    provider_errors = sorted(
+        validator().iter_errors(load_yaml(NEGATIVE_UNKNOWN_PROVIDER)),
+        key=lambda error: list(error.path),
+    )
+    assert provider_errors, "unknown provider id fixture must fail"
+    assert any(list(error.path) == ["model", "providers", "preferred"] for error in provider_errors)
+    assert any("openai:gpt-4.1-mini" in error.message and "is not one of" in error.message for error in provider_errors)
+
+    requirement_errors = sorted(
+        validator().iter_errors(load_yaml(NEGATIVE_UNKNOWN_REQUIREMENT)),
+        key=lambda error: list(error.path),
+    )
+    assert requirement_errors, "unknown model requirement fixture must fail"
+    assert any(list(error.path) == ["model", "requirements"] for error in requirement_errors)
+    assert any("providerNativeMagic" in error.message for error in requirement_errors)
+
+
 def test_spec_field_contract_matches_schema() -> None:
     schema = load_schema()
     contract = field_contract()
@@ -102,6 +123,7 @@ def main() -> int:
     test_positive_examples_validate_against_v02_schema()
     test_checked_examples_use_canonical_instruction_shape()
     test_shape_divergence_negative_fixture_fails_clearly()
+    test_provider_and_requirement_vocabulary_fail_closed()
     test_spec_field_contract_matches_schema()
     print("PASS ADL v0.2 canonical shape")
     return 0

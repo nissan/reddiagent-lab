@@ -17,6 +17,60 @@ from adl_v02_conformance import conformance_report
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
 TARGETS = ["openai", "anthropic", "gemini", "ollama", "langgraph", "mcp-readonly", "local-python"]
+MODEL_PROVIDER_IDS = ["openai", "anthropic", "gemini", "ollama"]
+HOSTED_MODEL_PROVIDERS = {
+    "openai": True,
+    "anthropic": True,
+    "gemini": True,
+    "ollama": False,
+}
+PROVIDER_SECRETS = {
+    "openai": "OPENAI_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+    "gemini": "GEMINI_API_KEY",
+}
+PROVIDER_CAPABILITIES = {
+    "openai": {
+        "capabilities": {"chat", "reasoning", "code", "vision", "audio", "embedding"},
+        "modalities": {"text", "image", "audio", "embedding"},
+        "contextWindow": 128000,
+        "maxOutputTokens": 16384,
+        "toolCalling": True,
+        "structuredOutput": True,
+        "streaming": True,
+        "jsonMode": True,
+    },
+    "anthropic": {
+        "capabilities": {"chat", "reasoning", "code", "vision"},
+        "modalities": {"text", "image"},
+        "contextWindow": 200000,
+        "maxOutputTokens": 8192,
+        "toolCalling": True,
+        "structuredOutput": True,
+        "streaming": True,
+        "jsonMode": False,
+    },
+    "gemini": {
+        "capabilities": {"chat", "reasoning", "code", "vision", "audio", "embedding"},
+        "modalities": {"text", "image", "audio", "embedding"},
+        "contextWindow": 1000000,
+        "maxOutputTokens": 8192,
+        "toolCalling": True,
+        "structuredOutput": True,
+        "streaming": True,
+        "jsonMode": True,
+    },
+    "ollama": {
+        "capabilities": {"chat", "code", "embedding"},
+        "modalities": {"text", "embedding"},
+        "contextWindow": 32000,
+        "maxOutputTokens": 4096,
+        "toolCalling": "degraded",
+        "structuredOutput": "degraded",
+        "streaming": True,
+        "jsonMode": "degraded",
+    },
+}
 REPORT_ONLY_BOUNDARY = {
     "runtimeExecutionAllowed": False,
     "networkAccess": False,
@@ -29,10 +83,16 @@ GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
+MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
+PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
 
 
 def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
+
+
+def object_or_empty(value: object) -> dict:
+    return value if isinstance(value, dict) else {}
 
 
 def load_v02_schema() -> dict:
@@ -53,6 +113,9 @@ def adl_v02_validation_errors(doc: dict) -> list[jsonschema.ValidationError]:
 
 
 def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[jsonschema.ValidationError]) -> dict:
+    metadata = object_or_empty(doc.get("metadata"))
+    model = object_or_empty(doc.get("model"))
+    requirements = object_or_empty(model.get("requirements"))
     diagnostics = [
         {
             "path": validation_error_path(error),
@@ -61,12 +124,29 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         for error in errors
     ]
     result = {
-        "agent": (doc.get("metadata") or {}).get("name", path.stem),
+        "agent": metadata.get("name", path.stem),
         "target": target,
         "supported": False,
         "level": 0,
         "warnings": ["ADL v0.2 schema validation failed; provider compatibility report refused."],
         "unsupportedFeatures": [ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED],
+        "providerResolution": {
+            "requestedTarget": target,
+            "orderedCandidates": ordered_provider_candidates(doc),
+            "selectedProvider": None,
+            "selectedRole": "schema-invalid",
+            "hostedProvider": False,
+        },
+        "modelCapabilityRequirements": {
+            "vocabularyVersion": "adl-v0.2-model-requirements",
+            "provider": None,
+            "capability": model.get("capability"),
+            "requested": requirements,
+            "supportedRequirements": [],
+            "unsupportedRequirements": [],
+            "degradedRequirements": [],
+            "lossMetadata": [],
+        },
         "requiredSecrets": [],
         "requiredHostedServices": [],
         "suggestedFallback": "fix-adl-v0.2-schema-errors",
@@ -105,6 +185,157 @@ def source_boundary_metadata(doc: dict) -> list[dict]:
             "sourceCheckExpectation": (source.get("sourceCheck") or {}).get("expectation"),
         }
         for source in sources
+    ]
+
+
+def ordered_provider_candidates(doc: dict) -> list[str]:
+    model = object_or_empty(doc.get("model"))
+    providers = object_or_empty(model.get("providers"))
+    fallbacks = providers.get("fallbacks", [])
+    if not isinstance(fallbacks, list):
+        fallbacks = []
+    return [
+        provider
+        for provider in [providers.get("preferred"), *fallbacks]
+        if isinstance(provider, str) and provider
+    ]
+
+
+def provider_for_target(doc: dict, target: str) -> str | None:
+    candidates = ordered_provider_candidates(doc)
+    if target in MODEL_PROVIDER_IDS:
+        return target if target in candidates else None
+    if target == "local-python":
+        return "ollama" if "ollama" in candidates else None
+    if target == "langgraph":
+        return candidates[0] if candidates else None
+    return candidates[0] if candidates else None
+
+
+def provider_resolution(doc: dict, target: str, selected_provider: str | None) -> dict:
+    candidates = ordered_provider_candidates(doc)
+    if selected_provider is None and target in MODEL_PROVIDER_IDS:
+        role = "not-declared"
+    elif selected_provider is None:
+        role = "not-applicable"
+    elif candidates and selected_provider == candidates[0]:
+        role = "preferred"
+    elif selected_provider in candidates[1:]:
+        role = "fallback"
+    elif target in MODEL_PROVIDER_IDS:
+        role = "not-declared"
+    else:
+        role = "target-derived"
+    return {
+        "requestedTarget": target,
+        "orderedCandidates": candidates,
+        "selectedProvider": selected_provider,
+        "selectedRole": role,
+        "hostedProvider": bool(selected_provider and HOSTED_MODEL_PROVIDERS.get(selected_provider, False)),
+    }
+
+
+def model_requirement_report(doc: dict, provider_id: str | None) -> dict:
+    model = doc.get("model", {})
+    requested = model.get("requirements", {})
+    diagnostics = {
+        "vocabularyVersion": "adl-v0.2-model-requirements",
+        "provider": provider_id,
+        "capability": model.get("capability"),
+        "requested": requested,
+        "supportedRequirements": [],
+        "unsupportedRequirements": [],
+        "degradedRequirements": [],
+        "lossMetadata": [],
+    }
+    if provider_id not in PROVIDER_CAPABILITIES:
+        diagnostics["unsupportedRequirements"].append(
+            {
+                "requirement": "model.providers",
+                "requested": provider_id,
+                "reason": "No model provider capability table is available for this target.",
+            }
+        )
+        return diagnostics
+
+    caps = PROVIDER_CAPABILITIES[provider_id]
+    capability = model.get("capability")
+    if capability in caps["capabilities"]:
+        diagnostics["supportedRequirements"].append({"requirement": "capability", "requested": capability})
+    else:
+        diagnostics["unsupportedRequirements"].append(
+            {
+                "requirement": "capability",
+                "requested": capability,
+                "reason": f"{provider_id} does not advertise this ADL capability.",
+            }
+        )
+
+    for key in ("toolCalling", "structuredOutput", "streaming", "jsonMode"):
+        if key not in requested or requested[key] is False:
+            continue
+        support = caps[key]
+        if support is True:
+            diagnostics["supportedRequirements"].append({"requirement": key, "requested": True})
+        elif support == "degraded":
+            diagnostics["degradedRequirements"].append(
+                {
+                    "requirement": key,
+                    "requested": True,
+                    "reason": f"{provider_id} requires a reviewed custom harness for provider-native {key}.",
+                }
+            )
+            diagnostics["lossMetadata"].append(
+                {
+                    "field": f"model.requirements.{key}",
+                    "loss": "provider-native-enforcement-not-guaranteed",
+                }
+            )
+        else:
+            diagnostics["unsupportedRequirements"].append(
+                {
+                    "requirement": key,
+                    "requested": True,
+                    "reason": f"{provider_id} does not support this requirement in the static capability table.",
+                }
+            )
+
+    for key in ("contextWindow", "maxOutputTokens"):
+        if key not in requested:
+            continue
+        limit = caps[key]
+        value = requested[key]
+        if value <= limit:
+            diagnostics["supportedRequirements"].append({"requirement": key, "requested": value, "limit": limit})
+        else:
+            diagnostics["unsupportedRequirements"].append(
+                {
+                    "requirement": key,
+                    "requested": value,
+                    "limit": limit,
+                    "reason": f"{provider_id} static capability limit is lower than requested.",
+                }
+            )
+
+    for modality in requested.get("modalities", []):
+        if modality in caps["modalities"]:
+            diagnostics["supportedRequirements"].append({"requirement": "modalities", "requested": modality})
+        else:
+            diagnostics["unsupportedRequirements"].append(
+                {
+                    "requirement": "modalities",
+                    "requested": modality,
+                    "reason": f"{provider_id} does not advertise this modality.",
+                }
+            )
+
+    return diagnostics
+
+
+def unsupported_requirement_features(requirement_report: dict) -> list[str]:
+    return [
+        f"{MODEL_REQUIREMENT_UNSUPPORTED_PREFIX}:{item['requirement']}"
+        for item in requirement_report["unsupportedRequirements"]
     ]
 
 
@@ -394,6 +625,9 @@ def report(path: Path, target: str) -> dict:
     required_hosted_services = []
     compatibility_mode = "provider-compatibility-report-only"
     provider_mapping = None
+    selected_provider = provider_for_target(doc, target)
+    resolution = provider_resolution(doc, target, selected_provider)
+    requirement_diagnostics = model_requirement_report(doc, selected_provider)
 
     if target == "local-python":
         level = 1 if harness["runtime"]["target"] == "local-python" else 0
@@ -411,8 +645,8 @@ def report(path: Path, target: str) -> dict:
         )
     elif target in ["openai", "anthropic", "gemini", "langgraph"]:
         level = 2
-        if target != "langgraph":
-            required_secrets.append(f"{target.upper().replace('-', '_')}_API_KEY")
+        if selected_provider in PROVIDER_SECRETS:
+            required_secrets.append(PROVIDER_SECRETS[selected_provider])
         if target == "openai":
             compatibility_mode = OPENAI_COMPATIBILITY_MODE
             provider_mapping = openai_mapping(doc, mcp_tools)
@@ -451,10 +685,24 @@ def report(path: Path, target: str) -> dict:
     else:
         level = 0
 
+    if resolution["selectedRole"] == "not-declared":
+        unsupported.append(PROVIDER_NOT_DECLARED_UNSUPPORTED)
+        warnings.append(
+            f"Requested provider target {target!r} is not declared in model.providers; "
+            "provider compatibility remains unsupported until it is preferred or listed as a fallback."
+        )
+
     if (extensions.get("x402") or {}).get("enabled"):
         warnings.append("Payment extension is dry-run only until receipt and policy enforcement land.")
         if target != "local-python":
             unsupported.append("real_settlement")
+
+    if requirement_diagnostics["unsupportedRequirements"]:
+        unsupported.extend(unsupported_requirement_features(requirement_diagnostics))
+    if requirement_diagnostics["degradedRequirements"]:
+        warnings.append(
+            "Some model capability requirements are degraded; review lossMetadata before runtime use."
+        )
 
     if mcp_tools:
         warnings.append("MCP declarations are read-only adapter shapes until server resolution lands.")
@@ -469,7 +717,9 @@ def report(path: Path, target: str) -> dict:
         "supported": not unsupported,
         "level": level,
         "warnings": warnings,
-        "unsupportedFeatures": unsupported,
+        "unsupportedFeatures": sorted(set(unsupported), key=unsupported.index),
+        "providerResolution": resolution,
+        "modelCapabilityRequirements": requirement_diagnostics,
         "requiredSecrets": required_secrets,
         "requiredHostedServices": required_hosted_services,
         "suggestedFallback": "local-python",

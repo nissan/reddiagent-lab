@@ -62,14 +62,28 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
             "mcpInvocation": False,
         }
         assert item["supported"] is False
-        assert item["unsupportedFeatures"] == ["mcp_execution"]
         assert item["requiredHostedServices"] == ["mcp:approved-docs-search"]
+
+    assert reports[0]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[1]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[2]["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert reports[3]["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert reports[4]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[5]["unsupportedFeatures"] == ["mcp_execution"]
 
     assert reports[0]["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert reports[1]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
-    assert reports[2]["requiredSecrets"] == ["GEMINI_API_KEY"]
+    assert reports[2]["requiredSecrets"] == []
     assert reports[3]["requiredSecrets"] == []
-    assert reports[4]["requiredSecrets"] == []
+    assert reports[4]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert reports[5]["requiredSecrets"] == []
 
 
@@ -101,6 +115,8 @@ def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
         "examples/invalid/adl-v0.2-data-source-alias.yaml",
         "examples/invalid/adl-v0.2-untrusted-source-no-check.yaml",
         "examples/invalid/adl-v0.2-untrusted-source-approved-expectation.yaml",
+        "examples/invalid/adl-v0.2-unknown-provider-id.yaml",
+        "examples/invalid/adl-v0.2-unknown-model-requirement.yaml",
     ]
 
     for path in invalid_paths:
@@ -114,11 +130,116 @@ def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
         assert report["level"] == 0
         assert report["compatibilityMode"] == "provider-compatibility-report-refused"
         assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["providerResolution"]["selectedRole"] == "schema-invalid"
         assert report["dataSourceTypes"] == []
         assert report["sourceBoundary"] == []
         assert report["validationDiagnostics"], path
         assert report["conformance"]["achievedLevel"] == -1
         assert report["conformance"]["status"] == "fail"
+
+
+def test_v02_provider_refusal_does_not_crash_on_malformed_provider_shapes() -> None:
+    malformed_docs = {
+        "providers-string": """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: providers-string
+  description: Malformed provider shape.
+model:
+  capability: chat
+  providers: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+""",
+        "fallbacks-string": """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: fallbacks-string
+  description: Malformed fallback provider shape.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+    fallbacks: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+""",
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        paths = []
+        for name, content in malformed_docs.items():
+            path = Path(tmp) / f"{name}.yaml"
+            path.write_text(content)
+            paths.append(str(path))
+
+        proc = run_cli([*paths, "--target", "openai"])
+
+    reports = json.loads(proc.stdout)
+    assert proc.stderr == ""
+    assert [report["agent"] for report in reports] == ["providers-string", "fallbacks-string"]
+    assert reports[0]["providerResolution"]["orderedCandidates"] == []
+    assert reports[1]["providerResolution"]["orderedCandidates"] == ["anthropic"]
+    for report in reports:
+        assert report["supported"] is False
+        assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+        assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["providerResolution"]["selectedProvider"] is None
+        assert report["providerResolution"]["selectedRole"] == "schema-invalid"
+        assert report["boundary"]["runtimeExecutionAllowed"] is False
+        assert report["validationDiagnostics"]
+
+
+def test_v02_provider_refusal_does_not_crash_on_malformed_metadata_shape() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "metadata-string.yaml"
+        path.write_text(
+            """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata: broken
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+"""
+        )
+
+        proc = run_cli([str(path), "--target", "openai"])
+
+    reports = json.loads(proc.stdout)
+    assert proc.stderr == ""
+    assert len(reports) == 1
+    report = reports[0]
+    assert report["agent"] == "metadata-string"
+    assert report["target"] == "openai"
+    assert report["supported"] is False
+    assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+    assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+    assert report["providerResolution"]["selectedRole"] == "schema-invalid"
+    assert report["boundary"]["runtimeExecutionAllowed"] is False
+    assert report["conformance"]["achievedLevel"] == -1
+    assert report["conformance"]["status"] == "fail"
+    assert report["validationDiagnostics"]
 
 
 def test_v02_provider_exports_conformance_metadata() -> None:
@@ -161,6 +282,87 @@ def test_v02_provider_refusal_does_not_crash_on_invalid_requested_level() -> Non
     assert report["conformance"]["status"] == "fail"
 
 
+def test_v02_provider_reports_resolution_and_model_requirement_diagnostics() -> None:
+    proc = run_cli(
+        [
+            "examples/v0.2/provider-capability-agent.yaml",
+            "--target",
+            "anthropic",
+            "--target",
+            "openai",
+            "--target",
+            "ollama",
+            "--target",
+            "gemini",
+        ]
+    )
+    reports = {item["target"]: item for item in json.loads(proc.stdout)}
+
+    anthropic = reports["anthropic"]
+    assert anthropic["providerResolution"] == {
+        "requestedTarget": "anthropic",
+        "orderedCandidates": ["anthropic", "openai", "ollama"],
+        "selectedProvider": "anthropic",
+        "selectedRole": "preferred",
+        "hostedProvider": True,
+    }
+    assert anthropic["supported"] is False
+    assert anthropic["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
+    assert anthropic["unsupportedFeatures"] == [
+        "model_requirement:jsonMode",
+        "model_requirement:maxOutputTokens",
+        "model_requirement:modalities",
+    ]
+    assert {
+        (item["requirement"], item["requested"])
+        for item in anthropic["modelCapabilityRequirements"]["unsupportedRequirements"]
+    } == {
+        ("jsonMode", True),
+        ("maxOutputTokens", 12000),
+        ("modalities", "audio"),
+    }
+
+    openai = reports["openai"]
+    assert openai["providerResolution"]["selectedRole"] == "fallback"
+    assert openai["providerResolution"]["selectedProvider"] == "openai"
+    assert openai["supported"] is True
+    assert openai["requiredSecrets"] == ["OPENAI_API_KEY"]
+    assert openai["modelCapabilityRequirements"]["unsupportedRequirements"] == []
+
+    ollama = reports["ollama"]
+    assert ollama["providerResolution"]["selectedRole"] == "fallback"
+    assert ollama["providerResolution"]["hostedProvider"] is False
+    assert ollama["requiredSecrets"] == []
+    assert ollama["supported"] is False
+    assert {
+        (item["requirement"], item["requested"])
+        for item in ollama["modelCapabilityRequirements"]["degradedRequirements"]
+    } == {
+        ("toolCalling", True),
+        ("structuredOutput", True),
+        ("jsonMode", True),
+    }
+    assert ollama["modelCapabilityRequirements"]["lossMetadata"]
+    assert any("Some model capability requirements are degraded" in warning for warning in ollama["warnings"])
+
+    gemini = reports["gemini"]
+    assert gemini["providerResolution"] == {
+        "requestedTarget": "gemini",
+        "orderedCandidates": ["anthropic", "openai", "ollama"],
+        "selectedProvider": None,
+        "selectedRole": "not-declared",
+        "hostedProvider": False,
+    }
+    assert gemini["supported"] is False
+    assert gemini["requiredSecrets"] == []
+    assert "provider_not_declared" in gemini["unsupportedFeatures"]
+    assert {
+        item["requirement"]
+        for item in gemini["modelCapabilityRequirements"]["unsupportedRequirements"]
+    } == {"model.providers"}
+    assert any("not declared in model.providers" in warning for warning in gemini["warnings"])
+
+
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     proc = run_cli(
         [
@@ -201,6 +403,8 @@ def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
     assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerResolution"]["selectedProvider"] == "openai"
+    assert payment["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -208,7 +412,7 @@ def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert "Payment extension is dry-run only" in payment["warnings"][1]
+    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
 
 
 def test_openai_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -274,6 +478,8 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
     assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerResolution"]["selectedProvider"] == "anthropic"
+    assert payment["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -281,7 +487,7 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert "Payment extension is dry-run only" in payment["warnings"][1]
+    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
 
 
 def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() -> None:
@@ -324,7 +530,13 @@ def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() 
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "real_settlement",
+        "model_requirement:model.providers",
+    ]
+    assert payment["providerResolution"]["selectedProvider"] is None
+    assert payment["requiredSecrets"] == []
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -332,7 +544,7 @@ def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() 
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert "Payment extension is dry-run only" in payment["warnings"][1]
+    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
 
 
 def test_gemini_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -340,7 +552,12 @@ def test_gemini_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     report = json.loads(proc.stdout)[0]
     assert report["compatibilityMode"] == "gemini-provider-compatibility-only"
     assert report["supported"] is False
-    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert report["requiredSecrets"] == []
     assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
@@ -387,14 +604,22 @@ def test_ollama_compatibility_mode_maps_local_provider_metadata_only() -> None:
     assert "local endpoint" in simple["warnings"][0]
 
     tool = reports["source-checker"]
-    assert tool["supported"] is True
+    assert tool["supported"] is False
+    assert tool["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+    ]
     assert tool["providerMapping"]["modelProfile"]["localProviderDeclared"] is False
     assert tool["providerMapping"]["adapterMapping"]["functionTools"] == ["search_docs"]
     assert tool["providerMapping"]["adapterMapping"]["toolCalls"] == "custom-harness-required"
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "real_settlement",
+        "model_requirement:model.providers",
+    ]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -402,7 +627,7 @@ def test_ollama_compatibility_mode_maps_local_provider_metadata_only() -> None:
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert "Payment extension is dry-run only" in payment["warnings"][1]
+    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
 
 
 def test_ollama_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -411,7 +636,11 @@ def test_ollama_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     assert report["compatibilityMode"] == "ollama-local-provider-compatibility-only"
     assert report["supported"] is False
     assert report["requiredSecrets"] == []
-    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
     assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
@@ -442,7 +671,7 @@ def test_langgraph_compatibility_report_maps_graph_state_without_generation() ->
         "paymentAccess": False,
         "mcpInvocation": False,
     }
-    assert simple["requiredSecrets"] == []
+    assert simple["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert simple["providerMapping"]["reportOnly"] is True
     assert simple["providerMapping"]["adapterMapping"]["graph"] == "not-generated"
     assert simple["providerMapping"]["adapterMapping"]["stateSchema"] == {
@@ -488,7 +717,7 @@ def test_langgraph_compatibility_report_keeps_mcp_execution_unsupported() -> Non
     report = json.loads(proc.stdout)[0]
     assert report["compatibilityMode"] == "langgraph-compatibility-report-only"
     assert report["supported"] is False
-    assert report["requiredSecrets"] == []
+    assert report["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert report["unsupportedFeatures"] == ["mcp_execution"]
     assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert report["providerMapping"]["adapterMapping"]["graph"] == "not-generated"
@@ -592,6 +821,11 @@ def main() -> int:
     test_target_agent_selection_covers_provider_and_mcp_paths()
     test_local_python_selector_and_summary_output_file()
     test_v02_invalid_source_boundaries_fail_before_reporting()
+    test_v02_provider_refusal_does_not_crash_on_malformed_provider_shapes()
+    test_v02_provider_exports_conformance_metadata()
+    test_v02_provider_exports_cumulative_conformance_failure_metadata()
+    test_v02_provider_refusal_does_not_crash_on_invalid_requested_level()
+    test_v02_provider_reports_resolution_and_model_requirement_diagnostics()
     test_openai_compatibility_mode_maps_metadata_only_semantics()
     test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
     test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation()

@@ -248,8 +248,8 @@
           "path": "specs/PROVIDER-MAPPING-v0.1.md",
           "exists": true,
           "kind": "file",
-          "sha256": "d944f96e833092ef87b174f3f5642db15eddc9cef245ef2fb82d1cd35d10298e",
-          "bytes": 4174
+          "sha256": "20bd1a20fefb5e435406e0701dc1aba07d90fb5f843743430ea21efb4d54f507",
+          "bytes": 5291
         },
         {
           "path": "specs/HARNESS-LIFECYCLE-v0.1.md",
