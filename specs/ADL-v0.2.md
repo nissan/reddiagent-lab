@@ -91,7 +91,7 @@ required evidence output for levels `0..requestedLevel` is absent.
 | 0 | schema-valid | `apiVersion`, `kind`, `metadata.name`, `metadata.description`, `model`, `harness` | `conformance`, `extensions` | none | JSON Schema validation diagnostics |
 | 1 | local-python runnable | Level 0 plus `harness.instructions`, `harness.runtime.target`, `harness.evalGates`, and Level 1 observability events | `harness.memory`, `harness.tools`, `harness.dataSources` | payment/reputation extension; production deployment descriptor | local Level 1 trace; `completion.requiredGateStatus`; `trace.started`; `trace.completed`; `task.completed`; `task.failed` |
 | 2 | provider-adapter compatible | Level 1 plus `model.capability`, `model.providers.preferred`, `model.requirements`, `harness.policies`, `harness.evalGates`, and Level 2 observability events | `harness.tools`, `harness.dataSources`, `harness.memory` | payment/reputation extension; production deployment descriptor | provider compatibility report; unsupported-execution boundary; `model.called`; `policy.checked`; `eval.checked` |
-| 3 | payment/reputation extension compatible | Level 2 plus `extensions.x402.enabled=true`, `extensions.x402.intents`, `extensions.x402.intents[*].policyRefs`, `extensions.receipts.required=true`, `extensions.reputation.emitSignals`, and Level 3 observability events | `extensions.identity` | production deployment descriptor | receipt evidence; reputation signal evidence; payment policy evidence; `payment.intent.created`; `receipt.emitted`; `reputation.signal.emitted` |
+| 3 | payment/reputation extension compatible | Level 2 plus `extensions.x402.enabled=true`, spend/refund intents with authority, scope, receipt, audit, revocation, and policy refs, `extensions.receipts.required=true`, `extensions.receipts.refs`, `extensions.reputation.emitSignals`, and Level 3 observability events | `extensions.identity`; `x-*` or URI extension namespaces as strict metadata | production deployment descriptor; live payment rails before a separately reviewed lane | receipt evidence; reputation signal evidence; payment policy evidence; `payment.intent.created`; `receipt.emitted`; `reputation.signal.emitted` |
 | 4 | production deployment compatible | Level 3 plus `harness.runtime.target` of `hosted-container`, `serverless`, `platform-native`, or `openclaw`, `harness.deployment.environment`, `harness.deployment.rollback`, `harness.observability.events`, `harness.recovery.disable`, and Level 4 observability events | `harness.deployment.healthCheck`, `harness.observability.destinations` | mainnet remains separately approval-gated | deployment readiness report; observability trace config; rollback/disable evidence; `deployment.health.checked`; `adapter.loss.reported` |
 
 Conformance output must include:
@@ -211,6 +211,37 @@ payment policy for the exact `x402:intent:<id>` resource, direction/action,
 limits, receipt requirement, and before-execution policy-engine enforcement.
 Unknown, mismatched, or unenforceable capability policy declarations fail
 compatibility before execution.
+
+## Extension And Payment Authority Contract
+
+ADL v0.2 strict mode recognizes ReddiAgent-owned extension namespaces only when
+they have a schema. The known namespaces are `x402`, `receipts`, `reputation`,
+and `identity`. Experimental or third-party namespaces must be explicitly
+prefixed with `x-` or use an `http://` or `https://` URI key; unprefixed
+unknown namespaces fail schema validation so payment-like metadata cannot hide
+behind a loose extension name.
+
+`extensions.x402` is metadata only. A spend-capable or refund-capable intent
+must declare:
+
+- `extensions.x402.intents[*].policyRefs`;
+- the actor authority: `principal`, `spender`, `maxAmount`, `currency`, and
+  `rails`;
+- bounded purpose and scope on both the intent and authority;
+- an ISO-like UTC `expiresAt` timestamp;
+- a revocation path with `operator`, `policy-engine`, or `human-review` mode;
+- an audit path and evidence reference;
+- `requireReceipt: true`, `receiptRef`, and `policyRefs`.
+
+The matching receipt declaration lives in `extensions.receipts.refs` and binds
+`intentRef`, receipt `evidenceRef`, and the policy references used by the
+intent. Reputation declarations remain derived metadata: `emitSignals` must be
+one of the known ReddiAgent signals and may list supporting basis/evidence refs.
+Provider compatibility reports preserve this metadata but keep
+`paymentAccess=false`; `x402-dry-run` is the only report-only compatible rail.
+Rails such as `solana`, `base`, `stripe`, or `other-x402` are valid vocabulary
+only so validators can report them deterministically as unsupported live payment
+rails until a separately approved wallet/facilitator/settlement lane exists.
 
 ## Tool Contract Metadata
 
@@ -997,8 +1028,9 @@ harness:
   export surfaces can treat a source as usable.
 - Requested conformance levels fail closed when their required ADL field set or
   evidence outputs are missing, even if the document is otherwise schema-valid.
-- Payment/reputation declarations are Level 3-gated and production deployment
-  descriptors are Level 4-gated; mainnet remains separately approval-gated.
+- Payment/reputation declarations are Level 3-gated, strict known extension
+  schemas fail closed, and production deployment descriptors are Level 4-gated;
+  mainnet remains separately approval-gated.
 - Runtime/deployment descriptors must be typed, secret-reference-only, and
   report-only until an explicit runtime activation gate approves a bounded
   execution lane.

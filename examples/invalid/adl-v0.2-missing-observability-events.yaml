@@ -93,12 +93,23 @@ extensions:
         maxAmount: "0.00"
         currency: USD
         rails:
-          - dry-run
+          - x402-dry-run
         requireReceipt: true
         policyRefs:
           - deployment-review
   receipts:
     required: true
+    refs:
+      - id: readiness-fee-receipt
+        intentRef: readiness-fee
+        evidenceRef: receipt:readiness-fee
+        policyRefs:
+          - deployment-review
   reputation:
     emitSignals:
-      - deployment-readiness-reviewed
+      - policyCompliant
+    basis:
+      - receipt
+      - policy
+    evidenceRefs:
+      - receipt:readiness-fee

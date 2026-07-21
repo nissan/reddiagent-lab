@@ -160,6 +160,73 @@ def payment_extension_enabled(doc: dict) -> bool:
     return bool(object_or_empty(extensions.get("x402")).get("enabled"))
 
 
+def payment_policies_by_id(doc: dict) -> dict[str, dict]:
+    policies = object_or_empty(doc.get("harness")).get("policies", [])
+    if not isinstance(policies, list):
+        return {}
+    return {
+        policy["id"]: policy
+        for policy in policies
+        if isinstance(policy, dict) and isinstance(policy.get("id"), str)
+    }
+
+
+def receipt_requirements_by_intent(doc: dict) -> dict[str, dict]:
+    extensions = object_or_empty(doc.get("extensions"))
+    receipts = object_or_empty(extensions.get("receipts"))
+    refs = receipts.get("refs", [])
+    if not isinstance(refs, list):
+        return {}
+    return {
+        requirement["intentRef"]: requirement
+        for requirement in refs
+        if isinstance(requirement, dict) and isinstance(requirement.get("intentRef"), str)
+    }
+
+
+def payment_authority_missing_fields(doc: dict) -> list[str]:
+    extensions = object_or_empty(doc.get("extensions"))
+    x402 = object_or_empty(extensions.get("x402"))
+    intents = x402.get("intents", [])
+    if not isinstance(intents, list):
+        return []
+
+    policies = payment_policies_by_id(doc)
+    receipts = receipt_requirements_by_intent(doc)
+    missing: list[str] = []
+    for intent in intents:
+        if not isinstance(intent, dict):
+            continue
+        intent_id = intent.get("id")
+        if not isinstance(intent_id, str):
+            continue
+        if intent.get("direction") not in {"spend", "refund"}:
+            continue
+
+        receipt = receipts.get(intent_id)
+        if not receipt:
+            missing.append(f"extensions.receipts.refs[intentRef={intent_id}]")
+
+        matching_policy = False
+        for policy_ref in intent.get("policyRefs", []):
+            policy = policies.get(policy_ref)
+            if not policy:
+                continue
+            limits = object_or_empty(policy.get("limits"))
+            if (
+                policy.get("capability") == "payment"
+                and policy.get("resource") == f"x402:intent:{intent_id}"
+                and policy.get("action") == intent.get("direction")
+                and policy.get("effect") == "allow"
+                and limits.get("requireReceipt") is True
+            ):
+                matching_policy = True
+                break
+        if not matching_policy:
+            missing.append(f"harness.policies[payment:x402:intent:{intent_id}]")
+    return missing
+
+
 def has_production_runtime(doc: dict) -> bool:
     harness = object_or_empty(doc.get("harness"))
     target = object_or_empty(harness.get("runtime")).get("target")
@@ -252,6 +319,7 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
         reputation = object_or_empty(extensions.get("reputation"))
         if not reputation.get("emitSignals"):
             missing.append("extensions.reputation.emitSignals")
+        missing.extend(payment_authority_missing_fields(doc))
         missing.extend(missing_observability_events(doc, 3))
         return missing
     if level == 4:

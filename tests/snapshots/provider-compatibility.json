@@ -92,6 +92,14 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -214,6 +222,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -340,6 +356,14 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -458,6 +482,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -587,6 +619,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -725,6 +765,14 @@
       },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -809,6 +857,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     }
   },
@@ -909,6 +965,14 @@
           "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -1008,6 +1072,14 @@
           "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -1107,6 +1179,14 @@
           "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -1206,6 +1286,14 @@
           "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -1215,10 +1303,13 @@
     "level": 2,
     "warnings": [
       "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe"
     ],
     "providerResolution": {
       "requestedTarget": "openai",
@@ -1299,6 +1390,57 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -1339,10 +1481,13 @@
     "level": 2,
     "warnings": [
       "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe"
     ],
     "providerResolution": {
       "requestedTarget": "anthropic",
@@ -1423,6 +1568,57 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -1465,11 +1661,14 @@
     "warnings": [
       "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them.",
       "Requested provider target 'gemini' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
       "provider_not_declared",
       "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "model_requirement:model.providers"
     ],
     "providerResolution": {
@@ -1542,6 +1741,57 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -1585,11 +1835,14 @@
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
       "Requested provider target 'ollama' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
       "provider_not_declared",
       "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "model_requirement:model.providers"
     ],
     "providerResolution": {
@@ -1662,6 +1915,57 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -1707,10 +2011,13 @@
     "level": 2,
     "warnings": [
       "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe"
     ],
     "providerResolution": {
       "requestedTarget": "langgraph",
@@ -1791,6 +2098,57 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
+    },
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -1846,10 +2204,13 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe"
     ],
     "providerResolution": {
       "requestedTarget": "mcp-readonly",
@@ -1927,6 +2288,57 @@
       },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
     }
   },
   {
@@ -1935,10 +2347,13 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail.",
       "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
     ],
     "unsupportedFeatures": [
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "model_requirement:model.providers",
       "runtime_deployment:target-mismatch",
       "runtime_deployment:non-local-runtime-target"
@@ -2023,6 +2438,57 @@
           "reason": "local-python compatibility cannot execute hosted or platform runtime targets."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
     }
   },
   {
@@ -2031,10 +2497,13 @@
     "supported": false,
     "level": 4,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe"
     ],
     "providerResolution": {
       "requestedTarget": "hosted-container",
@@ -2112,6 +2581,57 @@
       },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
     }
   },
   {
@@ -2120,11 +2640,14 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail.",
       "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
     ],
     "unsupportedFeatures": [
       "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "runtime_deployment:target-mismatch"
     ],
     "providerResolution": {
@@ -2209,6 +2732,57 @@
           "reason": "Requested runtime target 'serverless' does not match declared target 'hosted-container'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
     }
   },
   {
@@ -2217,11 +2791,14 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail.",
       "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
     ],
     "unsupportedFeatures": [
       "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "runtime_deployment:target-mismatch"
     ],
     "providerResolution": {
@@ -2306,6 +2883,57 @@
           "reason": "Requested runtime target 'platform-native' does not match declared target 'hosted-container'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        }
+      ]
     }
   },
   {
@@ -2314,11 +2942,14 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail.",
       "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
     ],
     "unsupportedFeatures": [
       "real_settlement",
+      "payment_authority:live-payment-rail:solana",
+      "payment_authority:live-payment-rail:base",
+      "payment_authority:live-payment-rail:stripe",
       "runtime_deployment:target-mismatch"
     ],
     "providerResolution": {
@@ -2401,6 +3032,57 @@
           "feature": "target-mismatch",
           "path": "harness.runtime.target",
           "reason": "Requested runtime target 'openclaw' does not match declared target 'hosted-container'."
+        }
+      ]
+    },
+    "paymentAuthority": {
+      "enabled": true,
+      "intents": [
+        {
+          "id": "pay-specialist",
+          "direction": "spend",
+          "rails": [
+            "solana",
+            "base",
+            "stripe"
+          ],
+          "currency": "USDC",
+          "requireReceipt": true,
+          "policyRefs": [],
+          "receiptRef": null,
+          "authorityDeclared": false,
+          "liveRails": [
+            "solana",
+            "base",
+            "stripe"
+          ]
+        }
+      ],
+      "receiptsRequired": true,
+      "receiptRefs": [],
+      "reputationSignals": [
+        "taskCompleted",
+        "evalPassed",
+        "receiptVerified"
+      ],
+      "unsupportedFeatures": [
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "solana",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "base",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
+        },
+        {
+          "feature": "live-payment-rail",
+          "path": "extensions.x402.intents[pay-specialist].rails",
+          "rail": "stripe",
+          "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane."
         }
       ]
     }
@@ -2489,6 +3171,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -2608,6 +3298,14 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -2724,6 +3422,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -2851,6 +3557,14 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -2971,6 +3685,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -3099,6 +3821,14 @@
       },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -3190,6 +3920,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     }
   },
@@ -3284,6 +4022,14 @@
           "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -3377,6 +4123,14 @@
           "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -3470,6 +4224,14 @@
           "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -3563,6 +4325,14 @@
           "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -3652,6 +4422,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -3772,6 +4550,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -3895,6 +4681,14 @@
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -4010,6 +4804,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -4135,6 +4937,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     },
     "providerMapping": {
@@ -4267,6 +5077,14 @@
       },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -4347,6 +5165,14 @@
         "exportEvents": []
       },
       "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
       "unsupportedFeatures": []
     }
   },
@@ -4444,6 +5270,14 @@
           "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -4540,6 +5374,14 @@
           "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -4636,6 +5478,14 @@
           "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   },
   {
@@ -4732,6 +5582,14 @@
           "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
         }
       ]
+    },
+    "paymentAuthority": {
+      "enabled": false,
+      "intents": [],
+      "receiptsRequired": false,
+      "receiptRefs": [],
+      "reputationSignals": [],
+      "unsupportedFeatures": []
     }
   }
 ]

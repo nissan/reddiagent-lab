@@ -100,6 +100,8 @@ ADL_V02_CONFORMANCE_UNSUPPORTED = "adl_v0_2_conformance"
 MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
 PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
 RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX = "runtime_deployment"
+PAYMENT_AUTHORITY_UNSUPPORTED_PREFIX = "payment_authority"
+STATIC_PAYMENT_RAILS = {"x402-dry-run"}
 
 
 def load_adl(path: Path) -> dict:
@@ -397,6 +399,71 @@ def observability_report_metadata(observability: dict) -> dict:
 def runtime_deployment_unsupported_features(metadata: dict) -> list[str]:
     return [
         f"{RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX}:{item['feature']}"
+        for item in metadata["unsupportedFeatures"]
+    ]
+
+
+def payment_authority_metadata(doc: dict) -> dict:
+    extensions = object_or_empty(doc.get("extensions"))
+    x402 = object_or_empty(extensions.get("x402"))
+    intents = x402.get("intents", [])
+    if not isinstance(intents, list):
+        intents = []
+
+    payment_intents = []
+    unsupported = []
+    for intent in intents:
+        if not isinstance(intent, dict):
+            continue
+        rails = intent.get("rails", [])
+        if not isinstance(rails, list):
+            rails = []
+        live_rails = [rail for rail in rails if rail not in STATIC_PAYMENT_RAILS]
+        payment_intents.append(
+            {
+                "id": intent.get("id"),
+                "direction": intent.get("direction"),
+                "rails": rails,
+                "currency": intent.get("currency"),
+                "requireReceipt": intent.get("requireReceipt"),
+                "policyRefs": intent.get("policyRefs", []),
+                "receiptRef": intent.get("receiptRef"),
+                "authorityDeclared": isinstance(intent.get("authority"), dict),
+                "liveRails": live_rails,
+            }
+        )
+        for rail in live_rails:
+            unsupported.append(
+                {
+                    "feature": "live-payment-rail",
+                    "path": f"extensions.x402.intents[{intent.get('id')}].rails",
+                    "rail": rail,
+                    "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane.",
+                }
+            )
+
+    receipts = object_or_empty(extensions.get("receipts"))
+    reputation = object_or_empty(extensions.get("reputation"))
+    refs = receipts.get("refs", [])
+    if not isinstance(refs, list):
+        refs = []
+    return {
+        "enabled": bool(x402.get("enabled")),
+        "intents": payment_intents,
+        "receiptsRequired": receipts.get("required", False),
+        "receiptRefs": [
+            ref.get("id")
+            for ref in refs
+            if isinstance(ref, dict) and ref.get("id")
+        ],
+        "reputationSignals": reputation.get("emitSignals", []),
+        "unsupportedFeatures": unsupported,
+    }
+
+
+def payment_authority_unsupported_features(metadata: dict) -> list[str]:
+    return [
+        f"{PAYMENT_AUTHORITY_UNSUPPORTED_PREFIX}:{item['feature']}:{item['rail']}"
         for item in metadata["unsupportedFeatures"]
     ]
 
@@ -833,6 +900,7 @@ def report(path: Path, target: str) -> dict:
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
     source_boundaries = source_boundary_metadata(doc)
     runtime_deployment = runtime_deployment_metadata(doc, target)
+    payment_authority = payment_authority_metadata(doc)
     conformance = conformance_metadata(path) if doc.get("apiVersion") == "reddiagent.dev/v0.2" else None
     warnings = []
     unsupported = []
@@ -910,9 +978,11 @@ def report(path: Path, target: str) -> dict:
         )
 
     if (extensions.get("x402") or {}).get("enabled"):
-        warnings.append("Payment extension is dry-run only until receipt and policy enforcement land.")
+        warnings.append("Payment extension is metadata-only; x402-dry-run is the only report-only compatible rail.")
         if target != "local-python":
             unsupported.append("real_settlement")
+        if payment_authority["unsupportedFeatures"]:
+            unsupported.extend(payment_authority_unsupported_features(payment_authority))
 
     if requirement_diagnostics["unsupportedRequirements"]:
         unsupported.extend(unsupported_requirement_features(requirement_diagnostics))
@@ -957,6 +1027,7 @@ def report(path: Path, target: str) -> dict:
         "dataSourceTypes": [source["type"] for source in source_boundaries],
         "sourceBoundary": source_boundaries,
         "runtimeDeployment": runtime_deployment,
+        "paymentAuthority": payment_authority,
     }
     if conformance is not None:
         result["conformance"] = conformance

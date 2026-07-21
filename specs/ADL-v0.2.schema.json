@@ -131,11 +131,15 @@
     },
     "extensions": {
       "type": "object",
-      "additionalProperties": true,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": { "type": "object", "additionalProperties": true },
+        "^https?://[^\\s]+$": { "type": "object", "additionalProperties": true }
+      },
       "properties": {
         "x402": { "$ref": "#/$defs/x402" },
-        "receipts": { "type": "object", "additionalProperties": true },
-        "reputation": { "type": "object", "additionalProperties": true },
+        "receipts": { "$ref": "#/$defs/receiptExtension" },
+        "reputation": { "$ref": "#/$defs/reputationExtension" },
         "identity": { "type": "object", "additionalProperties": true }
       }
     }
@@ -953,29 +957,165 @@
     },
     "x402": {
       "type": "object",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "enabled": { "type": "boolean" },
-        "intents": { "type": "array", "items": { "$ref": "#/$defs/paymentIntent" } }
+        "intents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/paymentIntent" },
+          "uniqueItems": true
+        }
       }
     },
     "paymentIntent": {
       "type": "object",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "required": ["id", "direction", "maxAmount", "currency", "rails"],
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
+        "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
         "direction": { "type": "string", "enum": ["spend", "charge", "refund"] },
         "maxAmount": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
-        "currency": { "type": "string", "minLength": 1 },
+        "currency": { "type": "string", "enum": ["USD", "USDC", "EUR", "GBP"] },
         "rails": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "enum": ["x402-dry-run", "solana", "base", "stripe", "other-x402"]
+          },
           "uniqueItems": true
         },
+        "purpose": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/paymentScope" },
+        "authority": { "$ref": "#/$defs/paymentAuthority" },
+        "receiptRef": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
         "requireReceipt": { "type": "boolean" },
         "policyRefs": { "$ref": "#/$defs/policyRefList" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "direction": { "enum": ["spend", "refund"] } }, "required": ["direction"] },
+          "then": { "required": ["purpose", "scope", "authority", "requireReceipt", "receiptRef", "policyRefs"] }
+        },
+        {
+          "if": { "properties": { "direction": { "enum": ["spend", "refund"] } }, "required": ["direction"] },
+          "then": { "properties": { "requireReceipt": { "const": true } } }
+        }
+      ]
+    },
+    "paymentScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "enum": ["task", "session", "resource", "service"] },
+        "value": { "type": "string", "minLength": 1 }
+      }
+    },
+    "paymentAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal",
+        "spender",
+        "maxAmount",
+        "currency",
+        "rails",
+        "purpose",
+        "scope",
+        "expiresAt",
+        "revocation",
+        "audit"
+      ],
+      "properties": {
+        "principal": { "type": "string", "pattern": "^[a-zA-Z0-9_.:-]+$" },
+        "spender": { "type": "string", "pattern": "^[a-zA-Z0-9_.:-]+$" },
+        "maxAmount": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+        "currency": { "type": "string", "enum": ["USD", "USDC", "EUR", "GBP"] },
+        "rails": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["x402-dry-run", "solana", "base", "stripe", "other-x402"]
+          },
+          "uniqueItems": true
+        },
+        "purpose": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/paymentScope" },
+        "expiresAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" },
+        "revocation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "path"],
+          "properties": {
+            "mode": { "type": "string", "enum": ["operator", "policy-engine", "human-review"] },
+            "path": { "type": "string", "minLength": 1 }
+          }
+        },
+        "audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "evidenceRef"],
+          "properties": {
+            "path": { "type": "string", "minLength": 1 },
+            "evidenceRef": { "$ref": "#/$defs/observabilityEvidenceRef" }
+          }
+        }
+      }
+    },
+    "receiptExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/receiptRequirement" },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": true } }, "required": ["required"] },
+          "then": { "required": ["refs"] }
+        }
+      ]
+    },
+    "receiptRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "intentRef", "evidenceRef", "policyRefs"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
+        "intentRef": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
+        "evidenceRef": { "$ref": "#/$defs/observabilityEvidenceRef" },
+        "policyRefs": { "$ref": "#/$defs/policyRefList" }
+      }
+    },
+    "reputationExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "emitSignals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["taskCompleted", "evalPassed", "receiptVerified", "policyCompliant", "refundIssued", "disputeOpened"]
+          },
+          "uniqueItems": true
+        },
+        "basis": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["eval", "receipt", "policy", "human-review"] },
+          "uniqueItems": true
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observabilityEvidenceRef" },
+          "uniqueItems": true
+        }
       }
     }
   }

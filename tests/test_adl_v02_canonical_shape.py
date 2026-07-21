@@ -30,6 +30,8 @@ POSITIVE_EXAMPLES = [
 NEGATIVE_STRING_INSTRUCTIONS = ROOT / "examples" / "invalid" / "adl-v0.2-string-instructions.yaml"
 NEGATIVE_UNKNOWN_PROVIDER = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-provider-id.yaml"
 NEGATIVE_UNKNOWN_REQUIREMENT = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-model-requirement.yaml"
+NEGATIVE_UNKNOWN_EXTENSION = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-extension-namespace.yaml"
+NEGATIVE_MISSING_AUTHORITY = ROOT / "examples" / "invalid" / "adl-v0.2-x402-missing-authority.yaml"
 
 
 def load_schema() -> dict:
@@ -138,6 +140,27 @@ def test_provider_and_requirement_vocabulary_fail_closed() -> None:
     assert any("providerNativeMagic" in error.message for error in requirement_errors)
 
 
+def test_known_extension_namespaces_are_strict_and_x402_authority_is_required() -> None:
+    extension_errors = sorted(
+        validator().iter_errors(load_yaml(NEGATIVE_UNKNOWN_EXTENSION)),
+        key=lambda error: list(error.path),
+    )
+    assert extension_errors, "unprefixed unknown extension namespace must fail"
+    assert any(list(error.path) == ["extensions"] for error in extension_errors)
+    assert any("payments" in error.message for error in extension_errors)
+
+    authority_errors = sorted(
+        validator().iter_errors(load_yaml(NEGATIVE_MISSING_AUTHORITY)),
+        key=lambda error: list(error.path),
+    )
+    assert authority_errors, "spend-capable x402 intent without authority must fail"
+    assert any(
+        list(error.path) == ["extensions", "x402", "intents", 0]
+        and "'authority' is a required property" in error.message
+        for error in authority_errors
+    )
+
+
 def test_spec_field_contract_matches_schema() -> None:
     schema = load_schema()
     contract = field_contract()
@@ -183,6 +206,7 @@ def main() -> int:
     test_checked_examples_use_canonical_instruction_shape()
     test_shape_divergence_negative_fixture_fails_clearly()
     test_provider_and_requirement_vocabulary_fail_closed()
+    test_known_extension_namespaces_are_strict_and_x402_authority_is_required()
     test_spec_field_contract_matches_schema()
     test_documented_yaml_snippets_validate_against_v02_schema()
     print("PASS ADL v0.2 canonical shape")

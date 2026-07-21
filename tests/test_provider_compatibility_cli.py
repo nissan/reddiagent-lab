@@ -296,6 +296,20 @@ def test_v02_provider_exports_cumulative_conformance_failure_metadata() -> None:
     ]
 
 
+def test_v02_provider_reports_live_payment_rails_as_unsupported() -> None:
+    proc = run_cli(["tests/fixtures/adl-v0.2-level3-unsupported-live-rail.yaml", "--target", "local-python"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["target"] == "local-python"
+    assert report["supported"] is False
+    assert "payment_authority:live-payment-rail:solana" in report["unsupportedFeatures"]
+    assert report["paymentAuthority"]["enabled"] is True
+    assert report["paymentAuthority"]["intents"][0]["liveRails"] == ["solana"]
+    assert report["paymentAuthority"]["receiptsRequired"] is True
+    assert report["paymentAuthority"]["receiptRefs"] == ["review-fee-receipt"]
+    assert report["boundary"]["paymentAccess"] is False
+
+
 def test_v02_provider_refusal_does_not_crash_on_invalid_requested_level() -> None:
     proc = run_cli(["tests/fixtures/adl-v0.2-invalid-requested-level.yaml", "--target", "openai"])
     report = json.loads(proc.stdout)[0]
@@ -428,7 +442,12 @@ def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "real_settlement",
+        "payment_authority:live-payment-rail:solana",
+        "payment_authority:live-payment-rail:base",
+        "payment_authority:live-payment-rail:stripe",
+    ]
     assert payment["providerResolution"]["selectedProvider"] == "openai"
     assert payment["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
@@ -438,7 +457,7 @@ def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
+    assert any("x402-dry-run is the only report-only compatible rail" in warning for warning in payment["warnings"])
 
 
 def test_openai_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -503,7 +522,12 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "real_settlement",
+        "payment_authority:live-payment-rail:solana",
+        "payment_authority:live-payment-rail:base",
+        "payment_authority:live-payment-rail:stripe",
+    ]
     assert payment["providerResolution"]["selectedProvider"] == "anthropic"
     assert payment["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
@@ -513,7 +537,7 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
+    assert any("x402-dry-run is the only report-only compatible rail" in warning for warning in payment["warnings"])
 
 
 def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() -> None:
@@ -559,6 +583,9 @@ def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() 
     assert payment["unsupportedFeatures"] == [
         "provider_not_declared",
         "real_settlement",
+        "payment_authority:live-payment-rail:solana",
+        "payment_authority:live-payment-rail:base",
+        "payment_authority:live-payment-rail:stripe",
         "model_requirement:model.providers",
     ]
     assert payment["providerResolution"]["selectedProvider"] is None
@@ -570,7 +597,7 @@ def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() 
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
+    assert any("x402-dry-run is the only report-only compatible rail" in warning for warning in payment["warnings"])
 
 
 def test_gemini_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -644,6 +671,9 @@ def test_ollama_compatibility_mode_maps_local_provider_metadata_only() -> None:
     assert payment["unsupportedFeatures"] == [
         "provider_not_declared",
         "real_settlement",
+        "payment_authority:live-payment-rail:solana",
+        "payment_authority:live-payment-rail:base",
+        "payment_authority:live-payment-rail:stripe",
         "model_requirement:model.providers",
     ]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
@@ -653,7 +683,7 @@ def test_ollama_compatibility_mode_maps_local_provider_metadata_only() -> None:
         "extensions.receipts",
         "extensions.reputation",
     ]
-    assert any("Payment extension is dry-run only" in warning for warning in payment["warnings"])
+    assert any("x402-dry-run is the only report-only compatible rail" in warning for warning in payment["warnings"])
 
 
 def test_ollama_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
@@ -721,7 +751,12 @@ def test_langgraph_compatibility_report_maps_graph_state_without_generation() ->
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "real_settlement",
+        "payment_authority:live-payment-rail:solana",
+        "payment_authority:live-payment-rail:base",
+        "payment_authority:live-payment-rail:stripe",
+    ]
     assert payment["providerMapping"]["adapterMapping"]["nodes"] == [
         "model",
         "tools",
@@ -850,6 +885,7 @@ def main() -> int:
     test_v02_provider_refusal_does_not_crash_on_malformed_provider_shapes()
     test_v02_provider_exports_conformance_metadata()
     test_v02_provider_exports_cumulative_conformance_failure_metadata()
+    test_v02_provider_reports_live_payment_rails_as_unsupported()
     test_v02_provider_refusal_does_not_crash_on_invalid_requested_level()
     test_v02_provider_reports_resolution_and_model_requirement_diagnostics()
     test_openai_compatibility_mode_maps_metadata_only_semantics()
