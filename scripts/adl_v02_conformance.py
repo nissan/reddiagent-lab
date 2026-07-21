@@ -90,6 +90,10 @@ def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
+def object_or_empty(value: Any) -> dict:
+    return value if isinstance(value, dict) else {}
+
+
 def validation_error_path(error: jsonschema.ValidationError) -> str:
     if error.path:
         return ".".join(str(part) for part in error.path)
@@ -120,16 +124,18 @@ def has_path(doc: dict, dotted_path: str) -> bool:
 
 
 def payment_extension_enabled(doc: dict) -> bool:
-    return bool(((doc.get("extensions") or {}).get("x402") or {}).get("enabled"))
+    extensions = object_or_empty(doc.get("extensions"))
+    return bool(object_or_empty(extensions.get("x402")).get("enabled"))
 
 
 def has_production_runtime(doc: dict) -> bool:
-    target = (((doc.get("harness") or {}).get("runtime") or {}).get("target"))
+    harness = object_or_empty(doc.get("harness"))
+    target = object_or_empty(harness.get("runtime")).get("target")
     return target in PRODUCTION_RUNTIME_TARGETS
 
 
 def has_deployment_descriptor(doc: dict) -> bool:
-    deployment = (doc.get("harness") or {}).get("deployment")
+    deployment = object_or_empty(doc.get("harness")).get("deployment")
     return isinstance(deployment, dict) and bool(deployment)
 
 
@@ -159,7 +165,8 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
         ]
     if level == 3:
         missing = []
-        x402 = ((doc.get("extensions") or {}).get("x402") or {})
+        extensions = object_or_empty(doc.get("extensions"))
+        x402 = object_or_empty(extensions.get("x402"))
         if x402.get("enabled") is not True:
             missing.append("extensions.x402.enabled=true")
         intents = x402.get("intents")
@@ -167,10 +174,10 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
             missing.append("extensions.x402.intents")
         elif any(not intent.get("policyRefs") for intent in intents if isinstance(intent, dict)):
             missing.append("extensions.x402.intents[*].policyRefs")
-        receipts = ((doc.get("extensions") or {}).get("receipts") or {})
+        receipts = object_or_empty(extensions.get("receipts"))
         if receipts.get("required") is not True:
             missing.append("extensions.receipts.required=true")
-        reputation = ((doc.get("extensions") or {}).get("reputation") or {})
+        reputation = object_or_empty(extensions.get("reputation"))
         if not reputation.get("emitSignals"):
             missing.append("extensions.reputation.emitSignals")
         return missing
@@ -213,7 +220,7 @@ def achieved_level(doc: dict, schema_errors: list[dict]) -> int:
 def requested_level(doc: dict, override: int | None) -> int:
     if override is not None:
         return override
-    declared = (doc.get("conformance") or {}).get("requestedLevel")
+    declared = object_or_empty(doc.get("conformance")).get("requestedLevel")
     if declared is None:
         return 0
     return int(declared)
@@ -246,7 +253,7 @@ def conformance_report(path: Path, requested: int | None = None) -> dict:
         else "fail"
     )
     return {
-        "agent": (doc.get("metadata") or {}).get("name", path.stem),
+        "agent": object_or_empty(doc.get("metadata")).get("name", path.stem),
         "schema": "specs/ADL-v0.2.schema.json",
         "requestedLevel": requested_value,
         "achievedLevel": achieved,

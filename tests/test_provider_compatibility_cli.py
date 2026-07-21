@@ -202,6 +202,46 @@ harness:
         assert report["validationDiagnostics"]
 
 
+def test_v02_provider_refusal_does_not_crash_on_malformed_metadata_shape() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "metadata-string.yaml"
+        path.write_text(
+            """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata: broken
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+"""
+        )
+
+        proc = run_cli([str(path), "--target", "openai"])
+
+    reports = json.loads(proc.stdout)
+    assert proc.stderr == ""
+    assert len(reports) == 1
+    report = reports[0]
+    assert report["agent"] == "metadata-string"
+    assert report["target"] == "openai"
+    assert report["supported"] is False
+    assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+    assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+    assert report["providerResolution"]["selectedRole"] == "schema-invalid"
+    assert report["boundary"]["runtimeExecutionAllowed"] is False
+    assert report["conformance"]["achievedLevel"] == -1
+    assert report["conformance"]["status"] == "fail"
+    assert report["validationDiagnostics"]
+
+
 def test_v02_provider_exports_conformance_metadata() -> None:
     proc = run_cli(["tests/fixtures/adl-v0.2-level3-ready.yaml", "--target", "openai"])
     report = json.loads(proc.stdout)[0]
