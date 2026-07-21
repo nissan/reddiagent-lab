@@ -1,0 +1,46 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: x402-missing-authority
+  description: Invalid spend-capable x402 intent with no authority object.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: review-fee
+        direction: spend
+        maxAmount: "0.50"
+        currency: USD
+        rails:
+          - x402-dry-run
+        purpose: "Review fee for a bounded dry-run research task."
+        scope:
+          type: task
+          value: review-fee
+        requireReceipt: true
+        receiptRef: review-fee-receipt
+        policyRefs:
+          - allow-payment-dry-run
+  receipts:
+    required: true
+    refs:
+      - id: review-fee-receipt
+        intentRef: review-fee
+        evidenceRef: receipt:review-fee
+        policyRefs:
+          - allow-payment-dry-run
+  reputation:
+    emitSignals:
+      - receiptVerified

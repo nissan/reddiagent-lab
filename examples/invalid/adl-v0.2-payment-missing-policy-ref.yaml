@@ -25,6 +25,29 @@ extensions:
         currency: USD
         rails:
           - x402-dry-run
+        purpose: "Review fee for a bounded dry-run task."
+        scope:
+          type: task
+          value: review-fee
+        authority:
+          principal: user:review-requester
+          spender: agent:payment-missing-policy-ref
+          maxAmount: "0.50"
+          currency: USD
+          rails:
+            - x402-dry-run
+          purpose: "Review fee for a bounded dry-run task."
+          scope:
+            type: task
+            value: review-fee
+          expiresAt: "2026-12-31T23:59:59Z"
+          revocation:
+            mode: operator
+            path: "ops://reviews/review-fee/revoke"
+          audit:
+            path: "trace://payment/review-fee"
+            evidenceRef: trace:payment.intent.created
         requireReceipt: true
+        receiptRef: review-fee-receipt
         policyRefs:
           - missing-payment-policy

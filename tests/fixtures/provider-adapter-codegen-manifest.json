@@ -87,6 +87,9 @@
           "metadata_only:harness.memory",
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
+          "payment_authority:live-payment-rail:base",
+          "payment_authority:live-payment-rail:solana",
+          "payment_authority:live-payment-rail:stripe",
           "real_settlement",
           "unsupported_execution:docs_search"
         ],
@@ -166,6 +169,9 @@
           "metadata_only:harness.evalGates",
           "metadata_only:harness.memory",
           "metadata_only:harness.policies",
+          "payment_authority:live-payment-rail:base",
+          "payment_authority:live-payment-rail:solana",
+          "payment_authority:live-payment-rail:stripe",
           "real_settlement",
           "unsupported_execution:docs_search"
         ],
@@ -247,6 +253,9 @@
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
           "model_requirement:model.providers",
+          "payment_authority:live-payment-rail:base",
+          "payment_authority:live-payment-rail:solana",
+          "payment_authority:live-payment-rail:stripe",
           "provider_not_declared",
           "real_settlement",
           "unsupported_execution:docs_search"
@@ -327,6 +336,9 @@
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
           "model_requirement:model.providers",
+          "payment_authority:live-payment-rail:base",
+          "payment_authority:live-payment-rail:solana",
+          "payment_authority:live-payment-rail:stripe",
           "provider_not_declared",
           "real_settlement",
           "unsupported_execution:docs_search"
@@ -409,6 +421,9 @@
           "metadata_only:harness.memory",
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
+          "payment_authority:live-payment-rail:base",
+          "payment_authority:live-payment-rail:solana",
+          "payment_authority:live-payment-rail:stripe",
           "real_settlement",
           "unsupported_execution:docs_search"
         ],

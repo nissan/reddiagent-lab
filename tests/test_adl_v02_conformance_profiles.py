@@ -19,6 +19,7 @@ SPEC_PATH = ROOT / "specs" / "ADL-v0.2.md"
 CONFORMANCE_PATH = ROOT / "specs" / "CONFORMANCE-v0.1.md"
 LEVEL3_READY = ROOT / "tests" / "fixtures" / "adl-v0.2-level3-ready.yaml"
 LEVEL3_MISSING_RECEIPT = ROOT / "tests" / "fixtures" / "adl-v0.2-level3-missing-receipt.yaml"
+LEVEL3_UNSUPPORTED_LIVE_RAIL = ROOT / "tests" / "fixtures" / "adl-v0.2-level3-unsupported-live-rail.yaml"
 LEVEL4_MISSING_OBSERVABILITY = ROOT / "tests" / "fixtures" / "adl-v0.2-level4-missing-observability.yaml"
 LEVEL4_WITHOUT_LEVEL3 = ROOT / "tests" / "fixtures" / "adl-v0.2-level4-complete-without-level3.yaml"
 INVALID_REQUESTED_LEVEL = ROOT / "tests" / "fixtures" / "adl-v0.2-invalid-requested-level.yaml"
@@ -61,6 +62,7 @@ def test_schema_accepts_requested_conformance_level() -> None:
     }
     assert schema_errors(LEVEL3_READY) == []
     assert schema_errors(LEVEL3_MISSING_RECEIPT) == []
+    assert schema_errors(LEVEL3_UNSUPPORTED_LIVE_RAIL) == []
     assert schema_errors(LEVEL4_MISSING_OBSERVABILITY) == []
     assert schema_errors(LEVEL4_WITHOUT_LEVEL3) == []
     assert schema_errors(INVALID_MISSING_OBSERVABILITY_EVENTS) == []
@@ -115,6 +117,7 @@ def test_schema_valid_level3_fixture_fails_missing_receipt_reputation_fields() -
     assert report["missingFieldsByLevel"]["3"] == [
         "extensions.receipts.required=true",
         "extensions.reputation.emitSignals",
+        "extensions.receipts.refs[intentRef=review-fee]",
     ]
 
 

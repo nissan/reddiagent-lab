@@ -216,12 +216,23 @@ extensions:
         maxAmount: "0.00"
         currency: USD
         rails:
-          - dry-run
+          - x402-dry-run
         requireReceipt: true
         policyRefs:
           - platform-native-runtime-review
   receipts:
     required: true
+    refs:
+      - id: platform-native-readiness-fee-receipt
+        intentRef: platform-native-readiness-fee
+        evidenceRef: receipt:platform-native-readiness-fee
+        policyRefs:
+          - platform-native-runtime-review
   reputation:
     emitSignals:
-      - platform-native-readiness-reviewed
+      - policyCompliant
+    basis:
+      - receipt
+      - policy
+    evidenceRefs:
+      - receipt:platform-native-readiness-fee
