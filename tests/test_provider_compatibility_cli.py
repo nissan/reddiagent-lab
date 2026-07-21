@@ -282,6 +282,8 @@ def test_v02_provider_exports_cumulative_conformance_failure_metadata() -> None:
     report = json.loads(proc.stdout)[0]
 
     assert report["target"] == "openai"
+    assert report["supported"] is False
+    assert "adl_v0_2_conformance" in report["unsupportedFeatures"]
     assert report["conformance"]["requestedLevel"] == 4
     assert report["conformance"]["status"] == "fail"
     assert report["conformance"]["achievedLevel"] < 4

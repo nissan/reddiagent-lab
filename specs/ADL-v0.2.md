@@ -40,7 +40,6 @@ harness:
   runtime:
     target: local-python
   deployment: {}
-  observability: {}
   recovery: {}
 extensions: {}
 ```
@@ -696,9 +695,73 @@ harness:
       mode: none
   observability:
     events:
-      - trace.started
-      - trace.completed
-    redaction: payload-redacted
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+        scope: task
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+        scope: task
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+        scope: task
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+        scope: task
+    summaries:
+      - id: local_run_summary
+        type: run-summary
+        destinationRef: local_trace_file
+        eventRefs:
+          - trace.started
+          - trace.completed
+          - task.completed
+          - task.failed
+        humanReadable: true
+    destinations:
+      - id: local_trace_file
+        type: file
+        mode: local-only
+        ref: file://./traces/local-python.jsonl
+        redaction:
+          mode: payload-redacted
+          fields:
+            - prompt
+            - output
+    evidenceRefs:
+      - trace:trace.started
+      - trace:trace.completed
+      - trace:task.completed
+      - trace:task.failed
+    traceRef: trace:local-python
+    retention:
+      mode: ephemeral
+      purgeOnCompletion: true
+    redaction:
+      mode: payload-redacted
+      fields:
+        - prompt
+        - output
+    receipts:
+      include: false
+      eventRefs: []
+    exports:
+      include: true
+      eventRefs:
+        - trace.started
+        - trace.completed
+        - task.completed
+        - task.failed
+      requiredEvidenceRefs:
+        - trace:trace.started
+        - trace:trace.completed
   recovery:
     disable:
       mode: manual
@@ -747,12 +810,75 @@ harness:
       requiresApproval: true
   observability:
     events:
-      - trace.started
-      - deployment.health.checked
-    sinks:
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+        scope: deployment
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+        scope: deployment
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+        scope: task
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+        scope: task
+      - name: deployment.health.checked
+        type: deployment
+        required: true
+        evidenceRef: trace:deployment.health.checked
+        scope: deployment
+      - name: adapter.loss.reported
+        type: adapter
+        required: true
+        evidenceRef: export:adapter-loss
+        scope: export
+    summaries:
+      - id: deployment_readiness_summary
+        type: deployment-readiness-summary
+        destinationRef: preview_trace
+        eventRefs:
+          - trace.started
+          - deployment.health.checked
+          - adapter.loss.reported
+        humanReadable: true
+      - id: adapter_loss_summary
+        type: adapter-loss-summary
+        destinationRef: preview_trace
+        eventRefs:
+          - adapter.loss.reported
+        humanReadable: true
+    destinations:
       - type: openclaw-trace
+        id: preview_trace
+        mode: adapter-managed
         ref: trace://runtime-preview
-        redaction: payload-redacted
+        redaction:
+          mode: payload-redacted
+          fields:
+            - prompt
+            - secretRefs
+    evidenceRefs:
+      - trace:trace.started
+      - trace:deployment.health.checked
+      - export:adapter-loss
+    traceRef: trace:runtime-preview
+    retention:
+      mode: time-bound
+      maxAge: "7d"
+      storageRef: trace://runtime-preview
+    redaction:
+      mode: payload-redacted
+      fields:
+        - prompt
+        - secretRefs
   recovery:
     disable:
       mode: operator-reviewed

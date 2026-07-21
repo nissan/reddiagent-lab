@@ -96,6 +96,7 @@ GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
+ADL_V02_CONFORMANCE_UNSUPPORTED = "adl_v0_2_conformance"
 MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
 PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
 RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX = "runtime_deployment"
@@ -832,6 +833,7 @@ def report(path: Path, target: str) -> dict:
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
     source_boundaries = source_boundary_metadata(doc)
     runtime_deployment = runtime_deployment_metadata(doc, target)
+    conformance = conformance_metadata(path) if doc.get("apiVersion") == "reddiagent.dev/v0.2" else None
     warnings = []
     unsupported = []
     required_secrets = []
@@ -924,6 +926,12 @@ def report(path: Path, target: str) -> dict:
             "Runtime/deployment declarations are report-only and include unsupported features that "
             "must fail before execution."
         )
+    if conformance is not None and conformance["status"] != "pass":
+        unsupported.append(ADL_V02_CONFORMANCE_UNSUPPORTED)
+        warnings.append(
+            "Requested ADL v0.2 conformance failed; provider compatibility remains unsupported "
+            "until missing required field sets and evidence outputs are resolved."
+        )
 
     if mcp_tools:
         warnings.append("MCP declarations are read-only adapter shapes until server resolution lands.")
@@ -950,8 +958,8 @@ def report(path: Path, target: str) -> dict:
         "sourceBoundary": source_boundaries,
         "runtimeDeployment": runtime_deployment,
     }
-    if doc.get("apiVersion") == "reddiagent.dev/v0.2":
-        result["conformance"] = conformance_metadata(path)
+    if conformance is not None:
+        result["conformance"] = conformance
     if provider_mapping is not None:
         result["providerMapping"] = provider_mapping
     return result
