@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from decimal import Decimal, InvalidOperation
 import json
 from pathlib import Path
 import sys
@@ -184,6 +185,50 @@ def receipt_requirements_by_intent(doc: dict) -> dict[str, dict]:
     }
 
 
+def decimal_string_equal(left: Any, right: Any) -> bool:
+    if not isinstance(left, str) or not isinstance(right, str):
+        return False
+    try:
+        return Decimal(left) == Decimal(right)
+    except InvalidOperation:
+        return False
+
+
+def payment_authority_matches_intent(intent: dict) -> bool:
+    authority = object_or_empty(intent.get("authority"))
+    if not authority:
+        return False
+    for key in ("currency", "rails", "purpose", "scope"):
+        if authority.get(key) != intent.get(key):
+            return False
+    return decimal_string_equal(authority.get("maxAmount"), intent.get("maxAmount"))
+
+
+def payment_policy_matches_intent(policy: dict, intent: dict) -> bool:
+    limits = object_or_empty(policy.get("limits"))
+    enforcement = object_or_empty(policy.get("enforcement"))
+    if policy.get("capability") != "payment":
+        return False
+    if policy.get("resource") != f"x402:intent:{intent['id']}":
+        return False
+    if policy.get("action") != intent.get("direction"):
+        return False
+    if policy.get("effect") != "allow":
+        return False
+    if enforcement.get("target") != "policy-engine":
+        return False
+    if enforcement.get("phase") != "before-execution":
+        return False
+    if limits.get("requireReceipt") is not True:
+        return False
+    if intent.get("currency") == "USD":
+        return decimal_string_equal(limits.get("maxUsd"), intent.get("maxAmount"))
+    return limits.get("currency") == intent.get("currency") and decimal_string_equal(
+        limits.get("maxAmount"),
+        intent.get("maxAmount"),
+    )
+
+
 def payment_authority_missing_fields(doc: dict) -> list[str]:
     extensions = object_or_empty(doc.get("extensions"))
     x402 = object_or_empty(extensions.get("x402"))
@@ -203,6 +248,9 @@ def payment_authority_missing_fields(doc: dict) -> list[str]:
         if intent.get("direction") not in {"spend", "refund"}:
             continue
 
+        if not payment_authority_matches_intent(intent):
+            missing.append(f"extensions.x402.intents[{intent_id}].authority")
+
         receipt = receipts.get(intent_id)
         if not receipt:
             missing.append(f"extensions.receipts.refs[intentRef={intent_id}]")
@@ -212,14 +260,7 @@ def payment_authority_missing_fields(doc: dict) -> list[str]:
             policy = policies.get(policy_ref)
             if not policy:
                 continue
-            limits = object_or_empty(policy.get("limits"))
-            if (
-                policy.get("capability") == "payment"
-                and policy.get("resource") == f"x402:intent:{intent_id}"
-                and policy.get("action") == intent.get("direction")
-                and policy.get("effect") == "allow"
-                and limits.get("requireReceipt") is True
-            ):
+            if payment_policy_matches_intent(policy, intent):
                 matching_policy = True
                 break
         if not matching_policy:
