@@ -1,0 +1,115 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: runtime-platform-native-agent
+  description: Platform-native descriptor with deployment-only constraints for static review.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+    fallbacks:
+      - gemini
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+conformance:
+  requestedLevel: 4
+harness:
+  instructions:
+    inline: "Prepare a platform-native deployment review without invoking platform APIs."
+  policies:
+    - id: platform-native-runtime-review
+      capability: runtime
+      subject: operator
+      resource: platform-native
+      action: review
+      effect: allow
+      scope:
+        type: project
+      enforcement:
+        target: human-review
+        phase: compatibility
+  evalGates:
+    - id: platform-native-readiness
+      type: human-review
+      rule: "Platform-native readiness evidence must be reviewed."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: task
+      evidence:
+        ref: trace:platform_native.readiness
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+  runtime:
+    target: platform-native
+    network:
+      access: none
+      allowlist: []
+      denyByDefault: true
+    storage:
+      mode: ephemeral
+    scheduler:
+      trigger: manual
+    activation:
+      mode: approval-required
+    constraints:
+      region: us-west1
+      maxDurationSeconds: 120
+      maxConcurrency: 1
+  deployment:
+    target: platform-native
+    environment: staging
+    networkPolicy:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    storage:
+      mode: external
+      refs:
+        - platform://state-store
+      retention: "24h"
+    scheduler:
+      trigger: cron
+      schedule: "*/30 * * * *"
+      timezone: UTC
+    rollback:
+      mode: operator-reviewed
+      requiresApproval: true
+    healthCheck:
+      type: trace-event
+      ref: trace:platform_native.health.checked
+  observability:
+    events:
+      - trace.started
+      - trace.completed
+      - platform_native.health.checked
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: operator-reviewed
+      ref: runbook://disable-platform-native
+      requiresApproval: true
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: platform-native-readiness-fee
+        direction: charge
+        maxAmount: "0.00"
+        currency: USD
+        rails:
+          - dry-run
+        requireReceipt: true
+        policyRefs:
+          - platform-native-runtime-review
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - platform-native-readiness-reviewed

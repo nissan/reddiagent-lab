@@ -136,7 +136,29 @@ def has_production_runtime(doc: dict) -> bool:
 
 def has_deployment_descriptor(doc: dict) -> bool:
     deployment = object_or_empty(doc.get("harness")).get("deployment")
-    return isinstance(deployment, dict) and bool(deployment)
+    if not isinstance(deployment, dict) or not deployment:
+        return False
+    if deployment.get("target") in {"container", "serverless", "platform-native", "openclaw"}:
+        return True
+    if deployment.get("environment") in {"preview", "staging", "production"}:
+        return True
+    rollback = object_or_empty(deployment.get("rollback"))
+    if rollback and rollback.get("mode") != "none":
+        return True
+    return any(
+        field in deployment
+        for field in (
+            "region",
+            "resources",
+            "secretRefs",
+            "networkPolicy",
+            "storage",
+            "scheduler",
+            "observability",
+            "healthCheck",
+            "constraints",
+        )
+    )
 
 
 def level_missing_fields(doc: dict, level: int) -> list[str]:

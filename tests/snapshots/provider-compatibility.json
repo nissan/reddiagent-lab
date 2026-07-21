@@ -63,6 +63,24 @@
     "compatibilityMode": "openai-adapter-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -158,6 +176,24 @@
     "compatibilityMode": "anthropic-mcp-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -253,6 +289,24 @@
     "compatibilityMode": "gemini-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -344,6 +398,24 @@
     "compatibilityMode": "ollama-local-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -444,6 +516,24 @@
     "compatibilityMode": "langgraph-compatibility-report-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -551,7 +641,25 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
   },
   {
     "agent": "mcp-readonly-docs",
@@ -607,7 +715,377 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "hosted-container",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution.",
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch",
+      "mcp_execution"
+    ],
+    "providerResolution": {
+      "requestedTarget": "hosted-container",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "serverless",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution.",
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch",
+      "mcp_execution"
+    ],
+    "providerResolution": {
+      "requestedTarget": "serverless",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "platform-native",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution.",
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch",
+      "mcp_execution"
+    ],
+    "providerResolution": {
+      "requestedTarget": "platform-native",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "mcp-readonly-docs",
+    "target": "openclaw",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution.",
+      "MCP declarations are read-only adapter shapes until server resolution lands."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch",
+      "mcp_execution"
+    ],
+    "providerResolution": {
+      "requestedTarget": "openclaw",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [
+      "mcp:approved-docs-search"
+    ],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
+        }
+      ]
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -671,6 +1149,24 @@
     "compatibilityMode": "openai-adapter-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -766,6 +1262,24 @@
     "compatibilityMode": "anthropic-mcp-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -856,6 +1370,24 @@
     "compatibilityMode": "gemini-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -947,6 +1479,24 @@
     "compatibilityMode": "ollama-local-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -1047,6 +1597,24 @@
     "compatibilityMode": "langgraph-compatibility-report-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -1154,7 +1722,25 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
   },
   {
     "agent": "paid-specialist-researcher",
@@ -1162,10 +1748,13 @@
     "supported": false,
     "level": 0,
     "warnings": [
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
     ],
     "unsupportedFeatures": [
-      "model_requirement:model.providers"
+      "model_requirement:model.providers",
+      "runtime_deployment:target-mismatch",
+      "runtime_deployment:non-local-runtime-target"
     ],
     "providerResolution": {
       "requestedTarget": "local-python",
@@ -1207,7 +1796,372 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'local-python' does not match declared target 'hosted-container'."
+        },
+        {
+          "feature": "non-local-runtime-target",
+          "path": "harness.runtime.target",
+          "reason": "local-python compatibility cannot execute hosted or platform runtime targets."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "hosted-container",
+    "supported": false,
+    "level": 4,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement"
+    ],
+    "providerResolution": {
+      "requestedTarget": "hosted-container",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "serverless",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement",
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "serverless",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'serverless' does not match declared target 'hosted-container'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "platform-native",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement",
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "platform-native",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'platform-native' does not match declared target 'hosted-container'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "paid-specialist-researcher",
+    "target": "openclaw",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "real_settlement",
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "openclaw",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "hosted-container",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'openclaw' does not match declared target 'hosted-container'."
+        }
+      ]
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -1266,6 +2220,24 @@
     "compatibilityMode": "openai-adapter-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -1354,6 +2326,24 @@
     "compatibilityMode": "anthropic-mcp-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -1443,6 +2433,24 @@
     "compatibilityMode": "gemini-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -1539,6 +2547,24 @@
     "compatibilityMode": "ollama-local-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -1632,6 +2658,24 @@
     "compatibilityMode": "langgraph-compatibility-report-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -1729,7 +2773,25 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
   },
   {
     "agent": "simple-research-helper",
@@ -1792,7 +2854,353 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "hosted-container",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "hosted-container",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "serverless",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "serverless",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "platform-native",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "platform-native",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "simple-research-helper",
+    "target": "openclaw",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "openclaw",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
+        }
+      ]
+    }
   },
   {
     "agent": "source-checker",
@@ -1854,6 +3262,24 @@
     "compatibilityMode": "openai-adapter-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -1945,6 +3371,24 @@
     "compatibilityMode": "anthropic-mcp-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -2037,6 +3481,24 @@
     "compatibilityMode": "gemini-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -2125,6 +3587,24 @@
     "compatibilityMode": "ollama-local-provider-compatibility-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -2221,6 +3701,24 @@
     "compatibilityMode": "langgraph-compatibility-report-only",
     "dataSourceTypes": [],
     "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    },
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -2322,7 +3820,25 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
   },
   {
     "agent": "source-checker",
@@ -2374,6 +3890,364 @@
     },
     "compatibilityMode": "provider-compatibility-report-only",
     "dataSourceTypes": [],
-    "sourceBoundary": []
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": []
+    }
+  },
+  {
+    "agent": "source-checker",
+    "target": "hosted-container",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "hosted-container",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'hosted-container' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "source-checker",
+    "target": "serverless",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "serverless",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'serverless' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "source-checker",
+    "target": "platform-native",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "platform-native",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'platform-native' does not match declared target 'local-python'."
+        }
+      ]
+    }
+  },
+  {
+    "agent": "source-checker",
+    "target": "openclaw",
+    "supported": false,
+    "level": 0,
+    "warnings": [
+      "Runtime/deployment declarations are report-only and include unsupported features that must fail before execution."
+    ],
+    "unsupportedFeatures": [
+      "runtime_deployment:target-mismatch"
+    ],
+    "providerResolution": {
+      "requestedTarget": "openclaw",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [],
+    "requiredHostedServices": [],
+    "suggestedFallback": "local-python",
+    "boundary": {
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "paymentAccess": false,
+      "mcpInvocation": false
+    },
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
+    "runtimeDeployment": {
+      "target": "local-python",
+      "networkAccess": "not-declared",
+      "deploymentNetworkAccess": "not-declared",
+      "secretRefs": [],
+      "storageMode": "not-declared",
+      "deploymentStorageMode": "not-declared",
+      "schedulerTrigger": "not-declared",
+      "deploymentSchedulerTrigger": "not-declared",
+      "activationMode": "not-declared",
+      "constraints": {},
+      "deploymentTarget": "not-declared",
+      "deploymentEnvironment": "not-declared",
+      "rollbackMode": "not-declared",
+      "observabilityEvents": [],
+      "recoveryDisableMode": "not-declared",
+      "unsupportedFeatures": [
+        {
+          "feature": "target-mismatch",
+          "path": "harness.runtime.target",
+          "reason": "Requested runtime target 'openclaw' does not match declared target 'local-python'."
+        }
+      ]
+    }
   }
 ]

@@ -1,0 +1,76 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: runtime-local-python-agent
+  description: Local-python descriptor with no network or live activation.
+model:
+  capability: chat
+  providers:
+    preferred: ollama
+    fallbacks:
+      - openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+conformance:
+  requestedLevel: 1
+harness:
+  instructions:
+    inline: "Answer locally using only the provided prompt."
+  policies:
+    - id: no-runtime-network
+      capability: network
+      subject: agent
+      resource: external-network
+      action: connect
+      effect: deny
+      scope:
+        type: task
+      enforcement:
+        target: static-validator
+        phase: compatibility
+  evalGates:
+    - id: local-answer
+      type: output-check
+      rule: "Local answer must be present."
+      required: true
+      severity: error
+      appliesTo:
+        scope: output
+      evidence:
+        ref: trace:output.local_answer
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+  runtime:
+    target: local-python
+    network:
+      access: none
+      allowlist: []
+      denyByDefault: true
+    storage:
+      mode: ephemeral
+    scheduler:
+      trigger: manual
+    activation:
+      mode: blocked
+    constraints:
+      runtimeVersion: "python3.14"
+      maxDurationSeconds: 60
+  deployment:
+    target: local
+    environment: local
+    rollback:
+      mode: none
+  observability:
+    events:
+      - trace.started
+      - trace.completed
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: manual
+extensions: {}

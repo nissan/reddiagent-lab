@@ -1,0 +1,118 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: runtime-hosted-container-agent
+  description: Hosted-container descriptor for static compatibility review only.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+conformance:
+  requestedLevel: 4
+harness:
+  instructions:
+    inline: "Produce a deployment readiness summary without starting services."
+  policies:
+    - id: hosted-runtime-review
+      capability: runtime
+      subject: operator
+      resource: hosted-container
+      action: review
+      effect: allow
+      scope:
+        type: project
+      enforcement:
+        target: human-review
+        phase: compatibility
+  evalGates:
+    - id: deployment-readiness
+      type: human-review
+      rule: "Deployment readiness evidence must be reviewed."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: task
+      evidence:
+        ref: trace:deployment.readiness
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+  runtime:
+    target: hosted-container
+    network:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    secretRefs:
+      - name: EXAMPLE_API_KEY
+        provider: vault
+        ref: vault://example/api-key
+        scope: runtime
+        required: true
+    storage:
+      mode: persistent
+      refs:
+        - volume://agent-cache
+      retention: "7d"
+    scheduler:
+      trigger: manual
+    activation:
+      mode: approval-required
+    constraints:
+      image: ghcr.io/reddiagent/example-agent:sha256-demo
+      region: syd1
+      maxDurationSeconds: 300
+  deployment:
+    target: container
+    environment: preview
+    networkPolicy:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    rollback:
+      mode: previous-version
+      ref: deployment:previous
+      requiresApproval: true
+    healthCheck:
+      type: trace-event
+      ref: trace:deployment.health.checked
+  observability:
+    events:
+      - trace.started
+      - deployment.health.checked
+    sinks:
+      - type: openclaw-trace
+        ref: trace://runtime-preview
+        redaction: payload-redacted
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: operator-reviewed
+      ref: runbook://disable-preview
+      requiresApproval: true
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: readiness-fee
+        direction: charge
+        maxAmount: "0.00"
+        currency: USD
+        rails:
+          - dry-run
+        requireReceipt: true
+        policyRefs:
+          - hosted-runtime-review
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - deployment-readiness-reviewed

@@ -7,6 +7,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_adl_v02_canonical_shape.py
 "$PYTHON" tests/test_adl_v02_source_boundary.py
 "$PYTHON" tests/test_adl_v02_conformance_profiles.py
+"$PYTHON" tests/test_adl_v02_runtime_deployment.py
 "$PYTHON" tests/test_adl_v02_permission_policy.py
 "$PYTHON" tests/test_adl_v02_tool_contract.py
 "$PYTHON" tests/test_adl_v02_eval_gate_completion.py

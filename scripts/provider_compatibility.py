@@ -16,8 +16,21 @@ from adl_v02_conformance import conformance_report
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
-TARGETS = ["openai", "anthropic", "gemini", "ollama", "langgraph", "mcp-readonly", "local-python"]
+TARGETS = [
+    "openai",
+    "anthropic",
+    "gemini",
+    "ollama",
+    "langgraph",
+    "mcp-readonly",
+    "local-python",
+    "hosted-container",
+    "serverless",
+    "platform-native",
+    "openclaw",
+]
 MODEL_PROVIDER_IDS = ["openai", "anthropic", "gemini", "ollama"]
+RUNTIME_TARGETS = {"local-python", "hosted-container", "serverless", "platform-native", "openclaw"}
 HOSTED_MODEL_PROVIDERS = {
     "openai": True,
     "anthropic": True,
@@ -85,6 +98,7 @@ LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
 MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
 PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
+RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX = "runtime_deployment"
 
 
 def load_adl(path: Path) -> dict:
@@ -154,6 +168,7 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         "compatibilityMode": "provider-compatibility-report-refused",
         "dataSourceTypes": [],
         "sourceBoundary": [],
+        "runtimeDeployment": runtime_deployment_metadata(doc, target),
         "validationDiagnostics": diagnostics,
     }
     if doc.get("apiVersion") == "reddiagent.dev/v0.2":
@@ -185,6 +200,143 @@ def source_boundary_metadata(doc: dict) -> list[dict]:
             "sourceCheckExpectation": (source.get("sourceCheck") or {}).get("expectation"),
         }
         for source in sources
+    ]
+
+
+def runtime_deployment_metadata(doc: dict, target: str) -> dict:
+    harness = object_or_empty(doc.get("harness"))
+    runtime = object_or_empty(harness.get("runtime"))
+    deployment = object_or_empty(harness.get("deployment"))
+    observability = object_or_empty(harness.get("observability"))
+    recovery = object_or_empty(harness.get("recovery"))
+    network = object_or_empty(runtime.get("network"))
+    deployment_network = object_or_empty(deployment.get("networkPolicy"))
+    storage = object_or_empty(runtime.get("storage"))
+    deployment_storage = object_or_empty(deployment.get("storage"))
+    scheduler = object_or_empty(runtime.get("scheduler"))
+    deployment_scheduler = object_or_empty(deployment.get("scheduler"))
+    activation = object_or_empty(runtime.get("activation"))
+    constraints = object_or_empty(runtime.get("constraints"))
+    rollback = object_or_empty(deployment.get("rollback"))
+    disable = object_or_empty(recovery.get("disable"))
+    runtime_target = runtime.get("target")
+    unsupported = []
+
+    if target in RUNTIME_TARGETS and runtime_target != target:
+        unsupported.append(
+            {
+                "feature": "target-mismatch",
+                "path": "harness.runtime.target",
+                "reason": f"Requested runtime target {target!r} does not match declared target {runtime_target!r}.",
+            }
+        )
+    if target == "local-python" and runtime_target != "local-python":
+        unsupported.append(
+            {
+                "feature": "non-local-runtime-target",
+                "path": "harness.runtime.target",
+                "reason": "local-python compatibility cannot execute hosted or platform runtime targets.",
+            }
+        )
+    if network.get("access") not in (None, "none"):
+        unsupported.append(
+            {
+                "feature": "network-access",
+                "path": "harness.runtime.network.access",
+                "reason": "External runtime network access requires a separately reviewed adapter before execution.",
+            }
+        )
+    if deployment_network.get("access") not in (None, "none"):
+        unsupported.append(
+            {
+                "feature": "deployment-network-access",
+                "path": "harness.deployment.networkPolicy.access",
+                "reason": "Deployment network access requires adapter enforcement before execution.",
+            }
+        )
+    if storage.get("mode") in {"persistent", "external"}:
+        unsupported.append(
+            {
+                "feature": "stateful-storage",
+                "path": "harness.runtime.storage.mode",
+                "reason": "Persistent or external runtime storage requires adapter enforcement before execution.",
+            }
+        )
+    if deployment_storage.get("mode") in {"persistent", "external"}:
+        unsupported.append(
+            {
+                "feature": "deployment-stateful-storage",
+                "path": "harness.deployment.storage.mode",
+                "reason": "Persistent or external deployment storage requires adapter enforcement before execution.",
+            }
+        )
+    if scheduler.get("trigger") not in (None, "manual"):
+        unsupported.append(
+            {
+                "feature": "non-manual-scheduler",
+                "path": "harness.runtime.scheduler.trigger",
+                "reason": "Schedulers, webhooks, queues, and event triggers are report-only until activation is approved.",
+            }
+        )
+    if deployment_scheduler.get("trigger") not in (None, "manual"):
+        unsupported.append(
+            {
+                "feature": "deployment-non-manual-scheduler",
+                "path": "harness.deployment.scheduler.trigger",
+                "reason": "Deployment schedulers, webhooks, queues, and event triggers are report-only until activation is approved.",
+            }
+        )
+    if activation.get("mode") == "approved-bounded":
+        unsupported.append(
+            {
+                "feature": "approved-bounded-activation",
+                "path": "harness.runtime.activation.mode",
+                "reason": "Compatibility reports do not consume runtime activation approvals or start runtimes.",
+            }
+        )
+    if deployment.get("environment") == "production":
+        unsupported.append(
+            {
+                "feature": "production-deployment",
+                "path": "harness.deployment.environment",
+                "reason": "Production deployment remains separately gated; mainnet remains blocked.",
+            }
+        )
+
+    secret_refs = [
+        item.get("name")
+        for item in [*runtime.get("secretRefs", []), *deployment.get("secretRefs", [])]
+        if isinstance(item, dict) and item.get("name")
+    ]
+
+    return {
+        "target": runtime_target,
+        "networkAccess": network.get("access", "not-declared"),
+        "deploymentNetworkAccess": deployment_network.get("access", "not-declared"),
+        "secretRefs": secret_refs,
+        "storageMode": storage.get("mode", "not-declared"),
+        "deploymentStorageMode": deployment_storage.get("mode", "not-declared"),
+        "schedulerTrigger": scheduler.get("trigger", "not-declared"),
+        "deploymentSchedulerTrigger": deployment_scheduler.get("trigger", "not-declared"),
+        "activationMode": activation.get("mode", "not-declared"),
+        "constraints": {
+            key: constraints[key]
+            for key in ("runtimeVersion", "image", "region", "maxDurationSeconds", "maxConcurrency")
+            if key in constraints
+        },
+        "deploymentTarget": deployment.get("target", "not-declared"),
+        "deploymentEnvironment": deployment.get("environment", "not-declared"),
+        "rollbackMode": rollback.get("mode", "not-declared"),
+        "observabilityEvents": observability.get("events", []),
+        "recoveryDisableMode": disable.get("mode", "not-declared"),
+        "unsupportedFeatures": unsupported,
+    }
+
+
+def runtime_deployment_unsupported_features(metadata: dict) -> list[str]:
+    return [
+        f"{RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX}:{item['feature']}"
+        for item in metadata["unsupportedFeatures"]
     ]
 
 
@@ -619,6 +771,7 @@ def report(path: Path, target: str) -> dict:
     tools = harness.get("tools", [])
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
     source_boundaries = source_boundary_metadata(doc)
+    runtime_deployment = runtime_deployment_metadata(doc, target)
     warnings = []
     unsupported = []
     required_secrets = []
@@ -633,6 +786,8 @@ def report(path: Path, target: str) -> dict:
         level = 1 if harness["runtime"]["target"] == "local-python" else 0
     elif target == "mcp-readonly":
         level = 2 if mcp_tools else 0
+    elif target in RUNTIME_TARGETS:
+        level = 4 if harness["runtime"]["target"] == target else 0
     elif target == "ollama":
         level = 2
         compatibility_mode = OLLAMA_COMPATIBILITY_MODE
@@ -703,6 +858,12 @@ def report(path: Path, target: str) -> dict:
         warnings.append(
             "Some model capability requirements are degraded; review lossMetadata before runtime use."
         )
+    if runtime_deployment["unsupportedFeatures"]:
+        unsupported.extend(runtime_deployment_unsupported_features(runtime_deployment))
+        warnings.append(
+            "Runtime/deployment declarations are report-only and include unsupported features that "
+            "must fail before execution."
+        )
 
     if mcp_tools:
         warnings.append("MCP declarations are read-only adapter shapes until server resolution lands.")
@@ -727,6 +888,7 @@ def report(path: Path, target: str) -> dict:
         "compatibilityMode": compatibility_mode,
         "dataSourceTypes": [source["type"] for source in source_boundaries],
         "sourceBoundary": source_boundaries,
+        "runtimeDeployment": runtime_deployment,
     }
     if doc.get("apiVersion") == "reddiagent.dev/v0.2":
         result["conformance"] = conformance_metadata(path)

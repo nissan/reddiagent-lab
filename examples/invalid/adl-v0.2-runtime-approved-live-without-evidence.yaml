@@ -1,0 +1,44 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: runtime-approved-live-without-evidence
+  description: Invalid runtime descriptor that claims approved live activation without evidence refs.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "This fixture must fail before compatibility reporting."
+  runtime:
+    target: hosted-container
+    activation:
+      mode: approved-bounded
+    network:
+      access: none
+      allowlist: []
+      denyByDefault: true
+    storage:
+      mode: ephemeral
+    scheduler:
+      trigger: manual
+  evalGates:
+    - id: live-approval-evidence
+      type: human-review
+      rule: "Live activation claims require bounded approval evidence."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: task
+      evidence:
+        ref: trace:approval.checked
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+extensions: {}

@@ -96,18 +96,24 @@
         "evalGates": { "type": "array", "items": { "$ref": "#/$defs/evalGate" } },
         "runtime": {
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": false,
           "required": ["target"],
           "properties": {
             "target": {
               "type": "string",
               "enum": ["local-python", "hosted-container", "serverless", "platform-native", "openclaw"]
-            }
+            },
+            "network": { "$ref": "#/$defs/runtimeNetwork" },
+            "secretRefs": { "$ref": "#/$defs/secretRefs" },
+            "storage": { "$ref": "#/$defs/runtimeStorage" },
+            "scheduler": { "$ref": "#/$defs/runtimeScheduler" },
+            "activation": { "$ref": "#/$defs/runtimeActivation" },
+            "constraints": { "$ref": "#/$defs/targetConstraints" }
           }
         },
-        "deployment": { "type": "object", "additionalProperties": true },
-        "observability": { "type": "object", "additionalProperties": true },
-        "recovery": { "type": "object", "additionalProperties": true }
+        "deployment": { "$ref": "#/$defs/deployment" },
+        "observability": { "$ref": "#/$defs/observability" },
+        "recovery": { "$ref": "#/$defs/recovery" }
       }
     },
     "conformance": {
@@ -318,6 +324,232 @@
           "then": { "required": ["retention", "privacyPolicy"] }
         }
       ]
+    },
+    "secretRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/secretRef" },
+      "uniqueItems": true
+    },
+    "secretRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "provider"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,127}$" },
+        "provider": { "type": "string", "enum": ["env", "vault", "onepassword", "cloud-secret-manager", "openclaw-secret-ref"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "enum": ["runtime", "deployment", "provider", "tool"] },
+        "required": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "not": {
+            "properties": {
+              "ref": {
+                "pattern": "^(sk-|sk_live_|sk_test_|xox[baprs]-|gh[pousr]_|AKIA|AIza|-----BEGIN )"
+              }
+            },
+            "required": ["ref"]
+          }
+        }
+      ]
+    },
+    "runtimeNetwork": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["access"],
+      "properties": {
+        "access": { "type": "string", "enum": ["none", "egress", "ingress", "egress-and-ingress"] },
+        "allowlist": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "denyByDefault": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "access": { "const": "none" } }, "required": ["access"] },
+          "then": {
+            "properties": {
+              "allowlist": { "maxItems": 0 },
+              "denyByDefault": { "const": true }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "access": { "enum": ["egress", "ingress", "egress-and-ingress"] } }, "required": ["access"] },
+          "then": { "required": ["allowlist", "denyByDefault"] }
+        }
+      ]
+    },
+    "runtimeStorage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["none", "ephemeral", "persistent", "external"] },
+        "refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "retention": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "enum": ["persistent", "external"] } }, "required": ["mode"] },
+          "then": { "required": ["refs", "retention"] }
+        }
+      ]
+    },
+    "runtimeScheduler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trigger"],
+      "properties": {
+        "trigger": { "type": "string", "enum": ["manual", "cron", "event", "webhook", "queue"] },
+        "schedule": { "type": "string", "minLength": 1 },
+        "eventRef": { "type": "string", "minLength": 1 },
+        "timezone": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "trigger": { "const": "cron" } }, "required": ["trigger"] },
+          "then": { "required": ["schedule", "timezone"] }
+        },
+        {
+          "if": { "properties": { "trigger": { "enum": ["event", "webhook", "queue"] } }, "required": ["trigger"] },
+          "then": { "required": ["eventRef"] }
+        }
+      ]
+    },
+    "runtimeActivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["blocked", "approval-required", "approved-bounded"] },
+        "approvalRef": { "type": "string", "minLength": 1 },
+        "expiresAt": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "const": "approved-bounded" } }, "required": ["mode"] },
+          "then": { "required": ["approvalRef", "expiresAt"] }
+        }
+      ]
+    },
+    "targetConstraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "runtimeVersion": { "type": "string", "minLength": 1 },
+        "image": { "type": "string", "minLength": 1 },
+        "region": { "type": "string", "minLength": 1 },
+        "maxDurationSeconds": { "type": "integer", "minimum": 1 },
+        "maxConcurrency": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target": { "type": "string", "enum": ["local", "container", "serverless", "platform-native", "openclaw"] },
+        "environment": { "type": "string", "enum": ["local", "preview", "staging", "production"] },
+        "region": { "type": "string", "minLength": 1 },
+        "resources": { "$ref": "#/$defs/deploymentResources" },
+        "secretRefs": { "$ref": "#/$defs/secretRefs" },
+        "networkPolicy": { "$ref": "#/$defs/runtimeNetwork" },
+        "storage": { "$ref": "#/$defs/runtimeStorage" },
+        "scheduler": { "$ref": "#/$defs/runtimeScheduler" },
+        "observability": { "$ref": "#/$defs/observability" },
+        "rollback": { "$ref": "#/$defs/rollback" },
+        "healthCheck": { "$ref": "#/$defs/healthCheck" },
+        "constraints": { "$ref": "#/$defs/targetConstraints" }
+      }
+    },
+    "deploymentResources": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cpu": { "type": "string", "minLength": 1 },
+        "memory": { "type": "string", "minLength": 1 },
+        "timeoutSeconds": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "sinks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observabilitySink" },
+          "uniqueItems": true
+        },
+        "traceRef": { "type": "string", "minLength": 1 },
+        "redaction": { "type": "string", "enum": ["metadata-only", "payload-redacted", "full"] }
+      }
+    },
+    "observabilitySink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "ref"],
+      "properties": {
+        "type": { "type": "string", "enum": ["stdout", "file", "otlp", "webhook", "openclaw-trace"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "redaction": { "type": "string", "enum": ["metadata-only", "payload-redacted", "full"] }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["none", "dry-run-disable", "previous-version", "operator-reviewed"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "requiresApproval": { "type": "boolean" }
+      }
+    },
+    "healthCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "ref"],
+      "properties": {
+        "type": { "type": "string", "enum": ["none", "http", "command", "trace-event"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "intervalSeconds": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "disable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": {
+            "mode": { "type": "string", "enum": ["manual", "operator-reviewed", "policy-engine"] },
+            "ref": { "type": "string", "minLength": 1 },
+            "requiresApproval": { "type": "boolean" }
+          }
+        },
+        "restart": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": {
+            "mode": { "type": "string", "enum": ["none", "manual", "bounded-retry"] },
+            "maxAttempts": { "type": "integer", "minimum": 0, "maximum": 10 }
+          }
+        }
+      }
     },
     "tool": {
       "type": "object",
