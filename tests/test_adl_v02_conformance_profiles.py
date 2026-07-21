@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 import jsonschema
 import yaml
@@ -47,6 +48,14 @@ def schema_errors(path: Path) -> list[str]:
 
 def report_for(path: Path, *args: str, check: bool = True) -> dict:
     proc = run_cli([str(path.relative_to(ROOT)), *args], check=check)
+    return json.loads(proc.stdout)[0]
+
+
+def report_for_document(document: dict, check: bool = True) -> dict:
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "mutated.yaml"
+        path.write_text(yaml.safe_dump(document, sort_keys=False))
+        proc = run_cli([str(path)], check=check)
     return json.loads(proc.stdout)[0]
 
 
@@ -118,6 +127,58 @@ def test_schema_valid_level3_fixture_fails_missing_receipt_reputation_fields() -
         "extensions.receipts.required=true",
         "extensions.reputation.emitSignals",
         "extensions.receipts.refs[intentRef=review-fee]",
+    ]
+
+
+def test_level3_payment_authority_must_match_intent_envelope() -> None:
+    document = yaml.safe_load(LEVEL3_READY.read_text())
+    intent = document["extensions"]["x402"]["intents"][0]
+    intent["authority"]["maxAmount"] = "999.00"
+    intent["authority"]["currency"] = "EUR"
+    intent["authority"]["rails"] = ["x402-dry-run", "stripe"]
+    intent["authority"]["scope"]["value"] = "different-review-fee"
+
+    report = report_for_document(document, check=False)
+
+    assert report["status"] == "fail"
+    assert report["achievedLevel"] < 3
+    assert report["missingFieldsByLevel"]["3"] == [
+        "extensions.x402.intents[review-fee].authority",
+    ]
+
+
+def test_level3_payment_policy_must_match_budget_and_enforcement() -> None:
+    excessive_intent = yaml.safe_load(LEVEL3_READY.read_text())
+    excessive_intent["extensions"]["x402"]["intents"][0]["maxAmount"] = "50.00"
+    report = report_for_document(excessive_intent, check=False)
+    assert report["status"] == "fail"
+    assert report["missingFieldsByLevel"]["3"] == [
+        "extensions.x402.intents[review-fee].authority",
+        "harness.policies[payment:x402:intent:review-fee]",
+    ]
+
+    wrong_target = yaml.safe_load(LEVEL3_READY.read_text())
+    wrong_target["harness"]["policies"][0]["enforcement"]["target"] = "static-validator"
+    report = report_for_document(wrong_target, check=False)
+    assert report["status"] == "fail"
+    assert report["missingFieldsByLevel"]["3"] == [
+        "harness.policies[payment:x402:intent:review-fee]",
+    ]
+
+    wrong_phase = yaml.safe_load(LEVEL3_READY.read_text())
+    wrong_phase["harness"]["policies"][0]["enforcement"]["phase"] = "compatibility"
+    report = report_for_document(wrong_phase, check=False)
+    assert report["status"] == "fail"
+    assert report["missingFieldsByLevel"]["3"] == [
+        "harness.policies[payment:x402:intent:review-fee]",
+    ]
+
+    loose_budget = yaml.safe_load(LEVEL3_READY.read_text())
+    loose_budget["harness"]["policies"][0]["limits"]["maxUsd"] = "99.00"
+    report = report_for_document(loose_budget, check=False)
+    assert report["status"] == "fail"
+    assert report["missingFieldsByLevel"]["3"] == [
+        "harness.policies[payment:x402:intent:review-fee]",
     ]
 
 
@@ -207,6 +268,8 @@ def main() -> int:
     test_spec_and_conformance_docs_capture_profile_matrix()
     test_level3_ready_fixture_passes_requested_conformance()
     test_schema_valid_level3_fixture_fails_missing_receipt_reputation_fields()
+    test_level3_payment_authority_must_match_intent_envelope()
+    test_level3_payment_policy_must_match_budget_and_enforcement()
     test_schema_valid_level4_fixture_fails_missing_production_evidence_fields()
     test_level4_complete_shape_still_fails_without_cumulative_level3_fields()
     test_schema_valid_level4_fixture_fails_missing_required_observability_events()

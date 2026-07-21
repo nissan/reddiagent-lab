@@ -418,12 +418,18 @@ def payment_authority_metadata(doc: dict) -> dict:
         rails = intent.get("rails", [])
         if not isinstance(rails, list):
             rails = []
-        live_rails = [rail for rail in rails if rail not in STATIC_PAYMENT_RAILS]
+        authority = object_or_empty(intent.get("authority"))
+        authority_rails = authority.get("rails", [])
+        if not isinstance(authority_rails, list):
+            authority_rails = []
+        all_rails = list(dict.fromkeys([*rails, *authority_rails]))
+        live_rails = [rail for rail in all_rails if rail not in STATIC_PAYMENT_RAILS]
         payment_intents.append(
             {
                 "id": intent.get("id"),
                 "direction": intent.get("direction"),
                 "rails": rails,
+                "authorityRails": authority_rails,
                 "currency": intent.get("currency"),
                 "requireReceipt": intent.get("requireReceipt"),
                 "policyRefs": intent.get("policyRefs", []),
@@ -433,10 +439,11 @@ def payment_authority_metadata(doc: dict) -> dict:
             }
         )
         for rail in live_rails:
+            rail_path = "rails" if rail in rails else "authority.rails"
             unsupported.append(
                 {
                     "feature": "live-payment-rail",
-                    "path": f"extensions.x402.intents[{intent.get('id')}].rails",
+                    "path": f"extensions.x402.intents[{intent.get('id')}].{rail_path}",
                     "rail": rail,
                     "reason": "Only x402-dry-run is report-only compatible; live payment rails require a separately reviewed wallet/facilitator/settlement lane.",
                 }

@@ -9,6 +9,8 @@ import subprocess
 import sys
 import tempfile
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
@@ -307,6 +309,28 @@ def test_v02_provider_reports_live_payment_rails_as_unsupported() -> None:
     assert report["paymentAuthority"]["intents"][0]["liveRails"] == ["solana"]
     assert report["paymentAuthority"]["receiptsRequired"] is True
     assert report["paymentAuthority"]["receiptRefs"] == ["review-fee-receipt"]
+    assert report["boundary"]["paymentAccess"] is False
+
+
+def test_v02_provider_reports_authority_only_live_payment_rails_as_unsupported() -> None:
+    document = yaml.safe_load((ROOT / "tests/fixtures/adl-v0.2-level3-ready.yaml").read_text())
+    intent = document["extensions"]["x402"]["intents"][0]
+    intent["authority"]["rails"] = ["x402-dry-run", "stripe"]
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "authority-live-rail.yaml"
+        path.write_text(yaml.safe_dump(document, sort_keys=False))
+        proc = run_cli([str(path), "--target", "local-python"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["supported"] is False
+    assert "payment_authority:live-payment-rail:stripe" in report["unsupportedFeatures"]
+    assert report["paymentAuthority"]["intents"][0]["rails"] == ["x402-dry-run"]
+    assert report["paymentAuthority"]["intents"][0]["authorityRails"] == ["x402-dry-run", "stripe"]
+    assert report["paymentAuthority"]["intents"][0]["liveRails"] == ["stripe"]
+    assert report["paymentAuthority"]["unsupportedFeatures"][0]["path"] == (
+        "extensions.x402.intents[review-fee].authority.rails"
+    )
     assert report["boundary"]["paymentAccess"] is False
 
 
@@ -886,6 +910,7 @@ def main() -> int:
     test_v02_provider_exports_conformance_metadata()
     test_v02_provider_exports_cumulative_conformance_failure_metadata()
     test_v02_provider_reports_live_payment_rails_as_unsupported()
+    test_v02_provider_reports_authority_only_live_payment_rails_as_unsupported()
     test_v02_provider_refusal_does_not_crash_on_invalid_requested_level()
     test_v02_provider_reports_resolution_and_model_requirement_diagnostics()
     test_openai_compatibility_mode_maps_metadata_only_semantics()

@@ -1401,6 +1401,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -1579,6 +1580,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -1752,6 +1754,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -1926,6 +1929,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2109,6 +2113,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2300,6 +2305,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2450,6 +2456,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2593,6 +2600,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2744,6 +2752,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -2895,6 +2904,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
@@ -3046,6 +3056,7 @@
             "base",
             "stripe"
           ],
+          "authorityRails": [],
           "currency": "USDC",
           "requireReceipt": true,
           "policyRefs": [],
