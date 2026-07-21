@@ -51,8 +51,92 @@ harness:
       mode: dry-run-disable
   observability:
     events:
-      - trace.started
-      - trace.completed
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+      - name: model.called
+        type: model
+        required: true
+        evidenceRef: trace:model.called
+      - name: policy.checked
+        type: policy
+        required: true
+        evidenceRef: trace:policy.checked
+      - name: eval.checked
+        type: eval
+        required: true
+        evidenceRef: trace:eval.checked
+      - name: payment.intent.created
+        type: payment
+        required: true
+        evidenceRef: trace:payment.intent.created
+      - name: receipt.emitted
+        type: receipt
+        required: true
+        evidenceRef: receipt:missing-level-three
+      - name: reputation.signal.emitted
+        type: reputation
+        required: true
+        evidenceRef: trace:reputation.signal.emitted
+      - name: deployment.health.checked
+        type: deployment
+        required: true
+        evidenceRef: trace:deployment.health.checked
+      - name: adapter.loss.reported
+        type: adapter
+        required: true
+        evidenceRef: export:adapter-loss
+    summaries:
+      - id: deployment_summary
+        type: deployment-readiness-summary
+        destinationRef: local_trace
+        eventRefs:
+          - trace.started
+          - deployment.health.checked
+          - adapter.loss.reported
+        humanReadable: true
+    destinations:
+      - id: local_trace
+        type: file
+        mode: local-only
+        ref: file://./traces/level-four-without-level-three.jsonl
+        redaction:
+          mode: payload-redacted
+    evidenceRefs:
+      - trace:trace.started
+      - trace:deployment.health.checked
+      - export:adapter-loss
+    retention:
+      mode: ephemeral
+      purgeOnCompletion: true
+    redaction:
+      mode: payload-redacted
+    receipts:
+      include: true
+      eventRefs:
+        - payment.intent.created
+        - receipt.emitted
+        - reputation.signal.emitted
+    exports:
+      include: true
+      eventRefs:
+        - deployment.health.checked
+        - adapter.loss.reported
+      requiredEvidenceRefs:
+        - export:adapter-loss
   recovery:
     disable:
       mode: operator-reviewed

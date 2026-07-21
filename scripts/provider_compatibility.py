@@ -303,9 +303,17 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
             }
         )
 
+    runtime_secret_refs = runtime.get("secretRefs", [])
+    deployment_secret_refs = deployment.get("secretRefs", [])
+    if not isinstance(runtime_secret_refs, list):
+        runtime_secret_refs = []
+    if not isinstance(deployment_secret_refs, list):
+        deployment_secret_refs = []
+    observability_metadata = observability_report_metadata(observability)
+
     secret_refs = [
         item.get("name")
-        for item in [*runtime.get("secretRefs", []), *deployment.get("secretRefs", [])]
+        for item in [*runtime_secret_refs, *deployment_secret_refs]
         if isinstance(item, dict) and item.get("name")
     ]
 
@@ -327,9 +335,61 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
         "deploymentTarget": deployment.get("target", "not-declared"),
         "deploymentEnvironment": deployment.get("environment", "not-declared"),
         "rollbackMode": rollback.get("mode", "not-declared"),
-        "observabilityEvents": observability.get("events", []),
+        "observabilityEvents": observability_metadata["events"],
+        "observability": observability_metadata,
         "recoveryDisableMode": disable.get("mode", "not-declared"),
         "unsupportedFeatures": unsupported,
+    }
+
+
+def observability_report_metadata(observability: dict) -> dict:
+    events = observability.get("events", [])
+    if not isinstance(events, list):
+        events = []
+    summaries = observability.get("summaries", [])
+    if not isinstance(summaries, list):
+        summaries = []
+    destinations = observability.get("destinations", observability.get("sinks", []))
+    if not isinstance(destinations, list):
+        destinations = []
+    evidence_refs = observability.get("evidenceRefs", [])
+    if not isinstance(evidence_refs, list):
+        evidence_refs = []
+    retention = object_or_empty(observability.get("retention"))
+    redaction = object_or_empty(observability.get("redaction"))
+    receipts = object_or_empty(observability.get("receipts"))
+    exports = object_or_empty(observability.get("exports"))
+    return {
+        "events": [
+            event.get("name")
+            for event in events
+            if isinstance(event, dict) and event.get("name")
+        ],
+        "requiredEvents": [
+            event.get("name")
+            for event in events
+            if isinstance(event, dict) and event.get("required") is True and event.get("name")
+        ],
+        "summaryIds": [
+            summary.get("id")
+            for summary in summaries
+            if isinstance(summary, dict) and summary.get("id")
+        ],
+        "destinationModes": [
+            {
+                "id": destination.get("id"),
+                "type": destination.get("type"),
+                "mode": destination.get("mode"),
+                "redaction": object_or_empty(destination.get("redaction")).get("mode"),
+            }
+            for destination in destinations
+            if isinstance(destination, dict)
+        ],
+        "evidenceRefs": [ref for ref in evidence_refs if isinstance(ref, str)],
+        "retentionMode": retention.get("mode", "not-declared"),
+        "redactionMode": redaction.get("mode", "not-declared"),
+        "receiptEvents": receipts.get("eventRefs", []),
+        "exportEvents": exports.get("eventRefs", []),
     }
 
 

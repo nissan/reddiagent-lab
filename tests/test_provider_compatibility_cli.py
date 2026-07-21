@@ -176,6 +176,25 @@ harness:
   runtime:
     target: local-python
 """,
+        "secret-refs-null": """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: secret-refs-null
+  description: Malformed secretRefs shape.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: hosted-container
+    secretRefs: null
+""",
     }
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -189,9 +208,14 @@ harness:
 
     reports = json.loads(proc.stdout)
     assert proc.stderr == ""
-    assert [report["agent"] for report in reports] == ["providers-string", "fallbacks-string"]
+    assert [report["agent"] for report in reports] == [
+        "providers-string",
+        "fallbacks-string",
+        "secret-refs-null",
+    ]
     assert reports[0]["providerResolution"]["orderedCandidates"] == []
     assert reports[1]["providerResolution"]["orderedCandidates"] == ["anthropic"]
+    assert reports[2]["runtimeDeployment"]["secretRefs"] == []
     for report in reports:
         assert report["supported"] is False
         assert report["compatibilityMode"] == "provider-compatibility-report-refused"

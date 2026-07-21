@@ -48,6 +48,87 @@ harness:
         defaultStatus: fail
   runtime:
     target: local-python
+  observability:
+    events:
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+      - name: model.called
+        type: model
+        required: true
+        evidenceRef: trace:model.called
+      - name: policy.checked
+        type: policy
+        required: true
+        evidenceRef: trace:policy.checked
+      - name: eval.checked
+        type: eval
+        required: true
+        evidenceRef: trace:eval.checked
+      - name: payment.intent.created
+        type: payment
+        required: true
+        evidenceRef: trace:payment.intent.created
+      - name: receipt.emitted
+        type: receipt
+        required: true
+        evidenceRef: receipt:review-fee
+      - name: reputation.signal.emitted
+        type: reputation
+        required: true
+        evidenceRef: trace:reputation.signal.emitted
+    summaries:
+      - id: payment_summary
+        type: run-summary
+        destinationRef: local_trace
+        eventRefs:
+          - trace.started
+          - payment.intent.created
+          - receipt.emitted
+          - reputation.signal.emitted
+        humanReadable: true
+    destinations:
+      - id: local_trace
+        type: file
+        mode: local-only
+        ref: file://./traces/level-three-missing-receipt.jsonl
+        redaction:
+          mode: payload-redacted
+    evidenceRefs:
+      - trace:trace.started
+      - trace:payment.intent.created
+      - receipt:review-fee
+    retention:
+      mode: ephemeral
+      purgeOnCompletion: true
+    redaction:
+      mode: payload-redacted
+    receipts:
+      include: true
+      eventRefs:
+        - payment.intent.created
+        - receipt.emitted
+        - reputation.signal.emitted
+      requiredEvidenceRefs:
+        - receipt:review-fee
+    exports:
+      include: true
+      eventRefs:
+        - trace.started
+        - trace.completed
 extensions:
   x402:
     enabled: true

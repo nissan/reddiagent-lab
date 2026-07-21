@@ -19,6 +19,12 @@ SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
 LIVE_GATED_BEFORE_LEVEL_3 = "payment/reputation extension requires Level 3 or higher"
 LIVE_GATED_BEFORE_LEVEL_4 = "production deployment descriptor requires Level 4"
 PRODUCTION_RUNTIME_TARGETS = {"hosted-container", "serverless", "platform-native", "openclaw"}
+OBSERVABILITY_EVENTS_BY_LEVEL = {
+    1: ["trace.started", "trace.completed", "task.completed", "task.failed"],
+    2: ["model.called", "policy.checked", "eval.checked"],
+    3: ["payment.intent.created", "receipt.emitted", "reputation.signal.emitted"],
+    4: ["deployment.health.checked", "adapter.loss.reported"],
+}
 
 
 PROFILE_MATRIX = {
@@ -37,7 +43,14 @@ PROFILE_MATRIX = {
             "harness.evalGates",
         ],
         "optionalFields": ["harness.memory", "harness.tools", "harness.dataSources"],
-        "evidenceOutputs": ["level-1-trace", "completion.requiredGateStatus"],
+        "evidenceOutputs": [
+            "level-1-trace",
+            "completion.requiredGateStatus",
+            "observability.events:trace.started",
+            "observability.events:trace.completed",
+            "observability.events:task.completed",
+            "observability.events:task.failed",
+        ],
         "forbiddenCapabilities": [LIVE_GATED_BEFORE_LEVEL_3, LIVE_GATED_BEFORE_LEVEL_4],
     },
     2: {
@@ -50,7 +63,13 @@ PROFILE_MATRIX = {
             "harness.evalGates",
         ],
         "optionalFields": ["harness.tools", "harness.dataSources", "harness.memory"],
-        "evidenceOutputs": ["provider-compatibility-report", "unsupported-execution-boundary"],
+        "evidenceOutputs": [
+            "provider-compatibility-report",
+            "unsupported-execution-boundary",
+            "observability.events:model.called",
+            "observability.events:policy.checked",
+            "observability.events:eval.checked",
+        ],
         "forbiddenCapabilities": [LIVE_GATED_BEFORE_LEVEL_3, LIVE_GATED_BEFORE_LEVEL_4],
     },
     3: {
@@ -63,7 +82,14 @@ PROFILE_MATRIX = {
             "extensions.reputation.emitSignals",
         ],
         "optionalFields": ["extensions.identity"],
-        "evidenceOutputs": ["receipt-evidence", "reputation-signal-evidence", "payment-policy-evidence"],
+        "evidenceOutputs": [
+            "receipt-evidence",
+            "reputation-signal-evidence",
+            "payment-policy-evidence",
+            "observability.events:payment.intent.created",
+            "observability.events:receipt.emitted",
+            "observability.events:reputation.signal.emitted",
+        ],
         "forbiddenCapabilities": [LIVE_GATED_BEFORE_LEVEL_4],
     },
     4: {
@@ -75,8 +101,14 @@ PROFILE_MATRIX = {
             "harness.observability.events",
             "harness.recovery.disable",
         ],
-        "optionalFields": ["harness.deployment.healthCheck", "harness.observability.sinks"],
-        "evidenceOutputs": ["deployment-readiness-report", "observability-trace-config", "rollback-disable-evidence"],
+        "optionalFields": ["harness.deployment.healthCheck", "harness.observability.destinations"],
+        "evidenceOutputs": [
+            "deployment-readiness-report",
+            "observability-trace-config",
+            "rollback-disable-evidence",
+            "observability.events:deployment.health.checked",
+            "observability.events:adapter.loss.reported",
+        ],
         "forbiddenCapabilities": [],
     },
 }
@@ -161,6 +193,21 @@ def has_deployment_descriptor(doc: dict) -> bool:
     )
 
 
+def observability_event_names(doc: dict) -> set[str]:
+    observability = object_or_empty(object_or_empty(doc.get("harness")).get("observability"))
+    names = set()
+    for event in observability.get("events", []):
+        if isinstance(event, dict) and isinstance(event.get("name"), str):
+            names.add(event["name"])
+    return names
+
+
+def missing_observability_events(doc: dict, level: int) -> list[str]:
+    declared = observability_event_names(doc)
+    required = OBSERVABILITY_EVENTS_BY_LEVEL.get(level, [])
+    return [f"harness.observability.events.{event}" for event in required if event not in declared]
+
+
 def level_missing_fields(doc: dict, level: int) -> list[str]:
     if level == 0:
         return []
@@ -172,9 +219,10 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
             missing.append("harness.runtime.target")
         if not has_path(doc, "harness.evalGates"):
             missing.append("harness.evalGates")
+        missing.extend(missing_observability_events(doc, 1))
         return missing
     if level == 2:
-        return [
+        missing = [
             field
             for field in [
                 "model.capability",
@@ -185,6 +233,8 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
             ]
             if not has_path(doc, field)
         ]
+        missing.extend(missing_observability_events(doc, 2))
+        return missing
     if level == 3:
         missing = []
         extensions = object_or_empty(doc.get("extensions"))
@@ -202,6 +252,7 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
         reputation = object_or_empty(extensions.get("reputation"))
         if not reputation.get("emitSignals"):
             missing.append("extensions.reputation.emitSignals")
+        missing.extend(missing_observability_events(doc, 3))
         return missing
     if level == 4:
         missing = []
@@ -215,6 +266,7 @@ def level_missing_fields(doc: dict, level: int) -> list[str]:
         ]:
             if not has_path(doc, field):
                 missing.append(field)
+        missing.extend(missing_observability_events(doc, 4))
         return missing
     raise ValueError(f"Unknown ADL v0.2 conformance level: {level}")
 

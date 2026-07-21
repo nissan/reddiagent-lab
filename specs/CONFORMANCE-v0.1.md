@@ -87,16 +87,22 @@ Level inheritance is fail-closed:
 - Level 0 requires schema-valid ADL v0.2 top-level, metadata, model, and harness
   shape.
 - Level 1 adds local-python runnable fields: instructions, declared runtime target,
-  eval gates, local trace evidence, and `completion.requiredGateStatus`.
+  eval gates, local trace evidence, `completion.requiredGateStatus`, and
+  required `trace.started`, `trace.completed`, `task.completed`, and
+  `task.failed` observability events.
 - Level 2 adds provider-adapter compatibility fields: model capability,
   preferred provider, requirements, policies, eval gates, provider report, and
-  unsupported-execution boundary evidence.
+  unsupported-execution boundary evidence, plus `model.called`,
+  `policy.checked`, and `eval.checked` observability events.
 - Level 3 adds payment/reputation extension fields: enabled x402 intents with
   policy refs, required receipts, reputation signals, and payment-policy
-  evidence.
+  evidence, plus `payment.intent.created`, `receipt.emitted`, and
+  `reputation.signal.emitted` observability events.
 - Level 4 adds production deployment fields: production runtime target,
   deployment environment, rollback, observability events, recovery disable, and
-  deployment readiness evidence. Mainnet remains separately approval-gated.
+  deployment readiness evidence. Level 4 observability must also include
+  `deployment.health.checked` and `adapter.loss.reported` so adapter/export
+  loss is explicit before review. Mainnet remains separately approval-gated.
 
 Payment/reputation declarations are forbidden before Level 3. Production
 deployment descriptors and production runtime targets are forbidden before Level
@@ -107,6 +113,28 @@ levels cannot skip missing lower-level requirements.
 
 The active ADL v0.2 conformance matrix is documented in `specs/ADL-v0.2.md` and
 enforced by `tests/test_adl_v02_conformance_profiles.py`.
+
+## ADL v0.2 Observability Minimums
+
+_Anchor issue: #318._
+
+ADL v0.2 observability is structured trace/export configuration. Validators
+must inspect event declarations, summaries, destinations, evidence refs,
+retention, redaction, and receipt/export relationships without activating a
+runtime or writing to a live collector.
+
+Minimum events are cumulative:
+
+- Level 1: `trace.started`, `trace.completed`, `task.completed`, `task.failed`
+- Level 2: `model.called`, `policy.checked`, `eval.checked`
+- Level 3: `payment.intent.created`, `receipt.emitted`, `reputation.signal.emitted`
+- Level 4: `deployment.health.checked`, `adapter.loss.reported`
+
+A schema-valid ADL that requests a level but omits a required event must fail
+conformance with `harness.observability.events.<event-name>` diagnostics.
+`local-only` destinations are allowed for local trace output. Adapter-managed or
+external-reviewed destinations remain static metadata until a separately
+reviewed adapter/export gate is approved.
 
 ## Required Gate Shell Failure
 
