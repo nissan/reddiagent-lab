@@ -51,6 +51,22 @@ SCENARIOS = [
         "expectedSafetyGate": "approved-tool-and-source",
     },
     {
+        "id": "adl-v02-memory-observability-dry-run",
+        "adl": "examples/v0.2/memory-observability-agent.yaml",
+        "args": [],
+        "expectedExitCode": 0,
+        "expectedCompletionStatus": "pass",
+        "expectedTraceEvents": [
+            "session.started",
+            "model.resolved",
+            "tools.registered",
+            "policies.loaded",
+            "evals.loaded",
+            "task.dry_run_completed",
+        ],
+        "expectedSafetyGate": "supported-adl-v02-local-runtime",
+    },
+    {
         "id": "unsupported-tool-strict-denial",
         "adl": "examples/unsafe/unsupported-tool-fixture.yaml",
         "args": ["--execute-tools"],
@@ -86,6 +102,15 @@ SCENARIOS = [
         "expectedTraceEvents": [],
         "expectedSafetyGate": "fail-closed-adl-validation",
     },
+    {
+        "id": "invalid-adl-v02-payment-diagnostics",
+        "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+        "args": ["--json-validation-errors"],
+        "expectedExitCode": 1,
+        "expectedCompletionStatus": None,
+        "expectedTraceEvents": [],
+        "expectedSafetyGate": "fail-closed-adl-v02-validation-diagnostics",
+    },
 ]
 
 
@@ -107,6 +132,7 @@ def run_scenario(scenario: dict[str, Any]) -> dict[str, Any]:
         check=False,
     )
     summary, stdout_first_line = compact_stdout(proc.stdout)
+    validation_diagnostics = (summary or {}).get("validationDiagnostics")
     trace_events = [event["event"] for event in (summary or {}).get("trace", [])]
     completion = (summary or {}).get("completion") or {}
     source_summary = (summary or {}).get("sourceCheckSummary")
@@ -146,6 +172,7 @@ def run_scenario(scenario: dict[str, Any]) -> dict[str, Any]:
         "sourceCheckSummary": source_summary,
         "stdoutFirstLine": stdout_first_line,
         "stderrFirstLine": stderr_first_line,
+        "validationDiagnostics": validation_diagnostics,
     }
 
 
@@ -156,11 +183,16 @@ def build_report() -> dict[str, Any]:
         "mode": "local-executable-adl-runtime-prototype",
         "status": status,
         "issue": 224,
-        "supportedExamples": ["examples/simple-agent.yaml", "examples/tool-agent.yaml"],
+        "supportedExamples": [
+            "examples/simple-agent.yaml",
+            "examples/tool-agent.yaml",
+            "examples/v0.2/memory-observability-agent.yaml",
+        ],
         "safetyExamples": [
             "examples/unsafe/unsupported-tool-fixture.yaml",
             "examples/unsafe/unapproved-source-fixture.yaml",
             "examples/invalid/bad-runtime-target.yaml",
+            "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
         ],
         "boundaries": {
             "localRuntimeExecutionAllowed": True,

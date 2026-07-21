@@ -13,7 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCENARIOS = ROOT / "tests" / "fixtures" / "beta-runtime-service-activation-evidence-gate-scenarios.json"
 PINNED_APPROVAL_PACKET_PATH = "tests/fixtures/beta-runtime-service-activation-approval-packet.json"
-PINNED_APPROVAL_PACKET_SHA256 = "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+PINNED_APPROVAL_PACKET_SHA256 = "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
 REQUIRED_RUN_ID = "reddiagent-beta-0-runtime-service-activation-evidence-gate"
 REQUIRED_PACKET_ID = "reddiagent-beta-0-runtime-service-activation-approval-packet"
 REQUIRED_RELEASE_ID = "reddiagent-beta-0"

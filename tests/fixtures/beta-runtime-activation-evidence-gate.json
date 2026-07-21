@@ -112,23 +112,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "pass",
@@ -217,23 +217,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "pass",
@@ -278,6 +278,10 @@
         {
           "path": "e2eSmokeFixture.exists",
           "reason": "Artifact `tests/fixtures/missing-beta-e2e-acceptance-smoke.json` is missing."
+        },
+        {
+          "path": "runtimeFixture.sha256",
+          "reason": "Artifact `tests/fixtures/local-executable-runtime-prototype.json` does not match its expected sha256 pin."
         },
         {
           "path": "e2eSmokeFixture.mode",
@@ -432,13 +436,13 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
           "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
-          "hashMatches": true,
+          "hashMatches": false,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
         "acceptedEvidenceSha256": null,
         "acceptedResultId": null,
@@ -492,6 +496,10 @@
         {
           "path": "e2eSmokeFixture.sha256",
           "reason": "Artifact `tests/fixtures/beta-e2e-acceptance-smoke.json` does not match its expected sha256 pin."
+        },
+        {
+          "path": "runtimeFixture.sha256",
+          "reason": "Artifact `tests/fixtures/local-executable-runtime-prototype.json` does not match its expected sha256 pin."
         }
       ],
       "id": "stale-e2e-hash-denied",
@@ -542,22 +550,22 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
           "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
-          "hashMatches": true,
+          "hashMatches": false,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
           "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
           "hashMatches": false,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -599,6 +607,10 @@
       "expectedStatus": "fail",
       "expectedVerdict": "hold",
       "findings": [
+        {
+          "path": "e2eSmokeFixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-e2e-acceptance-smoke.json` does not match its expected sha256 pin."
+        },
         {
           "path": "runtimeFixture.sha256",
           "reason": "Artifact `tests/fixtures/local-executable-runtime-prototype.json` does not match its expected sha256 pin."
@@ -654,20 +666,20 @@
           "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
           "hashMatches": false,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
           "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
-          "hashMatches": true,
+          "hashMatches": false,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -765,23 +777,23 @@
         "adlPath": "examples/tool-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -875,23 +887,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -985,23 +997,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -1111,23 +1123,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -1225,23 +1237,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -1379,23 +1391,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -1493,23 +1505,23 @@
         "adlPath": "examples/simple-agent.yaml",
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "runtimeFixture": {
-          "expectedSha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887",
+          "expectedSha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
           "hashMatches": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         "runtimeScenarioId": "simple-agent-dry-run"
       },
-      "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "sourceSmoke": {
-        "acceptedEvidenceSha256": "c2f0ccd1f75419740a0f6b9a38834a7dd558fbaf59841d2a47e5aa78b2743dbb",
+        "acceptedEvidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
+          "expectedSha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee"
+          "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
         }
       },
       "status": "fail",
@@ -1522,7 +1534,7 @@
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "32c41346d1aa53b368717d60fcf9b33b6f75b5be",
+  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
   "status": "pass",
   "summary": {
     "activateLocalVerdicts": 1,

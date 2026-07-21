@@ -150,7 +150,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-        "sha256": "b6d194ac63cb30650b1c0718c11bb92ce77a7576c40183ad3e8162aa16678362"
+        "sha256": "f4a9afd83f9a7905ba8cf918382603c92878ef9fa78a7c2e0ba160af01051f8a"
       },
       {
         "path": "tests/BETA-RUNTIME-SERVICE-ACTIVATION-LIVE-RUN-GATE-REPORT.md",

@@ -15,21 +15,35 @@ import yaml
 from local_tool_registry import ToolExecutionError, denied_result, execute_tool
 from source_check import check_tool_sources, summarize_source_checks
 from tool_denial_guidance import guidance_for_denial, render_tool_denial
+from adl_diagnostics import format_validation_errors as format_v02_validation_errors
 from validation_guidance import format_errors, render_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCHEMA_PATH = ROOT / "specs" / "ADL-v0.1.schema.json"
+SCHEMA_PATHS = {
+    "reddiagent.dev/v0.1": ROOT / "specs" / "ADL-v0.1.schema.json",
+    "reddiagent.dev/v0.2": ROOT / "specs" / "ADL-v0.2.schema.json",
+}
 
 
 def load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
-def validate(doc: dict) -> list[jsonschema.ValidationError]:
-    schema = json.loads(SCHEMA_PATH.read_text())
+def schema_path_for(doc: dict) -> Path:
+    api_version = str(doc.get("apiVersion", "reddiagent.dev/v0.1"))
+    return SCHEMA_PATHS.get(api_version, SCHEMA_PATHS["reddiagent.dev/v0.1"])
+
+
+def validate_with_schema(doc: dict) -> tuple[Path, list[jsonschema.ValidationError]]:
+    schema_path = schema_path_for(doc)
+    schema = json.loads(schema_path.read_text())
     validator = jsonschema.Draft202012Validator(schema)
-    return sorted(validator.iter_errors(doc), key=lambda e: list(e.path))
+    return schema_path, sorted(validator.iter_errors(doc), key=lambda e: list(e.path))
+
+
+def validate(doc: dict) -> list[jsonschema.ValidationError]:
+    return validate_with_schema(doc)[1]
 
 
 def stable_id(*parts: str) -> str:
@@ -148,11 +162,30 @@ def dry_run(
     execute_tools_flag: bool = False,
     allow_denied_tools: bool = False,
     fail_on_required_gate: bool = False,
+    json_validation_errors: bool = False,
 ) -> int:
     doc = load_yaml(path)
-    errors = validate(doc)
+    schema_path, errors = validate_with_schema(doc)
     if errors:
-        print(render_text(display_path(path), format_errors(errors)))
+        schema_label = display_path(schema_path)
+        if schema_path.name == "ADL-v0.2.schema.json":
+            diagnostics = format_v02_validation_errors(errors, path)
+        else:
+            diagnostics = [item.to_dict() for item in format_errors(errors, path)]
+        if json_validation_errors:
+            print(
+                json.dumps(
+                    {
+                        "status": "fail",
+                        "adl": display_path(path),
+                        "schema": schema_label,
+                        "validationDiagnostics": diagnostics,
+                    },
+                    indent=2,
+                )
+            )
+        else:
+            print(render_text(display_path(path), format_errors(errors)))
         return 1
 
     metadata = doc["metadata"]
@@ -244,12 +277,18 @@ def main() -> int:
         action="store_true",
         help="Return exit code 3 when the dry run completed but required gates failed.",
     )
+    parser.add_argument(
+        "--json-validation-errors",
+        action="store_true",
+        help="Emit validation failures as beta-facing JSON diagnostics instead of text guidance.",
+    )
     args = parser.parse_args()
     return dry_run(
         args.adl,
         execute_tools_flag=args.execute_tools,
         allow_denied_tools=args.allow_denied_tools,
         fail_on_required_gate=args.fail_on_required_gate,
+        json_validation_errors=args.json_validation_errors,
     )
 
 

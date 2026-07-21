@@ -4,12 +4,14 @@
   "issue": 224,
   "supportedExamples": [
     "examples/simple-agent.yaml",
-    "examples/tool-agent.yaml"
+    "examples/tool-agent.yaml",
+    "examples/v0.2/memory-observability-agent.yaml"
   ],
   "safetyExamples": [
     "examples/unsafe/unsupported-tool-fixture.yaml",
     "examples/unsafe/unapproved-source-fixture.yaml",
-    "examples/invalid/bad-runtime-target.yaml"
+    "examples/invalid/bad-runtime-target.yaml",
+    "examples/invalid/adl-v0.2-x402-missing-authority.yaml"
   ],
   "boundaries": {
     "localRuntimeExecutionAllowed": true,
@@ -48,7 +50,8 @@
       "toolExecution": null,
       "sourceCheckSummary": null,
       "stdoutFirstLine": null,
-      "stderrFirstLine": null
+      "stderrFirstLine": null,
+      "validationDiagnostics": null
     },
     {
       "id": "tool-agent-execute-tools",
@@ -89,7 +92,37 @@
         "status": "pass"
       },
       "stdoutFirstLine": null,
-      "stderrFirstLine": null
+      "stderrFirstLine": null,
+      "validationDiagnostics": null
+    },
+    {
+      "id": "adl-v02-memory-observability-dry-run",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/v0.2/memory-observability-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "completion": {
+        "transportStatus": "pass",
+        "requiredGateStatus": "pass",
+        "status": "pass",
+        "reason": "dry-run transport completed and required gates passed"
+      },
+      "traceEvents": [
+        "session.started",
+        "model.resolved",
+        "tools.registered",
+        "policies.loaded",
+        "evals.loaded",
+        "task.dry_run_completed"
+      ],
+      "safetyGate": "supported-adl-v02-local-runtime",
+      "toolExecution": null,
+      "sourceCheckSummary": null,
+      "stdoutFirstLine": null,
+      "stderrFirstLine": null,
+      "validationDiagnostics": null
     },
     {
       "id": "unsupported-tool-strict-denial",
@@ -105,7 +138,8 @@
       "toolExecution": null,
       "sourceCheckSummary": null,
       "stdoutFirstLine": null,
-      "stderrFirstLine": "DENIED examples/unsafe/unsupported-tool-fixture.yaml"
+      "stderrFirstLine": "DENIED examples/unsafe/unsupported-tool-fixture.yaml",
+      "validationDiagnostics": null
     },
     {
       "id": "unapproved-source-report-mode",
@@ -146,7 +180,8 @@
         "status": "fail"
       },
       "stdoutFirstLine": null,
-      "stderrFirstLine": null
+      "stderrFirstLine": null,
+      "validationDiagnostics": null
     },
     {
       "id": "invalid-runtime-validation",
@@ -162,7 +197,35 @@
       "toolExecution": null,
       "sourceCheckSummary": null,
       "stdoutFirstLine": "FAIL examples/invalid/bad-runtime-target.yaml",
-      "stderrFirstLine": null
+      "stderrFirstLine": null,
+      "validationDiagnostics": null
+    },
+    {
+      "id": "invalid-adl-v02-payment-diagnostics",
+      "status": "pass",
+      "reasons": [],
+      "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+      "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "completion": null,
+      "traceEvents": [],
+      "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+      "toolExecution": null,
+      "sourceCheckSummary": null,
+      "stdoutFirstLine": null,
+      "stderrFirstLine": null,
+      "validationDiagnostics": [
+        {
+          "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+          "severity": "error",
+          "category": "payment",
+          "path": "extensions.x402.intents.0.authority",
+          "line": 22,
+          "column": 9,
+          "message": "'authority' is a required property"
+        }
+      ]
     }
   ]
 }

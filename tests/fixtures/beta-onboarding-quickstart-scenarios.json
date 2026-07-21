@@ -61,15 +61,15 @@
     "expectedLocalFileHashes": [
       {
         "path": "tests/fixtures/beta-release-archive-assembler.json",
-        "sha256": "6221d73cab76930b437579f0df8360d1cf82e270760f57b15db481e24aa1d217"
+        "sha256": "ed0340f14ee6734507753a0a214aba62890758ccc22ab51c7893427cefb4b93d"
       },
       {
         "path": "tests/fixtures/beta-release-verification.json",
-        "sha256": "f97c0ad813b18f1e8676a25d8873464c5e03259b4d3d7900a641e4451204f500"
+        "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1"
       },
       {
         "path": "tests/fixtures/beta-review-ui.json",
-        "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+        "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
       },
       {
         "path": "tests/fixtures/surfpool-validator-lane.json",

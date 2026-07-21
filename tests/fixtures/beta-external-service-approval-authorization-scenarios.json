@@ -81,7 +81,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-external-service-approval-intake.json",
-        "sha256": "7f55d6626612893804eac83cc6944f7ef22f663ff7f8cc430f7e3ced2afb1f9e"
+        "sha256": "1ff19213144e52c421eda8cb4dbfd167a8a30f523c2d7d36da10b12b3a9e3ddd"
       },
       {
         "path": "tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md",
