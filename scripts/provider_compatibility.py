@@ -26,6 +26,7 @@ ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
 GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
+ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
 
 
 def load_adl(path: Path) -> dict:
@@ -36,24 +37,43 @@ def load_v02_schema() -> dict:
     return json.loads(SCHEMA_PATH.read_text())
 
 
-def validate_adl(path: Path, doc: dict) -> None:
+def validation_error_path(error: jsonschema.ValidationError) -> str:
+    if error.path:
+        return ".".join(str(part) for part in error.path)
+    return "<root>"
+
+
+def adl_v02_validation_errors(doc: dict) -> list[jsonschema.ValidationError]:
     if doc.get("apiVersion") != "reddiagent.dev/v0.2":
-        return
-
+        return []
     validator = jsonschema.Draft202012Validator(load_v02_schema())
-    errors = sorted(validator.iter_errors(doc), key=lambda error: list(error.path))
-    if not errors:
-        return
-
-    first = errors[0]
-    location = ".".join(str(part) for part in first.path) or "<root>"
-    raise ValueError(f"{path}: invalid ADL v0.2 at {location}: {first.message}")
+    return sorted(validator.iter_errors(doc), key=lambda error: list(error.path))
 
 
-def load_checked_adl(path: Path) -> dict:
-    doc = load_adl(path)
-    validate_adl(path, doc)
-    return doc
+def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[jsonschema.ValidationError]) -> dict:
+    diagnostics = [
+        {
+            "path": validation_error_path(error),
+            "message": error.message,
+        }
+        for error in errors
+    ]
+    return {
+        "agent": (doc.get("metadata") or {}).get("name", path.stem),
+        "target": target,
+        "supported": False,
+        "level": 0,
+        "warnings": ["ADL v0.2 schema validation failed; provider compatibility report refused."],
+        "unsupportedFeatures": [ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED],
+        "requiredSecrets": [],
+        "requiredHostedServices": [],
+        "suggestedFallback": "fix-adl-v0.2-schema-errors",
+        "boundary": REPORT_ONLY_BOUNDARY,
+        "compatibilityMode": "provider-compatibility-report-refused",
+        "dataSourceTypes": [],
+        "sourceBoundary": [],
+        "validationDiagnostics": diagnostics,
+    }
 
 
 def source_boundary_metadata(doc: dict) -> list[dict]:
@@ -341,7 +361,11 @@ def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
 
 
 def report(path: Path, target: str) -> dict:
-    doc = load_checked_adl(path)
+    doc = load_adl(path)
+    schema_errors = adl_v02_validation_errors(doc)
+    if schema_errors:
+        return unsupported_schema_report(path, doc, target, schema_errors)
+
     harness = doc["harness"]
     model = doc["model"]
     extensions = doc.get("extensions") or {}
@@ -458,7 +482,7 @@ def selected_examples(paths: list[str], agents: list[str]) -> list[Path]:
     names = set(agents)
     selected = []
     for path in resolved:
-        doc = load_checked_adl(path)
+        doc = load_adl(path)
         if doc["metadata"]["name"] in names:
             selected.append(path)
     return selected
