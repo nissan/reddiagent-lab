@@ -8,10 +8,12 @@ import json
 from pathlib import Path
 import sys
 
+import jsonschema
 import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
 TARGETS = ["openai", "anthropic", "gemini", "ollama", "langgraph", "mcp-readonly", "local-python"]
 REPORT_ONLY_BOUNDARY = {
     "runtimeExecutionAllowed": False,
@@ -24,10 +26,70 @@ ANTHROPIC_COMPATIBILITY_MODE = "anthropic-mcp-compatibility-only"
 GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
+ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
 
 
 def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
+
+
+def load_v02_schema() -> dict:
+    return json.loads(SCHEMA_PATH.read_text())
+
+
+def validation_error_path(error: jsonschema.ValidationError) -> str:
+    if error.path:
+        return ".".join(str(part) for part in error.path)
+    return "<root>"
+
+
+def adl_v02_validation_errors(doc: dict) -> list[jsonschema.ValidationError]:
+    if doc.get("apiVersion") != "reddiagent.dev/v0.2":
+        return []
+    validator = jsonschema.Draft202012Validator(load_v02_schema())
+    return sorted(validator.iter_errors(doc), key=lambda error: list(error.path))
+
+
+def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[jsonschema.ValidationError]) -> dict:
+    diagnostics = [
+        {
+            "path": validation_error_path(error),
+            "message": error.message,
+        }
+        for error in errors
+    ]
+    return {
+        "agent": (doc.get("metadata") or {}).get("name", path.stem),
+        "target": target,
+        "supported": False,
+        "level": 0,
+        "warnings": ["ADL v0.2 schema validation failed; provider compatibility report refused."],
+        "unsupportedFeatures": [ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED],
+        "requiredSecrets": [],
+        "requiredHostedServices": [],
+        "suggestedFallback": "fix-adl-v0.2-schema-errors",
+        "boundary": REPORT_ONLY_BOUNDARY,
+        "compatibilityMode": "provider-compatibility-report-refused",
+        "dataSourceTypes": [],
+        "sourceBoundary": [],
+        "validationDiagnostics": diagnostics,
+    }
+
+
+def source_boundary_metadata(doc: dict) -> list[dict]:
+    sources = doc.get("harness", {}).get("dataSources", [])
+    return [
+        {
+            "id": source.get("id"),
+            "type": source.get("type"),
+            "sourceRef": source.get("sourceRef"),
+            "trust": source.get("trust"),
+            "citationRequired": source.get("citationRequired"),
+            "sourceCheckRequired": (source.get("sourceCheck") or {}).get("required"),
+            "sourceCheckExpectation": (source.get("sourceCheck") or {}).get("expectation"),
+        }
+        for source in sources
+    ]
 
 
 def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
@@ -44,6 +106,8 @@ def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
         metadata_only.append("harness.evalGates")
     if harness.get("memory"):
         metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
     if extensions.get("x402"):
         metadata_only.append("extensions.x402")
     if extensions.get("receipts"):
@@ -66,6 +130,7 @@ def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "instructions": "harness.instructions.inline",
             "tools": [tool.get("id") for tool in regular_tools],
             "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -116,7 +181,8 @@ def anthropic_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
                 }
                 for tool in mcp_tools
             ],
-            "sourceBoundary": "metadata-only",
+            "sourceBoundary": source_boundary_metadata(doc),
+            "sourceBoundaryMode": "metadata-only",
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -164,6 +230,7 @@ def gemini_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
             "grounding": "not-configured",
             "codeExecution": "unsupported",
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -220,6 +287,7 @@ def ollama_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             else "not-required",
             "stateAndMemory": "external-harness-owned",
             "functionTools": [tool.get("id") for tool in regular_tools],
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -284,6 +352,7 @@ def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "edges": "static-plan-only",
             "checkpointing": "metadata-only" if harness.get("memory") else "not-declared",
             "interrupts": "metadata-only" if harness.get("policies") else "not-declared",
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -293,11 +362,16 @@ def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
 
 def report(path: Path, target: str) -> dict:
     doc = load_adl(path)
+    schema_errors = adl_v02_validation_errors(doc)
+    if schema_errors:
+        return unsupported_schema_report(path, doc, target, schema_errors)
+
     harness = doc["harness"]
     model = doc["model"]
     extensions = doc.get("extensions") or {}
     tools = harness.get("tools", [])
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
+    source_boundaries = source_boundary_metadata(doc)
     warnings = []
     unsupported = []
     required_secrets = []
@@ -385,6 +459,8 @@ def report(path: Path, target: str) -> dict:
         "suggestedFallback": "local-python",
         "boundary": REPORT_ONLY_BOUNDARY,
         "compatibilityMode": compatibility_mode,
+        "dataSourceTypes": [source["type"] for source in source_boundaries],
+        "sourceBoundary": source_boundaries,
     }
     if provider_mapping is not None:
         result["providerMapping"] = provider_mapping
@@ -473,19 +549,23 @@ def main() -> int:
         print("\n".join(TARGETS))
         return 0
 
-    examples = selected_examples(args.examples, args.agent)
-    if not examples:
-        print("No ADL examples matched the requested selection.", file=sys.stderr)
+    try:
+        examples = selected_examples(args.examples, args.agent)
+        if not examples:
+            print("No ADL examples matched the requested selection.", file=sys.stderr)
+            return 1
+
+        reports = []
+        for example in examples:
+            for target in selected_targets(args.target):
+                reports.append(report(example, target))
+
+        content = render_json(reports) if args.format == "json" else render_summary(reports)
+        write_or_print(content, args.output)
+        return 0
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
         return 1
-
-    reports = []
-    for example in examples:
-        for target in selected_targets(args.target):
-            reports.append(report(example, target))
-
-    content = render_json(reports) if args.format == "json" else render_summary(reports)
-    write_or_print(content, args.output)
-    return 0
 
 
 if __name__ == "__main__":

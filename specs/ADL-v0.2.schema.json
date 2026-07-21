@@ -131,20 +131,151 @@
     },
     "dataSource": {
       "type": "object",
-      "additionalProperties": true,
-      "required": ["id", "type", "description"],
+      "additionalProperties": false,
+      "required": ["id", "type", "description", "sourceRef", "trust", "citationRequired", "sourceCheck"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
         "type": {
           "type": "string",
-          "enum": ["document", "file", "web", "api", "database", "vector-index", "mcp", "knowledge-base"]
+          "enum": ["file", "url", "api", "database", "vector-index", "mcp"]
         },
         "description": { "type": "string", "minLength": 1 },
-        "sourceRef": { "type": "string", "minLength": 1 },
+        "sourceRef": { "type": "string", "pattern": "^(file|url|api|database|vector-index|mcp):[A-Za-z0-9._~:/?#\\[\\]@!$&'()*+,;=%-]+$" },
         "path": { "type": "string", "minLength": 1 },
-        "url": { "type": "string", "minLength": 1 },
-        "trust": { "type": "string", "enum": ["approved", "untrusted", "unknown"] }
-      }
+        "url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+        "api": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["endpoint", "method"],
+          "properties": {
+            "endpoint": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+            "method": { "type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+            "authRef": { "type": "string", "minLength": 1 }
+          }
+        },
+        "database": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["engine", "connectionRef"],
+          "properties": {
+            "engine": { "type": "string", "enum": ["sqlite", "postgres", "mysql", "duckdb", "other"] },
+            "connectionRef": { "type": "string", "minLength": 1 },
+            "schemaRef": { "type": "string", "minLength": 1 }
+          }
+        },
+        "vectorIndex": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["indexRef"],
+          "properties": {
+            "indexRef": { "type": "string", "minLength": 1 },
+            "embeddingModel": { "type": "string", "minLength": 1 },
+            "namespace": { "type": "string", "minLength": 1 }
+          }
+        },
+        "mcp": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["serverRef", "outputShape"],
+          "properties": {
+            "serverRef": { "type": "string", "minLength": 1 },
+            "toolName": { "type": "string", "minLength": 1 },
+            "outputShape": { "type": "string", "enum": ["metadata-only", "source-citable-output"] }
+          }
+        },
+        "trust": { "type": "string", "enum": ["approved", "untrusted", "unknown"] },
+        "citationRequired": { "type": "boolean" },
+        "sourceCheck": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required", "expectation"],
+          "properties": {
+            "required": { "type": "boolean" },
+            "expectation": { "type": "string", "enum": ["approved-source", "manual-review", "not-citable"] },
+            "gateRef": { "type": "string", "minLength": 1 }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "file" } }, "required": ["type"] },
+          "then": {
+            "required": ["path"],
+            "properties": { "sourceRef": { "pattern": "^file:" } },
+            "not": { "anyOf": [{ "required": ["url"] }, { "required": ["api"] }, { "required": ["database"] }, { "required": ["vectorIndex"] }, { "required": ["mcp"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "url" } }, "required": ["type"] },
+          "then": {
+            "required": ["url"],
+            "properties": { "sourceRef": { "pattern": "^url:" } },
+            "not": { "anyOf": [{ "required": ["path"] }, { "required": ["api"] }, { "required": ["database"] }, { "required": ["vectorIndex"] }, { "required": ["mcp"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "api" } }, "required": ["type"] },
+          "then": {
+            "required": ["api"],
+            "properties": { "sourceRef": { "pattern": "^api:" } },
+            "not": { "anyOf": [{ "required": ["path"] }, { "required": ["url"] }, { "required": ["database"] }, { "required": ["vectorIndex"] }, { "required": ["mcp"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "database" } }, "required": ["type"] },
+          "then": {
+            "required": ["database"],
+            "properties": { "sourceRef": { "pattern": "^database:" } },
+            "not": { "anyOf": [{ "required": ["path"] }, { "required": ["url"] }, { "required": ["api"] }, { "required": ["vectorIndex"] }, { "required": ["mcp"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "vector-index" } }, "required": ["type"] },
+          "then": {
+            "required": ["vectorIndex"],
+            "properties": { "sourceRef": { "pattern": "^vector-index:" } },
+            "not": { "anyOf": [{ "required": ["path"] }, { "required": ["url"] }, { "required": ["api"] }, { "required": ["database"] }, { "required": ["mcp"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "mcp" } }, "required": ["type"] },
+          "then": {
+            "required": ["mcp"],
+            "properties": { "sourceRef": { "pattern": "^mcp:" } },
+            "not": { "anyOf": [{ "required": ["path"] }, { "required": ["url"] }, { "required": ["api"] }, { "required": ["database"] }, { "required": ["vectorIndex"] }] }
+          }
+        },
+        {
+          "if": { "properties": { "trust": { "const": "approved" } }, "required": ["trust"] },
+          "then": {
+            "properties": {
+              "citationRequired": { "const": true },
+              "sourceCheck": {
+                "properties": {
+                  "required": { "const": true },
+                  "expectation": { "const": "approved-source" }
+                },
+                "required": ["required", "expectation"]
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "trust": { "enum": ["untrusted", "unknown"] } }, "required": ["trust"] },
+          "then": {
+            "properties": {
+              "citationRequired": { "const": true },
+              "sourceCheck": {
+                "properties": {
+                  "required": { "const": true },
+                  "expectation": { "enum": ["manual-review", "not-citable"] }
+                },
+                "required": ["required", "expectation"]
+              }
+            }
+          }
+        }
+      ]
     },
     "memory": {
       "type": "object",

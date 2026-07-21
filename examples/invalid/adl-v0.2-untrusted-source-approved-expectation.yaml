@@ -1,0 +1,29 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: untrusted-source-approved-expectation
+  description: Declares an untrusted source as if it were approved.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Do not execute."
+  dataSources:
+    - id: untrusted_url
+      type: url
+      description: Untrusted URL attempting to use an approved-source expectation.
+      sourceRef: url:https://example.invalid/reddiagent
+      url: https://example.invalid/reddiagent
+      trust: untrusted
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+  runtime:
+    target: local-python
+extensions: {}

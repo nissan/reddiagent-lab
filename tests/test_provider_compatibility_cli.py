@@ -96,6 +96,29 @@ def test_local_python_selector_and_summary_output_file() -> None:
     assert "runtimeExecutionAllowed=false" in text
 
 
+def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
+    invalid_paths = [
+        "examples/invalid/adl-v0.2-data-source-alias.yaml",
+        "examples/invalid/adl-v0.2-untrusted-source-no-check.yaml",
+        "examples/invalid/adl-v0.2-untrusted-source-approved-expectation.yaml",
+    ]
+
+    for path in invalid_paths:
+        proc = run_cli([path, "--target", "openai"])
+        reports = json.loads(proc.stdout)
+        assert proc.stderr == ""
+        assert len(reports) == 1
+        report = reports[0]
+        assert report["target"] == "openai"
+        assert report["supported"] is False
+        assert report["level"] == 0
+        assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+        assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["dataSourceTypes"] == []
+        assert report["sourceBoundary"] == []
+        assert report["validationDiagnostics"], path
+
+
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     proc = run_cli(
         [
@@ -436,6 +459,74 @@ def test_langgraph_compatibility_report_keeps_mcp_execution_unsupported() -> Non
     ]
 
 
+def test_provider_reports_use_canonical_source_boundary_vocabulary() -> None:
+    proc = run_cli(
+        [
+            "examples/v0.2/source-boundary-agent.yaml",
+            "--target",
+            "openai",
+            "--target",
+            "anthropic",
+            "--target",
+            "gemini",
+            "--target",
+            "ollama",
+            "--target",
+            "langgraph",
+        ]
+    )
+    reports = json.loads(proc.stdout)
+    expected_types = ["file", "url", "api", "database", "vector-index", "mcp"]
+
+    assert [item["target"] for item in reports] == ["openai", "anthropic", "gemini", "ollama", "langgraph"]
+    for report in reports:
+        assert report["dataSourceTypes"] == expected_types
+        assert [source["type"] for source in report["sourceBoundary"]] == expected_types
+        assert report["providerMapping"]["adapterMapping"]["sourceBoundary"] == report["sourceBoundary"]
+        assert "harness.dataSources" in report["providerMapping"]["adapterMapping"]["metadataOnly"]
+        for source in report["sourceBoundary"]:
+            assert source["sourceRef"].startswith(f"{source['type']}:")
+            assert source["trust"] == "approved"
+            assert source["citationRequired"] is True
+            assert source["sourceCheckRequired"] is True
+            assert source["sourceCheckExpectation"] == "approved-source"
+
+
+def test_provider_reports_refuse_invalid_v02_source_boundaries() -> None:
+    proc = run_cli(
+        [
+            "examples/invalid/adl-v0.2-data-source-alias.yaml",
+            "examples/invalid/adl-v0.2-untrusted-source-no-check.yaml",
+            "examples/invalid/adl-v0.2-untrusted-source-approved-expectation.yaml",
+            "--target",
+            "openai",
+        ]
+    )
+    reports = json.loads(proc.stdout)
+
+    assert [report["agent"] for report in reports] == [
+        "data-source-alias",
+        "untrusted-source-no-check",
+        "untrusted-source-approved-expectation",
+    ]
+    for report in reports:
+        assert report["target"] == "openai"
+        assert report["supported"] is False
+        assert report["level"] == 0
+        assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+        assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["dataSourceTypes"] == []
+        assert report["sourceBoundary"] == []
+        assert report["validationDiagnostics"]
+
+    alias_messages = [item["message"] for item in reports[0]["validationDiagnostics"]]
+    untrusted_no_check_messages = [item["message"] for item in reports[1]["validationDiagnostics"]]
+    untrusted_approved_messages = [item["message"] for item in reports[2]["validationDiagnostics"]]
+    assert any("document" in message and "is not one of" in message for message in alias_messages)
+    assert "True was expected" in untrusted_no_check_messages
+    assert any("'approved-source' is not one of" in message for message in untrusted_approved_messages)
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -458,6 +549,7 @@ def test_list_targets_includes_mcp_readonly() -> None:
 def main() -> int:
     test_target_agent_selection_covers_provider_and_mcp_paths()
     test_local_python_selector_and_summary_output_file()
+    test_v02_invalid_source_boundaries_fail_before_reporting()
     test_openai_compatibility_mode_maps_metadata_only_semantics()
     test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
     test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation()
@@ -468,6 +560,8 @@ def main() -> int:
     test_ollama_compatibility_mode_keeps_mcp_execution_unsupported()
     test_langgraph_compatibility_report_maps_graph_state_without_generation()
     test_langgraph_compatibility_report_keeps_mcp_execution_unsupported()
+    test_provider_reports_use_canonical_source_boundary_vocabulary()
+    test_provider_reports_refuse_invalid_v02_source_boundaries()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")
