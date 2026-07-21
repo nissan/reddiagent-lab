@@ -210,8 +210,11 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
     observability = object_or_empty(harness.get("observability"))
     recovery = object_or_empty(harness.get("recovery"))
     network = object_or_empty(runtime.get("network"))
+    deployment_network = object_or_empty(deployment.get("networkPolicy"))
     storage = object_or_empty(runtime.get("storage"))
+    deployment_storage = object_or_empty(deployment.get("storage"))
     scheduler = object_or_empty(runtime.get("scheduler"))
+    deployment_scheduler = object_or_empty(deployment.get("scheduler"))
     activation = object_or_empty(runtime.get("activation"))
     constraints = object_or_empty(runtime.get("constraints"))
     rollback = object_or_empty(deployment.get("rollback"))
@@ -243,6 +246,14 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
                 "reason": "External runtime network access requires a separately reviewed adapter before execution.",
             }
         )
+    if deployment_network.get("access") not in (None, "none"):
+        unsupported.append(
+            {
+                "feature": "deployment-network-access",
+                "path": "harness.deployment.networkPolicy.access",
+                "reason": "Deployment network access requires adapter enforcement before execution.",
+            }
+        )
     if storage.get("mode") in {"persistent", "external"}:
         unsupported.append(
             {
@@ -251,12 +262,28 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
                 "reason": "Persistent or external runtime storage requires adapter enforcement before execution.",
             }
         )
+    if deployment_storage.get("mode") in {"persistent", "external"}:
+        unsupported.append(
+            {
+                "feature": "deployment-stateful-storage",
+                "path": "harness.deployment.storage.mode",
+                "reason": "Persistent or external deployment storage requires adapter enforcement before execution.",
+            }
+        )
     if scheduler.get("trigger") not in (None, "manual"):
         unsupported.append(
             {
                 "feature": "non-manual-scheduler",
                 "path": "harness.runtime.scheduler.trigger",
                 "reason": "Schedulers, webhooks, queues, and event triggers are report-only until activation is approved.",
+            }
+        )
+    if deployment_scheduler.get("trigger") not in (None, "manual"):
+        unsupported.append(
+            {
+                "feature": "deployment-non-manual-scheduler",
+                "path": "harness.deployment.scheduler.trigger",
+                "reason": "Deployment schedulers, webhooks, queues, and event triggers are report-only until activation is approved.",
             }
         )
     if activation.get("mode") == "approved-bounded":
@@ -285,9 +312,12 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
     return {
         "target": runtime_target,
         "networkAccess": network.get("access", "not-declared"),
+        "deploymentNetworkAccess": deployment_network.get("access", "not-declared"),
         "secretRefs": secret_refs,
         "storageMode": storage.get("mode", "not-declared"),
+        "deploymentStorageMode": deployment_storage.get("mode", "not-declared"),
         "schedulerTrigger": scheduler.get("trigger", "not-declared"),
+        "deploymentSchedulerTrigger": deployment_scheduler.get("trigger", "not-declared"),
         "activationMode": activation.get("mode", "not-declared"),
         "constraints": {
             key: constraints[key]

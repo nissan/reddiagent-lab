@@ -19,7 +19,9 @@ SPEC_PATH = ROOT / "specs" / "ADL-v0.2.md"
 LOCAL_EXAMPLE = ROOT / "examples" / "v0.2" / "runtime-local-python-agent.yaml"
 HOSTED_CONTAINER_EXAMPLE = ROOT / "examples" / "v0.2" / "runtime-hosted-container-agent.yaml"
 SERVERLESS_PLATFORM_EXAMPLE = ROOT / "examples" / "v0.2" / "runtime-serverless-platform-agent.yaml"
+PLATFORM_NATIVE_EXAMPLE = ROOT / "examples" / "v0.2" / "runtime-platform-native-agent.yaml"
 INVALID_EMBEDDED_SECRET = ROOT / "examples" / "invalid" / "adl-v0.2-runtime-embedded-secret.yaml"
+INVALID_SECRET_REF = ROOT / "examples" / "invalid" / "adl-v0.2-runtime-raw-secret-ref.yaml"
 INVALID_LIVE_APPROVAL = (
     ROOT / "examples" / "invalid" / "adl-v0.2-runtime-approved-live-without-evidence.yaml"
 )
@@ -71,15 +73,17 @@ def test_schema_declares_typed_runtime_deployment_sections() -> None:
 
 
 def test_runtime_descriptor_examples_validate() -> None:
-    for path in (LOCAL_EXAMPLE, HOSTED_CONTAINER_EXAMPLE, SERVERLESS_PLATFORM_EXAMPLE):
+    for path in (LOCAL_EXAMPLE, HOSTED_CONTAINER_EXAMPLE, SERVERLESS_PLATFORM_EXAMPLE, PLATFORM_NATIVE_EXAMPLE):
         assert_no_schema_errors(path)
 
 
 def test_invalid_secret_bearing_and_live_activation_declarations_fail_schema() -> None:
     secret_messages = [error.message for error in schema_errors(INVALID_EMBEDDED_SECRET)]
+    ref_messages = [error.message for error in schema_errors(INVALID_SECRET_REF)]
     live_messages = [error.message for error in schema_errors(INVALID_LIVE_APPROVAL)]
 
     assert any("Additional properties are not allowed ('value' was unexpected)" in message for message in secret_messages)
+    assert ref_messages
     assert any("'approvalRef' is a required property" in message for message in live_messages)
     assert any("'expiresAt' is a required property" in message for message in live_messages)
 
@@ -93,9 +97,12 @@ def test_local_runtime_descriptor_reports_supported_without_execution() -> None:
     assert report["runtimeDeployment"] == {
         "target": "local-python",
         "networkAccess": "none",
+        "deploymentNetworkAccess": "not-declared",
         "secretRefs": [],
         "storageMode": "ephemeral",
+        "deploymentStorageMode": "not-declared",
         "schedulerTrigger": "manual",
+        "deploymentSchedulerTrigger": "not-declared",
         "activationMode": "blocked",
         "constraints": {
             "runtimeVersion": "python3.14",
@@ -125,9 +132,10 @@ def test_hosted_container_descriptor_fails_unsupported_features_before_execution
     assert {
         item["feature"]
         for item in report["runtimeDeployment"]["unsupportedFeatures"]
-    } == {"network-access", "stateful-storage"}
+    } == {"network-access", "stateful-storage", "deployment-network-access"}
     assert "runtime_deployment:network-access" in report["unsupportedFeatures"]
     assert "runtime_deployment:stateful-storage" in report["unsupportedFeatures"]
+    assert "runtime_deployment:deployment-network-access" in report["unsupportedFeatures"]
     assert report["boundary"]["runtimeExecutionAllowed"] is False
 
 
@@ -144,6 +152,30 @@ def test_serverless_platform_descriptor_fails_event_scheduler_before_execution()
         for item in report["runtimeDeployment"]["unsupportedFeatures"]
     } == {"network-access", "non-manual-scheduler"}
     assert "runtime_deployment:non-manual-scheduler" in report["unsupportedFeatures"]
+    assert report["boundary"]["runtimeExecutionAllowed"] is False
+
+
+def test_platform_native_descriptor_fails_deployment_only_features_before_execution() -> None:
+    proc = run_provider([str(PLATFORM_NATIVE_EXAMPLE.relative_to(ROOT)), "--target", "platform-native"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["supported"] is False
+    assert report["runtimeDeployment"]["target"] == "platform-native"
+    assert report["runtimeDeployment"]["networkAccess"] == "none"
+    assert report["runtimeDeployment"]["deploymentNetworkAccess"] == "egress"
+    assert report["runtimeDeployment"]["deploymentStorageMode"] == "external"
+    assert report["runtimeDeployment"]["deploymentSchedulerTrigger"] == "cron"
+    assert {
+        item["feature"]
+        for item in report["runtimeDeployment"]["unsupportedFeatures"]
+    } == {
+        "deployment-network-access",
+        "deployment-stateful-storage",
+        "deployment-non-manual-scheduler",
+    }
+    assert "runtime_deployment:deployment-network-access" in report["unsupportedFeatures"]
+    assert "runtime_deployment:deployment-stateful-storage" in report["unsupportedFeatures"]
+    assert "runtime_deployment:deployment-non-manual-scheduler" in report["unsupportedFeatures"]
     assert report["boundary"]["runtimeExecutionAllowed"] is False
 
 
@@ -180,6 +212,7 @@ def main() -> int:
     test_local_runtime_descriptor_reports_supported_without_execution()
     test_hosted_container_descriptor_fails_unsupported_features_before_execution()
     test_serverless_platform_descriptor_fails_event_scheduler_before_execution()
+    test_platform_native_descriptor_fails_deployment_only_features_before_execution()
     test_invalid_descriptor_refusal_keeps_runtime_blocked()
     test_spec_documents_runtime_deployment_descriptor_contract()
     print("PASS ADL v0.2 runtime deployment")

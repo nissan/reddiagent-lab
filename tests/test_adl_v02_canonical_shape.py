@@ -25,6 +25,7 @@ POSITIVE_EXAMPLES = [
     ROOT / "examples" / "v0.2" / "runtime-local-python-agent.yaml",
     ROOT / "examples" / "v0.2" / "runtime-hosted-container-agent.yaml",
     ROOT / "examples" / "v0.2" / "runtime-serverless-platform-agent.yaml",
+    ROOT / "examples" / "v0.2" / "runtime-platform-native-agent.yaml",
 ]
 NEGATIVE_STRING_INSTRUCTIONS = ROOT / "examples" / "invalid" / "adl-v0.2-string-instructions.yaml"
 NEGATIVE_UNKNOWN_PROVIDER = ROOT / "examples" / "invalid" / "adl-v0.2-unknown-provider-id.yaml"

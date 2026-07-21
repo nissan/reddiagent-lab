@@ -340,7 +340,19 @@
         "ref": { "type": "string", "minLength": 1 },
         "scope": { "type": "string", "enum": ["runtime", "deployment", "provider", "tool"] },
         "required": { "type": "boolean" }
-      }
+      },
+      "allOf": [
+        {
+          "not": {
+            "properties": {
+              "ref": {
+                "pattern": "^(sk-|sk_live_|sk_test_|xox[baprs]-|gh[pousr]_|AKIA|AIza|-----BEGIN )"
+              }
+            },
+            "required": ["ref"]
+          }
+        }
+      ]
     },
     "runtimeNetwork": {
       "type": "object",

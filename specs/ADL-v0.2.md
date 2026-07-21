@@ -506,7 +506,8 @@ platform.
   `egress`, `ingress`, or `egress-and-ingress`; external access must include
   an allowlist and `denyByDefault: true`.
 - `secretRefs`: references only. Each entry uses `name`, `provider`, optional
-  `ref`, `scope`, and `required`; embedded values are invalid.
+  `ref`, `scope`, and `required`; embedded values are invalid. Obvious raw
+  credential prefixes in `ref` are invalid too.
 - `storage`: `none`, `ephemeral`, `persistent`, or `external`; persistent and
   external storage require refs and retention.
 - `scheduler`: `manual`, `cron`, `event`, `webhook`, or `queue`; cron requires
@@ -522,6 +523,11 @@ platform.
 `storage`, `scheduler`, `observability`, `rollback`, `healthCheck`, and
 `constraints`. Production environment declarations remain Level 4-gated and
 mainnet remains separately approval-gated.
+
+Compatibility checks must inspect both `harness.runtime` and mirrored
+`harness.deployment` fields. Deployment-only egress or ingress, persistent or
+external storage, and non-manual schedulers are unsupported before execution in
+the same way as runtime-side declarations.
 
 `harness.observability` declares events, sinks, trace refs, and redaction.
 `harness.recovery` declares disable and restart controls. Rollback uses the
