@@ -246,10 +246,12 @@
           "metadata_only:harness.memory",
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
+          "model_requirement:model.providers",
+          "provider_not_declared",
           "real_settlement",
           "unsupported_execution:docs_search"
         ],
-        "warningCount": 6
+        "warningCount": 8
       },
       "validationGateIds": [
         "manifest-fixture-deterministic",
@@ -324,6 +326,8 @@
           "metadata_only:harness.memory",
           "metadata_only:harness.policies",
           "metadata_only:harness.tools[type=mcp]",
+          "model_requirement:model.providers",
+          "provider_not_declared",
           "real_settlement",
           "unsupported_execution:docs_search"
         ],

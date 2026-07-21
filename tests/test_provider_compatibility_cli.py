@@ -62,12 +62,26 @@ def test_target_agent_selection_covers_provider_and_mcp_paths() -> None:
             "mcpInvocation": False,
         }
         assert item["supported"] is False
-        assert item["unsupportedFeatures"] == ["mcp_execution"]
         assert item["requiredHostedServices"] == ["mcp:approved-docs-search"]
+
+    assert reports[0]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[1]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[2]["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert reports[3]["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert reports[4]["unsupportedFeatures"] == ["mcp_execution"]
+    assert reports[5]["unsupportedFeatures"] == ["mcp_execution"]
 
     assert reports[0]["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert reports[1]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
-    assert reports[2]["requiredSecrets"] == ["GEMINI_API_KEY"]
+    assert reports[2]["requiredSecrets"] == []
     assert reports[3]["requiredSecrets"] == []
     assert reports[4]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert reports[5]["requiredSecrets"] == []
@@ -238,6 +252,8 @@ def test_v02_provider_reports_resolution_and_model_requirement_diagnostics() -> 
             "openai",
             "--target",
             "ollama",
+            "--target",
+            "gemini",
         ]
     )
     reports = {item["target"]: item for item in json.loads(proc.stdout)}
@@ -289,6 +305,23 @@ def test_v02_provider_reports_resolution_and_model_requirement_diagnostics() -> 
     assert ollama["modelCapabilityRequirements"]["lossMetadata"]
     assert any("Some model capability requirements are degraded" in warning for warning in ollama["warnings"])
 
+    gemini = reports["gemini"]
+    assert gemini["providerResolution"] == {
+        "requestedTarget": "gemini",
+        "orderedCandidates": ["anthropic", "openai", "ollama"],
+        "selectedProvider": None,
+        "selectedRole": "not-declared",
+        "hostedProvider": False,
+    }
+    assert gemini["supported"] is False
+    assert gemini["requiredSecrets"] == []
+    assert "provider_not_declared" in gemini["unsupportedFeatures"]
+    assert {
+        item["requirement"]
+        for item in gemini["modelCapabilityRequirements"]["unsupportedRequirements"]
+    } == {"model.providers"}
+    assert any("not declared in model.providers" in warning for warning in gemini["warnings"])
+
 
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     proc = run_cli(
@@ -330,6 +363,8 @@ def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
     assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerResolution"]["selectedProvider"] == "openai"
+    assert payment["requiredSecrets"] == ["OPENAI_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -403,6 +438,8 @@ def test_anthropic_compatibility_mode_preserves_payment_as_metadata_only() -> No
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
     assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["providerResolution"]["selectedProvider"] == "anthropic"
+    assert payment["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -453,7 +490,13 @@ def test_gemini_compatibility_mode_maps_functions_and_metadata_only_semantics() 
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "real_settlement",
+        "model_requirement:model.providers",
+    ]
+    assert payment["providerResolution"]["selectedProvider"] is None
+    assert payment["requiredSecrets"] == []
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -469,7 +512,12 @@ def test_gemini_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     report = json.loads(proc.stdout)[0]
     assert report["compatibilityMode"] == "gemini-provider-compatibility-only"
     assert report["supported"] is False
-    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
+    assert report["requiredSecrets"] == []
     assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
@@ -516,14 +564,22 @@ def test_ollama_compatibility_mode_maps_local_provider_metadata_only() -> None:
     assert "local endpoint" in simple["warnings"][0]
 
     tool = reports["source-checker"]
-    assert tool["supported"] is True
+    assert tool["supported"] is False
+    assert tool["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+    ]
     assert tool["providerMapping"]["modelProfile"]["localProviderDeclared"] is False
     assert tool["providerMapping"]["adapterMapping"]["functionTools"] == ["search_docs"]
     assert tool["providerMapping"]["adapterMapping"]["toolCalls"] == "custom-harness-required"
 
     payment = reports["paid-specialist-researcher"]
     assert payment["supported"] is False
-    assert payment["unsupportedFeatures"] == ["real_settlement"]
+    assert payment["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "real_settlement",
+        "model_requirement:model.providers",
+    ]
     assert payment["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",
         "harness.evalGates",
@@ -540,7 +596,11 @@ def test_ollama_compatibility_mode_keeps_mcp_execution_unsupported() -> None:
     assert report["compatibilityMode"] == "ollama-local-provider-compatibility-only"
     assert report["supported"] is False
     assert report["requiredSecrets"] == []
-    assert report["unsupportedFeatures"] == ["mcp_execution"]
+    assert report["unsupportedFeatures"] == [
+        "provider_not_declared",
+        "model_requirement:model.providers",
+        "mcp_execution",
+    ]
     assert report["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert report["providerMapping"]["adapterMapping"]["metadataOnly"] == [
         "harness.policies",

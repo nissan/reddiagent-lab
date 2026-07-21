@@ -202,9 +202,12 @@
     "level": 2,
     "warnings": [
       "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them.",
+      "Requested provider target 'gemini' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
+      "provider_not_declared",
+      "model_requirement:model.providers",
       "mcp_execution"
     ],
     "providerResolution": {
@@ -213,39 +216,30 @@
         "anthropic",
         "openai"
       ],
-      "selectedProvider": "gemini",
+      "selectedProvider": null,
       "selectedRole": "not-declared",
-      "hostedProvider": true
+      "hostedProvider": false
     },
     "modelCapabilityRequirements": {
       "vocabularyVersion": "adl-v0.2-model-requirements",
-      "provider": "gemini",
+      "provider": null,
       "capability": "chat",
       "requested": {
         "toolCalling": true,
         "structuredOutput": true
       },
-      "supportedRequirements": [
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
         {
-          "requirement": "capability",
-          "requested": "chat"
-        },
-        {
-          "requirement": "toolCalling",
-          "requested": true
-        },
-        {
-          "requirement": "structuredOutput",
-          "requested": true
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
         }
       ],
-      "unsupportedRequirements": [],
       "degradedRequirements": [],
       "lossMetadata": []
     },
-    "requiredSecrets": [
-      "GEMINI_API_KEY"
-    ],
+    "requiredSecrets": [],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
@@ -299,10 +293,12 @@
     "level": 2,
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
-      "Some model capability requirements are degraded; review lossMetadata before runtime use.",
+      "Requested provider target 'ollama' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
+      "provider_not_declared",
+      "model_requirement:model.providers",
       "mcp_execution"
     ],
     "providerResolution": {
@@ -311,47 +307,28 @@
         "anthropic",
         "openai"
       ],
-      "selectedProvider": "ollama",
+      "selectedProvider": null,
       "selectedRole": "not-declared",
       "hostedProvider": false
     },
     "modelCapabilityRequirements": {
       "vocabularyVersion": "adl-v0.2-model-requirements",
-      "provider": "ollama",
+      "provider": null,
       "capability": "chat",
       "requested": {
         "toolCalling": true,
         "structuredOutput": true
       },
-      "supportedRequirements": [
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
         {
-          "requirement": "capability",
-          "requested": "chat"
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
         }
       ],
-      "unsupportedRequirements": [],
-      "degradedRequirements": [
-        {
-          "requirement": "toolCalling",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
-        },
-        {
-          "requirement": "structuredOutput",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
-        }
-      ],
-      "lossMetadata": [
-        {
-          "field": "model.requirements.toolCalling",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        },
-        {
-          "field": "model.requirements.structuredOutput",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        }
-      ]
+      "degradedRequirements": [],
+      "lossMetadata": []
     },
     "requiredSecrets": [],
     "requiredHostedServices": [
@@ -830,10 +807,13 @@
     "level": 2,
     "warnings": [
       "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them.",
+      "Requested provider target 'gemini' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "provider_not_declared",
+      "real_settlement",
+      "model_requirement:model.providers"
     ],
     "providerResolution": {
       "requestedTarget": "gemini",
@@ -841,39 +821,30 @@
         "openai",
         "anthropic"
       ],
-      "selectedProvider": "gemini",
+      "selectedProvider": null,
       "selectedRole": "not-declared",
-      "hostedProvider": true
+      "hostedProvider": false
     },
     "modelCapabilityRequirements": {
       "vocabularyVersion": "adl-v0.2-model-requirements",
-      "provider": "gemini",
+      "provider": null,
       "capability": "chat",
       "requested": {
         "toolCalling": true,
         "structuredOutput": true
       },
-      "supportedRequirements": [
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
         {
-          "requirement": "capability",
-          "requested": "chat"
-        },
-        {
-          "requirement": "toolCalling",
-          "requested": true
-        },
-        {
-          "requirement": "structuredOutput",
-          "requested": true
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
         }
       ],
-      "unsupportedRequirements": [],
       "degradedRequirements": [],
       "lossMetadata": []
     },
-    "requiredSecrets": [
-      "GEMINI_API_KEY"
-    ],
+    "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -927,11 +898,13 @@
     "level": 2,
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
-      "Payment extension is dry-run only until receipt and policy enforcement land.",
-      "Some model capability requirements are degraded; review lossMetadata before runtime use."
+      "Requested provider target 'ollama' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback.",
+      "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
     "unsupportedFeatures": [
-      "real_settlement"
+      "provider_not_declared",
+      "real_settlement",
+      "model_requirement:model.providers"
     ],
     "providerResolution": {
       "requestedTarget": "ollama",
@@ -939,47 +912,28 @@
         "openai",
         "anthropic"
       ],
-      "selectedProvider": "ollama",
+      "selectedProvider": null,
       "selectedRole": "not-declared",
       "hostedProvider": false
     },
     "modelCapabilityRequirements": {
       "vocabularyVersion": "adl-v0.2-model-requirements",
-      "provider": "ollama",
+      "provider": null,
       "capability": "chat",
       "requested": {
         "toolCalling": true,
         "structuredOutput": true
       },
-      "supportedRequirements": [
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
         {
-          "requirement": "capability",
-          "requested": "chat"
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
         }
       ],
-      "unsupportedRequirements": [],
-      "degradedRequirements": [
-        {
-          "requirement": "toolCalling",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
-        },
-        {
-          "requirement": "structuredOutput",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
-        }
-      ],
-      "lossMetadata": [
-        {
-          "field": "model.requirements.toolCalling",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        },
-        {
-          "field": "model.requirements.structuredOutput",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        }
-      ]
+      "degradedRequirements": [],
+      "lossMetadata": []
     },
     "requiredSecrets": [],
     "requiredHostedServices": [],
@@ -2119,13 +2073,16 @@
   {
     "agent": "source-checker",
     "target": "ollama",
-    "supported": true,
+    "supported": false,
     "level": 2,
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
-      "Some model capability requirements are degraded; review lossMetadata before runtime use."
+      "Requested provider target 'ollama' is not declared in model.providers; provider compatibility remains unsupported until it is preferred or listed as a fallback."
     ],
-    "unsupportedFeatures": [],
+    "unsupportedFeatures": [
+      "provider_not_declared",
+      "model_requirement:model.providers"
+    ],
     "providerResolution": {
       "requestedTarget": "ollama",
       "orderedCandidates": [
@@ -2133,47 +2090,28 @@
         "openai",
         "gemini"
       ],
-      "selectedProvider": "ollama",
+      "selectedProvider": null,
       "selectedRole": "not-declared",
       "hostedProvider": false
     },
     "modelCapabilityRequirements": {
       "vocabularyVersion": "adl-v0.2-model-requirements",
-      "provider": "ollama",
+      "provider": null,
       "capability": "chat",
       "requested": {
         "toolCalling": true,
         "structuredOutput": true
       },
-      "supportedRequirements": [
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
         {
-          "requirement": "capability",
-          "requested": "chat"
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
         }
       ],
-      "unsupportedRequirements": [],
-      "degradedRequirements": [
-        {
-          "requirement": "toolCalling",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
-        },
-        {
-          "requirement": "structuredOutput",
-          "requested": true,
-          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
-        }
-      ],
-      "lossMetadata": [
-        {
-          "field": "model.requirements.toolCalling",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        },
-        {
-          "field": "model.requirements.structuredOutput",
-          "loss": "provider-native-enforcement-not-guaranteed"
-        }
-      ]
+      "degradedRequirements": [],
+      "lossMetadata": []
     },
     "requiredSecrets": [],
     "requiredHostedServices": [],

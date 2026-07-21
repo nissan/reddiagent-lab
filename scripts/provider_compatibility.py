@@ -84,6 +84,7 @@ OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
 MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
+PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
 
 
 def load_adl(path: Path) -> dict:
@@ -201,9 +202,9 @@ def ordered_provider_candidates(doc: dict) -> list[str]:
 
 
 def provider_for_target(doc: dict, target: str) -> str | None:
-    if target in MODEL_PROVIDER_IDS:
-        return target
     candidates = ordered_provider_candidates(doc)
+    if target in MODEL_PROVIDER_IDS:
+        return target if target in candidates else None
     if target == "local-python":
         return "ollama" if "ollama" in candidates else None
     if target == "langgraph":
@@ -213,7 +214,9 @@ def provider_for_target(doc: dict, target: str) -> str | None:
 
 def provider_resolution(doc: dict, target: str, selected_provider: str | None) -> dict:
     candidates = ordered_provider_candidates(doc)
-    if selected_provider is None:
+    if selected_provider is None and target in MODEL_PROVIDER_IDS:
+        role = "not-declared"
+    elif selected_provider is None:
         role = "not-applicable"
     elif candidates and selected_provider == candidates[0]:
         role = "preferred"
@@ -642,9 +645,7 @@ def report(path: Path, target: str) -> dict:
         )
     elif target in ["openai", "anthropic", "gemini", "langgraph"]:
         level = 2
-        if target != "langgraph":
-            required_secrets.append(PROVIDER_SECRETS[target])
-        elif selected_provider in PROVIDER_SECRETS:
+        if selected_provider in PROVIDER_SECRETS:
             required_secrets.append(PROVIDER_SECRETS[selected_provider])
         if target == "openai":
             compatibility_mode = OPENAI_COMPATIBILITY_MODE
@@ -683,6 +684,13 @@ def report(path: Path, target: str) -> dict:
             )
     else:
         level = 0
+
+    if resolution["selectedRole"] == "not-declared":
+        unsupported.append(PROVIDER_NOT_DECLARED_UNSUPPORTED)
+        warnings.append(
+            f"Requested provider target {target!r} is not declared in model.providers; "
+            "provider compatibility remains unsupported until it is preferred or listed as a fallback."
+        )
 
     if (extensions.get("x402") or {}).get("enabled"):
         warnings.append("Payment extension is dry-run only until receipt and policy enforcement land.")
