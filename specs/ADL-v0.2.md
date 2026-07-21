@@ -490,6 +490,191 @@ harness:
         visibility: trace
 ```
 
+## Runtime And Deployment Descriptor
+
+ADL v0.2 normalizes runtime and deployment constraints into typed harness
+sections so adapters can reject unsupported behavior before execution. These
+fields are declarations, not permission to activate a runtime, read secrets,
+open a network connection, start a scheduler, publish a deployment, or mutate a
+platform.
+
+`harness.runtime` is required and carries:
+
+- `target`: one of `local-python`, `hosted-container`, `serverless`,
+  `platform-native`, or `openclaw`.
+- `network`: typed network access declaration with `access` set to `none`,
+  `egress`, `ingress`, or `egress-and-ingress`; external access must include
+  an allowlist and `denyByDefault: true`.
+- `secretRefs`: references only. Each entry uses `name`, `provider`, optional
+  `ref`, `scope`, and `required`; embedded values are invalid.
+- `storage`: `none`, `ephemeral`, `persistent`, or `external`; persistent and
+  external storage require refs and retention.
+- `scheduler`: `manual`, `cron`, `event`, `webhook`, or `queue`; cron requires
+  schedule and timezone, event-like triggers require an event ref.
+- `activation`: `blocked`, `approval-required`, or `approved-bounded`;
+  approved bounded declarations require approval and expiry references but
+  still do not execute under compatibility reports.
+- `constraints`: target-specific limits such as runtime version, image,
+  region, max duration, or max concurrency.
+
+`harness.deployment` mirrors the same boundary in deployment terms:
+`target`, `environment`, `region`, `resources`, `secretRefs`, `networkPolicy`,
+`storage`, `scheduler`, `observability`, `rollback`, `healthCheck`, and
+`constraints`. Production environment declarations remain Level 4-gated and
+mainnet remains separately approval-gated.
+
+`harness.observability` declares events, sinks, trace refs, and redaction.
+`harness.recovery` declares disable and restart controls. Rollback uses the
+typed `rollback.mode` vocabulary: `none`, `dry-run-disable`,
+`previous-version`, or `operator-reviewed`.
+
+Compatibility reports must include a runtime/deployment descriptor summary with
+target, network/storage/scheduler modes, secret reference names, deployment
+environment, rollback/recovery modes, observability events, and unsupported
+feature diagnostics. Unsupported declarations such as hosted-container targets
+under local-only checks, external network access without an approved adapter,
+non-manual schedulers, external storage, or approved-bounded activation must
+produce compatibility errors before execution while preserving
+`runtimeExecutionAllowed=false`.
+
+Canonical local-python descriptor:
+
+```yaml
+harness:
+  runtime:
+    target: local-python
+    network:
+      access: none
+      allowlist: []
+      denyByDefault: true
+    storage:
+      mode: ephemeral
+    scheduler:
+      trigger: manual
+    activation:
+      mode: blocked
+    constraints:
+      runtimeVersion: "python3.14"
+      maxDurationSeconds: 60
+  deployment:
+    target: local
+    environment: local
+    rollback:
+      mode: none
+  observability:
+    events:
+      - trace.started
+      - trace.completed
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: manual
+```
+
+Canonical hosted-container descriptor:
+
+```yaml
+harness:
+  runtime:
+    target: hosted-container
+    network:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    secretRefs:
+      - name: EXAMPLE_API_KEY
+        provider: vault
+        ref: vault://example/api-key
+        scope: runtime
+        required: true
+    storage:
+      mode: persistent
+      refs:
+        - volume://agent-cache
+      retention: "7d"
+    scheduler:
+      trigger: manual
+    activation:
+      mode: approval-required
+    constraints:
+      image: ghcr.io/reddiagent/example-agent:sha256-demo
+      region: syd1
+  deployment:
+    target: container
+    environment: preview
+    networkPolicy:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    rollback:
+      mode: previous-version
+      ref: deployment:previous
+      requiresApproval: true
+  observability:
+    events:
+      - trace.started
+      - deployment.health.checked
+    sinks:
+      - type: openclaw-trace
+        ref: trace://runtime-preview
+        redaction: payload-redacted
+  recovery:
+    disable:
+      mode: operator-reviewed
+      ref: runbook://disable-preview
+      requiresApproval: true
+```
+
+Canonical serverless/platform-native descriptor:
+
+```yaml
+harness:
+  runtime:
+    target: serverless
+    network:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    secretRefs:
+      - name: PLATFORM_TOKEN
+        provider: cloud-secret-manager
+        ref: secret://platform/token
+        scope: provider
+        required: true
+    storage:
+      mode: none
+    scheduler:
+      trigger: event
+      eventRef: event://agent.requested
+    activation:
+      mode: approval-required
+    constraints:
+      region: us-east1
+      maxDurationSeconds: 30
+      maxConcurrency: 1
+  deployment:
+    target: serverless
+    environment: staging
+    healthCheck:
+      type: trace-event
+      ref: trace:deployment.health.checked
+    rollback:
+      mode: operator-reviewed
+      requiresApproval: true
+  observability:
+    events:
+      - trace.started
+      - trace.completed
+      - trace.failed
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: operator-reviewed
+```
+
 ## Validation Principles
 
 - Missing required top-level, model, or harness fields fail validation.
@@ -517,3 +702,6 @@ harness:
   evidence outputs are missing, even if the document is otherwise schema-valid.
 - Payment/reputation declarations are Level 3-gated and production deployment
   descriptors are Level 4-gated; mainnet remains separately approval-gated.
+- Runtime/deployment descriptors must be typed, secret-reference-only, and
+  report-only until an explicit runtime activation gate approves a bounded
+  execution lane.

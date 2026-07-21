@@ -1,0 +1,108 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: runtime-serverless-platform-agent
+  description: Serverless/platform-native descriptor for event-triggered static review.
+model:
+  capability: chat
+  providers:
+    preferred: gemini
+    fallbacks:
+      - openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+    streaming: true
+conformance:
+  requestedLevel: 4
+harness:
+  instructions:
+    inline: "Prepare an event-triggered report without invoking platform runtime APIs."
+  policies:
+    - id: platform-runtime-review
+      capability: runtime
+      subject: operator
+      resource: serverless
+      action: review
+      effect: allow
+      scope:
+        type: project
+      enforcement:
+        target: human-review
+        phase: compatibility
+  evalGates:
+    - id: platform-event-readiness
+      type: human-review
+      rule: "Event-triggered platform readiness must be reviewed."
+      required: true
+      severity: critical
+      appliesTo:
+        scope: task
+      evidence:
+        ref: trace:platform.readiness
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+  runtime:
+    target: serverless
+    network:
+      access: egress
+      allowlist:
+        - https://api.example.test
+      denyByDefault: true
+    secretRefs:
+      - name: PLATFORM_TOKEN
+        provider: cloud-secret-manager
+        ref: secret://platform/token
+        scope: provider
+        required: true
+    storage:
+      mode: none
+    scheduler:
+      trigger: event
+      eventRef: event://agent.requested
+    activation:
+      mode: approval-required
+    constraints:
+      region: us-east1
+      maxDurationSeconds: 30
+      maxConcurrency: 1
+  deployment:
+    target: serverless
+    environment: staging
+    healthCheck:
+      type: trace-event
+      ref: trace:deployment.health.checked
+    rollback:
+      mode: operator-reviewed
+      requiresApproval: true
+  observability:
+    events:
+      - trace.started
+      - trace.completed
+      - trace.failed
+    redaction: payload-redacted
+  recovery:
+    disable:
+      mode: operator-reviewed
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: platform-readiness-fee
+        direction: charge
+        maxAmount: "0.00"
+        currency: USD
+        rails:
+          - dry-run
+        requireReceipt: true
+        policyRefs:
+          - platform-runtime-review
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - platform-readiness-reviewed
