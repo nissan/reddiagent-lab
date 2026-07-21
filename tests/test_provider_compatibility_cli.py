@@ -96,6 +96,20 @@ def test_local_python_selector_and_summary_output_file() -> None:
     assert "runtimeExecutionAllowed=false" in text
 
 
+def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
+    invalid_paths = [
+        "examples/invalid/adl-v0.2-data-source-alias.yaml",
+        "examples/invalid/adl-v0.2-untrusted-source-no-check.yaml",
+        "examples/invalid/adl-v0.2-untrusted-source-approved-expectation.yaml",
+    ]
+
+    for path in invalid_paths:
+        proc = run_cli([path, "--target", "openai"], check=False)
+        assert proc.returncode == 1, path
+        assert proc.stdout == ""
+        assert "invalid ADL v0.2" in proc.stderr
+
+
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
     proc = run_cli(
         [

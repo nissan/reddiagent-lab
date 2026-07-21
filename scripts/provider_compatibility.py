@@ -8,10 +8,12 @@ import json
 from pathlib import Path
 import sys
 
+import jsonschema
 import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
 TARGETS = ["openai", "anthropic", "gemini", "ollama", "langgraph", "mcp-readonly", "local-python"]
 REPORT_ONLY_BOUNDARY = {
     "runtimeExecutionAllowed": False,
@@ -28,6 +30,30 @@ LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 
 def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
+
+
+def load_v02_schema() -> dict:
+    return json.loads(SCHEMA_PATH.read_text())
+
+
+def validate_adl(path: Path, doc: dict) -> None:
+    if doc.get("apiVersion") != "reddiagent.dev/v0.2":
+        return
+
+    validator = jsonschema.Draft202012Validator(load_v02_schema())
+    errors = sorted(validator.iter_errors(doc), key=lambda error: list(error.path))
+    if not errors:
+        return
+
+    first = errors[0]
+    location = ".".join(str(part) for part in first.path) or "<root>"
+    raise ValueError(f"{path}: invalid ADL v0.2 at {location}: {first.message}")
+
+
+def load_checked_adl(path: Path) -> dict:
+    doc = load_adl(path)
+    validate_adl(path, doc)
+    return doc
 
 
 def source_boundary_metadata(doc: dict) -> list[dict]:
@@ -315,7 +341,7 @@ def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
 
 
 def report(path: Path, target: str) -> dict:
-    doc = load_adl(path)
+    doc = load_checked_adl(path)
     harness = doc["harness"]
     model = doc["model"]
     extensions = doc.get("extensions") or {}
@@ -432,7 +458,7 @@ def selected_examples(paths: list[str], agents: list[str]) -> list[Path]:
     names = set(agents)
     selected = []
     for path in resolved:
-        doc = load_adl(path)
+        doc = load_checked_adl(path)
         if doc["metadata"]["name"] in names:
             selected.append(path)
     return selected
@@ -499,19 +525,23 @@ def main() -> int:
         print("\n".join(TARGETS))
         return 0
 
-    examples = selected_examples(args.examples, args.agent)
-    if not examples:
-        print("No ADL examples matched the requested selection.", file=sys.stderr)
+    try:
+        examples = selected_examples(args.examples, args.agent)
+        if not examples:
+            print("No ADL examples matched the requested selection.", file=sys.stderr)
+            return 1
+
+        reports = []
+        for example in examples:
+            for target in selected_targets(args.target):
+                reports.append(report(example, target))
+
+        content = render_json(reports) if args.format == "json" else render_summary(reports)
+        write_or_print(content, args.output)
+        return 0
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
         return 1
-
-    reports = []
-    for example in examples:
-        for target in selected_targets(args.target):
-            reports.append(report(example, target))
-
-    content = render_json(reports) if args.format == "json" else render_summary(reports)
-    write_or_print(content, args.output)
-    return 0
 
 
 if __name__ == "__main__":
