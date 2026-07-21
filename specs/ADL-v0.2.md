@@ -40,7 +40,6 @@ harness:
   runtime:
     target: local-python
   deployment: {}
-  observability: {}
   recovery: {}
 extensions: {}
 ```
@@ -90,10 +89,10 @@ required evidence output for levels `0..requestedLevel` is absent.
 | Level | Profile | Required ADL fields | Optional fields | Forbidden or live-gated before this level | Required evidence outputs |
 |---|---|---|---|---|---|
 | 0 | schema-valid | `apiVersion`, `kind`, `metadata.name`, `metadata.description`, `model`, `harness` | `conformance`, `extensions` | none | JSON Schema validation diagnostics |
-| 1 | local-python runnable | Level 0 plus `harness.instructions`, `harness.runtime.target`, `harness.evalGates` | `harness.memory`, `harness.tools`, `harness.dataSources` | payment/reputation extension; production deployment descriptor | local Level 1 trace; `completion.requiredGateStatus` |
-| 2 | provider-adapter compatible | Level 1 plus `model.capability`, `model.providers.preferred`, `model.requirements`, `harness.policies`, `harness.evalGates` | `harness.tools`, `harness.dataSources`, `harness.memory` | payment/reputation extension; production deployment descriptor | provider compatibility report; unsupported-execution boundary |
-| 3 | payment/reputation extension compatible | Level 2 plus `extensions.x402.enabled=true`, `extensions.x402.intents`, `extensions.x402.intents[*].policyRefs`, `extensions.receipts.required=true`, `extensions.reputation.emitSignals` | `extensions.identity` | production deployment descriptor | receipt evidence; reputation signal evidence; payment policy evidence |
-| 4 | production deployment compatible | Level 3 plus `harness.runtime.target` of `hosted-container`, `serverless`, `platform-native`, or `openclaw`, `harness.deployment.environment`, `harness.deployment.rollback`, `harness.observability.events`, `harness.recovery.disable` | `harness.deployment.healthCheck`, `harness.observability.sinks` | mainnet remains separately approval-gated | deployment readiness report; observability trace config; rollback/disable evidence |
+| 1 | local-python runnable | Level 0 plus `harness.instructions`, `harness.runtime.target`, `harness.evalGates`, and Level 1 observability events | `harness.memory`, `harness.tools`, `harness.dataSources` | payment/reputation extension; production deployment descriptor | local Level 1 trace; `completion.requiredGateStatus`; `trace.started`; `trace.completed`; `task.completed`; `task.failed` |
+| 2 | provider-adapter compatible | Level 1 plus `model.capability`, `model.providers.preferred`, `model.requirements`, `harness.policies`, `harness.evalGates`, and Level 2 observability events | `harness.tools`, `harness.dataSources`, `harness.memory` | payment/reputation extension; production deployment descriptor | provider compatibility report; unsupported-execution boundary; `model.called`; `policy.checked`; `eval.checked` |
+| 3 | payment/reputation extension compatible | Level 2 plus `extensions.x402.enabled=true`, `extensions.x402.intents`, `extensions.x402.intents[*].policyRefs`, `extensions.receipts.required=true`, `extensions.reputation.emitSignals`, and Level 3 observability events | `extensions.identity` | production deployment descriptor | receipt evidence; reputation signal evidence; payment policy evidence; `payment.intent.created`; `receipt.emitted`; `reputation.signal.emitted` |
+| 4 | production deployment compatible | Level 3 plus `harness.runtime.target` of `hosted-container`, `serverless`, `platform-native`, or `openclaw`, `harness.deployment.environment`, `harness.deployment.rollback`, `harness.observability.events`, `harness.recovery.disable`, and Level 4 observability events | `harness.deployment.healthCheck`, `harness.observability.destinations` | mainnet remains separately approval-gated | deployment readiness report; observability trace config; rollback/disable evidence; `deployment.health.checked`; `adapter.loss.reported` |
 
 Conformance output must include:
 
@@ -529,7 +528,134 @@ Compatibility checks must inspect both `harness.runtime` and mirrored
 external storage, and non-manual schedulers are unsupported before execution in
 the same way as runtime-side declarations.
 
-`harness.observability` declares events, sinks, trace refs, and redaction.
+## Observability Trace And Export Contract
+
+`harness.observability` declares how static validators, adapters, and future
+runtimes preserve trace evidence. It is configuration and evidence metadata; it
+does not authorize a provider call, live trace export, webhook push, hosted
+collector write, or runtime execution.
+
+The structured shape carries:
+
+- `events`: typed event declarations. Each event has `name`, `type`,
+  `required`, `evidenceRef`, and optional scope plus receipt/export refs.
+- `summaries`: run, trace, adapter-loss, or deployment-readiness summaries that
+  bind event names to a destination.
+- `destinations`: trace output destinations with `id`, `type`, `mode`, `ref`,
+  and destination redaction. `mode: local-only` means local file/stdout output
+  only; `adapter-managed` and `external-reviewed` remain report-only until a
+  reviewed adapter owns them.
+- `evidenceRefs`: additional trace/evidence/receipt/export references.
+- `traceRef`: stable trace identifier for reports and exports.
+- `retention`: ephemeral, time-bound, or externally managed retention.
+- `redaction`: document-level redaction mode and optional redacted fields.
+- `receipts` and `exports`: relationships that state which events and evidence
+  refs must be included in receipts or static export reports.
+
+Minimum event sets are cumulative by conformance level:
+
+| Level | Required observability events |
+|---|---|
+| 1 | `trace.started`, `trace.completed`, `task.completed`, `task.failed` |
+| 2 | Level 1 plus `model.called`, `policy.checked`, `eval.checked` |
+| 3 | Level 2 plus `payment.intent.created`, `receipt.emitted`, `reputation.signal.emitted` |
+| 4 | Level 3 plus `deployment.health.checked`, `adapter.loss.reported` |
+
+Missing required event names are conformance failures even when the ADL remains
+schema-valid. Adapter and strict export reports must surface
+`adapter.loss.reported` before lossy export or runtime mapping can be considered
+reviewable.
+
+Canonical local-only trace output:
+
+```yaml
+harness:
+  observability:
+    events:
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+    summaries:
+      - id: local_run_summary
+        type: run-summary
+        destinationRef: local_trace_file
+        eventRefs: [trace.started, trace.completed, task.completed, task.failed]
+        humanReadable: true
+    destinations:
+      - id: local_trace_file
+        type: file
+        mode: local-only
+        ref: file://./traces/agent.jsonl
+        redaction:
+          mode: payload-redacted
+    retention:
+      mode: ephemeral
+      purgeOnCompletion: true
+    redaction:
+      mode: payload-redacted
+    receipts:
+      include: false
+      eventRefs: []
+    exports:
+      include: true
+      eventRefs: [trace.started, trace.completed]
+```
+
+Canonical adapter-loss reporting:
+
+```yaml
+harness:
+  observability:
+    events:
+      - name: adapter.loss.reported
+        type: adapter
+        required: true
+        evidenceRef: export:adapter-loss
+        scope: export
+    summaries:
+      - id: adapter_loss_summary
+        type: adapter-loss-summary
+        destinationRef: reviewed_trace
+        eventRefs: [adapter.loss.reported]
+        humanReadable: true
+    destinations:
+      - id: reviewed_trace
+        type: openclaw-trace
+        mode: adapter-managed
+        ref: trace://reviewed-adapter
+        redaction:
+          mode: payload-redacted
+    retention:
+      mode: time-bound
+      maxAge: "7d"
+      storageRef: trace://reviewed-adapter
+    redaction:
+      mode: payload-redacted
+    exports:
+      include: true
+      eventRefs: [adapter.loss.reported]
+      requiredEvidenceRefs: [export:adapter-loss]
+```
+
+Schema-valid but conformance-invalid missing-observability cases should point to
+the missing event names, for example
+`harness.observability.events.adapter.loss.reported`, rather than silently
+passing a generic `harness.observability.events` field check.
+
+`harness.recovery` declares disable and restart controls. Rollback uses the
 `harness.recovery` declares disable and restart controls. Rollback uses the
 typed `rollback.mode` vocabulary: `none`, `dry-run-disable`,
 `previous-version`, or `operator-reviewed`.
@@ -569,9 +695,73 @@ harness:
       mode: none
   observability:
     events:
-      - trace.started
-      - trace.completed
-    redaction: payload-redacted
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+        scope: task
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+        scope: task
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+        scope: task
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+        scope: task
+    summaries:
+      - id: local_run_summary
+        type: run-summary
+        destinationRef: local_trace_file
+        eventRefs:
+          - trace.started
+          - trace.completed
+          - task.completed
+          - task.failed
+        humanReadable: true
+    destinations:
+      - id: local_trace_file
+        type: file
+        mode: local-only
+        ref: file://./traces/local-python.jsonl
+        redaction:
+          mode: payload-redacted
+          fields:
+            - prompt
+            - output
+    evidenceRefs:
+      - trace:trace.started
+      - trace:trace.completed
+      - trace:task.completed
+      - trace:task.failed
+    traceRef: trace:local-python
+    retention:
+      mode: ephemeral
+      purgeOnCompletion: true
+    redaction:
+      mode: payload-redacted
+      fields:
+        - prompt
+        - output
+    receipts:
+      include: false
+      eventRefs: []
+    exports:
+      include: true
+      eventRefs:
+        - trace.started
+        - trace.completed
+        - task.completed
+        - task.failed
+      requiredEvidenceRefs:
+        - trace:trace.started
+        - trace:trace.completed
   recovery:
     disable:
       mode: manual
@@ -620,12 +810,75 @@ harness:
       requiresApproval: true
   observability:
     events:
-      - trace.started
-      - deployment.health.checked
-    sinks:
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+        scope: deployment
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+        scope: deployment
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+        scope: task
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+        scope: task
+      - name: deployment.health.checked
+        type: deployment
+        required: true
+        evidenceRef: trace:deployment.health.checked
+        scope: deployment
+      - name: adapter.loss.reported
+        type: adapter
+        required: true
+        evidenceRef: export:adapter-loss
+        scope: export
+    summaries:
+      - id: deployment_readiness_summary
+        type: deployment-readiness-summary
+        destinationRef: preview_trace
+        eventRefs:
+          - trace.started
+          - deployment.health.checked
+          - adapter.loss.reported
+        humanReadable: true
+      - id: adapter_loss_summary
+        type: adapter-loss-summary
+        destinationRef: preview_trace
+        eventRefs:
+          - adapter.loss.reported
+        humanReadable: true
+    destinations:
       - type: openclaw-trace
+        id: preview_trace
+        mode: adapter-managed
         ref: trace://runtime-preview
-        redaction: payload-redacted
+        redaction:
+          mode: payload-redacted
+          fields:
+            - prompt
+            - secretRefs
+    evidenceRefs:
+      - trace:trace.started
+      - trace:deployment.health.checked
+      - export:adapter-loss
+    traceRef: trace:runtime-preview
+    retention:
+      mode: time-bound
+      maxAge: "7d"
+      storageRef: trace://runtime-preview
+    redaction:
+      mode: payload-redacted
+      fields:
+        - prompt
+        - secretRefs
   recovery:
     disable:
       mode: operator-reviewed
@@ -672,10 +925,48 @@ harness:
       requiresApproval: true
   observability:
     events:
-      - trace.started
-      - trace.completed
-      - trace.failed
-    redaction: payload-redacted
+      - name: trace.started
+        type: trace
+        required: true
+        evidenceRef: trace:trace.started
+      - name: trace.completed
+        type: trace
+        required: true
+        evidenceRef: trace:trace.completed
+      - name: task.completed
+        type: task
+        required: true
+        evidenceRef: trace:task.completed
+      - name: task.failed
+        type: task
+        required: true
+        evidenceRef: trace:task.failed
+      - name: deployment.health.checked
+        type: deployment
+        required: true
+        evidenceRef: trace:deployment.health.checked
+      - name: adapter.loss.reported
+        type: adapter
+        required: true
+        evidenceRef: export:adapter-loss
+    summaries:
+      - id: serverless_readiness_summary
+        type: deployment-readiness-summary
+        destinationRef: serverless_trace
+        eventRefs: [trace.started, deployment.health.checked, adapter.loss.reported]
+    destinations:
+      - id: serverless_trace
+        type: openclaw-trace
+        mode: adapter-managed
+        ref: trace://runtime-serverless
+        redaction:
+          mode: payload-redacted
+    retention:
+      mode: time-bound
+      maxAge: "7d"
+      storageRef: trace://runtime-serverless
+    redaction:
+      mode: payload-redacted
   recovery:
     disable:
       mode: operator-reviewed

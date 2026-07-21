@@ -67,6 +67,19 @@ def test_schema_declares_typed_runtime_deployment_sections() -> None:
     assert harness["properties"]["deployment"] == {"$ref": "#/$defs/deployment"}
     assert harness["properties"]["observability"] == {"$ref": "#/$defs/observability"}
     assert harness["properties"]["recovery"] == {"$ref": "#/$defs/recovery"}
+    assert schema["$defs"]["observability"]["required"] == [
+        "events",
+        "summaries",
+        "destinations",
+        "retention",
+        "redaction",
+    ]
+    assert schema["$defs"]["observabilityEvent"]["required"] == [
+        "name",
+        "type",
+        "required",
+        "evidenceRef",
+    ]
     assert schema["$defs"]["secretRef"]["additionalProperties"] is False
     assert "value" not in schema["$defs"]["secretRef"]["properties"]
     assert schema["$defs"]["runtimeActivation"]["allOf"], "approved-bounded activation must require evidence refs"
@@ -111,7 +124,30 @@ def test_local_runtime_descriptor_reports_supported_without_execution() -> None:
         "deploymentTarget": "local",
         "deploymentEnvironment": "local",
         "rollbackMode": "none",
-        "observabilityEvents": ["trace.started", "trace.completed"],
+        "observabilityEvents": ["trace.started", "trace.completed", "task.completed", "task.failed"],
+        "observability": {
+            "events": ["trace.started", "trace.completed", "task.completed", "task.failed"],
+            "requiredEvents": ["trace.started", "trace.completed", "task.completed", "task.failed"],
+            "summaryIds": ["local_run_summary"],
+            "destinationModes": [
+                {
+                    "id": "local_trace_file",
+                    "type": "file",
+                    "mode": "local-only",
+                    "redaction": "payload-redacted",
+                }
+            ],
+            "evidenceRefs": [
+                "trace:trace.started",
+                "trace:trace.completed",
+                "trace:task.completed",
+                "trace:task.failed",
+            ],
+            "retentionMode": "ephemeral",
+            "redactionMode": "payload-redacted",
+            "receiptEvents": [],
+            "exportEvents": ["trace.started", "trace.completed", "task.completed", "task.failed"],
+        },
         "recoveryDisableMode": "manual",
         "unsupportedFeatures": [],
     }
@@ -129,6 +165,20 @@ def test_hosted_container_descriptor_fails_unsupported_features_before_execution
     assert report["runtimeDeployment"]["networkAccess"] == "egress"
     assert report["runtimeDeployment"]["storageMode"] == "persistent"
     assert report["runtimeDeployment"]["rollbackMode"] == "previous-version"
+    assert "adapter.loss.reported" in report["runtimeDeployment"]["observabilityEvents"]
+    assert report["runtimeDeployment"]["observability"]["summaryIds"] == [
+        "deployment_readiness_summary",
+        "adapter_loss_summary",
+    ]
+    assert report["runtimeDeployment"]["observability"]["receiptEvents"] == [
+        "payment.intent.created",
+        "receipt.emitted",
+        "reputation.signal.emitted",
+    ]
+    assert report["runtimeDeployment"]["observability"]["exportEvents"] == [
+        "adapter.loss.reported",
+        "deployment.health.checked",
+    ]
     assert {
         item["feature"]
         for item in report["runtimeDeployment"]["unsupportedFeatures"]
@@ -165,6 +215,7 @@ def test_platform_native_descriptor_fails_deployment_only_features_before_execut
     assert report["runtimeDeployment"]["deploymentNetworkAccess"] == "egress"
     assert report["runtimeDeployment"]["deploymentStorageMode"] == "external"
     assert report["runtimeDeployment"]["deploymentSchedulerTrigger"] == "cron"
+    assert "adapter.loss.reported" in report["runtimeDeployment"]["observabilityEvents"]
     assert {
         item["feature"]
         for item in report["runtimeDeployment"]["unsupportedFeatures"]
@@ -201,6 +252,8 @@ def test_spec_documents_runtime_deployment_descriptor_contract() -> None:
         "hosted-container",
         "serverless/platform-native",
         "runtimeExecutionAllowed=false",
+        "adapter.loss.reported",
+        "local-only",
     ]:
         assert phrase in text
 

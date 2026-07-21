@@ -78,6 +78,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -191,6 +202,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -304,6 +326,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -413,6 +446,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -531,6 +575,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -657,6 +712,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -731,6 +797,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -813,6 +890,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -901,6 +989,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -989,6 +1088,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -1077,6 +1187,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -1164,6 +1285,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -1277,6 +1409,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -1385,6 +1528,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -1494,6 +1648,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -1612,6 +1777,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -1738,6 +1914,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -1812,6 +1999,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -1901,6 +2099,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -1981,6 +2190,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -2067,6 +2287,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -2153,6 +2384,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -2235,6 +2477,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -2341,6 +2594,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -2448,6 +2712,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -2562,6 +2837,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -2673,6 +2959,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -2789,6 +3086,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -2870,6 +3178,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -2946,6 +3265,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -3028,6 +3358,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -3110,6 +3451,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -3192,6 +3544,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -3277,6 +3640,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -3386,6 +3760,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -3496,6 +3881,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -3602,6 +3998,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -3716,6 +4123,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     },
@@ -3836,6 +4254,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -3906,6 +4335,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": []
     }
@@ -3985,6 +4425,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -4070,6 +4521,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -4155,6 +4617,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {
@@ -4240,6 +4713,17 @@
       "deploymentEnvironment": "not-declared",
       "rollbackMode": "not-declared",
       "observabilityEvents": [],
+      "observability": {
+        "events": [],
+        "requiredEvents": [],
+        "summaryIds": [],
+        "destinationModes": [],
+        "evidenceRefs": [],
+        "retentionMode": "not-declared",
+        "redactionMode": "not-declared",
+        "receiptEvents": [],
+        "exportEvents": []
+      },
       "recoveryDisableMode": "not-declared",
       "unsupportedFeatures": [
         {

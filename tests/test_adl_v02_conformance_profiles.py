@@ -22,6 +22,9 @@ LEVEL3_MISSING_RECEIPT = ROOT / "tests" / "fixtures" / "adl-v0.2-level3-missing-
 LEVEL4_MISSING_OBSERVABILITY = ROOT / "tests" / "fixtures" / "adl-v0.2-level4-missing-observability.yaml"
 LEVEL4_WITHOUT_LEVEL3 = ROOT / "tests" / "fixtures" / "adl-v0.2-level4-complete-without-level3.yaml"
 INVALID_REQUESTED_LEVEL = ROOT / "tests" / "fixtures" / "adl-v0.2-invalid-requested-level.yaml"
+INVALID_MISSING_OBSERVABILITY_EVENTS = (
+    ROOT / "examples" / "invalid" / "adl-v0.2-missing-observability-events.yaml"
+)
 
 
 def run_cli(args: list[str], check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -60,6 +63,7 @@ def test_schema_accepts_requested_conformance_level() -> None:
     assert schema_errors(LEVEL3_MISSING_RECEIPT) == []
     assert schema_errors(LEVEL4_MISSING_OBSERVABILITY) == []
     assert schema_errors(LEVEL4_WITHOUT_LEVEL3) == []
+    assert schema_errors(INVALID_MISSING_OBSERVABILITY_EVENTS) == []
     assert "5 is greater than the maximum of 4" in schema_errors(INVALID_REQUESTED_LEVEL)
 
 
@@ -77,6 +81,8 @@ def test_spec_and_conformance_docs_capture_profile_matrix() -> None:
 
     assert "extensions.x402.intents[*].policyRefs" in spec
     assert "harness.observability.events" in spec
+    assert "adapter.loss.reported" in spec
+    assert "local-only" in spec
     assert "mainnet remains separately approval-gated" in spec.lower()
 
 
@@ -124,6 +130,8 @@ def test_schema_valid_level4_fixture_fails_missing_production_evidence_fields() 
         "harness.deployment.rollback",
         "harness.observability.events",
         "harness.recovery.disable",
+        "harness.observability.events.deployment.health.checked",
+        "harness.observability.events.adapter.loss.reported",
     ]
     assert report["forbiddenCapabilitiesByLevel"]["4"] == []
 
@@ -144,6 +152,20 @@ def test_level4_complete_shape_still_fails_without_cumulative_level3_fields() ->
         "extensions.receipts.required=true",
         "extensions.reputation.emitSignals",
     ]
+
+
+def test_schema_valid_level4_fixture_fails_missing_required_observability_events() -> None:
+    proc = run_cli([str(INVALID_MISSING_OBSERVABILITY_EVENTS.relative_to(ROOT))], check=False)
+    assert proc.returncode == 1
+    report = json.loads(proc.stdout)[0]
+
+    assert report["schemaDiagnostics"] == []
+    assert report["requestedLevel"] == 4
+    assert report["status"] == "fail"
+    assert "harness.observability.events.trace.completed" in report["missingFieldsByLevel"]["1"]
+    assert "harness.observability.events.model.called" in report["missingFieldsByLevel"]["2"]
+    assert "harness.observability.events.receipt.emitted" in report["missingFieldsByLevel"]["3"]
+    assert "harness.observability.events.adapter.loss.reported" in report["missingFieldsByLevel"]["4"]
 
 
 def test_cli_requested_level_override_reports_lower_level_live_gate() -> None:
@@ -184,6 +206,7 @@ def main() -> int:
     test_schema_valid_level3_fixture_fails_missing_receipt_reputation_fields()
     test_schema_valid_level4_fixture_fails_missing_production_evidence_fields()
     test_level4_complete_shape_still_fails_without_cumulative_level3_fields()
+    test_schema_valid_level4_fixture_fails_missing_required_observability_events()
     test_cli_requested_level_override_reports_lower_level_live_gate()
     test_invalid_requested_level_reports_schema_diagnostics_without_crashing()
     print("PASS ADL v0.2 conformance profiles")

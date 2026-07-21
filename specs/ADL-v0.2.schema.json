@@ -481,29 +481,159 @@
     "observability": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["events", "summaries", "destinations", "retention", "redaction"],
       "properties": {
         "events": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilityEvent" },
+          "uniqueItems": true
+        },
+        "summaries": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilitySummary" },
+          "uniqueItems": true
+        },
+        "destinations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilityDestination" },
           "uniqueItems": true
         },
         "sinks": {
           "type": "array",
-          "items": { "$ref": "#/$defs/observabilitySink" },
+          "items": { "$ref": "#/$defs/observabilityDestination" },
+          "uniqueItems": true
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observabilityEvidenceRef" },
           "uniqueItems": true
         },
         "traceRef": { "type": "string", "minLength": 1 },
-        "redaction": { "type": "string", "enum": ["metadata-only", "payload-redacted", "full"] }
+        "retention": { "$ref": "#/$defs/observabilityRetention" },
+        "redaction": { "$ref": "#/$defs/observabilityRedaction" },
+        "receipts": { "$ref": "#/$defs/observabilityRelationship" },
+        "exports": { "$ref": "#/$defs/observabilityRelationship" }
       }
     },
-    "observabilitySink": {
+    "observabilityEventName": {
+      "type": "string",
+      "enum": [
+        "trace.started",
+        "model.called",
+        "tool.called",
+        "policy.checked",
+        "eval.checked",
+        "payment.intent.created",
+        "payment.settled",
+        "receipt.emitted",
+        "reputation.signal.emitted",
+        "deployment.health.checked",
+        "adapter.loss.reported",
+        "task.completed",
+        "task.failed",
+        "trace.completed"
+      ]
+    },
+    "observabilityEvent": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type", "ref"],
+      "required": ["name", "type", "required", "evidenceRef"],
       "properties": {
+        "name": { "$ref": "#/$defs/observabilityEventName" },
+        "type": {
+          "type": "string",
+          "enum": ["trace", "model", "tool", "policy", "eval", "payment", "receipt", "reputation", "deployment", "adapter", "task"]
+        },
+        "required": { "type": "boolean" },
+        "evidenceRef": { "$ref": "#/$defs/observabilityEvidenceRef" },
+        "scope": { "type": "string", "enum": ["task", "session", "runtime", "deployment", "adapter", "receipt", "export"] },
+        "summaryRef": { "type": "string", "minLength": 1 },
+        "receiptRef": { "type": "string", "minLength": 1 },
+        "exportRef": { "type": "string", "minLength": 1 }
+      }
+    },
+    "observabilitySummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "destinationRef", "eventRefs"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
+        "type": { "type": "string", "enum": ["run-summary", "trace-summary", "adapter-loss-summary", "deployment-readiness-summary"] },
+        "destinationRef": { "type": "string", "minLength": 1 },
+        "eventRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilityEventName" },
+          "uniqueItems": true
+        },
+        "humanReadable": { "type": "boolean" }
+      }
+    },
+    "observabilityDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "mode", "ref", "redaction"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]*$" },
         "type": { "type": "string", "enum": ["stdout", "file", "otlp", "webhook", "openclaw-trace"] },
+        "mode": { "type": "string", "enum": ["local-only", "adapter-managed", "external-reviewed"] },
         "ref": { "type": "string", "minLength": 1 },
-        "redaction": { "type": "string", "enum": ["metadata-only", "payload-redacted", "full"] }
+        "redaction": { "$ref": "#/$defs/observabilityRedaction" }
+      }
+    },
+    "observabilityEvidenceRef": {
+      "type": "string",
+      "pattern": "^(trace|evidence|receipt|export):[A-Za-z0-9._~:/?#\\[\\]@!$&'()*+,;=%-]+$"
+    },
+    "observabilityRetention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["ephemeral", "time-bound", "external-managed"] },
+        "maxAge": { "type": "string", "minLength": 1 },
+        "storageRef": { "type": "string", "minLength": 1 },
+        "purgeOnCompletion": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "enum": ["time-bound", "external-managed"] } }, "required": ["mode"] },
+          "then": { "required": ["maxAge", "storageRef"] }
+        }
+      ]
+    },
+    "observabilityRedaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["metadata-only", "payload-redacted", "full"] },
+        "fields": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "observabilityRelationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["include", "eventRefs"],
+      "properties": {
+        "include": { "type": "boolean" },
+        "eventRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observabilityEventName" },
+          "uniqueItems": true
+        },
+        "requiredEvidenceRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/observabilityEvidenceRef" },
+          "uniqueItems": true
+        }
       }
     },
     "rollback": {

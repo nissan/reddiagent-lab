@@ -96,6 +96,7 @@ GEMINI_COMPATIBILITY_MODE = "gemini-provider-compatibility-only"
 OLLAMA_COMPATIBILITY_MODE = "ollama-local-provider-compatibility-only"
 LANGGRAPH_COMPATIBILITY_MODE = "langgraph-compatibility-report-only"
 ADL_V02_SCHEMA_VALIDATION_UNSUPPORTED = "adl_v0_2_schema_validation"
+ADL_V02_CONFORMANCE_UNSUPPORTED = "adl_v0_2_conformance"
 MODEL_REQUIREMENT_UNSUPPORTED_PREFIX = "model_requirement"
 PROVIDER_NOT_DECLARED_UNSUPPORTED = "provider_not_declared"
 RUNTIME_DEPLOYMENT_UNSUPPORTED_PREFIX = "runtime_deployment"
@@ -303,9 +304,17 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
             }
         )
 
+    runtime_secret_refs = runtime.get("secretRefs", [])
+    deployment_secret_refs = deployment.get("secretRefs", [])
+    if not isinstance(runtime_secret_refs, list):
+        runtime_secret_refs = []
+    if not isinstance(deployment_secret_refs, list):
+        deployment_secret_refs = []
+    observability_metadata = observability_report_metadata(observability)
+
     secret_refs = [
         item.get("name")
-        for item in [*runtime.get("secretRefs", []), *deployment.get("secretRefs", [])]
+        for item in [*runtime_secret_refs, *deployment_secret_refs]
         if isinstance(item, dict) and item.get("name")
     ]
 
@@ -327,9 +336,61 @@ def runtime_deployment_metadata(doc: dict, target: str) -> dict:
         "deploymentTarget": deployment.get("target", "not-declared"),
         "deploymentEnvironment": deployment.get("environment", "not-declared"),
         "rollbackMode": rollback.get("mode", "not-declared"),
-        "observabilityEvents": observability.get("events", []),
+        "observabilityEvents": observability_metadata["events"],
+        "observability": observability_metadata,
         "recoveryDisableMode": disable.get("mode", "not-declared"),
         "unsupportedFeatures": unsupported,
+    }
+
+
+def observability_report_metadata(observability: dict) -> dict:
+    events = observability.get("events", [])
+    if not isinstance(events, list):
+        events = []
+    summaries = observability.get("summaries", [])
+    if not isinstance(summaries, list):
+        summaries = []
+    destinations = observability.get("destinations", observability.get("sinks", []))
+    if not isinstance(destinations, list):
+        destinations = []
+    evidence_refs = observability.get("evidenceRefs", [])
+    if not isinstance(evidence_refs, list):
+        evidence_refs = []
+    retention = object_or_empty(observability.get("retention"))
+    redaction = object_or_empty(observability.get("redaction"))
+    receipts = object_or_empty(observability.get("receipts"))
+    exports = object_or_empty(observability.get("exports"))
+    return {
+        "events": [
+            event.get("name")
+            for event in events
+            if isinstance(event, dict) and event.get("name")
+        ],
+        "requiredEvents": [
+            event.get("name")
+            for event in events
+            if isinstance(event, dict) and event.get("required") is True and event.get("name")
+        ],
+        "summaryIds": [
+            summary.get("id")
+            for summary in summaries
+            if isinstance(summary, dict) and summary.get("id")
+        ],
+        "destinationModes": [
+            {
+                "id": destination.get("id"),
+                "type": destination.get("type"),
+                "mode": destination.get("mode"),
+                "redaction": object_or_empty(destination.get("redaction")).get("mode"),
+            }
+            for destination in destinations
+            if isinstance(destination, dict)
+        ],
+        "evidenceRefs": [ref for ref in evidence_refs if isinstance(ref, str)],
+        "retentionMode": retention.get("mode", "not-declared"),
+        "redactionMode": redaction.get("mode", "not-declared"),
+        "receiptEvents": receipts.get("eventRefs", []),
+        "exportEvents": exports.get("eventRefs", []),
     }
 
 
@@ -772,6 +833,7 @@ def report(path: Path, target: str) -> dict:
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
     source_boundaries = source_boundary_metadata(doc)
     runtime_deployment = runtime_deployment_metadata(doc, target)
+    conformance = conformance_metadata(path) if doc.get("apiVersion") == "reddiagent.dev/v0.2" else None
     warnings = []
     unsupported = []
     required_secrets = []
@@ -864,6 +926,12 @@ def report(path: Path, target: str) -> dict:
             "Runtime/deployment declarations are report-only and include unsupported features that "
             "must fail before execution."
         )
+    if conformance is not None and conformance["status"] != "pass":
+        unsupported.append(ADL_V02_CONFORMANCE_UNSUPPORTED)
+        warnings.append(
+            "Requested ADL v0.2 conformance failed; provider compatibility remains unsupported "
+            "until missing required field sets and evidence outputs are resolved."
+        )
 
     if mcp_tools:
         warnings.append("MCP declarations are read-only adapter shapes until server resolution lands.")
@@ -890,8 +958,8 @@ def report(path: Path, target: str) -> dict:
         "sourceBoundary": source_boundaries,
         "runtimeDeployment": runtime_deployment,
     }
-    if doc.get("apiVersion") == "reddiagent.dev/v0.2":
-        result["conformance"] = conformance_metadata(path)
+    if conformance is not None:
+        result["conformance"] = conformance
     if provider_mapping is not None:
         result["providerMapping"] = provider_mapping
     return result

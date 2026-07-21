@@ -51,6 +51,38 @@ def field_contract() -> dict:
     return json.loads(match.group("payload"))
 
 
+def yaml_block_after_heading(heading: str) -> dict:
+    text = SPEC_PATH.read_text()
+    pattern = rf"(?:## {re.escape(heading)}|{re.escape(heading)}:).*?```yaml\n(?P<payload>.*?)\n```"
+    match = re.search(pattern, text, re.DOTALL)
+    assert match, f"ADL v0.2 spec must include a YAML block for {heading}"
+    return yaml.safe_load(match.group("payload"))
+
+
+def wrap_harness_snippet(snippet: dict, name: str) -> dict:
+    assert list(snippet.keys()) == ["harness"], name
+    return {
+        "apiVersion": "reddiagent.dev/v0.2",
+        "kind": "Agent",
+        "metadata": {
+            "name": name,
+            "description": f"Validates the documented {name} harness snippet.",
+        },
+        "model": {
+            "capability": "chat",
+            "providers": {"preferred": "openai"},
+            "requirements": {
+                "toolCalling": True,
+                "structuredOutput": True,
+            },
+        },
+        "harness": {
+            "instructions": {"inline": "Stay within the documented harness contract."},
+            **snippet["harness"],
+        },
+    }
+
+
 def sorted_properties(schema_section: dict) -> list[str]:
     return sorted(schema_section["properties"].keys())
 
@@ -123,12 +155,36 @@ def test_spec_field_contract_matches_schema() -> None:
     assert optional_fields(harness_schema) == sorted(contract["harness"]["optional"])
 
 
+def test_documented_yaml_snippets_validate_against_v02_schema() -> None:
+    snippets = {
+        "Top-Level Shape": yaml_block_after_heading("Top-Level Shape"),
+        "Canonical local-python descriptor": wrap_harness_snippet(
+            yaml_block_after_heading("Canonical local-python descriptor"),
+            "documented-local-python-descriptor",
+        ),
+        "Canonical hosted-container descriptor": wrap_harness_snippet(
+            yaml_block_after_heading("Canonical hosted-container descriptor"),
+            "documented-hosted-container-descriptor",
+        ),
+        "Canonical serverless/platform-native descriptor": wrap_harness_snippet(
+            yaml_block_after_heading("Canonical serverless/platform-native descriptor"),
+            "documented-serverless-platform-descriptor",
+        ),
+    }
+
+    schema_validator = validator()
+    for heading, snippet in snippets.items():
+        errors = sorted(schema_validator.iter_errors(snippet), key=lambda error: list(error.path))
+        assert errors == [], {heading: [error.message for error in errors]}
+
+
 def main() -> int:
     test_positive_examples_validate_against_v02_schema()
     test_checked_examples_use_canonical_instruction_shape()
     test_shape_divergence_negative_fixture_fails_clearly()
     test_provider_and_requirement_vocabulary_fail_closed()
     test_spec_field_contract_matches_schema()
+    test_documented_yaml_snippets_validate_against_v02_schema()
     print("PASS ADL v0.2 canonical shape")
     return 0
 
