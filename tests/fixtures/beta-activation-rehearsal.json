@@ -49,7 +49,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -61,7 +61,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -73,25 +73,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -121,7 +121,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -242,7 +242,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -254,7 +254,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -266,25 +266,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -314,7 +314,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -430,7 +430,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -442,7 +442,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -454,25 +454,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -502,7 +502,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -623,7 +623,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -635,7 +635,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -647,25 +647,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -695,7 +695,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -821,7 +821,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -833,7 +833,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -845,25 +845,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -893,7 +893,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -1023,7 +1023,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -1035,7 +1035,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -1047,25 +1047,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -1095,7 +1095,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -1221,7 +1221,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -1233,7 +1233,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -1245,25 +1245,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -1293,7 +1293,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -1423,7 +1423,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -1435,7 +1435,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -1447,25 +1447,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -1495,7 +1495,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -1621,7 +1621,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -1633,7 +1633,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -1645,25 +1645,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -1693,7 +1693,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -1823,7 +1823,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -1835,7 +1835,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -1847,25 +1847,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -1895,7 +1895,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -2025,7 +2025,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -2037,7 +2037,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -2049,25 +2049,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -2097,7 +2097,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -2227,7 +2227,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -2239,7 +2239,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -2251,25 +2251,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -2299,7 +2299,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -2429,7 +2429,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -2441,7 +2441,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -2453,25 +2453,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -2501,7 +2501,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -2635,7 +2635,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -2647,7 +2647,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -2659,25 +2659,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -2707,7 +2707,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,
@@ -2833,7 +2833,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-activation-preflight.json",
           "purpose": "Pinned #258 activation preflight package.",
-          "sha256": "2183f366300bcaf25fd3d2e74c842e0a87726df3eb286eda0035a2e36880bf05"
+          "sha256": "0e8caef3f53d072f9cd9b60a0ff013b59baa39eda13b5e46ab6de27cd9d3f078"
         },
         {
           "exists": true,
@@ -2845,7 +2845,7 @@
           "exists": true,
           "path": "tests/fixtures/beta-operator-decision-package.json",
           "purpose": "Pinned #256 operator decision package.",
-          "sha256": "b15ca19ed32e066a53576866f9c5b4f60dee39a22918d0cd70a73da54a9da40e"
+          "sha256": "c1b633fbdc9cb938a79de03d5d2982ebd5236e7e1949af75996a259eacf0b16d"
         },
         {
           "exists": true,
@@ -2857,25 +2857,25 @@
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Pinned #240 runtime package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-review-ui.json",
           "purpose": "Pinned #246 beta review UI/package artifact.",
-          "sha256": "6e544cf6f5bd03d39e012c1eea3f854bb13e882304a19ba347a5fd5e0599881a"
+          "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966"
         },
         {
           "exists": true,
           "path": "tests/fixtures/beta-operator-dry-run-package.json",
           "purpose": "Source operator dry-run package artifact.",
-          "sha256": "b570e6f71f76ffd59cb5b8203b026385ca940a82fce6366dfbb1ef4874955bf2"
+          "sha256": "8291c48f6ad5b08d73f26fb11be42d62cf48b2f33a4ebfcb50ec79b8f8a3c717"
         },
         {
           "exists": true,
@@ -2905,7 +2905,7 @@
           "exists": true,
           "path": "tests/fixtures/local-executable-runtime-prototype.json",
           "purpose": "Selected local runtime dry-run evidence.",
-          "sha256": "eefcfa7377a332588af0bfc459c8a6ad329bf9ce287e82dff78c75036148e887"
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
         },
         {
           "exists": true,

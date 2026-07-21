@@ -105,16 +105,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -137,7 +137,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -153,7 +153,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "pass",
       "verdict": "hold"
     },
@@ -223,16 +223,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -255,7 +255,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -271,7 +271,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "pass",
       "verdict": "rollback"
     },
@@ -350,16 +350,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
             "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
             "hashMatches": false,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -382,7 +382,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -398,7 +398,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -407,8 +407,16 @@
       "expectedVerdict": "hold",
       "findings": [
         {
+          "path": "prior293Fixture.expectedSha256",
+          "reason": "Prior #293 fixture path and sha256 must be pinned from the merge commit."
+        },
+        {
           "path": "prior293Report.expectedSha256",
           "reason": "Prior #293 report path and sha256 must be pinned from the merge commit."
+        },
+        {
+          "path": "prior293Fixture.sha256",
+          "reason": "Artifact `tests/fixtures/beta-runtime-service-activation-evidence-gate.json` does not match its expected sha256 pin."
         },
         {
           "path": "prior293Report.sha256",
@@ -477,16 +485,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
             "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
-            "hashMatches": true,
+            "hashMatches": false,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -509,7 +517,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -525,7 +533,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -600,16 +608,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -632,7 +640,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -648,7 +656,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -723,16 +731,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -755,7 +763,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -771,7 +779,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -858,16 +866,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -890,7 +898,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -906,7 +914,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -985,16 +993,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1017,7 +1025,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1033,7 +1041,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1108,16 +1116,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1140,7 +1148,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "missing",
@@ -1156,7 +1164,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1235,16 +1243,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1267,7 +1275,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1283,7 +1291,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1362,16 +1370,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1394,7 +1402,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1410,7 +1418,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1509,16 +1517,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1541,7 +1549,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1557,7 +1565,7 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1636,16 +1644,16 @@
           "acceptedResultId": "runtime-service-activation-evidence-hold-pass",
           "acceptedVerdict": "hold-for-live-run",
           "approvalPacketFixture": {
-            "expectedSha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e",
+            "expectedSha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "b5bd8232d1cca34387a24b71c412dec7e60a5e53c90d84d1a0737a3eef65227e"
+            "sha256": "dee1184b4adbef8e97926c6f7a52e547b3f6eb791a01b505e74ff9639bf72d64"
           },
           "fixture": {
-            "expectedSha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9",
+            "expectedSha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "bddc71ddf84bc5b20ecd3dd55d28e7159d87b38d1ecb04c5e66c29e6cc3b6bd9"
+            "sha256": "f1c11feceb5c726df90535db9c2e0a2204bb9868c3932e8398da20119785c950"
           },
           "priorRiskVerdict": "hold-for-separate-live-run",
           "report": {
@@ -1668,7 +1676,7 @@
           "verification": "dry-run rollback/disable proof only; no service was started."
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-live-run-gate",
-        "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+        "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
         "sourceMergeCommit": "2f956e536cdfa39b443a08709c1d7ea41ab0f8d0",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1684,12 +1692,12 @@
           ]
         }
       },
-      "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "59b6f8caf6361fa5d6744452b68cf625aa0a53fc",
+  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 11,

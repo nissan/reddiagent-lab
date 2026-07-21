@@ -49,12 +49,24 @@ def main() -> int:
         "deniedCount": 0,
     }
     assert scenarios["tool-agent-execute-tools"]["sourceCheckSummary"]["status"] == "pass"
+    assert scenarios["adl-v02-memory-observability-dry-run"]["completion"]["status"] == "pass"
+    assert scenarios["adl-v02-memory-observability-dry-run"]["adl"] == "examples/v0.2/memory-observability-agent.yaml"
     assert scenarios["unsupported-tool-strict-denial"]["exitCode"] == 2
     assert scenarios["unsupported-tool-strict-denial"]["stderrFirstLine"].startswith("DENIED ")
     assert scenarios["unapproved-source-report-mode"]["completion"]["status"] == "fail"
     assert scenarios["unapproved-source-report-mode"]["sourceCheckSummary"]["requiredFailureCount"] == 1
     assert scenarios["invalid-runtime-validation"]["exitCode"] == 1
     assert scenarios["invalid-runtime-validation"]["stdoutFirstLine"].startswith("FAIL ")
+    diagnostics = scenarios["invalid-adl-v02-payment-diagnostics"]["validationDiagnostics"]
+    assert diagnostics
+    first = diagnostics[0]
+    assert first["code"].startswith("adl_v0_2_schema.")
+    assert first["severity"] == "error"
+    assert first["category"] == "payment"
+    assert first["path"] == "extensions.x402.intents.0.authority"
+    assert isinstance(first["line"], int)
+    assert isinstance(first["column"], int)
+    assert first["message"]
     print("PASS local executable ADL runtime prototype")
     return 0
 

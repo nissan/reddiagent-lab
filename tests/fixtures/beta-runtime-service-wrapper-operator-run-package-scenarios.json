@@ -150,7 +150,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-        "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
+        "sha256": "ca76d4939d23f787391d4fd7677aee2ff0032b4aeb557f28b98995ba90a217c6"
       },
       {
         "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-ACTIVATION-SMOKE-REPORT.md",
@@ -197,8 +197,8 @@
         {
           "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
           "sha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d"
-      },
-      {
+        },
+        {
           "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-ACTIVATION-SMOKE-REPORT.md",
           "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
         }

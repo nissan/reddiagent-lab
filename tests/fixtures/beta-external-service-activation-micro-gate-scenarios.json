@@ -157,7 +157,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-        "sha256": "695ecd9c1ea08c939cfd9b49cac7699c6cfb7704175da4f85555ff5858e87856"
+        "sha256": "ca74051e29a2207d1f922fc7dba5ca7eb3471e7234b0991ef28a993ae4db23da"
       },
       {
         "path": "tests/BETA-BOUNDED-EXTERNAL-SERVICE-ACTIVATION-GATE-REPORT.md",

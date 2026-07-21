@@ -57,7 +57,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-        "sha256": "eda0105d906f709417421dcea932d2702c9d91b0f20227299ec4785af86c7457"
+        "sha256": "a757d1b42b5e4499f2695a0d3172ef787f056ba4df8bd06e280535b4a2ac2ad6"
       }
     ]
   },

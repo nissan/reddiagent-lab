@@ -122,7 +122,7 @@
       "findings": [],
       "id": "reviewer-checklist-accept-pass",
       "kind": "positive",
-      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "manifestSha256": "495dc4c1190c4ddd214d56ee2fc19c7a49e7b48f0b9d607bcbdc4354eff55115",
       "nextStepCue": "Accept this local reviewer checklist as evidence for human review only; runtime activation, hosted publishing, package/archive publishing, payment access, devnet, and mainnet remain separate gates.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -140,10 +140,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -152,7 +152,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "pass",
       "verdict": "accept"
     },
@@ -244,7 +244,7 @@
       "findings": [],
       "id": "reviewer-checklist-hold-pass",
       "kind": "positive",
-      "manifestSha256": "50a4f067b88126ab1e09632f8d373eb38156c835f8f6d0d09a0b3760eb874991",
+      "manifestSha256": "db0e613e9c9731f90c2f52dce2f706fde360adb930983366b4c1c8e1091b7e2b",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -262,10 +262,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -274,7 +274,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "pass",
       "verdict": "hold"
     },
@@ -495,7 +495,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -592,7 +592,7 @@
       ],
       "id": "stale-quickstart-fixture-denied",
       "kind": "negative",
-      "manifestSha256": "832cad66fe1f5fbdf96d9aa64fae58b544382527214e412641a5931333f7d411",
+      "manifestSha256": "a660ef7f89de6f3934fedf4c60e3bcc439379c8f23dd918a36d42b8dac35cca0",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -613,7 +613,7 @@
         "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "hashMatches": false,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -622,7 +622,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -707,7 +707,7 @@
       ],
       "id": "missing-required-checklist-item-denied",
       "kind": "negative",
-      "manifestSha256": "359e1c8ec9974af3c5a11ff07c04216b17830fd5c16124ef13b893f01dcf51b5",
+      "manifestSha256": "7259953749f75332e728ec708f91f57766381675afc7edea1785631a5155cf88",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -725,10 +725,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -737,7 +737,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -842,7 +842,7 @@
       ],
       "id": "unsafe-command-denied",
       "kind": "negative",
-      "manifestSha256": "c06d6b9369adc898c02b979475b9e342d1793450442e48fd4a7e430c8fa0b715",
+      "manifestSha256": "a86f870b90c03bb08c363864f0525a6ac21026030809041b9ff69f2ea9680742",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -860,10 +860,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -873,7 +873,7 @@
         "npm publish",
         "curl https://frosty-prism-5q6j.here.now/"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -974,7 +974,7 @@
       ],
       "id": "credential-like-leakage-denied",
       "kind": "negative",
-      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "manifestSha256": "495dc4c1190c4ddd214d56ee2fc19c7a49e7b48f0b9d607bcbdc4354eff55115",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -992,10 +992,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1004,7 +1004,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1129,7 +1129,7 @@
       ],
       "id": "runtime-container-hosted-publish-reject-denied",
       "kind": "negative",
-      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "manifestSha256": "495dc4c1190c4ddd214d56ee2fc19c7a49e7b48f0b9d607bcbdc4354eff55115",
       "nextStepCue": "Reject this reviewer checklist package and regenerate local quickstart evidence before any runtime or operator handoff.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -1147,10 +1147,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1159,7 +1159,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1272,7 +1272,7 @@
       ],
       "id": "wallet-payment-facilitator-settlement-denied",
       "kind": "negative",
-      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "manifestSha256": "495dc4c1190c4ddd214d56ee2fc19c7a49e7b48f0b9d607bcbdc4354eff55115",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -1290,10 +1290,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1302,7 +1302,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1407,7 +1407,7 @@
       ],
       "id": "devnet-mainnet-live-network-denied",
       "kind": "negative",
-      "manifestSha256": "b7b4d04481eedc34d2a7f0aa9366b736dacf5cbcf9baa4b3b5e651eb26034762",
+      "manifestSha256": "495dc4c1190c4ddd214d56ee2fc19c7a49e7b48f0b9d607bcbdc4354eff55115",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -1425,10 +1425,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1437,7 +1437,7 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1546,7 +1546,7 @@
       ],
       "id": "unsafe-next-step-claim-denied",
       "kind": "negative",
-      "manifestSha256": "5d31783576797d16592ee11ac2dafe8eec2273b51f9a876923b95c0ca80f1d52",
+      "manifestSha256": "3d3368a2ad1488dd56ec8eae451e9ae9ac34b7d25a3b30478f817dbdef52a770",
       "nextStepCue": "Hold this reviewer checklist package. Fix missing, stale, unsafe, or overclaiming local evidence and rerun before any live step.",
       "quickstartAcceptedResult": {
         "commandCount": 4,
@@ -1564,10 +1564,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
+        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1576,12 +1576,12 @@
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_onboarding_quickstart_package.py",
         "/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/beta_reviewer_acceptance_checklist_package.py --checklist-output-dir /tmp/reddiagent-beta-reviewer-checklist"
       ],
-      "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "60007133ef508c2cbb1ebab39f46cd6d10ee9097",
+  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,

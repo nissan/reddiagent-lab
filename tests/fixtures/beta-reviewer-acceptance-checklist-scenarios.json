@@ -85,7 +85,7 @@
     "expectedQuickstartHashes": [
       {
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80"
+        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
       }
     ]
   },
