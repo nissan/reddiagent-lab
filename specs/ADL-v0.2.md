@@ -108,6 +108,54 @@ Schema-valid ADLs may still fail a requested higher conformance level. For
 example, a Level 3 request without receipt/reputation fields remains valid ADL
 syntax but must report missing Level 3 fields and a failed conformance status.
 
+## Provider And Model Capability Contract
+
+ADL v0.2 constrains model provider identifiers so adapters do not infer
+provider-specific behavior from arbitrary strings. `model.providers.preferred`
+and `model.providers.fallbacks` use the canonical provider-id vocabulary below:
+
+| Provider id | Boundary |
+|---|---|
+| `openai` | Hosted provider; compatibility reports must list `OPENAI_API_KEY` before any approved runtime path may call it. |
+| `anthropic` | Hosted provider; compatibility reports must list `ANTHROPIC_API_KEY` before any approved runtime path may call it. |
+| `gemini` | Hosted provider; compatibility reports must list `GEMINI_API_KEY` before any approved runtime path may call it. |
+| `ollama` | Local provider; compatibility reports must not probe, start, or call a local model runtime. |
+
+The ordered provider list is deterministic: preferred provider first, then
+fallbacks in declared order. Provider compatibility reports select the requested
+target when it appears in that ordered list; otherwise they report the requested
+target as `not-declared` without inventing a fallback. Reports must include the
+ordered candidates, selected provider, selected role (`preferred`, `fallback`,
+or `not-declared`), and whether the selected provider is hosted.
+
+`model.requirements` is also closed. The vocabulary is:
+
+- `toolCalling`: provider or reviewed harness can express callable tools.
+- `structuredOutput`: provider or reviewed harness can enforce structured
+  output.
+- `streaming`: token or event streaming support.
+- `jsonMode`: provider-native JSON-only output mode.
+- `contextWindow`: minimum context window in tokens.
+- `maxOutputTokens`: minimum requested output token budget.
+- `modalities`: required input/output modality set. Supported values are
+  `text`, `image`, `audio`, and `embedding`.
+
+Compatibility reports must split requirement handling into:
+
+- `supportedRequirements`: requirements the target can satisfy as static
+  compatibility.
+- `unsupportedRequirements`: hard unsupported requirements that make
+  `supported=false` for that target.
+- `degradedRequirements`: requirements that need a custom/reviewed harness or
+  lose provider-native enforcement.
+- `lossMetadata`: deterministic notes describing what semantic portability is
+  lost or deferred.
+
+All report-only targets must keep `runtimeExecutionAllowed=false`. A supported
+static provider mapping means the ADL can be reviewed for that target; it does
+not authorize provider calls, credential lookup, local endpoint probing, MCP
+invocation, or runtime execution.
+
 ## Instruction Shape
 
 `harness.instructions` must be an object. It must contain exactly one source:

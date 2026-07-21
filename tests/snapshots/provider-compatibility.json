@@ -11,6 +11,42 @@
     "unsupportedFeatures": [
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "openai",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "OPENAI_API_KEY"
     ],
@@ -70,6 +106,42 @@
     "unsupportedFeatures": [
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "anthropic",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
     ],
@@ -135,6 +207,42 @@
     "unsupportedFeatures": [
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "gemini",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "gemini",
+      "selectedRole": "not-declared",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "gemini",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "GEMINI_API_KEY"
     ],
@@ -191,11 +299,60 @@
     "level": 2,
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
+      "Some model capability requirements are degraded; review lossMetadata before runtime use.",
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "ollama",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "ollama",
+      "selectedRole": "not-declared",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "ollama",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [
+        {
+          "requirement": "toolCalling",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
+        }
+      ],
+      "lossMetadata": [
+        {
+          "field": "model.requirements.toolCalling",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        },
+        {
+          "field": "model.requirements.structuredOutput",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        }
+      ]
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
@@ -258,7 +415,45 @@
     "unsupportedFeatures": [
       "mcp_execution"
     ],
-    "requiredSecrets": [],
+    "providerResolution": {
+      "requestedTarget": "langgraph",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
     ],
@@ -330,6 +525,42 @@
     "unsupportedFeatures": [
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "mcp-readonly",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
@@ -354,8 +585,38 @@
       "MCP declarations are read-only adapter shapes until server resolution lands."
     ],
     "unsupportedFeatures": [
+      "model_requirement:model.providers",
       "mcp_execution"
     ],
+    "providerResolution": {
+      "requestedTarget": "local-python",
+      "orderedCandidates": [
+        "anthropic",
+        "openai"
+      ],
+      "selectedProvider": null,
+      "selectedRole": "not-applicable",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": null,
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
+        {
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
+        }
+      ],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [
       "mcp:approved-docs-search"
@@ -383,6 +644,42 @@
     "unsupportedFeatures": [
       "real_settlement"
     ],
+    "providerResolution": {
+      "requestedTarget": "openai",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "OPENAI_API_KEY"
     ],
@@ -442,6 +739,42 @@
     "unsupportedFeatures": [
       "real_settlement"
     ],
+    "providerResolution": {
+      "requestedTarget": "anthropic",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
     ],
@@ -502,6 +835,42 @@
     "unsupportedFeatures": [
       "real_settlement"
     ],
+    "providerResolution": {
+      "requestedTarget": "gemini",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "gemini",
+      "selectedRole": "not-declared",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "gemini",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "GEMINI_API_KEY"
     ],
@@ -558,11 +927,60 @@
     "level": 2,
     "warnings": [
       "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
-      "Payment extension is dry-run only until receipt and policy enforcement land."
+      "Payment extension is dry-run only until receipt and policy enforcement land.",
+      "Some model capability requirements are degraded; review lossMetadata before runtime use."
     ],
     "unsupportedFeatures": [
       "real_settlement"
     ],
+    "providerResolution": {
+      "requestedTarget": "ollama",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "ollama",
+      "selectedRole": "not-declared",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "ollama",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [
+        {
+          "requirement": "toolCalling",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
+        }
+      ],
+      "lossMetadata": [
+        {
+          "field": "model.requirements.toolCalling",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        },
+        {
+          "field": "model.requirements.structuredOutput",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        }
+      ]
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -625,7 +1043,45 @@
     "unsupportedFeatures": [
       "real_settlement"
     ],
-    "requiredSecrets": [],
+    "providerResolution": {
+      "requestedTarget": "langgraph",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -697,6 +1153,42 @@
     "unsupportedFeatures": [
       "real_settlement"
     ],
+    "providerResolution": {
+      "requestedTarget": "mcp-readonly",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -713,12 +1205,43 @@
   {
     "agent": "paid-specialist-researcher",
     "target": "local-python",
-    "supported": true,
+    "supported": false,
     "level": 0,
     "warnings": [
       "Payment extension is dry-run only until receipt and policy enforcement land."
     ],
-    "unsupportedFeatures": [],
+    "unsupportedFeatures": [
+      "model_requirement:model.providers"
+    ],
+    "providerResolution": {
+      "requestedTarget": "local-python",
+      "orderedCandidates": [
+        "openai",
+        "anthropic"
+      ],
+      "selectedProvider": null,
+      "selectedRole": "not-applicable",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": null,
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
+        {
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
+        }
+      ],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -741,6 +1264,40 @@
       "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "openai",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "OPENAI_API_KEY"
     ],
@@ -795,6 +1352,40 @@
       "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "anthropic",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
     ],
@@ -850,6 +1441,40 @@
       "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "gemini",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "gemini",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "gemini",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "GEMINI_API_KEY"
     ],
@@ -903,9 +1528,51 @@
     "supported": true,
     "level": 2,
     "warnings": [
-      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them."
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
+      "Some model capability requirements are degraded; review lossMetadata before runtime use."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "ollama",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "ollama",
+      "selectedRole": "fallback",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "ollama",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [
+        {
+          "requirement": "structuredOutput",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
+        }
+      ],
+      "lossMetadata": [
+        {
+          "field": "model.requirements.structuredOutput",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        }
+      ]
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -963,7 +1630,43 @@
       "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them."
     ],
     "unsupportedFeatures": [],
-    "requiredSecrets": [],
+    "providerResolution": {
+      "requestedTarget": "langgraph",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [
+      "OPENAI_API_KEY"
+    ],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -1027,6 +1730,40 @@
     "level": 0,
     "warnings": [],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "mcp-readonly",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -1045,8 +1782,51 @@
     "target": "local-python",
     "supported": true,
     "level": 1,
-    "warnings": [],
+    "warnings": [
+      "Some model capability requirements are degraded; review lossMetadata before runtime use."
+    ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "local-python",
+      "orderedCandidates": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama"
+      ],
+      "selectedProvider": "ollama",
+      "selectedRole": "fallback",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "ollama",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": false,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [
+        {
+          "requirement": "structuredOutput",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
+        }
+      ],
+      "lossMetadata": [
+        {
+          "field": "model.requirements.structuredOutput",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        }
+      ]
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -1069,6 +1849,43 @@
       "OpenAI compatibility is report-only; Reddi policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "openai",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "openai",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "openai",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "OPENAI_API_KEY"
     ],
@@ -1123,6 +1940,43 @@
       "Anthropic MCP compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, and MCP semantics remain metadata-only unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "anthropic",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "ANTHROPIC_API_KEY"
     ],
@@ -1178,6 +2032,43 @@
       "Gemini compatibility is report-only; Reddi policy, eval, memory, data-source, payment, receipt, reputation, grounding, code execution, and MCP semantics remain metadata-only or unsupported unless a reviewed runtime adapter enforces them."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "gemini",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "gemini",
+      "selectedRole": "fallback",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "gemini",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [
       "GEMINI_API_KEY"
     ],
@@ -1231,9 +2122,59 @@
     "supported": true,
     "level": 2,
     "warnings": [
-      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them."
+      "Ollama/local compatibility is report-only; local endpoint, model id, tool calling, structured output, memory, policy, eval, payment, receipt, reputation, and MCP semantics remain metadata-only or external-harness-owned unless a reviewed local adapter enforces them.",
+      "Some model capability requirements are degraded; review lossMetadata before runtime use."
     ],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "ollama",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "ollama",
+      "selectedRole": "not-declared",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "ollama",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [
+        {
+          "requirement": "toolCalling",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native toolCalling."
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true,
+          "reason": "ollama requires a reviewed custom harness for provider-native structuredOutput."
+        }
+      ],
+      "lossMetadata": [
+        {
+          "field": "model.requirements.toolCalling",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        },
+        {
+          "field": "model.requirements.structuredOutput",
+          "loss": "provider-native-enforcement-not-guaranteed"
+        }
+      ]
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -1291,7 +2232,46 @@
       "LangGraph compatibility is report-only; graph, state, node, edge, checkpoint, interrupt, policy, eval, memory, payment, receipt, reputation, and MCP semantics remain metadata-only or static-plan-only unless a reviewed runtime graph enforces them."
     ],
     "unsupportedFeatures": [],
-    "requiredSecrets": [],
+    "providerResolution": {
+      "requestedTarget": "langgraph",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
+    "requiredSecrets": [
+      "ANTHROPIC_API_KEY"
+    ],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
     "boundary": {
@@ -1356,6 +2336,43 @@
     "level": 0,
     "warnings": [],
     "unsupportedFeatures": [],
+    "providerResolution": {
+      "requestedTarget": "mcp-readonly",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": "anthropic",
+      "selectedRole": "preferred",
+      "hostedProvider": true
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": "anthropic",
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [
+        {
+          "requirement": "capability",
+          "requested": "chat"
+        },
+        {
+          "requirement": "toolCalling",
+          "requested": true
+        },
+        {
+          "requirement": "structuredOutput",
+          "requested": true
+        }
+      ],
+      "unsupportedRequirements": [],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",
@@ -1372,10 +2389,42 @@
   {
     "agent": "source-checker",
     "target": "local-python",
-    "supported": true,
+    "supported": false,
     "level": 1,
     "warnings": [],
-    "unsupportedFeatures": [],
+    "unsupportedFeatures": [
+      "model_requirement:model.providers"
+    ],
+    "providerResolution": {
+      "requestedTarget": "local-python",
+      "orderedCandidates": [
+        "anthropic",
+        "openai",
+        "gemini"
+      ],
+      "selectedProvider": null,
+      "selectedRole": "not-applicable",
+      "hostedProvider": false
+    },
+    "modelCapabilityRequirements": {
+      "vocabularyVersion": "adl-v0.2-model-requirements",
+      "provider": null,
+      "capability": "chat",
+      "requested": {
+        "toolCalling": true,
+        "structuredOutput": true
+      },
+      "supportedRequirements": [],
+      "unsupportedRequirements": [
+        {
+          "requirement": "model.providers",
+          "requested": null,
+          "reason": "No model provider capability table is available for this target."
+        }
+      ],
+      "degradedRequirements": [],
+      "lossMetadata": []
+    },
     "requiredSecrets": [],
     "requiredHostedServices": [],
     "suggestedFallback": "local-python",

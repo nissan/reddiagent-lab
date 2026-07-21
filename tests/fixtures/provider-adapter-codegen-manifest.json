@@ -327,7 +327,7 @@
           "real_settlement",
           "unsupported_execution:docs_search"
         ],
-        "warningCount": 6
+        "warningCount": 10
       },
       "validationGateIds": [
         "manifest-fixture-deterministic",
@@ -389,7 +389,10 @@
         }
       ],
       "targetSupportMetadata": {
-        "requiredSecretRefs": [],
+        "requiredSecretRefs": [
+          "ANTHROPIC_API_KEY",
+          "OPENAI_API_KEY"
+        ],
         "hostedServiceRefs": [
           "mcp:approved-docs-search"
         ],

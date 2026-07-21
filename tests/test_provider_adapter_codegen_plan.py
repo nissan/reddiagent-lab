@@ -74,7 +74,7 @@ def test_all_provider_targets_are_blocked_before_codegen() -> None:
     assert targets["anthropic"]["requiredSecrets"] == ["ANTHROPIC_API_KEY"]
     assert targets["gemini"]["requiredSecrets"] == ["GEMINI_API_KEY"]
     assert targets["ollama"]["requiredSecrets"] == []
-    assert targets["langgraph"]["requiredSecrets"] == []
+    assert targets["langgraph"]["requiredSecrets"] == ["ANTHROPIC_API_KEY", "OPENAI_API_KEY"]
     assert targets["anthropic"]["requiredHostedServices"] == ["mcp:approved-docs-search"]
     assert "metadata_only:extensions.x402" in targets["gemini"]["unsupportedSemantics"]
     assert "unsupported_execution:docs_search" in targets["langgraph"]["unsupportedSemantics"]

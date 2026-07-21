@@ -18,6 +18,26 @@ Provider mapping explains how one ADL file can target different model providers 
 | Agent Spec | model requirements to Agent Spec LLM config | Agent/Flow components, tools, runtime adapter metadata | Reddi policy/payment/reputation/source-boundary semantics may be metadata-only |
 | Local Python | SDK/local model client | Direct loop, registry, state, policies | Least managed, easiest to inspect |
 
+## Provider Identifiers And Requirements
+
+ADL v0.2 provider mapping accepts only canonical model provider identifiers in
+`model.providers`: `openai`, `anthropic`, `gemini`, and `ollama`. Adapter
+targets such as `langgraph`, `mcp-readonly`, and `local-python` are compatibility
+or harness targets, not provider ids for `model.providers`.
+
+Provider resolution is deterministic. Reports evaluate the requested target
+against the ordered provider candidates from `preferred` followed by
+`fallbacks`; a target present in the list is reported as `preferred` or
+`fallback`, while an undeclared target is reported as `not-declared` rather than
+silently treated as a fallback.
+
+ADL v0.2 model requirements are limited to `toolCalling`, `structuredOutput`,
+`streaming`, `jsonMode`, `contextWindow`, `maxOutputTokens`, and `modalities`.
+Provider reports must list supported requirements, hard unsupported
+requirements, degraded requirements, and loss metadata for every target. Local
+provider targets must not probe, start, or call local runtimes while compiling
+that report.
+
 ## Compatibility-Only Modes
 
 Provider-specific compatibility-only modes are static report artifacts. They do not call providers,
@@ -65,6 +85,8 @@ Every compile/adapter attempt should return:
 - supported: true/false
 - warnings
 - unsupportedFeatures
+- providerResolution
+- modelCapabilityRequirements
 - requiredSecrets
 - requiredHostedServices
 - suggestedFallback

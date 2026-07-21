@@ -1,0 +1,18 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: unknown-model-requirement
+  description: Invalid ADL v0.2 fixture for closed model requirement vocabulary.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    providerNativeMagic: true
+harness:
+  instructions:
+    inline: "This fixture must fail before provider compatibility reporting."
+  runtime:
+    target: local-python
+extensions: {}

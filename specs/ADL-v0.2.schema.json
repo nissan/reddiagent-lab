@@ -31,24 +31,27 @@
           "additionalProperties": false,
           "required": ["preferred"],
           "properties": {
-            "preferred": { "type": "string", "minLength": 1 },
+            "preferred": { "$ref": "#/$defs/providerId" },
             "fallbacks": {
               "type": "array",
-              "items": { "type": "string", "minLength": 1 },
+              "items": { "$ref": "#/$defs/providerId" },
               "uniqueItems": true
             }
           }
         },
         "requirements": {
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": false,
           "properties": {
             "toolCalling": { "type": "boolean" },
             "structuredOutput": { "type": "boolean" },
+            "streaming": { "type": "boolean" },
+            "jsonMode": { "type": "boolean" },
             "contextWindow": { "type": "integer", "minimum": 1 },
+            "maxOutputTokens": { "type": "integer", "minimum": 1 },
             "modalities": {
               "type": "array",
-              "items": { "type": "string" },
+              "items": { "$ref": "#/$defs/modality" },
               "uniqueItems": true
             }
           }
@@ -132,6 +135,14 @@
     }
   },
   "$defs": {
+    "providerId": {
+      "type": "string",
+      "enum": ["openai", "anthropic", "gemini", "ollama"]
+    },
+    "modality": {
+      "type": "string",
+      "enum": ["text", "image", "audio", "embedding"]
+    },
     "namedRef": {
       "type": "object",
       "additionalProperties": true,
