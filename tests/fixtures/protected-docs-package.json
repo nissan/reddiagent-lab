@@ -283,8 +283,8 @@
           "path": "specs/CONFORMANCE-v0.1.md",
           "exists": true,
           "kind": "file",
-          "sha256": "061f81a5c225d31b454fcc6dc6fd08708be4be998415647430ff7e2b4f492efb",
-          "bytes": 7991
+          "sha256": "7225b9bb5db0a945b55e28695879848c395953442f08b9f136b14388605c1250",
+          "bytes": 9813
         },
         {
           "path": "specs/RAP-BRIDGE-v0.1.md",

@@ -1,0 +1,69 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: level-three-ready
+  description: Schema-valid ADL that satisfies Level 3 payment and reputation conformance fields.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: true
+    structuredOutput: true
+conformance:
+  requestedLevel: 3
+harness:
+  instructions:
+    inline: "Prepare a bounded dry-run payment receipt and reputation signal."
+  policies:
+    - id: allow-payment-dry-run
+      capability: payment
+      subject: agent
+      resource: x402:intent:review-fee
+      action: spend
+      effect: allow
+      scope:
+        type: task
+      limits:
+        maxUsd: "0.50"
+        requireReceipt: true
+      enforcement:
+        target: policy-engine
+        phase: before-execution
+  evalGates:
+    - id: payment-policy-check
+      type: receipt-check
+      rule: "Payment intents must bind to a policy and receipt before completion."
+      required: true
+      severity: error
+      appliesTo:
+        scope: receipt
+      evidence:
+        ref: trace:payment.policy.checked
+        schema:
+          type: object
+      retryable: false
+      onFailure:
+        completion: block
+        defaultStatus: fail
+  runtime:
+    target: local-python
+extensions:
+  x402:
+    enabled: true
+    intents:
+      - id: review-fee
+        direction: spend
+        maxAmount: "0.50"
+        currency: USD
+        rails:
+          - x402-dry-run
+        requireReceipt: true
+        policyRefs:
+          - allow-payment-dry-run
+  receipts:
+    required: true
+  reputation:
+    emitSignals:
+      - taskCompleted
+      - receiptVerified

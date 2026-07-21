@@ -117,6 +117,48 @@ def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
         assert report["dataSourceTypes"] == []
         assert report["sourceBoundary"] == []
         assert report["validationDiagnostics"], path
+        assert report["conformance"]["achievedLevel"] == -1
+        assert report["conformance"]["status"] == "fail"
+
+
+def test_v02_provider_exports_conformance_metadata() -> None:
+    proc = run_cli(["tests/fixtures/adl-v0.2-level3-ready.yaml", "--target", "openai"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["target"] == "openai"
+    assert report["conformance"]["requestedLevel"] == 3
+    assert report["conformance"]["achievedLevel"] >= 3
+    assert report["conformance"]["status"] == "pass"
+    assert report["conformance"]["missingFieldsByLevel"]["3"] == []
+
+
+def test_v02_provider_exports_cumulative_conformance_failure_metadata() -> None:
+    proc = run_cli(["tests/fixtures/adl-v0.2-level4-complete-without-level3.yaml", "--target", "openai"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["target"] == "openai"
+    assert report["conformance"]["requestedLevel"] == 4
+    assert report["conformance"]["status"] == "fail"
+    assert report["conformance"]["achievedLevel"] < 4
+    assert report["conformance"]["missingFieldsByLevel"]["4"] == []
+    assert report["conformance"]["missingFieldsByLevel"]["3"] == [
+        "extensions.x402.enabled=true",
+        "extensions.x402.intents",
+        "extensions.receipts.required=true",
+        "extensions.reputation.emitSignals",
+    ]
+
+
+def test_v02_provider_refusal_does_not_crash_on_invalid_requested_level() -> None:
+    proc = run_cli(["tests/fixtures/adl-v0.2-invalid-requested-level.yaml", "--target", "openai"])
+    report = json.loads(proc.stdout)[0]
+
+    assert report["target"] == "openai"
+    assert report["supported"] is False
+    assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+    assert report["conformance"]["requestedLevel"] == 5
+    assert report["conformance"]["achievedLevel"] == -1
+    assert report["conformance"]["status"] == "fail"
 
 
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:

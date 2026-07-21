@@ -54,7 +54,7 @@ The field contract below is intentionally machine checked against
 {
   "topLevel": {
     "required": ["apiVersion", "kind", "metadata", "model", "harness"],
-    "optional": ["extensions"]
+    "optional": ["conformance", "extensions"]
   },
   "model": {
     "required": ["capability", "providers", "requirements"],
@@ -77,6 +77,36 @@ The field contract below is intentionally machine checked against
   }
 }
 ```
+
+## Conformance Profile Matrix
+
+ADL v0.2 validators must report both the requested and achieved conformance
+level without activating runtimes, providers, MCP servers, payment rails, or
+hosted deployments. An ADL may declare `conformance.requestedLevel`; validators
+may also accept an operator-selected requested level. Higher levels include the
+lower-level required field sets and fail closed when any required field or
+required evidence output for levels `0..requestedLevel` is absent.
+
+| Level | Profile | Required ADL fields | Optional fields | Forbidden or live-gated before this level | Required evidence outputs |
+|---|---|---|---|---|---|
+| 0 | schema-valid | `apiVersion`, `kind`, `metadata.name`, `metadata.description`, `model`, `harness` | `conformance`, `extensions` | none | JSON Schema validation diagnostics |
+| 1 | local-python runnable | Level 0 plus `harness.instructions`, `harness.runtime.target`, `harness.evalGates` | `harness.memory`, `harness.tools`, `harness.dataSources` | payment/reputation extension; production deployment descriptor | local Level 1 trace; `completion.requiredGateStatus` |
+| 2 | provider-adapter compatible | Level 1 plus `model.capability`, `model.providers.preferred`, `model.requirements`, `harness.policies`, `harness.evalGates` | `harness.tools`, `harness.dataSources`, `harness.memory` | payment/reputation extension; production deployment descriptor | provider compatibility report; unsupported-execution boundary |
+| 3 | payment/reputation extension compatible | Level 2 plus `extensions.x402.enabled=true`, `extensions.x402.intents`, `extensions.x402.intents[*].policyRefs`, `extensions.receipts.required=true`, `extensions.reputation.emitSignals` | `extensions.identity` | production deployment descriptor | receipt evidence; reputation signal evidence; payment policy evidence |
+| 4 | production deployment compatible | Level 3 plus `harness.runtime.target` of `hosted-container`, `serverless`, `platform-native`, or `openclaw`, `harness.deployment.environment`, `harness.deployment.rollback`, `harness.observability.events`, `harness.recovery.disable` | `harness.deployment.healthCheck`, `harness.observability.sinks` | mainnet remains separately approval-gated | deployment readiness report; observability trace config; rollback/disable evidence |
+
+Conformance output must include:
+
+- `requestedLevel`: the requested ADL v0.2 conformance level.
+- `achievedLevel`: the highest contiguous level whose required fields and
+  live-gated capability checks pass.
+- `missingFieldsByLevel`: missing required fields grouped by level.
+- `forbiddenCapabilitiesByLevel`: live-gated capability declarations that
+  prevent the requested level from passing.
+
+Schema-valid ADLs may still fail a requested higher conformance level. For
+example, a Level 3 request without receipt/reputation fields remains valid ADL
+syntax but must report missing Level 3 fields and a failed conformance status.
 
 ## Instruction Shape
 
@@ -435,3 +465,7 @@ harness:
 - Source boundary declarations must match their source type, trust state,
   citation requirement, and source-check expectation before compatibility or
   export surfaces can treat a source as usable.
+- Requested conformance levels fail closed when their required ADL field set or
+  evidence outputs are missing, even if the document is otherwise schema-valid.
+- Payment/reputation declarations are Level 3-gated and production deployment
+  descriptors are Level 4-gated; mainnet remains separately approval-gated.

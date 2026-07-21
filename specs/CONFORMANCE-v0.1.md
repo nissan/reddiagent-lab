@@ -73,6 +73,41 @@ gates before any runtime or adapter marks a task complete:
 The active ADL v0.2 schema and fixtures are enforced by
 `tests/test_adl_v02_eval_gate_completion.py`.
 
+## ADL v0.2 Conformance Profile Field Sets
+
+_Anchor issue: #315._
+
+ADL v0.2 conformance levels now map to deterministic required field sets and
+evidence outputs. Validators must report `requestedLevel`, `achievedLevel`,
+`missingFieldsByLevel`, and `forbiddenCapabilitiesByLevel` without activating a
+runtime, provider, MCP server, payment rail, or hosted deployment.
+
+Level inheritance is fail-closed:
+
+- Level 0 requires schema-valid ADL v0.2 top-level, metadata, model, and harness
+  shape.
+- Level 1 adds local-python runnable fields: instructions, declared runtime target,
+  eval gates, local trace evidence, and `completion.requiredGateStatus`.
+- Level 2 adds provider-adapter compatibility fields: model capability,
+  preferred provider, requirements, policies, eval gates, provider report, and
+  unsupported-execution boundary evidence.
+- Level 3 adds payment/reputation extension fields: enabled x402 intents with
+  policy refs, required receipts, reputation signals, and payment-policy
+  evidence.
+- Level 4 adds production deployment fields: production runtime target,
+  deployment environment, rollback, observability events, recovery disable, and
+  deployment readiness evidence. Mainnet remains separately approval-gated.
+
+Payment/reputation declarations are forbidden before Level 3. Production
+deployment descriptors and production runtime targets are forbidden before Level
+4. Schema-valid ADLs that request a higher level but omit that level's required
+fields must fail conformance with clear missing-field diagnostics. Lower levels
+do not imply permission to use capabilities gated by higher levels, and higher
+levels cannot skip missing lower-level requirements.
+
+The active ADL v0.2 conformance matrix is documented in `specs/ADL-v0.2.md` and
+enforced by `tests/test_adl_v02_conformance_profiles.py`.
+
 ## Required Gate Shell Failure
 
 _Loops 304-328. Anchor issue: #131._
