@@ -12,6 +12,7 @@ import jsonschema
 import yaml
 
 from adl_v02_conformance import conformance_report
+from adl_diagnostics import format_validation_errors
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -116,12 +117,6 @@ def load_v02_schema() -> dict:
     return json.loads(SCHEMA_PATH.read_text())
 
 
-def validation_error_path(error: jsonschema.ValidationError) -> str:
-    if error.path:
-        return ".".join(str(part) for part in error.path)
-    return "<root>"
-
-
 def adl_v02_validation_errors(doc: dict) -> list[jsonschema.ValidationError]:
     if doc.get("apiVersion") != "reddiagent.dev/v0.2":
         return []
@@ -133,13 +128,7 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
     metadata = object_or_empty(doc.get("metadata"))
     model = object_or_empty(doc.get("model"))
     requirements = object_or_empty(model.get("requirements"))
-    diagnostics = [
-        {
-            "path": validation_error_path(error),
-            "message": error.message,
-        }
-        for error in errors
-    ]
+    diagnostics = format_validation_errors(errors, path)
     result = {
         "agent": metadata.get("name", path.stem),
         "target": target,

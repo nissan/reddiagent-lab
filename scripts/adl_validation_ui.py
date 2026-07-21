@@ -39,7 +39,7 @@ def parse_args() -> argparse.Namespace:
 def validate_payload(path: Path, validator: jsonschema.Draft202012Validator) -> dict:
     data = yaml.safe_load(path.read_text())
     errors = sorted(validator.iter_errors(data), key=lambda error: list(error.path))
-    guidance = [item.to_dict() for item in format_errors(errors)]
+    guidance = [item.to_dict() for item in format_errors(errors, path)]
     return {
         "status": "fail" if guidance else "pass",
         "errorCount": len(guidance),

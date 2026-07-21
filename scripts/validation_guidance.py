@@ -4,15 +4,24 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 import re
+from pathlib import Path
 from typing import Any, Iterable
 
 from jsonschema.exceptions import ValidationError
+
+from adl_diagnostics import diagnostic_category, source_location
 
 
 @dataclass(frozen=True)
 class Guidance:
     """A normalized validation message intended for agent builders."""
 
+    code: str
+    severity: str
+    category: str
+    path: str
+    line: int | None
+    column: int | None
     location: str
     problem: str
     why_it_matters: str
@@ -220,10 +229,23 @@ def _problem(error: ValidationError, location: str) -> str:
     return f"Invalid value at {location}: {error.message}"
 
 
-def format_error(error: ValidationError) -> Guidance:
+def _diagnostic_code(error: ValidationError, location: str) -> str:
+    normalized = location.replace(".", "_").replace("<root>", "root")
+    normalized = re.sub(r"[^A-Za-z0-9_]+", "_", normalized).strip("_") or "root"
+    return f"adl_v0_1_schema.{error.validator}.{normalized}"
+
+
+def format_error(error: ValidationError, source_path: Path | None = None) -> Guidance:
     location = _normalize_location(error)
     template = _guidance_template(location)
+    source = source_location(source_path, error) if source_path else None
     return Guidance(
+        code=_diagnostic_code(error, location),
+        severity="error",
+        category=diagnostic_category(location),
+        path=location,
+        line=source.line if source else None,
+        column=source.column if source else None,
         location=location,
         problem=_problem(error, location),
         why_it_matters=template["why"],
@@ -234,8 +256,8 @@ def format_error(error: ValidationError) -> Guidance:
     )
 
 
-def format_errors(errors: Iterable[ValidationError]) -> list[Guidance]:
-    return [format_error(error) for error in errors]
+def format_errors(errors: Iterable[ValidationError], source_path: Path | None = None) -> list[Guidance]:
+    return [format_error(error, source_path) for error in errors]
 
 
 def render_text(path_label: str, guidance_items: list[Guidance]) -> str:

@@ -10,6 +10,16 @@ ReddiAgent validation must be useful to builders who are learning the abstractio
 
 Each formatted error contains:
 
+- code: stable machine-readable diagnostic code.
+- severity: `error`, `warning`, or `info`; schema validation failures use
+  `error`.
+- category: normalized owner area such as `shape`, `provider`, `policy`,
+  `gate`, `payment`, `memory`, `runtime`, or `observability`.
+- path: normalized ADL field path.
+- line: 1-indexed source line when the YAML parser can locate the failing
+  node, otherwise null.
+- column: 1-indexed source column when the YAML parser can locate the failing
+  node, otherwise null.
 - location: dot path to the ADL field or section.
 - problem: plain-language diagnosis.
 - why_it_matters: product and safety rationale.
@@ -35,9 +45,7 @@ Each formatted error contains:
 
 ## Next Expansion
 
-- Add source line/column numbers.
 - Add multiple-error grouping by section.
-- Add machine-readable severity and category fields.
 - Feed JSON output into a minimal validator UI.
 
 ## Runtime Denial Guidance

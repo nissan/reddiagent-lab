@@ -31,6 +31,12 @@ def assert_guidance(path: str, location: str, reference: str, needle: str) -> No
     errors = payload["errors"]
     assert errors, payload
     first = errors[0]
+    assert first["code"].startswith("adl_v0_1_schema."), first
+    assert first["severity"] == "error", first
+    assert first["category"], first
+    assert first["path"] == first["location"], first
+    assert isinstance(first["line"], int), first
+    assert isinstance(first["column"], int), first
     assert first["location"] == location, first
     assert first["reference"] == reference, first
     combined = " ".join(str(value) for value in first.values())

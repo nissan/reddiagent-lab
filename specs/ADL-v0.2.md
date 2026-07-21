@@ -77,6 +77,26 @@ The field contract below is intentionally machine checked against
 }
 ```
 
+## Supporting Spec Index
+
+ADL v0.2 is the canonical document shape. Supporting specs own the deeper
+semantics below, and validators should cite the owning spec when reporting
+builder-facing diagnostics.
+
+| ADL section | Supporting spec owner | Ownership boundary |
+|---|---|---|
+| `apiVersion`, `kind`, `metadata`, top-level shape | `specs/ADL-v0.2.md` and `specs/ADL-v0.2.schema.json` | Canonical syntax, required fields, and strict schema validation. |
+| `model.capability`, `model.providers`, `model.requirements` | `specs/PROVIDER-MAPPING-v0.1.md` and `specs/PROVIDER-COMPATIBILITY-REPORT-v0.1.md` | Provider vocabulary, model capability requirements, report-only adapter diagnostics, and loss metadata. |
+| `harness.instructions`, `harness.runtime`, `harness.recovery` | `specs/HARNESS-LIFECYCLE-v0.1.md` and `specs/RUNTIME-DEPLOYMENT-v0.1.md` | Runtime lifecycle, activation boundaries, rollback/disable semantics, and no-execution compatibility checks. |
+| `harness.tools`, `harness.functions`, `harness.skills` | `specs/TOOL-REGISTRY-v0.1.md`, `specs/LOCAL-RUNNER-PLUGIN-INTERFACE-v0.1.md`, and `specs/SKILL-PACKAGE-CONTRACT-v0.1.md` | Tool identity, static contract metadata, policy linkage, plugin boundaries, and skill package handoff. |
+| `harness.dataSources` | `specs/DATA-SOURCE-CONTRACT-v0.1.md` | Source type vocabulary, typed `sourceRef` binding, trust, citation, and source-check expectations. |
+| `harness.memory` | `specs/MEMORY-CONTRACT-v0.1.md` | Session, persistent, and external memory declarations, retention, storage references, and privacy policy requirements. |
+| `harness.policies` | `specs/SECURITY-PERMISSIONS-v0.1.md` | Capability policies, allow/deny effects, enforcement target/phase, approval, and limits. |
+| `harness.evalGates` | `specs/EVAL-GATES-v0.1.md` | Required gate completion semantics, severity, retry behavior, failure handling, and evidence shape. |
+| `harness.observability` | `specs/OBSERVABILITY-v0.1.md` and `specs/TRACE-EVENTS-v0.1.md` | Required trace events, summaries, destinations, redaction, retention, receipts, and export evidence. |
+| `extensions.x402`, `extensions.receipts`, `extensions.reputation` | `specs/PAYMENT-REPUTATION-EXTENSION-v0.1.md`, `specs/X402-DRY-RUN-RECEIPT-v0.1.md`, and `specs/RAP-BRIDGE-v0.1.md` | Payment authority, dry-run rails, receipt binding, reputation signals, and bridge metadata. |
+| `conformance` | `specs/CONFORMANCE-v0.1.md` | Requested/achieved conformance levels, required field sets, forbidden capability reporting, and evidence outputs. |
+
 ## Conformance Profile Matrix
 
 ADL v0.2 validators must report both the requested and achieved conformance

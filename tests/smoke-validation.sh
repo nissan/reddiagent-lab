@@ -11,6 +11,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_adl_v02_permission_policy.py
 "$PYTHON" tests/test_adl_v02_tool_contract.py
 "$PYTHON" tests/test_adl_v02_eval_gate_completion.py
+"$PYTHON" tests/test_adl_v02_examples_diagnostics.py
 "$PYTHON" tests/test_provider_compatibility_cli.py
 "$PYTHON" tests/test_provider_adapter_codegen_plan.py
 "$PYTHON" tests/test_validation_guidance.py
