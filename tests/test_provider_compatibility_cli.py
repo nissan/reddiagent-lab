@@ -104,10 +104,19 @@ def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
     ]
 
     for path in invalid_paths:
-        proc = run_cli([path, "--target", "openai"], check=False)
-        assert proc.returncode == 1, path
-        assert proc.stdout == ""
-        assert "invalid ADL v0.2" in proc.stderr
+        proc = run_cli([path, "--target", "openai"])
+        reports = json.loads(proc.stdout)
+        assert proc.stderr == ""
+        assert len(reports) == 1
+        report = reports[0]
+        assert report["target"] == "openai"
+        assert report["supported"] is False
+        assert report["level"] == 0
+        assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+        assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["dataSourceTypes"] == []
+        assert report["sourceBoundary"] == []
+        assert report["validationDiagnostics"], path
 
 
 def test_openai_compatibility_mode_maps_metadata_only_semantics() -> None:
@@ -540,6 +549,7 @@ def test_list_targets_includes_mcp_readonly() -> None:
 def main() -> int:
     test_target_agent_selection_covers_provider_and_mcp_paths()
     test_local_python_selector_and_summary_output_file()
+    test_v02_invalid_source_boundaries_fail_before_reporting()
     test_openai_compatibility_mode_maps_metadata_only_semantics()
     test_openai_compatibility_mode_keeps_mcp_execution_unsupported()
     test_anthropic_compatibility_mode_maps_mcp_metadata_without_invocation()
