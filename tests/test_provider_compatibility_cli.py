@@ -124,6 +124,70 @@ def test_v02_invalid_source_boundaries_fail_before_reporting() -> None:
         assert report["conformance"]["status"] == "fail"
 
 
+def test_v02_provider_refusal_does_not_crash_on_malformed_provider_shapes() -> None:
+    malformed_docs = {
+        "providers-string": """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: providers-string
+  description: Malformed provider shape.
+model:
+  capability: chat
+  providers: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+""",
+        "fallbacks-string": """
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: fallbacks-string
+  description: Malformed fallback provider shape.
+model:
+  capability: chat
+  providers:
+    preferred: anthropic
+    fallbacks: openai
+  requirements:
+    toolCalling: true
+harness:
+  instructions:
+    inline: "Stay static."
+  runtime:
+    target: local-python
+""",
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        paths = []
+        for name, content in malformed_docs.items():
+            path = Path(tmp) / f"{name}.yaml"
+            path.write_text(content)
+            paths.append(str(path))
+
+        proc = run_cli([*paths, "--target", "openai"])
+
+    reports = json.loads(proc.stdout)
+    assert proc.stderr == ""
+    assert [report["agent"] for report in reports] == ["providers-string", "fallbacks-string"]
+    assert reports[0]["providerResolution"]["orderedCandidates"] == []
+    assert reports[1]["providerResolution"]["orderedCandidates"] == ["anthropic"]
+    for report in reports:
+        assert report["supported"] is False
+        assert report["compatibilityMode"] == "provider-compatibility-report-refused"
+        assert report["unsupportedFeatures"] == ["adl_v0_2_schema_validation"]
+        assert report["providerResolution"]["selectedProvider"] is None
+        assert report["providerResolution"]["selectedRole"] == "schema-invalid"
+        assert report["boundary"]["runtimeExecutionAllowed"] is False
+        assert report["validationDiagnostics"]
+
+
 def test_v02_provider_exports_conformance_metadata() -> None:
     proc = run_cli(["tests/fixtures/adl-v0.2-level3-ready.yaml", "--target", "openai"])
     report = json.loads(proc.stdout)[0]
@@ -657,6 +721,7 @@ def main() -> int:
     test_target_agent_selection_covers_provider_and_mcp_paths()
     test_local_python_selector_and_summary_output_file()
     test_v02_invalid_source_boundaries_fail_before_reporting()
+    test_v02_provider_refusal_does_not_crash_on_malformed_provider_shapes()
     test_v02_provider_exports_conformance_metadata()
     test_v02_provider_exports_cumulative_conformance_failure_metadata()
     test_v02_provider_refusal_does_not_crash_on_invalid_requested_level()

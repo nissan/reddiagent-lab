@@ -90,6 +90,10 @@ def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
+def object_or_empty(value: object) -> dict:
+    return value if isinstance(value, dict) else {}
+
+
 def load_v02_schema() -> dict:
     return json.loads(SCHEMA_PATH.read_text())
 
@@ -108,6 +112,9 @@ def adl_v02_validation_errors(doc: dict) -> list[jsonschema.ValidationError]:
 
 
 def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[jsonschema.ValidationError]) -> dict:
+    metadata = object_or_empty(doc.get("metadata"))
+    model = object_or_empty(doc.get("model"))
+    requirements = object_or_empty(model.get("requirements"))
     diagnostics = [
         {
             "path": validation_error_path(error),
@@ -116,7 +123,7 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         for error in errors
     ]
     result = {
-        "agent": (doc.get("metadata") or {}).get("name", path.stem),
+        "agent": metadata.get("name", path.stem),
         "target": target,
         "supported": False,
         "level": 0,
@@ -132,8 +139,8 @@ def unsupported_schema_report(path: Path, doc: dict, target: str, errors: list[j
         "modelCapabilityRequirements": {
             "vocabularyVersion": "adl-v0.2-model-requirements",
             "provider": None,
-            "capability": (doc.get("model") or {}).get("capability"),
-            "requested": (doc.get("model") or {}).get("requirements", {}),
+            "capability": model.get("capability"),
+            "requested": requirements,
             "supportedRequirements": [],
             "unsupportedRequirements": [],
             "degradedRequirements": [],
@@ -181,8 +188,16 @@ def source_boundary_metadata(doc: dict) -> list[dict]:
 
 
 def ordered_provider_candidates(doc: dict) -> list[str]:
-    providers = doc.get("model", {}).get("providers", {})
-    return [provider for provider in [providers.get("preferred"), *providers.get("fallbacks", [])] if provider]
+    model = object_or_empty(doc.get("model"))
+    providers = object_or_empty(model.get("providers"))
+    fallbacks = providers.get("fallbacks", [])
+    if not isinstance(fallbacks, list):
+        fallbacks = []
+    return [
+        provider
+        for provider in [providers.get("preferred"), *fallbacks]
+        if isinstance(provider, str) and provider
+    ]
 
 
 def provider_for_target(doc: dict, target: str) -> str | None:
