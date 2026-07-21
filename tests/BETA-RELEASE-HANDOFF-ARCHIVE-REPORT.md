@@ -1,17 +1,19 @@
 # Beta Release Handoff Archive Report
 
 Issue: #264
+Refresh issue: #337
 Parent epic: #220
 
 ## Scope
 
-`scripts/beta_release_handoff_archive.py` builds a deterministic local-only release handoff archive from the pinned #262 activation acceptance bundle. It emits accepted, hold, and rollback-required handoff archives for `reddiagent-beta-0` without enabling runtime paths, deploying, publishing packages, using devnet/mainnet, calling providers, invoking MCP, touching credentials, or claiming activation occurred.
+`scripts/beta_release_handoff_archive.py` builds a deterministic local-only release handoff archive from the pinned #262 activation acceptance bundle. The #337 refresh also summarizes the pinned #335 ADL v0.2 local runtime evidence: one schema-valid `examples/v0.2/memory-observability-agent.yaml` dry-run and one invalid `examples/invalid/adl-v0.2-x402-missing-authority.yaml` diagnostic sample with stable `code`, `severity`, `category`, `path`, `line`, and `column` fields. It emits accepted, hold, and rollback-required handoff archives for `reddiagent-beta-0` without enabling runtime paths, deploying, publishing packages, using devnet/mainnet, calling providers, invoking MCP, touching credentials, or claiming activation occurred.
 
 ## Evidence
 
 - Positive fixture coverage: accepted, hold, rollback-required handoff archives.
 - Negative fixture coverage: missing/stale acceptance evidence, mismatched release id, mismatched ADL path, missing operator identity, missing reviewer or approval fixture, missing handoff timestamp, missing accepted activation cue, missing rollback cue/evidence, live runtime request, credential-like payload, devnet/mainnet request, production/mainnet enablement claim, deployment request/claim, activation occurred claim, live runtime enablement claim, incomplete handoff boundary text, contradictory activation handoff, and contradictory deployment handoff.
 - Source package binding: acceptance, rehearsal, preflight, operator decision, review UI, runtime package, and inherited evidence hashes.
+- ADL v0.2 runtime handoff: `sourcePackageEvidence.adlV02RuntimeEvidence` and every handoff result include the valid runtime example, invalid diagnostic sample, stable diagnostic fields, and local-only boundary flags.
 - Operator transcript/checklist: every path uses `--dry-run`, sets `liveRuntimeEnabled=false`, sets `deploymentPublished=false`, and carries next-step text that says no live runtime enablement, no deployment, and no activation is claimed.
 
 ## Validation

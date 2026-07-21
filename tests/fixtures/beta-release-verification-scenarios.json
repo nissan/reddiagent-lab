@@ -25,7 +25,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-release-handoff.json",
-        "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+        "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
       },
       {
         "path": "tests/fixtures/beta-release-readiness.json",

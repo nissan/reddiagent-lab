@@ -34,7 +34,8 @@ def source_context() -> tuple[dict, dict]:
         beta_release_handoff_archive.PINNED_ACCEPTANCE_BUNDLE
     )
     current_acceptance = beta_release_handoff_archive.current_acceptance_bundle()
-    return pinned_acceptance, current_acceptance
+    runtime_evidence = beta_release_handoff_archive.adl_v02_runtime_evidence()
+    return pinned_acceptance, current_acceptance, runtime_evidence
 
 
 def assert_positive_mutation_fails(mutator, expected_path: str, context: tuple[dict, dict], scenario_index: int = 0) -> None:
@@ -51,6 +52,7 @@ def main() -> int:
     assert doc == json.loads(FIXTURE.read_text())
     assert doc["mode"] == "beta-local-release-handoff-archive"
     assert doc["issue"] == 264
+    assert doc["refreshIssue"] == 337
     assert doc["parentEpic"] == 220
     assert doc["status"] == "pass"
     assert doc["boundaries"]["releaseHandoffArchive"] is True
@@ -66,6 +68,44 @@ def main() -> int:
     assert evidence["source"] == "tests/fixtures/beta-activation-acceptance.json"
     assert evidence["status"] == "pass"
     assert evidence["currentEvidenceMatchesPinned"] is True
+    runtime_evidence = doc["sourcePackageEvidence"]["adlV02RuntimeEvidence"]
+    assert runtime_evidence["source"] == "tests/fixtures/local-executable-runtime-prototype.json"
+    assert runtime_evidence["boundaries"] == {
+        "deterministicLocalFixturesOnly": True,
+        "liveRuntimeActivation": False,
+        "networkAccess": False,
+        "credentialAccess": False,
+        "providerApiAccess": False,
+        "paymentAccess": False,
+        "devnetAccess": False,
+        "mainnetAccess": False,
+        "deploymentPublished": False,
+    }
+    assert runtime_evidence["validRuntimeExample"] == {
+        "id": "adl-v02-memory-observability-dry-run",
+        "adl": "examples/v0.2/memory-observability-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+        "status": "pass",
+        "exitCode": 0,
+        "completionStatus": "pass",
+        "safetyGate": "supported-adl-v02-local-runtime",
+    }
+    diagnostic_sample = runtime_evidence["invalidDiagnosticSample"]
+    assert diagnostic_sample["id"] == "invalid-adl-v02-payment-diagnostics"
+    assert diagnostic_sample["adl"] == "examples/invalid/adl-v0.2-x402-missing-authority.yaml"
+    assert diagnostic_sample["status"] == "pass"
+    assert diagnostic_sample["exitCode"] == 1
+    assert diagnostic_sample["stableFields"] == ["code", "severity", "category", "path", "line", "column"]
+    assert diagnostic_sample["diagnostics"] == [
+        {
+            "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+            "severity": "error",
+            "category": "payment",
+            "path": "extensions.x402.intents.0.authority",
+            "line": 22,
+            "column": 9,
+        }
+    ]
 
     assert doc["summary"] == {
         "acceptedArchives": 18,
@@ -93,6 +133,7 @@ def main() -> int:
         assert result["sourceDecisionPackagePath"] == "tests/fixtures/beta-operator-decision-package.json"
         assert result["sourceReviewPackagePath"] == "tests/fixtures/beta-review-ui.json"
         assert result["sourceRuntimePackagePath"] == "tests/fixtures/beta-operator-dry-run-package.json"
+        assert result["adlV02RuntimeEvidence"] == runtime_evidence
         assert result["operatorIdentity"] == "operator://local-beta"
         assert result["reviewerIdentity"] == "reviewer://oli-local-fixture"
         assert result["localApprovalFixture"].startswith("tests/fixtures/beta-activation-acceptance.json#")
@@ -115,6 +156,10 @@ def main() -> int:
         assert any(step["event"] == "handoff.no_runtime_or_deployment_claim" for step in result["operatorTranscript"])
         assert all(item["status"] == "pass" for item in result["operatorChecklist"])
         assert all(item["exists"] and item["sha256"] for item in result["evidenceHashes"])
+        evidence_paths = {item["path"] for item in result["evidenceHashes"]}
+        assert "tests/fixtures/local-executable-runtime-prototype.json" in evidence_paths
+        assert "examples/v0.2/memory-observability-agent.yaml" in evidence_paths
+        assert "examples/invalid/adl-v0.2-x402-missing-authority.yaml" in evidence_paths
 
     assert "--cue activate://beta-0/local-rehearsal-only" in results["release-handoff-accepted-pass"]["operatorTranscript"][1]["command"]
     assert results["release-handoff-hold-pass"]["operatorTranscript"][1]["event"] == "handoff.release_hold_archived"

@@ -41,11 +41,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -131,7 +131,7 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -152,11 +152,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -251,7 +251,7 @@
         "tests/fixtures/beta-activation-acceptance.json",
         "tests/fixtures/surfpool-validator-lane.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -272,11 +272,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -371,7 +371,7 @@
         "tests/fixtures/beta-activation-acceptance.json",
         "tests/fixtures/docker-testing-lane.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -392,11 +392,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -491,7 +491,7 @@
         "tests/fixtures/beta-activation-acceptance.json",
         "tests/fixtures/coolify-staging-lane.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -512,11 +512,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -629,7 +629,7 @@
         "tests/fixtures/docker-testing-lane.json",
         "tests/fixtures/coolify-staging-lane.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -793,7 +793,7 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -818,7 +818,7 @@
           "hashMatches": false,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -941,7 +941,7 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -966,7 +966,7 @@
           "hashMatches": false,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1128,7 +1128,7 @@
         "tests/fixtures/docker-testing-lane.json",
         "tests/fixtures/coolify-staging-lane.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1149,11 +1149,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1248,7 +1248,7 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1269,11 +1269,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1376,7 +1376,7 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1397,11 +1397,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1492,12 +1492,12 @@
         "tests/fixtures/beta-activation-rehearsal.json",
         "tests/fixtures/beta-activation-acceptance.json"
       ],
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "reject"
     }
   ],
-  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 5,

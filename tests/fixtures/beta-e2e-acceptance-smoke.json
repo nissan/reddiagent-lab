@@ -62,13 +62,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "1a67d5b783fd20f3354945a8ffd466b49f80932163ae7161a9256def45af75b1",
+      "evidenceSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -108,10 +108,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -132,7 +132,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -163,13 +163,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "0fd1263aaeb7d7543603ee090489a4734f1e433130aedda81ce45f396af14007",
+      "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -209,10 +209,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -233,7 +233,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "hold"
     },
@@ -264,13 +264,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
-        "hashMatches": false,
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "3837177b983e798c3b961e52ad4962e6ac5230639346342546c8ec66a644b3ad",
+      "evidenceSha256": "93b8dd5d8163c383f30c59fa252687dfdbee622f8fc38fd2adb533e797c22eee",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -293,10 +293,6 @@
       "expectedStatus": "fail",
       "expectedVerdict": "hold",
       "findings": [
-        {
-          "path": "checklistFixture.sha256",
-          "reason": "Artifact `tests/fixtures/beta-reviewer-acceptance-checklist.json` does not match its expected sha256 pin."
-        },
         {
           "path": "quickstartFixture.exists",
           "reason": "Artifact `tests/fixtures/missing-beta-onboarding-quickstart.json` is missing."
@@ -447,7 +443,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -478,13 +474,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": false,
         "path": "tests/fixtures/missing-beta-reviewer-acceptance-checklist.json",
         "sha256": null
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "a342542a74426f9ca9b635e7cffa574f28db1ff55befc4911e0b6874264e0cc8",
+      "evidenceSha256": "f788a6c2ac288ca8cdfe1ad1428f4a4ad73353d7db35d198d03f6fd5f94dcdf0",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -644,7 +640,7 @@
         "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
         "hashMatches": false,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -665,7 +661,7 @@
         "verdict": null
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -699,10 +695,10 @@
         "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
         "hashMatches": false,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "4dc47e252d9206f95ed9e95017fc3adb609ec9d0ec024ee3c91f262fa1f4c685",
+      "evidenceSha256": "e6886fb29d9fbf6382f8cedd50659ae499e48154cc77d0e2af15f3df8be38cec",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -754,7 +750,7 @@
         "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "hashMatches": false,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -775,7 +771,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -806,13 +802,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "03b1622dc1f17bdb427ed4a03ba29aeae819d98a5cc25c5fc6ad24dce39b6e08",
+      "evidenceSha256": "171a6b5cdc4d9a40b781c15e78637a1055d4ef7ec61ce6b77a329dfc86b02431",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -859,10 +855,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -883,7 +879,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -914,13 +910,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "58936fbeb2d7a05c2abf6fe25e8cbf89a645fe968c3449bc9940b32c62c705dc",
+      "evidenceSha256": "f4e2c31f3c2fe187f46ad379756172103fc613e225ff15a1bccbb03f9921edd2",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -986,10 +982,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1010,7 +1006,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1041,13 +1037,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "0fd1263aaeb7d7543603ee090489a4734f1e433130aedda81ce45f396af14007",
+      "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -1096,10 +1092,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1120,7 +1116,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1151,13 +1147,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "9aca3d0b186cb0511b258afc539299ac5480f3c141d6903b1bc36e819ace7de3",
+      "evidenceSha256": "51859663511987e9f411a3f208ad7a835620dbc80faf9f7809b4dc549a74d9fa",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -1230,10 +1226,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1254,7 +1250,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1285,13 +1281,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "0fd1263aaeb7d7543603ee090489a4734f1e433130aedda81ce45f396af14007",
+      "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -1368,10 +1364,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1392,7 +1388,7 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1423,13 +1419,13 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49",
+        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
-      "evidenceSha256": "0fd1263aaeb7d7543603ee090489a4734f1e433130aedda81ce45f396af14007",
+      "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
       "excludedSteps": [
         "runtime activation",
         "Docker image pull or container start",
@@ -1478,10 +1474,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba",
+        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1502,12 +1498,12 @@
         "verdict": "accept"
       },
       "smokeId": "reddiagent-beta-0-local-e2e-acceptance-smoke",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,

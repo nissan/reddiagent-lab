@@ -56,7 +56,7 @@
     "expectedEvidenceHashes": [
       {
         "path": "tests/fixtures/beta-release-verification.json",
-        "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1"
+        "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1"
       },
       {
         "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",

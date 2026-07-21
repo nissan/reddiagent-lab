@@ -36,7 +36,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -124,19 +124,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -148,10 +148,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -190,11 +190,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -345,13 +345,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "pass",
       "verdict": "accept"
     },
@@ -362,7 +362,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "def03530252f1acf11786631b70edface1bf14376b084c9bd76710b179643cef"
+        "manifestSha256": "d459244f676de5fbecdc091d0439cb45000f05f1f44bc04cd67bd8d62856ee6e"
       },
       "boundaries": {
         "archivePublished": false,
@@ -498,7 +498,7 @@
         "sha256": null
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -509,7 +509,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -597,19 +597,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -621,10 +621,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -663,11 +663,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -826,10 +826,10 @@
         "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "hashMatches": false,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -840,7 +840,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "497c57cc8af889ae0bbe4f36b512bbb0520cc0f99b5028ddcf6d803e7ad888b0"
+        "manifestSha256": "11f07fcfb9e8cde2ca092293d5eb3765fe65b3e00d6fc74f579a89b66966f196"
       },
       "boundaries": {
         "archivePublished": false,
@@ -931,7 +931,7 @@
           "expectedSha256": null,
           "hashMatches": false,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
@@ -939,8 +939,8 @@
           "expectedSha256": null,
           "hashMatches": false,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -955,7 +955,7 @@
           "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
           "hashMatches": false,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -994,11 +994,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1214,13 +1214,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1231,7 +1231,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1319,19 +1319,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -1343,10 +1343,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -1385,11 +1385,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1545,13 +1545,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1562,7 +1562,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "49d02439db5e57008bc5c181fcb43bd68010685089049cf6e7e86c8c31770b1d"
+        "manifestSha256": "6318c253eab3feb6fde155b37e2d180cbf23e99b2ae171c6ad8469063ad9a33c"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1594,29 +1594,29 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         }
       ],
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1759,13 +1759,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1776,7 +1776,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "265bb15c7c34b4cff3939e0817b18b27d64ff0a26b8fb7883456152ab54976a5"
+        "manifestSha256": "8b9e543f53b0948e91b9f44ff5348ee3c4f634c341afe35147dbbb330da218c3"
       },
       "boundaries": {
         "archivePublished": false,
@@ -1816,21 +1816,21 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         }
       ],
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -1973,13 +1973,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1990,7 +1990,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2078,19 +2078,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -2102,10 +2102,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -2144,11 +2144,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -2316,13 +2316,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2333,7 +2333,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2421,19 +2421,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -2445,10 +2445,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -2487,11 +2487,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -2651,13 +2651,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2668,7 +2668,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -2756,19 +2756,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -2780,10 +2780,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -2822,11 +2822,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -2986,13 +2986,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3003,7 +3003,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -3091,19 +3091,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -3115,10 +3115,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -3157,11 +3157,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -3333,13 +3333,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3350,7 +3350,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -3438,19 +3438,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -3462,10 +3462,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -3504,11 +3504,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -3672,13 +3672,13 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "hold"
     },
@@ -3689,7 +3689,7 @@
         "archivePath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.json",
         "checksumPath": "local-artifacts/reddiagent-beta-0-rc-local-1-local-review-archive.manifest.sha256",
         "format": "manifest-and-sha256-only",
-        "manifestSha256": "ff35da9ca0880aa9be11a41a990f65902dd083f5219c05ae91ffcd71f4ce14ff"
+        "manifestSha256": "2a9d4348c0f3724a659ba1d3aa3d9d622c2b04ab3ef352ef6d33da15c6ebd729"
       },
       "boundaries": {
         "archivePublished": false,
@@ -3777,19 +3777,19 @@
         },
         {
           "exists": true,
-          "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-candidate-bundle.json",
-          "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+          "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
           "sizeBytes": 96753
         },
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
-          "sizeBytes": 237067
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+          "sizeBytes": 300203
         },
         {
           "exists": true,
@@ -3801,10 +3801,10 @@
         },
         {
           "exists": true,
-          "expectedSha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "expectedSha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "hashMatches": true,
           "path": "tests/fixtures/beta-release-verification.json",
-          "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1",
+          "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
           "sizeBytes": 62138
         },
         {
@@ -3843,11 +3843,11 @@
       "evidenceHashes": [
         {
           "exists": true,
-          "expectedSha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d",
+          "expectedSha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
           "hashMatches": true,
           "key": "handoff",
           "path": "tests/fixtures/beta-release-handoff.json",
-          "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+          "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
         },
         {
           "exists": true,
@@ -4003,18 +4003,18 @@
       },
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
       "releaseCandidateManifest": {
-        "expectedSha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe",
+        "expectedSha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643",
         "hashMatches": true,
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       "releaseId": "reddiagent-beta-0",
-      "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
       "status": "fail",
       "verdict": "reject"
     }
   ],
-  "sourceCommit": "f2438201f439392597f6dddc47739a65c324ee00",
+  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
   "status": "pass",
   "summary": {
     "acceptVerdicts": 1,
