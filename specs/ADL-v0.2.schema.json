@@ -246,13 +246,27 @@
           }
         },
         {
+          "if": { "properties": { "trust": { "const": "approved" } }, "required": ["trust"] },
+          "then": {
+            "properties": {
+              "sourceCheck": {
+                "properties": { "expectation": { "const": "approved-source" } },
+                "required": ["expectation"]
+              }
+            }
+          }
+        },
+        {
           "if": { "properties": { "trust": { "enum": ["untrusted", "unknown"] } }, "required": ["trust"] },
           "then": {
             "properties": {
               "citationRequired": { "const": true },
               "sourceCheck": {
-                "properties": { "required": { "const": true } },
-                "required": ["required"]
+                "properties": {
+                  "required": { "const": true },
+                  "expectation": { "enum": ["manual-review", "not-citable"] }
+                },
+                "required": ["required", "expectation"]
               }
             }
           }

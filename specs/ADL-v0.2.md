@@ -247,6 +247,9 @@ Source shape fields are mutually exclusive. A `file` source with `url`, an
 fails validation before compatibility reporting. `untrusted` and `unknown`
 sources must still require citation and source-check evidence; they remain
 review-visible and cannot silently become trusted completion evidence.
+Approved sources must use `sourceCheck.expectation: approved-source`.
+Untrusted and unknown sources must use `manual-review` or `not-citable`; they
+must not claim the approved-source expectation.
 
 Canonical data source examples:
 

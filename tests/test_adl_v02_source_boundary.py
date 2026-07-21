@@ -16,6 +16,9 @@ SCHEMA_PATH = ROOT / "specs" / "ADL-v0.2.schema.json"
 POSITIVE_SOURCE_BOUNDARY = ROOT / "examples" / "v0.2" / "source-boundary-agent.yaml"
 NEGATIVE_ALIAS = ROOT / "examples" / "invalid" / "adl-v0.2-data-source-alias.yaml"
 NEGATIVE_UNTRUSTED = ROOT / "examples" / "invalid" / "adl-v0.2-untrusted-source-no-check.yaml"
+NEGATIVE_UNTRUSTED_APPROVED = (
+    ROOT / "examples" / "invalid" / "adl-v0.2-untrusted-source-approved-expectation.yaml"
+)
 
 CANONICAL_TYPES = ["file", "url", "api", "database", "vector-index", "mcp"]
 
@@ -77,6 +80,12 @@ def test_untrusted_sources_must_keep_citation_and_source_check_required() -> Non
     assert "True was expected" in messages
 
 
+def test_untrusted_sources_cannot_claim_approved_source_expectation() -> None:
+    errors = validation_errors(NEGATIVE_UNTRUSTED_APPROVED)
+    assert errors, "untrusted sources must not claim approved-source expectation"
+    assert any("'approved-source' is not one of ['manual-review', 'not-citable']" in error.message for error in errors)
+
+
 def test_schema_source_vocabulary_matches_spec_contract() -> None:
     schema_types = load_schema()["$defs"]["dataSource"]["properties"]["type"]["enum"]
     spec = (ROOT / "specs" / "ADL-v0.2.md").read_text()
@@ -92,6 +101,7 @@ def main() -> int:
     test_source_type_shape_fields_are_mutually_exclusive()
     test_legacy_data_source_aliases_fail_validation()
     test_untrusted_sources_must_keep_citation_and_source_check_required()
+    test_untrusted_sources_cannot_claim_approved_source_expectation()
     test_schema_source_vocabulary_matches_spec_contract()
     print("PASS ADL v0.2 source boundary")
     return 0
