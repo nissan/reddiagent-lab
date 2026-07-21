@@ -1,0 +1,29 @@
+apiVersion: reddiagent.dev/v0.2
+kind: Agent
+metadata:
+  name: untrusted-source-no-check
+  description: Declares an untrusted source without fail-closed source-check evidence.
+model:
+  capability: chat
+  providers:
+    preferred: openai
+  requirements:
+    toolCalling: false
+    structuredOutput: true
+harness:
+  instructions:
+    inline: "Do not execute."
+  dataSources:
+    - id: untrusted_url
+      type: url
+      description: Untrusted URL without mandatory source-check.
+      sourceRef: url:https://example.invalid/reddiagent
+      url: https://example.invalid/reddiagent
+      trust: untrusted
+      citationRequired: false
+      sourceCheck:
+        required: false
+        expectation: manual-review
+  runtime:
+    target: local-python
+extensions: {}

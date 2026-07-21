@@ -436,6 +436,39 @@ def test_langgraph_compatibility_report_keeps_mcp_execution_unsupported() -> Non
     ]
 
 
+def test_provider_reports_use_canonical_source_boundary_vocabulary() -> None:
+    proc = run_cli(
+        [
+            "examples/v0.2/source-boundary-agent.yaml",
+            "--target",
+            "openai",
+            "--target",
+            "anthropic",
+            "--target",
+            "gemini",
+            "--target",
+            "ollama",
+            "--target",
+            "langgraph",
+        ]
+    )
+    reports = json.loads(proc.stdout)
+    expected_types = ["file", "url", "api", "database", "vector-index", "mcp"]
+
+    assert [item["target"] for item in reports] == ["openai", "anthropic", "gemini", "ollama", "langgraph"]
+    for report in reports:
+        assert report["dataSourceTypes"] == expected_types
+        assert [source["type"] for source in report["sourceBoundary"]] == expected_types
+        assert report["providerMapping"]["adapterMapping"]["sourceBoundary"] == report["sourceBoundary"]
+        assert "harness.dataSources" in report["providerMapping"]["adapterMapping"]["metadataOnly"]
+        for source in report["sourceBoundary"]:
+            assert source["sourceRef"].startswith(f"{source['type']}:")
+            assert source["trust"] == "approved"
+            assert source["citationRequired"] is True
+            assert source["sourceCheckRequired"] is True
+            assert source["sourceCheckExpectation"] == "approved-source"
+
+
 def test_no_matching_agent_fails_before_empty_report() -> None:
     proc = run_cli(["--agent", "missing-agent"], check=False)
     assert proc.returncode == 1
@@ -468,6 +501,7 @@ def main() -> int:
     test_ollama_compatibility_mode_keeps_mcp_execution_unsupported()
     test_langgraph_compatibility_report_maps_graph_state_without_generation()
     test_langgraph_compatibility_report_keeps_mcp_execution_unsupported()
+    test_provider_reports_use_canonical_source_boundary_vocabulary()
     test_no_matching_agent_fails_before_empty_report()
     test_list_targets_includes_mcp_readonly()
     print("PASS provider compatibility CLI")

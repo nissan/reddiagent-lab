@@ -25,6 +25,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "openai-adapter-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -43,6 +45,7 @@
         "instructions": "harness.instructions.inline",
         "tools": [],
         "structuredOutput": true,
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -81,6 +84,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -105,7 +110,8 @@
             "toolName": "search"
           }
         ],
-        "sourceBoundary": "metadata-only",
+        "sourceBoundary": [],
+        "sourceBoundaryMode": "metadata-only",
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -143,6 +149,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "gemini-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -163,6 +171,7 @@
         "structuredOutput": true,
         "grounding": "not-configured",
         "codeExecution": "unsupported",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -199,6 +208,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -222,6 +233,7 @@
         "structuredOutput": "custom-harness-required",
         "stateAndMemory": "external-harness-owned",
         "functionTools": [],
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -258,6 +270,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "langgraph-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -292,6 +306,7 @@
         "edges": "static-plan-only",
         "checkpointing": "not-declared",
         "interrupts": "metadata-only",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -326,7 +341,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "mcp-readonly-docs",
@@ -350,7 +367,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "paid-specialist-researcher",
@@ -376,6 +395,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "openai-adapter-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -396,6 +417,7 @@
           "fetch_approved_url"
         ],
         "structuredOutput": true,
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -432,6 +454,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -452,7 +476,8 @@
           "fetch_approved_url"
         ],
         "mcpDeclarations": [],
-        "sourceBoundary": "metadata-only",
+        "sourceBoundary": [],
+        "sourceBoundaryMode": "metadata-only",
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -489,6 +514,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "gemini-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -511,6 +538,7 @@
         "structuredOutput": true,
         "grounding": "not-configured",
         "codeExecution": "unsupported",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -545,6 +573,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -570,6 +600,7 @@
         "functionTools": [
           "fetch_approved_url"
         ],
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -604,6 +635,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "langgraph-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -640,6 +673,7 @@
         "edges": "static-plan-only",
         "checkpointing": "not-declared",
         "interrupts": "metadata-only",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -672,7 +706,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "paid-specialist-researcher",
@@ -692,7 +728,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "simple-research-helper",
@@ -715,6 +753,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "openai-adapter-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -735,6 +775,7 @@
         "instructions": "harness.instructions.inline",
         "tools": [],
         "structuredOutput": true,
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -766,6 +807,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -786,7 +829,8 @@
         "systemPrompt": "harness.instructions.inline",
         "toolUseSchemas": [],
         "mcpDeclarations": [],
-        "sourceBoundary": "metadata-only",
+        "sourceBoundary": [],
+        "sourceBoundaryMode": "metadata-only",
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -818,6 +862,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "gemini-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -840,6 +886,7 @@
         "structuredOutput": true,
         "grounding": "not-configured",
         "codeExecution": "unsupported",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -869,6 +916,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -894,6 +943,7 @@
         "structuredOutput": "custom-harness-required",
         "stateAndMemory": "external-harness-owned",
         "functionTools": [],
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -923,6 +973,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "langgraph-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -957,6 +1009,7 @@
         "edges": "static-plan-only",
         "checkpointing": "metadata-only",
         "interrupts": "metadata-only",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates",
@@ -983,7 +1036,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "simple-research-helper",
@@ -1001,7 +1056,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "source-checker",
@@ -1024,6 +1081,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "openai-adapter-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "openai-adapter-compatibility-only",
       "provider": "openai",
@@ -1045,6 +1104,7 @@
           "search_docs"
         ],
         "structuredOutput": true,
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -1075,6 +1135,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "anthropic-mcp-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "anthropic-mcp-compatibility-only",
       "provider": "anthropic",
@@ -1096,7 +1158,8 @@
           "search_docs"
         ],
         "mcpDeclarations": [],
-        "sourceBoundary": "metadata-only",
+        "sourceBoundary": [],
+        "sourceBoundaryMode": "metadata-only",
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -1127,6 +1190,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "gemini-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "gemini-provider-compatibility-only",
       "provider": "gemini",
@@ -1150,6 +1215,7 @@
         "structuredOutput": true,
         "grounding": "not-configured",
         "codeExecution": "unsupported",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -1178,6 +1244,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "ollama-local-provider-compatibility-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "ollama-local-provider-compatibility-only",
       "provider": "ollama",
@@ -1204,6 +1272,7 @@
         "functionTools": [
           "search_docs"
         ],
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -1232,6 +1301,8 @@
       "mcpInvocation": false
     },
     "compatibilityMode": "langgraph-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": [],
     "providerMapping": {
       "mode": "langgraph-compatibility-report-only",
       "provider": "langgraph",
@@ -1268,6 +1339,7 @@
         "edges": "static-plan-only",
         "checkpointing": "not-declared",
         "interrupts": "metadata-only",
+        "sourceBoundary": [],
         "metadataOnly": [
           "harness.policies",
           "harness.evalGates"
@@ -1293,7 +1365,9 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   },
   {
     "agent": "source-checker",
@@ -1311,6 +1385,8 @@
       "paymentAccess": false,
       "mcpInvocation": false
     },
-    "compatibilityMode": "provider-compatibility-report-only"
+    "compatibilityMode": "provider-compatibility-report-only",
+    "dataSourceTypes": [],
+    "sourceBoundary": []
   }
 ]

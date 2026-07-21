@@ -203,6 +203,116 @@ harness:
         phase: before-execution
 ```
 
+## Data Source Boundary Contract
+
+ADL v0.2 uses one canonical `harness.dataSources[*].type` vocabulary:
+
+- `file`: local or packaged file/document content. Legacy `document` aliases
+  must be rewritten to `file`.
+- `url`: citable web URL content. Legacy `web` aliases must be rewritten to
+  `url`.
+- `api`: reviewed API endpoint metadata.
+- `database`: reviewed database connection metadata.
+- `vector-index`: reviewed retrieval index metadata.
+- `mcp`: MCP-shaped output metadata. This is a static source boundary and does
+  not permit live MCP invocation.
+
+The legacy `knowledge-base` alias is not valid in ADL v0.2. Builders must
+choose the concrete backing type (`file`, `url`, `api`, `database`,
+`vector-index`, or `mcp`) so adapters do not invent source semantics.
+
+Every data source carries a source-boundary declaration:
+
+- `sourceRef`: stable typed reference using the same prefix as `type`, such as
+  `file:docs/source.md`, `url:https://docs.example.test/page`,
+  `api:catalog`, `database:readonly-warehouse`, `vector-index:docs`, or
+  `mcp:approved-docs-search`.
+- `trust`: `approved`, `untrusted`, or `unknown`.
+- `citationRequired`: whether output may complete without a citation to this
+  source.
+- `sourceCheck`: fail-closed source-check expectation with `required`,
+  `expectation`, and optional `gateRef`.
+
+Each source type has exactly one shape field:
+
+- `file` requires `path`.
+- `url` requires `url`.
+- `api` requires `api.endpoint` and `api.method`.
+- `database` requires `database.engine` and `database.connectionRef`.
+- `vector-index` requires `vectorIndex.indexRef`.
+- `mcp` requires `mcp.serverRef` and `mcp.outputShape`.
+
+Source shape fields are mutually exclusive. A `file` source with `url`, an
+`api` source with `path`, or a `sourceRef` prefix that does not match `type`
+fails validation before compatibility reporting. `untrusted` and `unknown`
+sources must still require citation and source-check evidence; they remain
+review-visible and cannot silently become trusted completion evidence.
+
+Canonical data source examples:
+
+```yaml
+harness:
+  dataSources:
+    - id: project_docs
+      type: file
+      description: Reviewed local project documentation.
+      sourceRef: file:docs/ADL-v0.2.md
+      path: specs/ADL-v0.2.md
+      trust: approved
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+        gateRef: approved-source-output
+    - id: public_docs
+      type: url
+      description: Reviewed public documentation URL.
+      sourceRef: url:https://docs.reddiagent.dev/adl
+      url: https://docs.reddiagent.dev/adl
+      trust: approved
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+    - id: catalog_api
+      type: api
+      description: Reviewed read-only catalog API.
+      sourceRef: api:catalog
+      api:
+        endpoint: https://api.example.test/catalog
+        method: GET
+      trust: approved
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+    - id: local_index
+      type: vector-index
+      description: Reviewed local documentation index.
+      sourceRef: vector-index:docs
+      vectorIndex:
+        indexRef: indexes/docs
+        embeddingModel: text-embedding-metadata-only
+      trust: approved
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+    - id: docs_mcp_output
+      type: mcp
+      description: MCP-shaped docs output inspected without live invocation.
+      sourceRef: mcp:approved-docs-search
+      mcp:
+        serverRef: approved-docs-search
+        toolName: search
+        outputShape: source-citable-output
+      trust: approved
+      citationRequired: true
+      sourceCheck:
+        required: true
+        expectation: approved-source
+```
+
 ## Eval Gate Completion Contract
 
 ADL v0.2 eval gates define the task completion contract before a runtime,
@@ -314,3 +424,9 @@ harness:
   compatibility before any execution path.
 - Required eval gates fail closed when evidence is missing or failing; warning
   gates remain visible and non-blocking.
+- Data source aliases fail validation in ADL v0.2; adapters and reports must
+  use only the canonical `file`, `url`, `api`, `database`, `vector-index`, and
+  `mcp` vocabulary.
+- Source boundary declarations must match their source type, trust state,
+  citation requirement, and source-check expectation before compatibility or
+  export surfaces can treat a source as usable.

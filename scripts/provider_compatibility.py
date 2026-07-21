@@ -30,6 +30,22 @@ def load_adl(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
+def source_boundary_metadata(doc: dict) -> list[dict]:
+    sources = doc.get("harness", {}).get("dataSources", [])
+    return [
+        {
+            "id": source.get("id"),
+            "type": source.get("type"),
+            "sourceRef": source.get("sourceRef"),
+            "trust": source.get("trust"),
+            "citationRequired": source.get("citationRequired"),
+            "sourceCheckRequired": (source.get("sourceCheck") or {}).get("required"),
+            "sourceCheckExpectation": (source.get("sourceCheck") or {}).get("expectation"),
+        }
+        for source in sources
+    ]
+
+
 def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
     model = doc["model"]
     harness = doc["harness"]
@@ -44,6 +60,8 @@ def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
         metadata_only.append("harness.evalGates")
     if harness.get("memory"):
         metadata_only.append("harness.memory")
+    if harness.get("dataSources"):
+        metadata_only.append("harness.dataSources")
     if extensions.get("x402"):
         metadata_only.append("extensions.x402")
     if extensions.get("receipts"):
@@ -66,6 +84,7 @@ def openai_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "instructions": "harness.instructions.inline",
             "tools": [tool.get("id") for tool in regular_tools],
             "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -116,7 +135,8 @@ def anthropic_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
                 }
                 for tool in mcp_tools
             ],
-            "sourceBoundary": "metadata-only",
+            "sourceBoundary": source_boundary_metadata(doc),
+            "sourceBoundaryMode": "metadata-only",
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -164,6 +184,7 @@ def gemini_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "structuredOutput": bool(model.get("requirements", {}).get("structuredOutput")),
             "grounding": "not-configured",
             "codeExecution": "unsupported",
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -220,6 +241,7 @@ def ollama_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             else "not-required",
             "stateAndMemory": "external-harness-owned",
             "functionTools": [tool.get("id") for tool in regular_tools],
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -284,6 +306,7 @@ def langgraph_mapping(doc: dict, mcp_tools: list[dict]) -> dict:
             "edges": "static-plan-only",
             "checkpointing": "metadata-only" if harness.get("memory") else "not-declared",
             "interrupts": "metadata-only" if harness.get("policies") else "not-declared",
+            "sourceBoundary": source_boundary_metadata(doc),
             "metadataOnly": metadata_only,
             "unsupportedExecution": [tool.get("id") for tool in mcp_tools],
         },
@@ -298,6 +321,7 @@ def report(path: Path, target: str) -> dict:
     extensions = doc.get("extensions") or {}
     tools = harness.get("tools", [])
     mcp_tools = [tool for tool in tools if tool.get("type") == "mcp"]
+    source_boundaries = source_boundary_metadata(doc)
     warnings = []
     unsupported = []
     required_secrets = []
@@ -385,6 +409,8 @@ def report(path: Path, target: str) -> dict:
         "suggestedFallback": "local-python",
         "boundary": REPORT_ONLY_BOUNDARY,
         "compatibilityMode": compatibility_mode,
+        "dataSourceTypes": [source["type"] for source in source_boundaries],
+        "sourceBoundary": source_boundaries,
     }
     if provider_mapping is not None:
         result["providerMapping"] = provider_mapping
