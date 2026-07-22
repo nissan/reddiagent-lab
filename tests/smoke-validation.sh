@@ -64,6 +64,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_activation_acceptance_bundle.py
 "$PYTHON" tests/test_beta_release_handoff_archive.py
 "$PYTHON" tests/test_beta_reviewer_walkthrough_smoke.py
+"$PYTHON" tests/test_beta_adl_v02_local_readiness_gate.py
 "$PYTHON" tests/test_beta_release_verification_cli.py
 "$PYTHON" tests/test_beta_release_candidate_bundle.py
 "$PYTHON" tests/test_beta_release_archive_assembler.py
