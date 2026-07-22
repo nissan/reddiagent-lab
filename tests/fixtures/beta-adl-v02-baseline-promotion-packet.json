@@ -1,0 +1,163 @@
+{
+  "adlV02RuntimeBaseline": {
+    "invalidDiagnosticSample": {
+      "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+      "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+      "diagnostics": [
+        {
+          "category": "payment",
+          "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+          "column": 9,
+          "line": 22,
+          "path": "extensions.x402.intents.0.authority",
+          "severity": "error"
+        }
+      ],
+      "exitCode": 1,
+      "id": "invalid-adl-v02-payment-diagnostics",
+      "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+      "stableFields": [
+        "code",
+        "severity",
+        "category",
+        "path",
+        "line",
+        "column"
+      ],
+      "status": "pass"
+    },
+    "validRuntimeExample": {
+      "adl": "examples/v0.2/memory-observability-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+      "completionStatus": "pass",
+      "exitCode": 0,
+      "id": "adl-v02-memory-observability-dry-run",
+      "safetyGate": "supported-adl-v02-local-runtime",
+      "status": "pass"
+    }
+  },
+  "artifactHashes": {
+    "examples/invalid/adl-v0.2-x402-missing-authority.yaml": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8",
+    "examples/v0.2/memory-observability-agent.yaml": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499",
+    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+    "tests/fixtures/beta-release-handoff.json": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+    "tests/fixtures/local-executable-runtime-prototype.json": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+  },
+  "boundaries": {
+    "archivePublished": false,
+    "consumesReadinessGateOnly": true,
+    "coolifyMutation": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalPacket": true,
+    "devnetAccess": false,
+    "dockerMutation": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "fullHistoricalBetaChainReplay": false,
+    "hostedDeployment": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "productionGatewayMutation": false,
+    "promoteHoldRollbackDecisionOnly": true,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "settlementAccess": false,
+    "surfpoolMutation": false,
+    "walletAccess": false
+  },
+  "decision": "promote",
+  "decisionCriteria": {
+    "hold": [
+      "Use when any required readiness, artifact, diagnostic, or guardrail evidence is missing, stale, or failing.",
+      "Do not promote the ADL v0.2 local beta baseline until a replacement packet returns status=pass and decision=promote."
+    ],
+    "promote": [
+      "#341 readiness gate fixture is present, passing, and pinned by sha256.",
+      "#337/#339/#341 evidence chain is preserved by issue IDs, paths, sizes, and sha256 hashes.",
+      "Valid ADL v0.2 runtime example remains present and passing.",
+      "Invalid ADL v0.2 diagnostic sample remains fail-closed with stable diagnostic fields.",
+      "All local/free/deterministic guardrails remain false for live, hosted, provider, payment, devnet, mainnet, publishing, and gateway mutation actions."
+    ],
+    "rollback-required": [
+      "Use only if the current promoted local beta baseline has already been advertised or selected and this packet later fails.",
+      "Rollback target is the prior accepted local beta baseline evidence bundle; do not perform runtime, deployment, provider, payment, devnet, mainnet, publishing, or gateway actions from this packet."
+    ]
+  },
+  "evidenceChain": [
+    {
+      "exists": true,
+      "issue": 337,
+      "key": "releaseHandoff",
+      "name": "releaseHandoff",
+      "path": "tests/fixtures/beta-release-handoff.json",
+      "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+      "sizeBytes": 300203
+    },
+    {
+      "exists": true,
+      "issue": 339,
+      "key": "reviewerWalkthroughSmoke",
+      "name": "reviewerWalkthroughSmoke",
+      "path": "tests/fixtures/beta-reviewer-walkthrough-smoke.json",
+      "sha256": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+      "sizeBytes": 5685
+    },
+    {
+      "exists": true,
+      "issue": 341,
+      "key": "readinessGate",
+      "name": "readinessGate",
+      "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
+      "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+      "sizeBytes": 5225
+    }
+  ],
+  "excludedActions": [
+    "full historical beta chain replay",
+    "live runtime activation",
+    "hosted deployment",
+    "Docker, Surfpool, or Coolify mutation",
+    "credential lookup or storage",
+    "provider/model/API product call",
+    "live MCP invocation",
+    "wallet/payment/facilitator/settlement action",
+    "devnet or mainnet run",
+    "package or archive publishing",
+    "production gateway mutation"
+  ],
+  "findings": [],
+  "follows": [
+    337,
+    339,
+    341
+  ],
+  "issue": 343,
+  "mainnetStatement": "This promotion packet is local/free/deterministic evidence only. It does not approve or run mainnet; mainnet remains blocked.",
+  "mode": "adl-v02-local-beta-baseline-promotion-packet",
+  "operatorActions": {
+    "hold": "Keep the previous baseline and resolve listed findings before promotion.",
+    "promote": "Treat the pinned ADL v0.2 local beta evidence as the active local beta baseline for the next offline reviewer/operator lane.",
+    "rollback-required": "Revert reviewer/operator baseline selection to the last accepted local beta packet; this packet does not execute rollback."
+  },
+  "parentEpic": 220,
+  "promotionPacketId": "reddiagent-beta-0-adl-v02-local-baseline-promotion-packet",
+  "readinessGate": {
+    "baselineDecision": "ready",
+    "issue": 341,
+    "mode": "adl-v02-local-beta-readiness-gate",
+    "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
+    "readinessId": "reddiagent-beta-0-adl-v02-local-readiness-gate",
+    "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+    "sizeBytes": 5225,
+    "status": "pass"
+  },
+  "releaseId": "reddiagent-beta-0",
+  "sourceCommit": "fixture://adl-v02-local-beta-baseline-promotion-packet",
+  "status": "pass"
+}

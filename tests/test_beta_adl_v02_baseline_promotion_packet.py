@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+"""Check ADL v0.2 local beta baseline promotion packet evidence."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PYTHON = sys.executable
+FIXTURE = ROOT / "tests" / "fixtures" / "beta-adl-v02-baseline-promotion-packet.json"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+import beta_adl_v02_baseline_promotion_packet as packet  # noqa: E402
+
+
+def run_packet(*extra_args: str) -> dict:
+    proc = subprocess.run(
+        [PYTHON, "scripts/beta_adl_v02_baseline_promotion_packet.py", *extra_args],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    return json.loads(proc.stdout)
+
+
+def assert_finding_after_mutation(mutator, expected_path: str) -> None:
+    binding = packet.readiness_binding()
+    readiness_doc = packet.load_json(ROOT / packet.REQUIRED_READINESS_PATH)
+    boundaries = packet.packet_boundaries()
+    mutator(readiness_doc, binding, boundaries)
+    findings = packet.collect_findings(readiness_doc, binding, boundaries)
+    assert expected_path in {finding["path"] for finding in findings}
+
+
+def main() -> int:
+    doc = run_packet()
+    assert doc == json.loads(FIXTURE.read_text())
+    assert doc["mode"] == "adl-v02-local-beta-baseline-promotion-packet"
+    assert doc["issue"] == 343
+    assert doc["parentEpic"] == 220
+    assert doc["follows"] == [337, 339, 341]
+    assert doc["status"] == "pass"
+    assert doc["decision"] == "promote"
+    assert doc["promotionPacketId"] == "reddiagent-beta-0-adl-v02-local-baseline-promotion-packet"
+    assert doc["readinessGate"]["path"] == "tests/fixtures/beta-adl-v02-local-readiness-gate.json"
+    assert doc["readinessGate"]["issue"] == 341
+    assert doc["readinessGate"]["status"] == "pass"
+    assert doc["readinessGate"]["baselineDecision"] == "ready"
+    assert doc["readinessGate"]["sha256"] == doc["artifactHashes"]["tests/fixtures/beta-adl-v02-local-readiness-gate.json"]
+    assert "mainnet remains blocked" in doc["mainnetStatement"]
+
+    chain = {item["issue"]: item for item in doc["evidenceChain"]}
+    assert chain[337]["path"] == "tests/fixtures/beta-release-handoff.json"
+    assert chain[339]["path"] == "tests/fixtures/beta-reviewer-walkthrough-smoke.json"
+    assert chain[341]["path"] == "tests/fixtures/beta-adl-v02-local-readiness-gate.json"
+    assert all(item["sha256"] and item["sizeBytes"] for item in chain.values())
+
+    assert doc["artifactHashes"]["examples/v0.2/memory-observability-agent.yaml"] == "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+    assert doc["artifactHashes"]["examples/invalid/adl-v0.2-x402-missing-authority.yaml"] == "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
+    assert doc["artifactHashes"]["tests/fixtures/beta-release-handoff.json"] == "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
+    assert doc["artifactHashes"]["tests/fixtures/beta-reviewer-walkthrough-smoke.json"] == "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19"
+
+    baseline = doc["adlV02RuntimeBaseline"]
+    assert baseline["validRuntimeExample"]["adl"] == "examples/v0.2/memory-observability-agent.yaml"
+    assert baseline["validRuntimeExample"]["status"] == "pass"
+    assert baseline["validRuntimeExample"]["exitCode"] == 0
+    assert baseline["invalidDiagnosticSample"]["adl"] == "examples/invalid/adl-v0.2-x402-missing-authority.yaml"
+    assert baseline["invalidDiagnosticSample"]["exitCode"] == 1
+    assert baseline["invalidDiagnosticSample"]["stableFields"] == ["code", "severity", "category", "path", "line", "column"]
+    assert baseline["invalidDiagnosticSample"]["diagnostics"][0] == {
+        "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+        "severity": "error",
+        "category": "payment",
+        "path": "extensions.x402.intents.0.authority",
+        "line": 22,
+        "column": 9,
+    }
+
+    for key, expected in {
+        "deterministicLocalPacket": True,
+        "consumesReadinessGateOnly": True,
+        "promoteHoldRollbackDecisionOnly": True,
+        "fullHistoricalBetaChainReplay": False,
+        "liveRuntimeActivation": False,
+        "hostedDeployment": False,
+        "dockerMutation": False,
+        "surfpoolMutation": False,
+        "coolifyMutation": False,
+        "networkAccess": False,
+        "credentialAccess": False,
+        "providerApiAccess": False,
+        "mcpInvocation": False,
+        "paymentAccess": False,
+        "walletAccess": False,
+        "facilitatorAccess": False,
+        "settlementAccess": False,
+        "devnetAccess": False,
+        "mainnetAccess": False,
+        "deploymentPublished": False,
+        "packagePublished": False,
+        "archivePublished": False,
+        "publicPublished": False,
+        "externalSpend": False,
+        "productionGatewayMutation": False,
+    }.items():
+        assert doc["boundaries"][key] is expected
+
+    assert run_packet("--requested-decision", "hold")["decision"] == "hold"
+    assert run_packet("--requested-decision", "rollback-required")["decision"] == "rollback-required"
+    assert packet.decision_for([{"path": "x", "reason": "y"}]) == "hold"
+
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc.update({"status": "fail"}),
+        "readinessGate.status",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc.update({"baselineDecision": "hold"}),
+        "readinessGate.baselineDecision",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc["artifactInventory"][0].update({"sha256": ""}),
+        "readinessGate.artifactInventory.invalidDiagnosticAdl.sha256",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc["adlV02RuntimeBaseline"]["validRuntimeExample"].update({"exitCode": 1}),
+        "readinessGate.adlV02RuntimeBaseline.validRuntimeExample.exitCode",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc["adlV02RuntimeBaseline"]["invalidDiagnosticSample"]["diagnostics"][0].pop("column"),
+        "readinessGate.adlV02RuntimeBaseline.invalidDiagnosticSample.diagnostics[0].column",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: readiness_doc["boundaries"].update({"networkAccess": True}),
+        "readinessGate.boundaries.networkAccess",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: boundaries.update({"dockerMutation": True}),
+        "boundaries.dockerMutation",
+    )
+    assert_finding_after_mutation(
+        lambda readiness_doc, binding, boundaries: binding.update({"sha256": ""}),
+        "readinessGate.sha256",
+    )
+
+    print("PASS ADL v0.2 local beta baseline promotion packet")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
