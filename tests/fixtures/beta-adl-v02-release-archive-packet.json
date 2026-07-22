@@ -1,0 +1,290 @@
+{
+  "acceptedBaselineHandoff": {
+    "decision": "continue",
+    "handoffPacketId": "reddiagent-beta-0-adl-v02-local-accepted-baseline-handoff-packet",
+    "issue": 347,
+    "mode": "adl-v02-local-beta-accepted-baseline-handoff-packet",
+    "path": "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json",
+    "sha256": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
+    "sizeBytes": 8214,
+    "status": "pass"
+  },
+  "adlV02RuntimeBaseline": {
+    "invalidDiagnosticSample": {
+      "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+      "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+      "diagnostics": [
+        {
+          "category": "payment",
+          "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+          "column": 9,
+          "line": 22,
+          "path": "extensions.x402.intents.0.authority",
+          "severity": "error"
+        }
+      ],
+      "exitCode": 1,
+      "id": "invalid-adl-v02-payment-diagnostics",
+      "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+      "stableFields": [
+        "code",
+        "severity",
+        "category",
+        "path",
+        "line",
+        "column"
+      ],
+      "status": "pass"
+    },
+    "validRuntimeExample": {
+      "adl": "examples/v0.2/memory-observability-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+      "completionStatus": "pass",
+      "exitCode": 0,
+      "id": "adl-v02-memory-observability-dry-run",
+      "safetyGate": "supported-adl-v02-local-runtime",
+      "status": "pass"
+    }
+  },
+  "archiveSummary": {
+    "inputPacket": "tests/fixtures/beta-adl-v02-release-handoff-packet.json",
+    "outputUse": "reviewer/operator handoff evidence for later local release archive packaging; no archive is published by this packet.",
+    "readyForOfflineInspection": true,
+    "requiredExamples": [
+      "examples/v0.2/memory-observability-agent.yaml",
+      "examples/invalid/adl-v0.2-x402-missing-authority.yaml"
+    ],
+    "stableDiagnosticFields": [
+      "code",
+      "severity",
+      "category",
+      "path",
+      "line",
+      "column"
+    ]
+  },
+  "artifactHashes": {
+    "examples/invalid/adl-v0.2-x402-missing-authority.yaml": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8",
+    "examples/v0.2/memory-observability-agent.yaml": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499",
+    "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
+    "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
+    "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
+    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+    "tests/fixtures/beta-adl-v02-release-candidate-gate.json": "378932dc7cc9c48eb7e7c5b15a68e8f25a330fba14bebad844e309ff593c27b0",
+    "tests/fixtures/beta-adl-v02-release-handoff-packet.json": "2bc3e236dfec077bdfd17dfe9a37f30ad69802bf67ec2a975e214624ca46f32a",
+    "tests/fixtures/beta-adl-v02-release-signoff-packet.json": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+    "tests/fixtures/beta-release-handoff.json": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+    "tests/fixtures/local-executable-runtime-prototype.json": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+  },
+  "baselineAcceptanceSmoke": {
+    "acceptanceSmokeId": "reddiagent-beta-0-adl-v02-local-baseline-acceptance-smoke",
+    "decision": "accept",
+    "issue": 345,
+    "mode": "adl-v02-local-beta-baseline-acceptance-smoke",
+    "path": "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json",
+    "sha256": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
+    "sizeBytes": 7179,
+    "status": "pass"
+  },
+  "boundaries": {
+    "archivePublished": false,
+    "consumesReleaseHandoffPacketOnly": true,
+    "coolifyMutation": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalReleaseArchivePacket": true,
+    "devnetAccess": false,
+    "dockerMutation": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "fullHistoricalBetaChainReplay": false,
+    "hostedDeployment": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "productionGatewayMutation": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "releaseArchiveDecisionOnly": true,
+    "settlementAccess": false,
+    "surfpoolMutation": false,
+    "walletAccess": false
+  },
+  "decision": "archive-ready",
+  "decisionCriteria": {
+    "archive-ready": [
+      "#353 release handoff packet fixture is present, passing, pinned by sha256, and decision=handoff-ready.",
+      "#351 release signoff packet remains status=pass and decision=release-ready.",
+      "#347 accepted-baseline handoff remains status=pass and decision=continue.",
+      "Upstream #345 acceptance smoke remains status=pass and decision=accept.",
+      "Upstream #343 baseline promotion packet remains status=pass and decision=promote.",
+      "#337/#339/#341/#343/#345/#347/#349/#351/#353 evidence chain is preserved by issue IDs, paths, sizes, and sha256 hashes.",
+      "Valid ADL v0.2 runtime example remains present and passing.",
+      "Invalid ADL v0.2 diagnostic sample remains fail-closed with stable diagnostic fields.",
+      "All local/free/deterministic guardrails remain false for live, hosted, provider, payment, devnet, mainnet, publishing, and gateway mutation actions."
+    ],
+    "hold": [
+      "Use when any required handoff, signoff, RC, acceptance, promotion, artifact, diagnostic, or guardrail evidence is missing, stale, non-handoff-ready, non-release-ready, non-continue, non-accept, non-promote, or failing.",
+      "Do not treat the ADL v0.2 local beta release as archive-ready until a replacement archive packet returns status=pass and decision=archive-ready."
+    ],
+    "rollback-required": [
+      "Use only if this local beta release was already treated as archive-ready and a later archive or release-packaging gate fails.",
+      "Rollback target is the last handoff-ready local beta release handoff packet; this packet does not execute rollback."
+    ]
+  },
+  "evidenceChain": [
+    {
+      "exists": true,
+      "issue": 337,
+      "key": "releaseHandoff",
+      "name": "releaseHandoff",
+      "path": "tests/fixtures/beta-release-handoff.json",
+      "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+      "sizeBytes": 300203
+    },
+    {
+      "exists": true,
+      "issue": 339,
+      "key": "reviewerWalkthroughSmoke",
+      "name": "reviewerWalkthroughSmoke",
+      "path": "tests/fixtures/beta-reviewer-walkthrough-smoke.json",
+      "sha256": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+      "sizeBytes": 5685
+    },
+    {
+      "exists": true,
+      "issue": 341,
+      "key": "readinessGate",
+      "name": "readinessGate",
+      "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
+      "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+      "sizeBytes": 5225
+    },
+    {
+      "exists": true,
+      "issue": 343,
+      "key": "baselinePromotionPacket",
+      "name": "baselinePromotionPacket",
+      "path": "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json",
+      "sha256": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
+      "sizeBytes": 6748
+    },
+    {
+      "exists": true,
+      "issue": 345,
+      "key": "baselineAcceptanceSmoke",
+      "name": "baselineAcceptanceSmoke",
+      "path": "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json",
+      "sha256": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
+      "sizeBytes": 7179
+    },
+    {
+      "exists": true,
+      "issue": 347,
+      "key": "acceptedBaselineHandoffPacket",
+      "name": "acceptedBaselineHandoffPacket",
+      "path": "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json",
+      "sha256": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
+      "sizeBytes": 8214
+    },
+    {
+      "exists": true,
+      "issue": 349,
+      "key": "releaseCandidateGate",
+      "name": "releaseCandidateGate",
+      "path": "tests/fixtures/beta-adl-v02-release-candidate-gate.json",
+      "sha256": "378932dc7cc9c48eb7e7c5b15a68e8f25a330fba14bebad844e309ff593c27b0",
+      "sizeBytes": 9312
+    },
+    {
+      "exists": true,
+      "issue": 351,
+      "key": "releaseSignoffPacket",
+      "name": "releaseSignoffPacket",
+      "path": "tests/fixtures/beta-adl-v02-release-signoff-packet.json",
+      "sha256": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+      "sizeBytes": 10280
+    },
+    {
+      "exists": true,
+      "issue": 353,
+      "key": "releaseHandoffPacket",
+      "name": "releaseHandoffPacket",
+      "path": "tests/fixtures/beta-adl-v02-release-handoff-packet.json",
+      "sha256": "2bc3e236dfec077bdfd17dfe9a37f30ad69802bf67ec2a975e214624ca46f32a",
+      "sizeBytes": 10813
+    }
+  ],
+  "excludedActions": [
+    "full historical beta chain replay",
+    "live runtime activation",
+    "hosted deployment",
+    "Docker, Surfpool, or Coolify mutation",
+    "credential lookup or storage",
+    "provider/model/API product call",
+    "live MCP invocation",
+    "wallet/payment/facilitator/settlement action",
+    "devnet or mainnet run",
+    "package or archive publishing",
+    "production gateway mutation"
+  ],
+  "findings": [],
+  "follows": [
+    337,
+    339,
+    341,
+    343,
+    345,
+    347,
+    349,
+    351,
+    353
+  ],
+  "issue": 355,
+  "mainnetStatement": "This release archive packet is local/free/deterministic evidence only. It does not approve or run mainnet; mainnet remains blocked.",
+  "mode": "adl-v02-local-beta-release-archive-packet",
+  "operatorActions": {
+    "archive-ready": "Treat the pinned ADL v0.2 local beta release handoff as the current deterministic archive-ready input for offline reviewer handoff or later release/archive packaging.",
+    "hold": "Keep the release out of archive packaging flow and resolve listed findings before continuing.",
+    "rollback-required": "Revert archive-ready selection to the last handoff-ready local beta release handoff; this packet does not execute rollback."
+  },
+  "parentEpic": 220,
+  "releaseArchivePacketId": "reddiagent-beta-0-adl-v02-local-release-archive-packet",
+  "releaseHandoffPacket": {
+    "decision": "handoff-ready",
+    "issue": 353,
+    "mode": "adl-v02-local-beta-release-handoff-packet",
+    "path": "tests/fixtures/beta-adl-v02-release-handoff-packet.json",
+    "releaseHandoffPacketId": "reddiagent-beta-0-adl-v02-local-release-handoff-packet",
+    "sha256": "2bc3e236dfec077bdfd17dfe9a37f30ad69802bf67ec2a975e214624ca46f32a",
+    "sizeBytes": 10813,
+    "status": "pass"
+  },
+  "releaseId": "reddiagent-beta-0",
+  "releaseSignoffPacket": {
+    "decision": "release-ready",
+    "issue": 351,
+    "mode": "adl-v02-local-beta-release-signoff-packet",
+    "path": "tests/fixtures/beta-adl-v02-release-signoff-packet.json",
+    "releaseSignoffPacketId": "reddiagent-beta-0-adl-v02-local-release-signoff-packet",
+    "sha256": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+    "sizeBytes": 10280,
+    "status": "pass"
+  },
+  "sourceCommit": "fixture://adl-v02-local-beta-release-archive-packet",
+  "status": "pass",
+  "upstreamPromotionPacket": {
+    "decision": "promote",
+    "issue": 343,
+    "mode": "adl-v02-local-beta-baseline-promotion-packet",
+    "path": "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json",
+    "promotionPacketId": "reddiagent-beta-0-adl-v02-local-baseline-promotion-packet",
+    "sha256": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
+    "sizeBytes": 6748,
+    "status": "pass"
+  }
+}
