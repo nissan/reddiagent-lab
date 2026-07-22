@@ -1,0 +1,157 @@
+{
+  "adlV02RuntimeReview": {
+    "invalidDiagnosticSample": {
+      "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+      "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+      "diagnostics": [
+        {
+          "category": "payment",
+          "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+          "column": 9,
+          "line": 22,
+          "path": "extensions.x402.intents.0.authority",
+          "severity": "error"
+        }
+      ],
+      "exitCode": 1,
+      "id": "invalid-adl-v02-payment-diagnostics",
+      "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+      "stableFields": [
+        "code",
+        "severity",
+        "category",
+        "path",
+        "line",
+        "column"
+      ],
+      "status": "pass"
+    },
+    "validRuntimeExample": {
+      "adl": "examples/v0.2/memory-observability-agent.yaml",
+      "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+      "completionStatus": "pass",
+      "exitCode": 0,
+      "id": "adl-v02-memory-observability-dry-run",
+      "safetyGate": "supported-adl-v02-local-runtime",
+      "status": "pass"
+    }
+  },
+  "artifactInventory": [
+    {
+      "exists": true,
+      "key": "invalidDiagnosticAdl",
+      "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+      "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8",
+      "sizeBytes": 1065
+    },
+    {
+      "exists": true,
+      "key": "onboardingQuickstart",
+      "path": "tests/fixtures/beta-onboarding-quickstart.json",
+      "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+      "sizeBytes": 131286
+    },
+    {
+      "exists": true,
+      "key": "releaseHandoff",
+      "path": "tests/fixtures/beta-release-handoff.json",
+      "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
+      "sizeBytes": 300203
+    },
+    {
+      "exists": true,
+      "key": "releaseVerification",
+      "path": "tests/fixtures/beta-release-verification.json",
+      "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1",
+      "sizeBytes": 62138
+    },
+    {
+      "exists": true,
+      "key": "reviewUi",
+      "path": "tests/fixtures/beta-review-ui.json",
+      "sha256": "e481e4747b502f4a0088af23de3a8aeb525deaa255003179b8f1f3d7dbc57966",
+      "sizeBytes": 5825
+    },
+    {
+      "exists": true,
+      "key": "reviewerChecklist",
+      "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
+      "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+      "sizeBytes": 65731
+    },
+    {
+      "exists": true,
+      "key": "runtimePrototype",
+      "path": "tests/fixtures/local-executable-runtime-prototype.json",
+      "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+      "sizeBytes": 7309
+    },
+    {
+      "exists": true,
+      "key": "validRuntimeAdl",
+      "path": "examples/v0.2/memory-observability-agent.yaml",
+      "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499",
+      "sizeBytes": 2401
+    }
+  ],
+  "boundaries": {
+    "archivePublished": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalFixturesOnly": true,
+    "devnetAccess": false,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "reviewerWalkthroughSmoke": true,
+    "settlementAccess": false,
+    "walletAccess": false
+  },
+  "excludedSteps": [
+    "full historical beta chain replay",
+    "live runtime activation",
+    "hosted deployment or fetch",
+    "Docker, Surfpool, or Coolify mutation",
+    "credential lookup or storage",
+    "provider/model/API product call",
+    "live MCP invocation",
+    "wallet/payment/facilitator/settlement action",
+    "devnet or mainnet run",
+    "package or archive publishing",
+    "production gateway mutation"
+  ],
+  "findings": [],
+  "follows": [
+    337
+  ],
+  "issue": 339,
+  "mainnetStatement": "This walkthrough smoke is local/free/deterministic fixture review only. It does not approve or run mainnet; mainnet remains blocked.",
+  "mode": "beta-local-reviewer-walkthrough-smoke",
+  "parentEpic": 220,
+  "releaseId": "reddiagent-beta-0",
+  "reviewerCommands": [
+    "python scripts/beta_release_handoff_archive.py",
+    "python scripts/beta_onboarding_quickstart_package.py",
+    "python scripts/beta_reviewer_acceptance_checklist_package.py",
+    "python scripts/beta_release_verification_cli.py",
+    "python scripts/local_runtime_prototype.py",
+    "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+    "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors"
+  ],
+  "reviewerPath": [
+    "Inspect the #337 release handoff fixture for the pinned ADL v0.2 runtime evidence.",
+    "Inspect the onboarding quickstart, reviewer checklist, release verification, and beta review UI fixtures.",
+    "Inspect the valid ADL v0.2 runtime example and invalid diagnostic sample directly.",
+    "Confirm the invalid diagnostic sample preserves code, severity, category, path, line, and column where available."
+  ],
+  "sourceCommit": "fixture://beta-reviewer-walkthrough-smoke",
+  "status": "pass",
+  "walkthroughId": "reddiagent-beta-0-adl-v02-local-reviewer-walkthrough-smoke"
+}
