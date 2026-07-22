@@ -171,4 +171,3 @@ no live MCP invocation, no facilitator calls, no real settlement.
 | Build Surfpool/localnet external beta rehearsal packet | Convert the #355 release archive plus this roadmap into localnet-ready tester rehearsal evidence. | Packet covers localnet setup assumptions, fixture accounts/mints, authority/replay/receipt scenarios, rollback drills, no-devnet/no-mainnet guardrails, and deterministic tests. |
 | Add Solana devnet external tester gate | Create a devnet-only tester gate after localnet rehearsal. | Gate covers cohort scope, devnet wallet/key separation, caps, allowlisted mints/programs, confirmation/settlement proof, feedback form, support/rollback, and no-mainnet guardrails. |
 | Build RAP x402/AP2 audit-prep alignment packet | Make the cross-layer contract audit-ready before payment-capable beta. | Packet maps x402/AP2/FIDO/MCP/Solana/RAP fields into invariants, tests, privacy rules, receipt proof requirements, and kill-switch criteria. |
-
