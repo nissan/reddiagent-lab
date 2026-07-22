@@ -20,11 +20,62 @@
   "mainnetStatement": "This local release handoff archive does not enable production, deploy, activate runtime, or run mainnet; mainnet remains blocked until fresh Nissan approval.",
   "mode": "beta-local-release-handoff-archive",
   "parentEpic": 220,
+  "refreshIssue": 337,
   "releaseId": "reddiagent-beta-0",
   "results": [
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -65,6 +116,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -273,6 +342,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -313,6 +432,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -516,6 +653,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -556,6 +743,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -764,6 +969,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -804,6 +1059,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -1017,6 +1290,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -1057,6 +1380,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -1274,6 +1615,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -1314,6 +1705,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -1527,6 +1936,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -1567,6 +2026,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -1784,6 +2261,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -1824,6 +2351,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -2041,6 +2586,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -2081,6 +2676,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -2294,6 +2907,56 @@
     {
       "acceptedActivationCue": "",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -2334,6 +2997,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -2551,6 +3232,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -2591,6 +3322,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -2808,6 +3557,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -2848,6 +3647,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -3061,6 +3878,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -3101,6 +3968,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -3318,6 +4203,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -3358,6 +4293,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -3575,6 +4528,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -3615,6 +4618,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -3832,6 +4853,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -3872,6 +4943,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -4093,6 +5182,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": true,
@@ -4133,6 +5272,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -4354,6 +5511,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -4394,6 +5601,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -4607,6 +5832,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -4647,6 +5922,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -4860,6 +6153,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -4900,6 +6243,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -5121,6 +6482,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -5161,6 +6572,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -5378,6 +6807,56 @@
     {
       "acceptedActivationCue": "activate://beta-0/local-rehearsal-only",
       "activationClaim": "none",
+      "adlV02RuntimeEvidence": {
+        "boundaries": {
+          "credentialAccess": false,
+          "deploymentPublished": false,
+          "deterministicLocalFixturesOnly": true,
+          "devnetAccess": false,
+          "liveRuntimeActivation": false,
+          "mainnetAccess": false,
+          "networkAccess": false,
+          "paymentAccess": false,
+          "providerApiAccess": false
+        },
+        "invalidDiagnosticSample": {
+          "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+          "diagnostics": [
+            {
+              "category": "payment",
+              "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+              "column": 9,
+              "line": 22,
+              "path": "extensions.x402.intents.0.authority",
+              "severity": "error"
+            }
+          ],
+          "exitCode": 1,
+          "id": "invalid-adl-v02-payment-diagnostics",
+          "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+          "stableFields": [
+            "code",
+            "severity",
+            "category",
+            "path",
+            "line",
+            "column"
+          ],
+          "status": "pass"
+        },
+        "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "validRuntimeExample": {
+          "adl": "examples/v0.2/memory-observability-agent.yaml",
+          "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+          "completionStatus": "pass",
+          "exitCode": 0,
+          "id": "adl-v02-memory-observability-dry-run",
+          "safetyGate": "supported-adl-v02-local-runtime",
+          "status": "pass"
+        }
+      },
       "boundaryStatus": {
         "credentialAccess": false,
         "deploymentPublished": false,
@@ -5418,6 +6897,24 @@
           "path": "tests/fixtures/beta-activation-acceptance-scenarios.json",
           "purpose": "Activation acceptance scenario inputs.",
           "sha256": "8541199bc8b6eacf68735b24cfe0bbb760607ef08800f7f747df1bdd7735b43d"
+        },
+        {
+          "exists": true,
+          "path": "tests/fixtures/local-executable-runtime-prototype.json",
+          "purpose": "Pinned ADL v0.2 runtime and diagnostic evidence from #335.",
+          "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
+        },
+        {
+          "exists": true,
+          "path": "examples/v0.2/memory-observability-agent.yaml",
+          "purpose": "Schema-valid ADL v0.2 runtime handoff example.",
+          "sha256": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499"
+        },
+        {
+          "exists": true,
+          "path": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+          "purpose": "Invalid ADL v0.2 diagnostic handoff sample.",
+          "sha256": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8"
         },
         {
           "exists": true,
@@ -5635,6 +7132,56 @@
       "sha256": "37ddaadbdda8d4babb5ec03ddccb97f2da9c259d9831ecea1ad090bd4d002215",
       "source": "tests/fixtures/beta-activation-acceptance.json",
       "status": "pass"
+    },
+    "adlV02RuntimeEvidence": {
+      "boundaries": {
+        "credentialAccess": false,
+        "deploymentPublished": false,
+        "deterministicLocalFixturesOnly": true,
+        "devnetAccess": false,
+        "liveRuntimeActivation": false,
+        "mainnetAccess": false,
+        "networkAccess": false,
+        "paymentAccess": false,
+        "providerApiAccess": false
+      },
+      "invalidDiagnosticSample": {
+        "adl": "examples/invalid/adl-v0.2-x402-missing-authority.yaml",
+        "command": "python scripts/run_local_agent.py examples/invalid/adl-v0.2-x402-missing-authority.yaml --json-validation-errors",
+        "diagnostics": [
+          {
+            "category": "payment",
+            "code": "adl_v0_2_schema.required.extensions_x402_intents_0_authority",
+            "column": 9,
+            "line": 22,
+            "path": "extensions.x402.intents.0.authority",
+            "severity": "error"
+          }
+        ],
+        "exitCode": 1,
+        "id": "invalid-adl-v02-payment-diagnostics",
+        "safetyGate": "fail-closed-adl-v02-validation-diagnostics",
+        "stableFields": [
+          "code",
+          "severity",
+          "category",
+          "path",
+          "line",
+          "column"
+        ],
+        "status": "pass"
+      },
+      "sha256": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3",
+      "source": "tests/fixtures/local-executable-runtime-prototype.json",
+      "validRuntimeExample": {
+        "adl": "examples/v0.2/memory-observability-agent.yaml",
+        "command": "python scripts/run_local_agent.py examples/v0.2/memory-observability-agent.yaml",
+        "completionStatus": "pass",
+        "exitCode": 0,
+        "id": "adl-v02-memory-observability-dry-run",
+        "safetyGate": "supported-adl-v02-local-runtime",
+        "status": "pass"
+      }
     }
   },
   "status": "pass",

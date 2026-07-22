@@ -61,11 +61,11 @@
     "expectedLocalFileHashes": [
       {
         "path": "tests/fixtures/beta-release-archive-assembler.json",
-        "sha256": "ed0340f14ee6734507753a0a214aba62890758ccc22ab51c7893427cefb4b93d"
+        "sha256": "123d6308c466ee082b9938ddfc07026443e4f6eacf9f45d8eb3b7c0914bcc18f"
       },
       {
         "path": "tests/fixtures/beta-release-verification.json",
-        "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1"
+        "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1"
       },
       {
         "path": "tests/fixtures/beta-review-ui.json",

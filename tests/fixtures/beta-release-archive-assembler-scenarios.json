@@ -36,7 +36,7 @@
     "expectedReleaseCandidateHashes": [
       {
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       }
     ],
     "expectedIncludedFileHashes": [
@@ -74,11 +74,11 @@
       },
       {
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "8f7122211eda941955e4e3881058148917e436c667d9e13f7a4408ce2f7712fe"
+        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
       },
       {
         "path": "tests/fixtures/beta-release-handoff.json",
-        "sha256": "b2b8c12449a65e30570996c337e996fe822b9c55446d2ba374da65bd3c14544d"
+        "sha256": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd"
       },
       {
         "path": "tests/fixtures/beta-release-readiness.json",
@@ -86,7 +86,7 @@
       },
       {
         "path": "tests/fixtures/beta-release-verification.json",
-        "sha256": "bf1d7b5b3170f98d0e42e67552d72576cfe2b6ac92168082fd7a55a60977aaa1"
+        "sha256": "79c12819b3f53a5c9ba577b5e1f39eb646dfeb04d7ab4d69eb44aea4a5375ec1"
       },
       {
         "path": "tests/fixtures/beta-review-ui.json",

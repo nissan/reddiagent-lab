@@ -58,11 +58,11 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "1ee960b8384c3454420884a8883a46cc751909953e0de4bc159eaa4caf1875ba"
+        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
       },
       {
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "349bc0f5f98b735daf5f09a13c16941cd186df935376708565aab347fe4ced49"
+        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
       }
     ]
   },
@@ -90,7 +90,7 @@
         },
         {
           "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-          "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+          "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
         }
       ]
     },
@@ -107,7 +107,7 @@
         },
         {
           "path": "tests/fixtures/missing-beta-reviewer-acceptance-checklist.json",
-          "sha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be"
+          "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
         }
       ]
     },

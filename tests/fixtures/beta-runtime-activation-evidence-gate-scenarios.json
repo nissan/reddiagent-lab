@@ -53,7 +53,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-        "sha256": "b5ebf2bd4101e063af59b3a55e2c7b6e5fb6dd30c78a67c7a73b8d983a6fbc17"
+        "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
       },
       {
         "path": "tests/fixtures/local-executable-runtime-prototype.json",

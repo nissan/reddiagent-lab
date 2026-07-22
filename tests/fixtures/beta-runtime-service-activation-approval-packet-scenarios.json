@@ -78,7 +78,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-        "sha256": "ad058db2cbc78952e93a11e5e1689193f0e9b3d948699f1c8a784532e285f991"
+        "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
       }
     ]
   },

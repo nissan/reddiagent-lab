@@ -14,6 +14,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCENARIOS = ROOT / "tests" / "fixtures" / "beta-release-handoff-scenarios.json"
 PINNED_ACCEPTANCE_BUNDLE = ROOT / "tests" / "fixtures" / "beta-activation-acceptance.json"
+PINNED_RUNTIME_PROTOTYPE = ROOT / "tests" / "fixtures" / "local-executable-runtime-prototype.json"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 import beta_activation_acceptance_bundle  # noqa: E402
@@ -64,6 +65,9 @@ HANDOFF_CLAIM_MARKERS = (
     "published package",
     "release activated",
 )
+ADL_V02_VALID_RUNTIME_SCENARIO_ID = "adl-v02-memory-observability-dry-run"
+ADL_V02_INVALID_DIAGNOSTIC_SCENARIO_ID = "invalid-adl-v02-payment-diagnostics"
+STABLE_DIAGNOSTIC_FIELDS = ("code", "severity", "category", "path", "line", "column")
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -128,6 +132,59 @@ def current_acceptance_bundle() -> dict[str, Any]:
     )
 
 
+def runtime_scenario_by_id(runtime: dict[str, Any], scenario_id: str) -> dict[str, Any] | None:
+    for scenario in runtime.get("scenarios", []):
+        if scenario.get("id") == scenario_id:
+            return scenario
+    return None
+
+
+def adl_v02_runtime_evidence(runtime_prototype_path: Path = PINNED_RUNTIME_PROTOTYPE) -> dict[str, Any]:
+    runtime = load_json(runtime_prototype_path)
+    valid = runtime_scenario_by_id(runtime, ADL_V02_VALID_RUNTIME_SCENARIO_ID) or {}
+    invalid = runtime_scenario_by_id(runtime, ADL_V02_INVALID_DIAGNOSTIC_SCENARIO_ID) or {}
+    diagnostics = invalid.get("validationDiagnostics") or []
+    stable_diagnostics = [
+        {field: diagnostic.get(field) for field in STABLE_DIAGNOSTIC_FIELDS if field in diagnostic}
+        for diagnostic in diagnostics
+        if isinstance(diagnostic, dict)
+    ]
+    return {
+        "source": "tests/fixtures/local-executable-runtime-prototype.json",
+        "sha256": digest(runtime_prototype_path),
+        "validRuntimeExample": {
+            "id": valid.get("id"),
+            "adl": valid.get("adl"),
+            "command": valid.get("command"),
+            "status": valid.get("status"),
+            "exitCode": valid.get("exitCode"),
+            "completionStatus": (valid.get("completion") or {}).get("status"),
+            "safetyGate": valid.get("safetyGate"),
+        },
+        "invalidDiagnosticSample": {
+            "id": invalid.get("id"),
+            "adl": invalid.get("adl"),
+            "command": invalid.get("command"),
+            "status": invalid.get("status"),
+            "exitCode": invalid.get("exitCode"),
+            "safetyGate": invalid.get("safetyGate"),
+            "stableFields": list(STABLE_DIAGNOSTIC_FIELDS),
+            "diagnostics": stable_diagnostics,
+        },
+        "boundaries": {
+            "deterministicLocalFixturesOnly": True,
+            "liveRuntimeActivation": False,
+            "networkAccess": False,
+            "credentialAccess": False,
+            "providerApiAccess": False,
+            "paymentAccess": False,
+            "devnetAccess": False,
+            "mainnetAccess": False,
+            "deploymentPublished": False,
+        },
+    }
+
+
 def result_by_id(bundle: dict[str, Any], result_id: str | None) -> dict[str, Any] | None:
     for result in bundle.get("results", []):
         if result.get("id") == result_id:
@@ -150,6 +207,9 @@ def evidence_hashes(acceptance: dict[str, Any]) -> list[dict[str, Any]]:
         artifact("tests/fixtures/beta-release-handoff-scenarios.json", "Release handoff scenario inputs."),
         artifact("tests/fixtures/beta-activation-acceptance.json", "Pinned #262 activation acceptance bundle."),
         artifact("tests/fixtures/beta-activation-acceptance-scenarios.json", "Activation acceptance scenario inputs."),
+        artifact("tests/fixtures/local-executable-runtime-prototype.json", "Pinned ADL v0.2 runtime and diagnostic evidence from #335."),
+        artifact("examples/v0.2/memory-observability-agent.yaml", "Schema-valid ADL v0.2 runtime handoff example."),
+        artifact("examples/invalid/adl-v0.2-x402-missing-authority.yaml", "Invalid ADL v0.2 diagnostic handoff sample."),
     ]
     for item in acceptance.get("evidenceHashes", []):
         if item not in hashes:
@@ -248,6 +308,7 @@ def collect_findings(
     scenario: dict[str, Any],
     pinned_acceptance: dict[str, Any],
     current_acceptance: dict[str, Any],
+    runtime_evidence: dict[str, Any],
 ) -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
 
@@ -262,6 +323,15 @@ def collect_findings(
 
     require(pinned_acceptance.get("status") == "pass", "acceptanceBundle.status", "Pinned activation acceptance bundle must pass.")
     require(current_acceptance == pinned_acceptance, "acceptanceBundle.currentEvidence", "Current acceptance evidence must match the pinned #262 artifact.")
+    require(runtime_evidence.get("validRuntimeExample", {}).get("status") == "pass", "adlV02RuntimeEvidence.validRuntimeExample.status", "ADL v0.2 runtime example must pass.")
+    require(runtime_evidence.get("validRuntimeExample", {}).get("completionStatus") == "pass", "adlV02RuntimeEvidence.validRuntimeExample.completionStatus", "ADL v0.2 runtime completion must pass.")
+    require(runtime_evidence.get("invalidDiagnosticSample", {}).get("status") == "pass", "adlV02RuntimeEvidence.invalidDiagnosticSample.status", "Invalid ADL v0.2 diagnostic sample must be captured successfully.")
+    require(runtime_evidence.get("invalidDiagnosticSample", {}).get("exitCode") == 1, "adlV02RuntimeEvidence.invalidDiagnosticSample.exitCode", "Invalid ADL v0.2 diagnostic sample must fail validation without runtime activation.")
+    diagnostics = runtime_evidence.get("invalidDiagnosticSample", {}).get("diagnostics", [])
+    require(bool(diagnostics), "adlV02RuntimeEvidence.invalidDiagnosticSample.diagnostics", "Invalid ADL v0.2 diagnostic sample must include stable diagnostics.")
+    if diagnostics:
+        for field in STABLE_DIAGNOSTIC_FIELDS:
+            require(field in diagnostics[0], f"adlV02RuntimeEvidence.invalidDiagnosticSample.diagnostics[0].{field}", f"Stable diagnostic field `{field}` is required.")
     require(scenario.get("sourceAcceptanceBundlePath") == "tests/fixtures/beta-activation-acceptance.json", "sourceAcceptanceBundlePath", "Source acceptance bundle path must match the pinned #262 artifact.")
     require(outcome in ALLOWED_HANDOFF_OUTCOMES, "handoffOutcome", "Handoff outcome must be accepted, hold, or rollback-required.")
     require(acceptance is not None, "sourceAcceptanceResultId", "Handoff must bind to a source acceptance result.")
@@ -344,8 +414,9 @@ def build_result(
     scenario: dict[str, Any],
     pinned_acceptance: dict[str, Any],
     current_acceptance: dict[str, Any],
+    runtime_evidence: dict[str, Any],
 ) -> dict[str, Any]:
-    findings = collect_findings(scenario, pinned_acceptance, current_acceptance)
+    findings = collect_findings(scenario, pinned_acceptance, current_acceptance, runtime_evidence)
     acceptance = result_by_id(pinned_acceptance, scenario.get("sourceAcceptanceResultId")) or {}
     status = "pass" if not findings else "fail"
     outcome = scenario.get("handoffOutcome")
@@ -367,6 +438,7 @@ def build_result(
         "sourceDecisionPackagePath": scenario.get("sourceDecisionPackagePath"),
         "sourceReviewPackagePath": scenario.get("sourceReviewPackagePath"),
         "sourceRuntimePackagePath": scenario.get("sourceRuntimePackagePath"),
+        "adlV02RuntimeEvidence": runtime_evidence,
         "operatorIdentity": scenario.get("operatorIdentity"),
         "reviewerIdentity": scenario.get("reviewerIdentity"),
         "localApprovalFixture": scenario.get("localApprovalFixture"),
@@ -398,9 +470,10 @@ def build_result(
 def build_report(doc: dict[str, Any], acceptance_bundle_path: Path = PINNED_ACCEPTANCE_BUNDLE) -> dict[str, Any]:
     pinned_acceptance = load_json(acceptance_bundle_path)
     current_acceptance = current_acceptance_bundle()
+    runtime_evidence = adl_v02_runtime_evidence()
     defaults = doc.get("defaults", {})
     results = [
-        build_result(merge_scenario(defaults, scenario), pinned_acceptance, current_acceptance)
+        build_result(merge_scenario(defaults, scenario), pinned_acceptance, current_acceptance, runtime_evidence)
         for scenario in doc.get("scenarios", [])
     ]
     mismatches = [
@@ -414,6 +487,7 @@ def build_report(doc: dict[str, Any], acceptance_bundle_path: Path = PINNED_ACCE
     return {
         "mode": "beta-local-release-handoff-archive",
         "issue": 264,
+        "refreshIssue": 337,
         "parentEpic": 220,
         "releaseId": doc.get("releaseId"),
         "status": "pass" if not mismatches else "fail",
@@ -440,7 +514,8 @@ def build_report(doc: dict[str, Any], acceptance_bundle_path: Path = PINNED_ACCE
                 "status": pinned_acceptance.get("status"),
                 "currentEvidenceMatchesPinned": current_acceptance == pinned_acceptance,
                 "sha256": digest(acceptance_bundle_path),
-            }
+            },
+            "adlV02RuntimeEvidence": runtime_evidence,
         },
         "summary": {
             "acceptedArchives": sum(1 for result in results if result["handoffOutcome"] == "accepted"),
