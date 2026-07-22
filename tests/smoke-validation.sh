@@ -68,6 +68,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_adl_v02_baseline_promotion_packet.py
 "$PYTHON" tests/test_beta_adl_v02_baseline_acceptance_smoke.py
 "$PYTHON" tests/test_beta_adl_v02_accepted_baseline_handoff_packet.py
+"$PYTHON" tests/test_beta_adl_v02_release_candidate_gate.py
 "$PYTHON" tests/test_beta_release_verification_cli.py
 "$PYTHON" tests/test_beta_release_candidate_bundle.py
 "$PYTHON" tests/test_beta_release_archive_assembler.py
