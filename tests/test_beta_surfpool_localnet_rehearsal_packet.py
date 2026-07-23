@@ -114,13 +114,68 @@ def main() -> int:
     scenarios = {scenario["id"]: scenario for scenario in doc["scenarios"]}
     assert scenarios["localnet-setup-pass"]["status"] == "pass"
     assert scenarios["localnet-setup-pass"]["kind"] == "setup"
+    assert scenarios["localnet-setup-pass"]["inputs"]["cluster"] == {
+        "endpoint": "127.0.0.1",
+        "ledgerPath": ".tmp/reddiagent-localnet-rehearsal",
+        "resetRequired": True,
+        "validatorPreference": "surfpool-local",
+    }
+    assert scenarios["localnet-setup-pass"]["inputs"]["fixtureAccounts"] == [
+        {"id": "tester-principal", "lamports": 5_000_000_000, "role": "principal"},
+        {"id": "agent-spender", "lamports": 1_000_000_000, "role": "spender"},
+        {"id": "merchant-service", "lamports": 0, "role": "payee"},
+    ]
+    assert scenarios["localnet-setup-pass"]["inputs"]["fixtureMints"] == [
+        {"decimals": 6, "mint": "fixture:mint:localnet-rusd", "supply": 1_000_000_000, "symbol": "rUSD-L"}
+    ]
+    assert scenarios["localnet-setup-pass"]["inputs"]["authority"] == {
+        "assetMint": "fixture:mint:localnet-rusd",
+        "expiresSlot": 9000,
+        "mandateId": "mandate-localnet-beta-001",
+        "maxAmount": 250_000,
+        "nonce": "nonce-localnet-001",
+        "payee": "merchant-service",
+        "principal": "tester-principal",
+        "revocable": True,
+        "spender": "agent-spender",
+    }
+    assert scenarios["localnet-setup-pass"]["inputs"]["receipt"] == {
+        "bindsEvalStatus": True,
+        "bindsMandateId": True,
+        "bindsRequestHash": True,
+        "bindsResponseHash": True,
+        "receiptId": "receipt-localnet-setup",
+        "status": "dry-run-recorded",
+    }
+    assert scenarios["localnet-setup-pass"]["inputs"]["rollback"] == {
+        "drill": "reset-local-ledger",
+        "killSwitch": "operator-hold",
+        "verified": True,
+    }
+    assert scenarios["localnet-setup-pass"]["inputs"]["boundaries"]["network"] == "localnet"
+    assert scenarios["localnet-setup-pass"]["inputs"]["boundaries"]["realValueTransfer"] is False
     assert scenarios["delegated-authority-pass"]["status"] == "pass"
     assert scenarios["delegated-authority-pass"]["receiptRef"] == "receipt-authority-pass"
+    assert scenarios["delegated-authority-pass"]["inputs"]["attempt"] == {
+        "amount": 125_000,
+        "purpose": "paid-data-receipt-review",
+        "slot": 5120,
+    }
+    assert scenarios["delegated-authority-pass"]["inputs"]["authority"]["nonce"] == "nonce-authority-001"
     assert scenarios["replay-denied"]["status"] == "fail"
+    assert scenarios["replay-denied"]["inputs"]["replay"] == {
+        "previousNonceSeen": True,
+        "previousReceiptId": "receipt-authority-pass",
+    }
+    assert scenarios["replay-denied"]["inputs"]["receipt"] is None
     assert "scenarios.replay-denied.replay.previousNonceSeen" in {finding["path"] for finding in scenarios["replay-denied"]["findings"]}
     assert scenarios["over-cap-denied"]["status"] == "fail"
+    assert scenarios["over-cap-denied"]["inputs"]["attempt"]["amount"] == 300_000
+    assert scenarios["over-cap-denied"]["inputs"]["authority"]["maxAmount"] == 250_000
+    assert scenarios["over-cap-denied"]["inputs"]["receipt"] is None
     assert "scenarios.over-cap-denied.attempt.amount" in {finding["path"] for finding in scenarios["over-cap-denied"]["findings"]}
     assert scenarios["receipt-mismatch-denied"]["status"] == "fail"
+    assert scenarios["receipt-mismatch-denied"]["inputs"]["receipt"]["bindsResponseHash"] is False
     assert "scenarios.receipt-mismatch-denied.receipt.bindsResponseHash" in {finding["path"] for finding in scenarios["receipt-mismatch-denied"]["findings"]}
 
     for key, expected in {

@@ -336,6 +336,17 @@ def build_scenario_result(scenario: dict[str, Any]) -> dict[str, Any]:
         "authorityRef": scenario.get("authority", {}).get("mandateId"),
         "receiptRef": scenario.get("receipt", {}).get("receiptId") if isinstance(scenario.get("receipt"), dict) else None,
         "rollbackDrill": scenario.get("rollback", {}).get("drill"),
+        "inputs": {
+            "cluster": scenario.get("cluster"),
+            "fixtureAccounts": scenario.get("fixtureAccounts", []),
+            "fixtureMints": scenario.get("fixtureMints", []),
+            "authority": scenario.get("authority"),
+            "attempt": scenario.get("attempt"),
+            "replay": scenario.get("replay"),
+            "receipt": scenario.get("receipt"),
+            "rollback": scenario.get("rollback"),
+            "boundaries": scenario.get("boundaries"),
+        },
         "findings": findings,
     }
 

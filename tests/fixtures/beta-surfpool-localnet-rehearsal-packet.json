@@ -135,6 +135,74 @@
       "expectedStatus": "pass",
       "findings": [],
       "id": "localnet-setup-pass",
+      "inputs": {
+        "attempt": null,
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-localnet-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "ledgerPath": ".tmp/reddiagent-localnet-rehearsal",
+          "resetRequired": true,
+          "validatorPreference": "surfpool-local"
+        },
+        "fixtureAccounts": [
+          {
+            "id": "tester-principal",
+            "lamports": 5000000000,
+            "role": "principal"
+          },
+          {
+            "id": "agent-spender",
+            "lamports": 1000000000,
+            "role": "spender"
+          },
+          {
+            "id": "merchant-service",
+            "lamports": 0,
+            "role": "payee"
+          }
+        ],
+        "fixtureMints": [
+          {
+            "decimals": 6,
+            "mint": "fixture:mint:localnet-rusd",
+            "supply": 1000000000,
+            "symbol": "rUSD-L"
+          }
+        ],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": true,
+          "receiptId": "receipt-localnet-setup",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "reset-local-ledger",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
       "kind": "setup",
       "receiptRef": "receipt-localnet-setup",
       "rollbackDrill": "reset-local-ledger",
@@ -146,6 +214,50 @@
       "expectedStatus": "pass",
       "findings": [],
       "id": "delegated-authority-pass",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5120
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-authority-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": true,
+          "receiptId": "receipt-authority-pass",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "revoke-mandate-and-reset-ledger",
+          "killSwitch": "operator-disable",
+          "verified": true
+        }
+      },
       "kind": "authority",
       "receiptRef": "receipt-authority-pass",
       "rollbackDrill": "revoke-mandate-and-reset-ledger",
@@ -162,6 +274,46 @@
         }
       ],
       "id": "replay-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5122
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-authority-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": null,
+        "replay": {
+          "previousNonceSeen": true,
+          "previousReceiptId": "receipt-authority-pass"
+        },
+        "rollback": {
+          "drill": "discard-replayed-run",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
       "kind": "replay",
       "receiptRef": null,
       "rollbackDrill": "discard-replayed-run",
@@ -178,6 +330,43 @@
         }
       ],
       "id": "over-cap-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 300000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5124
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-over-cap-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": null,
+        "replay": null,
+        "rollback": {
+          "drill": "operator-hold-no-receipt",
+          "killSwitch": "operator-disable",
+          "verified": true
+        }
+      },
       "kind": "authority",
       "receiptRef": null,
       "rollbackDrill": "operator-hold-no-receipt",
@@ -194,6 +383,50 @@
         }
       ],
       "id": "receipt-mismatch-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5126
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-receipt-mismatch-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": false,
+          "receiptId": "receipt-mismatch-denied",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "mark-receipt-invalid-and-reset-ledger",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
       "kind": "receipt",
       "receiptRef": "receipt-mismatch-denied",
       "rollbackDrill": "mark-receipt-invalid-and-reset-ledger",
