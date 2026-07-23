@@ -1,0 +1,447 @@
+{
+  "acceptanceEvidence": {
+    "devnetRequiresSeparateIssue": 360,
+    "localReviewerCanRun": [
+      "python scripts/beta_surfpool_localnet_rehearsal_packet.py",
+      "python tests/test_beta_surfpool_localnet_rehearsal_packet.py"
+    ],
+    "mainnetBlockedUntilAudit": true,
+    "operatorAcceptance": true,
+    "readyForDevnetGate": true
+  },
+  "boundaries": {
+    "archivePublished": false,
+    "consumesReleaseArchiveAndRoadmapOnly": true,
+    "coolifyMutation": false,
+    "credentialAccess": false,
+    "deploymentPublished": false,
+    "deterministicLocalnetRehearsalPacket": true,
+    "devnetAccess": false,
+    "dockerMutation": false,
+    "externalBetaRehearsalEvidenceOnly": true,
+    "externalSpend": false,
+    "facilitatorAccess": false,
+    "fullHistoricalBetaChainReplay": false,
+    "hostedDeployment": false,
+    "liveRuntimeActivation": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "networkAccess": false,
+    "packagePublished": false,
+    "paymentAccess": false,
+    "productionGatewayMutation": false,
+    "providerApiAccess": false,
+    "publicPublished": false,
+    "settlementAccess": false,
+    "surfpoolMutation": false,
+    "usesSurfpoolLaneAsStaticInput": true,
+    "walletAccess": false
+  },
+  "decision": "localnet-rehearsal-ready",
+  "decisionCriteria": {
+    "hold": [
+      "Use when any input, localnet fixture, authority, replay, receipt, rollback, or guardrail evidence is missing or stale.",
+      "Do not move to #360 devnet tester gate until a replacement #359 packet is localnet-rehearsal-ready."
+    ],
+    "localnet-rehearsal-ready": [
+      "#355 archive packet is present, passing, archive-ready, and reviewer-ready.",
+      "#356 roadmap packet is present and contains the localnet, authority, replay, receipt, rollback, and no-mainnet requirements.",
+      "#248 Surfpool validator lane remains passing and static; #359 does not start Surfpool or a validator.",
+      "Setup and delegated authority positive scenarios pass using localnet fixtures.",
+      "Replay, over-cap, and receipt mismatch scenarios fail closed without receipt/settlement success.",
+      "Rollback and kill-switch evidence is present for every scenario.",
+      "All devnet/mainnet/wallet/payment/facilitator/settlement/live/provider/deployment/publishing boundaries remain false."
+    ],
+    "rollback-required": [
+      "Use only if localnet rehearsal was already accepted and a later devnet/audit gate invalidates it.",
+      "Rollback target is the #355 archive-ready packet plus #356 roadmap before #359 acceptance; this script does not mutate runtime state."
+    ]
+  },
+  "excludedActions": [
+    "full historical beta chain replay",
+    "live runtime activation",
+    "hosted deployment",
+    "Docker, Surfpool, or Coolify mutation",
+    "credential lookup or storage",
+    "provider/model/API product call",
+    "live MCP invocation",
+    "wallet/payment/facilitator/settlement action",
+    "devnet or mainnet run",
+    "package or archive publishing",
+    "production gateway mutation"
+  ],
+  "findings": [],
+  "follows": [
+    355,
+    356
+  ],
+  "inputs": {
+    "agenticPaymentsRoadmap": {
+      "exists": true,
+      "issue": 356,
+      "path": "research/2026-07-23-agentic-payments-roadmap-recalibration.md",
+      "requiredTerms": [
+        "Surfpool/localnet",
+        "fixture accounts/mints",
+        "delegated authority",
+        "replay",
+        "receipt",
+        "rollback",
+        "no mainnet"
+      ],
+      "sha256": "0b62750ab2f64cbf189155116eb42c5c4babd1fe6c90fd528bff22448a4578d9",
+      "sizeBytes": 15778
+    },
+    "releaseArchivePacket": {
+      "decision": "archive-ready",
+      "exists": true,
+      "issue": 355,
+      "path": "tests/fixtures/beta-adl-v02-release-archive-packet.json",
+      "sha256": "eb38d3ddafb2ab0599811c77bd014a0921c4e06cc1cd7a5c715b0557a7572fef",
+      "sizeBytes": 12410,
+      "status": "pass"
+    },
+    "surfpoolValidatorLane": {
+      "exists": true,
+      "fallback": "solana-test-validator-fallback",
+      "issue": 248,
+      "path": "tests/fixtures/surfpool-validator-lane.json",
+      "preferred": "surfpool-local",
+      "sha256": "69b2010ddc23d4f97ff5702a5783ed62b303195b89cf650bd70e2921d563cc2d",
+      "sizeBytes": 38278,
+      "status": "pass"
+    }
+  },
+  "issue": 359,
+  "mainnetStatement": "This #359 rehearsal packet is localnet/local deterministic evidence only. It does not approve or run devnet/mainnet; mainnet remains blocked until official audit and go-live readiness.",
+  "mode": "surfpool-localnet-external-beta-rehearsal-packet",
+  "operatorActions": {
+    "hold": "Keep the external beta lane on localnet; resolve findings before any devnet tester expansion.",
+    "localnet-rehearsal-ready": "Use this packet as deterministic local reviewer/operator evidence before opening the #360 devnet external tester gate.",
+    "rollback-required": "Return to the #355 archive-ready release baseline and rerun the localnet rehearsal after fixing findings."
+  },
+  "parentEpic": 220,
+  "rehearsalPacketId": "reddiagent-beta-0-surfpool-localnet-external-rehearsal",
+  "scenarioSummary": {
+    "failClosedScenarios": 3,
+    "negativeScenarios": 3,
+    "positiveScenarios": 2,
+    "receiptScenarios": 1,
+    "replayScenarios": 1
+  },
+  "scenarios": [
+    {
+      "authorityRef": "mandate-localnet-beta-001",
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "localnet-setup-pass",
+      "inputs": {
+        "attempt": null,
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-localnet-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": {
+          "endpoint": "127.0.0.1",
+          "ledgerPath": ".tmp/reddiagent-localnet-rehearsal",
+          "resetRequired": true,
+          "validatorPreference": "surfpool-local"
+        },
+        "fixtureAccounts": [
+          {
+            "id": "tester-principal",
+            "lamports": 5000000000,
+            "role": "principal"
+          },
+          {
+            "id": "agent-spender",
+            "lamports": 1000000000,
+            "role": "spender"
+          },
+          {
+            "id": "merchant-service",
+            "lamports": 0,
+            "role": "payee"
+          }
+        ],
+        "fixtureMints": [
+          {
+            "decimals": 6,
+            "mint": "fixture:mint:localnet-rusd",
+            "supply": 1000000000,
+            "symbol": "rUSD-L"
+          }
+        ],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": true,
+          "receiptId": "receipt-localnet-setup",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "reset-local-ledger",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
+      "kind": "setup",
+      "receiptRef": "receipt-localnet-setup",
+      "rollbackDrill": "reset-local-ledger",
+      "status": "pass",
+      "traceId": "bb43d4df29daffef"
+    },
+    {
+      "authorityRef": "mandate-localnet-beta-001",
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "delegated-authority-pass",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5120
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-authority-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": true,
+          "receiptId": "receipt-authority-pass",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "revoke-mandate-and-reset-ledger",
+          "killSwitch": "operator-disable",
+          "verified": true
+        }
+      },
+      "kind": "authority",
+      "receiptRef": "receipt-authority-pass",
+      "rollbackDrill": "revoke-mandate-and-reset-ledger",
+      "status": "pass",
+      "traceId": "95ffca8b4797c065"
+    },
+    {
+      "authorityRef": "mandate-localnet-beta-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.replay-denied.replay.previousNonceSeen",
+          "reason": "Replay attempts must fail closed before receipt emission."
+        }
+      ],
+      "id": "replay-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5122
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-authority-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": null,
+        "replay": {
+          "previousNonceSeen": true,
+          "previousReceiptId": "receipt-authority-pass"
+        },
+        "rollback": {
+          "drill": "discard-replayed-run",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
+      "kind": "replay",
+      "receiptRef": null,
+      "rollbackDrill": "discard-replayed-run",
+      "status": "fail",
+      "traceId": "d17fd78a84b21e6f"
+    },
+    {
+      "authorityRef": "mandate-localnet-beta-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.over-cap-denied.attempt.amount",
+          "reason": "Attempt amount must not exceed mandate cap."
+        }
+      ],
+      "id": "over-cap-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 300000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5124
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-over-cap-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": null,
+        "replay": null,
+        "rollback": {
+          "drill": "operator-hold-no-receipt",
+          "killSwitch": "operator-disable",
+          "verified": true
+        }
+      },
+      "kind": "authority",
+      "receiptRef": null,
+      "rollbackDrill": "operator-hold-no-receipt",
+      "status": "fail",
+      "traceId": "64af71d93c40c6b9"
+    },
+    {
+      "authorityRef": "mandate-localnet-beta-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.receipt-mismatch-denied.receipt.bindsResponseHash",
+          "reason": "Receipt must bind bindsResponseHash."
+        }
+      ],
+      "id": "receipt-mismatch-denied",
+      "inputs": {
+        "attempt": {
+          "amount": 125000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 5126
+        },
+        "authority": {
+          "assetMint": "fixture:mint:localnet-rusd",
+          "expiresSlot": 9000,
+          "mandateId": "mandate-localnet-beta-001",
+          "maxAmount": 250000,
+          "nonce": "nonce-receipt-mismatch-001",
+          "payee": "merchant-service",
+          "principal": "tester-principal",
+          "revocable": true,
+          "spender": "agent-spender"
+        },
+        "boundaries": {
+          "devnetUsed": false,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "network": "localnet",
+          "realValueTransfer": false,
+          "settlementClaimed": false,
+          "walletAccessUsed": false
+        },
+        "cluster": null,
+        "fixtureAccounts": [],
+        "fixtureMints": [],
+        "receipt": {
+          "bindsEvalStatus": true,
+          "bindsMandateId": true,
+          "bindsRequestHash": true,
+          "bindsResponseHash": false,
+          "receiptId": "receipt-mismatch-denied",
+          "status": "dry-run-recorded"
+        },
+        "replay": null,
+        "rollback": {
+          "drill": "mark-receipt-invalid-and-reset-ledger",
+          "killSwitch": "operator-hold",
+          "verified": true
+        }
+      },
+      "kind": "receipt",
+      "receiptRef": "receipt-mismatch-denied",
+      "rollbackDrill": "mark-receipt-invalid-and-reset-ledger",
+      "status": "fail",
+      "traceId": "53f1225921a8a2bb"
+    }
+  ],
+  "setupAssumptions": {
+    "accounts": "fixture-funded tester principal, agent spender, and merchant service accounts only.",
+    "commandsAreIllustrative": true,
+    "endpoint": "loopback only: 127.0.0.1 or localhost.",
+    "environment": "Surfpool/localnet first, solana-test-validator fallback only if Surfpool is unavailable.",
+    "ledger": "resettable local ledger under .tmp; no reusable validator state.",
+    "mints": "fixture localnet mint rUSD-L only; no devnet/mainnet mint IDs."
+  },
+  "sourceCommit": "fixture://surfpool-localnet-external-beta-rehearsal-packet",
+  "status": "pass"
+}

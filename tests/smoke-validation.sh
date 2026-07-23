@@ -73,6 +73,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_adl_v02_release_handoff_packet.py
 "$PYTHON" tests/test_beta_adl_v02_release_archive_packet.py
 "$PYTHON" tests/test_agentic_payments_roadmap_packet.py
+"$PYTHON" tests/test_beta_surfpool_localnet_rehearsal_packet.py
 "$PYTHON" tests/test_beta_release_verification_cli.py
 "$PYTHON" tests/test_beta_release_candidate_bundle.py
 "$PYTHON" tests/test_beta_release_archive_assembler.py
