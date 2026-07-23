@@ -1,0 +1,633 @@
+{
+  "acceptanceMatrix": {
+    "accept": [
+      "all cohort members acknowledge devnet-only/no-real-value boundaries",
+      "all completed scenarios use only allowlisted mint/program/payee labels",
+      "payment, service, eval, receipt, and dispute state agree for every positive case",
+      "negative scenarios fail closed with rollback evidence",
+      "no mainnet ambiguity appears in labels, wallet material, receipts, or support notes"
+    ],
+    "hold": [
+      "tester cannot confirm wallet/key separation",
+      "support queue contains unresolved coordinator blockers",
+      "receipt or eval evidence is incomplete but no unsafe execution occurred",
+      "cohort closeout finds unclear instructions that can be fixed before expansion"
+    ],
+    "rollbackRequired": [
+      "mainnet wallet/address/key material appears anywhere in the packet or feedback",
+      "cap bypass, replay acceptance, or wrong allowlist acceptance is observed",
+      "payment-settled/service-failed is reported as success",
+      "rollback/kill-switch evidence is missing after a failed or disputed case"
+    ]
+  },
+  "artifacts": {
+    "devnetTesterGate": {
+      "exists": true,
+      "issue": 360,
+      "path": "tests/fixtures/beta-solana-devnet-external-tester-gate.json",
+      "sha256": "f7e2e3f72060739b4e3b47d9ccc8c8321b3c7207f6e7772022d3073f61efbf28",
+      "sizeBytes": 21996
+    },
+    "docsIndex": {
+      "exists": true,
+      "issue": 367,
+      "path": "docs/INDEX.md",
+      "sha256": "033dbd622acbab3fc92e0145d0c80f6d9b0939f1fb6f97ee9b309aba4b8605c4",
+      "sizeBytes": 4111
+    },
+    "localnetRehearsal": {
+      "exists": true,
+      "issue": 359,
+      "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
+      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sizeBytes": 15037
+    },
+    "rapX402Ap2AuditPrep": {
+      "exists": true,
+      "issue": 361,
+      "path": "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
+      "sha256": "7d90077894f3d5ab1624a5efdc9c9fed88302192cf04f311546c66dabbbb4e53",
+      "sizeBytes": 25369
+    },
+    "readme": {
+      "exists": true,
+      "issue": 367,
+      "path": "README.md",
+      "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
+      "sizeBytes": 3526
+    },
+    "roadmap": {
+      "exists": true,
+      "issue": 367,
+      "path": "docs/ROADMAP.md",
+      "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
+      "sizeBytes": 5712
+    },
+    "visionRoadmap": {
+      "exists": true,
+      "issue": 367,
+      "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
+      "sha256": "9cf128d9978fac0902d6c0b5ce79a4b22da397829f08064136153d6a08d5b9cc",
+      "sizeBytes": 9565
+    }
+  },
+  "boundaries": {
+    "consumesPriorEvidenceOnly": true,
+    "credentialAccess": false,
+    "deterministicPacketOnly": true,
+    "devnetRun": false,
+    "dockerSurfpoolCoolifyMutation": false,
+    "externalSpend": false,
+    "externalTesterExecution": false,
+    "hostedDeployment": false,
+    "laterBoundedExecutionDecisionRequired": true,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetRun": false,
+    "packageArchivePublishing": false,
+    "productionGatewayMutation": false,
+    "providerApiAccess": false,
+    "walletPaymentFacilitatorSettlementAction": false
+  },
+  "controls": {
+    "allowlists": {
+      "cluster": "devnet",
+      "mints": [
+        "DevnetMint111111111111111111111111111111111"
+      ],
+      "payees": [
+        "DevnetMerchant111111111111111111111111111111"
+      ],
+      "programs": [
+        "DevnetProgram111111111111111111111111111111"
+      ]
+    },
+    "caps": {
+      "globalCohortMinorUnits": 1500000,
+      "maxRetriesPerScenario": 1,
+      "perAttemptMinorUnits": 100000,
+      "perTesterDailyMinorUnits": 300000,
+      "preReceiptCapCheckRequired": true,
+      "preSignCapCheckRequired": true
+    },
+    "evidenceBundle": [
+      "tester roster and acknowledgements",
+      "scenario run sheet",
+      "devnet-only wallet/public-key attestations",
+      "transaction or fail-closed diagnostic records",
+      "authority state snapshots",
+      "receipt/eval/dispute records",
+      "rollback/kill-switch evidence",
+      "coordinator closeout summary"
+    ],
+    "labels": {
+      "environment": "solana-devnet-only",
+      "mainnet": "mainnet-blocked-until-official-audit-and-go-live-readiness",
+      "value": "no-real-value",
+      "wallet": "dedicated-devnet-wallet-only"
+    },
+    "walletKeySeparation": {
+      "cohortWalletReuseAllowed": false,
+      "dedicatedDevnetWalletRequiredForFutureExecution": true,
+      "mainnetAddressAllowed": false,
+      "productionKeyImportAllowed": false,
+      "repoStoresKeys": false
+    }
+  },
+  "decision": "mvp-packet-ready",
+  "executionStatement": "This packet does not authorize external tester execution; a later bounded issue must approve any live/devnet cohort run.",
+  "findings": [],
+  "follows": [
+    359,
+    360,
+    361,
+    367
+  ],
+  "issue": 365,
+  "mainnetStatement": "Mainnet remains blocked until official audit completion and explicit go-live readiness.",
+  "mode": "external-tester-mvp-packet",
+  "packetId": "reddiagent-external-tester-mvp-cohort-0-packet",
+  "parentEpic": 220,
+  "scenarioSummary": {
+    "failClosedScenarios": 6,
+    "mainnetAmbiguityScenarios": 1,
+    "negativeScenarios": 6,
+    "positiveScenarios": 2,
+    "rollbackScenarios": 2
+  },
+  "scenarios": [
+    {
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "cohort-onboarding-ready",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "onboarding",
+      "status": "pass"
+    },
+    {
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "receipt-eval-dispute-ready",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "receipt",
+      "status": "pass"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.wallet-separation-missing.walletSeparation.dedicatedDevnetWallet",
+          "reason": "Dedicated devnet wallet/key separation is required."
+        }
+      ],
+      "id": "wallet-separation-missing",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": false,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "wallet",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.mainnet-ambiguity-denied.labels.solana-devnet-only",
+          "reason": "External tester packet must be devnet-only labeled."
+        },
+        {
+          "path": "scenarios.mainnet-ambiguity-denied.walletSeparation.mainnetAddressUsed",
+          "reason": "Mainnet addresses are never allowed in tester evidence."
+        },
+        {
+          "path": "scenarios.mainnet-ambiguity-denied.boundaries.mainnetUsed",
+          "reason": "Mainnet or real-value transfer is blocked."
+        }
+      ],
+      "id": "mainnet-ambiguity-denied",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": true,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-mainnet",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": true,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "mainnet-confusion",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.over-cap-denied.caps.withinPerAttemptCap",
+          "reason": "Tiny test caps must hold before signing and receipt completion."
+        }
+      ],
+      "id": "over-cap-denied",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 150000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "caps",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.wrong-allowlist-denied.allowlist.mintAllowed",
+          "reason": "Mint, program, and payee must be allowlisted."
+        },
+        {
+          "path": "scenarios.wrong-allowlist-denied.allowlist.payeeAllowed",
+          "reason": "Mint, program, and payee must be allowlisted."
+        }
+      ],
+      "id": "wrong-allowlist-denied",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": false,
+          "payeeAllowed": false,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "allowlist",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.payment-settled-service-failed-denied.receipt.atomicity",
+          "reason": "Payment, service, and eval must all pass before success."
+        }
+      ],
+      "id": "payment-settled-service-failed-denied",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "clear",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "fail"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "atomicity",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.rollback-evidence-missing-denied.rollback.rollbackEvidencePresent",
+          "reason": "Disputed or failed cases require rollback evidence."
+        }
+      ],
+      "id": "rollback-evidence-missing-denied",
+      "inputs": {
+        "allowlist": {
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "boundaries": {
+          "devnetRunPerformed": false,
+          "externalTesterExecuted": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "caps": {
+          "amountMinorUnits": 75000,
+          "withinDailyCap": true,
+          "withinGlobalCap": true,
+          "withinPerAttemptCap": true
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "disputeStatus": "needs-review",
+          "evalOutcome": "pass",
+          "paymentStatus": "pass",
+          "present": true,
+          "serviceOutcome": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": false
+        },
+        "walletSeparation": {
+          "dedicatedDevnetWallet": true,
+          "mainnetAddressUsed": false,
+          "productionKeyUsed": false
+        }
+      },
+      "kind": "rollback",
+      "status": "fail"
+    }
+  ],
+  "status": "pass",
+  "testerMvp": {
+    "cohort": {
+      "expansionRequires": "fresh issue approval after successful cohort-0 closeout and audit-readiness freeze review",
+      "name": "external-tester-mvp-cohort-0",
+      "roles": [
+        "builder",
+        "operator",
+        "protocol-reviewer"
+      ],
+      "selectionCriteria": [
+        "Has reviewed the localnet rehearsal packet.",
+        "Can keep devnet and mainnet wallets separate.",
+        "Can report receipt, authority, and rollback evidence without sharing secrets."
+      ],
+      "size": {
+        "maximum": 5,
+        "minimum": 3
+      }
+    },
+    "feedbackCapture": {
+      "channel": "GitHub issue template or private tester form",
+      "privacyRule": "capture public devnet identifiers and hashes only; never capture secrets, private keys, raw PII, or production wallet material",
+      "requiredFields": [
+        "tester role",
+        "scenario id",
+        "devnet-only acknowledgement",
+        "wallet separation acknowledgement",
+        "transaction signature or expected fail-closed code",
+        "receipt id",
+        "authority state",
+        "service outcome",
+        "eval outcome",
+        "rollback evidence",
+        "support request"
+      ]
+    },
+    "onboardingPacket": [
+      "Start from the ADL v0.2 beta baseline and #359 Surfpool/localnet rehearsal.",
+      "Read the #360 devnet gate before any later devnet execution is authorized.",
+      "Acknowledge devnet-only labels and no-real-value expectations.",
+      "Use a dedicated devnet wallet/key only if a later issue authorizes execution.",
+      "Never import production keys, production wallets, or mainnet addresses.",
+      "Use only allowlisted devnet mints/programs/payees from the gate packet.",
+      "Accept tiny per-attempt, per-tester, and global cohort caps.",
+      "Stop on any mainnet ambiguity, receipt mismatch, replay finding, or rollback evidence gap."
+    ],
+    "support": {
+      "coordinator": "tester coordinator",
+      "engineeringEscalation": "RAP maintainer",
+      "pauseRule": "pause immediately on production key use, cap bypass, mainnet ambiguity, or payment/service/eval disagreement",
+      "safetyOwner": "operator",
+      "triageSla": "one business day for cohort-0 blockers"
+    }
+  }
+}
