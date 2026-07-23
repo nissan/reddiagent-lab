@@ -1,0 +1,787 @@
+{
+  "artifacts": {
+    "ap2X402MandateReady": {
+      "exists": true,
+      "path": "tests/fixtures/ap2-x402-mandate-ready.json",
+      "sha256": "219895dba9aaada61469fc9e8c60f5a7971148f23d333351a35e3a1c35645981",
+      "sizeBytes": 3590
+    },
+    "devnetTesterGate": {
+      "exists": true,
+      "issue": 360,
+      "path": "tests/fixtures/beta-solana-devnet-external-tester-gate.json",
+      "sha256": "f7e2e3f72060739b4e3b47d9ccc8c8321b3c7207f6e7772022d3073f61efbf28",
+      "sizeBytes": 21996
+    },
+    "localnetRehearsal": {
+      "exists": true,
+      "issue": 359,
+      "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
+      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sizeBytes": 15037
+    },
+    "mcpRuntimeHandoffReady": {
+      "exists": true,
+      "path": "tests/fixtures/mcp-runtime-handoff-ready.json",
+      "sha256": "788782d7df4dda91d0e3a80b8a771987b526f066467edb7ae6bc00dfb8699053",
+      "sizeBytes": 5152
+    },
+    "rapBridgeReady": {
+      "exists": true,
+      "path": "tests/fixtures/rap-bridge-x402-paid-mcp-ready.json",
+      "sha256": "226806d198b2c22e22c5a0eb93001cff24cd67bbfd5edcb7396da0018d4083e5",
+      "sizeBytes": 2830
+    },
+    "roadmap": {
+      "exists": true,
+      "issue": 356,
+      "path": "research/2026-07-23-agentic-payments-roadmap-recalibration.md",
+      "sha256": "0b62750ab2f64cbf189155116eb42c5c4babd1fe6c90fd528bff22448a4578d9",
+      "sizeBytes": 15778
+    }
+  },
+  "auditDeltas": {
+    "atomicity": {
+      "evidence": [
+        "decoupling scenarios",
+        "receipt status assertions"
+      ],
+      "mustProve": [
+        "payment-settled/service-failed cannot report success",
+        "service-returned/payment-missing cannot report success",
+        "partial multi-step workflows surface rollback-required"
+      ],
+      "readyWhen": "success requires payment, service result, and eval status to agree"
+    },
+    "delegatedAuthority": {
+      "evidence": [
+        "AP2/FIDO/VI field mapping",
+        "valid-authorization misuse scenario"
+      ],
+      "mustProve": [
+        "principal",
+        "spender",
+        "payee",
+        "purpose",
+        "scope",
+        "cap",
+        "rail",
+        "mint",
+        "revocation"
+      ],
+      "readyWhen": "valid signatures cannot be reused for wrong purpose, merchant, or rail"
+    },
+    "invariants": {
+      "evidence": [
+        "unit tests",
+        "scenario packet",
+        "auditor checklist"
+      ],
+      "mustProve": [
+        "receipt ids are unique",
+        "authority scope matches payee, purpose, rail, mint, amount, and expiry",
+        "reputation is derived from verified receipt state"
+      ],
+      "readyWhen": "all spend-capable paths name the invariant they enforce"
+    },
+    "privacyPii": {
+      "evidence": [
+        "redaction policy",
+        "receipt payload shape"
+      ],
+      "mustProve": [
+        "raw intent minimization",
+        "payload hashing",
+        "wallet/user identifier minimization"
+      ],
+      "readyWhen": "receipts are dispute-useful without storing raw PII or secrets"
+    },
+    "receiptSettlementProof": {
+      "evidence": [
+        "Solana proof mapping",
+        "devnet/mainnet confusion scenario"
+      ],
+      "mustProve": [
+        "cluster label",
+        "signature",
+        "confirmation",
+        "mint/program allowlist",
+        "payer/payee/amount"
+      ],
+      "readyWhen": "devnet and mainnet receipts are impossible to confuse"
+    },
+    "replayResistance": {
+      "evidence": [
+        "stale mandate fixture",
+        "replayed request fixture"
+      ],
+      "mustProve": [
+        "nonce uniqueness",
+        "mandate id binding",
+        "request hash binding",
+        "expiry enforcement"
+      ],
+      "readyWhen": "stale or reused nonce/request pairs cannot spend or emit receipts"
+    },
+    "rollbackKillSwitch": {
+      "evidence": [
+        "rollback scenario",
+        "kill-switch owner and state"
+      ],
+      "mustProve": [
+        "operator pause",
+        "mandate revocation",
+        "per-agent suspension",
+        "receipt review marking"
+      ],
+      "readyWhen": "future spend can be stopped without mutating historical evidence"
+    },
+    "spendLimits": {
+      "evidence": [
+        "over-budget fail-closed fixture",
+        "cap pre-sign and pre-receipt checks"
+      ],
+      "mustProve": [
+        "per-intent cap",
+        "per-tester cap",
+        "daily cap",
+        "global cohort cap"
+      ],
+      "readyWhen": "limits are enforced before signing and before receipt completion"
+    }
+  },
+  "boundaries": {
+    "credentialAccess": false,
+    "deterministicAuditPrepPacket": true,
+    "devnetRun": false,
+    "dockerSurfpoolCoolifyMutation": false,
+    "hostedDeployment": false,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetRun": false,
+    "packagePublishing": false,
+    "paymentFacilitatorSettlementAction": false,
+    "productionGatewayMutation": false,
+    "researchSpecAuditPrepOnly": true,
+    "walletAccess": false
+  },
+  "decision": "audit-prep-ready",
+  "findings": [],
+  "follows": [
+    356,
+    359,
+    360
+  ],
+  "issue": 361,
+  "layerContract": [
+    {
+      "adlRapFields": [
+        "authority.mandateId",
+        "authority.principal",
+        "authority.spender",
+        "authority.payee",
+        "authority.scope",
+        "authority.maxAmount",
+        "authority.expiresAt",
+        "authority.revocationRef",
+        "authority.auditRef"
+      ],
+      "auditQuestion": "Can any spend-capable path execute without a bounded mandate?",
+      "failClosedRule": "missing, stale, over-broad, revoked, or mismatched mandates fail before execution",
+      "layer": "delegatedAuthority",
+      "responsibility": "prove who authorized what, for whom, within which cap and expiry",
+      "source": "AP2/FIDO/Verifiable Intent"
+    },
+    {
+      "adlRapFields": [
+        "service.mcp.serverRef",
+        "service.mcp.toolName",
+        "service.mcp.authorizationRef",
+        "policy.resourceAccess"
+      ],
+      "auditQuestion": "Can MCP auth be mistaken for payment authority?",
+      "failClosedRule": "resource access success cannot emit payment receipts or reputation by itself",
+      "layer": "resourceAccess",
+      "responsibility": "separate protected tool/resource access from payment permission",
+      "source": "MCP authorization"
+    },
+    {
+      "adlRapFields": [
+        "x402.PaymentRequired",
+        "x402.PaymentSignature.authorizationRef",
+        "x402.PaymentSignature.selectedRail",
+        "x402.PaymentResponse.transactionRef"
+      ],
+      "auditQuestion": "Can payment success be interpreted as service success?",
+      "failClosedRule": "payment evidence must be joined to service outcome and eval status",
+      "layer": "paymentEvidence",
+      "responsibility": "carry HTTP payment challenge, selected rail, signature, and response proof",
+      "source": "x402"
+    },
+    {
+      "adlRapFields": [
+        "settlement.cluster",
+        "settlement.signature",
+        "settlement.confirmationStatus",
+        "settlement.mint",
+        "settlement.programId",
+        "settlement.amount"
+      ],
+      "auditQuestion": "Can devnet evidence be confused with mainnet evidence?",
+      "failClosedRule": "environment labels, mints, program ids, and confirmation policy must match the intended rail",
+      "layer": "settlementProof",
+      "responsibility": "prove environment, mint/program allowlist, signature, confirmation, payer, payee, and amount",
+      "source": "Solana"
+    },
+    {
+      "adlRapFields": [
+        "receipts.requestHash",
+        "receipts.responseHash",
+        "receipts.paymentRef",
+        "receipts.serviceResultStatus",
+        "receipts.requiredEvalGateStatus",
+        "reputation.signals",
+        "dispute.status"
+      ],
+      "auditQuestion": "Can reputation emit before the full receipt bundle is valid?",
+      "failClosedRule": "reputation emits only after receipt verification, service pass, eval pass, and dispute clearance",
+      "layer": "receiptAccountingReputation",
+      "responsibility": "bind request, response, authority, payment, settlement, service result, eval, and dispute state",
+      "source": "RAP"
+    }
+  ],
+  "mainnetStatement": "Mainnet remains blocked until official audit completion and explicit go-live readiness.",
+  "mode": "rap-x402-ap2-audit-prep-alignment-packet",
+  "packetId": "reddiagent-rap-x402-ap2-audit-prep-alignment",
+  "parentEpic": 220,
+  "scenarioSummary": {
+    "atomicityScenarios": 1,
+    "failClosedScenarios": 5,
+    "negativeScenarios": 5,
+    "positiveScenarios": 1,
+    "privacyScenarios": 1
+  },
+  "scenarios": [
+    {
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "complete-authorized-paid-service-bundle",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "paid-data-receipt-review",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": true,
+          "rawPiiStored": false
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": false
+        },
+        "settlement": {
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "positive",
+      "status": "pass"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.payment-settled-service-failed.receipt.serviceResultStatus",
+          "reason": "Payment success cannot prove service success."
+        }
+      ],
+      "id": "payment-settled-service-failed",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "paid-data-receipt-review",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": true,
+          "rawPiiStored": false
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "fail"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": true
+        },
+        "settlement": {
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "atomicity",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.valid-authorization-wrong-purpose.authority.purpose",
+          "reason": "Mandate purpose does not match requested service."
+        }
+      ],
+      "id": "valid-authorization-wrong-purpose",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "different-purpose",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": true,
+          "rawPiiStored": false
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": false
+        },
+        "settlement": {
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "delegatedAuthority",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.stale-replayed-mandate.replay.nonceSeen",
+          "reason": "Replayed nonce must fail closed."
+        }
+      ],
+      "id": "stale-replayed-mandate",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "paid-data-receipt-review",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": true,
+          "rawPiiStored": false
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "pass"
+        },
+        "replay": {
+          "nonceSeen": true,
+          "previousReceiptId": "receipt-audit-prior"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": false
+        },
+        "settlement": {
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "replayResistance",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.devnet-mainnet-confusion.settlement.cluster",
+          "reason": "Devnet evidence cannot use or resemble mainnet settlement."
+        }
+      ],
+      "id": "devnet-mainnet-confusion",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "paid-data-receipt-review",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": true,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": true,
+          "rawPiiStored": false
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": false
+        },
+        "settlement": {
+          "cluster": "mainnet-beta",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "receiptSettlementProof",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.raw-pii-in-receipt.privacy.rawPiiStored",
+          "reason": "Receipt evidence must avoid raw PII and use payload hashes."
+        }
+      ],
+      "id": "raw-pii-in-receipt",
+      "inputs": {
+        "authority": {
+          "expiresAt": "2026-08-01T00:00:00Z",
+          "mandateId": "mandate-audit-001",
+          "maxAmountMinorUnits": 100000,
+          "payee": "merchant-service-devnet",
+          "principal": "tester-principal",
+          "purpose": "paid-data-receipt-review",
+          "revoked": false,
+          "scope": "single paid data review",
+          "spender": "reddiagent-spender"
+        },
+        "boundaries": {
+          "liveFacilitatorUsed": false,
+          "mainnetUsed": false,
+          "realValueTransfer": false
+        },
+        "mcp": {
+          "resourceAccessAuthorized": true,
+          "toolName": "forecast_report"
+        },
+        "privacy": {
+          "payloadsHashed": false,
+          "rawPiiStored": true
+        },
+        "receipt": {
+          "paymentRef": "devnet-sig-audit-001",
+          "reputationSignals": [
+            "receipt_verified",
+            "service_result_pass",
+            "required_eval_gate_pass"
+          ],
+          "requestHash": "reqhash-audit-001",
+          "requiredEvalGateStatus": "pass",
+          "responseHash": "resphash-audit-001",
+          "serviceResultStatus": "pass"
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "receiptMarkedForReview": false
+        },
+        "settlement": {
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mintAllowlisted": true,
+          "programAllowlisted": true,
+          "signature": "devnet-sig-audit-001"
+        },
+        "x402": {
+          "authorizationRef": "mandate-audit-001",
+          "paymentRequired": true,
+          "paymentResponseSuccess": true,
+          "selectedRail": "solana-devnet-usdc"
+        }
+      },
+      "kind": "privacyPii",
+      "status": "fail"
+    }
+  ],
+  "sourceFieldMapping": [
+    {
+      "adlRapFields": [
+        "extensions.x402.intents[].rails",
+        "extensions.x402.intents[].maxAmount",
+        "extensions.x402.intents[].currency",
+        "receipts.paymentRef",
+        "receipts.paymentRequiredHash",
+        "receipts.paymentResponseHash",
+        "receipts.idempotencyKey"
+      ],
+      "auditExpectation": "x402 fields prove payment challenge/payload/settlement evidence only; they do not prove authority, service success, or reputation eligibility.",
+      "standard": "x402",
+      "standardFields": [
+        "HTTP 402 Payment Required",
+        "PAYMENT-REQUIRED / PaymentRequired.accepts",
+        "PAYMENT-SIGNATURE / PaymentPayload",
+        "PAYMENT-RESPONSE / SettlementResponse",
+        "payment-identifier",
+        "facilitator verify/settle response"
+      ]
+    },
+    {
+      "adlRapFields": [
+        "extensions.authority.principal",
+        "extensions.authority.spender",
+        "extensions.authority.payee",
+        "extensions.authority.scope",
+        "extensions.authority.maxAmount",
+        "extensions.authority.expiresAt",
+        "extensions.authority.revocationRef",
+        "extensions.authority.auditRef"
+      ],
+      "auditExpectation": "authority must be bounded, current, purpose-bound, rail-bound, and independently verifiable before any payment-capable path can proceed.",
+      "standard": "AP2/FIDO/Verifiable Intent",
+      "standardFields": [
+        "IntentMandate",
+        "CheckoutMandate",
+        "PaymentMandate",
+        "verifiable credential issuer/subject",
+        "user-signed intent",
+        "non-repudiable audit trail",
+        "revocation/audit reference"
+      ]
+    },
+    {
+      "adlRapFields": [
+        "harness.tools[].id",
+        "harness.tools[].policyRefs",
+        "service.mcp.serverRef",
+        "service.mcp.authorizationRef",
+        "policy.resourceAccess",
+        "receipts.serviceResultStatus"
+      ],
+      "auditExpectation": "MCP authorization proves protected resource access only; it must not be accepted as delegated payment authority or settlement proof.",
+      "standard": "MCP authorization",
+      "standardFields": [
+        "OAuth protected resource metadata",
+        "authorization_servers",
+        "resource_metadata WWW-Authenticate",
+        "scope",
+        "OAuth 2.1 authorization server metadata",
+        "enterprise-managed authorization policy"
+      ]
+    },
+    {
+      "adlRapFields": [
+        "settlement.cluster",
+        "settlement.signature",
+        "settlement.slot",
+        "settlement.confirmationStatus",
+        "settlement.mint",
+        "settlement.programId",
+        "settlement.payer",
+        "settlement.payee",
+        "settlement.amount"
+      ],
+      "auditExpectation": "Solana proof must be environment-explicit and allowlist-bound so devnet/mainnet, mint/program, payer/payee, and confirmation state cannot be confused.",
+      "standard": "Solana payment proof",
+      "standardFields": [
+        "cluster",
+        "signature",
+        "slot",
+        "blockTime",
+        "err",
+        "confirmationStatus",
+        "mint",
+        "programId",
+        "source token account",
+        "destination token account",
+        "amount"
+      ]
+    },
+    {
+      "adlRapFields": [
+        "receipts.requestHash",
+        "receipts.responseHash",
+        "receipts.authorityRef",
+        "receipts.paymentRef",
+        "receipts.serviceResultStatus",
+        "receipts.requiredEvalGateStatus",
+        "dispute.status",
+        "reputation.signals"
+      ],
+      "auditExpectation": "RAP is the join layer: success/reputation can emit only when authority, resource access, payment evidence, settlement proof, service result, eval, and dispute state all agree.",
+      "standard": "RAP receipt/accounting/reputation",
+      "standardFields": [
+        "request hash",
+        "response hash",
+        "authority reference",
+        "payment reference",
+        "settlement reference",
+        "service result",
+        "eval gate status",
+        "dispute state",
+        "reputation signal source"
+      ]
+    }
+  ],
+  "status": "pass"
+}
