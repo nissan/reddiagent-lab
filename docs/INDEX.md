@@ -6,6 +6,7 @@ _Loop 42. Anchor issue: #42._
 
 - STATUS.md
 - docs/REDDIAGENT-VISION-ROADMAP.md
+- docs/ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/OPEN-SPECS-EXPLAINER.md
 - docs/OPEN-SPEC-REVIEW-INTAKE.md
@@ -14,8 +15,19 @@ _Loop 42. Anchor issue: #42._
 - docs/PROTECTED-DOCS-PACKAGE.md
 - docs/BETA-RELEASE-READINESS-RUNBOOK.md
 - docs/LOOP-PROTOCOL.md
-- docs/ROADMAP.md
 - docs/LOCAL-RUNNER-READINESS-BUNDLE.md
+
+## Current Release Ladder
+
+- ADL v0.2 beta baseline
+- Surfpool/localnet rehearsal
+- Solana devnet external tester gate
+- RAP x402/AP2 audit-prep alignment
+- external tester MVP packet
+- audit-readiness freeze and evidence packet
+- official audit and explicit go-live readiness before mainnet
+
+Primary roadmap reference: docs/ROADMAP.md.
 
 ## Core Thesis
 

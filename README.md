@@ -2,7 +2,7 @@
 
 ReddiAgent Lab is the research and design workspace for helping prosumers understand, define, build, run, and improve AI agents.
 
-For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md`. For the high-level system view, read `docs/REDDIAGENT-ARCHITECTURE.md`. For a builder/reviewer guide to the open specs, use `docs/OPEN-SPECS-EXPLAINER.md`. For structured review intake, use `docs/OPEN-SPEC-REVIEW-INTAKE.md` and `.github/ISSUE_TEMPLATE/open-spec-review.md`. For the draft public-review blog post, use `docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md`. For durable architectural decisions, use the ADR register at `docs/adr/0000-adr-index.md`. For the protected publishable docs package plan, use `docs/PROTECTED-DOCS-PACKAGE.md`.
+For a human-readable project entrypoint, start with `docs/REDDIAGENT-VISION-ROADMAP.md` and the current release ladder in `docs/ROADMAP.md`. For the high-level system view, read `docs/REDDIAGENT-ARCHITECTURE.md`. For a builder/reviewer guide to the open specs, use `docs/OPEN-SPECS-EXPLAINER.md`. For structured review intake, use `docs/OPEN-SPEC-REVIEW-INTAKE.md` and `.github/ISSUE_TEMPLATE/open-spec-review.md`. For the draft public-review blog post, use `docs/blog/2026-07-18-reddiagent-open-specs-call-for-review.md`. For durable architectural decisions, use the ADR register at `docs/adr/0000-adr-index.md`. For the protected publishable docs package plan, use `docs/PROTECTED-DOCS-PACKAGE.md`.
 
 It is adjacent to Reddi Agent Protocol, but intentionally separate:
 
@@ -27,6 +27,8 @@ The harness definition should describe the operating system around the model: to
 4. Agent Definition Language: a portable schema for model and harness definitions.
 5. Builder journey: a prosumer learning path from agent idea to local prototype, hosted deployment, evaluation, and monetization.
 6. x402/RAP bridge: payment intents, settlement rails, receipts, identity, reputation, and policy constraints as optional harness capabilities.
+
+Current release sequencing is ADL v0.2 beta baseline -> Surfpool/localnet rehearsal -> Solana devnet external tester gate -> RAP x402/AP2 audit-prep alignment -> external tester MVP packet -> audit-readiness freeze/evidence -> official audit and explicit go-live readiness. Mainnet remains blocked until that final gate.
 
 ## Repo Operating Model
 

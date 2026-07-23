@@ -51,22 +51,22 @@
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "20f60e64b1cb1c2464d369dc8302867a9f209e4b5be6522f55fc8339f5e9dce3",
-          "bytes": 3152
+          "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
+          "bytes": 3526
         },
         {
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "1915c771aabccaaae5863e644738eaad3a02030a1c1e129020749abad844236d",
-          "bytes": 3773
+          "sha256": "033dbd622acbab3fc92e0145d0c80f6d9b0939f1fb6f97ee9b309aba4b8605c4",
+          "bytes": 4111
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
           "exists": true,
           "kind": "file",
-          "sha256": "57b47dff4f381655c9db34257a7997801bf21c026e803fdbe5af5cb46f14235b",
-          "bytes": 8534
+          "sha256": "9cf128d9978fac0902d6c0b5ce79a4b22da397829f08064136153d6a08d5b9cc",
+          "bytes": 9565
         },
         {
           "path": "docs/OPEN-SPECS-EXPLAINER.md",
@@ -102,8 +102,8 @@
           "path": "docs/ROADMAP.md",
           "exists": true,
           "kind": "file",
-          "sha256": "d8bcec7ff56110e0c685a9ed9596e4cdf6597d4daf190845f013f1a585037d74",
-          "bytes": 8005
+          "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
+          "bytes": 5712
         },
         {
           "path": "docs/IMPLEMENTATION-BACKLOG.md",
