@@ -27,20 +27,21 @@ That separation lets ADL stay canonical while compatibility reports, strict expo
 
 ## Current Spine
 
-The current repo is strongest as a static validation and review lab:
+The current repo is strongest as a deterministic validation, review, and beta-readiness lab:
 
-- **Canonical definition:** `specs/ADL-v0.1.md` and `specs/ADL-v0.1.schema.json`.
+- **Canonical definition:** ADL remains the source of truth, with ADL v0.2 beta evidence now layered on top of the original v0.1 spec spine.
 - **Builder path:** `docs/PROSUMER-MVP.md`, `docs/BUILDER-JOURNEY.md`, and the local validation UI fixture.
 - **Static examples:** `examples/simple-agent.yaml`, `examples/tool-agent.yaml`, `examples/mcp-readonly-agent.yaml`, `examples/payment-agent.yaml`, and invalid fixtures.
 - **Validation and traces:** `scripts/validate_examples.py`, `scripts/run_local_agent.py`, Level 0/Level 1 conformance reports, trace snapshots, and smoke validation.
 - **Compatibility and exports:** report-only or strict-lossless surfaces for Agent Spec, A2A Agent Card, Agent Skills, provider compatibility, RAP bridge, MCP runtime handoff, payment receipts, starter manifests, and Vercel eve compatibility.
+- **Release-readiness ladder:** ADL v0.2 beta baseline -> Surfpool/localnet rehearsal -> Solana devnet external tester gate -> RAP x402/AP2 audit-prep alignment -> external tester MVP packet -> audit-readiness freeze/evidence -> official audit and go-live readiness.
 - **Safety posture:** static/report-only checks default to fail-closed behavior for secrets, live external actions, payments, MCP invocation, provider calls, deployment, and runtime activation.
 
 ## Roadmap Swimlanes
 
 ### 1. Definition and Conformance
 
-Keep ADL v0.1 as the source of truth. Continue tightening schema, validation guidance, examples, error UX, conformance reports, source-boundary checks, data-source contracts, memory contracts, eval gates, and trace semantics before expanding runtime behavior.
+Keep ADL as the source of truth. Continue tightening schema, validation guidance, examples, error UX, conformance reports, source-boundary checks, data-source contracts, memory contracts, eval gates, and trace semantics while preserving the ADL v0.2 beta baseline as the current release-readiness baseline.
 
 ### 2. Prosumer Builder
 
@@ -48,15 +49,15 @@ Turn the current CLI and static HTML fixtures into a guided builder path: choose
 
 ### 3. Compatibility Targets
 
-Keep ADL canonical while building target-specific reports and strict exports where they are lossless. Current targets include provider compatibility, Agent Spec, A2A Agent Card, Agent Skills packages, MCP runtime handoff, RAP bridge, starter manifests, and Vercel eve. Metadata-only and unsupported semantics must stay visible to builders instead of being silently dropped.
+Keep ADL canonical while building target-specific reports and strict exports where they are lossless. Current targets include provider compatibility, Agent Spec, A2A Agent Card, Agent Skills packages, MCP runtime handoff, RAP bridge, starter manifests, and Vercel eve. Metadata-only and unsupported semantics must stay visible to builders instead of being silently dropped. These targets are supporting evidence, not the active release ladder when localnet, devnet tester, or audit-readiness work is queued.
 
 ### 4. Runtime Readiness
 
-Move from deterministic local dry-runs toward real execution only after readiness bundles, negative fixtures, fail-closed gates, and review evidence prove that external actions are bounded. Live provider calls, MCP resolution/invocation, credential use, runtime activation, and deployment are separate gates, not incidental side effects of docs or export work.
+Move from deterministic local dry-runs toward real execution only after readiness bundles, negative fixtures, fail-closed gates, and review evidence prove that external actions are bounded. The current path is Surfpool/localnet rehearsal before Solana devnet external tester gates, with devnet clearly separated from production and mainnet. Live provider calls, MCP resolution/invocation, credential use, runtime activation, and deployment are separate gates, not incidental side effects of docs or export work.
 
 ### 5. Payment, Receipts, and RAP Bridge
 
-Model payment intent, AP2-like authority constraints, x402 evidence, receipts, and reputation as optional harness metadata first. Live settlement, wallet/facilitator access, unrestricted spend, and mainnet runs remain outside the current docs spine. The near-term RAP path is a dry-run bridge that makes protocol adoption reviewable before authorizing real payment execution.
+Model payment intent, AP2/FIDO/Verifiable Intent authority constraints, x402 evidence, Solana settlement proof, MCP protected-resource access, receipts, and reputation as separate layers. x402 records payment proof, AP2/FIDO/Verifiable Intent records delegated authority, MCP records protected-resource access, Solana records settlement proof, and RAP binds receipt/accounting/reputation evidence above the rail. Live settlement, wallet/facilitator access, unrestricted spend, and mainnet runs remain blocked until official audit and explicit go-live readiness.
 
 ### 6. Publishable Docs Hub
 
@@ -69,7 +70,7 @@ Issue #206 turns the repo's accumulated technical work into a protected, human-r
 3. **Open specs explainer:** `docs/OPEN-SPECS-EXPLAINER.md` gives builders and public-review readers a map for ADL, domain model, provider mappings, eval evidence, conformance, payment/RAP bridge, export targets, Vercel eve, starter manifests, and MCP handoff.
 4. **ADR register:** `docs/adr/0000-adr-index.md` records initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
 5. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until Nissan approves location and access controls.
-6. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/IMPLEMENTATION-BACKLOG.md`, `docs/ROADMAP.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`.
+6. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/ROADMAP.md`, `docs/IMPLEMENTATION-BACKLOG.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`; the active sequence is #365 external tester MVP packet, then #366 audit-readiness freeze/evidence, then official audit/go-live readiness when separately approved.
 
 ## Deliberately Out of Scope Until Guardrails Change
 
