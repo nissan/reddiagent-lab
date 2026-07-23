@@ -1,0 +1,860 @@
+{
+  "artifacts": {
+    "externalTesterMvp": {
+      "exists": true,
+      "issue": 365,
+      "path": "tests/fixtures/beta-external-tester-mvp-packet.json",
+      "sha256": "cc9f0a046441438436d72214e815601cffec8e65a41bfe9c537fe1581b0562fe",
+      "sizeBytes": 19588
+    },
+    "rapX402Ap2AuditPrep": {
+      "exists": true,
+      "issue": 361,
+      "path": "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
+      "sha256": "7d90077894f3d5ab1624a5efdc9c9fed88302192cf04f311546c66dabbbb4e53",
+      "sizeBytes": 25369
+    },
+    "readme": {
+      "exists": true,
+      "path": "README.md",
+      "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
+      "sizeBytes": 3526
+    },
+    "roadmap": {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
+      "sizeBytes": 5712
+    }
+  },
+  "blockers": {
+    "devnet/mainnet ambiguity": "Rollback-required if any evidence can be interpreted as mainnet-ready or mainnet-executed.",
+    "stale/replayed mandates": "Hold or rollback if nonce, request hash, response hash, receipt id, or mandate freshness cannot be proven.",
+    "unaudited contracts/programs": "No payment-capable public beta or mainnet readiness work until an official audit covers the relevant contracts/programs.",
+    "unbounded spend": "Hold if per-attempt, per-tester, global, or mandate caps are absent or unenforced.",
+    "unclear authority": "Hold if mandate scope, signer, revocation, amount cap, expiry, or audit reference is missing or ambiguous."
+  },
+  "boundaries": {
+    "consumesPriorEvidenceOnly": true,
+    "credentialAccess": false,
+    "deterministicPacketOnly": true,
+    "devnetRun": false,
+    "dockerSurfpoolCoolifyMutation": false,
+    "explicitGoLiveReadinessRequired": true,
+    "externalSpend": false,
+    "externalTesterExecution": false,
+    "hostedDeployment": false,
+    "liveMcpInvocation": false,
+    "liveRuntimeActivation": false,
+    "mainnetRun": false,
+    "officialAuditRequiredBeforePaymentCapablePublicBeta": true,
+    "packageArchivePublishing": false,
+    "productionGatewayMutation": false,
+    "smartContractDeployment": false,
+    "walletPaymentFacilitatorSettlementAction": false
+  },
+  "decision": "audit-freeze-ready",
+  "evidenceRequirements": [
+    {
+      "name": "deterministic tests",
+      "required": true,
+      "source": "focused fixture/test/smoke coverage for #366"
+    },
+    {
+      "name": "localnet gate artifact",
+      "required": true,
+      "source": "consumed through #361/#365 chain from #359"
+    },
+    {
+      "name": "devnet gate artifact",
+      "required": true,
+      "source": "consumed through #361/#365 chain from #360"
+    },
+    {
+      "name": "threat model",
+      "required": true,
+      "source": "freeze threat model in this packet"
+    },
+    {
+      "name": "invariant checklist",
+      "required": true,
+      "source": "freeze checklist in this packet"
+    },
+    {
+      "name": "known limitations",
+      "required": true,
+      "source": "known limitation list in this packet"
+    },
+    {
+      "name": "no-mainnet boundary proof",
+      "required": true,
+      "source": "boundary flags and mainnet blocker scenarios"
+    }
+  ],
+  "executionStatement": "This packet is audit-readiness planning evidence only; it does not authorize smart-contract deployment, devnet execution, public beta execution, or mainnet readiness work.",
+  "findings": [],
+  "follows": [
+    361,
+    365
+  ],
+  "freezeChecklist": {
+    "authorityMandateBinding": {
+      "blockers": [
+        "unclear authority",
+        "missing revocation reference",
+        "authorization and payment refs disagree"
+      ],
+      "criteria": [
+        "AP2/FIDO/Verifiable Intent mandate identity, scope, max amount, expiry, revocation, and audit reference bind to each payment request.",
+        "MCP resource authorization is never accepted as delegated payment authority."
+      ],
+      "evidence": [
+        "#361 layer contract",
+        "mandate field mapping",
+        "valid-authorization misuse scenario"
+      ]
+    },
+    "disputeReputation": {
+      "blockers": [
+        "dispute state missing",
+        "reputation emits on failed payment/service/eval",
+        "reputation cannot be rolled back"
+      ],
+      "criteria": [
+        "Dispute state is explicit before reputation output.",
+        "Negative, disputed, or incomplete receipts cannot improve reputation."
+      ],
+      "evidence": [
+        "RAP join-layer expectations",
+        "#365 acceptance matrix",
+        "dispute/reputation checklist"
+      ]
+    },
+    "paymentCapableInvariants": {
+      "blockers": [
+        "atomicity gap",
+        "receipt/eval mismatch",
+        "reputation emitted before dispute state is clear"
+      ],
+      "criteria": [
+        "ADL/RAP success requires authority, resource access, payment evidence, settlement proof, service result, eval result, and dispute state to agree.",
+        "Payment-settled/service-failed and payment-settled/eval-failed paths never emit success or positive reputation."
+      ],
+      "evidence": [
+        "RAP x402/AP2 alignment scenarios",
+        "external tester MVP receipt/eval/dispute expectations",
+        "focused fail-closed tests"
+      ]
+    },
+    "privacyPii": {
+      "blockers": [
+        "raw PII captured",
+        "secret or private key captured",
+        "production wallet material captured"
+      ],
+      "criteria": [
+        "Evidence captures public devnet identifiers and hashes only.",
+        "Secrets, private keys, raw PII, production wallet material, and unredacted support notes are blocked from audit packets."
+      ],
+      "evidence": [
+        "privacy/PII scenario",
+        "#365 feedback privacy rule",
+        "fixture scan expectations"
+      ]
+    },
+    "receiptSettlementProof": {
+      "blockers": [
+        "settlement proof missing",
+        "payment proof detached from receipt",
+        "confirmation state unclear"
+      ],
+      "criteria": [
+        "Receipt records bind authority, resource access, payment evidence, settlement proof, service result, eval result, and dispute state.",
+        "Settlement proof is environment-explicit and confirmation-state explicit."
+      ],
+      "evidence": [
+        "#361 Solana proof mapping",
+        "#365 feedback required fields",
+        "receipt fixture hashes"
+      ]
+    },
+    "replayIdempotency": {
+      "blockers": [
+        "stale/replayed mandates",
+        "duplicate receipt accepted",
+        "nonce state unavailable"
+      ],
+      "criteria": [
+        "Mandate nonce, request hash, response hash, payment reference, and receipt id prevent stale or repeated settlement from being accepted.",
+        "Idempotent retry evidence cannot double-count spend, service success, or reputation."
+      ],
+      "evidence": [
+        "stale/replayed mandate scenario",
+        "receipt idempotency checklist",
+        "negative replay tests"
+      ]
+    },
+    "rollbackKillSwitch": {
+      "blockers": [
+        "kill switch disabled",
+        "rollback evidence missing",
+        "unsafe path cannot be paused"
+      ],
+      "criteria": [
+        "Kill switch remains armed before any later bounded live/devnet cohort run.",
+        "Rollback evidence is mandatory for failed, disputed, replayed, over-cap, or wrong-allowlist scenarios."
+      ],
+      "evidence": [
+        "#361 rollback delta",
+        "#365 rollback evidence bundle",
+        "rollback-required criteria"
+      ]
+    },
+    "solanaProgramMintAllowlists": {
+      "blockers": [
+        "unaudited contracts/programs",
+        "wrong mint/program/payee accepted",
+        "devnet/mainnet ambiguity"
+      ],
+      "criteria": [
+        "Every payment-capable Solana path is cluster-explicit and allowlist-bound by program, mint, and payee.",
+        "Devnet allowlists cannot be promoted or interpreted as mainnet allowlists."
+      ],
+      "evidence": [
+        "#360 devnet gate artifact",
+        "#365 tester controls",
+        "allowlist mutation tests"
+      ]
+    }
+  },
+  "issue": 366,
+  "knownLimitations": [
+    "This packet is audit-readiness planning evidence only, not an official audit.",
+    "No smart contract, Solana program, wallet, facilitator, settlement path, or devnet/mainnet transaction was executed.",
+    "Devnet tester evidence is still a gate packet and MVP packet, not a completed live cohort.",
+    "Mainnet remains blocked until official audit completion and explicit go-live readiness."
+  ],
+  "mainnetStatement": "Mainnet remains blocked until official audit completion and explicit go-live readiness.",
+  "mode": "smart-contract-audit-readiness-freeze-packet",
+  "packetId": "reddiagent-smart-contract-audit-readiness-freeze",
+  "parentEpic": 220,
+  "scenarioSummary": {
+    "failClosedScenarios": 6,
+    "mainnetAmbiguityScenarios": 1,
+    "negativeScenarios": 6,
+    "positiveScenarios": 1,
+    "privacyScenarios": 1
+  },
+  "scenarios": [
+    {
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "freeze-ready-baseline",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "positive",
+      "status": "pass"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.unclear-authority-blocked.authority.scopeClear",
+          "reason": "Authority/mandate binding must be clear and auditable."
+        }
+      ],
+      "id": "unclear-authority-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": false
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "authority",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.replayed-mandate-blocked.replay.idempotency",
+          "reason": "Stale mandates and duplicate receipts must fail closed."
+        }
+      ],
+      "id": "replayed-mandate-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": true,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": false
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "replay",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.devnet-mainnet-ambiguity-blocked.allowlist.cluster",
+          "reason": "Only devnet-scoped evidence may feed this planning packet."
+        },
+        {
+          "path": "scenarios.devnet-mainnet-ambiguity-blocked.boundaries.mainnetRun",
+          "reason": "This freeze packet cannot record live chain or deployment action."
+        }
+      ],
+      "id": "devnet-mainnet-ambiguity-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "mainnet-beta",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": true,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "mainnet",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.unbounded-spend-blocked.caps.boundedSpend",
+          "reason": "Spend must remain bounded before any later payment-capable run."
+        },
+        {
+          "path": "scenarios.unbounded-spend-blocked.caps.globalCap",
+          "reason": "Spend must remain bounded before any later payment-capable run."
+        }
+      ],
+      "id": "unbounded-spend-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": false,
+          "globalCap": false,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "spend",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.rollback-evidence-missing-blocked.rollback.rollbackEvidencePresent",
+          "reason": "Rollback evidence is required."
+        }
+      ],
+      "id": "rollback-evidence-missing-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": false,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": false
+        }
+      },
+      "kind": "rollback",
+      "status": "fail"
+    },
+    {
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.privacy-leak-blocked.privacy.rawPiiCaptured",
+          "reason": "Audit evidence must not capture secrets, PII, or production wallet material."
+        }
+      ],
+      "id": "privacy-leak-blocked",
+      "inputs": {
+        "allowlist": {
+          "cluster": "devnet",
+          "mintAllowed": true,
+          "payeeAllowed": true,
+          "programAllowed": true
+        },
+        "authority": {
+          "auditRef": true,
+          "boundedMandate": true,
+          "revocationRef": true,
+          "scopeClear": true
+        },
+        "blockers": [
+          "unaudited contracts/programs",
+          "unclear authority",
+          "stale/replayed mandates",
+          "devnet/mainnet ambiguity",
+          "unbounded spend"
+        ],
+        "boundaries": {
+          "devnetRun": false,
+          "mainnetRun": false,
+          "smartContractDeployment": false
+        },
+        "caps": {
+          "boundedSpend": true,
+          "globalCap": true,
+          "perAttemptCap": true
+        },
+        "evidence": [
+          "deterministic tests",
+          "localnet gate artifact",
+          "devnet gate artifact",
+          "threat model",
+          "invariant checklist",
+          "known limitations",
+          "no-mainnet boundary proof"
+        ],
+        "freezeAreas": [
+          "paymentCapableInvariants",
+          "solanaProgramMintAllowlists",
+          "authorityMandateBinding",
+          "replayIdempotency",
+          "receiptSettlementProof",
+          "privacyPii",
+          "rollbackKillSwitch",
+          "disputeReputation"
+        ],
+        "privacy": {
+          "productionWalletMaterialCaptured": false,
+          "rawPiiCaptured": true,
+          "secretsCaptured": false
+        },
+        "proof": {
+          "disputeStateClear": true,
+          "paymentServiceEvalAgree": true,
+          "receiptPresent": true,
+          "settlementProofPresent": true
+        },
+        "replay": {
+          "duplicateReceiptAccepted": false,
+          "idempotencyKeyPresent": true,
+          "nonceFresh": true
+        },
+        "rollback": {
+          "killSwitchArmed": true,
+          "rollbackEvidencePresent": true
+        }
+      },
+      "kind": "privacy",
+      "status": "fail"
+    }
+  ],
+  "status": "pass",
+  "threatModel": [
+    {
+      "id": "authority-confusion",
+      "requiredControl": "authorityMandateBinding",
+      "risk": "resource auth or payment proof is mistaken for delegated spend authority"
+    },
+    {
+      "id": "replay-or-double-spend",
+      "requiredControl": "replayIdempotency",
+      "risk": "stale mandate or duplicate receipt is accepted"
+    },
+    {
+      "id": "wrong-rail",
+      "requiredControl": "solanaProgramMintAllowlists",
+      "risk": "devnet proof, mint, program, or payee is confused with mainnet"
+    },
+    {
+      "id": "atomicity-gap",
+      "requiredControl": "paymentCapableInvariants",
+      "risk": "payment success is treated as full service success"
+    },
+    {
+      "id": "privacy-leak",
+      "requiredControl": "privacyPii",
+      "risk": "audit evidence captures secrets, private keys, PII, or production wallet material"
+    },
+    {
+      "id": "irreversible-unsafe-state",
+      "requiredControl": "rollbackKillSwitch",
+      "risk": "failed or disputed path lacks rollback/kill-switch evidence"
+    }
+  ]
+}
