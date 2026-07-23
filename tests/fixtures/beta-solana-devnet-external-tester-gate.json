@@ -1,0 +1,660 @@
+{
+  "boundaries": {
+    "consumesLocalnetAndRoadmapOnly": true,
+    "deterministicDevnetGateDesign": true,
+    "devnetExecution": false,
+    "externalSpend": false,
+    "externalTesterGateDesignOnly": true,
+    "facilitatorAction": false,
+    "hostedDeployment": false,
+    "mainnetAccess": false,
+    "mcpInvocation": false,
+    "packagePublished": false,
+    "productionCredentialAccess": false,
+    "productionGatewayMutation": false,
+    "providerApiAccess": false,
+    "realValueWalletAccess": false,
+    "runtimeActivation": false,
+    "settlementAction": false
+  },
+  "controls": {
+    "allowlists": {
+      "cluster": "devnet",
+      "mints": [
+        {
+          "decimals": 6,
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "symbol": "rUSD-D"
+        }
+      ],
+      "payees": [
+        {
+          "address": "DevnetMerchant111111111111111111111111111111",
+          "name": "merchant-service-devnet"
+        }
+      ],
+      "programs": [
+        {
+          "name": "reddiagent-devnet-gate",
+          "programId": "DevnetProgram111111111111111111111111111111"
+        }
+      ]
+    },
+    "caps": {
+      "capEnforcedBeforeSigning": true,
+      "capRecheckedBeforeReceipt": true,
+      "globalCohortMinorUnits": 1500000,
+      "maxRetriesPerScenario": 1,
+      "perAttemptMinorUnits": 100000,
+      "perTesterDailyMinorUnits": 300000
+    },
+    "labels": {
+      "environment": "solana-devnet-only",
+      "mainnet": "mainnet-blocked-until-audit",
+      "value": "no-real-value",
+      "wallet": "dedicated-devnet-wallet-only"
+    },
+    "proofRequirements": {
+      "authorityState": [
+        "principal",
+        "spender",
+        "payee",
+        "mint",
+        "programId",
+        "cap",
+        "expirySlot",
+        "nonce",
+        "revoked"
+      ],
+      "confirmation": {
+        "finalizedRequiredForCloseout": true,
+        "minimumCommitment": "confirmed"
+      },
+      "receipt": [
+        "receiptId",
+        "requestHash",
+        "responseHash",
+        "mandateId",
+        "devnetSignature",
+        "confirmationStatus",
+        "serviceOutcome",
+        "evalStatus"
+      ],
+      "rollbackEvidence": [
+        "killSwitchState",
+        "mandateRevocation",
+        "cohortPause",
+        "receiptMarkedForReview"
+      ],
+      "transactionLanding": [
+        "signature",
+        "slot",
+        "blockTime",
+        "err"
+      ]
+    },
+    "walletSeparation": {
+      "devnetWalletRequired": true,
+      "keyStorage": "tester-managed devnet key only; repo stores no secrets",
+      "mainnetAddressAllowed": false,
+      "perTesterWalletReuseAcrossCohort": false,
+      "productionKeyImportAllowed": false
+    }
+  },
+  "decision": "devnet-tester-gate-ready",
+  "decisionCriteria": {
+    "devnet-tester-gate-ready": [
+      "#359 localnet rehearsal is passing and explicitly ready for #360.",
+      "#356 roadmap supports devnet external tester gate requirements and no-mainnet guardrails.",
+      "Cohort scope, onboarding, feedback loop, and support path are explicit.",
+      "Devnet-only labels, wallet/key separation, tiny caps, allowlisted mints/programs, confirmation proof, receipt proof, authority state, and rollback evidence are defined.",
+      "Expired mandate, replay, over-budget, wrong mint/program, and payment-settled/service-failed scenarios fail closed.",
+      "This gate remains design-only; no devnet execution or live settlement occurs in #360."
+    ],
+    "hold": [
+      "Use when any localnet input, roadmap input, tester workflow, control, proof, rollback, or fail-closed scenario is missing.",
+      "Do not create implementation/devnet-run work until the design gate is ready and separately scoped."
+    ],
+    "rollback-required": [
+      "Use only if a later implementation gate invalidates the devnet tester design.",
+      "Rollback target is #359 localnet rehearsal plus #356 roadmap; this script mutates no runtime state."
+    ]
+  },
+  "findings": [],
+  "follows": [
+    359,
+    356
+  ],
+  "gateId": "reddiagent-beta-0-solana-devnet-external-tester-gate",
+  "inputs": {
+    "agenticPaymentsRoadmap": {
+      "exists": true,
+      "issue": 356,
+      "path": "research/2026-07-23-agentic-payments-roadmap-recalibration.md",
+      "requiredTerms": [
+        "Solana devnet external tester gate",
+        "devnet-only labels",
+        "test wallet separation",
+        "allowlisted mints/programs",
+        "confirmation/settlement proof",
+        "payment-settled/service-failed",
+        "no mainnet"
+      ],
+      "sha256": "0b62750ab2f64cbf189155116eb42c5c4babd1fe6c90fd528bff22448a4578d9",
+      "sizeBytes": 15778
+    },
+    "localnetRehearsalPacket": {
+      "decision": "localnet-rehearsal-ready",
+      "exists": true,
+      "issue": 359,
+      "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
+      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sizeBytes": 15037,
+      "status": "pass"
+    }
+  },
+  "issue": 360,
+  "mainnetStatement": "This packet designs a bounded devnet external tester gate only. It does not approve or run devnet/mainnet; mainnet remains blocked until official audit and go-live readiness.",
+  "mode": "solana-devnet-external-tester-gate-design",
+  "operatorActions": {
+    "devnet-tester-gate-ready": "Use this packet as the design handoff for a later explicitly scoped devnet tester implementation issue.",
+    "hold": "Keep the lane at #360 design; resolve findings before any implementation/devnet execution scope.",
+    "rollback-required": "Return to #359 localnet rehearsal evidence and revise the devnet design before implementation."
+  },
+  "parentEpic": 220,
+  "scenarioSummary": {
+    "failClosedScenarios": 5,
+    "negativeScenarios": 5,
+    "positiveScenarios": 2,
+    "receiptProofScenarios": 3,
+    "rollbackScenarios": 7
+  },
+  "scenarios": [
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "devnet-onboarding-ready",
+      "inputs": {
+        "attempt": null,
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-001",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "evalStatus": "pass",
+          "receiptId": "receipt-devnet-onboarding-ready",
+          "serviceOutcome": "pass",
+          "settlementProof": "devnet-signature-only"
+        },
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": {
+          "cohort": "devnet-external-feedback-cohort-0",
+          "role": "builder",
+          "wallet": "tester-devnet-wallet-001"
+        },
+        "transaction": {
+          "confirmationStatus": "confirmed",
+          "err": null,
+          "signature": "devnet-sig-onboarding-ready",
+          "slot": 49000
+        }
+      },
+      "kind": "onboarding",
+      "receiptRef": "receipt-devnet-onboarding-ready",
+      "status": "pass",
+      "traceId": "cdd2e3eeb7ee49ad"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "pass",
+      "findings": [],
+      "id": "devnet-confirmation-and-receipt-pass",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 75000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 49100
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-002",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-002",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "evalStatus": "pass",
+          "receiptId": "receipt-devnet-confirmation-pass",
+          "serviceOutcome": "pass",
+          "settlementProof": "devnet-signature-only"
+        },
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": {
+          "cohort": "devnet-external-feedback-cohort-0",
+          "role": "protocol-reviewer",
+          "wallet": "tester-devnet-wallet-002"
+        },
+        "transaction": {
+          "confirmationStatus": "confirmed",
+          "err": null,
+          "signature": "devnet-sig-confirmation-pass",
+          "slot": 49101
+        }
+      },
+      "kind": "confirmation",
+      "receiptRef": "receipt-devnet-confirmation-pass",
+      "status": "pass",
+      "traceId": "e35fb352eb371293"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.expired-mandate-denied.attempt.slot",
+          "reason": "Attempt is after authority expiry."
+        }
+      ],
+      "id": "expired-mandate-denied",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 50000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 50001
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 49999,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-expired-001",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": null,
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": null,
+        "transaction": null
+      },
+      "kind": "authority",
+      "receiptRef": null,
+      "status": "fail",
+      "traceId": "83e92cb3aa891bba"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.replayed-request-denied.replay.previousNonceSeen",
+          "reason": "Replayed request must fail closed."
+        }
+      ],
+      "id": "replayed-request-denied",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 75000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 49200
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-002",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": null,
+        "replay": {
+          "previousNonceSeen": true,
+          "previousReceiptId": "receipt-devnet-confirmation-pass"
+        },
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": null,
+        "transaction": null
+      },
+      "kind": "replay",
+      "receiptRef": null,
+      "status": "fail",
+      "traceId": "7154f33d09d30a8a"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.over-budget-denied.attempt.amountMinorUnits",
+          "reason": "Attempt exceeds tiny devnet cap."
+        }
+      ],
+      "id": "over-budget-denied",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 150000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 49250
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-over-budget-001",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": null,
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": null,
+        "transaction": null
+      },
+      "kind": "budget",
+      "receiptRef": null,
+      "status": "fail",
+      "traceId": "7d81749635953da5"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.wrong-mint-program-denied.authority.mint",
+          "reason": "Mint must be allowlisted."
+        },
+        {
+          "path": "scenarios.wrong-mint-program-denied.authority.programId",
+          "reason": "Program must be allowlisted."
+        }
+      ],
+      "id": "wrong-mint-program-denied",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 50000,
+          "purpose": "paid-data-receipt-review",
+          "slot": 49300
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "WrongMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-wrong-001",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "WrongProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": null,
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true
+        },
+        "tester": null,
+        "transaction": null
+      },
+      "kind": "allowlist",
+      "receiptRef": null,
+      "status": "fail",
+      "traceId": "70deeb8a5f17e5e2"
+    },
+    {
+      "authorityRef": "mandate-devnet-cohort0-001",
+      "expectedStatus": "fail",
+      "findings": [
+        {
+          "path": "scenarios.payment-settled-service-failed-denied.receipt.serviceOutcome",
+          "reason": "Receipt cannot claim success when service failed."
+        },
+        {
+          "path": "scenarios.payment-settled-service-failed-denied.receipt.evalStatus",
+          "reason": "Receipt cannot claim success when eval failed."
+        }
+      ],
+      "id": "payment-settled-service-failed-denied",
+      "inputs": {
+        "attempt": {
+          "amountMinorUnits": 60000,
+          "purpose": "a2a-service-outcome-bundle",
+          "slot": 49400
+        },
+        "authority": {
+          "capMinorUnits": 100000,
+          "expiresSlot": 50000,
+          "mandateId": "mandate-devnet-cohort0-001",
+          "mint": "DevnetMint111111111111111111111111111111111",
+          "nonce": "devnet-nonce-atomicity-001",
+          "payee": "DevnetMerchant111111111111111111111111111111",
+          "principal": "tester-devnet-wallet-001",
+          "programId": "DevnetProgram111111111111111111111111111111",
+          "revoked": false,
+          "spender": "agent-devnet-spender-001"
+        },
+        "boundaries": {
+          "cluster": "devnet",
+          "devnetOnly": true,
+          "facilitatorUsed": false,
+          "mainnetUsed": false,
+          "productionKeyUsed": false,
+          "realValueTransfer": false,
+          "settlementActionPerformed": false
+        },
+        "labels": [
+          "solana-devnet-only",
+          "dedicated-devnet-wallet-only",
+          "no-real-value"
+        ],
+        "receipt": {
+          "evalStatus": "fail",
+          "receiptId": "receipt-devnet-atomicity-denied",
+          "serviceOutcome": "fail",
+          "settlementProof": "devnet-signature-only"
+        },
+        "replay": null,
+        "rollback": {
+          "cohortPauseAvailable": true,
+          "killSwitchState": "armed",
+          "mandateRevocationTested": true,
+          "receiptMarkedForReview": true
+        },
+        "tester": null,
+        "transaction": {
+          "confirmationStatus": "confirmed",
+          "err": null,
+          "signature": "devnet-sig-payment-settled-service-failed",
+          "slot": 49401
+        }
+      },
+      "kind": "atomicity",
+      "receiptRef": "receipt-devnet-atomicity-denied",
+      "status": "fail",
+      "traceId": "36fc07b03530f729"
+    }
+  ],
+  "sourceCommit": "fixture://solana-devnet-external-tester-gate",
+  "status": "pass",
+  "testerGate": {
+    "cohort": {
+      "eligibility": [
+        "Can run a local receipt/authority walkthrough first.",
+        "Understands devnet has no monetary value.",
+        "Agrees to file issue-template feedback with transaction and receipt evidence."
+      ],
+      "expansionRequires": "successful cohort-0 closeout plus fresh implementation issue approval",
+      "name": "devnet-external-feedback-cohort-0",
+      "roles": [
+        "builder",
+        "protocol-reviewer",
+        "operator"
+      ],
+      "size": {
+        "maximum": 5,
+        "minimum": 3
+      }
+    },
+    "feedbackLoop": {
+      "channel": "GitHub issue template or private tester form",
+      "closeout": "summarize confusion, failed confirmations, receipt gaps, and rollback evidence before expansion",
+      "requiredFields": [
+        "tester role",
+        "devnet wallet public key",
+        "scenario id",
+        "transaction signature or expected fail-closed code",
+        "receipt id",
+        "authority state",
+        "support needed"
+      ],
+      "triageSla": "one business day for cohort-0 blockers"
+    },
+    "onboardingChecklist": [
+      "Read the devnet-only warning and confirm no mainnet wallet/address is used.",
+      "Create or select a dedicated devnet wallet/keypair for this test only.",
+      "Fund only the devnet wallet from a devnet faucet; never import production keys.",
+      "Use only the allowlisted devnet mint and program labels in this packet.",
+      "Run localnet rehearsal evidence review before any future devnet implementation run.",
+      "Acknowledge tiny per-tester and per-attempt caps before signing anything."
+    ],
+    "supportPath": {
+      "engineeringEscalation": "RAP maintainer",
+      "firstLine": "tester coordinator",
+      "incidentRule": "pause the cohort on any mainnet ambiguity, production key use, cap bypass, or receipt/proof mismatch",
+      "killSwitchOwner": "operator",
+      "rollbackOwner": "operator"
+    }
+  }
+}
