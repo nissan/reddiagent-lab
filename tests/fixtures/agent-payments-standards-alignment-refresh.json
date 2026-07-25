@@ -1,0 +1,259 @@
+{
+  "boundaries": {
+    "coolifySurfpoolDockerMutation": false,
+    "credentialAccess": false,
+    "deployment": false,
+    "devnetRun": false,
+    "externalTesterExecution": false,
+    "liveMcpProviderInvocation": false,
+    "mainnetBlockedUntilOfficialAuditAndExplicitGoLive": true,
+    "mainnetRun": false,
+    "researchSpecRoadmapOnly": true,
+    "signupRedemptionSpend": false,
+    "vendorContact": false,
+    "walletPaymentFacilitatorSettlementAction": false
+  },
+  "dateChecked": "2026-07-25",
+  "decision": "standards-refresh-ready-for-receipt-integrity-benchmark",
+  "findings": [],
+  "issue": 374,
+  "issueLadder": [
+    {
+      "issue": 374,
+      "priority": 1,
+      "purpose": "Build dated source matrix, taxonomy, issue ladder, and refresh assumptions.",
+      "status": "active",
+      "swimlane": "Standards Intelligence",
+      "title": "Research agent payments standards alignment refresh"
+    },
+    {
+      "issue": 375,
+      "priority": 2,
+      "purpose": "Highest technical safety gate: prove payment success cannot become task success or reputation without full receipt validation.",
+      "status": "next",
+      "swimlane": "RAP Receipt Integrity",
+      "title": "Build RAP receipt integrity benchmark from agent-payment threat models"
+    },
+    {
+      "issue": 376,
+      "priority": 3,
+      "purpose": "Report-only discovery/proxy compatibility against x402/Pay.sh-style catalogs and paid API metadata.",
+      "status": "queued",
+      "swimlane": "External Service Discovery",
+      "title": "Add static Pay.sh/x402 discovery compatibility report"
+    },
+    {
+      "issue": 377,
+      "priority": 4,
+      "purpose": "Update delegated authority mapping after AP2/FIDO/Verifiable Intent movement.",
+      "status": "queued",
+      "swimlane": "Audit and Compliance Readiness",
+      "title": "Refresh ADL/RAP AP2-FIDO mandate mapping"
+    },
+    {
+      "issue": 378,
+      "priority": 5,
+      "purpose": "Report-only identity, attestation, capability, and reputation compatibility.",
+      "status": "queued",
+      "swimlane": "Solana Agent Payments",
+      "title": "Add AIP and Solana Agent Registry/SATI identity-reputation compatibility reports"
+    },
+    {
+      "issue": 379,
+      "priority": 6,
+      "purpose": "Decide which Token-2022 controls are candidates, blockers, or footguns for RAP payment assets.",
+      "status": "queued",
+      "swimlane": "Solana Agent Payments",
+      "title": "Evaluate Solana Token-2022 extensions for RAP payment assets"
+    },
+    {
+      "issue": 380,
+      "priority": 7,
+      "purpose": "Prevent Stripe/commerce alternatives from displacing Solana/x402/AP2 receipt-critical work.",
+      "status": "lower-priority",
+      "swimlane": "Adapter Targets",
+      "title": "Classify MPP and ACP as non-canonical RAP adapter targets"
+    }
+  ],
+  "laterGateNotCreated": {
+    "name": "bounded Solana devnet external tester cohort-0 execution",
+    "reason": "Requires #374-#379 completion or explicit parking plus fresh bounded Nissan approval."
+  },
+  "layerRules": [
+    {
+      "layer": "paymentEvidence",
+      "rule": "x402 is payment evidence; it does not prove delegated authority, service success, or reputation eligibility."
+    },
+    {
+      "layer": "delegatedAuthority",
+      "rule": "AP2/FIDO/Verifiable Intent is delegated authority; mandates must bind actor, payee, purpose, cap, expiry, revocation, and audit refs."
+    },
+    {
+      "layer": "protectedResourceAccess",
+      "rule": "MCP auth is protected resource access; it does not authorize spend or settlement."
+    },
+    {
+      "layer": "settlementProgramEvidence",
+      "rule": "Solana is settlement/program evidence; cluster, mint, program id, signature, confirmation, and allowlist evidence must be explicit."
+    },
+    {
+      "layer": "receiptAccountingDisputeEvalReputation",
+      "rule": "RAP binds receipt/accounting/dispute/eval/reputation evidence across all lower layers."
+    }
+  ],
+  "mode": "agent-payments-standards-alignment-refresh",
+  "parentEpic": 220,
+  "protocolCount": 10,
+  "refreshAssumptions": [
+    {
+      "assumption": "x402/AP2/MCP/Solana/RAP layer split remains correct.",
+      "refresh": "Still valid, but #377 should update AP2/FIDO/Verifiable Intent naming, mandate fields, and standardization status.",
+      "sourceIssue": "#361"
+    },
+    {
+      "assumption": "External tester cohort remains later and explicitly approval-gated.",
+      "refresh": "Still valid; do not create cohort-0 execution until #374-#379 are complete or explicitly parked and Nissan approves bounded live devnet use.",
+      "sourceIssue": "#365"
+    },
+    {
+      "assumption": "Audit-readiness freeze needs authority, replay, privacy, settlement, and no-mainnet blockers.",
+      "refresh": "Still valid; #375 should add receipt integrity threat benchmarks before docs refresh or live cohort planning.",
+      "sourceIssue": "#366"
+    },
+    {
+      "assumption": "Docs refresh should follow durable technical alignment.",
+      "refresh": "Keep docs-only until #374 taxonomy/evidence lands or first implementation wave justifies a hub update.",
+      "sourceIssue": "#206"
+    }
+  ],
+  "sourceCount": 26,
+  "sourceMatrix": [
+    {
+      "confidence": "high",
+      "dateChecked": "2026-07-25",
+      "layer": "paymentEvidence",
+      "protocol": "x402",
+      "reddiagentAction": "Keep x402 as payment evidence only; feed #375 receipt-integrity benchmarks and #376 static discovery compatibility.",
+      "relevance": "HTTP-native payment challenge/payload/settlement evidence for paid APIs, apps, and agent services.",
+      "sources": [
+        "https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications",
+        "https://www.x402.org/x402-whitepaper.pdf",
+        "https://www.coinbase.com/developer-platform/discover/launches/x402",
+        "https://x402.org/"
+      ]
+    },
+    {
+      "confidence": "medium-high",
+      "dateChecked": "2026-07-25",
+      "layer": "externalServiceDiscovery",
+      "protocol": "Pay.sh",
+      "reddiagentAction": "Study as static discovery/proxy compatibility only in #376; do not contact, redeem, call, or pay providers.",
+      "relevance": "Solana-oriented x402/API discovery and proxy pattern for agent-paid API access.",
+      "sources": [
+        "https://learn.backpack.exchange/articles/what-is-pay-sh-solana-and-ai-agent-payments"
+      ]
+    },
+    {
+      "confidence": "high",
+      "dateChecked": "2026-07-25",
+      "layer": "delegatedAuthority",
+      "protocol": "AP2/FIDO/Verifiable Intent",
+      "reddiagentAction": "Refresh ADL/RAP mandate mapping in #377; do not let payment proof substitute for authorization.",
+      "relevance": "Mandates and verifiable intent establish user authorization, consent, accountability, and non-repudiation.",
+      "sources": [
+        "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+        "https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/",
+        "https://fidoalliance.org/building-the-trust-layer-for-agentic-payments-with-ap2-and-verifiable-intent/",
+        "https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html"
+      ]
+    },
+    {
+      "confidence": "high",
+      "dateChecked": "2026-07-25",
+      "layer": "protectedResourceAccess",
+      "protocol": "MCP authorization",
+      "reddiagentAction": "Keep MCP authorization separate from x402/AP2; use it as resource-access evidence in later static reports.",
+      "relevance": "Protected resource metadata and OAuth-style authorization govern tool/resource access, not payment permission.",
+      "sources": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+        "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+      ]
+    },
+    {
+      "confidence": "medium",
+      "dateChecked": "2026-07-25",
+      "layer": "identityGovernance",
+      "protocol": "AIP",
+      "reddiagentAction": "Treat as compatibility/report target in #378 until maturity and adoption are clearer.",
+      "relevance": "Emerging identity, attestation, authorization, governance, and audit-trail layer for MCP/autonomous agents.",
+      "sources": [
+        "https://github.com/openagentidentityprotocol",
+        "https://github.com/openagentidentityprotocol/agentidentityprotocol"
+      ]
+    },
+    {
+      "confidence": "medium",
+      "dateChecked": "2026-07-25",
+      "layer": "identityReputationDiscovery",
+      "protocol": "Solana Agent Registry/SATI/ERC-8004",
+      "reddiagentAction": "Compare identity/reputation/export surfaces in #378; keep report-only before promoting runtime use.",
+      "relevance": "On-chain agent identity, registration metadata, capability declarations, and proposed SATI trust infrastructure.",
+      "sources": [
+        "https://solana.com/agent-registry/what-is-agent-registry",
+        "https://github.com/solana-foundation/SRFCs/discussions/7"
+      ]
+    },
+    {
+      "confidence": "high",
+      "dateChecked": "2026-07-25",
+      "layer": "settlementAssetControls",
+      "protocol": "Token-2022",
+      "reddiagentAction": "Evaluate RAP payment asset extension candidates and footguns in #379 before any payment-capable beta.",
+      "relevance": "Optional token/mint/account extensions can express transfer, memo, delegate, default-state, fee, and metadata controls.",
+      "sources": [
+        "https://solana.com/docs/tokens/extensions",
+        "https://solana.com/solutions/token-extensions"
+      ]
+    },
+    {
+      "confidence": "medium-high",
+      "dateChecked": "2026-07-25",
+      "layer": "machinePaymentAlternative",
+      "protocol": "MPP",
+      "reddiagentAction": "Classify as non-canonical adapter/export target in #380; do not displace Solana/x402/AP2 core lane.",
+      "relevance": "Machine Payments Protocol is a separate programmatic payment interface that overlaps x402 but is vendor/rail distinct.",
+      "sources": [
+        "https://stripe.com/blog/machine-payments-protocol",
+        "https://docs.stripe.com/payments/machine"
+      ]
+    },
+    {
+      "confidence": "medium-high",
+      "dateChecked": "2026-07-25",
+      "layer": "commerceCheckoutAlternative",
+      "protocol": "ACP",
+      "reddiagentAction": "Classify as non-canonical commerce adapter target in #380; keep out of RAP receipt-critical path for now.",
+      "relevance": "Agentic Commerce Protocol focuses buyer-agent-to-business checkout and commerce flows.",
+      "sources": [
+        "https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce",
+        "https://docs.stripe.com/agentic-commerce/acp"
+      ]
+    },
+    {
+      "confidence": "high",
+      "dateChecked": "2026-07-25",
+      "layer": "receiptAccountingDisputeEvalReputation",
+      "protocol": "RAP",
+      "reddiagentAction": "Use #375 as next technical safety gate before standards-specific reports advance.",
+      "relevance": "Local ReddiAgent layer binds payment, authority, resource access, settlement, service outcome, eval, dispute, and reputation evidence.",
+      "sources": [
+        "specs/RAP-BRIDGE-v0.1.md",
+        "specs/PAYMENT-REPUTATION-EXTENSION-v0.1.md",
+        "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
+        "tests/fixtures/beta-external-tester-mvp-packet.json",
+        "tests/fixtures/smart-contract-audit-readiness-freeze-packet.json"
+      ]
+    }
+  ],
+  "status": "pass"
+}
