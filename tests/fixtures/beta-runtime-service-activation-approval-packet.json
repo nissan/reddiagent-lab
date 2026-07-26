@@ -130,28 +130,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -167,7 +167,7 @@
       "findings": [],
       "id": "runtime-service-approval-packet-ready-pass",
       "kind": "positive",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "approval-packet-ready"
     },
@@ -264,28 +264,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -301,7 +301,7 @@
       "findings": [],
       "id": "runtime-service-approval-packet-hold-pass",
       "kind": "positive",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "hold"
     },
@@ -390,7 +390,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
           "acceptedActivationEvidenceSha256": null,
           "acceptedCanaryResultSha256": null,
@@ -521,7 +521,7 @@
       ],
       "id": "missing-canary-evidence-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -618,28 +618,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
             "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
             "hashMatches": false,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -660,7 +660,7 @@
       ],
       "id": "stale-canary-evidence-hash-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -757,28 +757,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -799,7 +799,7 @@
       ],
       "id": "wrong-packet-id-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -895,28 +895,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -937,7 +937,7 @@
       ],
       "id": "missing-operator-approval-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1034,28 +1034,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1080,7 +1080,7 @@
       ],
       "id": "env-secret-value-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1173,28 +1173,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1215,7 +1215,7 @@
       ],
       "id": "missing-live-action-checklist-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1312,28 +1312,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1358,7 +1358,7 @@
       ],
       "id": "unsafe-command-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1455,28 +1455,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1501,7 +1501,7 @@
       ],
       "id": "credential-like-leakage-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1598,28 +1598,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1676,7 +1676,7 @@
       ],
       "id": "live-rails-reject-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1773,28 +1773,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "Runtime activation completed and mainnet enabled.",
@@ -1823,7 +1823,7 @@
       ],
       "id": "unsafe-activation-claim-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1920,28 +1920,28 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceEvidenceHashes": {
-          "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-          "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+          "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+          "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
           "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
           "activationEvidenceFixture": {
-            "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+            "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-            "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+            "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
           },
           "canaryFixture": {
-            "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+            "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-            "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+            "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
           },
           "e2eSmokeFixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "stopCue": "STOP: this packet is approval evidence only; run a separate explicit live activation gate before any service, runtime, Docker, Coolify, devnet, payment, package, or mainnet action.",
@@ -1962,12 +1962,12 @@
       ],
       "id": "missing-rollback-plan-denied",
       "kind": "negative",
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+  "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
   "status": "pass",
   "summary": {
     "approvalPacketReadyVerdicts": 1,

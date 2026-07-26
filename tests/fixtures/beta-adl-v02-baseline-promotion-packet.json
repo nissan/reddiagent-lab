@@ -39,9 +39,9 @@
   "artifactHashes": {
     "examples/invalid/adl-v0.2-x402-missing-authority.yaml": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8",
     "examples/v0.2/memory-observability-agent.yaml": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499",
-    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "760b4ef16370e0c21c4fc03333276bd8d88dda78886c316397e9391289244ffe",
     "tests/fixtures/beta-release-handoff.json": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
-    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "4245bb0e5eb0407883e7fee6ec1fe8600b27257284426d769321b820d833aee6",
     "tests/fixtures/local-executable-runtime-prototype.json": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
   },
   "boundaries": {
@@ -105,7 +105,7 @@
       "key": "reviewerWalkthroughSmoke",
       "name": "reviewerWalkthroughSmoke",
       "path": "tests/fixtures/beta-reviewer-walkthrough-smoke.json",
-      "sha256": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+      "sha256": "4245bb0e5eb0407883e7fee6ec1fe8600b27257284426d769321b820d833aee6",
       "sizeBytes": 5685
     },
     {
@@ -114,7 +114,7 @@
       "key": "readinessGate",
       "name": "readinessGate",
       "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
-      "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+      "sha256": "760b4ef16370e0c21c4fc03333276bd8d88dda78886c316397e9391289244ffe",
       "sizeBytes": 5225
     }
   ],
@@ -153,7 +153,7 @@
     "mode": "adl-v02-local-beta-readiness-gate",
     "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
     "readinessId": "reddiagent-beta-0-adl-v02-local-readiness-gate",
-    "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+    "sha256": "760b4ef16370e0c21c4fc03333276bd8d88dda78886c316397e9391289244ffe",
     "sizeBytes": 5225,
     "status": "pass"
   },

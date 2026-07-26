@@ -36,13 +36,13 @@
     "expectedReleaseCandidateHashes": [
       {
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
+        "sha256": "9f38ba9b068cc32b3f675a41248bda8b64cb3794252d747b6db8e3dac995a2cb"
       }
     ],
     "expectedIncludedFileHashes": [
       {
         "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-        "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+        "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
       },
       {
         "path": "scripts/public_demo_walkthrough_video.sh",
@@ -74,7 +74,7 @@
       },
       {
         "path": "tests/fixtures/beta-release-candidate-bundle.json",
-        "sha256": "a45afe3e5782f7fa86ac0308a1c906457089afe50a9e72b218dfcd46bf0ab643"
+        "sha256": "9f38ba9b068cc32b3f675a41248bda8b64cb3794252d747b6db8e3dac995a2cb"
       },
       {
         "path": "tests/fixtures/beta-release-handoff.json",

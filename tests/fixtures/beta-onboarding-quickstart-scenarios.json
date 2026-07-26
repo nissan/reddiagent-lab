@@ -61,7 +61,7 @@
     "expectedLocalFileHashes": [
       {
         "path": "tests/fixtures/beta-release-archive-assembler.json",
-        "sha256": "123d6308c466ee082b9938ddfc07026443e4f6eacf9f45d8eb3b7c0914bcc18f"
+        "sha256": "e6eda45ff3720d5e7da5f543e354b553765ec9bca6b9abd45cf15c4ba30006cf"
       },
       {
         "path": "tests/fixtures/beta-release-verification.json",

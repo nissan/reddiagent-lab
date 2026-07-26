@@ -36,7 +36,7 @@
   "results": [
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -55,18 +55,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -150,7 +150,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -162,7 +162,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -181,18 +181,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -276,7 +276,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -491,7 +491,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": null
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -503,7 +503,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -522,10 +522,10 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
@@ -533,7 +533,7 @@
           "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
           "hashMatches": false,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -622,7 +622,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -634,7 +634,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -653,18 +653,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -753,7 +753,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -765,7 +765,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -784,18 +784,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -884,7 +884,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -896,7 +896,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -915,18 +915,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1015,7 +1015,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1027,7 +1027,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -1046,18 +1046,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1146,7 +1146,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1158,7 +1158,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -1177,18 +1177,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1285,7 +1285,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1297,7 +1297,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -1316,18 +1316,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1420,7 +1420,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1432,7 +1432,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -1451,18 +1451,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1583,7 +1583,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1595,7 +1595,7 @@
     },
     {
       "activationEvidence": {
-        "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
+        "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
         "acceptedResultId": "runtime-activation-evidence-accept-pass",
         "acceptedRuntimePath": {
           "adlPath": "examples/simple-agent.yaml",
@@ -1614,18 +1614,18 @@
           "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
           "acceptedVerdict": "accept",
           "fixture": {
-            "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+            "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
             "hashMatches": true,
             "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-            "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+            "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
           }
         },
         "acceptedVerdict": "activate-local",
         "fixture": {
-          "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+          "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
           "hashMatches": true,
           "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-          "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+          "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
         }
       },
       "activationEvidenceId": "reddiagent-beta-0-local-runtime-activation-evidence",
@@ -1714,7 +1714,7 @@
         "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
         "sourceAcceptedResultId": "runtime-activation-evidence-accept-pass"
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "traceEvalSummary": {
         "completionStatus": "pass",
@@ -1725,7 +1725,7 @@
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+  "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
   "status": "pass",
   "summary": {
     "acceptCanaryVerdicts": 1,

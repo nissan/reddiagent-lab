@@ -88,7 +88,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-external-service-activation-micro-gate.json",
-        "sha256": "45b4ab140d26963aa0ffa30a49edd22ce15597a4c41449233edde24a81aaeda0"
+        "sha256": "d07e50a70aa5b69b2d22b8b4626013f67dc99aa07b081f10327eb084cba66a7b"
       },
       {
         "path": "tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md",

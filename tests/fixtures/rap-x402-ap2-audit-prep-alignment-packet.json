@@ -10,14 +10,14 @@
       "exists": true,
       "issue": 360,
       "path": "tests/fixtures/beta-solana-devnet-external-tester-gate.json",
-      "sha256": "f7e2e3f72060739b4e3b47d9ccc8c8321b3c7207f6e7772022d3073f61efbf28",
+      "sha256": "4e496a87d53b99923640eedfc212bcf62288df5be93c28a8162710a139b0b5ed",
       "sizeBytes": 21996
     },
     "localnetRehearsal": {
       "exists": true,
       "issue": 359,
       "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
-      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sha256": "cfc3f383f5314f9d29b2e0d35cf1ba40ba17837725953e026b4c33cb2518de35",
       "sizeBytes": 15037
     },
     "mcpRuntimeHandoffReady": {

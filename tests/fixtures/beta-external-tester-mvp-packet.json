@@ -25,50 +25,50 @@
       "exists": true,
       "issue": 360,
       "path": "tests/fixtures/beta-solana-devnet-external-tester-gate.json",
-      "sha256": "f7e2e3f72060739b4e3b47d9ccc8c8321b3c7207f6e7772022d3073f61efbf28",
+      "sha256": "4e496a87d53b99923640eedfc212bcf62288df5be93c28a8162710a139b0b5ed",
       "sizeBytes": 21996
     },
     "docsIndex": {
       "exists": true,
       "issue": 367,
       "path": "docs/INDEX.md",
-      "sha256": "033dbd622acbab3fc92e0145d0c80f6d9b0939f1fb6f97ee9b309aba4b8605c4",
-      "sizeBytes": 4111
+      "sha256": "c4f39065d7592fb789dcbdc1ed2a1d15b40633997210aec5dc8a3d3ee8f7d601",
+      "sizeBytes": 4291
     },
     "localnetRehearsal": {
       "exists": true,
       "issue": 359,
       "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
-      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sha256": "cfc3f383f5314f9d29b2e0d35cf1ba40ba17837725953e026b4c33cb2518de35",
       "sizeBytes": 15037
     },
     "rapX402Ap2AuditPrep": {
       "exists": true,
       "issue": 361,
       "path": "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
-      "sha256": "7d90077894f3d5ab1624a5efdc9c9fed88302192cf04f311546c66dabbbb4e53",
+      "sha256": "a1318437c0fd333d8211277d22bb01acbd64cb2fc1c178e9220f1058ab2c07de",
       "sizeBytes": 25369
     },
     "readme": {
       "exists": true,
       "issue": 367,
       "path": "README.md",
-      "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
-      "sizeBytes": 3526
+      "sha256": "f1dec8eac2004ef2d50c828e27862903a9aa884be06f6893ac3a0b386211de26",
+      "sizeBytes": 5506
     },
     "roadmap": {
       "exists": true,
       "issue": 367,
       "path": "docs/ROADMAP.md",
-      "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
-      "sizeBytes": 5712
+      "sha256": "1caad466595f24ad864ea1ac12df9aa99d2c6cc98e4be77ab541d65d9758032e",
+      "sizeBytes": 5728
     },
     "visionRoadmap": {
       "exists": true,
       "issue": 367,
       "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
-      "sha256": "9cf128d9978fac0902d6c0b5ce79a4b22da397829f08064136153d6a08d5b9cc",
-      "sizeBytes": 9565
+      "sha256": "aeb1edcfcea1ec412701345f83e61255e432a711e3a04a018f6ec3a4f831e556",
+      "sizeBytes": 9551
     }
   },
   "boundaries": {

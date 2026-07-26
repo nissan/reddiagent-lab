@@ -51,43 +51,43 @@
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
-          "bytes": 3526
+          "sha256": "f1dec8eac2004ef2d50c828e27862903a9aa884be06f6893ac3a0b386211de26",
+          "bytes": 5506
         },
         {
           "path": "docs/INDEX.md",
           "exists": true,
           "kind": "file",
-          "sha256": "033dbd622acbab3fc92e0145d0c80f6d9b0939f1fb6f97ee9b309aba4b8605c4",
-          "bytes": 4111
+          "sha256": "c4f39065d7592fb789dcbdc1ed2a1d15b40633997210aec5dc8a3d3ee8f7d601",
+          "bytes": 4291
         },
         {
           "path": "docs/REDDIAGENT-VISION-ROADMAP.md",
           "exists": true,
           "kind": "file",
-          "sha256": "9cf128d9978fac0902d6c0b5ce79a4b22da397829f08064136153d6a08d5b9cc",
-          "bytes": 9565
+          "sha256": "aeb1edcfcea1ec412701345f83e61255e432a711e3a04a018f6ec3a4f831e556",
+          "bytes": 9551
         },
         {
           "path": "docs/OPEN-SPECS-EXPLAINER.md",
           "exists": true,
           "kind": "file",
-          "sha256": "07a4bace115915e10a0a5f3a2ae9969598c904d67c55428cc847ec0a5467705f",
-          "bytes": 13037
+          "sha256": "90b4e23d8f6bef1d2a96119da43643c8795d42dd7c27e62e0fb1e90932c36e99",
+          "bytes": 12281
         },
         {
           "path": "docs/OPEN-SPEC-REVIEW-INTAKE.md",
           "exists": true,
           "kind": "file",
-          "sha256": "14bd3eb923a63133a47a743122054fec7a5a7af4eafe6672f2a58fddda40ec53",
-          "bytes": 4884
+          "sha256": "b76eb946afeb233afff0509dd890c038a2d0db8038169cfd00eb0c20968d04c3",
+          "bytes": 4916
         },
         {
           "path": "docs/PROTECTED-DOCS-PACKAGE.md",
           "exists": true,
           "kind": "file",
-          "sha256": "3aff3dff2ba81f474f2310276101076cb683c6745096bf6f2203fff00b533290",
-          "bytes": 2488
+          "sha256": "42c687a86f29d19130c8fd72a11ead349a04812c287cff2dccb49633b21e0118",
+          "bytes": 2477
         }
       ]
     },
@@ -102,22 +102,22 @@
           "path": "docs/ROADMAP.md",
           "exists": true,
           "kind": "file",
-          "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
-          "bytes": 5712
+          "sha256": "1caad466595f24ad864ea1ac12df9aa99d2c6cc98e4be77ab541d65d9758032e",
+          "bytes": 5728
         },
         {
-          "path": "docs/IMPLEMENTATION-BACKLOG.md",
+          "path": "docs/archive/IMPLEMENTATION-BACKLOG.md",
           "exists": true,
           "kind": "file",
-          "sha256": "f021842bb2e4ea18b4dfa9ff7e27aaf0dcb630d0ef9b2aea24ff43f5569bb596",
-          "bytes": 1488
+          "sha256": "96ceea55b22aee87327d74a2255afbf100efa0db25141f47b38d1b575ca5b901",
+          "bytes": 1605
         },
         {
-          "path": "docs/NEXT-10-IMPLEMENTATION-ISSUES.md",
+          "path": "docs/archive/NEXT-10-IMPLEMENTATION-ISSUES.md",
           "exists": true,
           "kind": "file",
-          "sha256": "92031c9b6f6f1911d636f5e528d36b2c6a3fbb1cd0368a642862b1ac59962683",
-          "bytes": 661
+          "sha256": "74fcc1ee535b7af850a30ad7e48f9cdf190df346a703a01c83262905b8ae3106",
+          "bytes": 778
         }
       ]
     },
@@ -132,8 +132,8 @@
           "path": "docs/REDDIAGENT-ARCHITECTURE.md",
           "exists": true,
           "kind": "file",
-          "sha256": "08fb615d751e186335d42f1baf970ab324ba387b9bc37fa233c9598029e0ff41",
-          "bytes": 6963
+          "sha256": "ca1d69421cf2a9877aa99a7ca578d2eefe6ebe93bcf66f5cfa61e048b62a583b",
+          "bytes": 7056
         },
         {
           "path": "docs/ARCHITECTURE-THESIS.md",
@@ -169,15 +169,15 @@
           "path": "docs/adr/0000-adr-index.md",
           "exists": true,
           "kind": "file",
-          "sha256": "c20f349bc383160a9d809723629d876388ed63386df86fbb1ce6873b3751ce0c",
-          "bytes": 1864
+          "sha256": "8bd18fb19580faede0f5652d05d51433006de364bcd6c83e02acc0c43af8a5b4",
+          "bytes": 1903
         },
         {
           "path": "docs/adr/0001-adl-is-the-canonical-source-of-truth.md",
           "exists": true,
           "kind": "file",
-          "sha256": "6489faeda1ab611e8126a913aa958bf8497ad26b944d3aeb4b4e2d591c5bf45b",
-          "bytes": 1471
+          "sha256": "bf6294565f650b76de7e306ae3677da48474822ba65da99d732405f88e700e96",
+          "bytes": 1510
         },
         {
           "path": "docs/adr/0002-static-compatibility-before-runtime-execution.md",
@@ -234,8 +234,8 @@
           "path": "specs/ADL-v0.1.md",
           "exists": true,
           "kind": "file",
-          "sha256": "f17d48d3070267a91bfb29ed168e3d84d2019ed2657f9f98e420a1c62da06144",
-          "bytes": 2917
+          "sha256": "1879ee950ac77334a68c5748c26dae300919dba1a8730bf7a2370f418d422b37",
+          "bytes": 3222
         },
         {
           "path": "specs/DOMAIN-MODEL-v0.1.md",

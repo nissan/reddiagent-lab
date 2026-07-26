@@ -97,7 +97,7 @@
       "exists": true,
       "issue": 355,
       "path": "tests/fixtures/beta-adl-v02-release-archive-packet.json",
-      "sha256": "eb38d3ddafb2ab0599811c77bd014a0921c4e06cc1cd7a5c715b0557a7572fef",
+      "sha256": "7c430f6f6f956ee5513d8861b1b9a432abe8ca56fb38dae2dd739f0449a5265d",
       "sizeBytes": 12410,
       "status": "pass"
     },

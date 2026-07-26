@@ -150,7 +150,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-        "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+        "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
       },
       {
         "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-ACTIVATION-SMOKE-REPORT.md",

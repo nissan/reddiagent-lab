@@ -148,7 +148,7 @@
       "exists": true,
       "issue": 359,
       "path": "tests/fixtures/beta-surfpool-localnet-rehearsal-packet.json",
-      "sha256": "c1f34f7b729a2ff354fff1fb37383474a50be670d6ee93ef10685149d4661bbc",
+      "sha256": "cfc3f383f5314f9d29b2e0d35cf1ba40ba17837725953e026b4c33cb2518de35",
       "sizeBytes": 15037,
       "status": "pass"
     }

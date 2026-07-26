@@ -153,40 +153,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -225,7 +225,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -243,7 +243,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "ask-nissan-and-hold"
     },
@@ -350,40 +350,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
             "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
             "hashMatches": false,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -422,7 +422,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -440,7 +440,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -543,40 +543,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -615,7 +615,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -633,7 +633,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -736,40 +736,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -808,7 +808,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -826,7 +826,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -929,40 +929,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1001,7 +1001,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1019,7 +1019,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1130,40 +1130,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1202,7 +1202,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1220,7 +1220,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1323,40 +1323,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1395,7 +1395,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": false,
@@ -1413,7 +1413,7 @@
           "toolExecution": "fixture"
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1516,40 +1516,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1588,7 +1588,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1606,7 +1606,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1709,40 +1709,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1781,7 +1781,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1799,7 +1799,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -1902,40 +1902,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -1974,7 +1974,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -1992,7 +1992,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -2123,40 +2123,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -2195,7 +2195,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -2213,7 +2213,7 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     },
@@ -2324,40 +2324,40 @@
           "acceptedResultId": "bounded-external-activation-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611",
+            "expectedSha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44",
             "hashMatches": true,
             "path": "tests/fixtures/beta-bounded-external-service-activation-gate.json",
-            "sha256": "493c219fd0c56c74544040cb3f4cfa7aef7d1e2cdd35b5444dc72ebb8e451611"
+            "sha256": "2c6c4339883d9417aa35949d2acaf5d57faef309020e6e52936f4116626abc44"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "prior297Fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior299Fixture": {
-            "expectedSha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329",
+            "expectedSha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-            "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+            "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
           },
           "priorRiskVerdict": "hold-fail-closed-before-real-external-service-activation",
           "report": {
@@ -2396,7 +2396,7 @@
             "externalProcessPid": null
           }
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "290af941f49bdfc219b14c0f805b25f8b553954e",
         "traceEvalRequirements": {
           "mustRejectCredentialPayloads": true,
@@ -2414,12 +2414,12 @@
           "toolExecution": null
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "ask-nissan-and-hold"
     }
   ],
-  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+  "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
   "status": "pass",
   "summary": {
     "askHoldVerdicts": 12,
