@@ -213,6 +213,7 @@ def test_non_substitutability_matrix_matches_benchmark_doc() -> None:
 WRONG_TYPE_SENTINELS = {
     validator.STR: 12345,
     validator.AMOUNT: "120000",
+    validator.POSITIVE_AMOUNT: "120000",
     validator.STR_LIST: "not-a-list",
     validator.BOOL: "false",
 }
@@ -460,3 +461,61 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def test_nan_cap_cannot_bypass_spend_limit() -> None:
+    receipt = benchmark.receipt_with_fields("delegatedAuthority", maxAmount=float("nan"))
+    receipt["paymentEvidence"]["amount"] = 999999999999
+    receipt["settlementProgramProof"]["amount"] = 999999999999
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.authority.invalid" in codes(verdict)
+
+
+def test_negative_infinity_amounts_reject() -> None:
+    receipt = benchmark.receipt_with_fields("paymentEvidence", amount=float("-inf"))
+    receipt["settlementProgramProof"]["amount"] = float("-inf")
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.payment.invalid" in codes(verdict)
+    assert "rap_receipt.settlement.invalid" in codes(verdict)
+
+
+def test_negative_amounts_reject() -> None:
+    receipt = benchmark.receipt_with_fields("paymentEvidence", amount=-5)
+    receipt["settlementProgramProof"]["amount"] = -5
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.payment.invalid" in codes(verdict)
+
+
+def test_zero_value_payment_rejects_but_zero_cap_is_structural() -> None:
+    receipt = benchmark.receipt_with_fields("paymentEvidence", amount=0)
+    receipt["settlementProgramProof"]["amount"] = 0
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.payment.invalid" in codes(verdict)
+    assert "rap_receipt.settlement.invalid" in codes(verdict)
+    # A zero cap is a valid (if useless) mandate: it must reject via the cap
+    # comparison, not via the type gate.
+    capped = benchmark.receipt_with_fields("delegatedAuthority", maxAmount=0)
+    capped_verdict = validator.validate_receipt(capped)
+    assert capped_verdict["decision"] == "reject"
+    assert "rap_receipt.authority.scope_mismatch" in codes(capped_verdict)
+
+
+def test_cli_rejects_nonfinite_json_constants_without_crashing() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "nan-receipt.json"
+        raw = json.dumps(benchmark.base_receipt())
+        path.write_text(raw.replace("250000", "NaN", 1), encoding="utf-8")
+        result = subprocess.run(
+            [PYTHON, str(ROOT / "scripts" / "rap_receipt_validator.py"), str(path)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        assert result.returncode == 1, result.stderr
+        payload = json.loads(result.stdout)
+        assert payload["verdicts"][0]["decision"] == "reject"
+        assert payload["verdicts"][0]["diagnostics"][0]["code"] == "rap_receipt.envelope.invalid"

@@ -52,6 +52,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -140,9 +141,15 @@ REQUIRED_LAYER_FIELDS: dict[str, tuple[str, ...]] = {
 REQUIRED_REQUEST_FIELDS = ("requestId", "requestHash", "purpose", "toolName", "resourceScope")
 
 # Expected-type kinds for decision-relevant fields. AMOUNT excludes bool
-# explicitly because bool is an int subclass in Python.
+# explicitly because bool is an int subclass in Python. Both amount kinds
+# also enforce the value domain: any comparison against NaN is False, so a
+# NaN cap would silently defeat every cap check, and a negative or zero
+# payment/settlement amount is a value-flow inversion. AMOUNT (caps) must be
+# finite and non-negative; POSITIVE_AMOUNT (money that actually moved) must
+# be finite and strictly positive.
 STR = "string"
 AMOUNT = "amount"
+POSITIVE_AMOUNT = "positive-amount"
 STR_LIST = "string-list"
 BOOL = "boolean"
 
@@ -150,8 +157,8 @@ FIELD_TYPES: dict[str, dict[str, str]] = {
     layer: {field: STR for field in fields} for layer, fields in REQUIRED_LAYER_FIELDS.items()
 }
 FIELD_TYPES["delegatedAuthority"]["maxAmount"] = AMOUNT
-FIELD_TYPES["paymentEvidence"]["amount"] = AMOUNT
-FIELD_TYPES["settlementProgramProof"]["amount"] = AMOUNT
+FIELD_TYPES["paymentEvidence"]["amount"] = POSITIVE_AMOUNT
+FIELD_TYPES["settlementProgramProof"]["amount"] = POSITIVE_AMOUNT
 FIELD_TYPES["replayIdempotency"]["priorPaymentResponseHashes"] = STR_LIST
 FIELD_TYPES["privacyAccounting"]["joinRefs"] = STR_LIST
 FIELD_TYPES["rollbackHold"]["rollbackRequired"] = BOOL
@@ -160,8 +167,12 @@ REQUEST_FIELD_TYPES: dict[str, str] = {field: STR for field in REQUIRED_REQUEST_
 
 
 def _wrong_type(value: Any, kind: str) -> bool:
-    if kind == AMOUNT:
-        return isinstance(value, bool) or not isinstance(value, (int, float))
+    if kind in (AMOUNT, POSITIVE_AMOUNT):
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            return True
+        if not math.isfinite(value):
+            return True
+        return value <= 0 if kind == POSITIVE_AMOUNT else value < 0
     if kind == STR_LIST:
         return not isinstance(value, list) or any(not isinstance(item, str) for item in value)
     if kind == BOOL:
@@ -671,6 +682,10 @@ def validate_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
     return {"decision": decision, "diagnostics": diagnostics}
 
 
+def _reject_json_constant(token: str) -> None:
+    raise ValueError(f"non-finite JSON constant {token!r} is not a valid receipt value")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate RAP receipt JSON files.")
     parser.add_argument("paths", nargs="+", help="Path(s) to receipt JSON files (one receipt object per file).")
@@ -678,7 +693,30 @@ def main() -> int:
 
     verdicts = []
     for raw_path in args.paths:
-        receipt = json.loads(Path(raw_path).read_text(encoding="utf-8"))
+        try:
+            # parse_constant rejects the non-RFC-8259 NaN/Infinity/-Infinity
+            # tokens that Python's json module otherwise accepts silently —
+            # defence in depth on top of the _wrong_type domain check.
+            receipt = json.loads(
+                Path(raw_path).read_text(encoding="utf-8"),
+                parse_constant=_reject_json_constant,
+            )
+        except (OSError, ValueError) as error:
+            verdicts.append(
+                {
+                    "path": raw_path,
+                    "decision": "reject",
+                    "diagnostics": [
+                        {
+                            "code": "rap_receipt.envelope.invalid",
+                            "message": f"Receipt file is not valid strict JSON: {error}",
+                            "layer": "envelope",
+                            "path": raw_path,
+                        }
+                    ],
+                }
+            )
+            continue
         verdict = validate_receipt(receipt)
         verdicts.append({"path": raw_path, **verdict})
     output = {
