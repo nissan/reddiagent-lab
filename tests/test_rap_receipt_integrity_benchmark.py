@@ -15,6 +15,7 @@ FIXTURE = ROOT / "tests" / "fixtures" / "rap-receipt-integrity-benchmark.json"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 import rap_receipt_integrity_benchmark as benchmark  # noqa: E402
+import rap_receipt_validator as validator  # noqa: E402
 
 
 def run_benchmark() -> dict:
@@ -78,6 +79,17 @@ def main() -> int:
             assert diagnostic["code"].startswith("rap_receipt.")
             assert diagnostic["path"].startswith("receipt.")
             assert diagnostic["remediation"]
+
+    # The spec document can never disagree with the implementation: every
+    # threat case's expectedDecision must equal the computed decision, and
+    # every documented diagnostic code must be produced by the validator.
+    assert doc["validatorScript"] == "scripts/rap_receipt_validator.py"
+    for case in doc["threatCases"]:
+        assert isinstance(case["receipt"], dict), case["id"]
+        verdict = validator.validate_receipt(case["receipt"])
+        assert verdict["decision"] == case["expectedDecision"], case["id"]
+        computed_codes = {diag["code"] for diag in verdict["diagnostics"]}
+        assert {diag["code"] for diag in case["diagnostics"]} <= computed_codes, case["id"]
 
     rule = doc["receiptIntegrityRule"]
     assert "x402/payment settlement alone cannot become service success" in rule
