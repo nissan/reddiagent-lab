@@ -38,8 +38,8 @@ Rules:
   fix | feat | docs | chore | research | spike
   (e.g. `fix/signup-fails-for-google-users`).
 - All local work uses git worktrees created one level above the repo root:
-  `/Users/loki/projects/reddiagent-lab-worktree-01`, `-02`, … — never build
-  directly in the primary checkout when parallel work is possible.
+  `../reddiagent-lab-worktree-01`, `-02`, … — never build directly in the
+  primary checkout when parallel work is possible.
 
 ## Attribution
 
