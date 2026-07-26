@@ -1,6 +1,33 @@
 # ReddiAgent Lab Roadmap
 
-_Issue #367. Parent epics: #206, #220._
+_Issue #367. Parent epics: #206, #220. Alignment update 2026-07-26 below._
+
+## 2026-07-26 Alignment Update
+
+Following the maintainer-approved backlog alignment (research:
+`research/2026-07-26-agent-payments-landscape-and-backlog-alignment.md` and
+`research/2026-07-26-microsoft-agent-framework-compatibility.md`), the ladder
+below stands with three amendments and a posture change:
+
+1. **Rung 2 upgrade — Surfpool mainnet-fork rehearsal.** Surfpool (now the
+   default Anchor validator) supports copy-on-read mainnet forking: localnet
+   rehearsal should run against forked mainnet state (real USDC/PYUSD/AUDD
+   mints, live Agent Registry/SATI programs), which de-risks the
+   devnet→mainnet jump more than synthetic fixtures do.
+2. **Rung 3 anchor — PayAI `solana-devnet` facilitator** is the concrete
+   devnet rail for the external tester gate; self-hosted settlement paths
+   (Faremeter, Kora facilitator guide) avoid single-vendor dependency.
+3. **Post-launch re-validation.** Alpenglow fully activates ~Oct 2026;
+   confirmation/finality semantics change after the 2026-08-31 launch, so the
+   rehearsal harness and CI stay live through Q4 for a re-validation pass.
+
+Posture: **substance-first** — the receipt-integrity validator and proof
+implementations validate the spec before the public call for review; the
+2026-08-31 community launch epic tracks the workback. Framework adapter
+ordering: Microsoft Agent Framework first (only GA declarative YAML target),
+Google ADK on payment-convergence watch (x402 Foundation premier member),
+Open Agent Spec mapping tracked through its AGNTCY OASF absorption.
+Development follows `.github/AGENT-DEVELOPMENT-PROCESS.md`.
 
 ## Current Release Ladder
 
