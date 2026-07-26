@@ -38,8 +38,8 @@ repo's evidence is what qualifies the spec as proven.
 
 | Rung | Lab provides | Protocol provides | Honest status |
 |---|---|---|---|
-| 1. ADL v0.2 beta baseline | Canonical spec + schema, conformance checker, Level-3 delegation examples (`charge` intents, 0.10–0.25 USDC caps, `x402-dry-run` rail only) | ADL whitepaper (#611/#613) deriving from the lab spec | Lab: shipped, with a known checker gap — `charge` intents escape Level-3 conformance enforcement (v0.3 candidate). Protocol: whitepaper in progress. |
-| 2. Surfpool/localnet rehearsal | Rehearsal packet (#359), `realValueTransfer=false` guardrails, deterministic fixture accounts | Anchor escrow scaffold exercised on localnet; Quasar reputation phases | Packet built. 2026-07-26 upgrade pending: rehearse against Surfpool's copy-on-read mainnet fork (real USDC/PYUSD/AUDD mints, live Agent Registry/SATI programs) instead of synthetic fixtures. |
+| 1. ADL v0.2 beta baseline | Canonical spec + schema, conformance checker, Level-3 delegation examples (`charge` intents, 0.10–0.25 USDC caps, `x402-dry-run` rail only) | ADL whitepaper (#611/#613) deriving from the lab spec | Lab: shipped, with a known checker gap — `charge` intents escape Level-3 conformance enforcement (v0.3 candidate). Protocol: whitepaper shipped (#611/#613 closed 2026-07-19); ADL v0.2 alignment PR pending. |
+| 2. Surfpool/localnet rehearsal | Rehearsal packet (#359), `realValueTransfer=false` guardrails, deterministic fixture accounts | Anchor escrow scaffold exercised on localnet; Quasar reputation phases | Packet built. Upgrade pending (#394): rehearse against Surfpool's copy-on-read mainnet fork (real USDC/PYUSD/AUDD mints, live Agent Registry/SATI programs) instead of synthetic fixtures. |
 | 3. Devnet external tester gate | Gate definition (#360): devnet-only wallets, allowlisted programs/mints, tiny caps, rollback evidence | Escrow + reputation deployed devnet-only; PayAI `solana-devnet` as the concrete facilitator rail | Gate defined; devnet-gated. No live tester execution is authorized. |
 | 4. RAP x402/AP2 audit-prep alignment | Alignment packet (#361); layer boundaries (x402 / AP2 / MCP / Solana / RAP kept distinct) | Receipt implementation binding payment proof to delivery; AP2 mandate-hash ingestion | Packet built. Receipt-integrity validator (#387, PR #405) is the lab-side acceptance check for the protocol receipts. |
 | 5. External tester MVP packet | Packet built (#365), consuming rungs 2–4 without activating testers | AUDD evidence tasks #632–#635 supplying the devnet payment evidence | Lab packet complete. Protocol evidence tasks open. Still packet/design work — live testers need a later authorizing issue. |
@@ -58,7 +58,7 @@ lab verifies.
 Three efforts currently share one end-to-end story — an AUDD-denominated
 agent payment, escrowed via x402, receipted and reputation-scored under RAP:
 
-- **The 2026-08-31 launch epic (#386, children #387–#401)** works back from
+- **The 2026-08-31 launch epic (#386 and its child issues, #387 onward)** works back from
   the public launch date. Its substance requirement is exactly this story
   working on devnet.
 - **The AUDD grant M1 evidence chain** (protocol milestones #616–#619,
