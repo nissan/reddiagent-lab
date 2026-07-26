@@ -55,7 +55,7 @@
       "exists": true,
       "key": "reviewerWalkthroughSmoke",
       "path": "tests/fixtures/beta-reviewer-walkthrough-smoke.json",
-      "sha256": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+      "sha256": "4245bb0e5eb0407883e7fee6ec1fe8600b27257284426d769321b820d833aee6",
       "sizeBytes": 5685
     },
     {

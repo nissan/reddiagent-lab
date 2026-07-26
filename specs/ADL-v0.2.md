@@ -10,6 +10,13 @@ object with either `inline` text or a `path` reference. A bare string path is no
 valid ADL v0.2. Permission policies are structured capability declarations so
 compatibility checks can fail closed before execution.
 
+## Requirement Keywords
+
+The key words "must", "must not", "should", "should not", and "may" in this
+document are to be interpreted as described in RFC 2119 and RFC 8174. This
+specification uses the lowercase forms with the same normative meaning; the
+keywords carry requirement force regardless of capitalization.
+
 ## Top-Level Shape
 
 ```yaml
@@ -352,7 +359,7 @@ choose the concrete backing type (`file`, `url`, `api`, `database`,
 Every data source carries a source-boundary declaration:
 
 - `sourceRef`: stable typed reference using the same prefix as `type`, such as
-  `file:docs/source.md`, `url:https://docs.example.test/page`,
+  `file:path/to/source.md`, `url:https://docs.example.test/page`,
   `api:catalog`, `database:readonly-warehouse`, `vector-index:docs`, or
   `mcp:approved-docs-search`.
 - `trust`: `approved`, `untrusted`, or `unknown`.
@@ -389,7 +396,7 @@ harness:
     - id: project_docs
       type: file
       description: Reviewed local project documentation.
-      sourceRef: file:docs/ADL-v0.2.md
+      sourceRef: file:specs/ADL-v0.2.md
       path: specs/ADL-v0.2.md
       trust: approved
       citationRequired: true
@@ -463,10 +470,8 @@ carries:
 - `appliesTo`: scoped target for the gate, with `scope` set to `task`,
   `output`, `tool`, `source`, `budget`, `receipt`, or `human-review`, and an
   optional `targetRef`.
-- `evidence`: required evidence reference and JSON Schema. Missing evidence
-  for a required gate uses the fail-closed default status. Required gate
-  results must include the declared evidence reference; missing or mismatched
-  evidence references do not satisfy completion.
+- `evidence`: required evidence reference and JSON Schema for the gate
+  result.
 - `retryable`: whether the harness may retry after this gate fails.
 - `onFailure`: completion behavior. Required gates must use
   `completion: block` and `defaultStatus: fail`; warning gates must use
@@ -474,16 +479,15 @@ carries:
 
 Completion is computed from gate results, not from dry-run transport success.
 If any required gate is missing, `fail`, or otherwise not `pass`, the task
-completion status is `fail`. Non-required gates remain visible in traces and
-receipts but cannot block completion. Existing local dry-run semantics remain:
-`completion.transportStatus = pass` only means deterministic validation and
-reporting completed; `completion.requiredGateStatus` and `completion.status`
-carry the task completion result.
-
+completion status is `fail`.
 Missing evidence for a required gate uses the fail-closed default status.
-Required gate results must include the declared evidence reference.
+Required gate results must include the declared evidence reference; missing or
+mismatched evidence references do not satisfy completion.
 Non-required gates remain visible in traces and receipts but cannot block completion.
-`completion.transportStatus = pass` only means deterministic validation and reporting completed.
+Existing local dry-run semantics remain:
+`completion.transportStatus = pass` only means deterministic validation and reporting completed;
+`completion.requiredGateStatus` and `completion.status` carry the task
+completion result.
 
 Canonical required gate example:
 
@@ -706,7 +710,6 @@ the missing event names, for example
 `harness.observability.events.adapter.loss.reported`, rather than silently
 passing a generic `harness.observability.events` field check.
 
-`harness.recovery` declares disable and restart controls. Rollback uses the
 `harness.recovery` declares disable and restart controls. Rollback uses the
 typed `rollback.mode` vocabulary: `none`, `dry-run-disable`,
 `previous-version`, or `operator-reviewed`.

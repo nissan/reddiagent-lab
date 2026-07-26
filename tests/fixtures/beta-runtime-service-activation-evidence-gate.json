@@ -51,36 +51,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -151,7 +151,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -166,7 +166,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "hold-for-live-run"
     },
@@ -183,36 +183,36 @@
           "reason": "Operator requested dry-run rollback verification before any live run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -283,7 +283,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -298,7 +298,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "rollback"
     },
@@ -506,7 +506,7 @@
         },
         "runEvidenceId": "reddiagent-beta-0-runtime-service-activation-evidence-gate",
         "selectedRuntimePath": {},
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -521,7 +521,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -543,36 +543,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -643,7 +643,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -658,7 +658,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -680,36 +680,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -780,7 +780,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -795,7 +795,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -817,36 +817,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -917,7 +917,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -932,7 +932,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -954,36 +954,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1049,7 +1049,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1064,7 +1064,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1098,36 +1098,36 @@
           "reason": "Start the service now."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1198,7 +1198,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1213,7 +1213,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1243,36 +1243,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1343,7 +1343,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1358,7 +1358,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1380,36 +1380,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1480,7 +1480,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "missing",
           "requiredGateStatus": "missing",
@@ -1495,7 +1495,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1517,36 +1517,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1617,7 +1617,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1632,7 +1632,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1658,36 +1658,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1758,7 +1758,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1773,7 +1773,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1819,36 +1819,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -1919,7 +1919,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -1934,7 +1934,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "reject"
     },
@@ -1964,36 +1964,36 @@
           "reason": "Local deterministic evidence is complete; live service activation remains a separate bounded run."
         },
         "approvalPacketEvidence": {
-          "acceptedApprovalPacketSha256": "75084a9ab6609a0e192b46c04e5b2430566eb06f3cf67e1b74db1e99722704e6",
+          "acceptedApprovalPacketSha256": "0eade40716f018ad60a014c0af2041707647ff6c88d28e0b8c3e974b9993fc45",
           "acceptedResultId": "runtime-service-approval-packet-ready-pass",
           "acceptedVerdict": "approval-packet-ready",
           "fixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "sourceEvidenceHashes": {
-            "acceptedActivationEvidenceSha256": "271d03ca49c316660413bb349f5b9f98ad54a6569a783c9428ab981ce034f7c0",
-            "acceptedCanaryResultSha256": "ad8ac633584a963c7ad84a484d552b68abc42b77e4c7b97a4591628acd37563f",
+            "acceptedActivationEvidenceSha256": "d43f6622c4dfbb561d4fde3f0c4bb6c54d615fb3e923e864b168d8540c4fa3e6",
+            "acceptedCanaryResultSha256": "a9e8c5622190188cb9be2403c434cf5813140ac2bb6efa4bce46f75c8a41bb7b",
             "acceptedE2eSmokeSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
             "activationEvidenceFixture": {
-              "expectedSha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562",
+              "expectedSha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-evidence-gate.json",
-              "sha256": "753ac22ef6ab37896eaa266ba0103a886972e1f801f024e51e4ec99e3411b562"
+              "sha256": "e6132e43812dce8328b889a14fecf5bdd44f12d924e1792f38b17a2bc946ec2b"
             },
             "canaryFixture": {
-              "expectedSha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6",
+              "expectedSha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6",
               "hashMatches": true,
               "path": "tests/fixtures/beta-runtime-activation-canary-runner.json",
-              "sha256": "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+              "sha256": "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
             },
             "e2eSmokeFixture": {
-              "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+              "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
               "hashMatches": true,
               "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-              "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+              "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
             }
           }
         },
@@ -2064,7 +2064,7 @@
           "reviewedCommand": "python scripts/run_local_agent.py examples/simple-agent.yaml",
           "toolExecution": null
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "traceEvalSummary": {
           "completionStatus": "pass",
           "requiredGateStatus": "pass",
@@ -2079,12 +2079,12 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+  "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 12,

@@ -28,7 +28,7 @@ Start with the product and architecture spine, then use these ADRs when a decisi
 - `docs/REDDIAGENT-VISION-ROADMAP.md`
 - `docs/REDDIAGENT-ARCHITECTURE.md`
 - `docs/ARCHITECTURE-THESIS.md`
-- `specs/ADL-v0.1.md`
+- `specs/ADL-v0.2.md` (canonical; v0.1 retained for history)
 - `specs/HARNESS-LIFECYCLE-v0.1.md`
 - `specs/PROVIDER-COMPATIBILITY-REPORT-v0.1.md`
 - `specs/RAP-BRIDGE-v0.1.md`

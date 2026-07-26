@@ -10,7 +10,7 @@ ReddiAgent is a portable agent definition and harness review layer. Its center o
 flowchart TB
     builder["Builder / reviewer"]
     prosumer["Prosumer Builder and docs"]
-    adl["ADL source of truth<br/>specs/ADL-v0.1.md"]
+    adl["ADL source of truth<br/>specs/ADL-v0.2.md"]
     validator["Validation and guidance<br/>specs/VALIDATION-GUIDANCE-v0.1.md"]
     harness["Harness lifecycle<br/>specs/HARNESS-LIFECYCLE-v0.1.md"]
     policies["Policies, eval gates, sources, memory<br/>specs/SECURITY-PERMISSIONS-v0.1.md<br/>specs/EVAL-GATES-v0.1.md"]
@@ -56,7 +56,7 @@ The docs layer is not an execution surface. It points readers toward local valid
 
 ### 2. ADL as Source of Truth
 
-`specs/ADL-v0.1.md` and `specs/ADL-v0.1.schema.json` are the canonical definition layer. ADL describes:
+`specs/ADL-v0.2.md` and `specs/ADL-v0.2.schema.json` are the canonical definition layer (ADL v0.2 is canonical; v0.1 is retained for history). ADL describes:
 
 - model requirements and provider preferences;
 - harness instructions, tools, functions, skills, data sources, memory, policies, eval gates, runtime, deployment, observability, and recovery;
@@ -115,7 +115,7 @@ Mainnet deployment or runs remain explicitly unapproved.
 - `docs/adr/0000-adr-index.md`
 - `docs/ARCHITECTURE-THESIS.md`
 - `specs/DOMAIN-MODEL-v0.1.md`
-- `specs/ADL-v0.1.md`
+- `specs/ADL-v0.2.md` (canonical; v0.1 retained for history)
 - `specs/HARNESS-LIFECYCLE-v0.1.md`
 - `specs/RUNTIME-DEPLOYMENT-v0.1.md`
 - `specs/PROVIDER-COMPATIBILITY-REPORT-v0.1.md`

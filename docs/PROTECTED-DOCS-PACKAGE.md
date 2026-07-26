@@ -23,7 +23,7 @@ Use a simple shared password or equivalent host-level access control selected ou
 
 Recommended partner/advisor flow:
 
-1. Nissan approves the hosting location and access approach.
+1. The project maintainer approves the hosting location and access approach.
 2. The static package is deployed behind that host-level protection.
 3. The URL and password/access grant are shared out-of-band.
 4. Rotation happens in the hosting/access-control layer, not in repo docs.
@@ -44,7 +44,7 @@ These controls reduce crawler exposure but do not replace access control.
 Generate the package manifest locally:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/protected_docs_package.py
+python3 scripts/protected_docs_package.py
 ```
 
 The manifest is guarded by `tests/test_protected_docs_package.py` and fixture `tests/fixtures/protected-docs-package.json`.
@@ -64,4 +64,4 @@ Current package work is static review only:
 - `universalPasswordSelected=false`
 - `writesRuntimeCode=false`
 
-Deployment, public publishing, and password selection require a separate Nissan approval gate. Mainnet deployment or mainnet runs remain out of scope.
+Deployment, public publishing, and password selection require a separate project-maintainer approval gate. Mainnet deployment or mainnet runs remain out of scope.

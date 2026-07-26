@@ -48,7 +48,7 @@
       "exists": true,
       "key": "onboardingQuickstart",
       "path": "tests/fixtures/beta-onboarding-quickstart.json",
-      "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+      "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
       "sizeBytes": 131286
     },
     {
@@ -76,7 +76,7 @@
       "exists": true,
       "key": "reviewerChecklist",
       "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-      "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+      "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
       "sizeBytes": 65731
     },
     {

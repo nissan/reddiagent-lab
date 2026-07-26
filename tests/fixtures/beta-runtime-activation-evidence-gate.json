@@ -125,10 +125,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "pass",
@@ -230,10 +230,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "pass",
@@ -565,7 +565,7 @@
           "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
           "hashMatches": false,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -679,7 +679,7 @@
           "expectedSha256": "c491d46db1ed8d78101bb94dcf5610def2381ee7cd3df5ec64642fce5d7ea0ee",
           "hashMatches": false,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -790,10 +790,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -900,10 +900,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -1010,10 +1010,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -1136,10 +1136,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -1250,10 +1250,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -1404,10 +1404,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",
@@ -1518,10 +1518,10 @@
         "acceptedResultId": "e2e-acceptance-smoke-accept-pass",
         "acceptedVerdict": "accept",
         "fixture": {
-          "expectedSha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982",
+          "expectedSha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7",
           "hashMatches": true,
           "path": "tests/fixtures/beta-e2e-acceptance-smoke.json",
-          "sha256": "58c642b1d7cd4cc7eecb1c3126ab2f0ee09b989babfc0b6a8359668c5c6d9982"
+          "sha256": "5f781074990e2cf6cbb1636b13fbff3a64dfc68f0ba40118785a580656f06ca7"
         }
       },
       "status": "fail",

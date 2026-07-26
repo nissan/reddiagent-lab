@@ -38,9 +38,9 @@ The validation formatter turns every JSON Schema failure into a builder guidance
 
 CLI usage:
 
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py --format raw examples/invalid/missing-instructions.yaml
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py --format json examples/invalid/missing-instructions.yaml
+    python3 scripts/validate_examples.py
+    python3 scripts/validate_examples.py --format raw examples/invalid/missing-instructions.yaml
+    python3 scripts/validate_examples.py --format json examples/invalid/missing-instructions.yaml
 
 Default output is builder-facing text. Raw schema output remains available for implementers, and JSON output is intended for future UI/CI integration.
 

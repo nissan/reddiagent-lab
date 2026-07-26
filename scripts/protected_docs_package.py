@@ -76,8 +76,8 @@ CONTENT_SECTIONS = [
         "label": "Roadmap and backlog",
         "required": [
             "docs/ROADMAP.md",
-            "docs/IMPLEMENTATION-BACKLOG.md",
-            "docs/NEXT-10-IMPLEMENTATION-ISSUES.md",
+            "docs/archive/IMPLEMENTATION-BACKLOG.md",
+            "docs/archive/NEXT-10-IMPLEMENTATION-ISSUES.md",
         ],
     },
     {

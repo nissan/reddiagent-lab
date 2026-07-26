@@ -24,7 +24,7 @@ _Last updated: 2026-07-26 11:05 AEST by Loki_
 
 ## Key Files
 
-- Project plan: docs/ULTRA-PLAN.md
+- Project plan (archived): docs/archive/ULTRA-PLAN.md — superseded by docs/ROADMAP.md
 - Architecture thesis: docs/ARCHITECTURE-THESIS.md
 - Open specs explainer: docs/OPEN-SPECS-EXPLAINER.md
 - Open specs review intake: docs/OPEN-SPEC-REVIEW-INTAKE.md

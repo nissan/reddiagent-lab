@@ -1,3 +1,5 @@
+> **Archived.** This planning document is superseded; current sequencing lives in [docs/ROADMAP.md](../ROADMAP.md).
+
 # Implementation Backlog
 
 _Loop 62. Anchor issue: #65._

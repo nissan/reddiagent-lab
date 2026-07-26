@@ -48,7 +48,7 @@ bash tests/smoke-validation.sh
 For a full local review pass, also run:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
+python3 -m py_compile scripts/*.py tests/*.py
 ```
 
 ## Review Outcome

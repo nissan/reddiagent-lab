@@ -145,7 +145,7 @@ def main() -> int:
     assert packet_doc["approvalPacketId"] == "reddiagent-beta-0-runtime-service-activation-approval-packet"
     assert packet_doc["sourceEvidenceHashes"]["canaryFixture"]["path"] == "tests/fixtures/beta-runtime-activation-canary-runner.json"
     assert packet_doc["sourceEvidenceHashes"]["canaryFixture"]["hashMatches"] is True
-    assert packet_doc["sourceEvidenceHashes"]["canaryFixture"]["sha256"] == "370a0fc8c85294d1b7f6d16ea30687d2b63f01a069de27104e6d4471da0e8cd6"
+    assert packet_doc["sourceEvidenceHashes"]["canaryFixture"]["sha256"] == "228a36887aefa75d9947e76c636c328c8aa8495b474f3266b56af563604ca7e6"
     assert packet_doc["sourceEvidenceHashes"]["activationEvidenceFixture"]["hashMatches"] is True
     assert packet_doc["sourceEvidenceHashes"]["e2eSmokeFixture"]["hashMatches"] is True
     assert packet_doc["selectedRuntimePath"] == {

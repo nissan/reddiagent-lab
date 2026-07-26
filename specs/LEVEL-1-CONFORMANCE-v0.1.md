@@ -22,5 +22,5 @@ Payment-capable agents remain Level 0 plus payment dry-run receipt until real po
 
 ## Required Command
 
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_level1.py
+    python3 tests/test_level1.py
 

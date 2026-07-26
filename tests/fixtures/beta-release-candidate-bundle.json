@@ -39,11 +39,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -247,7 +247,7 @@
           "hashMatches": false,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -403,7 +403,7 @@
           "hashMatches": false,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -616,7 +616,7 @@
         },
         {
           "exists": false,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": false,
           "key": "demoPlan",
           "path": "docs/MISSING-PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
@@ -841,11 +841,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -1041,11 +1041,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -1258,11 +1258,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -1471,11 +1471,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -1684,11 +1684,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -1909,11 +1909,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,
@@ -2126,11 +2126,11 @@
         },
         {
           "exists": true,
-          "expectedSha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30",
+          "expectedSha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564",
           "hashMatches": true,
           "key": "demoPlan",
           "path": "docs/PUBLIC-DEMO-WALKTHROUGH-VIDEO.md",
-          "sha256": "9d1740042e1e6b62f9d1e44d7265ee8717736742a14347a9cee672cc5b0ded30"
+          "sha256": "477456a7002fb436275b7a7e4b6cca8fe1fbc4196070ad2327fad7cfc93d4564"
         },
         {
           "exists": true,

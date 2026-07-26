@@ -69,12 +69,12 @@ Issue #206 turns the repo's accumulated technical work into a protected, human-r
 2. **Architecture diagram and explainer:** `docs/REDDIAGENT-ARCHITECTURE.md` gives the high-level view of ADL, harness, compatibility reports, runtime boundaries, and RAP bridge.
 3. **Open specs explainer:** `docs/OPEN-SPECS-EXPLAINER.md` gives builders and public-review readers a map for ADL, domain model, provider mappings, eval evidence, conformance, payment/RAP bridge, export targets, Vercel eve, starter manifests, and MCP handoff.
 4. **ADR register:** `docs/adr/0000-adr-index.md` records initial decisions covering ADL canonicality, report-only compatibility, static guardrails, and payment/runtime boundaries.
-5. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until Nissan approves location and access controls.
-6. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/ROADMAP.md`, `docs/IMPLEMENTATION-BACKLOG.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md`; the active sequence is #365 external tester MVP packet, then #366 audit-readiness freeze/evidence, then official audit/go-live readiness when separately approved.
+5. **Protected docs package:** `docs/PROTECTED-DOCS-PACKAGE.md` and `scripts/protected_docs_package.py` prepare a static, noindex package manifest for review, but do not publicly deploy, publish, or select/store a password until the project maintainer approves location and access controls.
+6. **Post-docs implementation queue:** resume issue-backed ReddiAgent/RAP backlog work based on `docs/ROADMAP.md` (earlier planning snapshots are archived under `docs/archive/`); the active sequence is #365 external tester MVP packet, then #366 audit-readiness freeze/evidence, then official audit/go-live readiness when separately approved.
 
 ## Deliberately Out of Scope Until Guardrails Change
 
-- Public docs publication or deployment without Nissan approval for location and access.
+- Public docs publication or deployment without the project maintainer's approval for location and access.
 - Mainnet deployment or mainnet runs.
 - Live wallet, facilitator, payment rail, settlement, or unrestricted spend.
 - Live MCP server resolution/invocation outside an explicitly approved lane.
@@ -95,7 +95,7 @@ Start with this spine, then move outward:
 - `docs/adr/0000-adr-index.md` for durable architectural decisions and rationale.
 - `docs/PROTECTED-DOCS-PACKAGE.md` for protected package access, noindex, and deployment guardrails.
 - `docs/ARCHITECTURE-THESIS.md` for the model/harness/economic-layer separation.
-- `specs/ADL-v0.1.md` for the canonical definition language.
+- `specs/ADL-v0.2.md` for the canonical definition language (v0.1 is superseded and retained for history).
 - `docs/PROSUMER-MVP.md` and `docs/BUILDER-JOURNEY.md` for the builder flow.
-- `docs/ROADMAP.md`, `docs/IMPLEMENTATION-BACKLOG.md`, and `docs/NEXT-10-IMPLEMENTATION-ISSUES.md` for implementation sequencing.
+- `docs/ROADMAP.md` for implementation sequencing.
 - `tests/*-REPORT.md` files for deterministic evidence behind each compatibility or readiness surface.

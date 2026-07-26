@@ -156,7 +156,7 @@
     "expectedArtifactHashes": [
       {
         "path": "tests/fixtures/beta-runtime-service-wrapper-operator-run-package.json",
-        "sha256": "f6d989a17af80e5919bcf57d9e4c4357459dee42aecebb0bdfa7b26c3d6a3329"
+        "sha256": "9795a8758d63d7a4c3faf6757d35eb4d7b4d9f8487cf7c1dec6270b2b59b20ba"
       },
       {
         "path": "tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md",

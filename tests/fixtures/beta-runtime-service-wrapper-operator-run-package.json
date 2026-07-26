@@ -126,28 +126,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -198,7 +198,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -216,7 +216,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "hold"
     },
@@ -299,28 +299,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -371,7 +371,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -389,7 +389,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "pass",
       "verdict": "rollback"
     },
@@ -481,28 +481,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
             "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
             "hashMatches": false,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -553,7 +553,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -571,7 +571,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -671,28 +671,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
             "expectedSha256": "9c99e15befb51cb8a5df3f6fd5bc53f9498a72e8811a972db7aeab9d13cffc5d",
             "hashMatches": false,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -743,7 +743,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -761,7 +761,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -849,28 +849,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -921,7 +921,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -939,7 +939,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1027,28 +1027,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -1099,7 +1099,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1117,7 +1117,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1229,28 +1229,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -1301,7 +1301,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1319,7 +1319,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1411,28 +1411,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -1483,7 +1483,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1501,7 +1501,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1589,28 +1589,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -1661,7 +1661,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "missing",
@@ -1679,7 +1679,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1771,28 +1771,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -1843,7 +1843,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -1861,7 +1861,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -1953,28 +1953,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -2025,7 +2025,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -2043,7 +2043,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2163,28 +2163,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -2235,7 +2235,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -2253,7 +2253,7 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     },
@@ -2345,28 +2345,28 @@
           "acceptedResultId": "service-wrapper-hold-pass",
           "acceptedVerdict": "hold",
           "approvalPacketFixture": {
-            "expectedSha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c",
+            "expectedSha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-approval-packet.json",
-            "sha256": "72c4e2e4ce5d250567ac808c5f117951aa81470bfaf8ecb1467a07555f4d782c"
+            "sha256": "e86cc4fbb030521c969e7bb833a96c14ad1baf2bf9242e516065b3666dccd452"
           },
           "fixture": {
-            "expectedSha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090",
+            "expectedSha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-wrapper-activation-smoke.json",
-            "sha256": "f4ab64d517e5fa8a84e41ea54b582f6d24afb254862b37b7b46cdf0a615fb090"
+            "sha256": "31879c0a12a9a654118e80ca7369e8298dca5a70d449ae62751beb7a323e1a95"
           },
           "prior293Fixture": {
-            "expectedSha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882",
+            "expectedSha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-evidence-gate.json",
-            "sha256": "b58734e78db834b82d5d9041cc3087039f74d5557b59cc933141f562fe879882"
+            "sha256": "f757357a79cf253ea238e6e0fda286912da0bb02da3a362e7bb253607a133524"
           },
           "prior295Fixture": {
-            "expectedSha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7",
+            "expectedSha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61",
             "hashMatches": true,
             "path": "tests/fixtures/beta-runtime-service-activation-live-run-gate.json",
-            "sha256": "14ae0fceae6fdc40bcf6bf23f367acafa370a37dfd1af8b48f55d1dfb13e26c7"
+            "sha256": "49d21d28a4b7575ab3263983a97539082dd6812be30084ec2ac834f727d96d61"
           },
           "priorRiskVerdict": "hold-before-external-service-mutation",
           "report": {
@@ -2417,7 +2417,7 @@
           },
           "storage": "ephemeral-local-json"
         },
-        "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+        "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
         "sourceMergeCommit": "e3ba3b4d51145a45f70e5bc0785f97665bc9cbdb",
         "traceEvalSummary": {
           "completionStatus": "pass",
@@ -2435,12 +2435,12 @@
           ]
         }
       },
-      "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+      "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
       "status": "fail",
       "verdict": "hold"
     }
   ],
-  "sourceCommit": "0a8ead7dd9c087496be242b165f374d51c3372c9",
+  "sourceCommit": "4fa586b5b126d115ed5602e614c1139c01a6031e",
   "status": "pass",
   "summary": {
     "failClosedScenarios": 11,

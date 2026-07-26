@@ -5,7 +5,7 @@
     "issue": 347,
     "mode": "adl-v02-local-beta-accepted-baseline-handoff-packet",
     "path": "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json",
-    "sha256": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
+    "sha256": "27387879d49e990b018a7d449a4a68b6e987464c262c464b6941234390e33e73",
     "sizeBytes": 8214,
     "status": "pass"
   },
@@ -49,14 +49,14 @@
   "artifactHashes": {
     "examples/invalid/adl-v0.2-x402-missing-authority.yaml": "eb4387034bcd29b76ac561bd99bbf59986f7078ed6bd74b404419a85236deca8",
     "examples/v0.2/memory-observability-agent.yaml": "ae0659fae7e216b6f4e252bd7e5a88de3f08168c45234931a129effdba3a2499",
-    "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
-    "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
-    "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
-    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
-    "tests/fixtures/beta-adl-v02-release-candidate-gate.json": "378932dc7cc9c48eb7e7c5b15a68e8f25a330fba14bebad844e309ff593c27b0",
-    "tests/fixtures/beta-adl-v02-release-signoff-packet.json": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+    "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json": "27387879d49e990b018a7d449a4a68b6e987464c262c464b6941234390e33e73",
+    "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json": "3f6abeaaa116d8ee88991659d0daf4e36c3a90348775101f075fad94328e4c4f",
+    "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json": "4925690506e7eb6f829f868c8314aee5a64af8220153cc6cf6142bcbf26fa513",
+    "tests/fixtures/beta-adl-v02-local-readiness-gate.json": "760b4ef16370e0c21c4fc03333276bd8d88dda78886c316397e9391289244ffe",
+    "tests/fixtures/beta-adl-v02-release-candidate-gate.json": "d2da79826d73759ba3a859b1ba4018db407feb8b55b1b16bc5a59847c2ee118c",
+    "tests/fixtures/beta-adl-v02-release-signoff-packet.json": "763ce8e993a2988a5e0918817573b5a0541a2ad0dff02c5bbfb3e04dd6ee9682",
     "tests/fixtures/beta-release-handoff.json": "83bb49d081367800ea24a7dbf2587550291099f8045f735dd67ff5e2588db8dd",
-    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+    "tests/fixtures/beta-reviewer-walkthrough-smoke.json": "4245bb0e5eb0407883e7fee6ec1fe8600b27257284426d769321b820d833aee6",
     "tests/fixtures/local-executable-runtime-prototype.json": "d4519f22a1542c1a005318d68f411e5f96d1ec79636033d82c0a81d1cf67d1d3"
   },
   "baselineAcceptanceSmoke": {
@@ -65,7 +65,7 @@
     "issue": 345,
     "mode": "adl-v02-local-beta-baseline-acceptance-smoke",
     "path": "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json",
-    "sha256": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
+    "sha256": "3f6abeaaa116d8ee88991659d0daf4e36c3a90348775101f075fad94328e4c4f",
     "sizeBytes": 7179,
     "status": "pass"
   },
@@ -133,7 +133,7 @@
       "key": "reviewerWalkthroughSmoke",
       "name": "reviewerWalkthroughSmoke",
       "path": "tests/fixtures/beta-reviewer-walkthrough-smoke.json",
-      "sha256": "5086e1121e7ac967471bb2618ea9edc7b847ee119b7fe4b804b58418ebde2d19",
+      "sha256": "4245bb0e5eb0407883e7fee6ec1fe8600b27257284426d769321b820d833aee6",
       "sizeBytes": 5685
     },
     {
@@ -142,7 +142,7 @@
       "key": "readinessGate",
       "name": "readinessGate",
       "path": "tests/fixtures/beta-adl-v02-local-readiness-gate.json",
-      "sha256": "56534c3e8baed48dd5044c36e2571f53d6b2d5e1b83aab1532ca1db419b00c03",
+      "sha256": "760b4ef16370e0c21c4fc03333276bd8d88dda78886c316397e9391289244ffe",
       "sizeBytes": 5225
     },
     {
@@ -151,7 +151,7 @@
       "key": "baselinePromotionPacket",
       "name": "baselinePromotionPacket",
       "path": "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json",
-      "sha256": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
+      "sha256": "4925690506e7eb6f829f868c8314aee5a64af8220153cc6cf6142bcbf26fa513",
       "sizeBytes": 6748
     },
     {
@@ -160,7 +160,7 @@
       "key": "baselineAcceptanceSmoke",
       "name": "baselineAcceptanceSmoke",
       "path": "tests/fixtures/beta-adl-v02-baseline-acceptance-smoke.json",
-      "sha256": "626c2e02b52d66591a90083429b9a68b98a565be34ce5c0c2e48e6399c1f5156",
+      "sha256": "3f6abeaaa116d8ee88991659d0daf4e36c3a90348775101f075fad94328e4c4f",
       "sizeBytes": 7179
     },
     {
@@ -169,7 +169,7 @@
       "key": "acceptedBaselineHandoffPacket",
       "name": "acceptedBaselineHandoffPacket",
       "path": "tests/fixtures/beta-adl-v02-accepted-baseline-handoff-packet.json",
-      "sha256": "c39bf9aa725c6b0137270d8d7dd26d446bc64f3a52b9628f01199c431ca09431",
+      "sha256": "27387879d49e990b018a7d449a4a68b6e987464c262c464b6941234390e33e73",
       "sizeBytes": 8214
     },
     {
@@ -178,7 +178,7 @@
       "key": "releaseCandidateGate",
       "name": "releaseCandidateGate",
       "path": "tests/fixtures/beta-adl-v02-release-candidate-gate.json",
-      "sha256": "378932dc7cc9c48eb7e7c5b15a68e8f25a330fba14bebad844e309ff593c27b0",
+      "sha256": "d2da79826d73759ba3a859b1ba4018db407feb8b55b1b16bc5a59847c2ee118c",
       "sizeBytes": 9312
     },
     {
@@ -187,7 +187,7 @@
       "key": "releaseSignoffPacket",
       "name": "releaseSignoffPacket",
       "path": "tests/fixtures/beta-adl-v02-release-signoff-packet.json",
-      "sha256": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+      "sha256": "763ce8e993a2988a5e0918817573b5a0541a2ad0dff02c5bbfb3e04dd6ee9682",
       "sizeBytes": 10280
     }
   ],
@@ -232,7 +232,7 @@
     "mode": "adl-v02-local-beta-release-signoff-packet",
     "path": "tests/fixtures/beta-adl-v02-release-signoff-packet.json",
     "releaseSignoffPacketId": "reddiagent-beta-0-adl-v02-local-release-signoff-packet",
-    "sha256": "72f9312f105a5e4b6819f2e6e45b6df59ec485dbb7cff1289be89c9208c7b450",
+    "sha256": "763ce8e993a2988a5e0918817573b5a0541a2ad0dff02c5bbfb3e04dd6ee9682",
     "sizeBytes": 10280,
     "status": "pass"
   },
@@ -244,7 +244,7 @@
     "mode": "adl-v02-local-beta-baseline-promotion-packet",
     "path": "tests/fixtures/beta-adl-v02-baseline-promotion-packet.json",
     "promotionPacketId": "reddiagent-beta-0-adl-v02-local-baseline-promotion-packet",
-    "sha256": "eb7bbfb8cee6eb6942fc832d7718f98df101fcce9678379cb050474ba97d546b",
+    "sha256": "4925690506e7eb6f829f868c8314aee5a64af8220153cc6cf6142bcbf26fa513",
     "sizeBytes": 6748,
     "status": "pass"
   }

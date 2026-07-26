@@ -13,8 +13,8 @@ Relevant references:
 - `docs/REDDIAGENT-VISION-ROADMAP.md`
 - `docs/REDDIAGENT-ARCHITECTURE.md`
 - `docs/ARCHITECTURE-THESIS.md`
-- `specs/ADL-v0.1.md`
-- `specs/ADL-v0.1.schema.json`
+- `specs/ADL-v0.2.md` (canonical; v0.1 retained for history)
+- `specs/ADL-v0.2.schema.json`
 
 ## Decision
 

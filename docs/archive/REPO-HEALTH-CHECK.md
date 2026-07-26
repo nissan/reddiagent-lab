@@ -1,3 +1,5 @@
+> **Archived.** This planning document is superseded; current sequencing lives in [docs/ROADMAP.md](../ROADMAP.md).
+
 # Repo Health Check
 
 _Loop 82._
@@ -13,5 +15,5 @@ _Loop 82._
 ## Known Cleanup
 
 - Some duplicate issues were created during interrupted Telegram-driven loops and closed.
-- Namespace remains reddinft until Nissan chooses otherwise.
+- Namespace remains reddinft until the project maintainer chooses otherwise.
 

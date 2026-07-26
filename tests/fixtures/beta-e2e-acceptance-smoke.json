@@ -62,10 +62,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "f5332dd0911dd1c5905fcf65b7e3444a30bd74bf061a05d679ac395b74965ad7",
@@ -108,10 +108,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -163,10 +163,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
@@ -209,10 +209,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -264,10 +264,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "93b8dd5d8163c383f30c59fa252687dfdbee622f8fc38fd2adb533e797c22eee",
@@ -474,7 +474,7 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": false,
         "path": "tests/fixtures/missing-beta-reviewer-acceptance-checklist.json",
         "sha256": null
@@ -640,7 +640,7 @@
         "expectedSha256": "e8931753248cfc186053cabc5c9fcb908f77808e86e5ad544d13d212204d9b80",
         "hashMatches": false,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -695,7 +695,7 @@
         "expectedSha256": "514454106df5af0c07dc0644e79041df40e2741d774d539b3158a184bc0542be",
         "hashMatches": false,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "e6886fb29d9fbf6382f8cedd50659ae499e48154cc77d0e2af15f3df8be38cec",
@@ -750,7 +750,7 @@
         "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "hashMatches": false,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -802,10 +802,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "171a6b5cdc4d9a40b781c15e78637a1055d4ef7ec61ce6b77a329dfc86b02431",
@@ -855,10 +855,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -910,10 +910,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "f4e2c31f3c2fe187f46ad379756172103fc613e225ff15a1bccbb03f9921edd2",
@@ -982,10 +982,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1037,10 +1037,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
@@ -1092,10 +1092,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1147,10 +1147,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "51859663511987e9f411a3f208ad7a835620dbc80faf9f7809b4dc549a74d9fa",
@@ -1226,10 +1226,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1281,10 +1281,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
@@ -1364,10 +1364,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",
@@ -1419,10 +1419,10 @@
         "walletAccess": false
       },
       "checklistFixture": {
-        "expectedSha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff",
+        "expectedSha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b",
         "hashMatches": true,
         "path": "tests/fixtures/beta-reviewer-acceptance-checklist.json",
-        "sha256": "d600d4125571394d3ed52102f7651c76277c09f627b101c30253f1c94f94beff"
+        "sha256": "0877568af1f5161119ddbc8c375597ee6b7e6ca9d7c0e9468c6f60a5d0069e2b"
       },
       "checklistId": "reddiagent-beta-0-local-reviewer-acceptance-checklist",
       "evidenceSha256": "ab89882e849614406b3a3943f147db72a58d26277ed7ec956f99f54afc6f6f51",
@@ -1474,10 +1474,10 @@
         "verdict": "accept"
       },
       "quickstartFixture": {
-        "expectedSha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc",
+        "expectedSha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8",
         "hashMatches": true,
         "path": "tests/fixtures/beta-onboarding-quickstart.json",
-        "sha256": "ab6e005ff079e337d4c0d8f89f965fc438c115ff1f60c4adc86b0360d7c0e4cc"
+        "sha256": "01595dfb5f868f62feb406dd5303968093f8ace354fe74dae1b525de3319dff8"
       },
       "quickstartId": "reddiagent-beta-0-local-onboarding-quickstart",
       "releaseCandidateId": "reddiagent-beta-0-rc-local-1",

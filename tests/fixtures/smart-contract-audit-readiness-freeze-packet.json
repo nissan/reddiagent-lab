@@ -4,27 +4,27 @@
       "exists": true,
       "issue": 365,
       "path": "tests/fixtures/beta-external-tester-mvp-packet.json",
-      "sha256": "cc9f0a046441438436d72214e815601cffec8e65a41bfe9c537fe1581b0562fe",
+      "sha256": "c7502ee66ca67fe849482d229941d2ecc61daab6ecfbc278cc798f1fcdb1a28f",
       "sizeBytes": 19588
     },
     "rapX402Ap2AuditPrep": {
       "exists": true,
       "issue": 361,
       "path": "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
-      "sha256": "7d90077894f3d5ab1624a5efdc9c9fed88302192cf04f311546c66dabbbb4e53",
+      "sha256": "a1318437c0fd333d8211277d22bb01acbd64cb2fc1c178e9220f1058ab2c07de",
       "sizeBytes": 25369
     },
     "readme": {
       "exists": true,
       "path": "README.md",
-      "sha256": "4db6dd94a9cc838e22e861241e2d5e3e603744c6f7528069f67975277bfa1a5e",
-      "sizeBytes": 3526
+      "sha256": "f1dec8eac2004ef2d50c828e27862903a9aa884be06f6893ac3a0b386211de26",
+      "sizeBytes": 5506
     },
     "roadmap": {
       "exists": true,
       "path": "docs/ROADMAP.md",
-      "sha256": "7e17242880974f1db0706f96287b2c4da893a02cce12dfaf3e7a135142eaf627",
-      "sizeBytes": 5712
+      "sha256": "3099a083b94fa24b2ae208b792482506eb4b1fef2823e9316a4cfd754d2dfa46",
+      "sizeBytes": 7367
     }
   },
   "blockers": {
