@@ -21,7 +21,10 @@ Enforced properties:
 - Replay protection and context binding: payment proof is bound to a single
   request id, service outcome and replay idempotency hashes must match the
   request hash, and a payment response hash already recorded in the replay
-  ledger rejects.
+  ledger rejects. All three context-binding failures share the stable code
+  ``rap_receipt.replay.duplicate_payment`` and are distinguished by path:
+  ``paymentEvidence.boundRequestId``, ``serviceOutcome.requestHash``, and
+  ``replayIdempotency.requestHash``.
 - Delegated-authority scope: purpose must match the request intent, the
   mandate must not be revoked, and ``expiresAt`` must not predate
   ``finalizedAt``.
