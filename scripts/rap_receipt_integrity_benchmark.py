@@ -4,12 +4,19 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
 
-ROOT = Path(__file__).resolve().parents[1]
+from rap_receipt_validator import validate_receipt  # noqa: E402
+
+ROOT = SCRIPTS_DIR.parent
 CURRENT_ISSUE = 375
 PARENT_EPIC = 220
 DATE_CHECKED = "2026-07-26"
@@ -28,18 +35,116 @@ REQUIRED_LAYERS = (
     "rollbackHold",
 )
 
+# Structurally real passing receipt: every threat case below mutates this
+# data so the defect is exhibited by the receipt itself, and
+# scripts/rap_receipt_validator.py computes the decision from it.
 PASS_RECEIPT = {
-    "delegatedAuthority": "bound-current-purpose-payee-cap",
-    "resourceAuthorization": "resource-scope-match",
-    "paymentEvidence": "x402-payment-response-present",
-    "settlementProgramProof": "allowed-devnet-signature-confirmed",
-    "serviceOutcome": "service-result-pass",
-    "evalEvidence": "required-eval-pass",
-    "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-    "privacyAccounting": "pii-minimized-accounting-ready",
-    "disputeState": "not-disputed",
-    "rollbackHold": "no-hold-or-rollback-required",
+    "receiptId": "rcpt-375-0001",
+    "finalizedAt": "2026-07-26T03:00:00Z",
+    "request": {
+        "requestId": "req-375-0001",
+        "requestHash": "sha256:req-375-0001",
+        "purpose": "market-data-lookup",
+        "toolName": "market_data.quote",
+        "resourceScope": "mcp:market-data:quote:read",
+    },
+    "delegatedAuthority": {
+        "mandateId": "mandate-ap2-0001",
+        "principal": "user:principal-0001",
+        "spender": "agent:spender-0001",
+        "payee": "agent:svc-market-data",
+        "purpose": "market-data-lookup",
+        "rail": "x402-solana-devnet",
+        "maxAmount": 250000,
+        "expiresAt": "2026-07-27T00:00:00Z",
+        "revoked": False,
+        "auditRef": "audit:mandate-ap2-0001",
+    },
+    "resourceAuthorization": {
+        "serverRef": "mcp:server:market-data",
+        "toolName": "market_data.quote",
+        "authorizationRef": "authz:mcp-0001",
+        "scope": "mcp:market-data:quote:read",
+    },
+    "paymentEvidence": {
+        "requiredHash": "sha256:x402-required-0001",
+        "payloadHash": "sha256:x402-payload-0001",
+        "responseHash": "sha256:x402-response-0001",
+        "rail": "x402-solana-devnet",
+        "facilitatorRef": "facilitator:devnet-01",
+        "payee": "agent:svc-market-data",
+        "amount": 120000,
+        "boundRequestId": "req-375-0001",
+    },
+    "settlementProgramProof": {
+        "cluster": "devnet",
+        "signature": "sig:settlement-0001",
+        "mint": "mint:usdc-devnet",
+        "programId": "prog:token-2022",
+        "confirmationStatus": "confirmed",
+        "payer": "wallet:spender-0001",
+        "payee": "agent:svc-market-data",
+        "amount": 120000,
+    },
+    "serviceOutcome": {
+        "requestHash": "sha256:req-375-0001",
+        "responseHash": "sha256:svc-response-0001",
+        "status": "success",
+        "completedAt": "2026-07-26T02:59:30Z",
+        "agentId": "agent:svc-market-data",
+    },
+    "evalEvidence": {
+        "gateId": "gate:service-quality-v1",
+        "status": "pass",
+        "evaluatorRef": "evaluator:rap-quality-01",
+        "reportHash": "sha256:eval-report-0001",
+    },
+    "replayIdempotency": {
+        "receiptId": "rcpt-375-0001",
+        "idempotencyKey": "idem-375-0001",
+        "requestHash": "sha256:req-375-0001",
+        "nonce": "nonce-375-0001",
+        "priorPaymentResponseHashes": [],
+    },
+    "privacyAccounting": {
+        "entryRef": "acct:entry-0001",
+        "privacyClass": "pii-minimized",
+        "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001",
+        ],
+        "retentionPolicy": "90d-minimized",
+    },
+    "disputeState": {
+        "status": "none",
+        "openedAt": None,
+        "resolutionRef": None,
+    },
+    "rollbackHold": {
+        "holdState": "none",
+        "rollbackRequired": False,
+        "killSwitchRef": None,
+    },
 }
+
+
+def base_receipt() -> dict[str, Any]:
+    return copy.deepcopy(PASS_RECEIPT)
+
+
+def receipt_without_layer(layer: str) -> dict[str, Any]:
+    receipt = base_receipt()
+    del receipt[layer]
+    return receipt
+
+
+def receipt_with_fields(layer: str, **fields: Any) -> dict[str, Any]:
+    receipt = base_receipt()
+    receipt[layer].update(fields)
+    return receipt
 
 
 def dump_json(value: dict[str, Any]) -> str:
@@ -61,7 +166,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "valid_full_receipt",
             "threat": "positive full receipt integrity path",
-            "receipt": dict(PASS_RECEIPT),
+            "receipt": base_receipt(),
             "expectedDecision": "accept",
             "diagnostics": [],
             "proves": "RAP can accept only when payment, authority, resource access, settlement, service, eval, replay, accounting, dispute, and rollback evidence all pass.",
@@ -69,7 +174,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "payment_service_decoupling",
             "threat": "x402 settlement is present but service result is missing",
-            "receipt": {**PASS_RECEIPT, "serviceOutcome": "missing"},
+            "receipt": receipt_without_layer("serviceOutcome"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -84,7 +189,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "valid_authorization_misuse",
             "threat": "valid mandate is reused for the wrong purpose",
-            "receipt": {**PASS_RECEIPT, "delegatedAuthority": "purpose-mismatch"},
+            "receipt": receipt_with_fields("delegatedAuthority", purpose="portfolio-rebalance"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -99,7 +204,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "weak_intent_binding",
             "threat": "mandate exists but does not bind payee and cap",
-            "receipt": {**PASS_RECEIPT, "delegatedAuthority": "missing-payee-cap-binding"},
+            "receipt": receipt_with_fields("delegatedAuthority", payee="", maxAmount=None),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -114,7 +219,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "limited_accountability",
             "threat": "accounting cannot link request, response, payment, and evaluator",
-            "receipt": {**PASS_RECEIPT, "privacyAccounting": "missing-accounting-join"},
+            "receipt": receipt_with_fields("privacyAccounting", joinRefs=["req-375-0001"]),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -129,7 +234,9 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "replay_duplicate_receipt",
             "threat": "same payment response is replayed under a duplicate receipt",
-            "receipt": {**PASS_RECEIPT, "replayIdempotency": "duplicate-payment-response"},
+            "receipt": receipt_with_fields(
+                "replayIdempotency", priorPaymentResponseHashes=["sha256:x402-response-0001"]
+            ),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -144,7 +251,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "stale_scope",
             "threat": "authorization scope expired before receipt finalization",
-            "receipt": {**PASS_RECEIPT, "delegatedAuthority": "expired"},
+            "receipt": receipt_with_fields("delegatedAuthority", expiresAt="2026-07-25T00:00:00Z"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -159,7 +266,9 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "wrong_resource",
             "threat": "MCP/resource authorization covers a different resource",
-            "receipt": {**PASS_RECEIPT, "resourceAuthorization": "resource-mismatch"},
+            "receipt": receipt_with_fields(
+                "resourceAuthorization", toolName="market_data.trade", scope="mcp:market-data:trade:write"
+            ),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -174,7 +283,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "wrong_merchant_payee",
             "threat": "settlement payee differs from mandate and service merchant",
-            "receipt": {**PASS_RECEIPT, "settlementProgramProof": "payee-mismatch"},
+            "receipt": receipt_with_fields("settlementProgramProof", payee="agent:svc-imposter"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -189,7 +298,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "failed_service_after_settled_payment",
             "threat": "payment settled but service failed",
-            "receipt": {**PASS_RECEIPT, "serviceOutcome": "failed-after-payment"},
+            "receipt": receipt_with_fields("serviceOutcome", status="failed"),
             "expectedDecision": "hold",
             "diagnostics": [
                 diagnostic(
@@ -204,7 +313,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "service_returned_without_payment",
             "threat": "service succeeded but payment evidence is absent",
-            "receipt": {**PASS_RECEIPT, "paymentEvidence": "missing"},
+            "receipt": receipt_without_layer("paymentEvidence"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -219,7 +328,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "eval_failed_reputation_emission",
             "threat": "service result is present but required evaluator failed",
-            "receipt": {**PASS_RECEIPT, "evalEvidence": "failed"},
+            "receipt": receipt_with_fields("evalEvidence", status="failed"),
             "expectedDecision": "reject",
             "diagnostics": [
                 diagnostic(
@@ -234,7 +343,7 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "disputed_receipt",
             "threat": "receipt has an open dispute",
-            "receipt": {**PASS_RECEIPT, "disputeState": "open"},
+            "receipt": receipt_with_fields("disputeState", status="open", openedAt="2026-07-26T02:30:00Z"),
             "expectedDecision": "hold",
             "diagnostics": [
                 diagnostic(
@@ -249,7 +358,9 @@ def threat_cases() -> list[dict[str, Any]]:
         {
             "id": "rollback_required",
             "threat": "rollback or kill-switch criteria are active",
-            "receipt": {**PASS_RECEIPT, "rollbackHold": "rollback-required"},
+            "receipt": receipt_with_fields(
+                "rollbackHold", rollbackRequired=True, holdState="hold", killSwitchRef="ops:kill-switch-0001"
+            ),
             "expectedDecision": "hold",
             "diagnostics": [
                 diagnostic(
@@ -372,6 +483,7 @@ def build_doc() -> dict[str, Any]:
         "requiredLayers": list(REQUIRED_LAYERS),
         "layerRequirements": layer_requirements(),
         "threatCases": cases,
+        "validatorScript": "scripts/rap_receipt_validator.py",
         "stableDiagnosticContract": ["code", "severity", "category", "path", "remediation"],
         "receiptIntegrityRule": "RAP acceptance requires all layers to pass; x402/payment settlement alone cannot become service success, delegated authority, reputation eligibility, dispute closure, or accounting acceptance.",
         "nextIssue": {
@@ -432,6 +544,28 @@ def collect_findings(doc: dict[str, Any]) -> list[dict[str, str]]:
             for key in doc.get("stableDiagnosticContract", []):
                 if not diag.get(key):
                     findings.append({"path": f"threatCases.{index}.diagnostics.{key}", "reason": "Stable diagnostic field missing."})
+        # Cross-check the spec against the implementation: the documented
+        # expectedDecision must equal what rap_receipt_validator computes
+        # from the case's structural receipt, and every documented diagnostic
+        # code must be produced by the validator.
+        verdict = validate_receipt(case.get("receipt", {}))
+        if verdict["decision"] != decision:
+            findings.append(
+                {
+                    "path": f"threatCases.{index}.expectedDecision",
+                    "reason": f"Validator computed {verdict['decision']!r} for this receipt.",
+                }
+            )
+        expected_codes = {diag.get("code") for diag in diagnostics}
+        computed_codes = {diag["code"] for diag in verdict["diagnostics"]}
+        missing_codes = sorted(code for code in expected_codes if code not in computed_codes)
+        if missing_codes:
+            findings.append(
+                {
+                    "path": f"threatCases.{index}.diagnostics",
+                    "reason": f"Validator did not produce documented codes: {', '.join(missing_codes)}.",
+                }
+            )
     rule = doc.get("receiptIntegrityRule", "")
     for phrase in (
         "x402/payment settlement alone cannot become service success",
