@@ -1,0 +1,588 @@
+{
+  "boundaries": {
+    "credentialAccess": false,
+    "deployment": false,
+    "devnetRun": false,
+    "externalTesterExecution": false,
+    "fixtureReportOnly": true,
+    "liveNetwork": false,
+    "mainnetBlockedUntilOfficialAuditAndExplicitGoLive": true,
+    "mainnetRun": false,
+    "mcpProviderInvocation": false,
+    "paymentFacilitatorSettlementAction": false,
+    "spend": false,
+    "staticDeterministicBenchmark": true,
+    "walletAccess": false
+  },
+  "consumes": {
+    "fixtures": [
+      "tests/fixtures/agent-payments-standards-alignment-refresh.json",
+      "tests/fixtures/rap-x402-ap2-audit-prep-alignment-packet.json",
+      "tests/fixtures/beta-external-tester-mvp-packet.json",
+      "tests/fixtures/smart-contract-audit-readiness-freeze-packet.json"
+    ],
+    "issues": [
+      374,
+      361,
+      365,
+      366
+    ]
+  },
+  "dateChecked": "2026-07-26",
+  "decision": "receipt-integrity-benchmark-ready-for-static-compatibility-reports",
+  "diagnosticCount": 13,
+  "docsRefresh": {
+    "issue": 206,
+    "status": "keep-docs-only-until-taxonomy-or-first-implementation-wave-justifies-refresh"
+  },
+  "findings": [],
+  "issue": 375,
+  "layerRequirements": [
+    {
+      "cannotSubstitute": [
+        "paymentEvidence",
+        "resourceAuthorization",
+        "settlementProgramProof"
+      ],
+      "layer": "delegatedAuthority",
+      "positiveEvidence": "Bound AP2/FIDO/Verifiable Intent mandate with principal, spender, payee, purpose, rail, cap, expiry, revocation, and audit reference.",
+      "stableFields": [
+        "authority.mandateId",
+        "authority.principal",
+        "authority.payee",
+        "authority.scope",
+        "authority.maxAmount",
+        "authority.expiresAt"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "delegatedAuthority",
+        "paymentEvidence"
+      ],
+      "layer": "resourceAuthorization",
+      "positiveEvidence": "Protected-resource authorization for the exact service/tool/resource scope.",
+      "stableFields": [
+        "resource.serverRef",
+        "resource.toolName",
+        "resource.authorizationRef",
+        "resource.scope"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "delegatedAuthority",
+        "serviceOutcome",
+        "evalEvidence",
+        "reputationEligibility"
+      ],
+      "layer": "paymentEvidence",
+      "positiveEvidence": "x402/payment challenge, payload, selected rail, response, and facilitator verification references.",
+      "stableFields": [
+        "payment.requiredHash",
+        "payment.payloadHash",
+        "payment.responseHash",
+        "payment.rail",
+        "payment.facilitatorRef"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "serviceOutcome",
+        "delegatedAuthority",
+        "disputeState"
+      ],
+      "layer": "settlementProgramProof",
+      "positiveEvidence": "Environment, mint, program, payer, payee, amount, signature, and confirmation proof against allowlists.",
+      "stableFields": [
+        "settlement.cluster",
+        "settlement.signature",
+        "settlement.mint",
+        "settlement.programId",
+        "settlement.confirmationStatus"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "paymentEvidence",
+        "settlementProgramProof"
+      ],
+      "layer": "serviceOutcome",
+      "positiveEvidence": "Service result hash, status, completed-at timestamp, and resource response reference.",
+      "stableFields": [
+        "service.requestHash",
+        "service.responseHash",
+        "service.status",
+        "service.completedAt"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "paymentEvidence",
+        "serviceOutcome"
+      ],
+      "layer": "evalEvidence",
+      "positiveEvidence": "Required evaluator gate result for service quality and policy acceptance.",
+      "stableFields": [
+        "eval.gateId",
+        "eval.status",
+        "eval.evaluatorRef",
+        "eval.reportHash"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "settlementProgramProof"
+      ],
+      "layer": "replayIdempotency",
+      "positiveEvidence": "Unique receipt id, request hash, idempotency key, nonce, and duplicate-payment rejection.",
+      "stableFields": [
+        "receipt.id",
+        "receipt.idempotencyKey",
+        "receipt.requestHash",
+        "receipt.nonce"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "paymentEvidence"
+      ],
+      "layer": "privacyAccounting",
+      "positiveEvidence": "Privacy-minimized accounting refs that can join receipt, payment, settlement, service, and eval evidence.",
+      "stableFields": [
+        "accounting.entryRef",
+        "accounting.privacyClass",
+        "accounting.joinRefs",
+        "accounting.retentionPolicy"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "paymentEvidence",
+        "evalEvidence"
+      ],
+      "layer": "disputeState",
+      "positiveEvidence": "Closed/clear dispute state before final acceptance or reputation emission.",
+      "stableFields": [
+        "dispute.status",
+        "dispute.openedAt",
+        "dispute.resolutionRef"
+      ]
+    },
+    {
+      "cannotSubstitute": [
+        "paymentEvidence",
+        "serviceOutcome"
+      ],
+      "layer": "rollbackHold",
+      "positiveEvidence": "No rollback, hold, kill-switch, or refund/retry criteria active.",
+      "stableFields": [
+        "ops.holdState",
+        "ops.rollbackRequired",
+        "ops.killSwitchRef"
+      ]
+    }
+  ],
+  "mode": "rap-receipt-integrity-benchmark",
+  "negativeThreatCaseCount": 13,
+  "nextIssue": {
+    "issue": 376,
+    "status": "queued-after-375",
+    "title": "Add static Pay.sh/x402 discovery compatibility report"
+  },
+  "parentEpic": 220,
+  "receiptIntegrityRule": "RAP acceptance requires all layers to pass; x402/payment settlement alone cannot become service success, delegated authority, reputation eligibility, dispute closure, or accounting acceptance.",
+  "requiredLayers": [
+    "delegatedAuthority",
+    "resourceAuthorization",
+    "paymentEvidence",
+    "settlementProgramProof",
+    "serviceOutcome",
+    "evalEvidence",
+    "replayIdempotency",
+    "privacyAccounting",
+    "disputeState",
+    "rollbackHold"
+  ],
+  "stableDiagnosticContract": [
+    "code",
+    "severity",
+    "category",
+    "path",
+    "remediation"
+  ],
+  "status": "pass",
+  "threatCaseCount": 14,
+  "threatCases": [
+    {
+      "diagnostics": [],
+      "expectedDecision": "accept",
+      "id": "valid_full_receipt",
+      "proves": "RAP can accept only when payment, authority, resource access, settlement, service, eval, replay, accounting, dispute, and rollback evidence all pass.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "positive full receipt integrity path"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "service",
+          "code": "rap_receipt.service_outcome.required",
+          "path": "receipt.serviceOutcome",
+          "remediation": "Bind settled payment to a concrete service result before accounting or reputation.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "payment_service_decoupling",
+      "proves": "Payment evidence alone cannot become service success.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "missing",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "x402 settlement is present but service result is missing"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "authority",
+          "code": "rap_receipt.authority.scope_mismatch",
+          "path": "receipt.delegatedAuthority",
+          "remediation": "Require mandate purpose, spender, payee, cap, and expiry to match the receipt.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "valid_authorization_misuse",
+      "proves": "A real authorization cannot be reused outside its bounded intent.",
+      "receipt": {
+        "delegatedAuthority": "purpose-mismatch",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "valid mandate is reused for the wrong purpose"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "authority",
+          "code": "rap_receipt.authority.weak_binding",
+          "path": "receipt.delegatedAuthority",
+          "remediation": "Bind principal, spender, payee, purpose, rail, cap, expiry, and audit reference.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "weak_intent_binding",
+      "proves": "Delegated authority must be stronger than a generic payment permission.",
+      "receipt": {
+        "delegatedAuthority": "missing-payee-cap-binding",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "mandate exists but does not bind payee and cap"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "accounting",
+          "code": "rap_receipt.accounting.join_required",
+          "path": "receipt.privacyAccounting",
+          "remediation": "Persist privacy-safe request, response, payment, settlement, service, and eval references.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "limited_accountability",
+      "proves": "Receipt integrity needs accountable joins, not standalone payment records.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "missing-accounting-join",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "accounting cannot link request, response, payment, and evaluator"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "replay",
+          "code": "rap_receipt.replay.duplicate_payment",
+          "path": "receipt.replayIdempotency",
+          "remediation": "Reject duplicate payment response hashes and require stable idempotency keys.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "replay_duplicate_receipt",
+      "proves": "A settled payment cannot be counted twice.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "duplicate-payment-response",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "same payment response is replayed under a duplicate receipt"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "authority",
+          "code": "rap_receipt.authority.expired",
+          "path": "receipt.delegatedAuthority",
+          "remediation": "Reject receipts whose mandate expiry or revocation state is stale.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "stale_scope",
+      "proves": "Payment success after expiry cannot revive stale delegated authority.",
+      "receipt": {
+        "delegatedAuthority": "expired",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "authorization scope expired before receipt finalization"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "resource",
+          "code": "rap_receipt.resource.scope_mismatch",
+          "path": "receipt.resourceAuthorization",
+          "remediation": "Match protected resource metadata and tool scope to the paid service receipt.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "wrong_resource",
+      "proves": "Protected resource access stays separate from payment permission.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-mismatch",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "MCP/resource authorization covers a different resource"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "settlement",
+          "code": "rap_receipt.settlement.payee_mismatch",
+          "path": "receipt.settlementProgramProof",
+          "remediation": "Require authority payee, x402 accepts entry, and settlement destination to match.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "wrong_merchant_payee",
+      "proves": "Settlement proof must bind to the intended payee or merchant.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "payee-mismatch"
+      },
+      "threat": "settlement payee differs from mandate and service merchant"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "service",
+          "code": "rap_receipt.service.failed_after_payment",
+          "path": "receipt.serviceOutcome",
+          "remediation": "Hold accounting and reputation; route the receipt to refund, retry, or dispute handling.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "hold",
+      "id": "failed_service_after_settled_payment",
+      "proves": "Settled payment with failed service is not a successful RAP receipt.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "failed-after-payment",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "payment settled but service failed"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "payment",
+          "code": "rap_receipt.payment.required",
+          "path": "receipt.paymentEvidence",
+          "remediation": "Attach x402/payment evidence before paid-service accounting can pass.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "service_returned_without_payment",
+      "proves": "Service success alone cannot create payment accounting evidence.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "missing",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "service succeeded but payment evidence is absent"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "eval",
+          "code": "rap_receipt.eval.failed",
+          "path": "receipt.evalEvidence",
+          "remediation": "Block reputation and acceptance until required evaluation gates pass.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "reject",
+      "id": "eval_failed_reputation_emission",
+      "proves": "Reputation eligibility requires evaluation evidence, not just payment and service completion.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "failed",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "service result is present but required evaluator failed"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "dispute",
+          "code": "rap_receipt.dispute.open",
+          "path": "receipt.disputeState",
+          "remediation": "Hold final accounting and reputation until dispute resolution closes.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "hold",
+      "id": "disputed_receipt",
+      "proves": "Disputed receipts cannot close accounting or reputation.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "open",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "no-hold-or-rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "receipt has an open dispute"
+    },
+    {
+      "diagnostics": [
+        {
+          "category": "rollback",
+          "code": "rap_receipt.rollback.required",
+          "path": "receipt.rollbackHold",
+          "remediation": "Preserve hold evidence and block acceptance while rollback criteria are active.",
+          "severity": "error"
+        }
+      ],
+      "expectedDecision": "hold",
+      "id": "rollback_required",
+      "proves": "Operational rollback or kill-switch state overrides payment settlement.",
+      "receipt": {
+        "delegatedAuthority": "bound-current-purpose-payee-cap",
+        "disputeState": "not-disputed",
+        "evalEvidence": "required-eval-pass",
+        "paymentEvidence": "x402-payment-response-present",
+        "privacyAccounting": "pii-minimized-accounting-ready",
+        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
+        "resourceAuthorization": "resource-scope-match",
+        "rollbackHold": "rollback-required",
+        "serviceOutcome": "service-result-pass",
+        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+      },
+      "threat": "rollback or kill-switch criteria are active"
+    }
+  ]
+}

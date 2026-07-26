@@ -79,6 +79,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" tests/test_beta_external_tester_mvp_packet.py
 "$PYTHON" tests/test_smart_contract_audit_readiness_freeze_packet.py
 "$PYTHON" tests/test_agent_payments_standards_alignment_refresh.py
+"$PYTHON" tests/test_rap_receipt_integrity_benchmark.py
 "$PYTHON" tests/test_beta_release_verification_cli.py
 "$PYTHON" tests/test_beta_release_candidate_bundle.py
 "$PYTHON" tests/test_beta_release_archive_assembler.py
