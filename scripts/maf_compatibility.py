@@ -43,6 +43,32 @@ REDDI_PAYMENT_EXTENSIONS = (
     ("receipts", "maf-has-no-receipt-surface"),
     ("reputation", "maf-has-no-reputation-surface"),
 )
+# Harness sections MAF `kind: Prompt` has no declarative surface for; they
+# mirror the harness.memory metadata-only handling. Presence alone (even an
+# empty section) is enough to break losslessness — silent vanishing is the
+# failure mode the report exists to prevent.
+HARNESS_METADATA_ONLY_SECTIONS = (
+    (
+        "runtime",
+        "maf-no-runtime-descriptor",
+        "MAF `kind: Prompt` has no runtime descriptor; ADL runtime targets survive as metadata only.",
+    ),
+    (
+        "deployment",
+        "maf-no-deployment-descriptor",
+        "MAF `kind: Prompt` has no deployment descriptor; ADL deployment settings survive as metadata only.",
+    ),
+    (
+        "recovery",
+        "maf-no-recovery-controls",
+        "MAF `kind: Prompt` has no recovery controls; ADL recovery settings survive as metadata only.",
+    ),
+    (
+        "dataSources",
+        "maf-no-data-source-contract",
+        "MAF `kind: Prompt` has no data-source contract; ADL data-source trust, citation, and source-check settings survive as metadata only.",
+    ),
+)
 
 
 def display_path(path: Path) -> str:
@@ -81,10 +107,22 @@ def structural_errors(doc: object) -> list[str]:
         tools = harness.get("tools")
         if tools is not None and not isinstance(tools, list):
             errors.append("harness.tools: must be a list")
+        elif isinstance(tools, list):
+            for index, tool in enumerate(tools):
+                if not isinstance(tool, dict):
+                    errors.append(f"harness.tools[{index}]: each tool entry must be a mapping")
 
     model = doc.get("model")
     if model is not None and not isinstance(model, dict):
         errors.append("model: must be a mapping")
+    elif isinstance(model, dict):
+        providers = model.get("providers")
+        if providers is not None and not isinstance(providers, dict):
+            errors.append("model.providers: must be a mapping")
+        elif isinstance(providers, dict):
+            preferred = providers.get("preferred")
+            if preferred is not None and not isinstance(preferred, str):
+                errors.append("model.providers.preferred: must be a string")
 
     extensions = doc.get("extensions")
     if extensions is not None and not isinstance(extensions, dict):
@@ -306,9 +344,15 @@ def categorize(doc: dict) -> dict:
                 "detail": "MAF `kind: Prompt` has no declarative memory contract; ADL memory settings survive as metadata only.",
             }
         )
+    for key, code, detail in HARNESS_METADATA_ONLY_SECTIONS:
+        if key in harness:
+            metadata_only.append(f"harness.{key}")
+            loss.append({"code": code, "path": f"harness.{key}", "detail": detail})
 
     for key, reason in REDDI_PAYMENT_EXTENSIONS:
-        if extensions.get(key):
+        # Presence, not truthiness: `x402: {}` or `x402: null` still declares
+        # the extension and must be surfaced rather than silently vanish.
+        if key in extensions:
             metadata_only.append(f"extensions.{key}")
             unsupported.append({"requirement": f"extensions.{key}", "reason": reason})
             loss.append(
@@ -320,7 +364,7 @@ def categorize(doc: dict) -> dict:
             )
     reddi_keys = {key for key, _ in REDDI_PAYMENT_EXTENSIONS}
     for key in sorted(extensions):
-        if key not in reddi_keys and extensions.get(key):
+        if key not in reddi_keys:
             metadata_only.append(f"extensions.{key}")
 
     return {
@@ -356,6 +400,8 @@ def maf_prompt_export(doc: dict) -> tuple[str | None, str | None]:
     if not isinstance(instructions.get("inline"), str):
         return None, "instructions-path-ref-not-inlined"
     preferred = ((doc.get("model") or {}).get("providers") or {}).get("preferred")
+    if not preferred:
+        return None, "no-model-provider-declared"
     connection_kind = MAF_CONNECTION_KINDS.get(preferred)
     if not connection_kind:
         return None, "no-maf-connector-for-preferred-provider"
@@ -405,38 +451,43 @@ def unsupported_report(path: Path, doc: object, errors: list[str]) -> dict:
 def report_for(path: Path) -> dict:
     try:
         doc = read_adl(path)
-    except (OSError, yaml.YAMLError) as exc:
+    except (OSError, ValueError, yaml.YAMLError) as exc:
         return unsupported_report(path, None, [f"unreadable: {exc}"])
 
-    errors = structural_errors(doc)
-    if errors:
-        return unsupported_report(path, doc, errors)
+    try:
+        errors = structural_errors(doc)
+        if errors:
+            return unsupported_report(path, doc, errors)
 
-    buckets = categorize(doc)
-    lossless = not (
-        buckets["unsupportedRequirements"]
-        or buckets["degradedRequirements"]
-        or buckets["metadataOnlyExtensions"]
-        or buckets["lossMetadata"]
-    )
-    report = {
-        "agent": doc["metadata"]["name"],
-        "source": display_path(path),
-        "target": "maf",
-        "supported": True,
-        "lossless": lossless,
-        "structuralErrors": [],
-        "warnings": warnings_for(buckets),
-        **buckets,
-        "pinned": PINNED,
-        **BOUNDARY_FLAGS,
-    }
-    prompt_yaml, omit_reason = maf_prompt_export(doc)
-    if prompt_yaml is not None:
-        report["mafPromptYaml"] = prompt_yaml
-    else:
-        report["mafPromptYamlOmitted"] = {"reason": omit_reason}
-    return report
+        buckets = categorize(doc)
+        lossless = not (
+            buckets["unsupportedRequirements"]
+            or buckets["degradedRequirements"]
+            or buckets["metadataOnlyExtensions"]
+            or buckets["lossMetadata"]
+        )
+        report = {
+            "agent": doc["metadata"]["name"],
+            "source": display_path(path),
+            "target": "maf",
+            "supported": True,
+            "lossless": lossless,
+            "structuralErrors": [],
+            "warnings": warnings_for(buckets),
+            **buckets,
+            "pinned": PINNED,
+            **BOUNDARY_FLAGS,
+        }
+        prompt_yaml, omit_reason = maf_prompt_export(doc)
+        if prompt_yaml is not None:
+            report["mafPromptYaml"] = prompt_yaml
+        else:
+            report["mafPromptYamlOmitted"] = {"reason": omit_reason}
+        return report
+    except Exception as exc:  # defensive: malformed shapes must never traceback
+        return unsupported_report(
+            path, doc, [f"mapping-failure: {type(exc).__name__}: {exc}"]
+        )
 
 
 def parse_args() -> argparse.Namespace:
