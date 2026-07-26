@@ -60,7 +60,7 @@ At the end of every loop, ask:
 - Did we find a prosumer learning hurdle?
 - Does STATUS.md clearly say where to resume?
 
-If the answer changes sequencing, update docs/ULTRA-PLAN.md in the same commit.
+If the answer changes sequencing, update docs/ROADMAP.md in the same commit.
 
 If the answer changes the ReddiAgent domain model, update the relevant spec in the same commit.
 

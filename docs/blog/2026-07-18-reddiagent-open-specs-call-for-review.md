@@ -18,10 +18,12 @@ Start with the map:
 - `docs/PROTECTED-DOCS-PACKAGE.md` describes the future protected sharing bundle, without publishing it.
 - `docs/INDEX.md` is the repository navigation index.
 
-The canonical definition format is ADL:
+The canonical definition format is ADL. ADL v0.2 is canonical; v0.1 is retained for history:
 
-- `specs/ADL-v0.1.md`
-- `specs/ADL-v0.1.schema.json`
+- `specs/ADL-v0.2.md` (canonical)
+- `specs/ADL-v0.2.schema.json` (canonical)
+- `specs/ADL-v0.1.md` (superseded, retained for history)
+- `specs/ADL-v0.1.schema.json` (superseded, retained for history)
 - `specs/DOMAIN-MODEL-v0.1.md`
 - `specs/VALIDATION-GUIDANCE-v0.1.md`
 
@@ -57,7 +59,7 @@ This matters most for agents that touch tools, payments, credentials, protocols,
 
 The current docs use status words deliberately.
 
-**Stable enough for review and references:** ADL v0.1 core fields, the domain model, validation guidance, examples, Level 0 validation, Level 1 deterministic local fixture evidence, conformance language, and the navigation spine.
+**Stable enough for review and references:** ADL v0.2 core fields, the domain model, validation guidance, examples, Level 0 validation, Level 1 deterministic local fixture evidence, conformance language, and the navigation spine.
 
 **Experimental:** provider compatibility details, source-check trace shapes, MCP readiness evidence, static export parity details, beta readiness surfaces, and the exact shape of runtime handoff contracts. These are useful now, but prototypes may teach us to change them.
 
@@ -69,12 +71,12 @@ The current docs use status words deliberately.
 
 ## Try the Local Deterministic Examples
 
-Use the configured project Python:
+Use a local Python 3:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py examples/tool-agent.yaml
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools --fail-on-required-gate
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/provider_compatibility.py examples/tool-agent.yaml
+python3 scripts/validate_examples.py examples/tool-agent.yaml
+python3 scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools --fail-on-required-gate
+python3 scripts/provider_compatibility.py examples/tool-agent.yaml
 ```
 
 Those commands produce local deterministic evidence. They do not call provider APIs, resolve live MCP servers, read credentials, touch wallets, run devnet or mainnet transactions, deploy, publish, or activate external services.
@@ -82,7 +84,7 @@ Those commands produce local deterministic evidence. They do not call provider A
 For broader validation, run:
 
 ```bash
-PYTHON=/Users/loki/.pyenv/versions/3.14.3/bin/python3 bash tests/smoke-validation.sh
+bash tests/smoke-validation.sh
 ```
 
 The evidence reports under `tests/` are meant to be read by humans, not only by CI. In particular:
@@ -122,7 +124,7 @@ Use `docs/OPEN-SPEC-REVIEW-INTAKE.md` and `.github/ISSUE_TEMPLATE/open-spec-revi
 - suggested acceptance criteria;
 - whether the feedback affects stable docs, experimental surfaces, report-only artifacts, executable prototypes, or future work.
 
-The intake notes explain how feedback flows into issues and PRs, and how #220 prototype/beta feedback should be separated from docs-only corrections. Do not publish this post externally until Nissan approves the channel, copy, and timing.
+The intake notes explain how feedback flows into issues and PRs, and how #220 prototype/beta feedback should be separated from docs-only corrections. Do not publish this post externally until the project maintainer approves the channel, copy, and timing.
 
 ## Boundary Statement
 

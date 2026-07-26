@@ -15,7 +15,7 @@ ReddiAgent treats an agent as a portable definition plus an operating harness, w
 Use the specs in this order:
 
 1. Read `specs/DOMAIN-MODEL-v0.1.md` for the nouns: agent definition, model, harness, tool, data source, memory, policy, eval gate, trace, receipt, reputation, and deployment descriptor.
-2. Read `specs/ADL-v0.1.md` and `specs/ADL-v0.1.schema.json` for the canonical shape. ADL is the source of truth; provider files and exports are target views.
+2. Read `specs/ADL-v0.2.md` and `specs/ADL-v0.2.schema.json` for the canonical shape. ADL v0.2 is canonical; v0.1 is retained for history. ADL is the source of truth; provider files and exports are target views.
 3. Open one example from `examples/`: `simple-agent.yaml`, `tool-agent.yaml`, `mcp-readonly-agent.yaml`, or `payment-agent.yaml`.
 4. Run or inspect validation through `scripts/validate_examples.py` and `specs/VALIDATION-GUIDANCE-v0.1.md`.
 5. Follow the harness, eval, trace, conformance, provider, MCP, and payment specs only for the surface you are reviewing.
@@ -24,9 +24,9 @@ Use the specs in this order:
 The fastest builder loop is:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py examples/tool-agent.yaml
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools --fail-on-required-gate
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/provider_compatibility.py examples/tool-agent.yaml
+python3 scripts/validate_examples.py examples/tool-agent.yaml
+python3 scripts/run_local_agent.py examples/tool-agent.yaml --execute-tools --fail-on-required-gate
+python3 scripts/provider_compatibility.py examples/tool-agent.yaml
 ```
 
 Those commands read local files and produce deterministic local evidence. They do not call provider APIs, resolve live MCP servers, touch credentials, activate payment rails, deploy, publish, or use mainnet.
@@ -37,7 +37,7 @@ The docs use these status words deliberately:
 
 | Status | Meaning | Examples |
 |---|---|---|
-| Stable | Shape is canonical enough for examples, validation, tests, and downstream references. | ADL v0.1 core fields, domain model, validation guidance, conformance levels. |
+| Stable | Shape is canonical enough for examples, validation, tests, and downstream references. | ADL v0.2 core fields, domain model, validation guidance, conformance levels. |
 | Experimental | Shape is documented and useful, but likely to change as prototypes teach us more. | Some provider compatibility fields, source-check traces, MCP readiness evidence, beta readiness surfaces. |
 | Report-only | The repo can explain compatibility or readiness without invoking the live target. | Provider reports, Agent Spec/A2A/Agent Skills exports, MCP handoff package, RAP bridge checks, Vercel eve mapping. |
 | Executable prototype | Local/devnet/prototype execution may be introduced when a queued issue has guardrails, tests, and evidence. | Local ADL runtime prototype, provider sandbox, guarded MCP/devnet handoff work in the #220 track. |
@@ -49,14 +49,14 @@ Mainnet deployment and mainnet runs remain not approved. Devnet and executable p
 
 ### ADL and Schema
 
-`specs/ADL-v0.1.md` defines the top-level agent document:
+`specs/ADL-v0.2.md` is the canonical spec (v0.1 is superseded and retained for history). It defines the top-level agent document:
 
 - `identity`: name, version, owners, and descriptive metadata.
 - `model`: required model capabilities, provider preferences, constraints, cost/latency expectations, and structured-output needs.
 - `harness`: instructions, tools, functions, skills, data sources, memory, policies, eval gates, runtime, deployment, observability, and recovery.
 - `extensions`: namespaced metadata for payment, receipts, reputation, protocol bridges, and future targets.
 
-`specs/ADL-v0.1.schema.json` is the machine-checkable contract. `specs/VALIDATION-GUIDANCE-v0.1.md` explains how validation errors should help a builder fix the definition instead of exposing raw schema noise.
+`specs/ADL-v0.2.schema.json` is the machine-checkable contract. `specs/VALIDATION-GUIDANCE-v0.1.md` explains how validation errors should help a builder fix the definition instead of exposing raw schema noise.
 
 Examples:
 
@@ -91,13 +91,7 @@ Today, most repo evidence is static or local. The executable prototype track sho
 
 `specs/EVAL-GATES-v0.1.md` defines required and advisory checks. `specs/TRACE-EVENTS-v0.1.md` defines deterministic dry-run events. Together they let a reviewer ask: did the agent do the required local checks, did the trace prove it, and did failure stop the run when it should?
 
-Related evidence:
-
-- `tests/LEVEL-0-CONFORMANCE-REPORT.md`
-- `tests/LEVEL-1-CONFORMANCE-REPORT.md`
-- `tests/TRACE-SNAPSHOTS.md`
-- `tests/COMPATIBILITY-SNAPSHOTS.md`
-- `tests/TOOL-EXECUTION-FIXTURE-REPORT.md`
+Related evidence: `tests/LEVEL-1-CONFORMANCE-REPORT.md`. Further per-surface trace and fixture reports live under `tests/`.
 
 ### Conformance
 
@@ -122,7 +116,6 @@ Related evidence:
 - `tests/PAYMENT-DRY-RUN-RECEIPT-REPORT.md`
 - `tests/AP2-X402-MANDATE-REPORT.md`
 - `tests/RAP-BRIDGE-REPORT.md`
-- `tests/RAP-PROVIDER-HANDOFF-SUMMARIES-REPORT.md`
 
 ## Provider Mapping and Compatibility
 
@@ -140,16 +133,7 @@ Provider and framework mappings:
 - `mappings/STRANDS.md`
 - `mappings/EVE.md`
 
-Evidence:
-
-- `tests/PROVIDER-COMPATIBILITY-REPORT.md`
-- `tests/PROVIDER-COMPATIBILITY-CLI-FLAGS-REPORT.md`
-- `tests/PROVIDER-ADAPTER-CODEGEN-PLAN-REPORT.md`
-- `tests/OPENAI-COMPATIBILITY-MODE-REPORT.md`
-- `tests/ANTHROPIC-MCP-COMPATIBILITY-MODE-REPORT.md`
-- `tests/GEMINI-COMPATIBILITY-MODE-REPORT.md`
-- `tests/OLLAMA-COMPATIBILITY-MODE-REPORT.md`
-- `tests/LANGGRAPH-COMPATIBILITY-REPORT.md`
+Evidence: `tests/PROVIDER-COMPATIBILITY-REPORT.md`. Per-provider compatibility-mode reports live under `tests/`.
 
 ## Export and Handoff Targets
 
@@ -163,39 +147,29 @@ Evidence: `tests/AGENT-SPEC-COMPATIBILITY-REPORT.md` and `tests/test_agent_spec_
 
 `mappings/A2A-AGENT-CARD.md` maps identity, capabilities, skills, security, and supported interfaces into an A2A Agent Card review artifact.
 
-Evidence: `tests/A2A-AGENT-CARD-EXPORT-REPORT.md` and `tests/test_a2a_agent_card_export.py`.
+Evidence: `tests/test_a2a_agent_card_export.py` and its export report under `tests/`.
 
 ### Agent Skills
 
 `mappings/AGENT-SKILL.md` and `specs/SKILL-PACKAGE-CONTRACT-v0.1.md` map an ADL definition toward an Agent Skills / `SKILL.md` package. Treat `allowed-tools` and other pre-approval hints as static review hints until runtime policy enforces them.
 
-Evidence: `tests/AGENT-SKILL-EXPORT-REPORT.md` and `tests/test_agent_skill_export.py`.
+Evidence: `tests/test_agent_skill_export.py` and its export report under `tests/`.
 
 ### Vercel eve
 
 `mappings/EVE.md` treats Vercel eve as a static compatibility target. The current repo does not deploy to eve or activate an eve runtime; it explains which ADL fields could inform an eve-facing artifact later.
 
-Evidence: `tests/EVE-COMPATIBILITY-REPORT.md` and `tests/STATIC-EXPORT-TARGET-PARITY-MATRIX-REPORT.md`.
+Evidence: the eve compatibility and static-export parity reports under `tests/`.
 
 ### Starter Manifests
 
-Starter-code work is currently manifest-first and report-only. `tests/STARTER-CODE-PLAN-REPORT.md` explains planned file manifests, template contracts, and safety policy fixtures. Do not treat starter manifests as runnable project generation until a later issue explicitly changes that state.
+Starter-code work is currently manifest-first and report-only. The starter-code plan report under `tests/` explains planned file manifests, template contracts, and safety policy fixtures. Do not treat starter manifests as runnable project generation until a later issue explicitly changes that state.
 
 ### MCP Handoff
 
-`specs/MCP-TOOL-MAPPING-v0.1.md`, `specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json`, and `tests/MCP-RUNTIME-HANDOFF-PACKAGE-REPORT.md` define how MCP intent can be packaged for review without live server resolution or invocation.
+`specs/MCP-TOOL-MAPPING-v0.1.md` and `specs/MCP-RUNTIME-HANDOFF-PACKAGE.schema.json` define how MCP intent can be packaged for review without live server resolution or invocation.
 
-Related evidence:
-
-- `tests/MCP-ADAPTER-SHAPE-REPORT.md`
-- `tests/MCP-ADAPTER-CONTRACT-REPORT.md`
-- `tests/MCP-ADAPTER-ERROR-SEMANTICS-REPORT.md`
-- `tests/MCP-ADAPTER-AGGREGATION-REPORT.md`
-- `tests/MCP-ADAPTER-SOURCE-CHECK-REPORT.md`
-- `tests/MCP-SERVER-RESOLUTION-REPORT.md`
-- `tests/MCP-CAPABILITY-POLICY-REPORT.md`
-- `tests/MCP-READINESS-EVIDENCE-REPORT.md`
-- `docs/MCP-READINESS-RELEASE-CHECKLIST.md`
+Related evidence: `docs/MCP-READINESS-RELEASE-CHECKLIST.md` and the MCP adapter/readiness reports under `tests/`.
 
 ## Public-Review Questions
 
@@ -219,4 +193,4 @@ Docs-only corrections should stay tied to #206 and the exact file or section the
 
 This guide is documentation only. It does not publish externally, deploy a docs site, select or store a password, call provider APIs, resolve or invoke live MCP servers, access credentials, touch wallets, run devnet/mainnet transactions, or activate runtime services.
 
-External publication of this guide or the protected package still requires Nissan's approval for the location and access controls. Mainnet deployment and mainnet runs require fresh explicit approval.
+External publication of this guide or the protected package still requires the project maintainer's approval for the location and access controls. Mainnet deployment and mainnet runs require fresh explicit approval.

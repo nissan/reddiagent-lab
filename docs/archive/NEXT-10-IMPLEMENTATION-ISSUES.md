@@ -1,3 +1,5 @@
+> **Archived.** This planning document is superseded; current sequencing lives in [docs/ROADMAP.md](../ROADMAP.md).
+
 # Next 10 Implementation Issues
 
 _Loop 81._

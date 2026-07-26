@@ -20,7 +20,7 @@ Core line:
 - Do not claim live agent runtime activation.
 - Do not claim Docker, Surfpool, or Coolify were started for the demo.
 - Do not claim provider/model product calls, live MCP invocation, credential access, payment/wallet/facilitator/settlement access, devnet/mainnet use, package publishing, or production gateway mutation.
-- Do not use paid TTS, paid video generation, or paid model calls unless Nissan explicitly approves a later production pass.
+- Do not use paid TTS, paid video generation, or paid model calls unless the project maintainer explicitly approves a later production pass.
 - Do not expose secrets, private operator state, internal Telegram metadata, or local filesystem paths in the public video.
 
 ## Variant
@@ -95,11 +95,10 @@ Preferred capture stack:
 
 ## Production Commands
 
-Draft narration locally:
+Draft narration locally with any local text-to-speech tool that can render the narration script to a WAV file, for example:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 /Users/loki/.openclaw/workspace/scripts/speak.py \
-  --agent sara \
+your-local-tts-tool \
   --output /tmp/reddiagent-demo-voiceover.wav \
   "$(cat /tmp/reddiagent-demo-narration.txt)"
 ```

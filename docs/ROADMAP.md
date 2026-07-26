@@ -59,7 +59,7 @@ ReddiAgent Lab may model and validate these layers, but live invocation, settlem
 
 - Reassess public beta activation after tester packet and audit-readiness freeze evidence are complete.
 - Enter official smart-contract/protocol audit only with frozen evidence, reviewed invariants, and explicit scope.
-- Consider go-live readiness only after official audit completion, audit findings are resolved or accepted, and Nissan explicitly approves go-live.
+- Consider go-live readiness only after official audit completion, audit findings are resolved or accepted, and the project maintainer explicitly approves go-live.
 
 ## Deprecated Roadmap Posture
 

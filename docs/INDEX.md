@@ -4,7 +4,7 @@ _Loop 42. Anchor issue: #42._
 
 ## Resume First
 
-- STATUS.md
+- STATUS.md (operations resume log, internal)
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/ROADMAP.md
 - docs/REDDIAGENT-ARCHITECTURE.md
@@ -41,7 +41,6 @@ Primary roadmap reference: docs/ROADMAP.md.
 - docs/PROTECTED-DOCS-PACKAGE.md
 - docs/BETA-RELEASE-READINESS-RUNBOOK.md
 - docs/ARCHITECTURE-THESIS.md
-- docs/ULTRA-PLAN.md
 - docs/GLOSSARY.md
 
 ## Research
@@ -54,9 +53,11 @@ Primary roadmap reference: docs/ROADMAP.md.
 
 ## Specs
 
+- specs/ADL-v0.2.md (canonical)
+- specs/ADL-v0.2.schema.json (canonical)
 - specs/DOMAIN-MODEL-v0.1.md
-- specs/ADL-v0.1.md
-- specs/ADL-v0.1.schema.json
+- specs/ADL-v0.1.md (superseded by ADL v0.2, retained for history)
+- specs/ADL-v0.1.schema.json (superseded by ADL v0.2, retained for history)
 - specs/VALIDATION-GUIDANCE-v0.1.md
 - specs/PROVIDER-MAPPING-v0.1.md
 - specs/AGENT-SPEC-COMPATIBILITY-v0.1.md

@@ -41,8 +41,8 @@ The local-python runner can currently prove:
 - bounded beta runtime service activation live-run gate evidence that consumes merged #293 evidence by pinned path and sha256, confirms current operator approvals, simple-agent scope, trace/eval, rollback/disable proof, and holds before actual service mutation.
 - bounded beta runtime service-wrapper operator run package evidence that consumes merged #297 evidence by pinned path and sha256, confirms preserved #295/#293/#291 lineage, records exact scope, command transcript, trace/eval summary, ephemeral wrapper state, hold/rollback decision, rollback/disable verification, risk verdict, and fail-closed external service/provider/MCP/payment/devnet/mainnet boundaries.
 - bounded external-service activation gate evidence that consumes merged #299 evidence by pinned path and sha256, confirms #299 consumed #297 and preserved #295/#293/#291 lineage, records exact run scope, command transcript, trace/eval summary, local temporary wrapper state before/after, activation hold/rollback decision, rollback/disable verification, risk verdict, and fail-closed real external-service/provider/MCP/payment/devnet/mainnet boundaries.
-- external-service activation approval micro-gate evidence that consumes merged #301 evidence by pinned path and sha256, confirms #301 consumed #299 and preserved #297/#295/#293/#291 lineage, records exact proposed run scope, preconditions, Nissan approval fields, command transcript template, trace/eval requirements, service-wrapper before/after expectations, rollback/disable plan, risk verdict, and explicit ask/hold decision before any real mutation.
-- external-service activation approval-intake evidence that consumes merged #303 evidence by pinned path and sha256, confirms #303 consumed #301 and preserved #299/#297/#295/#293/#291 lineage, records the exact approval prompt, Nissan response timestamp/source fields, bounded scope echo, precondition echo, risk verdict, and explicit approve-or-hold decision before any real mutation.
+- external-service activation approval micro-gate evidence that consumes merged #301 evidence by pinned path and sha256, confirms #301 consumed #299 and preserved #297/#295/#293/#291 lineage, records exact proposed run scope, preconditions, project-maintainer approval fields, command transcript template, trace/eval requirements, service-wrapper before/after expectations, rollback/disable plan, risk verdict, and explicit ask/hold decision before any real mutation.
+- external-service activation approval-intake evidence that consumes merged #303 evidence by pinned path and sha256, confirms #303 consumed #301 and preserved #299/#297/#295/#293/#291 lineage, records the exact approval prompt, project-maintainer response timestamp/source fields, bounded scope echo, precondition echo, risk verdict, and explicit approve-or-hold decision before any real mutation.
 
 ## Evidence Inventory
 
@@ -96,9 +96,9 @@ The local-python runner can currently prove:
 | Beta runtime service-wrapper activation smoke report | `tests/BETA-RUNTIME-SERVICE-WRAPPER-ACTIVATION-SMOKE-REPORT.md`; `tests/test_beta_runtime_service_wrapper_activation_smoke.py` | Bounded #297 local service-wrapper smoke consumes the merged #295 evidence fixture/report by pinned path and sha256, verifies the preserved #293/#291 lineage, records ephemeral local wrapper before/enable/disable/rollback state, bounded transcript, trace/eval summary, hold/rollback decision, rollback/disable proof, and fail-closed external service/provider/MCP/payment/devnet/mainnet boundaries. |
 | Beta runtime service-wrapper operator run package report | `tests/BETA-RUNTIME-SERVICE-WRAPPER-OPERATOR-RUN-PACKAGE-REPORT.md`; `tests/test_beta_runtime_service_wrapper_operator_run_package.py` | Bounded #299 local service-wrapper operator run package consumes the merged #297 fixture/report by pinned path and sha256, verifies preserved #295/#293/#291 lineage, records exact scope, operator command transcript, trace/eval summary, ephemeral wrapper state, hold/rollback decision, rollback/disable verification, risk verdict, next-step cue, and fail-closed external service/provider/MCP/payment/devnet/mainnet boundaries. |
 | Beta bounded external-service activation gate report | `tests/BETA-BOUNDED-EXTERNAL-SERVICE-ACTIVATION-GATE-REPORT.md`; `tests/test_beta_bounded_external_service_activation_gate.py` | Bounded #301 local activation gate consumes the merged #299 fixture/report by pinned path and sha256, verifies #297/#295/#293/#291 lineage, records exact scope, command transcript, trace/eval summary, temporary local wrapper state, hold/rollback decision, rollback/disable verification, risk verdict, next-step cue, and fail-closes before real external-service/provider/MCP/payment/devnet/mainnet mutation. |
-| Beta external-service activation micro-gate report | `tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md`; `tests/test_beta_external_service_activation_micro_gate.py` | Approval-only #303 micro-gate consumes the merged #301 fixture/report by pinned path and sha256, verifies #301 consumed #299 and preserved #297/#295/#293/#291 lineage, records exact proposed run scope, preconditions, Nissan approval fields, command transcript template, trace/eval requirements, service-wrapper before/after expectations, rollback/disable plan, risk verdict, next-step cue, and fail-closes before any real external-service/provider/MCP/payment/devnet/mainnet mutation. |
-| Beta external-service approval intake report | `tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md`; `tests/test_beta_external_service_approval_intake.py` | Approval-intake #305 package consumes the merged #303 fixture/report by pinned path and sha256, verifies #303 consumed #301 and preserved #299/#297/#295/#293/#291 lineage, records exact approval prompt, Nissan response timestamp/source fields, bounded scope echo, precondition echo, risk verdict, and explicit approve-or-hold decision while fail-closing absent, ambiguous, stale, broad, escalated, or unsafe approvals before mutation. |
-| Beta external-service approval authorization report | `tests/BETA-EXTERNAL-SERVICE-APPROVAL-AUTHORIZATION-REPORT.md`; `tests/test_beta_external_service_approval_authorization.py` | Authorization #307 package consumes the merged #305 fixture/report by pinned path and sha256, verifies #305 consumed #303 and preserved #301/#299/#297/#295/#293/#291 lineage, binds Nissan's Telegram approval `16856` to the exact local/free bounded scope, and fail-closes stale source, wrong prompt, broad scope, provider/devnet/mainnet escalation, unsafe boundary flags, credential payloads, and unsafe command substitutions. |
+| Beta external-service activation micro-gate report | `tests/BETA-EXTERNAL-SERVICE-ACTIVATION-MICRO-GATE-REPORT.md`; `tests/test_beta_external_service_activation_micro_gate.py` | Approval-only #303 micro-gate consumes the merged #301 fixture/report by pinned path and sha256, verifies #301 consumed #299 and preserved #297/#295/#293/#291 lineage, records exact proposed run scope, preconditions, project-maintainer approval fields, command transcript template, trace/eval requirements, service-wrapper before/after expectations, rollback/disable plan, risk verdict, next-step cue, and fail-closes before any real external-service/provider/MCP/payment/devnet/mainnet mutation. |
+| Beta external-service approval intake report | `tests/BETA-EXTERNAL-SERVICE-APPROVAL-INTAKE-REPORT.md`; `tests/test_beta_external_service_approval_intake.py` | Approval-intake #305 package consumes the merged #303 fixture/report by pinned path and sha256, verifies #303 consumed #301 and preserved #299/#297/#295/#293/#291 lineage, records exact approval prompt, project-maintainer response timestamp/source fields, bounded scope echo, precondition echo, risk verdict, and explicit approve-or-hold decision while fail-closing absent, ambiguous, stale, broad, escalated, or unsafe approvals before mutation. |
+| Beta external-service approval authorization report | `tests/BETA-EXTERNAL-SERVICE-APPROVAL-AUTHORIZATION-REPORT.md`; `tests/test_beta_external_service_approval_authorization.py` | Authorization #307 package consumes the merged #305 fixture/report by pinned path and sha256, verifies #305 consumed #303 and preserved #301/#299/#297/#295/#293/#291 lineage, binds the project maintainer's Telegram approval `16856` to the exact local/free bounded scope, and fail-closes stale source, wrong prompt, broad scope, provider/devnet/mainnet escalation, unsafe boundary flags, credential payloads, and unsafe command substitutions. |
 | Coolify public devnet demo report | `tests/COOLIFY-DEVNET-PUBLIC-DEMO-REPORT.md`; `tests/test_coolify_devnet_public_demo.py` | Public Coolify devnet demo readiness records preview URL, explicit nginx Dockerfile entrypoint, loopback-registry Docker Image deployment, root health route, environment names without values, rollback/teardown metadata, and fail-closed mainnet/payment/credential/provider/MCP/production claims. |
 | Smoke gate | `tests/smoke-validation.sh` | Readiness-critical checks run together. |
 
@@ -107,42 +107,42 @@ The local-python runner can currently prove:
 Run these from the repository root:
 
 ```bash
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_validation_guidance.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_level1.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_snapshots.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_tool_execution.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_cli_usage_matrix.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_readiness_bundle.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_adapter_readiness.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_adapter_contract.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_adapter_error_semantics.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_adapter_aggregation.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_adapter_source_check.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_server_resolution.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_capability_policy.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_evidence.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_mcp_readiness_release.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runner_plugin_interface.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_local_runtime_prototype.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_provider_sandbox_prototype.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_rap_bridge_local_dry_run.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_live_mcp_devnet_handoff_prototype.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_surfpool_validator_lane.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_docker_testing_lane.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_coolify_staging_lane.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_control_harness.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_release_readiness.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_local_runtime_rc_gate.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_dry_run_package.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_review_ui.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_operator_decision_package.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_preflight_gate.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_rehearsal_package.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_beta_activation_acceptance_bundle.py
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 tests/test_coolify_devnet_public_demo.py
+python3 scripts/validate_examples.py
+python3 tests/test_validation_guidance.py
+python3 tests/test_level1.py
+python3 tests/test_snapshots.py
+python3 tests/test_tool_execution.py
+python3 tests/test_cli_usage_matrix.py
+python3 tests/test_readiness_bundle.py
+python3 tests/test_adapter_readiness.py
+python3 tests/test_mcp_adapter_contract.py
+python3 tests/test_mcp_adapter_error_semantics.py
+python3 tests/test_mcp_adapter_aggregation.py
+python3 tests/test_mcp_adapter_source_check.py
+python3 tests/test_mcp_server_resolution.py
+python3 tests/test_mcp_capability_policy.py
+python3 tests/test_mcp_readiness_evidence.py
+python3 tests/test_mcp_readiness_release.py
+python3 tests/test_local_runner_plugin_interface.py
+python3 tests/test_local_runtime_prototype.py
+python3 tests/test_provider_sandbox_prototype.py
+python3 tests/test_rap_bridge_local_dry_run.py
+python3 tests/test_live_mcp_devnet_handoff_prototype.py
+python3 tests/test_surfpool_validator_lane.py
+python3 tests/test_docker_testing_lane.py
+python3 tests/test_coolify_staging_lane.py
+python3 tests/test_beta_operator_control_harness.py
+python3 tests/test_beta_release_readiness.py
+python3 tests/test_beta_local_runtime_rc_gate.py
+python3 tests/test_beta_operator_dry_run_package.py
+python3 tests/test_beta_review_ui.py
+python3 tests/test_beta_operator_decision_package.py
+python3 tests/test_beta_activation_preflight_gate.py
+python3 tests/test_beta_activation_rehearsal_package.py
+python3 tests/test_beta_activation_acceptance_bundle.py
+python3 tests/test_coolify_devnet_public_demo.py
 bash tests/smoke-validation.sh
-/Users/loki/.pyenv/versions/3.14.3/bin/python3 -m py_compile scripts/*.py tests/*.py
+python3 -m py_compile scripts/*.py tests/*.py
 ```
 
 ## Rollout Gate Checklist

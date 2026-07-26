@@ -33,7 +33,7 @@ Use the status vocabulary from `docs/OPEN-SPECS-EXPLAINER.md`:
 | Executable prototype | Feedback asks for runnable local/devnet/provider/MCP behavior or beta evidence. | Route under the #220 prototype/beta track, starting with #224 or #222 when appropriate. |
 | Future work | Feedback depends on mainnet, production runtime operations, unrestricted spend, silent lossy exports, or unclear external actions. | Park with owner and approval gate; do not implement without fresh approval where required. |
 
-Mainnet deployment and mainnet runs remain future work unless Nissan gives fresh explicit approval.
+Mainnet deployment and mainnet runs remain future work unless the project maintainer gives fresh explicit approval.
 
 ## Intake Flow
 
@@ -54,7 +54,7 @@ Docs-only corrections should:
 
 - reference the exact file and section;
 - include a before/after expectation;
-- keep publication local unless Nissan approves external publishing;
+- keep publication local unless the project maintainer approves external publishing;
 - avoid introducing live runtime, provider, MCP, credential, payment, devnet, mainnet, deployment, npm, or destructive behavior;
 - update tests when a navigation link, protected package, or public-review contract depends on the text.
 

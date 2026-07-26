@@ -1,5 +1,7 @@
 # Agent Definition Language v0.1
 
+> **Superseded.** ADL v0.1 was superseded by [ADL v0.2](ADL-v0.2.md) on 2026-07-22 and is retained for history. New work should target `specs/ADL-v0.2.md` and `specs/ADL-v0.2.schema.json`. For upgrading existing definitions, see the [v0.1 to v0.2 migration guide](../docs/ADL-v0.1-to-v0.2-MIGRATION.md).
+
 _Loop 6. Anchor issue: #6._
 
 ## Goal

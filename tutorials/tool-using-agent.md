@@ -12,7 +12,7 @@ Understand how ReddiAgent represents one typed tool and one source-check eval ga
 
 ## Dry-Run
 
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/tool-agent.yaml
+    python3 scripts/run_local_agent.py examples/tool-agent.yaml
 
 Expected summary includes:
 

@@ -1,3 +1,5 @@
+> **Archived.** This planning document is superseded; current sequencing lives in [docs/ROADMAP.md](../ROADMAP.md).
+
 # ReddiAgent Lab Ultra Plan
 
 _Created: 2026-05-21_

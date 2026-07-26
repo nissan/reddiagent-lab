@@ -12,7 +12,7 @@ Run the smallest ReddiAgent definition as a local dry-run.
 
 ## Validate
 
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/validate_examples.py
+    python3 scripts/validate_examples.py
 
 Expected:
 
@@ -20,7 +20,7 @@ Expected:
 
 ## Dry-Run
 
-    /Users/loki/.pyenv/versions/3.14.3/bin/python3 scripts/run_local_agent.py examples/simple-agent.yaml
+    python3 scripts/run_local_agent.py examples/simple-agent.yaml
 
 What to notice:
 
