@@ -210,6 +210,161 @@ def test_non_substitutability_matrix_matches_benchmark_doc() -> None:
     assert set(validator.NON_SUBSTITUTABLE) == set(validator.REQUIRED_LAYERS)
 
 
+WRONG_TYPE_SENTINELS = {
+    validator.STR: 12345,
+    validator.AMOUNT: "120000",
+    validator.STR_LIST: "not-a-list",
+    validator.BOOL: "false",
+}
+
+
+def test_every_decision_relevant_field_rejects_on_wrong_type() -> None:
+    """C1/C2/C3/M4 sweep: any wrong-typed decision-relevant field must emit
+    rap_receipt.<category>.invalid and reject — never skip, never crash."""
+    for layer, field_types in validator.FIELD_TYPES.items():
+        for field, kind in field_types.items():
+            receipt = benchmark.receipt_with_fields(layer, **{field: WRONG_TYPE_SENTINELS[kind]})
+            verdict = validator.validate_receipt(receipt)
+            assert verdict["decision"] == "reject", (layer, field)
+            category = validator.LAYER_CATEGORY[layer]
+            assert f"rap_receipt.{category}.invalid" in codes(verdict), (layer, field)
+    for field in validator.REQUIRED_REQUEST_FIELDS:
+        receipt = benchmark.base_receipt()
+        receipt["request"][field] = 12345
+        verdict = validator.validate_receipt(receipt)
+        assert verdict["decision"] == "reject", field
+        assert "rap_receipt.envelope.required" in codes(verdict), field
+
+
+def test_wrong_typed_amount_rejects_instead_of_skipping_cap() -> None:
+    # C1 / probe A10: stringified over-cap amount must not bypass the spend cap.
+    receipt = benchmark.receipt_with_fields("paymentEvidence", amount="999999999")
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.payment.invalid" in codes(verdict)
+    # Probe A22: bool is an int subclass; amounts must still reject it.
+    receipt = benchmark.receipt_with_fields("paymentEvidence", amount=True)
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.payment.invalid" in codes(verdict)
+
+
+def test_wrong_typed_max_amount_rejects_instead_of_skipping_cap() -> None:
+    # C1 / probe A11: stringified cap plus over-cap payment must reject.
+    receipt = benchmark.receipt_with_fields("delegatedAuthority", maxAmount="tiny")
+    receipt["paymentEvidence"]["amount"] = 999999999
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.authority.invalid" in codes(verdict)
+
+
+def test_wrong_typed_replay_ledger_rejects_instead_of_skipping_check() -> None:
+    # C2 / probe A12: ledger check must never be skippable by type.
+    for bad_ledger in ("sha256:x402-response-0001", ["sha256:x402-response-0001", 42]):
+        receipt = benchmark.receipt_with_fields("replayIdempotency", priorPaymentResponseHashes=bad_ledger)
+        verdict = validator.validate_receipt(receipt)
+        assert verdict["decision"] == "reject", bad_ledger
+        assert "rap_receipt.replay.invalid" in codes(verdict), bad_ledger
+
+
+def test_wrong_typed_join_refs_rejects_instead_of_skipping_check() -> None:
+    # C3 / probe A13: joinRefs as a string must reject, not skip the join check.
+    receipt = benchmark.receipt_with_fields("privacyAccounting", joinRefs="req-375-0001")
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.accounting.invalid" in codes(verdict)
+
+
+def test_wrong_typed_expires_at_rejects_without_crashing() -> None:
+    # M4 / probe A14: int expiresAt used to raise TypeError on str comparison.
+    receipt = benchmark.receipt_with_fields("delegatedAuthority", expiresAt=12345)
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.authority.invalid" in codes(verdict)
+
+
+def test_unconfirmed_settlement_status_rejects() -> None:
+    # M5 / probe A16: settlement proof must carry a confirmed status.
+    for status in ("failed", "processed", "pending"):
+        receipt = benchmark.receipt_with_fields("settlementProgramProof", confirmationStatus=status)
+        verdict = validator.validate_receipt(receipt)
+        assert verdict["decision"] == "reject", status
+        assert "rap_receipt.settlement.unconfirmed" in codes(verdict), status
+    # Both confirmed states accept.
+    for status in ("confirmed", "finalized"):
+        receipt = benchmark.receipt_with_fields("settlementProgramProof", confirmationStatus=status)
+        assert validator.validate_receipt(receipt)["decision"] == "accept", status
+
+
+def test_request_hash_context_binding_enforced() -> None:
+    # M6 / probes A17 + A20: outcome and idempotency evidence lifted from a
+    # different request must reject, mirroring the boundRequestId binding.
+    for layer, path in (
+        ("serviceOutcome", "receipt.serviceOutcome.requestHash"),
+        ("replayIdempotency", "receipt.replayIdempotency.requestHash"),
+    ):
+        receipt = benchmark.receipt_with_fields(layer, requestHash="sha256:req-OTHER")
+        verdict = validator.validate_receipt(receipt)
+        assert verdict["decision"] == "reject", layer
+        assert "rap_receipt.replay.duplicate_payment" in codes(verdict), layer
+        assert path in {diag["path"] for diag in verdict["diagnostics"]}, layer
+
+
+def test_settlement_amount_cross_checked_against_payment_and_cap() -> None:
+    # M7 / probe A19: settling 1 while claiming the full payment must reject.
+    receipt = benchmark.receipt_with_fields("settlementProgramProof", amount=1)
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.settlement.amount_mismatch" in codes(verdict)
+    # Settlement amount over the mandate cap rejects even when it matches payment.
+    receipt = benchmark.receipt_with_fields("settlementProgramProof", amount=300000)
+    receipt["paymentEvidence"]["amount"] = 300000
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.authority.scope_mismatch" in codes(verdict)
+    assert "receipt.settlementProgramProof.amount" in {diag["path"] for diag in verdict["diagnostics"]}
+
+
+def test_payment_rail_must_match_mandate_rail() -> None:
+    # M8 / probe A18: the mandate binds the rail; a different rail rejects.
+    receipt = benchmark.receipt_with_fields("paymentEvidence", rail="stripe-card")
+    verdict = validator.validate_receipt(receipt)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.authority.scope_mismatch" in codes(verdict)
+    assert "receipt.paymentEvidence.rail" in {diag["path"] for diag in verdict["diagnostics"]}
+
+
+def test_unknown_enum_values_reject_as_invalid_not_hold() -> None:
+    # M9 / probes A7-A9, A23: unknown enum values are structural rejects, not
+    # semantically-labeled holds.
+    for layer, field, value, code in (
+        ("serviceOutcome", "status", "Success", "rap_receipt.service.invalid"),
+        ("evalEvidence", "status", "PASS", "rap_receipt.eval.invalid"),
+        ("disputeState", "status", "None", "rap_receipt.dispute.invalid"),
+        ("rollbackHold", "holdState", "paused", "rap_receipt.rollback.invalid"),
+        ("rollbackHold", "rollbackRequired", "false", "rap_receipt.rollback.invalid"),
+    ):
+        receipt = benchmark.receipt_with_fields(layer, **{field: value})
+        verdict = validator.validate_receipt(receipt)
+        assert verdict["decision"] == "reject", (layer, field, value)
+        assert code in codes(verdict), (layer, field, value)
+
+
+def test_unknown_extra_layers_are_ignored_and_cannot_substitute() -> None:
+    # M11: documented policy — extras are ignored; required layers are still
+    # fully validated and extras carry zero evidential weight.
+    receipt = benchmark.base_receipt()
+    receipt["superAdminOverride"] = {"grant": "all"}
+    receipt["extraLayer"] = {"x": 1}
+    assert validator.validate_receipt(receipt) == {"decision": "accept", "diagnostics": []}
+    # Extras cannot substitute for missing required evidence.
+    stripped = benchmark.receipt_without_layer("serviceOutcome")
+    stripped["serviceOutcomeOverride"] = {"status": "success"}
+    verdict = validator.validate_receipt(stripped)
+    assert verdict["decision"] == "reject"
+    assert "rap_receipt.service_outcome.required" in codes(verdict)
+
+
 def test_benchmark_collect_findings_flags_spec_implementation_drift() -> None:
     doc = benchmark.build_doc()
     assert benchmark.collect_findings(doc) == []
@@ -247,8 +402,12 @@ def test_cli_exit_codes_and_json_verdicts() -> None:
 
         proc = run_cli(accept_path)
         assert proc.returncode == 0, proc.stderr
-        verdicts = json.loads(proc.stdout)["verdicts"]
-        assert verdicts[0]["decision"] == "accept"
+        output = json.loads(proc.stdout)
+        assert output["verdicts"][0]["decision"] == "accept"
+        # M10: the CLI documents the non-substitutability matrix in its output.
+        assert output["nonSubstitutableMatrix"] == {
+            layer: list(rules) for layer, rules in validator.NON_SUBSTITUTABLE.items()
+        }
 
         proc = run_cli(accept_path, hold_path)
         assert proc.returncode == 2, proc.stderr
@@ -281,6 +440,18 @@ def main() -> int:
     test_reject_outranks_hold()
     test_payment_and_settlement_alone_can_never_accept()
     test_non_substitutability_matrix_matches_benchmark_doc()
+    test_every_decision_relevant_field_rejects_on_wrong_type()
+    test_wrong_typed_amount_rejects_instead_of_skipping_cap()
+    test_wrong_typed_max_amount_rejects_instead_of_skipping_cap()
+    test_wrong_typed_replay_ledger_rejects_instead_of_skipping_check()
+    test_wrong_typed_join_refs_rejects_instead_of_skipping_check()
+    test_wrong_typed_expires_at_rejects_without_crashing()
+    test_unconfirmed_settlement_status_rejects()
+    test_request_hash_context_binding_enforced()
+    test_settlement_amount_cross_checked_against_payment_and_cap()
+    test_payment_rail_must_match_mandate_rail()
+    test_unknown_enum_values_reject_as_invalid_not_hold()
+    test_unknown_extra_layers_are_ignored_and_cannot_substitute()
     test_benchmark_collect_findings_flags_spec_implementation_drift()
     test_cli_exit_codes_and_json_verdicts()
     print("PASS RAP receipt validator")

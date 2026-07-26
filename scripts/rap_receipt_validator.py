@@ -10,18 +10,39 @@ against the receipt's own ``finalizedAt`` field.
 Enforced properties:
 
 - All ten evidence layers must be present and structurally valid.
+- Fail closed on types: every decision-relevant field has an expected type
+  (``FIELD_TYPES``); a wrong-typed value (string amount, string ledger,
+  bool-as-int, non-string timestamp, ...) emits
+  ``rap_receipt.<category>.invalid`` and rejects. Semantic checks never run
+  on — and can never be skipped by — a wrong-typed field.
 - Non-substitutability: settlement/payment evidence alone can never produce
   accept for service success, reputation eligibility, dispute closure, or
   accounting acceptance (missing layers reject).
-- Replay protection: payment proof is bound to a single request id, and a
-  payment response hash already recorded in the replay ledger rejects.
+- Replay protection and context binding: payment proof is bound to a single
+  request id, service outcome and replay idempotency hashes must match the
+  request hash, and a payment response hash already recorded in the replay
+  ledger rejects.
 - Delegated-authority scope: purpose must match the request intent, the
   mandate must not be revoked, and ``expiresAt`` must not predate
   ``finalizedAt``.
-- Payee binding: payment, settlement, and service-agent payees must match the
-  mandate payee, and the paid amount must not exceed the mandate cap.
+- Payee, rail, and amount binding: payment, settlement, and service-agent
+  payees must match the mandate payee; the payment rail must match the
+  mandate rail; the paid amount must not exceed the mandate cap; and the
+  settlement amount must equal the payment amount and stay within the cap.
+- Settlement proof must carry a confirmed status
+  (``CONFIRMED_SETTLEMENT_STATUSES``); anything else rejects.
 - Eval-failed receipts cannot yield a reputation-eligible accept.
 - Open disputes and active rollback/hold/kill-switch state produce hold.
+  Unknown enum values for decision-relevant statuses are *not* semantic
+  states: they emit ``rap_receipt.<category>.invalid`` and reject.
+
+Unknown extra layers policy (deliberate): top-level keys outside the request
+envelope and the ten required layers are ignored. This is fail-closed, not
+fail-open — every acceptance criterion is anchored to the required layers,
+which are always fully validated, so an unknown layer carries zero evidential
+weight and can never substitute for any required evidence (see
+``NON_SUBSTITUTABLE``). Ignoring extras keeps receipts forward-compatible
+with future evidence layers without weakening the current decision.
 
 Academic anchors: arXiv 2607.19545 (USENIX Sec 2026), arXiv 2605.11781
 (paid-but-denied), arXiv 2602.06345 (consume-once + context binding).
@@ -118,6 +139,35 @@ REQUIRED_LAYER_FIELDS: dict[str, tuple[str, ...]] = {
 
 REQUIRED_REQUEST_FIELDS = ("requestId", "requestHash", "purpose", "toolName", "resourceScope")
 
+# Expected-type kinds for decision-relevant fields. AMOUNT excludes bool
+# explicitly because bool is an int subclass in Python.
+STR = "string"
+AMOUNT = "amount"
+STR_LIST = "string-list"
+BOOL = "boolean"
+
+FIELD_TYPES: dict[str, dict[str, str]] = {
+    layer: {field: STR for field in fields} for layer, fields in REQUIRED_LAYER_FIELDS.items()
+}
+FIELD_TYPES["delegatedAuthority"]["maxAmount"] = AMOUNT
+FIELD_TYPES["paymentEvidence"]["amount"] = AMOUNT
+FIELD_TYPES["settlementProgramProof"]["amount"] = AMOUNT
+FIELD_TYPES["replayIdempotency"]["priorPaymentResponseHashes"] = STR_LIST
+FIELD_TYPES["privacyAccounting"]["joinRefs"] = STR_LIST
+FIELD_TYPES["rollbackHold"]["rollbackRequired"] = BOOL
+
+REQUEST_FIELD_TYPES: dict[str, str] = {field: STR for field in REQUIRED_REQUEST_FIELDS}
+
+
+def _wrong_type(value: Any, kind: str) -> bool:
+    if kind == AMOUNT:
+        return isinstance(value, bool) or not isinstance(value, (int, float))
+    if kind == STR_LIST:
+        return not isinstance(value, list) or any(not isinstance(item, str) for item in value)
+    if kind == BOOL:
+        return not isinstance(value, bool)
+    return not isinstance(value, str)
+
 # Layers whose evidence can never substitute for the listed layers/outcomes.
 # Mirrors layer_requirements() in scripts/rap_receipt_integrity_benchmark.py.
 NON_SUBSTITUTABLE: dict[str, tuple[str, ...]] = {
@@ -144,6 +194,15 @@ HOLD_CODES = frozenset(
 
 CLEAR_DISPUTE_STATUSES = frozenset({"none", "closed"})
 
+# Closed enum sets for decision-relevant statuses. Known-bad values map to
+# their true semantic reject/hold codes; anything outside the set is a
+# structural rap_receipt.<category>.invalid reject, never a semantic hold.
+KNOWN_SERVICE_STATUSES = frozenset({"success", "failed"})
+KNOWN_EVAL_STATUSES = frozenset({"pass", "failed"})
+KNOWN_DISPUTE_STATUSES = CLEAR_DISPUTE_STATUSES | {"open"}
+KNOWN_HOLD_STATES = frozenset({"none", "hold"})
+CONFIRMED_SETTLEMENT_STATUSES = frozenset({"confirmed", "finalized"})
+
 
 def _diagnostic(code: str, message: str, layer: str, path: str) -> dict[str, str]:
     return {"code": code, "message": message, "layer": layer, "path": path}
@@ -157,20 +216,45 @@ def _missing_fields(layer_value: dict[str, Any], fields: tuple[str, ...]) -> lis
     ]
 
 
+def _wrong_typed_fields(layer_value: dict[str, Any], field_types: dict[str, str]) -> list[str]:
+    """Fields that are present (not missing) but carry a wrong-typed value."""
+    missing = set(_missing_fields(layer_value, tuple(field_types)))
+    return [
+        field
+        for field, kind in field_types.items()
+        if field not in missing and _wrong_type(layer_value[field], kind)
+    ]
+
+
+def _valid_request(receipt: dict[str, Any]) -> dict[str, Any] | None:
+    """Return the request envelope when complete and well-typed, else None.
+
+    Semantic cross-checks must never consume a malformed request: the
+    structural layer already rejects it via rap_receipt.envelope.required.
+    """
+    request = receipt.get("request")
+    if not isinstance(request, dict):
+        return None
+    if _missing_fields(request, REQUIRED_REQUEST_FIELDS) or _wrong_typed_fields(request, REQUEST_FIELD_TYPES):
+        return None
+    return request
+
+
 def _valid_layer(receipt: dict[str, Any], layer: str) -> dict[str, Any] | None:
-    """Return the layer dict when present and structurally complete, else None."""
+    """Return the layer dict when present, complete, and well-typed, else None."""
     value = receipt.get(layer)
     if not isinstance(value, dict):
         return None
     if _missing_fields(value, REQUIRED_LAYER_FIELDS[layer]):
+        return None
+    if _wrong_typed_fields(value, FIELD_TYPES[layer]):
         return None
     return value
 
 
 def _structural_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     diagnostics: list[dict[str, str]] = []
-    request = receipt.get("request")
-    if not isinstance(request, dict) or _missing_fields(request, REQUIRED_REQUEST_FIELDS):
+    if _valid_request(receipt) is None:
         diagnostics.append(
             _diagnostic(
                 "rap_receipt.envelope.required",
@@ -202,6 +286,16 @@ def _structural_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
                 )
             )
             continue
+        wrong_typed = _wrong_typed_fields(value, FIELD_TYPES[layer])
+        if wrong_typed:
+            diagnostics.append(
+                _diagnostic(
+                    f"rap_receipt.{category}.invalid",
+                    f"Evidence layer {layer} has wrong-typed fields: {', '.join(sorted(wrong_typed))}.",
+                    category,
+                    f"receipt.{layer}",
+                )
+            )
         missing = _missing_fields(value, REQUIRED_LAYER_FIELDS[layer])
         if not missing:
             continue
@@ -240,11 +334,11 @@ def _structural_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
 def _authority_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     diagnostics: list[dict[str, str]] = []
     authority = _valid_layer(receipt, "delegatedAuthority")
-    request = receipt.get("request")
+    request = _valid_request(receipt)
     finalized_at = receipt.get("finalizedAt")
-    if authority is None or not isinstance(request, dict):
+    if authority is None or request is None:
         return diagnostics
-    if request.get("purpose") and authority["purpose"] != request["purpose"]:
+    if authority["purpose"] != request["purpose"]:
         diagnostics.append(
             _diagnostic(
                 "rap_receipt.authority.scope_mismatch",
@@ -276,10 +370,10 @@ def _authority_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
 
 def _resource_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     resource = _valid_layer(receipt, "resourceAuthorization")
-    request = receipt.get("request")
-    if resource is None or not isinstance(request, dict):
+    request = _valid_request(receipt)
+    if resource is None or request is None:
         return []
-    if resource["toolName"] != request.get("toolName") or resource["scope"] != request.get("resourceScope"):
+    if resource["toolName"] != request["toolName"] or resource["scope"] != request["resourceScope"]:
         return [
             _diagnostic(
                 "rap_receipt.resource.scope_mismatch",
@@ -313,9 +407,9 @@ def _payee_binding_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
                 )
             )
     payment = _valid_layer(receipt, "paymentEvidence")
-    if payment is not None and isinstance(payment["amount"], (int, float)) and isinstance(
-        authority["maxAmount"], (int, float)
-    ):
+    if payment is not None:
+        # _valid_layer guarantees numeric amounts and string rails here; a
+        # wrong-typed field already rejected via rap_receipt.*.invalid.
         if payment["amount"] > authority["maxAmount"]:
             diagnostics.append(
                 _diagnostic(
@@ -325,6 +419,53 @@ def _payee_binding_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
                     "receipt.paymentEvidence.amount",
                 )
             )
+        if payment["rail"] != authority["rail"]:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.authority.scope_mismatch",
+                    f"Payment rail {payment['rail']!r} does not match mandate rail {authority['rail']!r}.",
+                    "authority",
+                    "receipt.paymentEvidence.rail",
+                )
+            )
+    return diagnostics
+
+
+def _settlement_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
+    diagnostics: list[dict[str, str]] = []
+    settlement = _valid_layer(receipt, "settlementProgramProof")
+    if settlement is None:
+        return diagnostics
+    if settlement["confirmationStatus"] not in CONFIRMED_SETTLEMENT_STATUSES:
+        diagnostics.append(
+            _diagnostic(
+                "rap_receipt.settlement.unconfirmed",
+                f"Settlement confirmationStatus {settlement['confirmationStatus']!r} is not a confirmed state; "
+                f"expected one of: {', '.join(sorted(CONFIRMED_SETTLEMENT_STATUSES))}.",
+                "settlement",
+                "receipt.settlementProgramProof.confirmationStatus",
+            )
+        )
+    payment = _valid_layer(receipt, "paymentEvidence")
+    if payment is not None and settlement["amount"] != payment["amount"]:
+        diagnostics.append(
+            _diagnostic(
+                "rap_receipt.settlement.amount_mismatch",
+                f"Settled amount {settlement['amount']} does not match payment amount {payment['amount']}.",
+                "settlement",
+                "receipt.settlementProgramProof.amount",
+            )
+        )
+    authority = _valid_layer(receipt, "delegatedAuthority")
+    if authority is not None and settlement["amount"] > authority["maxAmount"]:
+        diagnostics.append(
+            _diagnostic(
+                "rap_receipt.authority.scope_mismatch",
+                f"Settled amount {settlement['amount']} exceeds mandate cap {authority['maxAmount']}.",
+                "authority",
+                "receipt.settlementProgramProof.amount",
+            )
+        )
     return diagnostics
 
 
@@ -332,21 +473,19 @@ def _replay_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     diagnostics: list[dict[str, str]] = []
     payment = _valid_layer(receipt, "paymentEvidence")
     replay = _valid_layer(receipt, "replayIdempotency")
-    request = receipt.get("request")
-    if payment is None:
-        return diagnostics
-    if replay is not None:
-        prior = replay["priorPaymentResponseHashes"]
-        if isinstance(prior, list) and payment["responseHash"] in prior:
-            diagnostics.append(
-                _diagnostic(
-                    "rap_receipt.replay.duplicate_payment",
-                    "Payment response hash already appears in the replay ledger; a settled payment cannot be counted twice.",
-                    "replay",
-                    "receipt.replayIdempotency.priorPaymentResponseHashes",
-                )
+    request = _valid_request(receipt)
+    # _valid_layer guarantees priorPaymentResponseHashes is a list of strings;
+    # a wrong-typed ledger already rejected via rap_receipt.replay.invalid.
+    if payment is not None and replay is not None and payment["responseHash"] in replay["priorPaymentResponseHashes"]:
+        diagnostics.append(
+            _diagnostic(
+                "rap_receipt.replay.duplicate_payment",
+                "Payment response hash already appears in the replay ledger; a settled payment cannot be counted twice.",
+                "replay",
+                "receipt.replayIdempotency.priorPaymentResponseHashes",
             )
-    if isinstance(request, dict) and request.get("requestId") and payment["boundRequestId"] != request["requestId"]:
+        )
+    if payment is not None and request is not None and payment["boundRequestId"] != request["requestId"]:
         diagnostics.append(
             _diagnostic(
                 "rap_receipt.replay.duplicate_payment",
@@ -355,17 +494,38 @@ def _replay_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
                 "receipt.paymentEvidence.boundRequestId",
             )
         )
+    # Context binding: service outcome and replay idempotency evidence must be
+    # bound to this receipt's request hash, not lifted from another request.
+    if request is not None:
+        request_hash = request["requestHash"]
+        for layer, path in (
+            ("serviceOutcome", "receipt.serviceOutcome.requestHash"),
+            ("replayIdempotency", "receipt.replayIdempotency.requestHash"),
+        ):
+            value = _valid_layer(receipt, layer)
+            if value is not None and value["requestHash"] != request_hash:
+                diagnostics.append(
+                    _diagnostic(
+                        "rap_receipt.replay.duplicate_payment",
+                        f"{layer} evidence is bound to request hash {value['requestHash']!r}, "
+                        f"not this receipt's request hash {request_hash!r}.",
+                        "replay",
+                        path,
+                    )
+                )
     return diagnostics
 
 
 def _accounting_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     accounting = _valid_layer(receipt, "privacyAccounting")
-    if accounting is None or not isinstance(accounting["joinRefs"], list):
+    if accounting is None:
         return []
+    # _valid_layer guarantees joinRefs is a list of strings; a wrong-typed
+    # value already rejected via rap_receipt.accounting.invalid.
     join_refs = accounting["joinRefs"]
-    request = receipt.get("request")
+    request = _valid_request(receipt)
     required_refs: list[str] = []
-    if isinstance(request, dict) and request.get("requestId"):
+    if request is not None:
         required_refs.append(request["requestId"])
     for layer, field in (
         ("paymentEvidence", "responseHash"),
@@ -392,45 +552,85 @@ def _accounting_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
 def _outcome_diagnostics(receipt: dict[str, Any]) -> list[dict[str, str]]:
     diagnostics: list[dict[str, str]] = []
     service = _valid_layer(receipt, "serviceOutcome")
-    if service is not None and service["status"] != "success":
-        diagnostics.append(
-            _diagnostic(
-                "rap_receipt.service.failed_after_payment",
-                f"Service status is {service['status']!r} after settled payment; hold for refund, retry, or dispute handling.",
-                "service",
-                "receipt.serviceOutcome.status",
+    if service is not None:
+        if service["status"] not in KNOWN_SERVICE_STATUSES:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.service.invalid",
+                    f"Service status {service['status']!r} is not a known status; unknown enum values reject.",
+                    "service",
+                    "receipt.serviceOutcome.status",
+                )
             )
-        )
+        elif service["status"] != "success":
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.service.failed_after_payment",
+                    f"Service status is {service['status']!r} after settled payment; hold for refund, retry, or dispute handling.",
+                    "service",
+                    "receipt.serviceOutcome.status",
+                )
+            )
     evaluation = _valid_layer(receipt, "evalEvidence")
-    if evaluation is not None and evaluation["status"] != "pass":
-        diagnostics.append(
-            _diagnostic(
-                "rap_receipt.eval.failed",
-                "Required evaluation gate did not pass; the receipt cannot become reputation-eligible.",
-                "eval",
-                "receipt.evalEvidence.status",
+    if evaluation is not None:
+        if evaluation["status"] not in KNOWN_EVAL_STATUSES:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.eval.invalid",
+                    f"Eval status {evaluation['status']!r} is not a known status; unknown enum values reject.",
+                    "eval",
+                    "receipt.evalEvidence.status",
+                )
             )
-        )
+        elif evaluation["status"] != "pass":
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.eval.failed",
+                    "Required evaluation gate did not pass; the receipt cannot become reputation-eligible.",
+                    "eval",
+                    "receipt.evalEvidence.status",
+                )
+            )
     dispute = _valid_layer(receipt, "disputeState")
-    if dispute is not None and dispute["status"] not in CLEAR_DISPUTE_STATUSES:
-        diagnostics.append(
-            _diagnostic(
-                "rap_receipt.dispute.open",
-                f"Dispute state is {dispute['status']!r}; hold accounting and reputation until resolution closes.",
-                "dispute",
-                "receipt.disputeState.status",
+    if dispute is not None:
+        if dispute["status"] not in KNOWN_DISPUTE_STATUSES:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.dispute.invalid",
+                    f"Dispute status {dispute['status']!r} is not a known status; unknown enum values reject.",
+                    "dispute",
+                    "receipt.disputeState.status",
+                )
             )
-        )
+        elif dispute["status"] not in CLEAR_DISPUTE_STATUSES:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.dispute.open",
+                    f"Dispute state is {dispute['status']!r}; hold accounting and reputation until resolution closes.",
+                    "dispute",
+                    "receipt.disputeState.status",
+                )
+            )
     ops = _valid_layer(receipt, "rollbackHold")
-    if ops is not None and (ops["rollbackRequired"] or ops["holdState"] != "none" or ops.get("killSwitchRef")):
-        diagnostics.append(
-            _diagnostic(
-                "rap_receipt.rollback.required",
-                "Rollback, hold, or kill-switch criteria are active; acceptance is blocked while hold evidence is preserved.",
-                "rollback",
-                "receipt.rollbackHold",
+    if ops is not None:
+        if ops["holdState"] not in KNOWN_HOLD_STATES:
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.rollback.invalid",
+                    f"Hold state {ops['holdState']!r} is not a known state; unknown enum values reject.",
+                    "rollback",
+                    "receipt.rollbackHold.holdState",
+                )
             )
-        )
+        elif ops["rollbackRequired"] or ops["holdState"] != "none" or ops.get("killSwitchRef"):
+            diagnostics.append(
+                _diagnostic(
+                    "rap_receipt.rollback.required",
+                    "Rollback, hold, or kill-switch criteria are active; acceptance is blocked while hold evidence is preserved.",
+                    "rollback",
+                    "receipt.rollbackHold",
+                )
+            )
     return diagnostics
 
 
@@ -458,6 +658,7 @@ def validate_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
     diagnostics.extend(_authority_diagnostics(receipt))
     diagnostics.extend(_resource_diagnostics(receipt))
     diagnostics.extend(_payee_binding_diagnostics(receipt))
+    diagnostics.extend(_settlement_diagnostics(receipt))
     diagnostics.extend(_replay_diagnostics(receipt))
     diagnostics.extend(_accounting_diagnostics(receipt))
     diagnostics.extend(_outcome_diagnostics(receipt))
@@ -480,7 +681,13 @@ def main() -> int:
         receipt = json.loads(Path(raw_path).read_text(encoding="utf-8"))
         verdict = validate_receipt(receipt)
         verdicts.append({"path": raw_path, **verdict})
-    print(json.dumps({"verdicts": verdicts}, indent=2, sort_keys=True))
+    output = {
+        # Documented non-substitutability matrix (mirrors the benchmark doc):
+        # which layers each evidence layer can never substitute for.
+        "nonSubstitutableMatrix": {layer: list(rules) for layer, rules in NON_SUBSTITUTABLE.items()},
+        "verdicts": verdicts,
+    }
+    print(json.dumps(output, indent=2, sort_keys=True))
     decisions = {verdict["decision"] for verdict in verdicts}
     if "reject" in decisions:
         return 1
