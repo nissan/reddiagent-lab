@@ -7,6 +7,7 @@ _Loop 42. Anchor issue: #42._
 - STATUS.md (operations resume log, internal)
 - docs/REDDIAGENT-VISION-ROADMAP.md
 - docs/ROADMAP.md
+- docs/TRACKS.md (cross-repo alignment map: reddiagent-lab spec home vs reddi-agent-protocol proof repo)
 - docs/REDDIAGENT-ARCHITECTURE.md
 - docs/OPEN-SPECS-EXPLAINER.md
 - docs/OPEN-SPEC-REVIEW-INTAKE.md

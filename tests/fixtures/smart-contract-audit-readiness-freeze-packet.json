@@ -4,7 +4,7 @@
       "exists": true,
       "issue": 365,
       "path": "tests/fixtures/beta-external-tester-mvp-packet.json",
-      "sha256": "c7502ee66ca67fe849482d229941d2ecc61daab6ecfbc278cc798f1fcdb1a28f",
+      "sha256": "d0137ef93854789ca6bf58699a5b9fa7deec992bcacaa084beb023ac54b85b0d",
       "sizeBytes": 19588
     },
     "rapX402Ap2AuditPrep": {
