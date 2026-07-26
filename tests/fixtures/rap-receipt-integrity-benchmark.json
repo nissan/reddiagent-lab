@@ -220,16 +220,95 @@
       "id": "valid_full_receipt",
       "proves": "RAP can accept only when payment, authority, resource access, settlement, service, eval, replay, accounting, dispute, and rollback evidence all pass.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "positive full receipt integrity path"
     },
@@ -247,16 +326,88 @@
       "id": "payment_service_decoupling",
       "proves": "Payment evidence alone cannot become service success.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "missing",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "x402 settlement is present but service result is missing"
     },
@@ -274,16 +425,95 @@
       "id": "valid_authorization_misuse",
       "proves": "A real authorization cannot be reused outside its bounded intent.",
       "receipt": {
-        "delegatedAuthority": "purpose-mismatch",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "portfolio-rebalance",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "valid mandate is reused for the wrong purpose"
     },
@@ -301,16 +531,95 @@
       "id": "weak_intent_binding",
       "proves": "Delegated authority must be stronger than a generic payment permission.",
       "receipt": {
-        "delegatedAuthority": "missing-payee-cap-binding",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": null,
+          "payee": "",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "mandate exists but does not bind payee and cap"
     },
@@ -328,16 +637,91 @@
       "id": "limited_accountability",
       "proves": "Receipt integrity needs accountable joins, not standalone payment records.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "missing-accounting-join",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "accounting cannot link request, response, payment, and evaluator"
     },
@@ -355,16 +739,97 @@
       "id": "replay_duplicate_receipt",
       "proves": "A settled payment cannot be counted twice.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "duplicate-payment-response",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [
+            "sha256:x402-response-0001"
+          ],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "same payment response is replayed under a duplicate receipt"
     },
@@ -382,16 +847,95 @@
       "id": "stale_scope",
       "proves": "Payment success after expiry cannot revive stale delegated authority.",
       "receipt": {
-        "delegatedAuthority": "expired",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-25T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "authorization scope expired before receipt finalization"
     },
@@ -409,16 +953,95 @@
       "id": "wrong_resource",
       "proves": "Protected resource access stays separate from payment permission.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-mismatch",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:trade:write",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.trade"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "MCP/resource authorization covers a different resource"
     },
@@ -436,16 +1059,95 @@
       "id": "wrong_merchant_payee",
       "proves": "Settlement proof must bind to the intended payee or merchant.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "payee-mismatch"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-imposter",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "settlement payee differs from mandate and service merchant"
     },
@@ -463,16 +1165,95 @@
       "id": "failed_service_after_settled_payment",
       "proves": "Settled payment with failed service is not a successful RAP receipt.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "failed-after-payment",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "failed"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "payment settled but service failed"
     },
@@ -490,16 +1271,85 @@
       "id": "service_returned_without_payment",
       "proves": "Service success alone cannot create payment accounting evidence.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "missing",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "service succeeded but payment evidence is absent"
     },
@@ -517,16 +1367,95 @@
       "id": "eval_failed_reputation_emission",
       "proves": "Reputation eligibility requires evaluation evidence, not just payment and service completion.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "failed",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "failed"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "service result is present but required evaluator failed"
     },
@@ -544,16 +1473,95 @@
       "id": "disputed_receipt",
       "proves": "Disputed receipts cannot close accounting or reputation.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "open",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "no-hold-or-rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": "2026-07-26T02:30:00Z",
+          "resolutionRef": null,
+          "status": "open"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "none",
+          "killSwitchRef": null,
+          "rollbackRequired": false
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "receipt has an open dispute"
     },
@@ -571,18 +1579,98 @@
       "id": "rollback_required",
       "proves": "Operational rollback or kill-switch state overrides payment settlement.",
       "receipt": {
-        "delegatedAuthority": "bound-current-purpose-payee-cap",
-        "disputeState": "not-disputed",
-        "evalEvidence": "required-eval-pass",
-        "paymentEvidence": "x402-payment-response-present",
-        "privacyAccounting": "pii-minimized-accounting-ready",
-        "replayIdempotency": "unique-receipt-id-and-idempotency-key",
-        "resourceAuthorization": "resource-scope-match",
-        "rollbackHold": "rollback-required",
-        "serviceOutcome": "service-result-pass",
-        "settlementProgramProof": "allowed-devnet-signature-confirmed"
+        "delegatedAuthority": {
+          "auditRef": "audit:mandate-ap2-0001",
+          "expiresAt": "2026-07-27T00:00:00Z",
+          "mandateId": "mandate-ap2-0001",
+          "maxAmount": 250000,
+          "payee": "agent:svc-market-data",
+          "principal": "user:principal-0001",
+          "purpose": "market-data-lookup",
+          "rail": "x402-solana-devnet",
+          "revoked": false,
+          "spender": "agent:spender-0001"
+        },
+        "disputeState": {
+          "openedAt": null,
+          "resolutionRef": null,
+          "status": "none"
+        },
+        "evalEvidence": {
+          "evaluatorRef": "evaluator:rap-quality-01",
+          "gateId": "gate:service-quality-v1",
+          "reportHash": "sha256:eval-report-0001",
+          "status": "pass"
+        },
+        "finalizedAt": "2026-07-26T03:00:00Z",
+        "paymentEvidence": {
+          "amount": 120000,
+          "boundRequestId": "req-375-0001",
+          "facilitatorRef": "facilitator:devnet-01",
+          "payee": "agent:svc-market-data",
+          "payloadHash": "sha256:x402-payload-0001",
+          "rail": "x402-solana-devnet",
+          "requiredHash": "sha256:x402-required-0001",
+          "responseHash": "sha256:x402-response-0001"
+        },
+        "privacyAccounting": {
+          "entryRef": "acct:entry-0001",
+          "joinRefs": [
+            "req-375-0001",
+            "sha256:x402-response-0001",
+            "sig:settlement-0001",
+            "sha256:svc-response-0001",
+            "sha256:eval-report-0001"
+          ],
+          "privacyClass": "pii-minimized",
+          "retentionPolicy": "90d-minimized"
+        },
+        "receiptId": "rcpt-375-0001",
+        "replayIdempotency": {
+          "idempotencyKey": "idem-375-0001",
+          "nonce": "nonce-375-0001",
+          "priorPaymentResponseHashes": [],
+          "receiptId": "rcpt-375-0001",
+          "requestHash": "sha256:req-375-0001"
+        },
+        "request": {
+          "purpose": "market-data-lookup",
+          "requestHash": "sha256:req-375-0001",
+          "requestId": "req-375-0001",
+          "resourceScope": "mcp:market-data:quote:read",
+          "toolName": "market_data.quote"
+        },
+        "resourceAuthorization": {
+          "authorizationRef": "authz:mcp-0001",
+          "scope": "mcp:market-data:quote:read",
+          "serverRef": "mcp:server:market-data",
+          "toolName": "market_data.quote"
+        },
+        "rollbackHold": {
+          "holdState": "hold",
+          "killSwitchRef": "ops:kill-switch-0001",
+          "rollbackRequired": true
+        },
+        "serviceOutcome": {
+          "agentId": "agent:svc-market-data",
+          "completedAt": "2026-07-26T02:59:30Z",
+          "requestHash": "sha256:req-375-0001",
+          "responseHash": "sha256:svc-response-0001",
+          "status": "success"
+        },
+        "settlementProgramProof": {
+          "amount": 120000,
+          "cluster": "devnet",
+          "confirmationStatus": "confirmed",
+          "mint": "mint:usdc-devnet",
+          "payee": "agent:svc-market-data",
+          "payer": "wallet:spender-0001",
+          "programId": "prog:token-2022",
+          "signature": "sig:settlement-0001"
+        }
       },
       "threat": "rollback or kill-switch criteria are active"
     }
-  ]
+  ],
+  "validatorScript": "scripts/rap_receipt_validator.py"
 }
