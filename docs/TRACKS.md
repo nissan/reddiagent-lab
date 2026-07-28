@@ -79,8 +79,10 @@ Two lab artifacts are hard gates on protocol-repo launches:
   receipts must pass this validator before rung 4 closes.
 - **Registry/SATI attestation compatibility (#378/#392)** gates reputation
   launch. The Foundation-endorsed Agent Registry and SATI are live on Solana
-  mainnet; RAP reputation reveals must dual-publish as compatible SAS
-  attestations rather than launch siloed.
+  mainnet; RAP reputation reveals must dual-publish to both rather than
+  launch siloed — two write paths, not one shared substrate (SATI rides
+  SAS/Light Protocol; the 8004-solana port uses SEAL v1 event hashes with
+  a verified indexer; see the 2026-07-28 registry compatibility report).
 
 ## Issue-flow conventions between the repos
 
