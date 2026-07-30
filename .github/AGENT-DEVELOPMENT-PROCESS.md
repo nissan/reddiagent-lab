@@ -112,8 +112,8 @@ in need of one):
    security, spec conformance, test coverage. Post findings as PR comments —
    actionable, line-cited, severity-graded. For research reports, **spot-verify
    H-graded quotations and H-graded absence or negative claims by live fetch**
-   — plausibility is not verification — and check claims the report makes about this repo's own artifacts against the
-   files themselves.
+   — plausibility is not verification — and check claims the report makes
+   about this repo's own artifacts against the files themselves.
 2. If satisfied, post a comment reading **"Ready to Approve"**. Then:
    - Convert any remaining non-blocking findings into follow-up issues,
      labeled with the project and follow-up type
