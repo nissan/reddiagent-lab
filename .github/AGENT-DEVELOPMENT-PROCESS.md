@@ -96,9 +96,12 @@ Rules for any report using the H/M/L confidence legend:
   "does not exist" is not. A negative claim about a source's schema or field
   set must enumerate the surfaces grepped and must include that source's
   normative set — spec and schema files, the contributing or authoring
-  guide, and examples — or be graded below H. #410 was true of the pages
-  read and wrong about the source, because the pricing block lived in a
-  surface never opened.
+  guide, and examples — or be graded below H **and name the surfaces it did
+  not open**. Downgrading is not an exemption from review verification:
+  step 1 verifies such claims by dependency, not by grade. #410 was true of
+  the pages read and wrong about the source, because the pricing block lived
+  in a surface never opened — and it was graded H, so it violated this rule
+  rather than using the downgrade.
 - **Retract in the artifact.** When a corrective round removes a bad citation,
   name the retracted string and the mechanism that produced it, rather than
   quietly patching it.
@@ -117,13 +120,14 @@ in need of one):
    actionable, line-cited, severity-graded. For research reports,
    **spot-verify H-graded quotations by live fetch, and any negative or
    absence claim that a spec-feed, checker item, or vendor decision rests
-   on — whatever its confidence grade.** Grading a claim M does not exempt
-   it from verification when downstream work depends on it: #410's wrong
-   negative
-   claim propagated into two checker-spec items and four other lines
-   regardless of grade. Plausibility is not verification. Also check claims
-   the report makes about this repo's own artifacts against the files
-   themselves.
+   on — whatever its confidence grade.** Grading a claim M does not exempt it
+   from verification when downstream work depends on it: #410's wrong
+   negative claim propagated into both checker-spec items and every section
+   of the report before the corrective round caught it (commits `906c357` →
+   `bc322f6`). Plausibility is not verification. The reviewer decides what
+   rests on a claim, not the author; where that is unclear, treat the claim as
+   load-bearing. And check claims the report makes about this repo's own
+   artifacts against the files themselves.
 2. If satisfied, post a comment reading **"Ready to Approve"**. Then:
    - Convert any remaining non-blocking findings into follow-up issues,
      labeled with the project and follow-up type
