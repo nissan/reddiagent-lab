@@ -66,10 +66,12 @@ review pass caught: PR #410 carried a negative claim ("pricing is not a
 frontmatter field") contradicted by the source's own contributing guide; PR
 #411 carried a **phantom identifier** (`NON_SUBSTITUTION`, in a table row
 graded H, where the real mechanism is `cannotSubstitute` in
-`scripts/rap_receipt_integrity_benchmark.py`) plus a premise already
-propagated into a launch-gating doc; PR #412 carried a **fabricated direct
-quotation** attributed verbatim to a page where it appears zero times, graded
-as primary-source-read, alongside a second reversed H-graded claim.
+`scripts/rap_receipt_integrity_benchmark.py`) plus a correction it
+established but left unpropagated to a launch-gating doc (`docs/TRACKS.md`,
+where the superseded premise had arrived via #407); PR #412 carried a
+**fabricated direct quotation** attributed verbatim to a page where it appears
+zero times, graded as primary-source-read, alongside a second reversed
+H-graded claim.
 
 Rules for any report using the H/M/L confidence legend:
 
@@ -77,10 +79,12 @@ Rules for any report using the H/M/L confidence legend:
   unless it was fetched and grepped in-session.** "Fetched" means raw bytes to
   a local file; "grepped" means searched over that text (tag-stripped for
   HTML), recording byte count and hit count. A model-summarized fetch does not
-  satisfy this rule — summarizers paraphrase, and both a mis-expanded acronym
-  (#410) and a typographic apostrophe that zeroes a straight-quote search
-  (#412) were only caught on raw text. An unverifiable claim is paraphrased
-  with a downgraded code, or recorded as an honest Unknown.
+  satisfy this rule: summarizers paraphrase — #410 recorded a fetch summary
+  mis-expanding MPP as "Metaplex Payment Protocol", caught only by
+  contradiction with another source — and a typographic apostrophe that
+  zeroes a straight-quote search surfaced only on raw text (#412). An
+  unverifiable claim is paraphrased with a downgraded code, or recorded as an
+  honest Unknown.
 - **Grade per claim, not per paragraph.** An incidental or negative claim
   appended to an H-graded paragraph inherits a confidence it was never checked
   at — that is how #410's defect shipped.
@@ -91,10 +95,10 @@ Rules for any report using the H/M/L confidence legend:
   set.** "Absent from these three pages, grepped on this date" is auditable;
   "does not exist" is not. A negative claim about a source's schema or field
   set must enumerate the surfaces grepped and must include that source's
-  normative set — spec and schema files, the contributing or authoring guide,
-  and examples — or be graded below H. #410 was true of the pages read and
-  wrong about the source, because the pricing block lived in a surface never
-  opened.
+  normative set — spec and schema files, the contributing or authoring
+  guide, and examples — or be graded below H. #410 was true of the pages
+  read and wrong about the source, because the pricing block lived in a
+  surface never opened.
 - **Retract in the artifact.** When a corrective round removes a bad citation,
   name the retracted string and the mechanism that produced it, rather than
   quietly patching it.
@@ -110,8 +114,9 @@ in need of one):
 
 1. Review as an independent reviewer (oli charter): correctness, edge cases,
    security, spec conformance, test coverage. Post findings as PR comments —
-   actionable, line-cited, severity-graded. For research reports, **spot-verify
-   H-graded quotations and H-graded absence or negative claims by live fetch**
+   actionable, line-cited, severity-graded. For research reports,
+   **spot-verify H-graded quotations and H-graded absence or negative claims
+   by live fetch**
    — plausibility is not verification — and check claims the report makes
    about this repo's own artifacts against the files themselves.
 2. If satisfied, post a comment reading **"Ready to Approve"**. Then:
