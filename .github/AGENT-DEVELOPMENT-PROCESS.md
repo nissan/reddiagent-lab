@@ -115,10 +115,15 @@ in need of one):
 1. Review as an independent reviewer (oli charter): correctness, edge cases,
    security, spec conformance, test coverage. Post findings as PR comments —
    actionable, line-cited, severity-graded. For research reports,
-   **spot-verify H-graded quotations and H-graded absence or negative claims
-   by live fetch**
-   — plausibility is not verification — and check claims the report makes
-   about this repo's own artifacts against the files themselves.
+   **spot-verify H-graded quotations by live fetch, and any negative or
+   absence claim that a spec-feed, checker item, or vendor decision rests
+   on — whatever its confidence grade.** Grading a claim M does not exempt
+   it from verification when downstream work depends on it: #410's wrong
+   negative
+   claim propagated into two checker-spec items and four other lines
+   regardless of grade. Plausibility is not verification. Also check claims
+   the report makes about this repo's own artifacts against the files
+   themselves.
 2. If satisfied, post a comment reading **"Ready to Approve"**. Then:
    - Convert any remaining non-blocking findings into follow-up issues,
      labeled with the project and follow-up type
