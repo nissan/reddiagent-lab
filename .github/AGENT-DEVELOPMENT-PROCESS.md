@@ -57,6 +57,33 @@ Co-Authored-By: <model attribution line>
   spec/example change).
 - Open the PR referencing the issue; move the issue to `status:in-review`.
 
+## Research lanes and citation discipline
+
+Research reports feed spec decisions and public claims, so a wrong or invented
+citation propagates into implementations and into the launch narrative. Two
+consecutive reports shipped defects that only the review pass caught: PR #410
+carried an H-graded negative claim contradicted by the source's own
+contributing guide, and PR #412 carried a **fabricated direct quotation**
+attributed verbatim to a page where it does not appear, graded as
+primary-source-read.
+
+Rules for any report using the H/M/L confidence legend:
+
+- **No quotation, field name, version string, or value ships unless it was
+  fetched and grepped in-session and seen.** An unverifiable claim is
+  paraphrased with a downgraded code, or recorded as an honest Unknown.
+  Unknowns are a feature; invented evidence is worse than no evidence.
+- **Deep-link, don't bare-domain.** Cite the exact page or file (with a read
+  date, and a byte count or hit count where it settles a negative claim) so a
+  reviewer can reproduce the check.
+- **Scope negative claims to what was searched.** "Absent from these three
+  pages, grepped on this date" is auditable; "does not exist" is not.
+- **Retract in the artifact.** When a corrective round removes a bad citation,
+  name the retracted string and the mechanism that produced it, rather than
+  quietly patching it.
+- Prefer a different agent for the corrective pass than the one that authored
+  the defect.
+
 ## Intelligent review protocol
 
 Every open PR gets a review pass (the 20-minute review loop picks up any PR
@@ -64,7 +91,10 @@ in need of one):
 
 1. Review as an independent reviewer (oli charter): correctness, edge cases,
    security, spec conformance, test coverage. Post findings as PR comments —
-   actionable, line-cited, severity-graded.
+   actionable, line-cited, severity-graded. For research reports, **spot-verify
+   H-graded quotations by live fetch** — plausibility is not verification — and
+   check claims the report makes about this repo's own artifacts against the
+   files themselves.
 2. If satisfied, post a comment reading **"Ready to Approve"**. Then:
    - Convert any remaining non-blocking findings into follow-up issues,
      labeled with the project and follow-up type
