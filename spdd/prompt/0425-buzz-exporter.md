@@ -254,3 +254,4 @@ No Buzz repository or source file is modified.
 |---|---|---|---|
 | 2026-07-31 | Initial #425 implementation plan; no exporter implementation | Created | Deferred until this plan is accepted |
 | 2026-07-31 | Oli exact-head QA found omitted canonical parity ownership and an implicit attribution/branding hold | Added `scripts/prosumer_builder_plan.py` ownership/row flow plus explicit false distribution/branding invariants and refusal fixture/test | Deferred until this plan is accepted |
+| 2026-07-31 | Implementation keeps RFC-8785-compatible canonical JSON local to the exporter and adds the full G1 false-boundary registry to the existing parity owner | No material scope change | Added report/package CLI, focused fixtures/tests, canonical parity target/summary, and smoke wiring |

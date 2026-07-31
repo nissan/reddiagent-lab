@@ -77,6 +77,7 @@ def parity_matrix(paths: list[Path]) -> dict:
     return {
         "format": "static-export-target-parity-matrix",
         "issue": 196,
+        "buzzIssue": 425,
         "sources": [display_path(path) for path in paths],
         "targetOrder": [target["target"] for target in EXPORT_MATRIX_TARGETS],
         **BOUNDARY_FLAGS,

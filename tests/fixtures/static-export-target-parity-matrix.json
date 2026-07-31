@@ -1,6 +1,7 @@
 {
   "format": "static-export-target-parity-matrix",
   "issue": 196,
+  "buzzIssue": 425,
   "sources": [
     "examples/simple-agent.yaml",
     "examples/tool-agent.yaml",
@@ -14,12 +15,22 @@
     "starter-manifest",
     "provider-compatibility",
     "rap-bridge",
-    "vercel-eve"
+    "vercel-eve",
+    "buzz-static-projection"
   ],
   "runtimeExecutionAllowed": false,
   "networkAccess": false,
+  "relayAccess": false,
+  "providerAccess": false,
+  "credentialAccess": false,
+  "toolExecutionAllowed": false,
   "paymentAccess": false,
   "mcpInvocation": false,
+  "walletAccess": false,
+  "deploymentAllowed": false,
+  "bidirectionalImportAllowed": false,
+  "publicDistributionAllowed": false,
+  "publicBrandingAllowed": false,
   "agents": [
     {
       "agent": "simple-research-helper",
@@ -46,8 +57,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "a2a-agent-card",
@@ -67,8 +87,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "agent-skills-skill-md",
@@ -88,8 +117,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "starter-manifest",
@@ -107,8 +145,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "provider-compatibility",
@@ -124,8 +171,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "rap-bridge",
@@ -143,8 +199,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "vercel-eve",
@@ -164,8 +229,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
           "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
           "eveCompatibilitySummary": {
             "target": "vercel-eve",
             "label": "Vercel eve",
@@ -201,9 +275,49 @@
             "deploymentAllowed": false,
             "runtimeExecutionAllowed": false,
             "networkAccess": false,
+            "relayAccess": false,
+            "providerAccess": false,
+            "credentialAccess": false,
+            "toolExecutionAllowed": false,
             "paymentAccess": false,
-            "mcpInvocation": false
+            "mcpInvocation": false,
+            "walletAccess": false,
+            "bidirectionalImportAllowed": false,
+            "publicDistributionAllowed": false,
+            "publicBrandingAllowed": false
           }
+        },
+        {
+          "target": "buzz-static-projection",
+          "label": "Buzz static projection",
+          "mode": "report-only",
+          "command": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "authoritativeCheck": "tests/test_buzz_export.py",
+          "status": "blocked",
+          "readiness": "refused",
+          "blockedBy": [
+            "BUZZ_SURFACE_UNSUPPORTED"
+          ],
+          "metadataOnlyExtensions": [],
+          "metadataOnlySections": [],
+          "runtimeExecutionAllowed": false,
+          "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
+          "paymentAccess": false,
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
+          "packageEligible": false,
+          "diagnostics": [
+            "BUZZ_SURFACE_UNSUPPORTED"
+          ]
         }
       ]
     },
@@ -231,8 +345,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "a2a-agent-card",
@@ -251,8 +374,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "agent-skills-skill-md",
@@ -271,8 +403,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "starter-manifest",
@@ -290,8 +431,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "provider-compatibility",
@@ -307,8 +457,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "rap-bridge",
@@ -326,8 +485,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "vercel-eve",
@@ -346,8 +514,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
           "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
           "eveCompatibilitySummary": {
             "target": "vercel-eve",
             "label": "Vercel eve",
@@ -382,9 +559,45 @@
             "deploymentAllowed": false,
             "runtimeExecutionAllowed": false,
             "networkAccess": false,
+            "relayAccess": false,
+            "providerAccess": false,
+            "credentialAccess": false,
+            "toolExecutionAllowed": false,
             "paymentAccess": false,
-            "mcpInvocation": false
+            "mcpInvocation": false,
+            "walletAccess": false,
+            "bidirectionalImportAllowed": false,
+            "publicDistributionAllowed": false,
+            "publicBrandingAllowed": false
           }
+        },
+        {
+          "target": "buzz-static-projection",
+          "label": "Buzz static projection",
+          "mode": "report-only",
+          "command": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "authoritativeCheck": "tests/test_buzz_export.py",
+          "status": "report-ready",
+          "readiness": "report-ready",
+          "blockedBy": [],
+          "metadataOnlyExtensions": [],
+          "metadataOnlySections": [],
+          "runtimeExecutionAllowed": false,
+          "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
+          "paymentAccess": false,
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
+          "packageEligible": true,
+          "diagnostics": []
         }
       ]
     },
@@ -429,8 +642,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "a2a-agent-card",
@@ -459,8 +681,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "agent-skills-skill-md",
@@ -489,8 +720,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "starter-manifest",
@@ -508,8 +748,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "provider-compatibility",
@@ -525,8 +774,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "rap-bridge",
@@ -542,8 +800,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "vercel-eve",
@@ -572,8 +839,17 @@
           ],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
           "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
           "eveCompatibilitySummary": {
             "target": "vercel-eve",
             "label": "Vercel eve",
@@ -617,9 +893,49 @@
             "deploymentAllowed": false,
             "runtimeExecutionAllowed": false,
             "networkAccess": false,
+            "relayAccess": false,
+            "providerAccess": false,
+            "credentialAccess": false,
+            "toolExecutionAllowed": false,
             "paymentAccess": false,
-            "mcpInvocation": false
+            "mcpInvocation": false,
+            "walletAccess": false,
+            "bidirectionalImportAllowed": false,
+            "publicDistributionAllowed": false,
+            "publicBrandingAllowed": false
           }
+        },
+        {
+          "target": "buzz-static-projection",
+          "label": "Buzz static projection",
+          "mode": "report-only",
+          "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "authoritativeCheck": "tests/test_buzz_export.py",
+          "status": "blocked",
+          "readiness": "refused",
+          "blockedBy": [
+            "BUZZ_PAYMENT_AUTHORITY_REFUSED"
+          ],
+          "metadataOnlyExtensions": [],
+          "metadataOnlySections": [],
+          "runtimeExecutionAllowed": false,
+          "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
+          "paymentAccess": false,
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
+          "packageEligible": false,
+          "diagnostics": [
+            "BUZZ_PAYMENT_AUTHORITY_REFUSED"
+          ]
         }
       ]
     },
@@ -646,8 +962,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "a2a-agent-card",
@@ -665,8 +990,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "agent-skills-skill-md",
@@ -684,8 +1018,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "starter-manifest",
@@ -703,8 +1046,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "provider-compatibility",
@@ -722,8 +1074,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "rap-bridge",
@@ -741,8 +1102,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
-          "mcpInvocation": false
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false
         },
         {
           "target": "vercel-eve",
@@ -760,8 +1130,17 @@
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
           "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
           "paymentAccess": false,
           "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
           "eveCompatibilitySummary": {
             "target": "vercel-eve",
             "label": "Vercel eve",
@@ -798,9 +1177,49 @@
             "deploymentAllowed": false,
             "runtimeExecutionAllowed": false,
             "networkAccess": false,
+            "relayAccess": false,
+            "providerAccess": false,
+            "credentialAccess": false,
+            "toolExecutionAllowed": false,
             "paymentAccess": false,
-            "mcpInvocation": false
+            "mcpInvocation": false,
+            "walletAccess": false,
+            "bidirectionalImportAllowed": false,
+            "publicDistributionAllowed": false,
+            "publicBrandingAllowed": false
           }
+        },
+        {
+          "target": "buzz-static-projection",
+          "label": "Buzz static projection",
+          "mode": "report-only",
+          "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "authoritativeCheck": "tests/test_buzz_export.py",
+          "status": "blocked",
+          "readiness": "blocked-by-validation",
+          "blockedBy": [
+            "BUZZ_ADL_INVALID"
+          ],
+          "metadataOnlyExtensions": [],
+          "metadataOnlySections": [],
+          "runtimeExecutionAllowed": false,
+          "networkAccess": false,
+          "relayAccess": false,
+          "providerAccess": false,
+          "credentialAccess": false,
+          "toolExecutionAllowed": false,
+          "paymentAccess": false,
+          "mcpInvocation": false,
+          "walletAccess": false,
+          "deploymentAllowed": false,
+          "bidirectionalImportAllowed": false,
+          "publicDistributionAllowed": false,
+          "publicBrandingAllowed": false,
+          "packageEligible": false,
+          "diagnostics": [
+            "BUZZ_ADL_INVALID"
+          ]
         }
       ]
     }
@@ -834,8 +1253,17 @@
       ],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "a2a-agent-card",
@@ -865,8 +1293,17 @@
       ],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "agent-skills-skill-md",
@@ -896,8 +1333,17 @@
       ],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "starter-manifest",
@@ -919,8 +1365,17 @@
       "metadataOnly": [],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "provider-compatibility",
@@ -941,8 +1396,17 @@
       "metadataOnly": [],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "rap-bridge",
@@ -966,8 +1430,17 @@
       "metadataOnly": [],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     },
     {
       "target": "vercel-eve",
@@ -997,8 +1470,51 @@
       ],
       "runtimeExecutionAllowed": false,
       "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
       "paymentAccess": false,
-      "mcpInvocation": false
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
+    },
+    {
+      "target": "buzz-static-projection",
+      "label": "Buzz static projection",
+      "authoritativeCheck": "tests/test_buzz_export.py",
+      "agentCount": 4,
+      "readinessCounts": {
+        "refused": 2,
+        "report-ready": 1,
+        "blocked-by-validation": 1
+      },
+      "statusCounts": {
+        "blocked": 3,
+        "report-ready": 1
+      },
+      "blockedBy": [
+        "BUZZ_ADL_INVALID",
+        "BUZZ_PAYMENT_AUTHORITY_REFUSED",
+        "BUZZ_SURFACE_UNSUPPORTED"
+      ],
+      "metadataOnly": [],
+      "runtimeExecutionAllowed": false,
+      "networkAccess": false,
+      "relayAccess": false,
+      "providerAccess": false,
+      "credentialAccess": false,
+      "toolExecutionAllowed": false,
+      "paymentAccess": false,
+      "mcpInvocation": false,
+      "walletAccess": false,
+      "deploymentAllowed": false,
+      "bidirectionalImportAllowed": false,
+      "publicDistributionAllowed": false,
+      "publicBrandingAllowed": false
     }
   ]
 }

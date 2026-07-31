@@ -42,6 +42,15 @@ def assert_static_boundaries(item: dict) -> None:
     assert item["networkAccess"] is False
     assert item["paymentAccess"] is False
     assert item["mcpInvocation"] is False
+    assert item["relayAccess"] is False
+    assert item["providerAccess"] is False
+    assert item["credentialAccess"] is False
+    assert item["toolExecutionAllowed"] is False
+    assert item["walletAccess"] is False
+    assert item["deploymentAllowed"] is False
+    assert item["bidirectionalImportAllowed"] is False
+    assert item["publicDistributionAllowed"] is False
+    assert item["publicBrandingAllowed"] is False
 
 
 def main() -> int:
@@ -65,11 +74,13 @@ def main() -> int:
         "provider-compatibility",
         "rap-bridge",
         "vercel-eve",
+        "buzz-static-projection",
     ]
     assert_static_boundaries(payload)
 
     by_agent = {agent["agent"]: agent for agent in payload["agents"]}
     simple = by_agent["simple-research-helper"]
+    tool = by_agent["source-checker"]
     payment = by_agent["paid-specialist-researcher"]
     invalid = by_agent["invalid-missing-instructions"]
 
@@ -122,6 +133,16 @@ def main() -> int:
     ]
     assert "extensions.reputation" in eve_summary["metadataOnly"]
     assert_static_boundaries(eve_summary)
+
+    buzz_row = row(tool, "buzz-static-projection")
+    assert buzz_row["readiness"] == "report-ready"
+    assert buzz_row["packageEligible"] is True
+    assert buzz_row["authoritativeCheck"] == "tests/test_buzz_export.py"
+    assert_static_boundaries(buzz_row)
+    assert row(payment, "buzz-static-projection")["readiness"] == "refused"
+    assert "BUZZ_PAYMENT_AUTHORITY_REFUSED" in row(payment, "buzz-static-projection")["diagnostics"]
+    assert row(invalid, "buzz-static-projection")["readiness"] == "blocked-by-validation"
+    assert_static_boundaries(summary(payload, "buzz-static-projection"))
 
     print("PASS static export target parity matrix")
     return 0

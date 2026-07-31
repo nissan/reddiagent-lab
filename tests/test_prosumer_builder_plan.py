@@ -105,6 +105,7 @@ def main() -> int:
         "provider-compatibility",
         "rap-bridge",
         "vercel-eve",
+        "buzz-static-projection",
     ]
     assert export_row(simple, "agent-spec")["readiness"] == "metadata-only"
     assert export_row(simple, "agent-spec")["strictExportCommand"] == (

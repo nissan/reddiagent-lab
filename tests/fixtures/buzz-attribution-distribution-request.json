@@ -1,0 +1,6 @@
+{
+  "publicBrandingAllowed": false,
+  "publicDistributionAllowed": false,
+  "requestDistribution": true,
+  "requiredDiagnostic": "BUZZ_ATTRIBUTION_REVIEW_REQUIRED"
+}
