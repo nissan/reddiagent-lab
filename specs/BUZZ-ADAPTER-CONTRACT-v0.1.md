@@ -194,7 +194,15 @@ An identity binding must contain:
   for an initial binding. The digest is lowercase hex SHA-256 of those exact
   preimage bytes. It excludes `ownerAttestationRef`, `ownerBindingProof`,
   `status`, `lifecycleEvidence`, revocation references, reasons, and every
-  other presentation or derived field.
+  other presentation or derived field;
+- `relatedBindings`: an array, sorted by decoded raw `bindingDigest`, containing
+  the complete immutable binding fields, owner proof, digest, and sole
+  owner-signed activation record for every predecessor or replacement digest
+  referenced by this binding or its lifecycle records. Consumers recompute
+  every related digest and proof, require the same stable agent and owner,
+  enforce adjacent sequence/link semantics, and verify activation chronology.
+  A well-formed digest without this evidence is invalid. Related evidence is
+  verification-only and cannot recursively carry related bindings.
 
 NIP-OA at the assessed Buzz pin signs the agent key and its supported
 conditions; it does not itself sign the ADL digest or complete identity join.
@@ -327,6 +335,9 @@ release lane is active. The report records merge-base, commits changed, relevant
 paths, linked upstream issues, classification changes, negative claims requiring
 re-verification through #418, reviewer, and decision. Relevant unreviewed drift
 blocks release with `BUZZ_UPSTREAM_DRIFT_UNREVIEWED`.
+The review timestamp must not be later than the caller-pinned `evaluationTime`
+and must be no more than seven days old for the active release lane. Future or
+older review evidence fails with the same diagnostic.
 
 Rollback regenerates a package from canonical ADL using the rollback pin set,
 revokes/supersedes the newer identity binding if required, and retains both

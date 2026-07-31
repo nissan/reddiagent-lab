@@ -109,7 +109,10 @@ action-specific predecessor/replacement relationships: initial activation has
 an explicit null predecessor, rotated activation names the binding's immutable
 predecessor, revocation uses two explicit null relationship fields, and
 rotating/superseded records name the current binding plus a distinct replacement
-digest. The internal report builder retains a negative-test
+digest. Every referenced predecessor/replacement also requires sorted,
+recomputed immutable related-binding evidence and an owner-signed activation
+record; invented well-formed digests, non-adjacent sequences, broken links, and
+invalid activation chronology fail closed. The internal report builder retains a negative-test
 input for a round-trip request and always emits `BUZZ_ONE_WAY_ONLY`; the CLI
 does not expose that input or any importer.
 
@@ -125,6 +128,8 @@ does not expose that input or any importer.
   root escapes, duplicate normalized paths, and unsupported encodings.
 - Require `evaluationTime` as a caller-pinned RFC 3339 UTC instant in both
   report and package modes; it participates in identity evaluation and output.
+- Bind governance `reviewedAt` to that instant: it cannot be in the future and
+  cannot be more than seven days old in the active release lane.
 - Never include absolute host paths, temporary paths, usernames, environment
   values, process ids, filesystem mtimes, or unordered collection iteration.
 
@@ -283,3 +288,4 @@ No Buzz repository or source file is modified.
 | 2026-07-31 | Implementation keeps RFC-8785-compatible canonical JSON local to the exporter and adds the full G1 false-boundary registry to the existing parity owner | No material scope change | Added report/package CLI, focused fixtures/tests, canonical parity target/summary, and smoke wiring |
 | 2026-08-01 | Oli blocked raw auxiliary-evidence emission, fail-open extensions, non-JCS JSON, incomplete governance, optional evaluation time, and duplicate boundaries | Required `evaluationTime`; added conformant JCS, strict public evidence summaries/final scan, complete governance validation, reviewed-extension recursion, and direct import of Prosumer-owned boundaries | Added RFC vectors, non-finite refusal, secret non-echo, nested extension, governance-contract, and cross-surface registry assertions |
 | 2026-08-01 | Oli found malformed normative governance subrecords and lifecycle predecessor/replacement relations remained fail-open, while the package manifest omitted complete section 8 evidence | Added strict governance schemas/cross-field holds, manifest-owned public-safe attribution evidence, and action-/binding-specific signed relationship validation | Added malformed governance and re-signed lifecycle relationship negatives plus deterministic manifest evidence assertions |
+| 2026-08-01 | Oli found well-formed invented lifecycle referents and future/stale governance reviews remained package-eligible | Added recomputed related-binding proof/activation/sequence/link rules and the seven-day release-lane review window bound to `evaluationTime` | Added valid chained activation plus missing, invented, non-adjacent, broken-link, chronology, future-review, and stale-review coverage |

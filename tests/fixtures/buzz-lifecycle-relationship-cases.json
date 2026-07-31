@@ -3,8 +3,10 @@
   {"name":"initial-activation-has-predecessor","action":"active","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","recordReplacement":null},
   {"name":"activation-has-replacement","action":"active","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":null,"recordReplacement":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
   {"name":"rotated-activation-mismatches-predecessor","action":"active","bindingSequence":2,"bindingPredecessor":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","recordPredecessor":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","recordReplacement":null},
+  {"name":"invented-valid-shape-predecessor","action":"active","bindingSequence":2,"bindingPredecessor":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","recordPredecessor":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","recordReplacement":null},
   {"name":"rotation-omits-current-binding","action":"rotating","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":null,"recordReplacement":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
   {"name":"rotation-reuses-current-binding","action":"rotating","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":"CURRENT_BINDING","recordReplacement":"CURRENT_BINDING"},
+  {"name":"rotation-invents-valid-shape-replacement","action":"rotating","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":"CURRENT_BINDING","recordReplacement":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
   {"name":"supersede-omits-current-binding","action":"superseded","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":null,"recordReplacement":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
   {"name":"revocation-names-predecessor","action":"revoked","bindingSequence":1,"bindingPredecessor":null,"recordPredecessor":"CURRENT_BINDING","recordReplacement":null}
 ]

@@ -119,7 +119,9 @@ def canonical_uri(path: Path) -> str:
 
 def binding(path: Path, *, sequence: int = 1, previous_binding_digest: str | None = None,
             record_previous: str | None = None,
-            record_replacement: str | None = None) -> dict:
+            record_replacement: str | None = None,
+            related_bindings: list[dict] | None = None,
+            record_effective_at: str = "2026-07-31T00:00:00Z") -> dict:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     owner, _, _ = key_material()
     value = {
@@ -152,9 +154,16 @@ def binding(path: Path, *, sequence: int = 1, previous_binding_digest: str | Non
     record = signed_lifecycle_record(
         owner, binding_digest, action="active", sequence=1,
         previous=record_previous, replacement=record_replacement,
+        effective_at=record_effective_at,
     )
     return {**value, "ownerBindingProof": proof, "status": "active",
-            "lifecycleEvidence": [record], "bindingDigest": binding_digest}
+            "lifecycleEvidence": [record], "bindingDigest": binding_digest,
+            "relatedBindings": related_bindings or []}
+
+
+def related_evidence(value: dict) -> dict:
+    return {key: item for key, item in value.items()
+            if key not in {"ownerAttestationRef", "status", "relatedBindings"}}
 
 
 def drift() -> dict:
@@ -268,6 +277,82 @@ def main() -> int:
         attribution_evidence = report["target"]["governanceReview"]["attributionManifest"]
         assert attribution_evidence == drift()["attribution"]
         assert_boundaries(report)
+
+        predecessor = binding(SOURCE)
+        rotated = binding(
+            SOURCE, sequence=2, previous_binding_digest=predecessor["bindingDigest"],
+            record_previous=predecessor["bindingDigest"],
+            related_bindings=[related_evidence(predecessor)],
+        )
+        binding_path.write_text(json.dumps(rotated))
+        rotated_proc = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT,
+                                      capture_output=True, check=True)
+        assert json.loads(rotated_proc.stdout)["packageEligible"] is True
+
+        def assert_related_refused(candidate: dict, name: str) -> None:
+            binding_path.write_text(json.dumps(candidate))
+            proc = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT,
+                                  text=True, capture_output=True)
+            assert proc.returncode == 3, name
+            assert "BUZZ_IDENTITY_BINDING_INVALID" in {
+                item["code"] for item in json.loads(proc.stdout)["diagnostics"]
+            }, name
+
+        missing_activation = related_evidence(predecessor)
+        missing_activation["lifecycleEvidence"] = []
+        assert_related_refused(binding(
+            SOURCE, sequence=2, previous_binding_digest=predecessor["bindingDigest"],
+            record_previous=predecessor["bindingDigest"],
+            related_bindings=[missing_activation],
+        ), "related-predecessor-missing-activation")
+        assert_related_refused(binding(
+            SOURCE, sequence=3, previous_binding_digest=predecessor["bindingDigest"],
+            record_previous=predecessor["bindingDigest"],
+            related_bindings=[related_evidence(predecessor)],
+        ), "related-predecessor-non-adjacent-sequence")
+
+        current = binding(SOURCE)
+        broken_replacement = binding(
+            SOURCE, sequence=2, previous_binding_digest="b" * 64,
+            record_previous="b" * 64, record_effective_at="2026-08-02T00:00:00Z",
+        )
+        current["lifecycleEvidence"].append(signed_lifecycle_record(
+            current["ownerPubkey"], current["bindingDigest"], action="rotating", sequence=2,
+            previous=current["bindingDigest"], replacement=broken_replacement["bindingDigest"],
+            effective_at="2026-08-01T00:00:00Z",
+        ))
+        current["relatedBindings"] = [related_evidence(broken_replacement)]
+        assert_related_refused(current, "related-replacement-broken-link")
+
+        current = binding(SOURCE)
+        early_replacement = binding(
+            SOURCE, sequence=2, previous_binding_digest=current["bindingDigest"],
+            record_previous=current["bindingDigest"], record_effective_at="2026-07-31T00:00:00Z",
+        )
+        current["lifecycleEvidence"].append(signed_lifecycle_record(
+            current["ownerPubkey"], current["bindingDigest"], action="rotating", sequence=2,
+            previous=current["bindingDigest"], replacement=early_replacement["bindingDigest"],
+            effective_at="2026-08-01T00:00:00Z",
+        ))
+        current["relatedBindings"] = [related_evidence(early_replacement)]
+        assert_related_refused(current, "related-replacement-activation-before-rotation")
+
+        current = binding(SOURCE)
+        future_replacement = binding(
+            SOURCE, sequence=2, previous_binding_digest=current["bindingDigest"],
+            record_previous=current["bindingDigest"], record_effective_at="2026-08-02T00:00:00Z",
+        )
+        current["lifecycleEvidence"].append(signed_lifecycle_record(
+            current["ownerPubkey"], current["bindingDigest"], action="rotating", sequence=2,
+            previous=current["bindingDigest"], replacement=future_replacement["bindingDigest"],
+            effective_at="2026-08-01T00:00:00Z",
+        ))
+        current["relatedBindings"] = [related_evidence(future_replacement)]
+        binding_path.write_text(json.dumps(current))
+        future_rotation = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT,
+                                         capture_output=True, check=True)
+        assert json.loads(future_rotation.stdout)["packageEligible"] is True
+        binding_path.write_text(json.dumps(binding(SOURCE)))
 
         secret = "sk-supersecretmaterial123456"
         sensitive_evidence = binding(SOURCE)

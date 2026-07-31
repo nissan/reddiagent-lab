@@ -1,5 +1,7 @@
 [
   {"path":["reviewer"],"value":true},
+  {"path":["reviewedAt"],"value":"2026-07-31T01:00:01Z"},
+  {"path":["reviewedAt"],"value":"2026-07-23T00:59:59Z"},
   {"path":["pins","mergeBase"],"value":null},
   {"path":["upstreamDrift","commitsChanged"],"value":[null]},
   {"path":["adapterDecision","apiSurfaces"],"value":[null]},

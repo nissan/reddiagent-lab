@@ -12,7 +12,7 @@ from pathlib import Path
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import jsonschema
 import yaml
@@ -235,6 +235,134 @@ def _domain_preimage(domain: str, value: dict) -> bytes:
     return domain.encode("utf-8") + b"\x00" + canonical_bytes(value)
 
 
+def _verify_related_binding(evidence: object) -> dict | None:
+    """Recompute a related immutable binding and prove its owner activation."""
+    fields = {
+        "canonicalAgentId", "canonicalAdlUri", "canonicalAdlDigest",
+        "canonicalAdlVersion", "buzzAgentPubkey", "ownerPubkey", "issuedAt",
+        "notBefore", "expiresAt", "sequence", "previousBindingDigest",
+        "emergencyRevocationAuthorities", "ownerBindingProof", "bindingDigest",
+        "lifecycleEvidence",
+    }
+    immutable_fields = (
+        "canonicalAgentId", "canonicalAdlUri", "canonicalAdlDigest",
+        "canonicalAdlVersion", "buzzAgentPubkey", "ownerPubkey", "issuedAt",
+        "notBefore", "expiresAt", "sequence", "previousBindingDigest",
+        "emergencyRevocationAuthorities",
+    )
+    try:
+        if not isinstance(evidence, dict) or set(evidence) != fields:
+            return None
+        sequence = evidence["sequence"]
+        predecessor = evidence["previousBindingDigest"]
+        if (not isinstance(sequence, int) or isinstance(sequence, bool) or sequence < 1 or
+                (sequence == 1 and predecessor is not None) or
+                (sequence > 1 and not DIGEST_RE.fullmatch(str(predecessor))) or
+                not DIGEST_RE.fullmatch(str(evidence["canonicalAdlDigest"])) or
+                evidence["canonicalAdlVersion"] != "reddiagent.dev/v0.2" or
+                not isinstance(evidence["canonicalAgentId"], str) or
+                not evidence["canonicalAgentId"] or
+                not isinstance(evidence["canonicalAdlUri"], str) or
+                not evidence["canonicalAdlUri"] or
+                not DIGEST_RE.fullmatch(str(evidence["buzzAgentPubkey"])) or
+                not DIGEST_RE.fullmatch(str(evidence["ownerPubkey"])) or
+                evidence["buzzAgentPubkey"] == evidence["ownerPubkey"]):
+            return None
+        issued = _parse_utc(evidence["issuedAt"])
+        not_before = _parse_utc(evidence["notBefore"])
+        expires = _parse_utc(evidence["expiresAt"])
+        if not issued <= not_before < expires:
+            return None
+        emergency = evidence["emergencyRevocationAuthorities"]
+        if not isinstance(emergency, list):
+            return None
+        emergency_sort = sorted(
+            emergency, key=lambda item: (str(item.get("signerKeyId", "")).encode(),
+                                         str(item.get("signerPubkey", "")).encode())
+        )
+        if emergency != emergency_sort:
+            return None
+        seen_emergency: set[str] = set()
+        for authority in emergency:
+            if (not isinstance(authority, dict) or
+                    set(authority) != {"signerKeyId", "signerPubkey", "signatureAlgorithm",
+                                       "bindingScope", "allowedActions", "notBefore", "expiresAt"}):
+                return None
+            key_id = authority["signerKeyId"]
+            if (not isinstance(key_id, str) or not key_id or key_id in seen_emergency or
+                    not DIGEST_RE.fullmatch(str(authority["signerPubkey"])) or
+                    authority["signatureAlgorithm"] != "ed25519" or
+                    authority["bindingScope"] != "this-binding-only" or
+                    authority["allowedActions"] != ["revoked"]):
+                return None
+            if (authority["notBefore"] is not None and
+                    _parse_utc(authority["notBefore"]) < not_before):
+                return None
+            if (authority["expiresAt"] is not None and
+                    _parse_utc(authority["expiresAt"]) > expires):
+                return None
+            seen_emergency.add(key_id)
+        immutable = {key: evidence[key] for key in immutable_fields}
+        digest = sha256(_domain_preimage("reddiagent-buzz-identity-binding-v1", immutable))
+        if evidence["bindingDigest"] != digest:
+            return None
+        proof = evidence["ownerBindingProof"]
+        proof_fields = {"proofVersion", "canonicalizationVersion", "signatureAlgorithm",
+                        "signerKeyId", "signatureBytes"}
+        if (not isinstance(proof, dict) or set(proof) != proof_fields or
+                proof["proofVersion"] != 1 or proof["canonicalizationVersion"] != "RFC8785" or
+                proof["signatureAlgorithm"] != "ed25519" or
+                proof["signerKeyId"] != evidence["ownerPubkey"]):
+            return None
+        proof_payload = {key: proof[key] for key in (
+            "proofVersion", "canonicalizationVersion", "signatureAlgorithm", "signerKeyId"
+        )}
+        proof_payload["bindingDigest"] = digest
+        if not _ed_verify(evidence["ownerPubkey"], proof["signatureBytes"],
+                          _domain_preimage("reddiagent-buzz-owner-binding-proof-v1", proof_payload)):
+            return None
+        records = evidence["lifecycleEvidence"]
+        if not isinstance(records, list) or len(records) != 1:
+            return None
+        record = records[0]
+        record_fields = {
+            "recordVersion", "recordSequence", "actorKeyId", "actorPubkey",
+            "signatureAlgorithm", "action", "bindingDigest", "previousBindingDigest",
+            "replacementBindingDigest", "effectiveAt", "reasonCode", "reason",
+            "evidenceDigest", "signatureBytes",
+        }
+        if (not isinstance(record, dict) or set(record) != record_fields or
+                record["recordVersion"] != 1 or
+                not isinstance(record["recordSequence"], int) or
+                isinstance(record["recordSequence"], bool) or record["recordSequence"] < 1 or
+                record["actorKeyId"] != evidence["ownerPubkey"] or
+                record["actorPubkey"] != evidence["ownerPubkey"] or
+                record["signatureAlgorithm"] != "ed25519" or record["action"] != "active" or
+                record["bindingDigest"] != digest or
+                record["previousBindingDigest"] != predecessor or
+                record["replacementBindingDigest"] is not None):
+            return None
+        signed = {key: record[key] for key in (
+            "recordVersion", "recordSequence", "actorKeyId", "actorPubkey",
+            "signatureAlgorithm", "action", "bindingDigest", "previousBindingDigest",
+            "replacementBindingDigest", "effectiveAt", "reasonCode", "reason",
+        )}
+        preimage = _domain_preimage("reddiagent-buzz-identity-transition-v1", signed)
+        if not _ed_verify(evidence["ownerPubkey"], record["signatureBytes"], preimage):
+            return None
+        signature = bytes.fromhex(record["signatureBytes"])
+        if record["evidenceDigest"] != sha256(preimage + b"\x00" + signature):
+            return None
+        activated = _parse_utc(record["effectiveAt"])
+        if not_before > activated or activated >= expires:
+            return None
+        return {"bindingDigest": digest, "sequence": sequence, "previousBindingDigest": predecessor,
+                "canonicalAgentId": evidence["canonicalAgentId"],
+                "ownerPubkey": evidence["ownerPubkey"], "activatedAt": activated}
+    except (KeyError, TypeError, ValueError, UnicodeError):
+        return None
+
+
 def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
                           evaluation_time: str | None) -> list[dict]:
     """Verify the immutable #424 owner proof and signed lifecycle fold."""
@@ -249,7 +377,7 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
             "ownerAttestationRef", "ownerBindingProof", "issuedAt", "notBefore",
             "expiresAt", "sequence", "previousBindingDigest",
             "emergencyRevocationAuthorities", "status", "lifecycleEvidence",
-            "bindingDigest",
+            "bindingDigest", "relatedBindings",
         }
         if not isinstance(binding, dict) or set(binding) != required:
             return invalid
@@ -329,6 +457,26 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
                           _domain_preimage("reddiagent-buzz-owner-binding-proof-v1", proof_payload)):
             return invalid
 
+        related_items = binding["relatedBindings"]
+        if not isinstance(related_items, list):
+            return invalid
+        related: dict[str, dict] = {}
+        for item in related_items:
+            verified = _verify_related_binding(item)
+            if (verified is None or verified["bindingDigest"] in related or
+                    verified["canonicalAgentId"] != binding["canonicalAgentId"] or
+                    verified["ownerPubkey"] != binding["ownerPubkey"]):
+                return invalid
+            related[verified["bindingDigest"]] = verified
+        if list(related) != sorted(related, key=lambda item: bytes.fromhex(item)):
+            return invalid
+        immutable_predecessor = binding["previousBindingDigest"]
+        if immutable_predecessor is not None:
+            predecessor_evidence = related.get(immutable_predecessor)
+            if (predecessor_evidence is None or
+                    predecessor_evidence["sequence"] + 1 != binding["sequence"]):
+                return invalid
+
         records = binding["lifecycleEvidence"]
         if not isinstance(records, list):
             return invalid
@@ -393,6 +541,19 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
             effective = _parse_utc(record["effectiveAt"])
             if effective < not_before:
                 return invalid
+            if action == "active" and predecessor is not None:
+                predecessor_evidence = related.get(predecessor)
+                if (predecessor_evidence is None or
+                        predecessor_evidence["activatedAt"] > effective):
+                    return invalid
+            if action in {"rotating", "superseded"}:
+                replacement_evidence = related.get(replacement)
+                if (replacement_evidence is None or
+                        replacement_evidence["sequence"] != binding["sequence"] + 1 or
+                        replacement_evidence["previousBindingDigest"] != binding_digest or
+                        (action == "rotating" and replacement_evidence["activatedAt"] < effective) or
+                        (action == "superseded" and replacement_evidence["activatedAt"] > effective)):
+                    return invalid
             if record["actorKeyId"] in emergency_keys:
                 authority = emergency_keys[record["actorKeyId"]]
                 if ((authority["notBefore"] is not None and effective < _parse_utc(authority["notBefore"])) or
@@ -587,7 +748,8 @@ def _extension_diagnostics(extensions: dict, reviewed: set[str]) -> list[dict]:
     return result
 
 
-def _governance_diagnostics(governance: dict, pins: dict) -> list[dict]:
+def _governance_diagnostics(governance: dict, pins: dict,
+                            evaluation_time: str | None) -> list[dict]:
     """Validate the complete #424 drift, adapter, extension, and attribution record."""
     valid = False
     try:
@@ -595,7 +757,10 @@ def _governance_diagnostics(governance: dict, pins: dict) -> list[dict]:
                     "adapterDecision", "reviewedExtensions", "attribution"}
         if not isinstance(governance, dict) or set(governance) != required:
             raise ValueError
-        _parse_utc(governance["reviewedAt"])
+        reviewed_at = _parse_utc(governance["reviewedAt"])
+        evaluated_at = _parse_utc(evaluation_time)
+        if reviewed_at > evaluated_at or evaluated_at - reviewed_at > timedelta(days=7):
+            raise ValueError
         if (governance["reviewVersion"] != 1 or
                 not isinstance(governance["reviewer"], str) or not governance["reviewer"]):
             raise ValueError
@@ -786,7 +951,7 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
             diagnostics.append(diagnostic("BUZZ_TARGET_PIN_INVALID", "refused", f"target.{name}",
                                           "Target commit must be full lowercase 40-hex.",
                                           "Supply an owner-reviewed immutable commit."))
-    governance_diagnostics = _governance_diagnostics(drift, pins)
+    governance_diagnostics = _governance_diagnostics(drift, pins, evaluation_time)
     identity_diagnostics = _identity_diagnostics(
         binding, adl_digest, canonical_uri, evaluation_time
     )
