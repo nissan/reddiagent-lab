@@ -81,7 +81,7 @@ Add a local CLI with separate report and package modes:
 python3 scripts/buzz_export.py --single <adl> --canonical-uri <uri> \
   --schema specs/ADL-v0.2.schema.json --upstream-commit <40-hex> \
   --fork-commit <40-hex> --adapter-commit <40-hex> \
-  --identity-binding <json>
+  --identity-binding <json> --drift-review <json> --generated-at <pinned-utc>
 
 python3 scripts/buzz_export.py ... --export-package <empty-output-dir>
 ```
@@ -91,6 +91,15 @@ credentials, start a runtime, or infer pins from mutable branch names. Tests may
 pass the exact checked-out adapter commit explicitly. Package mode accepts only
 an absent or empty destination directory and writes through a temporary sibling
 before an atomic rename, so refusals cannot leave a plausible partial artifact.
+The identity evidence verifier supports only exact lowercase-hex Ed25519 public
+keys/signatures and verifies the #424 immutable binding digest, owner proof,
+record signatures/evidence digests, authorization, total order, lifecycle fold,
+and pinned evaluation time locally. A caller-supplied `verified` boolean is not
+accepted. The drift-review input binds the exact upstream/fork/adapter pins and
+fails closed with `BUZZ_UPSTREAM_DRIFT_UNREVIEWED` when absent, mismatched, or
+when relevant drift remains. The internal report builder retains a negative-test
+input for a round-trip request and always emits `BUZZ_ONE_WAY_ONLY`; the CLI
+does not expose that input or any importer.
 
 ### Determinism
 
@@ -168,7 +177,7 @@ writing a package before validation finishes.
 | `scripts/buzz_export.py` | Deterministic report-first CLI and optional static package writer |
 | `tests/test_buzz_export.py` | Focused report, package, determinism, refusal, pins, path safety, identity, and one-way tests |
 | `tests/test_static_export_target_parity.py` | Assert Buzz target ordering, readiness, diagnostics, and false boundaries |
-| `tests/fixtures/buzz-*.yaml` / `tests/fixtures/buzz-*.json` | Minimal valid/lossy/unsupported/refused/compound/tampered/stale cases and snapshots, including an unreviewed-attribution distribution request refused with `BUZZ_ATTRIBUTION_REVIEW_REQUIRED` |
+| `tests/fixtures/buzz-*.yaml` / `tests/fixtures/buzz-*.json` | Minimal valid/lossy/unsupported/refused/compound/tampered/stale cases and snapshots, including compound executable/policy/data/deployment/authority refusals, unreviewed drift, and an unreviewed-attribution distribution request refused with `BUZZ_ATTRIBUTION_REVIEW_REQUIRED` |
 | `tests/fixtures/static-export-target-parity-matrix.json` | Regenerated existing parity fixture with the new target |
 | `tests/STATIC-EXPORT-TARGET-PARITY-MATRIX-REPORT.md` | Regenerated deterministic human-readable parity evidence if the existing generator owns it |
 | `tests/smoke-validation.sh` | Add focused exporter/parity checks to the deterministic smoke suite |

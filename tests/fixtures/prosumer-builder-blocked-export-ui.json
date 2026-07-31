@@ -24,9 +24,9 @@
     "blocked-before-generation": 3,
     "blocked-by-validation": 8,
     "metadata-only": 12,
-    "refused": 2
+    "refused": 1
   },
-  "rowCount": 25,
+  "rowCount": 24,
   "rows": [
     {
       "agent": "simple-research-helper",
@@ -236,38 +236,6 @@
       "status": "metadata-only",
       "strictExportCommand": null,
       "target": "vercel-eve",
-      "toolExecutionAllowed": false,
-      "validationErrors": [],
-      "validationStatus": "pass",
-      "walletAccess": false
-    },
-    {
-      "agent": "simple-research-helper",
-      "authoritativeCheck": "tests/test_buzz_export.py",
-      "bidirectionalImportAllowed": false,
-      "blockedBy": [
-        "BUZZ_SURFACE_UNSUPPORTED"
-      ],
-      "command": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]",
-      "credentialAccess": false,
-      "deploymentAllowed": false,
-      "eveCompatibilitySummary": null,
-      "label": "Buzz static projection",
-      "mcpInvocation": false,
-      "metadataOnlyExtensions": [],
-      "metadataOnlySections": [],
-      "networkAccess": false,
-      "paymentAccess": false,
-      "providerAccess": false,
-      "publicBrandingAllowed": false,
-      "publicDistributionAllowed": false,
-      "readiness": "refused",
-      "relayAccess": false,
-      "runtimeExecutionAllowed": false,
-      "source": "examples/simple-agent.yaml",
-      "status": "blocked",
-      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
-      "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
       "validationErrors": [],
       "validationStatus": "pass",
@@ -745,7 +713,7 @@
       "blockedBy": [
         "BUZZ_PAYMENT_AUTHORITY_REFUSED"
       ],
-      "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]",
+      "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
       "credentialAccess": false,
       "deploymentAllowed": false,
       "eveCompatibilitySummary": null,
@@ -763,7 +731,7 @@
       "runtimeExecutionAllowed": false,
       "source": "examples/payment-agent.yaml",
       "status": "blocked",
-      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
       "validationErrors": [],
@@ -1061,7 +1029,7 @@
       "blockedBy": [
         "BUZZ_ADL_INVALID"
       ],
-      "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]",
+      "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
       "credentialAccess": false,
       "deploymentAllowed": false,
       "eveCompatibilitySummary": null,
@@ -1079,7 +1047,7 @@
       "runtimeExecutionAllowed": false,
       "source": "examples/invalid/missing-instructions.yaml",
       "status": "blocked",
-      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
       "validationErrors": [

@@ -143,7 +143,7 @@ def main() -> int:
         "blocked-before-generation": 3,
         "blocked-by-validation": 8,
         "metadata-only": 12,
-        "refused": 2,
+        "refused": 1,
     }
     assert blocked_fixture["sources"] == [
         "examples/invalid/missing-instructions.yaml",

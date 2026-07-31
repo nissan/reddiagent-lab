@@ -133,9 +133,9 @@
           </tr>
           <tr>
             <td>Buzz static projection</td>
-            <td class="warn">refused</td>
-            <td><code>python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]</code></td>
-            <td>BUZZ_SURFACE_UNSUPPORTED</td>
+            <td class="ok">report-ready</td>
+            <td><code>python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]</code></td>
+            <td>none</td>
           </tr>
         </tbody>
       </table>
@@ -193,7 +193,7 @@
           <tr>
             <td>Buzz static projection</td>
             <td class="ok">report-ready</td>
-            <td><code>python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]</code></td>
+            <td><code>python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]</code></td>
             <td>none</td>
           </tr>
         </tbody>
@@ -252,7 +252,7 @@
           <tr>
             <td>Buzz static projection</td>
             <td class="warn">refused</td>
-            <td><code>python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]</code></td>
+            <td><code>python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]</code></td>
             <td>BUZZ_PAYMENT_AUTHORITY_REFUSED</td>
           </tr>
         </tbody>
@@ -303,7 +303,7 @@
     </section>
     <section class="panel">
       <h2>Blocked Export UI Fixture</h2>
-      <p>25 blocked or metadata-only rows pinned for local UI coverage.</p>
+      <p>24 blocked or metadata-only rows pinned for local UI coverage.</p>
       <table>
         <thead>
           <tr><th>Source</th><th>Target</th><th>Readiness</th><th>Authoritative Check</th><th>Guardrail Reasons</th></tr>
@@ -343,13 +343,6 @@
             <td class="warn">metadata-only</td>
             <td><code>tests/test_eve_compatibility.py</code></td>
             <td>metadata-only review required</td>
-          </tr>
-          <tr>
-            <td><code>examples/simple-agent.yaml</code></td>
-            <td>Buzz static projection</td>
-            <td class="warn">refused</td>
-            <td><code>tests/test_buzz_export.py</code></td>
-            <td>BUZZ_SURFACE_UNSUPPORTED</td>
           </tr>
           <tr>
             <td><code>examples/tool-agent.yaml</code></td>
@@ -835,7 +828,7 @@
             &quot;blockedBy&quot;: [
               &quot;BUZZ_ADL_INVALID&quot;
             ],
-            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
             &quot;credentialAccess&quot;: false,
             &quot;deploymentAllowed&quot;: false,
             &quot;diagnostics&quot;: [
@@ -856,7 +849,7 @@
             &quot;relayAccess&quot;: false,
             &quot;runtimeExecutionAllowed&quot;: false,
             &quot;status&quot;: &quot;blocked&quot;,
-            &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+            &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;,
             &quot;toolExecutionAllowed&quot;: false,
             &quot;walletAccess&quot;: false
@@ -1031,7 +1024,7 @@
             &quot;target&quot;: &quot;vercel-eve&quot;
           },
           {
-            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
             &quot;mode&quot;: &quot;report-only&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;
           }
@@ -1080,9 +1073,9 @@
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 8,
       &quot;metadata-only&quot;: 12,
-      &quot;refused&quot;: 2
+      &quot;refused&quot;: 1
     },
-    &quot;rowCount&quot;: 25,
+    &quot;rowCount&quot;: 24,
     &quot;rows&quot;: [
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
@@ -1292,38 +1285,6 @@
         &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
-        &quot;toolExecutionAllowed&quot;: false,
-        &quot;validationErrors&quot;: [],
-        &quot;validationStatus&quot;: &quot;pass&quot;,
-        &quot;walletAccess&quot;: false
-      },
-      {
-        &quot;agent&quot;: &quot;simple-research-helper&quot;,
-        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
-        &quot;bidirectionalImportAllowed&quot;: false,
-        &quot;blockedBy&quot;: [
-          &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-        ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
-        &quot;credentialAccess&quot;: false,
-        &quot;deploymentAllowed&quot;: false,
-        &quot;eveCompatibilitySummary&quot;: null,
-        &quot;label&quot;: &quot;Buzz static projection&quot;,
-        &quot;mcpInvocation&quot;: false,
-        &quot;metadataOnlyExtensions&quot;: [],
-        &quot;metadataOnlySections&quot;: [],
-        &quot;networkAccess&quot;: false,
-        &quot;paymentAccess&quot;: false,
-        &quot;providerAccess&quot;: false,
-        &quot;publicBrandingAllowed&quot;: false,
-        &quot;publicDistributionAllowed&quot;: false,
-        &quot;readiness&quot;: &quot;refused&quot;,
-        &quot;relayAccess&quot;: false,
-        &quot;runtimeExecutionAllowed&quot;: false,
-        &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
-        &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
-        &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
@@ -1801,7 +1762,7 @@
         &quot;blockedBy&quot;: [
           &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
         ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
         &quot;credentialAccess&quot;: false,
         &quot;deploymentAllowed&quot;: false,
         &quot;eveCompatibilitySummary&quot;: null,
@@ -1819,7 +1780,7 @@
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
         &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
@@ -2117,7 +2078,7 @@
         &quot;blockedBy&quot;: [
           &quot;BUZZ_ADL_INVALID&quot;
         ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
         &quot;credentialAccess&quot;: false,
         &quot;deploymentAllowed&quot;: false,
         &quot;eveCompatibilitySummary&quot;: null,
@@ -2135,7 +2096,7 @@
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/invalid/missing-instructions.yaml&quot;,
         &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [
@@ -2799,31 +2760,27 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [
-                &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-              ],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;blockedBy&quot;: [],
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [
-                &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-              ],
+              &quot;diagnostics&quot;: [],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: false,
+              &quot;packageEligible&quot;: true,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;refused&quot;,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;blocked&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -2998,7 +2955,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -3458,7 +3415,7 @@
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
               &quot;blockedBy&quot;: [],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [],
@@ -3477,7 +3434,7 @@
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
               &quot;status&quot;: &quot;report-ready&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -3652,7 +3609,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -4119,7 +4076,7 @@
               &quot;blockedBy&quot;: [
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [
@@ -4140,7 +4097,7 @@
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
               &quot;status&quot;: &quot;blocked&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -4315,7 +4272,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -4359,7 +4316,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -4741,7 +4697,7 @@
             &quot;blockedBy&quot;: [
               &quot;BUZZ_ADL_INVALID&quot;
             ],
-            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
             &quot;credentialAccess&quot;: false,
             &quot;deploymentAllowed&quot;: false,
             &quot;diagnostics&quot;: [
@@ -4762,7 +4718,7 @@
             &quot;relayAccess&quot;: false,
             &quot;runtimeExecutionAllowed&quot;: false,
             &quot;status&quot;: &quot;blocked&quot;,
-            &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+            &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;,
             &quot;toolExecutionAllowed&quot;: false,
             &quot;walletAccess&quot;: false
@@ -4937,7 +4893,7 @@
             &quot;target&quot;: &quot;vercel-eve&quot;
           },
           {
-            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+            &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
             &quot;mode&quot;: &quot;report-only&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;
           }
@@ -4986,9 +4942,9 @@
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 8,
       &quot;metadata-only&quot;: 12,
-      &quot;refused&quot;: 2
+      &quot;refused&quot;: 1
     },
-    &quot;rowCount&quot;: 25,
+    &quot;rowCount&quot;: 24,
     &quot;rows&quot;: [
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
@@ -5198,38 +5154,6 @@
         &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
-        &quot;toolExecutionAllowed&quot;: false,
-        &quot;validationErrors&quot;: [],
-        &quot;validationStatus&quot;: &quot;pass&quot;,
-        &quot;walletAccess&quot;: false
-      },
-      {
-        &quot;agent&quot;: &quot;simple-research-helper&quot;,
-        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
-        &quot;bidirectionalImportAllowed&quot;: false,
-        &quot;blockedBy&quot;: [
-          &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-        ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
-        &quot;credentialAccess&quot;: false,
-        &quot;deploymentAllowed&quot;: false,
-        &quot;eveCompatibilitySummary&quot;: null,
-        &quot;label&quot;: &quot;Buzz static projection&quot;,
-        &quot;mcpInvocation&quot;: false,
-        &quot;metadataOnlyExtensions&quot;: [],
-        &quot;metadataOnlySections&quot;: [],
-        &quot;networkAccess&quot;: false,
-        &quot;paymentAccess&quot;: false,
-        &quot;providerAccess&quot;: false,
-        &quot;publicBrandingAllowed&quot;: false,
-        &quot;publicDistributionAllowed&quot;: false,
-        &quot;readiness&quot;: &quot;refused&quot;,
-        &quot;relayAccess&quot;: false,
-        &quot;runtimeExecutionAllowed&quot;: false,
-        &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
-        &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
-        &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
@@ -5707,7 +5631,7 @@
         &quot;blockedBy&quot;: [
           &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
         ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
         &quot;credentialAccess&quot;: false,
         &quot;deploymentAllowed&quot;: false,
         &quot;eveCompatibilitySummary&quot;: null,
@@ -5725,7 +5649,7 @@
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
         &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
@@ -6023,7 +5947,7 @@
         &quot;blockedBy&quot;: [
           &quot;BUZZ_ADL_INVALID&quot;
         ],
-        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]&quot;,
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
         &quot;credentialAccess&quot;: false,
         &quot;deploymentAllowed&quot;: false,
         &quot;eveCompatibilitySummary&quot;: null,
@@ -6041,7 +5965,7 @@
         &quot;runtimeExecutionAllowed&quot;: false,
         &quot;source&quot;: &quot;examples/invalid/missing-instructions.yaml&quot;,
         &quot;status&quot;: &quot;blocked&quot;,
-        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [
@@ -6705,31 +6629,27 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [
-                &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-              ],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;blockedBy&quot;: [],
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [
-                &quot;BUZZ_SURFACE_UNSUPPORTED&quot;
-              ],
+              &quot;diagnostics&quot;: [],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: false,
+              &quot;packageEligible&quot;: true,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;refused&quot;,
+              &quot;readiness&quot;: &quot;report-ready&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;blocked&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -6904,7 +6824,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -7364,7 +7284,7 @@
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
               &quot;blockedBy&quot;: [],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [],
@@ -7383,7 +7303,7 @@
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
               &quot;status&quot;: &quot;report-ready&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -7558,7 +7478,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -8025,7 +7945,7 @@
               &quot;blockedBy&quot;: [
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [
@@ -8046,7 +7966,7 @@
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
               &quot;status&quot;: &quot;blocked&quot;,
-              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package &lt;empty-output-dir&gt;&quot;,
+              &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
               &quot;walletAccess&quot;: false
@@ -8221,7 +8141,7 @@
               &quot;target&quot;: &quot;vercel-eve&quot;
             },
             {
-              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]&quot;,
+              &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]&quot;,
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;
             }
@@ -8265,7 +8185,6 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
-          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,

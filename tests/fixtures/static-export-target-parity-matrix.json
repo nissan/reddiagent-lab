@@ -291,14 +291,12 @@
           "target": "buzz-static-projection",
           "label": "Buzz static projection",
           "mode": "report-only",
-          "command": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding]",
-          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "command": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
-          "status": "blocked",
-          "readiness": "refused",
-          "blockedBy": [
-            "BUZZ_SURFACE_UNSUPPORTED"
-          ],
+          "status": "report-ready",
+          "readiness": "report-ready",
+          "blockedBy": [],
           "metadataOnlyExtensions": [],
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
@@ -314,10 +312,8 @@
           "bidirectionalImportAllowed": false,
           "publicDistributionAllowed": false,
           "publicBrandingAllowed": false,
-          "packageEligible": false,
-          "diagnostics": [
-            "BUZZ_SURFACE_UNSUPPORTED"
-          ]
+          "packageEligible": true,
+          "diagnostics": []
         }
       ]
     },
@@ -575,8 +571,8 @@
           "target": "buzz-static-projection",
           "label": "Buzz static projection",
           "mode": "report-only",
-          "command": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding]",
-          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "command": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
           "status": "report-ready",
           "readiness": "report-ready",
@@ -909,8 +905,8 @@
           "target": "buzz-static-projection",
           "label": "Buzz static projection",
           "mode": "report-only",
-          "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding]",
-          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
           "status": "blocked",
           "readiness": "refused",
@@ -1193,8 +1189,8 @@
           "target": "buzz-static-projection",
           "label": "Buzz static projection",
           "mode": "report-only",
-          "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding]",
-          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins and identity binding] --export-package <empty-output-dir>",
+          "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+          "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
           "status": "blocked",
           "readiness": "blocked-by-validation",
@@ -1488,18 +1484,17 @@
       "authoritativeCheck": "tests/test_buzz_export.py",
       "agentCount": 4,
       "readinessCounts": {
-        "refused": 2,
-        "report-ready": 1,
+        "report-ready": 2,
+        "refused": 1,
         "blocked-by-validation": 1
       },
       "statusCounts": {
-        "blocked": 3,
-        "report-ready": 1
+        "report-ready": 2,
+        "blocked": 2
       },
       "blockedBy": [
         "BUZZ_ADL_INVALID",
-        "BUZZ_PAYMENT_AUTHORITY_REFUSED",
-        "BUZZ_SURFACE_UNSUPPORTED"
+        "BUZZ_PAYMENT_AUTHORITY_REFUSED"
       ],
       "metadataOnly": [],
       "runtimeExecutionAllowed": false,

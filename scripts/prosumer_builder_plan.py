@@ -92,8 +92,8 @@ EXPORT_MATRIX_TARGETS = [
     {
         "target": "buzz-static-projection",
         "label": "Buzz static projection",
-        "commandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins and identity binding]",
-        "strictCommandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins and identity binding] --export-package <empty-output-dir>",
+        "commandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins, signed identity binding, drift review, and evaluation time]",
+        "strictCommandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
         "authoritativeCheck": "tests/test_buzz_export.py",
     },
 ]
