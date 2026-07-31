@@ -86,6 +86,7 @@ code. Each diagnostic contains `code`, `classification`, `severity`, `path`,
 |---|---|---|
 | `BUZZ_ADL_INVALID` | Source fails ADL v0.2 schema/semantic validation. | Refused, blocking. |
 | `BUZZ_CANONICAL_REF_MISSING` | URI, digest, schema digest, or version is absent, or a repository-backed source commit is absent. | Refused, blocking. |
+| `BUZZ_INSTRUCTION_FILE_UNAVAILABLE` | A non-empty `harness.instructions.path` resolves within the reviewed source root but the referenced file is absent, unreadable, or not a regular file. | Refused, blocking. |
 | `BUZZ_TARGET_PIN_INVALID` | Target pin is missing, mutable, abbreviated, mismatched, or unreviewed. | Refused, blocking. |
 | `BUZZ_SEMANTIC_LOSS` | Reviewed representation weakens ADL meaning. | Lossy, visible. |
 | `BUZZ_METADATA_NOT_ENFORCED` | Buzz may display but cannot enforce the semantics. | Metadata-only, visible. |
@@ -124,7 +125,7 @@ refusal rule below applies.
 | `model.requirements` | `metadata-only` | Preserve required capabilities and loss detail. | Claim of Buzz enforcement: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
 | `model.cost` | `metadata-only` | Advisory budget/cost metadata only. NIP-AM may be referenced as telemetry. | Billing, settlement, or limit-authority claim: `BUZZ_PAYMENT_AUTHORITY_REFUSED`. |
 | `harness.instructions.inline` | `lossy` | Emit only reviewed public-safe persona instructions; retain source digest. | Secret/private/public-sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
-| `harness.instructions.path` | `lossy` | Package reviewed file content plus original path/digest; never host-path authority. | Missing path: `BUZZ_CANONICAL_REF_MISSING`; out-of-root/symlink escape/sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
+| `harness.instructions.path` | `lossy` | Package reviewed file content plus original path/digest; never host-path authority. | Missing/empty field: `BUZZ_ADL_INVALID`; absent, unreadable, or non-regular referenced file: `BUZZ_INSTRUCTION_FILE_UNAVAILABLE`; out-of-root/symlink escape/sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
 | `harness.tools` | `metadata-only` | List ids, descriptions, schemas, permissions, and policy refs for review. | Invocation/auto-enable: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unsafe/unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
 | `harness.functions` | `metadata-only` | List callable contract metadata only. | Execution, credential, network, shell, or filesystem mutation: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
 | `harness.skills` | `lossy` | Package only reviewed static skill description/assets allowed by later #425 rules. | Executable hooks or automatic install: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unsafe path: `BUZZ_PUBLIC_SENSITIVE_CONTENT`; unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
@@ -161,15 +162,22 @@ An identity binding must contain:
 - `ownerPubkey`: distinct owner identity key when the target supports it;
 - `ownerAttestationRef`: signed NIP-OA or equivalent provenance reference;
 - `ownerBindingProof`: a detached owner signature over the domain-separated
-  canonical `bindingDigest`, including the signature algorithm, canonicalization
-  version, signer key id, and signature bytes;
-- `issuedAt`, `notBefore`, `expiresAt`, `sequence`, and `status`;
+  immutable canonical `bindingDigest`, including the signature algorithm,
+  canonicalization version, signer key id, and signature bytes;
+- `issuedAt`, `notBefore`, `expiresAt`, and `sequence` as immutable binding
+  fields;
 - `previousBindingDigest` for rotation, when applicable;
-- `revocationRef` and `reason` for revoked bindings;
+- `status` as a derived evaluation result, never as signed binding input;
+- `lifecycleEvidence`: ordered, signed transition/revocation records used to
+  derive `status`, including actor key, action, binding digest, predecessor or
+  replacement digest when applicable, effective time, reason, and evidence
+  digest;
 - `bindingDigest` over the domain string
   `reddiagent-buzz-identity-binding-v1` plus canonical serialization of
   `canonicalAgentId`, canonical ADL URI/digest/version, Buzz agent key, owner
-  key, validity window, sequence, status, and predecessor digest.
+  key, validity window, sequence, and predecessor digest. It must exclude
+  mutable or derived lifecycle fields including `status`, `lifecycleEvidence`,
+  revocation references, and reasons.
 
 NIP-OA at the assessed Buzz pin signs the agent key and its supported
 conditions; it does not itself sign the ADL digest or complete identity join.
@@ -178,6 +186,17 @@ enter `bound`. `ownerBindingProof` must verify under `ownerPubkey` over the exac
 `bindingDigest`. Substituting any canonical ADL or identity field invalidates
 that proof. An equivalent future provenance format may replace the two records
 only when it signs every binding-digest field and is version-pinned and reviewed.
+
+Lifecycle evaluation must first verify the immutable owner binding proof, then
+verify each lifecycle record against the immutable `bindingDigest`. A transition
+record uses domain `reddiagent-buzz-identity-transition-v1`; a revocation record
+uses `reddiagent-buzz-identity-revocation-v1`. Records must be signed by the
+owner key, except an explicitly configured emergency revocation key may sign a
+revocation when that key and scope were included in the original immutable
+binding payload. Derived status is the deterministic fold of valid records by
+effective time, sequence, action precedence (`revoked` before `superseded`
+before other transitions), then evidence digest. Unknown, conflicting, invalid,
+or unauthorized records fail closed with `BUZZ_IDENTITY_BINDING_INVALID`.
 
 The Buzz agent key and owner key must not be interpreted as a wallet, payment
 principal, delegated spender, RAP mandate signer, or reputation issuer. NIP-OA
@@ -188,13 +207,13 @@ owner had payment authority or accepted work.
 
 | State | Entry condition | Allowed transition | Package effect |
 |---|---|---|---|
-| `proposed` | Complete unsigned/static binding candidate. | `bound` or `revoked` | Report only. |
-| `bound` | Owner attestation, owner binding proof, and all pins verify within validity window. | `active`, `rotating`, `revoked`, `expired` | Report only until explicit activation review. |
-| `active` | Current reviewed binding selected for static package. | `rotating`, `revoked`, `expired` | Package may reference it. |
-| `rotating` | New higher-sequence binding references the active digest. | New binding `active`; old binding `superseded`; or both `revoked` on ambiguity. | Block until atomic selection is proven. |
-| `superseded` | A verified higher-sequence binding is active. | `revoked` | Historical evidence only. |
-| `revoked` | Signed/operator-reviewed revocation matches binding. | Terminal | Block immediately. |
-| `expired` | `expiresAt` is not later than evaluation time. | Terminal; create a new binding | Block. |
+| `proposed` | Complete unsigned/static binding candidate; no valid owner binding proof. | `bound` after proof verification, or `revoked` by valid revocation evidence. | Report only. |
+| `bound` | Immutable owner binding proof and all pins verify within validity window; no later lifecycle record applies. | `active`, `rotating`, `revoked`, `expired` through verified evidence/time evaluation. | Report only until explicit activation review. |
+| `active` | Valid signed activation record selects the current reviewed immutable binding. | `rotating`, `revoked`, `expired` through verified evidence/time evaluation. | Package may reference it. |
+| `rotating` | A valid higher-sequence immutable binding references the active binding's stable `bindingDigest`, with a signed rotation record linking both. | New binding `active`; old binding `superseded`; or both `revoked` on ambiguity. | Block until atomic selection is proven. |
+| `superseded` | A verified higher-sequence replacement is active and its signed transition references this binding's immutable digest. | `revoked` by valid revocation evidence. | Historical evidence only. |
+| `revoked` | Valid signed revocation evidence references this immutable binding digest. | Terminal | Block immediately. |
+| `expired` | `expiresAt` is not later than evaluation time, unless an earlier valid revocation already determines `revoked`. | Terminal; create a new immutable binding. | Block. |
 
 Joins are fail-closed. Conflicting owner claims, equal sequence with different
 digests, missing predecessor, digest mismatch, clock ambiguity, stale cache,

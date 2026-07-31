@@ -59,8 +59,10 @@ mainnet.
   recorded evidence that every higher option is insufficient.
 - Treat Nostr/Buzz identity and events as provenance/context only. RAP and the
   authoritative payment rail keep their existing authority.
-- Require a domain-separated owner signature over the complete canonical
-  ADL/agent/Buzz/owner binding digest; NIP-OA alone does not bind the ADL digest.
+- Require a domain-separated owner signature over the immutable canonical
+  ADL/agent/Buzz/owner binding digest; exclude derived lifecycle status and fold
+  separately signed transition/revocation evidence to derive it. NIP-OA alone
+  does not bind the ADL digest.
 - Reject public-sensitive content, unresolved policies, executable/runtime
   semantics, embedded spend authority, and unprovable payment/reputation claims.
 
@@ -134,3 +136,4 @@ compatibility report to understand that loss.
 |---|---|---|---|
 | 2026-07-31 | Initial #424 contract; no implementation yet | Created | Deferred to #425–#427 |
 | 2026-07-31 | Oli found unsigned ADL identity binding, ambiguous refusal-code overrides, and an inconsistent source-commit rule | Require owner-signed full binding digest, map every override to stable codes with all-applicable ordering, and require source commit only for repository-backed ADL | Still deferred to #425–#427 |
+| 2026-07-31 | Sara found mutable lifecycle status inside the signed binding digest and a conflicting missing-instruction-path diagnostic | Make the binding digest immutable, derive status from signed lifecycle evidence, and distinguish invalid/missing path fields from unavailable referenced files | Still deferred to #425–#427 |
