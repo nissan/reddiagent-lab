@@ -47,7 +47,7 @@ Every report and projection package must bind all of the following:
 | `canonicalAdl.apiVersion` | Must equal the validated source value; G1 target is `reddiagent.dev/v0.2`. |
 | `canonicalAdl.digest` | Lowercase SHA-256 over the canonical source bytes; required. |
 | `canonicalAdl.schemaDigest` | SHA-256 of the exact schema used to validate the source. |
-| `canonicalAdl.sourceCommit` | Full source repository commit when repository-backed. |
+| `canonicalAdl.sourceCommit` | Full source repository commit; required only when `canonicalAdl.uri` identifies repository-backed content, otherwise omitted. |
 | `target.kind` | Stable target id `buzz-static-projection`. |
 | `target.upstreamCommit` | Full `block/buzz` commit reviewed for compatibility. |
 | `target.forkCommit` | Full `reddinft/buzz` commit, even when identical to upstream. |
@@ -58,7 +58,9 @@ Every report and projection package must bind all of the following:
 The report is the evidence record. A package must embed the report digest and
 the canonical ADL identity fields. Changing any source, schema, adapter,
 upstream, or fork pin requires regeneration and review. Missing, abbreviated,
-mutable, mismatched, or unreviewed pins block package emission.
+mutable, mismatched, or unreviewed required pins block package emission. A
+repository-backed canonical URI without `canonicalAdl.sourceCommit` is a
+missing required pin; a non-repository source does not invent one.
 
 The initial research baseline is upstream/fork commit
 `d88313f369acfa17973029787ee4c0bbea07fa51`. It is an assessment pin, not a
@@ -83,7 +85,7 @@ code. Each diagnostic contains `code`, `classification`, `severity`, `path`,
 | Code | Trigger | Result |
 |---|---|---|
 | `BUZZ_ADL_INVALID` | Source fails ADL v0.2 schema/semantic validation. | Refused, blocking. |
-| `BUZZ_CANONICAL_REF_MISSING` | URI, digest, schema digest, version, or source commit is absent. | Refused, blocking. |
+| `BUZZ_CANONICAL_REF_MISSING` | URI, digest, schema digest, or version is absent, or a repository-backed source commit is absent. | Refused, blocking. |
 | `BUZZ_TARGET_PIN_INVALID` | Target pin is missing, mutable, abbreviated, mismatched, or unreviewed. | Refused, blocking. |
 | `BUZZ_SEMANTIC_LOSS` | Reviewed representation weakens ADL meaning. | Lossy, visible. |
 | `BUZZ_METADATA_NOT_ENFORCED` | Buzz may display but cannot enforce the semantics. | Metadata-only, visible. |
@@ -98,6 +100,12 @@ code. Each diagnostic contains `code`, `classification`, `severity`, `path`,
 | `BUZZ_ATTRIBUTION_REVIEW_REQUIRED` | License/NOTICE/modified-file or downstream branding evidence is incomplete. | Refused for distribution. |
 | `BUZZ_UPSTREAM_DRIFT_UNREVIEWED` | Drift check detects unreviewed relevant change or negative-claim dependency. | Refused for release. |
 
+Every applicable diagnostic must be emitted. When one value activates more
+than one refusal rule, the exporter must not choose between them: it emits all
+applicable codes and orders them by ADL path, severity rank, then code as
+specified above. The matrix below maps each refusal trigger to its required
+code, so #425 must not invent policy or collapse a compound failure.
+
 ## 4. Complete ADL v0.2 surface matrix
 
 The matrix covers the canonical top-level surface and every supporting semantic
@@ -108,31 +116,31 @@ refusal rule below applies.
 |---|---|---|---|
 | `apiVersion` | `direct` | Preserve with canonical reference. | Unknown/invalid version: `BUZZ_ADL_INVALID`. |
 | `kind` | `direct` | Preserve `Agent` as source kind. | Other kind: `BUZZ_ADL_INVALID`. |
-| `metadata.name` | `direct` | Candidate persona display name. | Misleading impersonation/branding claim: refused. |
+| `metadata.name` | `direct` | Candidate persona display name. | Impersonation or false authority: `BUZZ_AUTHORITY_CLAIM_REFUSED`; unreviewed public branding: `BUZZ_ATTRIBUTION_REVIEW_REQUIRED`. |
 | `metadata.description` | `direct` | Candidate persona description. | Secret or public-sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
-| `conformance` | `metadata-only` | Display requested/achieved levels and evidence refs. | Must not imply Buzz achieved ADL runtime conformance. |
-| `model.capability` | `lossy` | Map to advisory persona capability label. | Target capability must not be inferred. |
+| `conformance` | `metadata-only` | Display requested/achieved levels and evidence refs. | Buzz-achieved ADL runtime conformance claim: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
+| `model.capability` | `lossy` | Map to advisory persona capability label. | Inferred target capability: `BUZZ_METADATA_NOT_ENFORCED`. |
 | `model.providers` | `metadata-only` | Preserve ordered provider ids as review metadata. | Provider selection/call/credential resolution: `BUZZ_RUNTIME_CAPABILITY_REFUSED`. |
 | `model.requirements` | `metadata-only` | Preserve required capabilities and loss detail. | Claim of Buzz enforcement: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
-| `model.cost` | `metadata-only` | Advisory budget/cost metadata only. NIP-AM may be referenced as telemetry. | Billing, settlement, or limit authority claim: refused. |
-| `harness.instructions.inline` | `lossy` | Emit only reviewed public-safe persona instructions; retain source digest. | Secret/private/public-sensitive content: refused. |
-| `harness.instructions.path` | `lossy` | Package reviewed file content plus original path/digest; never host-path authority. | Missing/out-of-root/symlink escape/sensitive content: refused. |
-| `harness.tools` | `metadata-only` | List ids, descriptions, schemas, permissions, and policy refs for review. | Any invocation/auto-enable or unsafe/unresolved policy: refused. |
-| `harness.functions` | `metadata-only` | List callable contract metadata only. | Execution, credential, network, shell, filesystem mutation, or unresolved policy: refused. |
-| `harness.skills` | `lossy` | Package only reviewed static skill description/assets allowed by later #425 rules. | Executable hooks, unsafe paths, unresolved policy, or automatic install: refused. |
-| `harness.dataSources` | `metadata-only` | Preserve type, trust, citation, and redacted source identity. | Private credentials/data, unapproved fetch, or unverifiable source boundary: refused. |
-| `harness.memory` | `unsupported` | Report mode, retention, privacy, and storage refs; no memory is copied. | Persistent/external memory export, workspace copy, or retention claim: refused. |
+| `model.cost` | `metadata-only` | Advisory budget/cost metadata only. NIP-AM may be referenced as telemetry. | Billing, settlement, or limit-authority claim: `BUZZ_PAYMENT_AUTHORITY_REFUSED`. |
+| `harness.instructions.inline` | `lossy` | Emit only reviewed public-safe persona instructions; retain source digest. | Secret/private/public-sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
+| `harness.instructions.path` | `lossy` | Package reviewed file content plus original path/digest; never host-path authority. | Missing path: `BUZZ_CANONICAL_REF_MISSING`; out-of-root/symlink escape/sensitive content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`. |
+| `harness.tools` | `metadata-only` | List ids, descriptions, schemas, permissions, and policy refs for review. | Invocation/auto-enable: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unsafe/unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
+| `harness.functions` | `metadata-only` | List callable contract metadata only. | Execution, credential, network, shell, or filesystem mutation: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
+| `harness.skills` | `lossy` | Package only reviewed static skill description/assets allowed by later #425 rules. | Executable hooks or automatic install: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unsafe path: `BUZZ_PUBLIC_SENSITIVE_CONTENT`; unresolved policy: `BUZZ_POLICY_UNRESOLVED`. |
+| `harness.dataSources` | `metadata-only` | Preserve type, trust, citation, and redacted source identity. | Private credential/data: `BUZZ_PUBLIC_SENSITIVE_CONTENT`; unapproved fetch: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unverifiable source boundary: `BUZZ_POLICY_UNRESOLVED`. |
+| `harness.memory` | `unsupported` | Report mode, retention, privacy, and storage refs; no memory is copied. | Persistent/external memory export or workspace copy: `BUZZ_PUBLIC_SENSITIVE_CONTENT`; claim that Buzz enforces retention: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
 | `harness.policies` | `metadata-only` | Preserve normalized policy declarations and report non-enforcement. | Missing/mismatched refs or claim of enforcement: `BUZZ_POLICY_UNRESOLVED`. |
-| `harness.evalGates` | `metadata-only` | Preserve gate definitions and evidence refs. | Must not translate Buzz reactions/events into passed gates. |
+| `harness.evalGates` | `metadata-only` | Preserve gate definitions and evidence refs. | Buzz reaction/event translated into a passed gate: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
 | `harness.runtime` | `unsupported` | Report target and compatibility only. | Any activation/start/provider resolution: `BUZZ_RUNTIME_CAPABILITY_REFUSED`. |
 | `harness.deployment` | `unsupported` | Report deployment intent only, with distribution blocked in G1. | Deploy/host/release instruction: `BUZZ_RUNTIME_CAPABILITY_REFUSED`. |
-| `harness.observability` | `metadata-only` | Preserve required event/redaction/retention contract. | Relay/event presence must not satisfy required trace evidence. |
-| `harness.recovery` | `metadata-only` | Preserve disable/rollback expectations for later review. | Claim that deleting a Buzz persona rolls back external state: refused. |
+| `harness.observability` | `metadata-only` | Preserve required event/redaction/retention contract. | Relay/event presence claimed as required trace evidence: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
+| `harness.recovery` | `metadata-only` | Preserve disable/rollback expectations for later review. | Claim that deleting a Buzz persona rolls back external state: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
 | `extensions.identity` | `direct` | Bind canonical agent identity through the lifecycle in section 5. | Missing/stale/revoked/ambiguous join: `BUZZ_IDENTITY_BINDING_INVALID`. |
 | `extensions.x402` | `metadata-only` | Emit only `paymentMode: none` plus redacted external RAP refs. | Spend/refund authority, live rail, wallet, or executable intent: `BUZZ_PAYMENT_AUTHORITY_REFUSED`. |
-| `extensions.receipts` | `metadata-only` | Preserve RAP evidence refs and required status. | Buzz event/audit entry represented as RAP receipt or acceptance: refused. |
-| `extensions.reputation` | `metadata-only` | Preserve declared RAP evidence refs and eligibility status. | Registry/Buzz presence or event inferred as reputation: refused. |
-| reviewed `x-*`/URI extension | `metadata-only` | Preserve namespaced, redacted JSON plus source path. | Authority-like, secret, executable, or unreviewed semantics: unsupported/refused. |
+| `extensions.receipts` | `metadata-only` | Preserve RAP evidence refs and required status. | Buzz event/audit entry represented as RAP receipt or acceptance: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
+| `extensions.reputation` | `metadata-only` | Preserve declared RAP evidence refs and eligibility status. | Registry/Buzz presence or event inferred as reputation: `BUZZ_AUTHORITY_CLAIM_REFUSED`. |
+| reviewed `x-*`/URI extension | `metadata-only` | Preserve namespaced, redacted JSON plus source path. | Authority-like semantics: `BUZZ_AUTHORITY_CLAIM_REFUSED`; secret content: `BUZZ_PUBLIC_SENSITIVE_CONTENT`; executable semantics: `BUZZ_RUNTIME_CAPABILITY_REFUSED`; unreviewed semantics: `BUZZ_SURFACE_UNSUPPORTED`. |
 
 `unsupported` rows are blocking for package emission in G1 unless the exporter
 emits no corresponding executable content and the row is explicitly listed here
@@ -152,10 +160,24 @@ An identity binding must contain:
 - `buzzAgentPubkey`: target agent public key/coordinate;
 - `ownerPubkey`: distinct owner identity key when the target supports it;
 - `ownerAttestationRef`: signed NIP-OA or equivalent provenance reference;
+- `ownerBindingProof`: a detached owner signature over the domain-separated
+  canonical `bindingDigest`, including the signature algorithm, canonicalization
+  version, signer key id, and signature bytes;
 - `issuedAt`, `notBefore`, `expiresAt`, `sequence`, and `status`;
 - `previousBindingDigest` for rotation, when applicable;
 - `revocationRef` and `reason` for revoked bindings;
-- `bindingDigest` over canonical serialized fields.
+- `bindingDigest` over the domain string
+  `reddiagent-buzz-identity-binding-v1` plus canonical serialization of
+  `canonicalAgentId`, canonical ADL URI/digest/version, Buzz agent key, owner
+  key, validity window, sequence, status, and predecessor digest.
+
+NIP-OA at the assessed Buzz pin signs the agent key and its supported
+conditions; it does not itself sign the ADL digest or complete identity join.
+Therefore `ownerAttestationRef` is necessary provenance but insufficient to
+enter `bound`. `ownerBindingProof` must verify under `ownerPubkey` over the exact
+`bindingDigest`. Substituting any canonical ADL or identity field invalidates
+that proof. An equivalent future provenance format may replace the two records
+only when it signs every binding-digest field and is version-pinned and reviewed.
 
 The Buzz agent key and owner key must not be interpreted as a wallet, payment
 principal, delegated spender, RAP mandate signer, or reputation issuer. NIP-OA
@@ -167,7 +189,7 @@ owner had payment authority or accepted work.
 | State | Entry condition | Allowed transition | Package effect |
 |---|---|---|---|
 | `proposed` | Complete unsigned/static binding candidate. | `bound` or `revoked` | Report only. |
-| `bound` | Owner attestation and all pins verify within validity window. | `active`, `rotating`, `revoked`, `expired` | Report only until explicit activation review. |
+| `bound` | Owner attestation, owner binding proof, and all pins verify within validity window. | `active`, `rotating`, `revoked`, `expired` | Report only until explicit activation review. |
 | `active` | Current reviewed binding selected for static package. | `rotating`, `revoked`, `expired` | Package may reference it. |
 | `rotating` | New higher-sequence binding references the active digest. | New binding `active`; old binding `superseded`; or both `revoked` on ambiguity. | Block until atomic selection is proven. |
 | `superseded` | A verified higher-sequence binding is active. | `revoked` | Historical evidence only. |
@@ -185,7 +207,7 @@ package is reviewed, installed, or refreshed.
 
 | Buzz/Nostr evidence | Permitted interpretation | Forbidden interpretation |
 |---|---|---|
-| NIP-OA owner/agent assertion | Provenance claim tied to exact key, digest, and validity window. | RAP/AP2 mandate, wallet delegation, spend authority, or owner reputation. |
+| NIP-OA owner/agent assertion | Owner-to-agent-key provenance within its signed conditions; the separate owner binding proof binds canonical ADL and identity fields. | Standalone ADL-digest binding, RAP/AP2 mandate, wallet delegation, spend authority, or owner reputation. |
 | NIP-AM usage/cost event | Advisory telemetry to reconcile against authoritative evidence. | Invoice, billing truth, settled amount, budget authority, or accounting acceptance. |
 | Signed Buzz event | Attributable context from a key at a point in time. | Human approval, task acceptance, settlement, eval pass, dispute closure, or reputation. |
 | Buzz audit chain | Tamper-evident local history under its documented threat assumptions. | Tamper-resistant external truth, authoritative rail receipt, or non-repudiation by itself. |
@@ -257,7 +279,7 @@ Until every applicable item is reviewed, `publicDistributionAllowed` and
 
 ### Release candidate
 
-- [ ] Exact canonical ADL URI/version/digest/schema/source commit validate.
+- [ ] Exact canonical ADL URI/version/digest/schema validate, plus source commit when repository-backed.
 - [ ] Exact adapter/upstream/fork pins and generated artifact digests validate.
 - [ ] Every ADL surface has one ordered mapping row and stable diagnostics.
 - [ ] No blocking `refused` or disallowed `unsupported` row exists.
