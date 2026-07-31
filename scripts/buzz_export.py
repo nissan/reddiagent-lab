@@ -1034,6 +1034,21 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
                              "classification": "metadata-only" if reviewed else "unsupported",
                              "projectionRule": "namespaced-review-metadata" if reviewed else "no-projection",
                              "diagnostics": [], "blocking": not reviewed})
+    for row in surfaces:
+        if row["classification"] == "lossy":
+            diagnostics.append(diagnostic(
+                "BUZZ_SEMANTIC_LOSS", "lossy", row["path"],
+                "The reviewed Buzz representation weakens or omits canonical ADL meaning.",
+                "Consult canonical ADL for the complete authoritative semantics.",
+                blocking=False,
+            ))
+        elif row["classification"] == "metadata-only":
+            diagnostics.append(diagnostic(
+                "BUZZ_METADATA_NOT_ENFORCED", "metadata-only", row["path"],
+                "Buzz can display this reviewed metadata but cannot enforce its semantics.",
+                "Enforce the canonical semantics outside Buzz and retain ADL as authority.",
+                blocking=False,
+            ))
     diagnostics = _sort_diagnostics(diagnostics)
     for row in surfaces:
         row_diagnostics = [item["code"] for item in diagnostics

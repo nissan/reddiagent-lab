@@ -277,6 +277,41 @@ def main() -> int:
         attribution_evidence = report["target"]["governanceReview"]["attributionManifest"]
         assert attribution_evidence == drift()["attribution"]
         assert_boundaries(report)
+        diagnostic_by_path = {
+            (item["path"], item["code"]): item for item in report["diagnostics"]
+        }
+        expected_non_blocking = {
+            "lossy": "BUZZ_SEMANTIC_LOSS",
+            "metadata-only": "BUZZ_METADATA_NOT_ENFORCED",
+        }
+        for row in report["surfaceRows"]:
+            code = expected_non_blocking.get(row["classification"])
+            if code is None:
+                continue
+            assert code in row["diagnostics"], row["path"]
+            item = diagnostic_by_path[(row["path"], code)]
+            assert item["classification"] == row["classification"]
+            assert item["severity"] == "warning"
+            assert item["blocking"] is False
+        assert {
+            (item["path"], item["code"])
+            for item in report["diagnostics"]
+            if item["code"] in expected_non_blocking.values()
+        } == {
+            (row["path"], expected_non_blocking[row["classification"]])
+            for row in report["surfaceRows"]
+            if row["classification"] in expected_non_blocking
+        }
+        assert {
+            (item["path"], item["code"])
+            for item in report["diagnostics"]
+            if item["code"] in expected_non_blocking.values()
+        } == {
+            ("harness.instructions.inline", "BUZZ_SEMANTIC_LOSS"),
+            ("model.capability", "BUZZ_SEMANTIC_LOSS"),
+            ("model.providers", "BUZZ_METADATA_NOT_ENFORCED"),
+            ("model.requirements", "BUZZ_METADATA_NOT_ENFORCED"),
+        }
 
         predecessor = binding(SOURCE)
         rotated = binding(
