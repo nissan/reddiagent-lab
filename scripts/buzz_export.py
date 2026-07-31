@@ -1142,7 +1142,8 @@ def write_package(destination: Path, report: dict, projection: dict) -> None:
 
 
 def parity_summary(doc: dict, errors: list[str]) -> dict:
-    blockers = ["BUZZ_ADL_INVALID"] if errors else []
+    adl_invalid = bool(errors) or doc.get("apiVersion") != "reddiagent.dev/v0.2"
+    blockers = ["BUZZ_ADL_INVALID"] if adl_invalid else []
     harness = doc.get("harness", {}) or {}
     blockers.extend(item["code"] for item in _surface_diagnostics(doc) if item["blocking"])
     runtime = harness.get("runtime", {}) or {}

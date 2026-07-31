@@ -133,9 +133,9 @@
           </tr>
           <tr>
             <td>Buzz static projection</td>
-            <td class="ok">report-ready</td>
+            <td class="warn">refused</td>
             <td><code>python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]</code></td>
-            <td>none</td>
+            <td>BUZZ_ADL_INVALID</td>
           </tr>
         </tbody>
       </table>
@@ -192,9 +192,9 @@
           </tr>
           <tr>
             <td>Buzz static projection</td>
-            <td class="ok">report-ready</td>
+            <td class="warn">refused</td>
             <td><code>python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]</code></td>
-            <td>none</td>
+            <td>BUZZ_ADL_INVALID</td>
           </tr>
         </tbody>
       </table>
@@ -253,7 +253,7 @@
             <td>Buzz static projection</td>
             <td class="warn">refused</td>
             <td><code>python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]</code></td>
-            <td>BUZZ_PAYMENT_AUTHORITY_REFUSED</td>
+            <td>BUZZ_ADL_INVALID, BUZZ_PAYMENT_AUTHORITY_REFUSED</td>
           </tr>
         </tbody>
       </table>
@@ -303,7 +303,7 @@
     </section>
     <section class="panel">
       <h2>Blocked Export UI Fixture</h2>
-      <p>24 blocked or metadata-only rows pinned for local UI coverage.</p>
+      <p>26 blocked or metadata-only rows pinned for local UI coverage.</p>
       <table>
         <thead>
           <tr><th>Source</th><th>Target</th><th>Readiness</th><th>Authoritative Check</th><th>Guardrail Reasons</th></tr>
@@ -345,6 +345,13 @@
             <td>metadata-only review required</td>
           </tr>
           <tr>
+            <td><code>examples/simple-agent.yaml</code></td>
+            <td>Buzz static projection</td>
+            <td class="warn">refused</td>
+            <td><code>tests/test_buzz_export.py</code></td>
+            <td>BUZZ_ADL_INVALID</td>
+          </tr>
+          <tr>
             <td><code>examples/tool-agent.yaml</code></td>
             <td>Agent Spec</td>
             <td class="warn">metadata-only</td>
@@ -378,6 +385,13 @@
             <td class="warn">metadata-only</td>
             <td><code>tests/test_eve_compatibility.py</code></td>
             <td>metadata-only review required</td>
+          </tr>
+          <tr>
+            <td><code>examples/tool-agent.yaml</code></td>
+            <td>Buzz static projection</td>
+            <td class="warn">refused</td>
+            <td><code>tests/test_buzz_export.py</code></td>
+            <td>BUZZ_ADL_INVALID</td>
           </tr>
           <tr>
             <td><code>examples/payment-agent.yaml</code></td>
@@ -419,7 +433,7 @@
             <td>Buzz static projection</td>
             <td class="warn">refused</td>
             <td><code>tests/test_buzz_export.py</code></td>
-            <td>BUZZ_PAYMENT_AUTHORITY_REFUSED</td>
+            <td>BUZZ_ADL_INVALID, BUZZ_PAYMENT_AUTHORITY_REFUSED</td>
           </tr>
           <tr>
             <td><code>examples/invalid/missing-instructions.yaml</code></td>
@@ -1073,9 +1087,9 @@
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 8,
       &quot;metadata-only&quot;: 12,
-      &quot;refused&quot;: 1
+      &quot;refused&quot;: 3
     },
-    &quot;rowCount&quot;: 24,
+    &quot;rowCount&quot;: 26,
     &quot;rows&quot;: [
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
@@ -1291,6 +1305,38 @@
         &quot;walletAccess&quot;: false
       },
       {
+        &quot;agent&quot;: &quot;simple-research-helper&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
+        &quot;bidirectionalImportAllowed&quot;: false,
+        &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;
+        ],
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
+        &quot;credentialAccess&quot;: false,
+        &quot;deploymentAllowed&quot;: false,
+        &quot;eveCompatibilitySummary&quot;: null,
+        &quot;label&quot;: &quot;Buzz static projection&quot;,
+        &quot;mcpInvocation&quot;: false,
+        &quot;metadataOnlyExtensions&quot;: [],
+        &quot;metadataOnlySections&quot;: [],
+        &quot;networkAccess&quot;: false,
+        &quot;paymentAccess&quot;: false,
+        &quot;providerAccess&quot;: false,
+        &quot;publicBrandingAllowed&quot;: false,
+        &quot;publicDistributionAllowed&quot;: false,
+        &quot;readiness&quot;: &quot;refused&quot;,
+        &quot;relayAccess&quot;: false,
+        &quot;runtimeExecutionAllowed&quot;: false,
+        &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
+        &quot;status&quot;: &quot;blocked&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;target&quot;: &quot;buzz-static-projection&quot;,
+        &quot;toolExecutionAllowed&quot;: false,
+        &quot;validationErrors&quot;: [],
+        &quot;validationStatus&quot;: &quot;pass&quot;,
+        &quot;walletAccess&quot;: false
+      },
+      {
         &quot;agent&quot;: &quot;source-checker&quot;,
         &quot;authoritativeCheck&quot;: &quot;tests/test_agent_spec_compatibility.py&quot;,
         &quot;bidirectionalImportAllowed&quot;: false,
@@ -1493,6 +1539,38 @@
         &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
+        &quot;toolExecutionAllowed&quot;: false,
+        &quot;validationErrors&quot;: [],
+        &quot;validationStatus&quot;: &quot;pass&quot;,
+        &quot;walletAccess&quot;: false
+      },
+      {
+        &quot;agent&quot;: &quot;source-checker&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
+        &quot;bidirectionalImportAllowed&quot;: false,
+        &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;
+        ],
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
+        &quot;credentialAccess&quot;: false,
+        &quot;deploymentAllowed&quot;: false,
+        &quot;eveCompatibilitySummary&quot;: null,
+        &quot;label&quot;: &quot;Buzz static projection&quot;,
+        &quot;mcpInvocation&quot;: false,
+        &quot;metadataOnlyExtensions&quot;: [],
+        &quot;metadataOnlySections&quot;: [],
+        &quot;networkAccess&quot;: false,
+        &quot;paymentAccess&quot;: false,
+        &quot;providerAccess&quot;: false,
+        &quot;publicBrandingAllowed&quot;: false,
+        &quot;publicDistributionAllowed&quot;: false,
+        &quot;readiness&quot;: &quot;refused&quot;,
+        &quot;relayAccess&quot;: false,
+        &quot;runtimeExecutionAllowed&quot;: false,
+        &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
+        &quot;status&quot;: &quot;blocked&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
@@ -1760,6 +1838,7 @@
         &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
         &quot;bidirectionalImportAllowed&quot;: false,
         &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;,
           &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
         ],
         &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
@@ -2760,26 +2839,30 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [],
+              &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [],
+              &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: true,
+              &quot;packageEligible&quot;: false,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;readiness&quot;: &quot;refused&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;status&quot;: &quot;blocked&quot;,
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
@@ -3414,26 +3497,30 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [],
+              &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [],
+              &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: true,
+              &quot;packageEligible&quot;: false,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;readiness&quot;: &quot;refused&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;status&quot;: &quot;blocked&quot;,
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
@@ -4074,12 +4161,14 @@
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
               &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;,
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;,
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
@@ -4316,6 +4405,7 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
+          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -4331,6 +4421,7 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
+          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -4942,9 +5033,9 @@
       &quot;blocked-before-generation&quot;: 3,
       &quot;blocked-by-validation&quot;: 8,
       &quot;metadata-only&quot;: 12,
-      &quot;refused&quot;: 1
+      &quot;refused&quot;: 3
     },
-    &quot;rowCount&quot;: 24,
+    &quot;rowCount&quot;: 26,
     &quot;rows&quot;: [
       {
         &quot;agent&quot;: &quot;simple-research-helper&quot;,
@@ -5160,6 +5251,38 @@
         &quot;walletAccess&quot;: false
       },
       {
+        &quot;agent&quot;: &quot;simple-research-helper&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
+        &quot;bidirectionalImportAllowed&quot;: false,
+        &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;
+        ],
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
+        &quot;credentialAccess&quot;: false,
+        &quot;deploymentAllowed&quot;: false,
+        &quot;eveCompatibilitySummary&quot;: null,
+        &quot;label&quot;: &quot;Buzz static projection&quot;,
+        &quot;mcpInvocation&quot;: false,
+        &quot;metadataOnlyExtensions&quot;: [],
+        &quot;metadataOnlySections&quot;: [],
+        &quot;networkAccess&quot;: false,
+        &quot;paymentAccess&quot;: false,
+        &quot;providerAccess&quot;: false,
+        &quot;publicBrandingAllowed&quot;: false,
+        &quot;publicDistributionAllowed&quot;: false,
+        &quot;readiness&quot;: &quot;refused&quot;,
+        &quot;relayAccess&quot;: false,
+        &quot;runtimeExecutionAllowed&quot;: false,
+        &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
+        &quot;status&quot;: &quot;blocked&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;target&quot;: &quot;buzz-static-projection&quot;,
+        &quot;toolExecutionAllowed&quot;: false,
+        &quot;validationErrors&quot;: [],
+        &quot;validationStatus&quot;: &quot;pass&quot;,
+        &quot;walletAccess&quot;: false
+      },
+      {
         &quot;agent&quot;: &quot;source-checker&quot;,
         &quot;authoritativeCheck&quot;: &quot;tests/test_agent_spec_compatibility.py&quot;,
         &quot;bidirectionalImportAllowed&quot;: false,
@@ -5362,6 +5485,38 @@
         &quot;status&quot;: &quot;metadata-only&quot;,
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
+        &quot;toolExecutionAllowed&quot;: false,
+        &quot;validationErrors&quot;: [],
+        &quot;validationStatus&quot;: &quot;pass&quot;,
+        &quot;walletAccess&quot;: false
+      },
+      {
+        &quot;agent&quot;: &quot;source-checker&quot;,
+        &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
+        &quot;bidirectionalImportAllowed&quot;: false,
+        &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;
+        ],
+        &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
+        &quot;credentialAccess&quot;: false,
+        &quot;deploymentAllowed&quot;: false,
+        &quot;eveCompatibilitySummary&quot;: null,
+        &quot;label&quot;: &quot;Buzz static projection&quot;,
+        &quot;mcpInvocation&quot;: false,
+        &quot;metadataOnlyExtensions&quot;: [],
+        &quot;metadataOnlySections&quot;: [],
+        &quot;networkAccess&quot;: false,
+        &quot;paymentAccess&quot;: false,
+        &quot;providerAccess&quot;: false,
+        &quot;publicBrandingAllowed&quot;: false,
+        &quot;publicDistributionAllowed&quot;: false,
+        &quot;readiness&quot;: &quot;refused&quot;,
+        &quot;relayAccess&quot;: false,
+        &quot;runtimeExecutionAllowed&quot;: false,
+        &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
+        &quot;status&quot;: &quot;blocked&quot;,
+        &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
+        &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
@@ -5629,6 +5784,7 @@
         &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
         &quot;bidirectionalImportAllowed&quot;: false,
         &quot;blockedBy&quot;: [
+          &quot;BUZZ_ADL_INVALID&quot;,
           &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
         ],
         &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
@@ -6629,26 +6785,30 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [],
+              &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [],
+              &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: true,
+              &quot;packageEligible&quot;: false,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;readiness&quot;: &quot;refused&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;status&quot;: &quot;blocked&quot;,
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
@@ -7283,26 +7443,30 @@
             {
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
-              &quot;blockedBy&quot;: [],
+              &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
-              &quot;diagnostics&quot;: [],
+              &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;
+              ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
               &quot;mcpInvocation&quot;: false,
               &quot;metadataOnlyExtensions&quot;: [],
               &quot;metadataOnlySections&quot;: [],
               &quot;mode&quot;: &quot;report-only&quot;,
               &quot;networkAccess&quot;: false,
-              &quot;packageEligible&quot;: true,
+              &quot;packageEligible&quot;: false,
               &quot;paymentAccess&quot;: false,
               &quot;providerAccess&quot;: false,
               &quot;publicBrandingAllowed&quot;: false,
               &quot;publicDistributionAllowed&quot;: false,
-              &quot;readiness&quot;: &quot;report-ready&quot;,
+              &quot;readiness&quot;: &quot;refused&quot;,
               &quot;relayAccess&quot;: false,
               &quot;runtimeExecutionAllowed&quot;: false,
-              &quot;status&quot;: &quot;report-ready&quot;,
+              &quot;status&quot;: &quot;blocked&quot;,
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
@@ -7943,12 +8107,14 @@
               &quot;authoritativeCheck&quot;: &quot;tests/test_buzz_export.py&quot;,
               &quot;bidirectionalImportAllowed&quot;: false,
               &quot;blockedBy&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;,
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
               &quot;command&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]&quot;,
               &quot;credentialAccess&quot;: false,
               &quot;deploymentAllowed&quot;: false,
               &quot;diagnostics&quot;: [
+                &quot;BUZZ_ADL_INVALID&quot;,
                 &quot;BUZZ_PAYMENT_AUTHORITY_REFUSED&quot;
               ],
               &quot;label&quot;: &quot;Buzz static projection&quot;,
@@ -8185,6 +8351,7 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
+          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,
@@ -8200,6 +8367,7 @@
           &quot;blocked-before-generation&quot;,
           &quot;metadata-only&quot;,
           &quot;not-applicable&quot;,
+          &quot;refused&quot;,
           &quot;report-ready&quot;
         ],
         &quot;runtimeExecutionAllowed&quot;: false,

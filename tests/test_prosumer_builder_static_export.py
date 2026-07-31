@@ -127,6 +127,10 @@ def main() -> int:
         "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml"
     )
     assert eve_simple["eveCompatibilitySummary"]["deploymentAllowed"] is False
+    buzz_simple = next(row for row in simple_matrix if row["target"] == "buzz-static-projection")
+    assert buzz_simple["readiness"] == "refused"
+    assert buzz_simple["packageEligible"] is False
+    assert buzz_simple["blockedBy"] == ["BUZZ_ADL_INVALID"]
     payment_matrix = export_step(by_agent["paid-specialist-researcher"])["staticUiExportMatrix"]
     assert next(row for row in payment_matrix if row["target"] == "rap-bridge")["readiness"] == "report-ready"
     blocked = manifest["blockedExportFixture"]
@@ -143,7 +147,7 @@ def main() -> int:
         "blocked-before-generation": 3,
         "blocked-by-validation": 8,
         "metadata-only": 12,
-        "refused": 1,
+        "refused": 3,
     }
     assert blocked_fixture["sources"] == [
         "examples/invalid/missing-instructions.yaml",

@@ -135,13 +135,18 @@ def main() -> int:
     assert_static_boundaries(eve_summary)
 
     buzz_row = row(tool, "buzz-static-projection")
-    assert buzz_row["readiness"] == "report-ready"
-    assert buzz_row["packageEligible"] is True
+    assert buzz_row["readiness"] == "refused"
+    assert buzz_row["packageEligible"] is False
+    assert buzz_row["blockedBy"] == ["BUZZ_ADL_INVALID"]
+    assert buzz_row["diagnostics"] == ["BUZZ_ADL_INVALID"]
     assert buzz_row["authoritativeCheck"] == "tests/test_buzz_export.py"
     assert_static_boundaries(buzz_row)
     assert row(payment, "buzz-static-projection")["readiness"] == "refused"
+    assert "BUZZ_ADL_INVALID" in row(payment, "buzz-static-projection")["diagnostics"]
     assert "BUZZ_PAYMENT_AUTHORITY_REFUSED" in row(payment, "buzz-static-projection")["diagnostics"]
     assert row(invalid, "buzz-static-projection")["readiness"] == "blocked-by-validation"
+    assert row(invalid, "buzz-static-projection")["packageEligible"] is False
+    assert "BUZZ_ADL_INVALID" in row(invalid, "buzz-static-projection")["diagnostics"]
     assert_static_boundaries(summary(payload, "buzz-static-projection"))
 
     print("PASS static export target parity matrix")

@@ -294,9 +294,11 @@
           "command": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]",
           "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
-          "status": "report-ready",
-          "readiness": "report-ready",
-          "blockedBy": [],
+          "status": "blocked",
+          "readiness": "refused",
+          "blockedBy": [
+            "BUZZ_ADL_INVALID"
+          ],
           "metadataOnlyExtensions": [],
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
@@ -312,8 +314,10 @@
           "bidirectionalImportAllowed": false,
           "publicDistributionAllowed": false,
           "publicBrandingAllowed": false,
-          "packageEligible": true,
-          "diagnostics": []
+          "packageEligible": false,
+          "diagnostics": [
+            "BUZZ_ADL_INVALID"
+          ]
         }
       ]
     },
@@ -574,9 +578,11 @@
           "command": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]",
           "strictExportCommand": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
           "authoritativeCheck": "tests/test_buzz_export.py",
-          "status": "report-ready",
-          "readiness": "report-ready",
-          "blockedBy": [],
+          "status": "blocked",
+          "readiness": "refused",
+          "blockedBy": [
+            "BUZZ_ADL_INVALID"
+          ],
           "metadataOnlyExtensions": [],
           "metadataOnlySections": [],
           "runtimeExecutionAllowed": false,
@@ -592,8 +598,10 @@
           "bidirectionalImportAllowed": false,
           "publicDistributionAllowed": false,
           "publicBrandingAllowed": false,
-          "packageEligible": true,
-          "diagnostics": []
+          "packageEligible": false,
+          "diagnostics": [
+            "BUZZ_ADL_INVALID"
+          ]
         }
       ]
     },
@@ -911,6 +919,7 @@
           "status": "blocked",
           "readiness": "refused",
           "blockedBy": [
+            "BUZZ_ADL_INVALID",
             "BUZZ_PAYMENT_AUTHORITY_REFUSED"
           ],
           "metadataOnlyExtensions": [],
@@ -930,6 +939,7 @@
           "publicBrandingAllowed": false,
           "packageEligible": false,
           "diagnostics": [
+            "BUZZ_ADL_INVALID",
             "BUZZ_PAYMENT_AUTHORITY_REFUSED"
           ]
         }
@@ -1484,13 +1494,11 @@
       "authoritativeCheck": "tests/test_buzz_export.py",
       "agentCount": 4,
       "readinessCounts": {
-        "report-ready": 2,
-        "refused": 1,
+        "refused": 3,
         "blocked-by-validation": 1
       },
       "statusCounts": {
-        "report-ready": 2,
-        "blocked": 2
+        "blocked": 4
       },
       "blockedBy": [
         "BUZZ_ADL_INVALID",
