@@ -57,7 +57,7 @@ localnet, devnet, or mainnet; and work on #426 or later.
 | Entity / object | Purpose | Required fields / invariants |
 |---|---|---|
 | Canonical ADL input | Sole agent-definition authority | Exact source bytes, repository-relative or stable URI, `reddiagent.dev/v0.2`, validated schema, optional reviewed source root |
-| Export request | Caller-controlled deterministic pins | Full upstream/fork/adapter commits, contract version, reviewed identity-binding evidence, optional pinned `generatedAt`; no ambient discovery |
+| Export request | Caller-controlled deterministic pins | Full upstream/fork/adapter commits, contract version, reviewed identity-binding and governance evidence, required pinned `evaluationTime`; no ambient discovery |
 | Compatibility report | Complete decision and loss evidence | `format`, version, canonical pins, target pins, identity result, ordered surface rows, ordered diagnostics, package eligibility, boundary flags |
 | Surface row | One #424 matrix decision | ADL path, exactly one primary classification, projection rule, diagnostics, blocking state; complete coverage without inferred semantics |
 | Diagnostic | Stable fail-closed reason | #424 code, classification, severity, path, message, remediation, `blocking`; sorted by path, severity rank, code |
@@ -81,7 +81,7 @@ Add a local CLI with separate report and package modes:
 python3 scripts/buzz_export.py --single <adl> --canonical-uri <uri> \
   --schema specs/ADL-v0.2.schema.json --upstream-commit <40-hex> \
   --fork-commit <40-hex> --adapter-commit <40-hex> \
-  --identity-binding <json>
+  --identity-binding <json> --drift-review <json> --evaluation-time <pinned-utc>
 
 python3 scripts/buzz_export.py ... --export-package <empty-output-dir>
 ```
@@ -91,6 +91,30 @@ credentials, start a runtime, or infer pins from mutable branch names. Tests may
 pass the exact checked-out adapter commit explicitly. Package mode accepts only
 an absent or empty destination directory and writes through a temporary sibling
 before an atomic rename, so refusals cannot leave a plausible partial artifact.
+The identity evidence verifier supports only exact lowercase-hex Ed25519 public
+keys/signatures and verifies the #424 immutable binding digest, owner proof,
+record signatures/evidence digests, authorization, total order, lifecycle fold,
+and required pinned evaluation time locally. A caller-supplied `verified`
+boolean is not accepted. The governance input binds complete #424 drift,
+adapter-decision, reviewed-extension, and attribution/branding evidence to the
+exact upstream/fork/adapter pins and fails closed with
+`BUZZ_UPSTREAM_DRIFT_UNREVIEWED` when incomplete, mismatched, or relevant drift
+remains. Public output contains only an allowlisted decision summary plus the
+complete structured public-safe #424 section 8 attribution manifest, never raw
+proofs, signatures, reviewer text, or free-form evidence. Every normative
+governance subrecord, scalar, list, sort order, and cross-field pin/hold
+relationship is schema-validated before package eligibility; the artifact
+manifest owns a deterministic copy of that evidence. Lifecycle records enforce
+action-specific predecessor/replacement relationships: initial activation has
+an explicit null predecessor, rotated activation names the binding's immutable
+predecessor, revocation uses two explicit null relationship fields, and
+rotating/superseded records name the current binding plus a distinct replacement
+digest. Every referenced predecessor/replacement also requires sorted,
+recomputed immutable related-binding evidence and an owner-signed activation
+record; invented well-formed digests, non-adjacent sequences, broken links, and
+invalid activation chronology fail closed. The internal report builder retains a negative-test
+input for a round-trip request and always emits `BUZZ_ONE_WAY_ONLY`; the CLI
+does not expose that input or any importer.
 
 ### Determinism
 
@@ -102,8 +126,10 @@ before an atomic rename, so refusals cannot leave a plausible partial artifact.
   inventory by UTF-8 relative-path bytes and diagnostics by #424's order.
 - Normalize no source content silently. Reject non-regular files, symlinks,
   root escapes, duplicate normalized paths, and unsupported encodings.
-- Omit `generatedAt` unless the caller provides a valid pinned RFC 3339 UTC
-  instant; the value then participates in the digest.
+- Require `evaluationTime` as a caller-pinned RFC 3339 UTC instant in both
+  report and package modes; it participates in identity evaluation and output.
+- Bind governance `reviewedAt` to that instant: it cannot be in the future and
+  cannot be more than seven days old in the active release lane.
 - Never include absolute host paths, temporary paths, usernames, environment
   values, process ids, filesystem mtimes, or unordered collection iteration.
 
@@ -118,6 +144,11 @@ The package allowlist is intentionally narrow:
 - tool/function/skill identifiers, descriptions, input schemas, permissions,
   and resolved policy references only as non-executable review metadata;
 - packaging/license/provenance fields required by #424.
+
+Namespaced extensions are fail-closed: only exact keys listed in the reviewed
+governance evidence may receive `metadata-only`; every other extension is
+blocking `unsupported`. Nested secret, authority, executable/runtime, wallet,
+RPC, payment, and deployment semantics emit every applicable refusal.
 
 Memory content, datasource contents, credential material, wallet/RPC/rail data,
 host paths, executable hooks, dynamic imports, provider configuration, tool/MCP
@@ -168,7 +199,7 @@ writing a package before validation finishes.
 | `scripts/buzz_export.py` | Deterministic report-first CLI and optional static package writer |
 | `tests/test_buzz_export.py` | Focused report, package, determinism, refusal, pins, path safety, identity, and one-way tests |
 | `tests/test_static_export_target_parity.py` | Assert Buzz target ordering, readiness, diagnostics, and false boundaries |
-| `tests/fixtures/buzz-*.yaml` / `tests/fixtures/buzz-*.json` | Minimal valid/lossy/unsupported/refused/compound/tampered/stale cases and snapshots, including an unreviewed-attribution distribution request refused with `BUZZ_ATTRIBUTION_REVIEW_REQUIRED` |
+| `tests/fixtures/buzz-*.yaml` / `tests/fixtures/buzz-*.json` | Minimal valid/lossy/unsupported/refused/compound/tampered/stale cases and snapshots, including compound executable/policy/data/deployment/authority refusals, unreviewed drift, and an unreviewed-attribution distribution request refused with `BUZZ_ATTRIBUTION_REVIEW_REQUIRED` |
 | `tests/fixtures/static-export-target-parity-matrix.json` | Regenerated existing parity fixture with the new target |
 | `tests/STATIC-EXPORT-TARGET-PARITY-MATRIX-REPORT.md` | Regenerated deterministic human-readable parity evidence if the existing generator owns it |
 | `tests/smoke-validation.sh` | Add focused exporter/parity checks to the deterministic smoke suite |
@@ -214,7 +245,8 @@ No Buzz repository or source file is modified.
 
 - [ ] All reports, parity rows, fixtures, manifests, and package metadata set
   runtime/network/relay/provider/credential/tool/MCP/payment/wallet/deployment/
-  bidirectional-import flags to false where the #424 contract defines them.
+  bidirectional-import flags to false where the #424 contract defines them,
+  including exact `toolInvocation=false`.
 - [ ] All reports, parity rows, fixtures, manifests, and package metadata set
   `publicDistributionAllowed=false` and `publicBrandingAllowed=false`; a
   dedicated negative fixture/test requests distribution before attribution and
@@ -254,3 +286,10 @@ No Buzz repository or source file is modified.
 |---|---|---|---|
 | 2026-07-31 | Initial #425 implementation plan; no exporter implementation | Created | Deferred until this plan is accepted |
 | 2026-07-31 | Oli exact-head QA found omitted canonical parity ownership and an implicit attribution/branding hold | Added `scripts/prosumer_builder_plan.py` ownership/row flow plus explicit false distribution/branding invariants and refusal fixture/test | Deferred until this plan is accepted |
+| 2026-07-31 | Implementation keeps RFC-8785-compatible canonical JSON local to the exporter and adds the full G1 false-boundary registry to the existing parity owner | No material scope change | Added report/package CLI, focused fixtures/tests, canonical parity target/summary, and smoke wiring |
+| 2026-08-01 | Oli blocked raw auxiliary-evidence emission, fail-open extensions, non-JCS JSON, incomplete governance, optional evaluation time, and duplicate boundaries | Required `evaluationTime`; added conformant JCS, strict public evidence summaries/final scan, complete governance validation, reviewed-extension recursion, and direct import of Prosumer-owned boundaries | Added RFC vectors, non-finite refusal, secret non-echo, nested extension, governance-contract, and cross-surface registry assertions |
+| 2026-08-01 | Oli found malformed normative governance subrecords and lifecycle predecessor/replacement relations remained fail-open, while the package manifest omitted complete section 8 evidence | Added strict governance schemas/cross-field holds, manifest-owned public-safe attribution evidence, and action-/binding-specific signed relationship validation | Added malformed governance and re-signed lifecycle relationship negatives plus deterministic manifest evidence assertions |
+| 2026-08-01 | Oli found well-formed invented lifecycle referents and future/stale governance reviews remained package-eligible | Added recomputed related-binding proof/activation/sequence/link rules and the seven-day release-lane review window bound to `evaluationTime` | Added valid chained activation plus missing, invented, non-adjacent, broken-link, chronology, future-review, and stale-review coverage |
+| 2026-08-01 | Oli found the Prosumer parity summary claimed v0.1 examples were report-ready while the authoritative exporter accepts only canonical ADL v0.2 | Clarified no scope change: the parity projection must enforce the plan's canonical ADL v0.2 input invariant | Made `parity_summary` fail closed with `BUZZ_ADL_INVALID` for every non-v0.2 input and added snapshot/regression assertions |
+| 2026-08-01 | Oli found applicable lossy and metadata-only report rows could carry no canonical machine-readable limitation diagnostic | Clarified no scope change: every applicable row must preserve its non-blocking loss or non-enforcement evidence | Emit row-bound `BUZZ_SEMANTIC_LOSS` / `BUZZ_METADATA_NOT_ENFORCED` warnings and assert exact row/global diagnostic coverage |
+| 2026-08-01 | Oli found the required `toolInvocation=false` flag absent and executable/payment semantics nested in known `extensions.identity` could remain eligible | Clarified no scope change: exact invocation denial is part of every emitted boundary surface and known namespaces receive the same recursive semantic scan as reviewed/unknown namespaces | Added canonical `toolInvocation=false`, compound identity runtime/payment refusal coverage, and parity enforcement |

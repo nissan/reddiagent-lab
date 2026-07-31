@@ -53,7 +53,7 @@ Every report and projection package must bind all of the following:
 | `target.forkCommit` | Full `reddinft/buzz` commit, even when identical to upstream. |
 | `target.adapterCommit` | Full `reddiagent-lab` exporter commit. |
 | `target.contractVersion` | This contract version, `0.1`. |
-| `target.generatedAt` | Omitted from digest-bearing output or supplied as a caller-pinned value. |
+| `target.evaluationTime` | Required caller-pinned RFC 3339 UTC instant used for identity lifecycle evaluation and included in digest-bearing output. |
 
 The report is the evidence record. A package must embed the report digest and
 the canonical ADL identity fields. Changing any source, schema, adapter,
@@ -194,7 +194,15 @@ An identity binding must contain:
   for an initial binding. The digest is lowercase hex SHA-256 of those exact
   preimage bytes. It excludes `ownerAttestationRef`, `ownerBindingProof`,
   `status`, `lifecycleEvidence`, revocation references, reasons, and every
-  other presentation or derived field.
+  other presentation or derived field;
+- `relatedBindings`: an array, sorted by decoded raw `bindingDigest`, containing
+  the complete immutable binding fields, owner proof, digest, and sole
+  owner-signed activation record for every predecessor or replacement digest
+  referenced by this binding or its lifecycle records. Consumers recompute
+  every related digest and proof, require the same stable agent and owner,
+  enforce adjacent sequence/link semantics, and verify activation chronology.
+  A well-formed digest without this evidence is invalid. Related evidence is
+  verification-only and cannot recursively carry related bindings.
 
 NIP-OA at the assessed Buzz pin signs the agent key and its supported
 conditions; it does not itself sign the ADL digest or complete identity join.
@@ -230,6 +238,14 @@ signed preimage is the record's domain string, one `0x00` byte, and the RFC
 `action`, `bindingDigest`, `previousBindingDigest`,
 `replacementBindingDigest`, `effectiveAt`, `reasonCode`, and `reason`.
 Inapplicable digest fields are explicit `null`; no field may be omitted.
+For `active`, `previousBindingDigest` must equal the immutable binding's
+`previousBindingDigest` (therefore it is explicit `null` for an initial
+binding) and `replacementBindingDigest` is `null`. For `revoked`, both
+relationship fields are `null` because `bindingDigest` already selects the
+revoked binding. For `rotating` and `superseded`, `previousBindingDigest` must
+equal this record's `bindingDigest`, while `replacementBindingDigest` must be a
+distinct valid binding digest. These relationships are signed semantics and
+fail closed before the lifecycle fold.
 `signatureBytes` and `evidenceDigest` are excluded from the signed preimage.
 The detached signature verifies over those exact preimage bytes.
 `evidenceDigest` is lowercase hex SHA-256 of the concatenation of those exact
@@ -319,6 +335,9 @@ release lane is active. The report records merge-base, commits changed, relevant
 paths, linked upstream issues, classification changes, negative claims requiring
 re-verification through #418, reviewer, and decision. Relevant unreviewed drift
 blocks release with `BUZZ_UPSTREAM_DRIFT_UNREVIEWED`.
+The review timestamp must not be later than the caller-pinned `evaluationTime`
+and must be no more than seven days old for the active release lane. Future or
+older review evidence fails with the same diagnostic.
 
 Rollback regenerates a package from canonical ADL using the rollback pin set,
 revokes/supersedes the newer identity binding if required, and retains both

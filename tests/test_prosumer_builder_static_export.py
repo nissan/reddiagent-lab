@@ -68,6 +68,7 @@ def main() -> int:
     assert "fetch(" not in committed
     assert "XMLHttpRequest" not in committed
     assert "runtimeExecutionAllowed=false" in committed
+    assert "toolInvocation=false" in committed
     assert "paymentAccess=false" in committed
     assert "mcpInvocation=false" in committed
 
@@ -77,6 +78,7 @@ def main() -> int:
     assert manifest["guardrails"]["devServerStarted"] is False
     assert manifest["guardrails"]["browserAutomationRequired"] is False
     assert manifest["guardrails"]["runtimeExecutionAllowed"] is False
+    assert manifest["guardrails"]["toolInvocation"] is False
     assert manifest["guardrails"]["networkAccess"] is False
     assert manifest["guardrails"]["paymentAccess"] is False
     assert manifest["guardrails"]["mcpInvocation"] is False
@@ -116,6 +118,7 @@ def main() -> int:
         "provider-compatibility",
         "rap-bridge",
         "vercel-eve",
+        "buzz-static-projection",
     ]
     assert simple_matrix[0]["readiness"] == "metadata-only"
     eve_simple = next(row for row in simple_matrix if row["target"] == "vercel-eve")
@@ -126,6 +129,10 @@ def main() -> int:
         "python3 scripts/eve_compatibility.py --single examples/simple-agent.yaml"
     )
     assert eve_simple["eveCompatibilitySummary"]["deploymentAllowed"] is False
+    buzz_simple = next(row for row in simple_matrix if row["target"] == "buzz-static-projection")
+    assert buzz_simple["readiness"] == "refused"
+    assert buzz_simple["packageEligible"] is False
+    assert buzz_simple["blockedBy"] == ["BUZZ_ADL_INVALID"]
     payment_matrix = export_step(by_agent["paid-specialist-researcher"])["staticUiExportMatrix"]
     assert next(row for row in payment_matrix if row["target"] == "rap-bridge")["readiness"] == "report-ready"
     blocked = manifest["blockedExportFixture"]
@@ -140,8 +147,9 @@ def main() -> int:
     assert blocked_fixture["guardrails"]["mcpInvocation"] is False
     assert blocked_fixture["readinessCounts"] == {
         "blocked-before-generation": 3,
-        "blocked-by-validation": 7,
+        "blocked-by-validation": 8,
         "metadata-only": 12,
+        "refused": 3,
     }
     assert blocked_fixture["sources"] == [
         "examples/invalid/missing-instructions.yaml",
@@ -154,9 +162,12 @@ def main() -> int:
         for row in blocked_fixture["rows"]
         if row["source"] == "examples/invalid/missing-instructions.yaml"
     ]
-    assert len(invalid_rows) == 7
+    assert len(invalid_rows) == 8
     assert {row["readiness"] for row in invalid_rows} == {"blocked-by-validation"}
-    assert all(row["blockedBy"] == ["validation_failed"] for row in invalid_rows)
+    assert all(
+        row["blockedBy"] == (["BUZZ_ADL_INVALID"] if row["target"] == "buzz-static-projection" else ["validation_failed"])
+        for row in invalid_rows
+    )
     assert all(row["validationStatus"] == "fail" for row in invalid_rows)
     assert any(
         "harness: 'instructions' is a required property" in error

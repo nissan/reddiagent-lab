@@ -27,8 +27,18 @@ DEFAULT_EXAMPLES = [
 BOUNDARY_FLAGS = {
     "runtimeExecutionAllowed": False,
     "networkAccess": False,
+    "relayAccess": False,
+    "providerAccess": False,
+    "credentialAccess": False,
+    "toolInvocation": False,
+    "toolExecutionAllowed": False,
     "paymentAccess": False,
     "mcpInvocation": False,
+    "walletAccess": False,
+    "deploymentAllowed": False,
+    "bidirectionalImportAllowed": False,
+    "publicDistributionAllowed": False,
+    "publicBrandingAllowed": False,
 }
 EXPORT_MATRIX_TARGETS = [
     {
@@ -79,6 +89,13 @@ EXPORT_MATRIX_TARGETS = [
         "commandTemplate": "python3 scripts/eve_compatibility.py --single {source}",
         "strictCommandTemplate": None,
         "authoritativeCheck": "tests/test_eve_compatibility.py",
+    },
+    {
+        "target": "buzz-static-projection",
+        "label": "Buzz static projection",
+        "commandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins, signed identity binding, governance review, and required evaluation time]",
+        "strictCommandTemplate": "python3 scripts/buzz_export.py --single {source} [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
+        "authoritativeCheck": "tests/test_buzz_export.py",
     },
 ]
 
@@ -311,6 +328,10 @@ def export_readiness_matrix(path: Path, doc: dict, errors: list[str]) -> list[di
         }
         if target_id == "vercel-eve":
             row["eveCompatibilitySummary"] = eve_compatibility_summary(path)
+        if target_id == "buzz-static-projection":
+            import buzz_export
+            summary = buzz_export.parity_summary(doc, errors)
+            row.update(summary)
         if errors:
             row["status"] = "blocked"
             row["readiness"] = "blocked-by-validation"
