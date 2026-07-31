@@ -53,7 +53,7 @@ Every report and projection package must bind all of the following:
 | `target.forkCommit` | Full `reddinft/buzz` commit, even when identical to upstream. |
 | `target.adapterCommit` | Full `reddiagent-lab` exporter commit. |
 | `target.contractVersion` | This contract version, `0.1`. |
-| `target.generatedAt` | Omitted from digest-bearing output or supplied as a caller-pinned value. |
+| `target.evaluationTime` | Required caller-pinned RFC 3339 UTC instant used for identity lifecycle evaluation and included in digest-bearing output. |
 
 The report is the evidence record. A package must embed the report digest and
 the canonical ADL identity fields. Changing any source, schema, adapter,

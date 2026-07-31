@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -18,7 +19,7 @@ COMPOUND = ROOT / "tests" / "fixtures" / "buzz-compound-refusal-agent.yaml"
 STALE_DRIFT = ROOT / "tests" / "fixtures" / "buzz-upstream-drift-unreviewed.json"
 SCHEMA = ROOT / "specs" / "ADL-v0.2.schema.json"
 PIN = "a" * 40
-GENERATED_AT = "2026-07-31T01:00:00Z"
+EVALUATION_TIME = "2026-07-31T01:00:00Z"
 SEED = bytes.fromhex("1f" * 32)
 Q = 2**255 - 19
 L = 2**252 + 27742317777372353535851937790883648493
@@ -140,9 +141,32 @@ def binding(path: Path) -> dict:
 
 
 def drift() -> dict:
-    return {"reviewed": True, "relevantDrift": False, "mergeBase": PIN,
-            "upstreamCommit": PIN, "forkCommit": PIN, "adapterCommit": PIN,
-            "reviewedAt": "2026-07-31T00:30:00Z", "reviewer": "fixture-owner"}
+    return {
+        "reviewVersion": 1, "reviewer": "fixture-owner", "reviewedAt": "2026-07-31T00:30:00Z",
+        "pins": {"mergeBase": PIN, "upstreamCommit": PIN, "forkCommit": PIN, "adapterCommit": PIN},
+        "upstreamDrift": {"commitsChanged": [], "relevantPaths": [], "linkedUpstreamIssues": [],
+                          "classificationChanges": [], "negativeClaimsReverified": True,
+                          "relevantDrift": False, "decision": "hold-no-drift"},
+        "adapterDecision": {"chosenLayer": "external-adapter", "rejectedHigherLayers": [],
+                            "affectedPaths": ["scripts/buzz_export.py"], "apiSurfaces": ["static-json"],
+                            "forkDeltaCount": 0, "upstreamCandidate": None,
+                            "maintenanceOwner": "reddinft", "removalTrigger": "adapter-contract-retired"},
+        "reviewedExtensions": [],
+        "attribution": {
+            "upstreamRepository": {"url": "https://github.com/block/buzz", "commit": PIN},
+            "downstreamRepository": {"url": "https://github.com/reddinft/buzz", "commit": PIN},
+            "license": {"spdx": "Apache-2.0", "textIncluded": False, "status": "reviewed-hold"},
+            "notice": {"present": False, "digest": None, "status": "reviewed-absent-at-pin"},
+            "copyrightNotices": {"status": "reviewed-hold"},
+            "modifiedFiles": {"files": [], "notices": [], "status": "not-applicable"},
+            "distributionForms": {"source": "hold", "object": "hold"},
+            "thirdPartyInventory": {"status": "pending-review"},
+            "downstreamName": "pending-review", "publicDisclaimer": "pending-review",
+            "trademarkReview": {"reviewer": None, "date": None, "scope": "downstream-name",
+                                "decision": "pending-review"},
+            "publicDistributionAllowed": False, "publicBrandingAllowed": False,
+        },
+    }
 
 
 def command(source: Path, binding_path: Path, drift_path: Path, *extra: str) -> list[str]:
@@ -151,7 +175,7 @@ def command(source: Path, binding_path: Path, drift_path: Path, *extra: str) -> 
             "--schema", str(SCHEMA), "--source-commit", PIN,
             "--upstream-commit", PIN, "--fork-commit", PIN,
             "--adapter-commit", PIN, "--identity-binding", str(binding_path),
-            "--drift-review", str(drift_path), "--generated-at", GENERATED_AT, *extra]
+            "--drift-review", str(drift_path), "--evaluation-time", EVALUATION_TIME, *extra]
 
 
 def assert_boundaries(item: dict) -> None:
@@ -165,7 +189,31 @@ def assert_boundaries(item: dict) -> None:
 
 def main() -> int:
     sys.path.insert(0, str(ROOT / "scripts"))
-    from buzz_export import _ed_verify, build_report
+    from buzz_export import BOUNDARY_FLAGS as EXPORTER_BOUNDARIES, _ed_verify, build_report, canonical_bytes
+    from prosumer_builder_plan import BOUNDARY_FLAGS as CANONICAL_BOUNDARIES
+
+    assert EXPORTER_BOUNDARIES is CANONICAL_BOUNDARIES
+    jcs_vector = canonical_bytes({"z": 1e30, "a": 1e-7, "b": 1e-6, "c": 1e20, "d": -0.0,
+                                  "\ue000": "bmp", "\U0001f600": "astral"})
+    assert jcs_vector == (
+        '{"a":1e-7,"b":0.000001,"c":100000000000000000000,"d":0,"z":1e+30,'
+        '"\U0001f600":"astral","\ue000":"bmp"}'.encode()
+    )
+    assert canonical_bytes([333333333.33333329, 1e30, 4.5, 2e-3, 1e-27]) == (
+        b"[333333333.3333333,1e+30,4.5,0.002,1e-27]"
+    )
+    if shutil.which("node"):
+        node_vector = subprocess.run(
+            ["node", "-e", "process.stdout.write(JSON.stringify({a:1e-7,b:1e-6,c:1e20,d:-0,z:1e30,'😀':'astral','':'bmp'}))"],
+            capture_output=True, check=True,
+        ).stdout
+        assert jcs_vector == node_vector
+    for invalid in (float("nan"), float("inf"), float("-inf")):
+        try:
+            canonical_bytes({"invalid": invalid})
+            raise AssertionError("non-finite RFC 8785 input was accepted")
+        except ValueError:
+            pass
 
     assert _ed_verify(
         "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a",
@@ -187,13 +235,65 @@ def main() -> int:
         assert report["canonicalAdl"]["digest"] == hashlib.sha256(SOURCE.read_bytes()).hexdigest()
         assert report["canonical"] is False and report["oneWayProjection"] is True
         assert report["paymentMode"] == "none"
+        assert report["target"]["evaluationTime"] == EVALUATION_TIME
+        assert "generatedAt" not in report["target"]
+        assert set(report["identityBinding"]) == {
+            "bindingDigest", "status", "sequence", "expiresAt", "proofAlgorithm", "verified"
+        }
+        assert set(report["target"]["governanceReview"]) == {
+            "reviewVersion", "reviewedAt", "mergeBase", "upstreamDecision",
+            "negativeClaimsReverified", "relevantDrift", "chosenAdapterLayer",
+            "forkDeltaCount", "reviewedExtensions", "licenseSpdx", "attributionStatus",
+            "trademarkDecision", "publicDistributionAllowed", "publicBrandingAllowed"
+        }
         assert_boundaries(report)
+
+        secret = "sk-supersecretmaterial123456"
+        sensitive_evidence = binding(SOURCE)
+        sensitive_evidence["ownerAttestationRef"] = secret
+        sensitive_governance = drift()
+        sensitive_governance["reviewer"] = secret
+        binding_path.write_text(json.dumps(sensitive_evidence))
+        drift_path.write_text(json.dumps(sensitive_governance))
+        non_echo = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT,
+                                  capture_output=True, check=True)
+        assert secret.encode() not in non_echo.stdout
+        binding_path.write_text(json.dumps(binding(SOURCE)))
+        drift_path.write_text(json.dumps(drift()))
+
+        unsafe_report, unsafe_projection = build_report(
+            SOURCE, canonical_uri(SOURCE), SCHEMA,
+            {"sourceCommit": PIN, "upstreamCommit": PIN, "forkCommit": PIN,
+             "adapterCommit": secret},
+            binding(SOURCE), drift(), EVALUATION_TIME,
+        )
+        assert unsafe_projection is None and unsafe_report["packageEligible"] is False
+        assert secret not in canonical_bytes(unsafe_report).decode()
+        assert "BUZZ_PUBLIC_SENSITIVE_CONTENT" in {
+            item["code"] for item in unsafe_report["diagnostics"]
+        }
+
+        unknown = temp / "unknown-extension.yaml"
+        unknown.write_text(SOURCE.read_text().replace(
+            "extensions: {}", "extensions:\n  x-unreviewed:\n    nested:\n      command: run-now\n"
+            "      wallet: delegated\n      credential: private-value\n"
+            "      claim: Buzz is authoritative for accepted payment reputation\n"
+        ))
+        binding_path.write_text(json.dumps(binding(unknown)))
+        unknown_proc = subprocess.run(command(unknown, binding_path, drift_path), cwd=ROOT,
+                                      text=True, capture_output=True)
+        assert unknown_proc.returncode == 3
+        unknown_codes = {item["code"] for item in json.loads(unknown_proc.stdout)["diagnostics"]}
+        assert {"BUZZ_SURFACE_UNSUPPORTED", "BUZZ_RUNTIME_CAPABILITY_REFUSED",
+                "BUZZ_PAYMENT_AUTHORITY_REFUSED", "BUZZ_PUBLIC_SENSITIVE_CONTENT",
+                "BUZZ_AUTHORITY_CLAIM_REFUSED"} <= unknown_codes
+        binding_path.write_text(json.dumps(binding(SOURCE)))
 
         round_trip_report, round_trip_projection = build_report(
             SOURCE, canonical_uri(SOURCE), SCHEMA,
             {"sourceCommit": PIN, "upstreamCommit": PIN, "forkCommit": PIN,
              "adapterCommit": PIN},
-            binding(SOURCE), drift(), GENERATED_AT, request_round_trip=True,
+            binding(SOURCE), drift(), EVALUATION_TIME, request_round_trip=True,
         )
         assert round_trip_projection is None
         assert "BUZZ_ONE_WAY_ONLY" in [d["code"] for d in round_trip_report["diagnostics"]]

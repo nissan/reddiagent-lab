@@ -57,7 +57,7 @@ localnet, devnet, or mainnet; and work on #426 or later.
 | Entity / object | Purpose | Required fields / invariants |
 |---|---|---|
 | Canonical ADL input | Sole agent-definition authority | Exact source bytes, repository-relative or stable URI, `reddiagent.dev/v0.2`, validated schema, optional reviewed source root |
-| Export request | Caller-controlled deterministic pins | Full upstream/fork/adapter commits, contract version, reviewed identity-binding evidence, optional pinned `generatedAt`; no ambient discovery |
+| Export request | Caller-controlled deterministic pins | Full upstream/fork/adapter commits, contract version, reviewed identity-binding and governance evidence, required pinned `evaluationTime`; no ambient discovery |
 | Compatibility report | Complete decision and loss evidence | `format`, version, canonical pins, target pins, identity result, ordered surface rows, ordered diagnostics, package eligibility, boundary flags |
 | Surface row | One #424 matrix decision | ADL path, exactly one primary classification, projection rule, diagnostics, blocking state; complete coverage without inferred semantics |
 | Diagnostic | Stable fail-closed reason | #424 code, classification, severity, path, message, remediation, `blocking`; sorted by path, severity rank, code |
@@ -81,7 +81,7 @@ Add a local CLI with separate report and package modes:
 python3 scripts/buzz_export.py --single <adl> --canonical-uri <uri> \
   --schema specs/ADL-v0.2.schema.json --upstream-commit <40-hex> \
   --fork-commit <40-hex> --adapter-commit <40-hex> \
-  --identity-binding <json> --drift-review <json> --generated-at <pinned-utc>
+  --identity-binding <json> --drift-review <json> --evaluation-time <pinned-utc>
 
 python3 scripts/buzz_export.py ... --export-package <empty-output-dir>
 ```
@@ -94,10 +94,13 @@ before an atomic rename, so refusals cannot leave a plausible partial artifact.
 The identity evidence verifier supports only exact lowercase-hex Ed25519 public
 keys/signatures and verifies the #424 immutable binding digest, owner proof,
 record signatures/evidence digests, authorization, total order, lifecycle fold,
-and pinned evaluation time locally. A caller-supplied `verified` boolean is not
-accepted. The drift-review input binds the exact upstream/fork/adapter pins and
-fails closed with `BUZZ_UPSTREAM_DRIFT_UNREVIEWED` when absent, mismatched, or
-when relevant drift remains. The internal report builder retains a negative-test
+and required pinned evaluation time locally. A caller-supplied `verified`
+boolean is not accepted. The governance input binds complete #424 drift,
+adapter-decision, reviewed-extension, and attribution/branding evidence to the
+exact upstream/fork/adapter pins and fails closed with
+`BUZZ_UPSTREAM_DRIFT_UNREVIEWED` when incomplete, mismatched, or relevant drift
+remains. Public output contains only an allowlisted decision summary, never raw
+proofs, signatures, reviewer text, or free-form evidence. The internal report builder retains a negative-test
 input for a round-trip request and always emits `BUZZ_ONE_WAY_ONLY`; the CLI
 does not expose that input or any importer.
 
@@ -111,8 +114,8 @@ does not expose that input or any importer.
   inventory by UTF-8 relative-path bytes and diagnostics by #424's order.
 - Normalize no source content silently. Reject non-regular files, symlinks,
   root escapes, duplicate normalized paths, and unsupported encodings.
-- Omit `generatedAt` unless the caller provides a valid pinned RFC 3339 UTC
-  instant; the value then participates in the digest.
+- Require `evaluationTime` as a caller-pinned RFC 3339 UTC instant in both
+  report and package modes; it participates in identity evaluation and output.
 - Never include absolute host paths, temporary paths, usernames, environment
   values, process ids, filesystem mtimes, or unordered collection iteration.
 
@@ -127,6 +130,11 @@ The package allowlist is intentionally narrow:
 - tool/function/skill identifiers, descriptions, input schemas, permissions,
   and resolved policy references only as non-executable review metadata;
 - packaging/license/provenance fields required by #424.
+
+Namespaced extensions are fail-closed: only exact keys listed in the reviewed
+governance evidence may receive `metadata-only`; every other extension is
+blocking `unsupported`. Nested secret, authority, executable/runtime, wallet,
+RPC, payment, and deployment semantics emit every applicable refusal.
 
 Memory content, datasource contents, credential material, wallet/RPC/rail data,
 host paths, executable hooks, dynamic imports, provider configuration, tool/MCP
@@ -264,3 +272,4 @@ No Buzz repository or source file is modified.
 | 2026-07-31 | Initial #425 implementation plan; no exporter implementation | Created | Deferred until this plan is accepted |
 | 2026-07-31 | Oli exact-head QA found omitted canonical parity ownership and an implicit attribution/branding hold | Added `scripts/prosumer_builder_plan.py` ownership/row flow plus explicit false distribution/branding invariants and refusal fixture/test | Deferred until this plan is accepted |
 | 2026-07-31 | Implementation keeps RFC-8785-compatible canonical JSON local to the exporter and adds the full G1 false-boundary registry to the existing parity owner | No material scope change | Added report/package CLI, focused fixtures/tests, canonical parity target/summary, and smoke wiring |
+| 2026-08-01 | Oli blocked raw auxiliary-evidence emission, fail-open extensions, non-JCS JSON, incomplete governance, optional evaluation time, and duplicate boundaries | Required `evaluationTime`; added conformant JCS, strict public evidence summaries/final scan, complete governance validation, reviewed-extension recursion, and direct import of Prosumer-owned boundaries | Added RFC vectors, non-finite refusal, secret non-echo, nested extension, governance-contract, and cross-surface registry assertions |

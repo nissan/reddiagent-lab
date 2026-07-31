@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -15,6 +16,8 @@ from datetime import datetime, timezone
 
 import jsonschema
 import yaml
+
+from prosumer_builder_plan import BOUNDARY_FLAGS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,21 +30,6 @@ SENSITIVE_RE = re.compile(
     r"(?i)(-----BEGIN [A-Z ]*PRIVATE KEY-----|(?:api[_-]?key|secret|password|"
     r"private[_-]?key|seed[_-]?phrase)\s*[:=]\s*[^\s]+|sk-[a-z0-9_-]{12,})"
 )
-BOUNDARY_FLAGS = {
-    "runtimeExecutionAllowed": False,
-    "networkAccess": False,
-    "relayAccess": False,
-    "providerAccess": False,
-    "credentialAccess": False,
-    "toolExecutionAllowed": False,
-    "mcpInvocation": False,
-    "walletAccess": False,
-    "paymentAccess": False,
-    "deploymentAllowed": False,
-    "bidirectionalImportAllowed": False,
-    "publicDistributionAllowed": False,
-    "publicBrandingAllowed": False,
-}
 CLASSIFICATIONS = {
     "apiVersion": "direct", "kind": "direct", "metadata.name": "direct",
     "metadata.description": "direct", "conformance": "metadata-only",
@@ -139,8 +127,69 @@ def _ed_verify(public_key_hex: object, signature_hex: object, message: bytes) ->
         return False
 
 
+def _jcs_string(value: str) -> str:
+    if any(0xD800 <= ord(char) <= 0xDFFF for char in value):
+        raise ValueError("RFC 8785 forbids unpaired Unicode surrogates")
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
+def _jcs_number(value: int | float) -> str:
+    if isinstance(value, bool):
+        raise TypeError("boolean is not a JSON number")
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("RFC 8785 forbids non-finite numbers")
+    if isinstance(value, int) and abs(value) > 2**53 - 1:
+        raise ValueError("integer is outside the interoperable IEEE-754 range")
+    if number == 0:
+        return "0"
+    negative = number < 0
+    rendered = repr(abs(number)).lower()
+    mantissa, exponent_text = (rendered.split("e", 1) + ["0"])[:2] if "e" in rendered else (rendered, "0")
+    exponent = int(exponent_text)
+    before, _, after = mantissa.partition(".")
+    digits = (before + after).lstrip("0")
+    decimal_position = len(before) + exponent - (len(before + after) - len((before + after).lstrip("0")))
+    digits = digits.rstrip("0") or "0"
+    absolute = abs(number)
+    if 1e-6 <= absolute < 1e21:
+        if decimal_position <= 0:
+            body = "0." + "0" * (-decimal_position) + digits
+        elif decimal_position >= len(digits):
+            body = digits + "0" * (decimal_position - len(digits))
+        else:
+            body = digits[:decimal_position] + "." + digits[decimal_position:]
+    else:
+        body = digits[0] + (("." + digits[1:]) if len(digits) > 1 else "")
+        scientific_exponent = decimal_position - 1
+        body += "e" + ("+" if scientific_exponent >= 0 else "") + str(scientific_exponent)
+    return ("-" if negative else "") + body
+
+
+def _jcs(value: object) -> str:
+    if value is None:
+        return "null"
+    if value is True:
+        return "true"
+    if value is False:
+        return "false"
+    if isinstance(value, (int, float)):
+        return _jcs_number(value)
+    if isinstance(value, str):
+        return _jcs_string(value)
+    if isinstance(value, list):
+        return "[" + ",".join(_jcs(item) for item in value) + "]"
+    if isinstance(value, dict):
+        if not all(isinstance(key, str) for key in value):
+            raise TypeError("RFC 8785 object keys must be strings")
+        keys = sorted(value, key=lambda key: key.encode("utf-16be"))
+        return "{" + ",".join(_jcs_string(key) + ":" + _jcs(value[key]) for key in keys) + "}"
+    raise TypeError(f"unsupported RFC 8785 value: {type(value).__name__}")
+
+
 def canonical_bytes(value: object) -> bytes:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    """Return RFC 8785/JCS canonical UTF-8 bytes."""
+    return _jcs(value).encode("utf-8")
 
 
 def sha256(data: bytes) -> str:
@@ -171,7 +220,8 @@ def _present(doc: dict, path: str) -> bool:
 def _schema_diagnostics(doc: object, schema: dict) -> list[dict]:
     errors = sorted(jsonschema.Draft202012Validator(schema).iter_errors(doc), key=lambda e: list(e.path))
     return [diagnostic("BUZZ_ADL_INVALID", "refused",
-                       ".".join(map(str, e.path)) or "<root>", e.message,
+                       ".".join(map(str, e.path)) or "<root>",
+                       "Canonical ADL v0.2 schema validation failed.",
                        "Correct the canonical ADL v0.2 source.") for e in errors]
 
 
@@ -469,28 +519,157 @@ def _surface_diagnostics(doc: dict) -> list[dict]:
     return result
 
 
-def _drift_diagnostics(drift: dict, pins: dict) -> list[dict]:
-    required = {"reviewed", "relevantDrift", "mergeBase", "upstreamCommit",
-                "forkCommit", "adapterCommit", "reviewedAt", "reviewer"}
-    valid = (isinstance(drift, dict) and set(drift) == required and
-             drift.get("reviewed") is True and drift.get("relevantDrift") is False and
-             bool(drift.get("reviewer")) and PIN_RE.fullmatch(str(drift.get("mergeBase", ""))) and
-             all(drift.get(key) == pins.get(key) for key in
-                 ("upstreamCommit", "forkCommit", "adapterCommit")))
+def _extension_diagnostics(extensions: dict, reviewed: set[str]) -> list[dict]:
+    result: list[dict] = []
+    known = {"identity", "x402", "receipts", "reputation"}
+    runtime_keys = {"command", "entrypoint", "hook", "install", "executable", "runtime",
+                    "provider", "network", "endpoint", "tool", "function", "skill", "mcp", "deploy"}
+    payment_keys = {"wallet", "payment", "spend", "refund", "settlement", "rpc"}
+    sensitive_keys = {"secret", "credential", "password", "privatekey", "seedphrase", "token"}
+
+    def walk(value: object, path: str) -> None:
+        if isinstance(value, dict):
+            for key in sorted(value, key=lambda item: str(item).encode()):
+                normalized = re.sub(r"[^a-z]", "", str(key).lower())
+                child = f"{path}.{key}"
+                active = value[key] not in (None, False, "", [], {})
+                if active and any(token in normalized for token in runtime_keys):
+                    result.append(diagnostic("BUZZ_RUNTIME_CAPABILITY_REFUSED", "refused", child,
+                                             "Extension contains executable or runtime semantics.",
+                                             "Remove executable semantics from the static extension."))
+                if active and any(token in normalized for token in payment_keys):
+                    result.append(diagnostic("BUZZ_PAYMENT_AUTHORITY_REFUSED", "refused", child,
+                                             "Extension contains wallet, payment, RPC, or settlement semantics.",
+                                             "Keep all payment authority in RAP."))
+                if active and any(token in normalized for token in sensitive_keys | {"apikey", "authref"}):
+                    result.append(diagnostic("BUZZ_PUBLIC_SENSITIVE_CONTENT", "refused", child,
+                                             "Extension contains credential-bearing or private semantics.",
+                                             "Remove private material from public metadata."))
+                walk(value[key], child)
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                walk(item, f"{path}.{index}")
+        elif isinstance(value, str):
+            if SENSITIVE_RE.search(value):
+                result.append(diagnostic("BUZZ_PUBLIC_SENSITIVE_CONTENT", "refused", path,
+                                         "Extension contains secret-like content.",
+                                         "Remove private material from public metadata."))
+            if re.search(r"(?i)buzz.{0,80}(authoritative|settled|accepted|receipt|reputation|payment authority|eval pass)", value):
+                result.append(diagnostic("BUZZ_AUTHORITY_CLAIM_REFUSED", "refused", path,
+                                         "Extension makes an authority claim Buzz cannot prove.",
+                                         "Keep ADL canonical and RAP authoritative."))
+
+    for key in sorted(extensions, key=lambda item: str(item).encode()):
+        if key in known:
+            continue
+        path = f"extensions.{key}"
+        if key not in reviewed:
+            result.append(diagnostic("BUZZ_SURFACE_UNSUPPORTED", "unsupported", path,
+                                     "Extension semantics have not been owner-reviewed.",
+                                     "Add the exact namespaced extension to reviewed governance evidence."))
+        walk(extensions[key], path)
+    return result
+
+
+def _governance_diagnostics(governance: dict, pins: dict) -> list[dict]:
+    """Validate the complete #424 drift, adapter, extension, and attribution record."""
+    valid = False
     try:
-        _parse_utc(drift.get("reviewedAt"))
-    except (TypeError, ValueError):
+        required = {"reviewVersion", "reviewer", "reviewedAt", "pins", "upstreamDrift",
+                    "adapterDecision", "reviewedExtensions", "attribution"}
+        if not isinstance(governance, dict) or set(governance) != required:
+            raise ValueError
+        _parse_utc(governance["reviewedAt"])
+        if governance["reviewVersion"] != 1 or not governance["reviewer"]:
+            raise ValueError
+        pin_record = governance["pins"]
+        if (set(pin_record) != {"mergeBase", "upstreamCommit", "forkCommit", "adapterCommit"} or
+                not PIN_RE.fullmatch(str(pin_record["mergeBase"])) or
+                any(pin_record[key] != pins.get(key) for key in
+                    ("upstreamCommit", "forkCommit", "adapterCommit"))):
+            raise ValueError
+        upstream = governance["upstreamDrift"]
+        if (set(upstream) != {"commitsChanged", "relevantPaths", "linkedUpstreamIssues",
+                             "classificationChanges", "negativeClaimsReverified",
+                             "relevantDrift", "decision"} or
+                not isinstance(upstream["commitsChanged"], list) or
+                not isinstance(upstream["relevantPaths"], list) or
+                not isinstance(upstream["linkedUpstreamIssues"], list) or
+                not isinstance(upstream["classificationChanges"], list) or
+                upstream["negativeClaimsReverified"] is not True or
+                upstream["relevantDrift"] is not False or upstream["decision"] != "hold-no-drift"):
+            raise ValueError
+        adapter = governance["adapterDecision"]
+        if (set(adapter) != {"chosenLayer", "rejectedHigherLayers", "affectedPaths",
+                            "apiSurfaces", "forkDeltaCount", "upstreamCandidate",
+                            "maintenanceOwner", "removalTrigger"} or
+                adapter["chosenLayer"] != "external-adapter" or adapter["rejectedHigherLayers"] != [] or
+                not isinstance(adapter["affectedPaths"], list) or not adapter["affectedPaths"] or
+                not isinstance(adapter["apiSurfaces"], list) or
+                not isinstance(adapter["forkDeltaCount"], int) or isinstance(adapter["forkDeltaCount"], bool) or
+                adapter["forkDeltaCount"] < 0 or not adapter["maintenanceOwner"] or
+                not adapter["removalTrigger"]):
+            raise ValueError
+        reviewed = governance["reviewedExtensions"]
+        if (not isinstance(reviewed, list) or reviewed != sorted(set(reviewed), key=lambda x: x.encode()) or
+                not all(isinstance(item, str) and (item.startswith("x-") or item.startswith("http"))
+                        for item in reviewed)):
+            raise ValueError
+        attribution = governance["attribution"]
+        attribution_fields = {"upstreamRepository", "downstreamRepository", "license",
+                              "notice", "copyrightNotices", "modifiedFiles",
+                              "distributionForms", "thirdPartyInventory", "downstreamName",
+                              "publicDisclaimer", "trademarkReview", "publicDistributionAllowed",
+                              "publicBrandingAllowed"}
+        if (set(attribution) != attribution_fields or
+                attribution["upstreamRepository"] != {"url": "https://github.com/block/buzz", "commit": pins["upstreamCommit"]} or
+                attribution["downstreamRepository"] != {"url": "https://github.com/reddinft/buzz", "commit": pins["forkCommit"]} or
+                attribution["publicDistributionAllowed"] is not False or
+                attribution["publicBrandingAllowed"] is not False or
+                attribution["downstreamName"] != "pending-review" or
+                attribution["publicDisclaimer"] != "pending-review" or
+                set(attribution["license"]) != {"spdx", "textIncluded", "status"} or
+                attribution["license"]["spdx"] != "Apache-2.0" or
+                set(attribution["notice"]) != {"present", "digest", "status"} or
+                set(attribution["modifiedFiles"]) != {"files", "notices", "status"} or
+                set(attribution["trademarkReview"]) != {"reviewer", "date", "scope", "decision"}):
+            raise ValueError
+        valid = True
+    except (KeyError, TypeError, ValueError, AttributeError):
         valid = False
     if valid:
         return []
     return [diagnostic(
         "BUZZ_UPSTREAM_DRIFT_UNREVIEWED", "refused", "target.driftReview",
-        "Exact target pins lack a matching owner-reviewed no-drift decision.",
-        "Supply a deterministic drift review for the exact upstream/fork/adapter pins.")]
+        "Exact pins lack complete owner-reviewed drift, adapter, extension, or attribution governance.",
+        "Supply the complete #424 governance record for the exact pins.")]
+
+
+def _governance_summary(governance: dict) -> dict:
+    """Allowlist non-sensitive, decision-bearing evidence for public output."""
+    try:
+        return {
+            "reviewVersion": governance["reviewVersion"],
+            "reviewedAt": governance["reviewedAt"],
+            "mergeBase": governance["pins"]["mergeBase"],
+            "upstreamDecision": governance["upstreamDrift"]["decision"],
+            "negativeClaimsReverified": governance["upstreamDrift"]["negativeClaimsReverified"],
+            "relevantDrift": governance["upstreamDrift"]["relevantDrift"],
+            "chosenAdapterLayer": governance["adapterDecision"]["chosenLayer"],
+            "forkDeltaCount": governance["adapterDecision"]["forkDeltaCount"],
+            "reviewedExtensions": governance["reviewedExtensions"],
+            "licenseSpdx": governance["attribution"]["license"]["spdx"],
+            "attributionStatus": governance["attribution"]["license"]["status"],
+            "trademarkDecision": governance["attribution"]["trademarkReview"]["decision"],
+            "publicDistributionAllowed": False,
+            "publicBrandingAllowed": False,
+        }
+    except (KeyError, TypeError):
+        return {"valid": False, "publicDistributionAllowed": False, "publicBrandingAllowed": False}
 
 
 def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict,
-                 binding: dict, drift: dict, generated_at: str | None = None,
+                 binding: dict, drift: dict, evaluation_time: str,
                  request_distribution: bool = False,
                  request_round_trip: bool = False) -> tuple[dict, dict | None]:
     original_source = source
@@ -516,9 +695,10 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
                                       "Use specs/ADL-v0.2.schema.json without symlink indirection."))
     try:
         doc = yaml.safe_load(source_bytes)
-    except (UnicodeDecodeError, yaml.YAMLError) as exc:
+    except (UnicodeDecodeError, yaml.YAMLError):
         doc = {}
-        diagnostics.append(diagnostic("BUZZ_ADL_INVALID", "refused", "<root>", str(exc),
+        diagnostics.append(diagnostic("BUZZ_ADL_INVALID", "refused", "<root>",
+                                      "Canonical ADL is not valid UTF-8 YAML.",
                                       "Provide UTF-8 YAML matching ADL v0.2."))
     schema = json.loads(schema_bytes)
     diagnostics.extend(_schema_diagnostics(doc, schema))
@@ -548,8 +728,12 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
             diagnostics.append(diagnostic("BUZZ_TARGET_PIN_INVALID", "refused", f"target.{name}",
                                           "Target commit must be full lowercase 40-hex.",
                                           "Supply an owner-reviewed immutable commit."))
-    diagnostics.extend(_drift_diagnostics(drift, pins))
-    diagnostics.extend(_identity_diagnostics(binding, adl_digest, canonical_uri, generated_at))
+    governance_diagnostics = _governance_diagnostics(drift, pins)
+    identity_diagnostics = _identity_diagnostics(
+        binding, adl_digest, canonical_uri, evaluation_time
+    )
+    diagnostics.extend(governance_diagnostics)
+    diagnostics.extend(identity_diagnostics)
     if request_distribution:
         diagnostics.append(diagnostic("BUZZ_ATTRIBUTION_REVIEW_REQUIRED", "refused", "distribution",
                                       "Public distribution and branding review is incomplete.",
@@ -604,6 +788,8 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
                                       "Runtime activation or network authority was requested.",
                                       "Use blocked activation and network access none."))
     extensions = doc.get("extensions", {}) if isinstance(doc, dict) else {}
+    reviewed_extensions = set(drift.get("reviewedExtensions", [])) if isinstance(drift, dict) else set()
+    diagnostics.extend(_extension_diagnostics(extensions or {}, reviewed_extensions))
     if (extensions.get("x402") or {}).get("enabled") is not False and extensions.get("x402"):
         diagnostics.append(diagnostic("BUZZ_PAYMENT_AUTHORITY_REFUSED", "refused", "extensions.x402",
                                       "Payment semantics cannot enter a static Buzz package.",
@@ -620,8 +806,11 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
     for key in sorted((extensions or {}), key=lambda x: x.encode()):
         path = f"extensions.{key}"
         if path not in CLASSIFICATIONS:
-            surfaces.append({"path": path, "classification": "metadata-only",
-                             "projectionRule": "namespaced-review-metadata", "diagnostics": [], "blocking": False})
+            reviewed = key in reviewed_extensions
+            surfaces.append({"path": path,
+                             "classification": "metadata-only" if reviewed else "unsupported",
+                             "projectionRule": "namespaced-review-metadata" if reviewed else "no-projection",
+                             "diagnostics": [], "blocking": not reviewed})
     diagnostics = _sort_diagnostics(diagnostics)
     for row in surfaces:
         row_diagnostics = [item["code"] for item in diagnostics
@@ -632,16 +821,36 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
             if item["path"] == row["path"] or item["path"].startswith(row["path"] + ".")
         )
     eligible = not any(d["blocking"] for d in diagnostics) and not any(r["blocking"] for r in surfaces)
+    safe_uri = canonical_uri
+    if SENSITIVE_RE.search(canonical_uri):
+        safe_uri = "urn:reddiagent:refused-sensitive-reference"
+        diagnostics.append(diagnostic("BUZZ_PUBLIC_SENSITIVE_CONTENT", "refused", "canonicalAdl.uri",
+                                      "Canonical reference contains secret-like content.",
+                                      "Use a non-sensitive immutable canonical reference."))
+        diagnostics = _sort_diagnostics(diagnostics)
+        eligible = False
+    identity_summary = {"verified": False}
+    if not identity_diagnostics:
+        identity_summary = {
+            "bindingDigest": binding["bindingDigest"],
+            "status": binding["status"],
+            "sequence": binding["sequence"],
+            "expiresAt": binding["expiresAt"],
+            "proofAlgorithm": binding["ownerBindingProof"]["signatureAlgorithm"],
+            "verified": True,
+        }
     report = {
         "format": "reddiagent-buzz-compatibility-report", "version": "0.1",
-        "canonicalAdl": {"uri": canonical_uri, "apiVersion": doc.get("apiVersion") if isinstance(doc, dict) else None,
+        "canonicalAdl": {"uri": safe_uri, "apiVersion": doc.get("apiVersion") if isinstance(doc, dict) else None,
                          "digest": adl_digest, "schemaDigest": sha256(schema_bytes),
                          **({"sourceCommit": pins["sourceCommit"]} if pins.get("sourceCommit") else {})},
         "target": {"kind": "buzz-static-projection", "upstreamCommit": pins.get("upstreamCommit"),
                    "forkCommit": pins.get("forkCommit"), "adapterCommit": pins.get("adapterCommit"),
-                   "contractVersion": "0.1", "driftReview": drift,
-                   **({"generatedAt": generated_at} if generated_at else {})},
-        "identityBinding": binding, "surfaceRows": surfaces, "diagnostics": diagnostics,
+                   "contractVersion": "0.1", "evaluationTime": evaluation_time,
+                   "governanceReview": (_governance_summary(drift) if not governance_diagnostics else
+                                        {"valid": False, "publicDistributionAllowed": False,
+                                         "publicBrandingAllowed": False})},
+        "identityBinding": identity_summary, "surfaceRows": surfaces, "diagnostics": diagnostics,
         "packageEligible": eligible, "canonical": False, "oneWayProjection": True,
         "canonicalSourceRequiredForRegeneration": True, "paymentMode": "none", **BOUNDARY_FLAGS,
     }
@@ -653,6 +862,26 @@ def build_report(source: Path, canonical_uri: str, schema_path: Path, pins: dict
                       "model": {"capability": doc["model"]["capability"], "providers": doc["model"]["providers"]},
                       "source": report["canonicalAdl"], "lossReport": surfaces,
                       "canonical": False, "oneWayProjection": True, "paymentMode": "none", **BOUNDARY_FLAGS}
+    emitted = canonical_bytes(report) + (canonical_bytes(projection) if projection else b"")
+    if SENSITIVE_RE.search(emitted.decode("utf-8")):
+        projection = None
+        safe_diagnostics = _sort_diagnostics(report["diagnostics"] + [diagnostic(
+            "BUZZ_PUBLIC_SENSITIVE_CONTENT", "refused", "<final-output>",
+            "Final public output failed the non-echo safety scan.",
+            "Remove sensitive auxiliary evidence before export.")])
+        # Do not return the unsafe object that triggered this last-resort scan.
+        # Emit only fixed contract fields, digests, boundary flags, and already
+        # value-free diagnostics so the refusal itself cannot echo the secret.
+        report = {
+            "format": "reddiagent-buzz-compatibility-report", "version": "0.1",
+            "canonicalAdl": {"digest": adl_digest, "schemaDigest": sha256(schema_bytes)},
+            "target": {"kind": "buzz-static-projection", "contractVersion": "0.1"},
+            "identityBinding": {"verified": False}, "surfaceRows": [],
+            "diagnostics": safe_diagnostics, "packageEligible": False,
+            "canonical": False, "oneWayProjection": True,
+            "canonicalSourceRequiredForRegeneration": True, "paymentMode": "none",
+            **BOUNDARY_FLAGS,
+        }
     return report, projection
 
 
@@ -716,7 +945,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--adapter-commit", required=True)
     p.add_argument("--identity-binding", required=True, type=Path)
     p.add_argument("--drift-review", required=True, type=Path)
-    p.add_argument("--generated-at")
+    p.add_argument("--evaluation-time", required=True)
     p.add_argument("--export-package", type=Path)
     p.add_argument("--request-distribution", action="store_true")
     return p.parse_args()
@@ -724,14 +953,13 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    if args.generated_at:
-        try:
-            parsed = datetime.fromisoformat(args.generated_at.replace("Z", "+00:00"))
-            if parsed.utcoffset() != timezone.utc.utcoffset(parsed):
-                raise ValueError
-        except ValueError:
-            print("error: generated-at must be pinned RFC 3339 UTC", file=sys.stderr)
-            return 2
+    try:
+        parsed = _parse_utc(args.evaluation_time)
+        if parsed.utcoffset() != timezone.utc.utcoffset(parsed):
+            raise ValueError
+    except ValueError:
+        print("error: evaluation-time must be pinned RFC 3339 UTC", file=sys.stderr)
+        return 2
     try:
         if args.identity_binding.is_symlink() or not args.identity_binding.is_file():
             raise ValueError("identity binding must be a regular non-symlink file")
@@ -746,7 +974,7 @@ def main() -> int:
             "forkCommit": args.fork_commit, "adapterCommit": args.adapter_commit}
     report, projection = build_report(
         args.single, args.canonical_uri, args.schema, pins, binding, drift,
-        args.generated_at, args.request_distribution
+        args.evaluation_time, args.request_distribution
     )
     sys.stdout.buffer.write(canonical_bytes(report) + b"\n")
     if not report["packageEligible"]:

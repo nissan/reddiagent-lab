@@ -713,7 +713,7 @@
       "blockedBy": [
         "BUZZ_PAYMENT_AUTHORITY_REFUSED"
       ],
-      "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+      "command": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]",
       "credentialAccess": false,
       "deploymentAllowed": false,
       "eveCompatibilitySummary": null,
@@ -731,7 +731,7 @@
       "runtimeExecutionAllowed": false,
       "source": "examples/payment-agent.yaml",
       "status": "blocked",
-      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
+      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
       "validationErrors": [],
@@ -1029,7 +1029,7 @@
       "blockedBy": [
         "BUZZ_ADL_INVALID"
       ],
-      "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time]",
+      "command": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time]",
       "credentialAccess": false,
       "deploymentAllowed": false,
       "eveCompatibilitySummary": null,
@@ -1047,7 +1047,7 @@
       "runtimeExecutionAllowed": false,
       "source": "examples/invalid/missing-instructions.yaml",
       "status": "blocked",
-      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, drift review, and evaluation time] --export-package <empty-output-dir>",
+      "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
       "validationErrors": [
