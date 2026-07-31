@@ -45,6 +45,7 @@ def assert_static_boundaries(item: dict) -> None:
     assert item["relayAccess"] is False
     assert item["providerAccess"] is False
     assert item["credentialAccess"] is False
+    assert item["toolInvocation"] is False
     assert item["toolExecutionAllowed"] is False
     assert item["walletAccess"] is False
     assert item["deploymentAllowed"] is False

@@ -59,6 +59,7 @@
         <span class="flag">relayAccess=false</span>
         <span class="flag">providerAccess=false</span>
         <span class="flag">credentialAccess=false</span>
+        <span class="flag">toolInvocation=false</span>
         <span class="flag">toolExecutionAllowed=false</span>
         <span class="flag">paymentAccess=false</span>
         <span class="flag">mcpInvocation=false</span>
@@ -619,6 +620,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;agent-spec&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -647,6 +649,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;a2a-agent-card&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -675,6 +678,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -703,6 +707,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;starter-manifest&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -731,6 +736,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;provider-compatibility&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -759,6 +765,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;rap-bridge&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -808,6 +815,7 @@
               &quot;supported&quot;: false,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;uiState&quot;: &quot;blocked&quot;,
               &quot;unsupportedFeatures&quot;: [
                 &quot;validation_failed&quot;
@@ -834,6 +842,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;vercel-eve&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -866,6 +875,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           }
         ],
@@ -1058,6 +1068,7 @@
     &quot;source&quot;: &quot;examples/invalid/missing-instructions.yaml&quot;,
     &quot;supported&quot;: false,
     &quot;toolExecutionAllowed&quot;: false,
+    &quot;toolInvocation&quot;: false,
     &quot;unsupportedFeatures&quot;: [],
     &quot;walletAccess&quot;: false
   },
@@ -1081,6 +1092,7 @@
       &quot;relayAccess&quot;: false,
       &quot;runtimeExecutionAllowed&quot;: false,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;walletAccess&quot;: false
     },
     &quot;readinessCounts&quot;: {
@@ -1121,6 +1133,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1155,6 +1168,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1189,6 +1203,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1221,6 +1236,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1274,6 +1290,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;metadata-only&quot;,
           &quot;unsupportedFeatures&quot;: [],
           &quot;validationErrors&quot;: [],
@@ -1300,6 +1317,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1332,6 +1350,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1365,6 +1384,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1398,6 +1418,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1431,6 +1452,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1463,6 +1485,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1515,6 +1538,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;metadata-only&quot;,
           &quot;unsupportedFeatures&quot;: [],
           &quot;validationErrors&quot;: [],
@@ -1540,6 +1564,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1572,6 +1597,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1615,6 +1641,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1658,6 +1685,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1701,6 +1729,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1733,6 +1762,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1792,6 +1822,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
           &quot;unsupportedFeatures&quot;: [
             &quot;non_local_runtime_execution&quot;,
@@ -1829,6 +1860,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1862,6 +1894,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -1894,6 +1927,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -1928,6 +1962,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -1962,6 +1997,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -1996,6 +2032,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -2030,6 +2067,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;provider-compatibility&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -2064,6 +2102,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;rap-bridge&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -2118,6 +2157,7 @@
           &quot;supported&quot;: false,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;blocked&quot;,
           &quot;unsupportedFeatures&quot;: [
             &quot;validation_failed&quot;
@@ -2144,6 +2184,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -2178,6 +2219,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -2219,6 +2261,7 @@
       &quot;relayAccess&quot;: false,
       &quot;runtimeExecutionAllowed&quot;: false,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;walletAccess&quot;: false
     },
     &quot;losslessStateCounts&quot;: {
@@ -2269,6 +2312,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;metadata-only&quot;,
         &quot;unsupportedFeatures&quot;: [],
         &quot;validationErrors&quot;: [],
@@ -2314,6 +2358,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;metadata-only&quot;,
         &quot;unsupportedFeatures&quot;: [],
         &quot;validationErrors&quot;: [],
@@ -2363,6 +2408,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
         &quot;unsupportedFeatures&quot;: [
           &quot;non_local_runtime_execution&quot;,
@@ -2411,6 +2457,7 @@
         &quot;supported&quot;: false,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;blocked&quot;,
         &quot;unsupportedFeatures&quot;: [
           &quot;validation_failed&quot;
@@ -2446,6 +2493,7 @@
     &quot;relayAccess&quot;: false,
     &quot;runtimeExecutionAllowed&quot;: false,
     &quot;toolExecutionAllowed&quot;: false,
+    &quot;toolInvocation&quot;: false,
     &quot;walletAccess&quot;: false
   },
   &quot;plans&quot;: [
@@ -2616,6 +2664,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2646,6 +2695,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2676,6 +2726,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2704,6 +2755,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2730,6 +2782,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2758,6 +2811,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2808,6 +2862,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;metadata-only&quot;,
                 &quot;unsupportedFeatures&quot;: [],
                 &quot;validationErrors&quot;: [],
@@ -2834,6 +2889,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -2866,6 +2922,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -3058,6 +3115,7 @@
       &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [],
       &quot;walletAccess&quot;: false
     },
@@ -3278,6 +3336,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3307,6 +3366,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3336,6 +3396,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3364,6 +3425,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3390,6 +3452,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3418,6 +3481,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3467,6 +3531,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;metadata-only&quot;,
                 &quot;unsupportedFeatures&quot;: [],
                 &quot;validationErrors&quot;: [],
@@ -3492,6 +3557,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3524,6 +3590,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -3716,6 +3783,7 @@
       &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [],
       &quot;walletAccess&quot;: false
     },
@@ -3904,6 +3972,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3943,6 +4012,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -3982,6 +4052,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -4010,6 +4081,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -4036,6 +4108,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -4062,6 +4135,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -4118,6 +4192,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
                 &quot;unsupportedFeatures&quot;: [
                   &quot;non_local_runtime_execution&quot;,
@@ -4155,6 +4230,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -4189,6 +4265,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -4385,6 +4462,7 @@
       &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [
         &quot;non_local_runtime_execution&quot;,
         &quot;live_payment_execution&quot;
@@ -4565,6 +4643,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;agent-spec&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4593,6 +4672,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;a2a-agent-card&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4621,6 +4701,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml&quot;,
             &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4649,6 +4730,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;starter-manifest&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4677,6 +4759,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;provider-compatibility&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4705,6 +4788,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;rap-bridge&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4754,6 +4838,7 @@
               &quot;supported&quot;: false,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;uiState&quot;: &quot;blocked&quot;,
               &quot;unsupportedFeatures&quot;: [
                 &quot;validation_failed&quot;
@@ -4780,6 +4865,7 @@
             &quot;strictExportCommand&quot;: null,
             &quot;target&quot;: &quot;vercel-eve&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           },
           {
@@ -4812,6 +4898,7 @@
             &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
             &quot;target&quot;: &quot;buzz-static-projection&quot;,
             &quot;toolExecutionAllowed&quot;: false,
+            &quot;toolInvocation&quot;: false,
             &quot;walletAccess&quot;: false
           }
         ],
@@ -5004,6 +5091,7 @@
     &quot;source&quot;: &quot;examples/invalid/missing-instructions.yaml&quot;,
     &quot;supported&quot;: false,
     &quot;toolExecutionAllowed&quot;: false,
+    &quot;toolInvocation&quot;: false,
     &quot;unsupportedFeatures&quot;: [],
     &quot;walletAccess&quot;: false
   },
@@ -5027,6 +5115,7 @@
       &quot;relayAccess&quot;: false,
       &quot;runtimeExecutionAllowed&quot;: false,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;walletAccess&quot;: false
     },
     &quot;readinessCounts&quot;: {
@@ -5067,6 +5156,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5101,6 +5191,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5135,6 +5226,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5167,6 +5259,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5220,6 +5313,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;metadata-only&quot;,
           &quot;unsupportedFeatures&quot;: [],
           &quot;validationErrors&quot;: [],
@@ -5246,6 +5340,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5278,6 +5373,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5311,6 +5407,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5344,6 +5441,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5377,6 +5475,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5409,6 +5508,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5461,6 +5561,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;metadata-only&quot;,
           &quot;unsupportedFeatures&quot;: [],
           &quot;validationErrors&quot;: [],
@@ -5486,6 +5587,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5518,6 +5620,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5561,6 +5664,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5604,6 +5708,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5647,6 +5752,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5679,6 +5785,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5738,6 +5845,7 @@
           &quot;supported&quot;: true,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
           &quot;unsupportedFeatures&quot;: [
             &quot;non_local_runtime_execution&quot;,
@@ -5775,6 +5883,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5808,6 +5917,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [],
         &quot;validationStatus&quot;: &quot;pass&quot;,
         &quot;walletAccess&quot;: false
@@ -5840,6 +5950,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;agent-spec&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -5874,6 +5985,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;a2a-agent-card&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -5908,6 +6020,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml&quot;,
         &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -5942,6 +6055,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;starter-manifest&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -5976,6 +6090,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;provider-compatibility&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -6010,6 +6125,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;rap-bridge&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -6064,6 +6180,7 @@
           &quot;supported&quot;: false,
           &quot;target&quot;: &quot;vercel-eve&quot;,
           &quot;toolExecutionAllowed&quot;: false,
+          &quot;toolInvocation&quot;: false,
           &quot;uiState&quot;: &quot;blocked&quot;,
           &quot;unsupportedFeatures&quot;: [
             &quot;validation_failed&quot;
@@ -6090,6 +6207,7 @@
         &quot;strictExportCommand&quot;: null,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -6124,6 +6242,7 @@
         &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
         &quot;target&quot;: &quot;buzz-static-projection&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;validationErrors&quot;: [
           &quot;harness: &#x27;instructions&#x27; is a required property&quot;
         ],
@@ -6165,6 +6284,7 @@
       &quot;relayAccess&quot;: false,
       &quot;runtimeExecutionAllowed&quot;: false,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;walletAccess&quot;: false
     },
     &quot;losslessStateCounts&quot;: {
@@ -6215,6 +6335,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;metadata-only&quot;,
         &quot;unsupportedFeatures&quot;: [],
         &quot;validationErrors&quot;: [],
@@ -6260,6 +6381,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;metadata-only&quot;,
         &quot;unsupportedFeatures&quot;: [],
         &quot;validationErrors&quot;: [],
@@ -6309,6 +6431,7 @@
         &quot;supported&quot;: true,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
         &quot;unsupportedFeatures&quot;: [
           &quot;non_local_runtime_execution&quot;,
@@ -6357,6 +6480,7 @@
         &quot;supported&quot;: false,
         &quot;target&quot;: &quot;vercel-eve&quot;,
         &quot;toolExecutionAllowed&quot;: false,
+        &quot;toolInvocation&quot;: false,
         &quot;uiState&quot;: &quot;blocked&quot;,
         &quot;unsupportedFeatures&quot;: [
           &quot;validation_failed&quot;
@@ -6392,6 +6516,7 @@
     &quot;relayAccess&quot;: false,
     &quot;runtimeExecutionAllowed&quot;: false,
     &quot;toolExecutionAllowed&quot;: false,
+    &quot;toolInvocation&quot;: false,
     &quot;walletAccess&quot;: false
   },
   &quot;plans&quot;: [
@@ -6562,6 +6687,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6592,6 +6718,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6622,6 +6749,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6650,6 +6778,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6676,6 +6805,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6704,6 +6834,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6754,6 +6885,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;metadata-only&quot;,
                 &quot;unsupportedFeatures&quot;: [],
                 &quot;validationErrors&quot;: [],
@@ -6780,6 +6912,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -6812,6 +6945,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -7004,6 +7138,7 @@
       &quot;source&quot;: &quot;examples/simple-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [],
       &quot;walletAccess&quot;: false
     },
@@ -7224,6 +7359,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7253,6 +7389,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7282,6 +7419,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7310,6 +7448,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7336,6 +7475,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7364,6 +7504,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7413,6 +7554,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;metadata-only&quot;,
                 &quot;unsupportedFeatures&quot;: [],
                 &quot;validationErrors&quot;: [],
@@ -7438,6 +7580,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7470,6 +7613,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -7662,6 +7806,7 @@
       &quot;source&quot;: &quot;examples/tool-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [],
       &quot;walletAccess&quot;: false
     },
@@ -7850,6 +7995,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-spec&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7889,6 +8035,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;a2a-agent-card&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7928,6 +8075,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml&quot;,
               &quot;target&quot;: &quot;agent-skills-skill-md&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7956,6 +8104,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;starter-manifest&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -7982,6 +8131,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;provider-compatibility&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -8008,6 +8158,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;rap-bridge&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -8064,6 +8215,7 @@
                 &quot;supported&quot;: true,
                 &quot;target&quot;: &quot;vercel-eve&quot;,
                 &quot;toolExecutionAllowed&quot;: false,
+                &quot;toolInvocation&quot;: false,
                 &quot;uiState&quot;: &quot;unsupported-runtime-features&quot;,
                 &quot;unsupportedFeatures&quot;: [
                   &quot;non_local_runtime_execution&quot;,
@@ -8101,6 +8253,7 @@
               &quot;strictExportCommand&quot;: null,
               &quot;target&quot;: &quot;vercel-eve&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             },
             {
@@ -8135,6 +8288,7 @@
               &quot;strictExportCommand&quot;: &quot;python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package &lt;empty-output-dir&gt;&quot;,
               &quot;target&quot;: &quot;buzz-static-projection&quot;,
               &quot;toolExecutionAllowed&quot;: false,
+              &quot;toolInvocation&quot;: false,
               &quot;walletAccess&quot;: false
             }
           ],
@@ -8331,6 +8485,7 @@
       &quot;source&quot;: &quot;examples/payment-agent.yaml&quot;,
       &quot;supported&quot;: true,
       &quot;toolExecutionAllowed&quot;: false,
+      &quot;toolInvocation&quot;: false,
       &quot;unsupportedFeatures&quot;: [
         &quot;non_local_runtime_execution&quot;,
         &quot;live_payment_execution&quot;

@@ -18,6 +18,7 @@
     "relayAccess": false,
     "runtimeExecutionAllowed": false,
     "toolExecutionAllowed": false,
+    "toolInvocation": false,
     "walletAccess": false
   },
   "readinessCounts": {
@@ -58,6 +59,7 @@
       "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/simple-agent.yaml",
       "target": "agent-spec",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -92,6 +94,7 @@
       "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/simple-agent.yaml",
       "target": "a2a-agent-card",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -126,6 +129,7 @@
       "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/simple-agent.yaml",
       "target": "agent-skills-skill-md",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -158,6 +162,7 @@
       "strictExportCommand": null,
       "target": "starter-manifest",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -211,6 +216,7 @@
         "supported": true,
         "target": "vercel-eve",
         "toolExecutionAllowed": false,
+        "toolInvocation": false,
         "uiState": "metadata-only",
         "unsupportedFeatures": [],
         "validationErrors": [],
@@ -237,6 +243,7 @@
       "strictExportCommand": null,
       "target": "vercel-eve",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -269,6 +276,7 @@
       "strictExportCommand": "python3 scripts/buzz_export.py --single examples/simple-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -302,6 +310,7 @@
       "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/tool-agent.yaml",
       "target": "agent-spec",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -335,6 +344,7 @@
       "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/tool-agent.yaml",
       "target": "a2a-agent-card",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -368,6 +378,7 @@
       "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/tool-agent.yaml",
       "target": "agent-skills-skill-md",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -400,6 +411,7 @@
       "strictExportCommand": null,
       "target": "starter-manifest",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -452,6 +464,7 @@
         "supported": true,
         "target": "vercel-eve",
         "toolExecutionAllowed": false,
+        "toolInvocation": false,
         "uiState": "metadata-only",
         "unsupportedFeatures": [],
         "validationErrors": [],
@@ -477,6 +490,7 @@
       "strictExportCommand": null,
       "target": "vercel-eve",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -509,6 +523,7 @@
       "strictExportCommand": "python3 scripts/buzz_export.py --single examples/tool-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -552,6 +567,7 @@
       "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/payment-agent.yaml",
       "target": "agent-spec",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -595,6 +611,7 @@
       "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/payment-agent.yaml",
       "target": "a2a-agent-card",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -638,6 +655,7 @@
       "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/payment-agent.yaml",
       "target": "agent-skills-skill-md",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -670,6 +688,7 @@
       "strictExportCommand": null,
       "target": "starter-manifest",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -729,6 +748,7 @@
         "supported": true,
         "target": "vercel-eve",
         "toolExecutionAllowed": false,
+        "toolInvocation": false,
         "uiState": "unsupported-runtime-features",
         "unsupportedFeatures": [
           "non_local_runtime_execution",
@@ -766,6 +786,7 @@
       "strictExportCommand": null,
       "target": "vercel-eve",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -799,6 +820,7 @@
       "strictExportCommand": "python3 scripts/buzz_export.py --single examples/payment-agent.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [],
       "validationStatus": "pass",
       "walletAccess": false
@@ -831,6 +853,7 @@
       "strictExportCommand": "python3 scripts/agent_spec_compatibility.py --export-agent-spec --single examples/invalid/missing-instructions.yaml",
       "target": "agent-spec",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -865,6 +888,7 @@
       "strictExportCommand": "python3 scripts/adl_to_a2a_agent_card.py --export-agent-card --single examples/invalid/missing-instructions.yaml",
       "target": "a2a-agent-card",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -899,6 +923,7 @@
       "strictExportCommand": "python3 scripts/adl_to_agent_skill.py --export-skill-package --single examples/invalid/missing-instructions.yaml",
       "target": "agent-skills-skill-md",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -933,6 +958,7 @@
       "strictExportCommand": null,
       "target": "starter-manifest",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -967,6 +993,7 @@
       "strictExportCommand": null,
       "target": "provider-compatibility",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -1001,6 +1028,7 @@
       "strictExportCommand": null,
       "target": "rap-bridge",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -1055,6 +1083,7 @@
         "supported": false,
         "target": "vercel-eve",
         "toolExecutionAllowed": false,
+        "toolInvocation": false,
         "uiState": "blocked",
         "unsupportedFeatures": [
           "validation_failed"
@@ -1081,6 +1110,7 @@
       "strictExportCommand": null,
       "target": "vercel-eve",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],
@@ -1115,6 +1145,7 @@
       "strictExportCommand": "python3 scripts/buzz_export.py --single examples/invalid/missing-instructions.yaml [immutable pins, signed identity binding, governance review, and required evaluation time] --export-package <empty-output-dir>",
       "target": "buzz-static-projection",
       "toolExecutionAllowed": false,
+      "toolInvocation": false,
       "validationErrors": [
         "harness: 'instructions' is a required property"
       ],

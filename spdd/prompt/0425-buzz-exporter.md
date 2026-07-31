@@ -245,7 +245,8 @@ No Buzz repository or source file is modified.
 
 - [ ] All reports, parity rows, fixtures, manifests, and package metadata set
   runtime/network/relay/provider/credential/tool/MCP/payment/wallet/deployment/
-  bidirectional-import flags to false where the #424 contract defines them.
+  bidirectional-import flags to false where the #424 contract defines them,
+  including exact `toolInvocation=false`.
 - [ ] All reports, parity rows, fixtures, manifests, and package metadata set
   `publicDistributionAllowed=false` and `publicBrandingAllowed=false`; a
   dedicated negative fixture/test requests distribution before attribution and
@@ -291,3 +292,4 @@ No Buzz repository or source file is modified.
 | 2026-08-01 | Oli found well-formed invented lifecycle referents and future/stale governance reviews remained package-eligible | Added recomputed related-binding proof/activation/sequence/link rules and the seven-day release-lane review window bound to `evaluationTime` | Added valid chained activation plus missing, invented, non-adjacent, broken-link, chronology, future-review, and stale-review coverage |
 | 2026-08-01 | Oli found the Prosumer parity summary claimed v0.1 examples were report-ready while the authoritative exporter accepts only canonical ADL v0.2 | Clarified no scope change: the parity projection must enforce the plan's canonical ADL v0.2 input invariant | Made `parity_summary` fail closed with `BUZZ_ADL_INVALID` for every non-v0.2 input and added snapshot/regression assertions |
 | 2026-08-01 | Oli found applicable lossy and metadata-only report rows could carry no canonical machine-readable limitation diagnostic | Clarified no scope change: every applicable row must preserve its non-blocking loss or non-enforcement evidence | Emit row-bound `BUZZ_SEMANTIC_LOSS` / `BUZZ_METADATA_NOT_ENFORCED` warnings and assert exact row/global diagnostic coverage |
+| 2026-08-01 | Oli found the required `toolInvocation=false` flag absent and executable/payment semantics nested in known `extensions.identity` could remain eligible | Clarified no scope change: exact invocation denial is part of every emitted boundary surface and known namespaces receive the same recursive semantic scan as reviewed/unknown namespaces | Added canonical `toolInvocation=false`, compound identity runtime/payment refusal coverage, and parity enforcement |

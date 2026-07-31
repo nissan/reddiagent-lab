@@ -11,6 +11,8 @@ import subprocess
 import sys
 import tempfile
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
 SOURCE = ROOT / "tests" / "fixtures" / "buzz-valid-static-agent.yaml"
@@ -206,7 +208,8 @@ def command(source: Path, binding_path: Path, drift_path: Path, *extra: str) -> 
 
 def assert_boundaries(item: dict) -> None:
     for key in ("runtimeExecutionAllowed", "networkAccess", "relayAccess",
-                "providerAccess", "credentialAccess", "toolExecutionAllowed",
+                "providerAccess", "credentialAccess", "toolInvocation",
+                "toolExecutionAllowed",
                 "mcpInvocation", "walletAccess", "paymentAccess",
                 "deploymentAllowed", "bidirectionalImportAllowed",
                 "publicDistributionAllowed", "publicBrandingAllowed"):
@@ -215,7 +218,8 @@ def assert_boundaries(item: dict) -> None:
 
 def main() -> int:
     sys.path.insert(0, str(ROOT / "scripts"))
-    from buzz_export import BOUNDARY_FLAGS as EXPORTER_BOUNDARIES, _ed_verify, build_report, canonical_bytes
+    from buzz_export import (BOUNDARY_FLAGS as EXPORTER_BOUNDARIES, _ed_verify,
+                             build_report, canonical_bytes, parity_summary)
     from prosumer_builder_plan import BOUNDARY_FLAGS as CANONICAL_BOUNDARIES
 
     assert EXPORTER_BOUNDARIES is CANONICAL_BOUNDARIES
@@ -428,6 +432,29 @@ def main() -> int:
         assert {"BUZZ_SURFACE_UNSUPPORTED", "BUZZ_RUNTIME_CAPABILITY_REFUSED",
                 "BUZZ_PAYMENT_AUTHORITY_REFUSED", "BUZZ_PUBLIC_SENSITIVE_CONTENT",
                 "BUZZ_AUTHORITY_CLAIM_REFUSED"} <= unknown_codes
+        binding_path.write_text(json.dumps(binding(SOURCE)))
+
+        known_identity = temp / "known-identity-extension.yaml"
+        known_identity.write_text(SOURCE.read_text().replace(
+            "extensions: {}", "extensions:\n  identity:\n    command: run-now\n"
+            "    wallet: delegated\n"
+        ))
+        binding_path.write_text(json.dumps(binding(known_identity)))
+        identity_proc = subprocess.run(command(known_identity, binding_path, drift_path), cwd=ROOT,
+                                       text=True, capture_output=True)
+        assert identity_proc.returncode == 3
+        identity_report = json.loads(identity_proc.stdout)
+        identity_codes = {item["code"] for item in identity_report["diagnostics"]}
+        assert {"BUZZ_RUNTIME_CAPABILITY_REFUSED", "BUZZ_PAYMENT_AUTHORITY_REFUSED"} <= identity_codes
+        assert identity_report["packageEligible"] is False
+        assert identity_report["toolInvocation"] is False
+        assert identity_report["toolExecutionAllowed"] is False
+        identity_parity = parity_summary(yaml.safe_load(known_identity.read_text()), [])
+        assert {"BUZZ_RUNTIME_CAPABILITY_REFUSED", "BUZZ_PAYMENT_AUTHORITY_REFUSED"} <= set(
+            identity_parity["blockedBy"]
+        )
+        assert identity_parity["packageEligible"] is False
+        assert_boundaries(identity_parity)
         binding_path.write_text(json.dumps(binding(SOURCE)))
 
         round_trip_report, round_trip_projection = build_report(

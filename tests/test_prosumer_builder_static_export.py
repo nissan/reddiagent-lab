@@ -68,6 +68,7 @@ def main() -> int:
     assert "fetch(" not in committed
     assert "XMLHttpRequest" not in committed
     assert "runtimeExecutionAllowed=false" in committed
+    assert "toolInvocation=false" in committed
     assert "paymentAccess=false" in committed
     assert "mcpInvocation=false" in committed
 
@@ -77,6 +78,7 @@ def main() -> int:
     assert manifest["guardrails"]["devServerStarted"] is False
     assert manifest["guardrails"]["browserAutomationRequired"] is False
     assert manifest["guardrails"]["runtimeExecutionAllowed"] is False
+    assert manifest["guardrails"]["toolInvocation"] is False
     assert manifest["guardrails"]["networkAccess"] is False
     assert manifest["guardrails"]["paymentAccess"] is False
     assert manifest["guardrails"]["mcpInvocation"] is False

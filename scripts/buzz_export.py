@@ -737,13 +737,13 @@ def _extension_diagnostics(extensions: dict, reviewed: set[str]) -> list[dict]:
                                          "Keep ADL canonical and RAP authoritative."))
 
     for key in sorted(extensions, key=lambda item: str(item).encode()):
-        if key in known:
-            continue
         path = f"extensions.{key}"
-        if key not in reviewed:
+        if key not in known and key not in reviewed:
             result.append(diagnostic("BUZZ_SURFACE_UNSUPPORTED", "unsupported", path,
                                      "Extension semantics have not been owner-reviewed.",
                                      "Add the exact namespaced extension to reviewed governance evidence."))
+        # Known namespaces are not implicitly trusted. Recursively inspect them
+        # for executable, payment, credential, and authority semantics too.
         walk(extensions[key], path)
     return result
 
@@ -1161,6 +1161,9 @@ def parity_summary(doc: dict, errors: list[str]) -> dict:
     blockers = ["BUZZ_ADL_INVALID"] if adl_invalid else []
     harness = doc.get("harness", {}) or {}
     blockers.extend(item["code"] for item in _surface_diagnostics(doc) if item["blocking"])
+    blockers.extend(item["code"] for item in _extension_diagnostics(
+        doc.get("extensions", {}) or {}, set()
+    ) if item["blocking"])
     runtime = harness.get("runtime", {}) or {}
     if ((runtime.get("activation") or {}).get("mode") not in {None, "blocked"} or
             (runtime.get("network") or {}).get("access") not in {None, "none"}):

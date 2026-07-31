@@ -30,6 +30,7 @@ BOUNDARY_FLAGS = {
     "relayAccess": False,
     "providerAccess": False,
     "credentialAccess": False,
+    "toolInvocation": False,
     "toolExecutionAllowed": False,
     "paymentAccess": False,
     "mcpInvocation": False,
