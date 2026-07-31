@@ -63,8 +63,13 @@ mainnet.
   ADL/agent/Buzz/owner binding digest, including the exact empty or enumerated
   emergency-revocation authority/scope array; exclude derived lifecycle status
   and fold separately signed, sequenced transition/revocation evidence to
-  derive it. Canonical preimages and evidence-digest inclusion rules are exact.
-  NIP-OA alone does not bind the ADL digest.
+  derive it. The owner proof signs one exact RFC 8785 metadata envelope whose
+  binding digest is the 64-character lowercase-hex text, never decoded raw
+  digest bytes. Lifecycle records fold by a fully specified ascending total
+  order, including chronological instant, numeric sequence, enumerated action
+  rank, and unsigned-byte evidence-digest comparison. Canonical preimages and
+  evidence-digest inclusion rules are exact. NIP-OA alone does not bind the ADL
+  digest.
 - Reject public-sensitive content, unresolved policies, executable/runtime
   semantics, embedded spend authority, and unprovable payment/reputation claims.
 
@@ -139,3 +144,4 @@ compatibility report to understand that loss.
 | 2026-07-31 | Initial #424 contract; no implementation yet | Created | Deferred to #425–#427 |
 | 2026-07-31 | Oli found unsigned ADL identity binding, ambiguous refusal-code overrides, and an inconsistent source-commit rule | Require owner-signed full binding digest, map every override to stable codes with all-applicable ordering, and require source commit only for repository-backed ADL | Still deferred to #425–#427 |
 | 2026-07-31 | Sara found mutable lifecycle status inside the signed binding digest and a conflicting missing-instruction-path diagnostic | Make the binding digest immutable, derive status from signed lifecycle evidence, and distinguish invalid/missing path fields from unavailable referenced files | Still deferred to #425–#427 |
+| 2026-07-31 | Sara found ambiguous owner-proof digest bytes and unspecified lifecycle-fold directions/comparisons | Define the exact owner-proof JCS preimage using lowercase-hex digest text and bind all proof metadata; define every ascending fold key, action rank, and raw-byte digest comparison | Still deferred to #425–#427 |

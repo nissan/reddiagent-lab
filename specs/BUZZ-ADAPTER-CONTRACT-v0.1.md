@@ -161,9 +161,11 @@ An identity binding must contain:
 - `buzzAgentPubkey`: target agent public key/coordinate;
 - `ownerPubkey`: distinct owner identity key when the target supports it;
 - `ownerAttestationRef`: signed NIP-OA or equivalent provenance reference;
-- `ownerBindingProof`: a detached owner signature over the domain-separated
-  immutable canonical `bindingDigest`, including the signature algorithm,
-  canonicalization version, signer key id, and signature bytes;
+- `ownerBindingProof`: an object containing exactly `proofVersion` (fixed to
+  `1`), `canonicalizationVersion` (fixed to `RFC8785`),
+  `signatureAlgorithm`, `signerKeyId`, and `signatureBytes`. It is a detached
+  owner signature over the exact domain-separated proof preimage defined
+  below;
 - `issuedAt`, `notBefore`, `expiresAt`, and `sequence` as immutable binding
   fields;
 - `previousBindingDigest` for rotation, when applicable;
@@ -197,10 +199,18 @@ An identity binding must contain:
 NIP-OA at the assessed Buzz pin signs the agent key and its supported
 conditions; it does not itself sign the ADL digest or complete identity join.
 Therefore `ownerAttestationRef` is necessary provenance but insufficient to
-enter `bound`. `ownerBindingProof` must verify under `ownerPubkey` over the exact
-`bindingDigest`. Substituting any canonical ADL or identity field invalidates
-that proof. An equivalent future provenance format may replace the two records
-only when it signs every binding-digest field and is version-pinned and reviewed.
+enter `bound`. The exact `ownerBindingProof` signed preimage is the UTF-8 bytes
+of the domain string `reddiagent-buzz-owner-binding-proof-v1`, one `0x00` byte,
+and the RFC 8785 JCS UTF-8 bytes of an object containing exactly
+`proofVersion`, `canonicalizationVersion`, `signatureAlgorithm`, `signerKeyId`,
+and `bindingDigest`. `bindingDigest` is represented in that object as its exact
+64-character lowercase-hex ASCII string; it is never hex-decoded to the raw
+32-byte digest for owner-proof signing or verification. `signatureBytes` is
+excluded from the preimage. The detached signature must verify under the exact
+`ownerPubkey`, and `signerKeyId` must resolve uniquely to that same key.
+Substituting the digest or any proof metadata invalidates the proof. An
+equivalent future provenance format may replace the two records only when it
+signs every binding-digest field and is version-pinned and reviewed.
 
 Lifecycle evaluation must first verify the immutable owner binding proof, then
 verify each lifecycle record against the immutable `bindingDigest`. A transition
@@ -231,8 +241,14 @@ signature, but excludes itself and any container/list position.
 hidden side channel or omitted sequence. Evaluation validates signatures and
 authorization first, rejects duplicate or non-positive `recordSequence`
 values, recomputes every `evidenceDigest`, and then sorts the validated records
-by `effectiveAt`, `recordSequence`, action precedence (`revoked` before
-`superseded` before other transitions), and `evidenceDigest`. The resulting
+in ascending order by these keys, in this exact priority: (1) `effectiveAt` by
+parsed chronological instant; (2) `recordSequence` by positive integer value;
+(3) action rank, where `revoked` = 0, `superseded` = 1, `rotating` = 2, and
+`active` = 3; and (4) `evidenceDigest` by lexicographic comparison of its decoded
+raw 32 bytes as unsigned bytes from index 0 through 31. Only those four action
+values are valid; timestamps that do not parse to an unambiguous RFC 3339
+instant and digests that do not decode to exactly 32 bytes fail closed. No key
+uses descending, locale-sensitive, or serialized-array ordering. The resulting
 order is the sole fold input; serialized array order has no authority. Unknown,
 conflicting, invalid, omitted, or unauthorized records fail closed with
 `BUZZ_IDENTITY_BINDING_INVALID`.
