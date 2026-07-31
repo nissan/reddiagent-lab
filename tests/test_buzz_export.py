@@ -17,6 +17,8 @@ SOURCE = ROOT / "tests" / "fixtures" / "buzz-valid-static-agent.yaml"
 ATTRIBUTION = ROOT / "tests" / "fixtures" / "buzz-attribution-distribution-request.json"
 COMPOUND = ROOT / "tests" / "fixtures" / "buzz-compound-refusal-agent.yaml"
 STALE_DRIFT = ROOT / "tests" / "fixtures" / "buzz-upstream-drift-unreviewed.json"
+MALFORMED_GOVERNANCE = ROOT / "tests" / "fixtures" / "buzz-malformed-governance-cases.json"
+LIFECYCLE_RELATIONSHIPS = ROOT / "tests" / "fixtures" / "buzz-lifecycle-relationship-cases.json"
 SCHEMA = ROOT / "specs" / "ADL-v0.2.schema.json"
 PIN = "a" * 40
 EVALUATION_TIME = "2026-07-31T01:00:00Z"
@@ -90,13 +92,34 @@ def preimage(domain: str, value: dict) -> bytes:
     return domain.encode() + b"\x00" + canonical(value)
 
 
+def signed_lifecycle_record(owner: str, binding_digest: str, *, action: str,
+                            sequence: int, previous: str | None,
+                            replacement: str | None,
+                            effective_at: str = "2026-07-31T00:00:00Z") -> dict:
+    record = {"recordVersion": 1, "recordSequence": sequence, "actorKeyId": owner,
+              "actorPubkey": owner, "signatureAlgorithm": "ed25519", "action": action,
+              "bindingDigest": binding_digest, "previousBindingDigest": previous,
+              "replacementBindingDigest": replacement, "effectiveAt": effective_at,
+              "reasonCode": "OWNER_REVIEWED", "reason": "Owner-reviewed static export fixture."}
+    domain = ("reddiagent-buzz-identity-revocation-v1" if action == "revoked"
+              else "reddiagent-buzz-identity-transition-v1")
+    record_message = preimage(domain, record)
+    record["signatureBytes"] = sign(record_message)
+    record["evidenceDigest"] = hashlib.sha256(
+        record_message + b"\x00" + bytes.fromhex(record["signatureBytes"])
+    ).hexdigest()
+    return record
+
+
 def canonical_uri(path: Path) -> str:
     if path.resolve() == SOURCE.resolve():
         return "repo:tests/fixtures/buzz-valid-static-agent.yaml"
     return f"urn:reddiagent:test:{hashlib.sha256(path.read_bytes()).hexdigest()}"
 
 
-def binding(path: Path) -> dict:
+def binding(path: Path, *, sequence: int = 1, previous_binding_digest: str | None = None,
+            record_previous: str | None = None,
+            record_replacement: str | None = None) -> dict:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     owner, _, _ = key_material()
     value = {
@@ -110,8 +133,8 @@ def binding(path: Path) -> dict:
         "issuedAt": "2026-07-30T00:00:00Z",
         "notBefore": "2026-07-30T00:00:00Z",
         "expiresAt": "2026-08-31T00:00:00Z",
-        "sequence": 1,
-        "previousBindingDigest": None,
+        "sequence": sequence,
+        "previousBindingDigest": previous_binding_digest,
         "emergencyRevocationAuthorities": [],
     }
     immutable = {key: value[key] for key in (
@@ -126,16 +149,10 @@ def binding(path: Path) -> dict:
     proof_message = preimage("reddiagent-buzz-owner-binding-proof-v1",
                              {**proof, "bindingDigest": binding_digest})
     proof["signatureBytes"] = sign(proof_message)
-    record = {"recordVersion": 1, "recordSequence": 1, "actorKeyId": owner,
-              "actorPubkey": owner, "signatureAlgorithm": "ed25519", "action": "active",
-              "bindingDigest": binding_digest, "previousBindingDigest": None,
-              "replacementBindingDigest": None, "effectiveAt": "2026-07-31T00:00:00Z",
-              "reasonCode": "OWNER_REVIEWED", "reason": "Owner-reviewed static export fixture."}
-    record_message = preimage("reddiagent-buzz-identity-transition-v1", record)
-    record["signatureBytes"] = sign(record_message)
-    record["evidenceDigest"] = hashlib.sha256(
-        record_message + b"\x00" + bytes.fromhex(record["signatureBytes"])
-    ).hexdigest()
+    record = signed_lifecycle_record(
+        owner, binding_digest, action="active", sequence=1,
+        previous=record_previous, replacement=record_replacement,
+    )
     return {**value, "ownerBindingProof": proof, "status": "active",
             "lifecycleEvidence": [record], "bindingDigest": binding_digest}
 
@@ -241,11 +258,15 @@ def main() -> int:
             "bindingDigest", "status", "sequence", "expiresAt", "proofAlgorithm", "verified"
         }
         assert set(report["target"]["governanceReview"]) == {
-            "reviewVersion", "reviewedAt", "mergeBase", "upstreamDecision",
-            "negativeClaimsReverified", "relevantDrift", "chosenAdapterLayer",
-            "forkDeltaCount", "reviewedExtensions", "licenseSpdx", "attributionStatus",
-            "trademarkDecision", "publicDistributionAllowed", "publicBrandingAllowed"
+            "reviewVersion", "reviewedAt", "pins", "upstreamDrift",
+            "adapterDecision", "reviewedExtensions", "attributionManifest",
+            "publicDistributionAllowed", "publicBrandingAllowed"
         }
+        assert report["target"]["governanceReview"]["pins"] == drift()["pins"]
+        assert report["target"]["governanceReview"]["upstreamDrift"] == drift()["upstreamDrift"]
+        assert report["target"]["governanceReview"]["adapterDecision"] == drift()["adapterDecision"]
+        attribution_evidence = report["target"]["governanceReview"]["attributionManifest"]
+        assert attribution_evidence == drift()["attribution"]
         assert_boundaries(report)
 
         secret = "sk-supersecretmaterial123456"
@@ -305,7 +326,10 @@ def main() -> int:
                                   capture_output=True, check=True)
             assert proc.stdout == first.stdout
             assert sorted(p.name for p in dest.iterdir()) == ["compatibility-report.json", "manifest.json", "persona.json"]
-            assert_boundaries(json.loads((dest / "manifest.json").read_text()))
+            manifest = json.loads((dest / "manifest.json").read_text())
+            assert_boundaries(manifest)
+            assert manifest["governanceEvidence"] == report["target"]["governanceReview"]
+            assert manifest["governanceEvidence"]["attributionManifest"] == drift()["attribution"]
             assert_boundaries(json.loads((dest / "persona.json").read_text()))
         assert {p.name: p.read_bytes() for p in one.iterdir()} == {p.name: p.read_bytes() for p in two.iterdir()}
 
@@ -328,6 +352,60 @@ def main() -> int:
         proc = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT, text=True, capture_output=True)
         assert proc.returncode == 3
         assert "BUZZ_IDENTITY_BINDING_INVALID" in [d["code"] for d in json.loads(proc.stdout)["diagnostics"]]
+
+        for case in json.loads(LIFECYCLE_RELATIONSHIPS.read_text()):
+            relationship_binding = binding(
+                SOURCE,
+                sequence=case["bindingSequence"],
+                previous_binding_digest=case["bindingPredecessor"],
+                record_previous=(case["recordPredecessor"] if case["action"] == "active" else
+                                 case["bindingPredecessor"]),
+            )
+            if case["action"] != "active":
+                owner = relationship_binding["ownerPubkey"]
+                current_digest = relationship_binding["bindingDigest"]
+                previous = (current_digest if case["recordPredecessor"] == "CURRENT_BINDING" else
+                            case["recordPredecessor"])
+                replacement = (current_digest if case["recordReplacement"] == "CURRENT_BINDING" else
+                               case["recordReplacement"])
+                relationship_binding["lifecycleEvidence"].append(signed_lifecycle_record(
+                    owner, current_digest, action=case["action"], sequence=2,
+                    previous=previous, replacement=replacement,
+                    effective_at="2026-08-01T00:00:00Z",
+                ))
+            else:
+                relationship_binding = binding(
+                    SOURCE,
+                    sequence=case["bindingSequence"],
+                    previous_binding_digest=case["bindingPredecessor"],
+                    record_previous=case["recordPredecessor"],
+                    record_replacement=case["recordReplacement"],
+                )
+            binding_path.write_text(json.dumps(relationship_binding))
+            proc = subprocess.run(command(SOURCE, binding_path, drift_path), cwd=ROOT,
+                                  text=True, capture_output=True)
+            assert proc.returncode == 3, case["name"]
+            assert "BUZZ_IDENTITY_BINDING_INVALID" in {
+                item["code"] for item in json.loads(proc.stdout)["diagnostics"]
+            }, case["name"]
+
+        binding_path.write_text(json.dumps(binding(SOURCE)))
+        for case in json.loads(MALFORMED_GOVERNANCE.read_text()):
+            malformed = json.loads(json.dumps(drift()))
+            target = malformed
+            for key in case["path"][:-1]:
+                target = target[key]
+            target[case["path"][-1]] = case["value"]
+            drift_path.write_text(json.dumps(malformed))
+            proc = subprocess.run(command(SOURCE, binding_path, drift_path,
+                                          "--export-package", str(temp / "malformed-governance")),
+                                  cwd=ROOT, text=True, capture_output=True)
+            assert proc.returncode == 3, case["path"]
+            assert "BUZZ_UPSTREAM_DRIFT_UNREVIEWED" in {
+                item["code"] for item in json.loads(proc.stdout)["diagnostics"]
+            }, case["path"]
+            assert not (temp / "malformed-governance").exists()
+        drift_path.write_text(json.dumps(drift()))
 
         tampered_proof = binding(SOURCE)
         signature = tampered_proof["ownerBindingProof"]["signatureBytes"]

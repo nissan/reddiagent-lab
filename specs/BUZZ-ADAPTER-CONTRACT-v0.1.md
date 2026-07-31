@@ -230,6 +230,14 @@ signed preimage is the record's domain string, one `0x00` byte, and the RFC
 `action`, `bindingDigest`, `previousBindingDigest`,
 `replacementBindingDigest`, `effectiveAt`, `reasonCode`, and `reason`.
 Inapplicable digest fields are explicit `null`; no field may be omitted.
+For `active`, `previousBindingDigest` must equal the immutable binding's
+`previousBindingDigest` (therefore it is explicit `null` for an initial
+binding) and `replacementBindingDigest` is `null`. For `revoked`, both
+relationship fields are `null` because `bindingDigest` already selects the
+revoked binding. For `rotating` and `superseded`, `previousBindingDigest` must
+equal this record's `bindingDigest`, while `replacementBindingDigest` must be a
+distinct valid binding digest. These relationships are signed semantics and
+fail closed before the lifecycle fold.
 `signatureBytes` and `evidenceDigest` are excluded from the signed preimage.
 The detached signature verifies over those exact preimage bytes.
 `evidenceDigest` is lowercase hex SHA-256 of the concatenation of those exact

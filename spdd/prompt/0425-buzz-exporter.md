@@ -99,8 +99,17 @@ boolean is not accepted. The governance input binds complete #424 drift,
 adapter-decision, reviewed-extension, and attribution/branding evidence to the
 exact upstream/fork/adapter pins and fails closed with
 `BUZZ_UPSTREAM_DRIFT_UNREVIEWED` when incomplete, mismatched, or relevant drift
-remains. Public output contains only an allowlisted decision summary, never raw
-proofs, signatures, reviewer text, or free-form evidence. The internal report builder retains a negative-test
+remains. Public output contains only an allowlisted decision summary plus the
+complete structured public-safe #424 section 8 attribution manifest, never raw
+proofs, signatures, reviewer text, or free-form evidence. Every normative
+governance subrecord, scalar, list, sort order, and cross-field pin/hold
+relationship is schema-validated before package eligibility; the artifact
+manifest owns a deterministic copy of that evidence. Lifecycle records enforce
+action-specific predecessor/replacement relationships: initial activation has
+an explicit null predecessor, rotated activation names the binding's immutable
+predecessor, revocation uses two explicit null relationship fields, and
+rotating/superseded records name the current binding plus a distinct replacement
+digest. The internal report builder retains a negative-test
 input for a round-trip request and always emits `BUZZ_ONE_WAY_ONLY`; the CLI
 does not expose that input or any importer.
 
@@ -273,3 +282,4 @@ No Buzz repository or source file is modified.
 | 2026-07-31 | Oli exact-head QA found omitted canonical parity ownership and an implicit attribution/branding hold | Added `scripts/prosumer_builder_plan.py` ownership/row flow plus explicit false distribution/branding invariants and refusal fixture/test | Deferred until this plan is accepted |
 | 2026-07-31 | Implementation keeps RFC-8785-compatible canonical JSON local to the exporter and adds the full G1 false-boundary registry to the existing parity owner | No material scope change | Added report/package CLI, focused fixtures/tests, canonical parity target/summary, and smoke wiring |
 | 2026-08-01 | Oli blocked raw auxiliary-evidence emission, fail-open extensions, non-JCS JSON, incomplete governance, optional evaluation time, and duplicate boundaries | Required `evaluationTime`; added conformant JCS, strict public evidence summaries/final scan, complete governance validation, reviewed-extension recursion, and direct import of Prosumer-owned boundaries | Added RFC vectors, non-finite refusal, secret non-echo, nested extension, governance-contract, and cross-surface registry assertions |
+| 2026-08-01 | Oli found malformed normative governance subrecords and lifecycle predecessor/replacement relations remained fail-open, while the package manifest omitted complete section 8 evidence | Added strict governance schemas/cross-field holds, manifest-owned public-safe attribution evidence, and action-/binding-specific signed relationship validation | Added malformed governance and re-signed lifecycle relationship negatives plus deterministic manifest evidence assertions |

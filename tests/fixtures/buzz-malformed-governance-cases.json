@@ -1,0 +1,14 @@
+[
+  {"path":["reviewer"],"value":true},
+  {"path":["pins","mergeBase"],"value":null},
+  {"path":["upstreamDrift","commitsChanged"],"value":[null]},
+  {"path":["adapterDecision","apiSurfaces"],"value":[null]},
+  {"path":["reviewedExtensions"],"value":[null]},
+  {"path":["attribution","license"],"value":null},
+  {"path":["attribution","notice","digest"],"value":"not-a-digest"},
+  {"path":["attribution","copyrightNotices"],"value":null},
+  {"path":["attribution","modifiedFiles","files"],"value":[null]},
+  {"path":["attribution","distributionForms","object"],"value":null},
+  {"path":["attribution","thirdPartyInventory","status"],"value":null},
+  {"path":["attribution","trademarkReview","scope"],"value":null}
+]

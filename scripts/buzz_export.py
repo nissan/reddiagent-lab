@@ -264,7 +264,10 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
             return invalid
         if not isinstance(binding["sequence"], int) or isinstance(binding["sequence"], bool) or binding["sequence"] < 1:
             return invalid
-        if binding["previousBindingDigest"] is not None and not DIGEST_RE.fullmatch(str(binding["previousBindingDigest"])):
+        if ((binding["sequence"] == 1 and binding["previousBindingDigest"] is not None) or
+                (binding["sequence"] > 1 and not DIGEST_RE.fullmatch(
+                    str(binding["previousBindingDigest"]))) or
+                binding["previousBindingDigest"] == binding.get("bindingDigest")):
             return invalid
         issued = _parse_utc(binding["issuedAt"])
         not_before = _parse_utc(binding["notBefore"])
@@ -329,7 +332,7 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
         records = binding["lifecycleEvidence"]
         if not isinstance(records, list):
             return invalid
-        validated: list[tuple[datetime, int, int, bytes, str]] = []
+        validated: list[tuple[datetime, int, int, bytes, str, str | None]] = []
         seen_sequences: set[int] = set()
         action_rank = {"revoked": 0, "superseded": 1, "rotating": 2, "active": 3}
         record_fields = {
@@ -362,9 +365,16 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
             for digest_field in ("previousBindingDigest", "replacementBindingDigest"):
                 if record[digest_field] is not None and not DIGEST_RE.fullmatch(str(record[digest_field])):
                     return invalid
-            if action in {"active", "revoked"} and record["replacementBindingDigest"] is not None:
+            predecessor = record["previousBindingDigest"]
+            replacement = record["replacementBindingDigest"]
+            if action == "active" and (predecessor != binding["previousBindingDigest"] or
+                                       replacement is not None):
                 return invalid
-            if action == "rotating" and record["replacementBindingDigest"] is None:
+            if action == "revoked" and (predecessor is not None or replacement is not None):
+                return invalid
+            if action in {"rotating", "superseded"} and (
+                    predecessor != binding_digest or replacement is None or
+                    replacement == binding_digest):
                 return invalid
             signed = {key: record[key] for key in (
                 "recordVersion", "recordSequence", "actorKeyId", "actorPubkey",
@@ -388,11 +398,13 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
                 if ((authority["notBefore"] is not None and effective < _parse_utc(authority["notBefore"])) or
                         (authority["expiresAt"] is not None and effective >= _parse_utc(authority["expiresAt"]))):
                     return invalid
-            validated.append((effective, sequence, action_rank[action], bytes.fromhex(evidence_digest), action))
+            validated.append((effective, sequence, action_rank[action], bytes.fromhex(evidence_digest),
+                              action, replacement))
 
         validated.sort(key=lambda item: item[:4])
         derived_status = "bound"
-        for effective, _, _, _, action in validated:
+        pending_replacement = None
+        for effective, _, _, _, action, replacement in validated:
             if effective <= evaluated:
                 allowed = {
                     "bound": {"active", "rotating", "revoked"},
@@ -402,6 +414,10 @@ def _identity_diagnostics(binding: dict, adl_digest: str, canonical_uri: str,
                     "revoked": set(),
                 }
                 if action not in allowed[derived_status]:
+                    return invalid
+                if action == "rotating":
+                    pending_replacement = replacement
+                elif action == "superseded" and replacement != pending_replacement:
                     return invalid
                 derived_status = action
         if derived_status != "revoked" and expires <= evaluated:
@@ -580,40 +596,50 @@ def _governance_diagnostics(governance: dict, pins: dict) -> list[dict]:
         if not isinstance(governance, dict) or set(governance) != required:
             raise ValueError
         _parse_utc(governance["reviewedAt"])
-        if governance["reviewVersion"] != 1 or not governance["reviewer"]:
+        if (governance["reviewVersion"] != 1 or
+                not isinstance(governance["reviewer"], str) or not governance["reviewer"]):
             raise ValueError
+        def string_list(value: object, *, allow_empty: bool = True) -> bool:
+            return (isinstance(value, list) and (allow_empty or bool(value)) and
+                    all(isinstance(item, str) and bool(item) for item in value) and
+                    value == sorted(set(value), key=lambda item: item.encode("utf-8")))
+
         pin_record = governance["pins"]
-        if (set(pin_record) != {"mergeBase", "upstreamCommit", "forkCommit", "adapterCommit"} or
+        if (not isinstance(pin_record, dict) or
+                set(pin_record) != {"mergeBase", "upstreamCommit", "forkCommit", "adapterCommit"} or
                 not PIN_RE.fullmatch(str(pin_record["mergeBase"])) or
+                not all(PIN_RE.fullmatch(str(pin_record[key])) for key in
+                        ("upstreamCommit", "forkCommit", "adapterCommit")) or
                 any(pin_record[key] != pins.get(key) for key in
                     ("upstreamCommit", "forkCommit", "adapterCommit"))):
             raise ValueError
         upstream = governance["upstreamDrift"]
-        if (set(upstream) != {"commitsChanged", "relevantPaths", "linkedUpstreamIssues",
+        if (not isinstance(upstream, dict) or
+                set(upstream) != {"commitsChanged", "relevantPaths", "linkedUpstreamIssues",
                              "classificationChanges", "negativeClaimsReverified",
                              "relevantDrift", "decision"} or
-                not isinstance(upstream["commitsChanged"], list) or
-                not isinstance(upstream["relevantPaths"], list) or
-                not isinstance(upstream["linkedUpstreamIssues"], list) or
-                not isinstance(upstream["classificationChanges"], list) or
+                upstream["commitsChanged"] != [] or upstream["relevantPaths"] != [] or
+                upstream["linkedUpstreamIssues"] != [] or
+                upstream["classificationChanges"] != [] or
                 upstream["negativeClaimsReverified"] is not True or
                 upstream["relevantDrift"] is not False or upstream["decision"] != "hold-no-drift"):
             raise ValueError
         adapter = governance["adapterDecision"]
-        if (set(adapter) != {"chosenLayer", "rejectedHigherLayers", "affectedPaths",
+        if (not isinstance(adapter, dict) or
+                set(adapter) != {"chosenLayer", "rejectedHigherLayers", "affectedPaths",
                             "apiSurfaces", "forkDeltaCount", "upstreamCandidate",
                             "maintenanceOwner", "removalTrigger"} or
                 adapter["chosenLayer"] != "external-adapter" or adapter["rejectedHigherLayers"] != [] or
-                not isinstance(adapter["affectedPaths"], list) or not adapter["affectedPaths"] or
-                not isinstance(adapter["apiSurfaces"], list) or
+                adapter["affectedPaths"] != ["scripts/buzz_export.py"] or
+                adapter["apiSurfaces"] != ["static-json"] or
                 not isinstance(adapter["forkDeltaCount"], int) or isinstance(adapter["forkDeltaCount"], bool) or
-                adapter["forkDeltaCount"] < 0 or not adapter["maintenanceOwner"] or
-                not adapter["removalTrigger"]):
+                adapter["forkDeltaCount"] != 0 or adapter["upstreamCandidate"] is not None or
+                adapter["maintenanceOwner"] != "reddinft" or
+                adapter["removalTrigger"] != "adapter-contract-retired"):
             raise ValueError
         reviewed = governance["reviewedExtensions"]
-        if (not isinstance(reviewed, list) or reviewed != sorted(set(reviewed), key=lambda x: x.encode()) or
-                not all(isinstance(item, str) and (item.startswith("x-") or item.startswith("http"))
-                        for item in reviewed)):
+        if (not string_list(reviewed) or
+                not all(item.startswith("x-") or item.startswith("http") for item in reviewed)):
             raise ValueError
         attribution = governance["attribution"]
         attribution_fields = {"upstreamRepository", "downstreamRepository", "license",
@@ -621,18 +647,28 @@ def _governance_diagnostics(governance: dict, pins: dict) -> list[dict]:
                               "distributionForms", "thirdPartyInventory", "downstreamName",
                               "publicDisclaimer", "trademarkReview", "publicDistributionAllowed",
                               "publicBrandingAllowed"}
-        if (set(attribution) != attribution_fields or
+        if (not isinstance(attribution, dict) or set(attribution) != attribution_fields or
                 attribution["upstreamRepository"] != {"url": "https://github.com/block/buzz", "commit": pins["upstreamCommit"]} or
                 attribution["downstreamRepository"] != {"url": "https://github.com/reddinft/buzz", "commit": pins["forkCommit"]} or
                 attribution["publicDistributionAllowed"] is not False or
                 attribution["publicBrandingAllowed"] is not False or
                 attribution["downstreamName"] != "pending-review" or
                 attribution["publicDisclaimer"] != "pending-review" or
-                set(attribution["license"]) != {"spdx", "textIncluded", "status"} or
-                attribution["license"]["spdx"] != "Apache-2.0" or
-                set(attribution["notice"]) != {"present", "digest", "status"} or
+                attribution["license"] != {"spdx": "Apache-2.0", "textIncluded": False,
+                                           "status": "reviewed-hold"} or
+                attribution["notice"] != {"present": False, "digest": None,
+                                          "status": "reviewed-absent-at-pin"} or
+                attribution["copyrightNotices"] != {"status": "reviewed-hold"} or
+                not isinstance(attribution["modifiedFiles"], dict) or
                 set(attribution["modifiedFiles"]) != {"files", "notices", "status"} or
-                set(attribution["trademarkReview"]) != {"reviewer", "date", "scope", "decision"}):
+                not string_list(attribution["modifiedFiles"]["files"]) or
+                not string_list(attribution["modifiedFiles"]["notices"]) or
+                attribution["modifiedFiles"]["status"] != "not-applicable" or
+                attribution["distributionForms"] != {"source": "hold", "object": "hold"} or
+                attribution["thirdPartyInventory"] != {"status": "pending-review"} or
+                attribution["trademarkReview"] != {"reviewer": None, "date": None,
+                                                    "scope": "downstream-name",
+                                                    "decision": "pending-review"}):
             raise ValueError
         valid = True
     except (KeyError, TypeError, ValueError, AttributeError):
@@ -651,16 +687,38 @@ def _governance_summary(governance: dict) -> dict:
         return {
             "reviewVersion": governance["reviewVersion"],
             "reviewedAt": governance["reviewedAt"],
-            "mergeBase": governance["pins"]["mergeBase"],
-            "upstreamDecision": governance["upstreamDrift"]["decision"],
-            "negativeClaimsReverified": governance["upstreamDrift"]["negativeClaimsReverified"],
-            "relevantDrift": governance["upstreamDrift"]["relevantDrift"],
-            "chosenAdapterLayer": governance["adapterDecision"]["chosenLayer"],
-            "forkDeltaCount": governance["adapterDecision"]["forkDeltaCount"],
+            "pins": dict(governance["pins"]),
+            "upstreamDrift": {
+                "commitsChanged": [], "relevantPaths": [], "linkedUpstreamIssues": [],
+                "classificationChanges": [], "negativeClaimsReverified": True,
+                "relevantDrift": False, "decision": "hold-no-drift",
+            },
+            "adapterDecision": {
+                "chosenLayer": "external-adapter", "rejectedHigherLayers": [],
+                "affectedPaths": ["scripts/buzz_export.py"], "apiSurfaces": ["static-json"],
+                "forkDeltaCount": 0, "upstreamCandidate": None,
+                "maintenanceOwner": "reddinft", "removalTrigger": "adapter-contract-retired",
+            },
             "reviewedExtensions": governance["reviewedExtensions"],
-            "licenseSpdx": governance["attribution"]["license"]["spdx"],
-            "attributionStatus": governance["attribution"]["license"]["status"],
-            "trademarkDecision": governance["attribution"]["trademarkReview"]["decision"],
+            "attributionManifest": {
+                "upstreamRepository": dict(governance["attribution"]["upstreamRepository"]),
+                "downstreamRepository": dict(governance["attribution"]["downstreamRepository"]),
+                "license": dict(governance["attribution"]["license"]),
+                "notice": dict(governance["attribution"]["notice"]),
+                "copyrightNotices": dict(governance["attribution"]["copyrightNotices"]),
+                "modifiedFiles": {
+                    "files": list(governance["attribution"]["modifiedFiles"]["files"]),
+                    "notices": list(governance["attribution"]["modifiedFiles"]["notices"]),
+                    "status": governance["attribution"]["modifiedFiles"]["status"],
+                },
+                "distributionForms": dict(governance["attribution"]["distributionForms"]),
+                "thirdPartyInventory": dict(governance["attribution"]["thirdPartyInventory"]),
+                "downstreamName": governance["attribution"]["downstreamName"],
+                "publicDisclaimer": governance["attribution"]["publicDisclaimer"],
+                "trademarkReview": dict(governance["attribution"]["trademarkReview"]),
+                "publicDistributionAllowed": False,
+                "publicBrandingAllowed": False,
+            },
             "publicDistributionAllowed": False,
             "publicBrandingAllowed": False,
         }
@@ -907,6 +965,7 @@ def write_package(destination: Path, report: dict, projection: dict) -> None:
         manifest = {"format": "reddiagent-buzz-artifact-manifest", "version": "0.1",
                     "files": files, "reportDigest": sha256(report_bytes), "canonical": False,
                     "oneWayProjection": True, "canonicalSourceRequiredForRegeneration": True,
+                    "governanceEvidence": report["target"]["governanceReview"],
                     "paymentMode": "none", **BOUNDARY_FLAGS}
         (tmp / "manifest.json").write_bytes(canonical_bytes(manifest) + b"\n")
         os.replace(tmp, destination)
