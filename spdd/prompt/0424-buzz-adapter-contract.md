@@ -44,7 +44,7 @@ mainnet.
 | Canonical ADL document | Sole definition authority | URI, `apiVersion`, digest, and source commit when repository-backed | Existing |
 | Compatibility report | Complete, deterministic loss/refusal evidence | source/target pins, mapping rows, diagnostics, boundary flags | New in #425 |
 | Buzz projection package | Optional, non-canonical static target | report digest, persona/listing files, no import claim | New in #425 |
-| Identity binding | Joins canonical identity to Buzz provenance | canonical agent ID, ADL digest, Buzz agent key, owner key, owner-signed binding proof, issued/expiry/revocation | New |
+| Identity binding | Joins canonical identity to Buzz provenance | immutable canonical identity fields and emergency-revocation scope; owner-signed binding proof; fully signed, sequenced lifecycle records | New |
 | Source pin set | Makes drift and rollback reviewable | upstream, fork, adapter, ADL/schema, supported and rollback commits | New |
 | Attribution manifest | Records Apache-2.0 and branding review evidence | license paths, NOTICE state, modified files, disclaimer status | New |
 
@@ -60,9 +60,11 @@ mainnet.
 - Treat Nostr/Buzz identity and events as provenance/context only. RAP and the
   authoritative payment rail keep their existing authority.
 - Require a domain-separated owner signature over the immutable canonical
-  ADL/agent/Buzz/owner binding digest; exclude derived lifecycle status and fold
-  separately signed transition/revocation evidence to derive it. NIP-OA alone
-  does not bind the ADL digest.
+  ADL/agent/Buzz/owner binding digest, including the exact empty or enumerated
+  emergency-revocation authority/scope array; exclude derived lifecycle status
+  and fold separately signed, sequenced transition/revocation evidence to
+  derive it. Canonical preimages and evidence-digest inclusion rules are exact.
+  NIP-OA alone does not bind the ADL digest.
 - Reject public-sensitive content, unresolved policies, executable/runtime
   semantics, embedded spend authority, and unprovable payment/reputation claims.
 

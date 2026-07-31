@@ -167,17 +167,32 @@ An identity binding must contain:
 - `issuedAt`, `notBefore`, `expiresAt`, and `sequence` as immutable binding
   fields;
 - `previousBindingDigest` for rotation, when applicable;
+- `emergencyRevocationAuthorities`: an immutable array sorted by UTF-8 bytewise
+  ascending `signerKeyId`, then `signerPubkey`, with duplicates forbidden. An
+  entry contains exactly `signerKeyId`, `signerPubkey`, `signatureAlgorithm`,
+  `bindingScope` (exactly `this-binding-only`), `allowedActions` (exactly
+  `["revoked"]`), and nullable `notBefore` and `expiresAt`; non-null authority
+  times must fall within the binding validity window. No configured emergency
+  authority is represented by the exact empty array;
 - `status` as a derived evaluation result, never as signed binding input;
-- `lifecycleEvidence`: ordered, signed transition/revocation records used to
-  derive `status`, including actor key, action, binding digest, predecessor or
-  replacement digest when applicable, effective time, reason, and evidence
-  digest;
+- `lifecycleEvidence`: the complete set of signed transition/revocation records
+  used to derive `status`, deterministically ordered during evaluation. Every
+  record contains `recordVersion`, `recordSequence`,
+  `actorKeyId`, `actorPubkey`, `signatureAlgorithm`, `action`, `bindingDigest`,
+  `previousBindingDigest` and `replacementBindingDigest` (explicit `null` when
+  inapplicable), `effectiveAt`, `reasonCode`, `reason`, `evidenceDigest`, and
+  `signatureBytes`;
 - `bindingDigest` over the domain string
-  `reddiagent-buzz-identity-binding-v1` plus canonical serialization of
-  `canonicalAgentId`, canonical ADL URI/digest/version, Buzz agent key, owner
-  key, validity window, sequence, and predecessor digest. It must exclude
-  mutable or derived lifecycle fields including `status`, `lifecycleEvidence`,
-  revocation references, and reasons.
+  `reddiagent-buzz-identity-binding-v1`, one `0x00` byte, and the RFC 8785 JSON
+  Canonicalization Scheme (JCS) UTF-8 bytes of an object containing exactly
+  `canonicalAgentId`, `canonicalAdlUri`, `canonicalAdlDigest`,
+  `canonicalAdlVersion`, `buzzAgentPubkey`, `ownerPubkey`, `issuedAt`,
+  `notBefore`, `expiresAt`, `sequence`, `previousBindingDigest`, and
+  `emergencyRevocationAuthorities`. `previousBindingDigest` is explicit `null`
+  for an initial binding. The digest is lowercase hex SHA-256 of those exact
+  preimage bytes. It excludes `ownerAttestationRef`, `ownerBindingProof`,
+  `status`, `lifecycleEvidence`, revocation references, reasons, and every
+  other presentation or derived field.
 
 NIP-OA at the assessed Buzz pin signs the agent key and its supported
 conditions; it does not itself sign the ADL digest or complete identity join.
@@ -193,10 +208,34 @@ record uses domain `reddiagent-buzz-identity-transition-v1`; a revocation record
 uses `reddiagent-buzz-identity-revocation-v1`. Records must be signed by the
 owner key, except an explicitly configured emergency revocation key may sign a
 revocation when that key and scope were included in the original immutable
-binding payload. Derived status is the deterministic fold of valid records by
-effective time, sequence, action precedence (`revoked` before `superseded`
-before other transitions), then evidence digest. Unknown, conflicting, invalid,
-or unauthorized records fail closed with `BUZZ_IDENTITY_BINDING_INVALID`.
+binding payload. Emergency keys cannot activate, rotate, supersede, extend, or
+replace a binding, and an absent/empty authority array grants no emergency
+power.
+
+For every lifecycle record, `recordSequence` is a positive integer in the
+signed record payload and must be unique for its `bindingDigest`. The exact
+signed preimage is the record's domain string, one `0x00` byte, and the RFC
+8785 JCS UTF-8 bytes of an object containing exactly `recordVersion` (fixed to
+`1`), `recordSequence`, `actorKeyId`, `actorPubkey`, `signatureAlgorithm`,
+`action`, `bindingDigest`, `previousBindingDigest`,
+`replacementBindingDigest`, `effectiveAt`, `reasonCode`, and `reason`.
+Inapplicable digest fields are explicit `null`; no field may be omitted.
+`signatureBytes` and `evidenceDigest` are excluded from the signed preimage.
+The detached signature verifies over those exact preimage bytes.
+`evidenceDigest` is lowercase hex SHA-256 of the concatenation of those exact
+preimage bytes, one `0x00` byte, and the decoded raw `signatureBytes`; it
+therefore commits to all signed semantics, signer/algorithm metadata, and the
+signature, but excludes itself and any container/list position.
+
+`lifecycleEvidence` must contain every record supplied to the fold, with no
+hidden side channel or omitted sequence. Evaluation validates signatures and
+authorization first, rejects duplicate or non-positive `recordSequence`
+values, recomputes every `evidenceDigest`, and then sorts the validated records
+by `effectiveAt`, `recordSequence`, action precedence (`revoked` before
+`superseded` before other transitions), and `evidenceDigest`. The resulting
+order is the sole fold input; serialized array order has no authority. Unknown,
+conflicting, invalid, omitted, or unauthorized records fail closed with
+`BUZZ_IDENTITY_BINDING_INVALID`.
 
 The Buzz agent key and owner key must not be interpreted as a wallet, payment
 principal, delegated spender, RAP mandate signer, or reputation issuer. NIP-OA
