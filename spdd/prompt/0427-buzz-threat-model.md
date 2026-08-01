@@ -54,7 +54,7 @@ localnet, devnet, or mainnet; and work on #428 or #429+.
 | Threat-model registry | Closed machine-readable security contract | Version, normative pin/digest inputs, pinned evaluation time, trust boundaries, actors, assets, threats, controls, gate mappings, residual risk |
 | Threat record | One testable abuse case | Stable id, STRIDE categories, asset, attacker, entry point, preconditions, impact, preventive/detective controls, decision, diagnostics, evidence, response, residual risk, fixture ids |
 | Approval scope | Prevents ambient or stale owner consent | Exact ADL/report/persona/manifest/curation digests, Buzz/source/adapter pins, permission/loss/warning digests, sandbox id, one task digest, nonce, issued/expiry time, owner key and signature |
-| Signature wire contract | Makes approval and event proofs reproducible | Domain tag bytes, NUL separator placement, RFC 8785/JCS payload bytes, excluded signature fields, UTF-8/base64url encodings, Ed25519 algorithm id, signer key id, trust-root binding |
+| Signature wire contract | Makes approval and event proofs reproducible | Separate digest/signature domain bytes, NUL separator placement, RFC 8785/JCS payload bytes, exhaustive digest/signature field exclusions, SHA-256 digest representation, pure Ed25519 algorithm id, UTF-8/base64url encodings, signer key id, trust-root binding |
 | Sandbox policy | Defines G2 least privilege without starting it | Local-only, deny-by-default filesystem/network/environment/provider/tool/wallet/payment surfaces; explicit created-path allowlist and resource bounds |
 | Event context | Signed collaboration provenance only | Sandbox/task/approval/agent binding, monotonic local sequence, nonce, prior-event digest, event digest; no mandate/acceptance/payment/reputation authority |
 | Audit evidence | Tamper-evident local history and limitations | Ordered raw records, chain verification, missing-prefix/tail warning, signer/pin context, export digest, explicit non-authority and non-tamper-resistance statement |
@@ -152,29 +152,56 @@ nonce, and a short issued/expiry window. Approval cannot be wildcarded,
 refreshed implicitly, transferred between sandboxes/tasks, or inferred from a
 Buzz/Nostr event, channel membership, reaction, prior install, or prior phase.
 
-Approval and event signatures use one frozen cryptographic wire contract. The
-preimage is:
+Approval and event proofs use SHA-256 for object identity and pure Ed25519
+(RFC 8032 `Ed25519`, not `Ed25519ph`) for signatures. There is no algorithm
+negotiation. The closed approval payload is the complete approval-scope object
+after removing exactly `approvalDigest`, `signature`, `signatureBytes`,
+`signatureAlgorithm`, `proof`, `verified`, `decision`, and `diagnostics`. The
+closed event payload removes exactly `eventDigest`, `signature`,
+`signatureBytes`, `signatureAlgorithm`, `proof`, `verified`, `decision`, and
+`diagnostics`. A removed field cannot be represented as `null`; an
+unknown digest, signature, proof, or derived field is rejected before hashing.
+
+The object digests are exactly:
 
 ```text
-<ascii-domain-tag> || 0x00 || <ascii-version> || 0x00 || <rfc8785-jcs-json-bytes>
+approvalDigest = SHA-256(
+  ASCII("reddiagent.buzz.g2.approval.digest.v0.1") || 0x00 ||
+  RFC8785-JCS-UTF8(closedApprovalPayload)
+)
+eventDigest = SHA-256(
+  ASCII("reddiagent.buzz.g2.event.digest.v0.1") || 0x00 ||
+  RFC8785-JCS-UTF8(closedEventPayload)
+)
 ```
 
-The domain tags are exactly `reddiagent.buzz.g2.approval.scope` and
-`reddiagent.buzz.local.event.context`; the version is exactly
-`BUZZ-THREAT-MODEL-v0.1`. The JSON bytes are UTF-8 RFC 8785/JCS canonical form
-of the closed payload object with `signature`, `signatureBytes`, `proof`,
-`verified`, and any caller-supplied derived outcome fields excluded. Binary
-digests, public keys, key ids, nonces, and signatures are unpadded base64url
-strings over their raw bytes. The only accepted algorithm id is
-`Ed25519ph:none`; no hash-prehashed or multi-algorithm negotiation is allowed.
+Each stored digest is the unpadded base64url encoding of the raw 32-byte SHA-256
+result. The exact bytes signed with pure Ed25519 are, respectively:
+
+```text
+ASCII("reddiagent.buzz.g2.approval.signature.v0.1") || 0x00 || rawApprovalDigest
+ASCII("reddiagent.buzz.g2.event.signature.v0.1") || 0x00 || rawEventDigest
+```
+
+The only accepted `signatureAlgorithm` value is `Ed25519`. Implementations must
+call the pure Ed25519 sign/verify operation over the 75-byte approval signed
+representation or 72-byte event signed representation above and must not
+prehash those bytes or select Ed25519ph. JSON is UTF-8 RFC 8785/JCS canonical
+form. Binary digests, public keys, key ids, nonces, and signatures are unpadded
+base64url strings over their raw bytes.
+
 The signing key must resolve through the #424 owner or agent binding verifier
 for the exact role, canonical ADL digest, source pins, evaluation time, and
 revocation state. A valid cryptographic signature under the wrong role, stale
 binding, superseded key, unrelated ADL, or alternate domain is invalid.
 
-Negative fixtures must cover omitted fields, substituted digests, alternate
-domain tags, missing or duplicated NUL separators, different canonicalization,
-UTF-16 or locale encoding, padded or non-canonical base64url, wrong algorithm,
+Negative fixtures must cover omitted payload fields, substituted digests,
+caller-supplied/circular `approvalDigest` or `eventDigest` fields in the hashed
+payload, unknown digest-like fields, alternate digest or signature domains,
+missing or duplicated NUL separators, signing JCS bytes instead of the signed
+digest representation, different canonicalization, UTF-16 or locale encoding,
+padded or non-canonical base64url, `Ed25519ph`/prehashed verification under an
+`Ed25519` claim, pure-Ed25519 verification under an `Ed25519ph` claim, wrong algorithm,
 wrong owner key, wrong agent key, owner-key-as-agent-key, agent-key-as-owner-key,
 rotation between approval and use, revoked key, and caller-supplied
 `verified=true`. All emit `BUZZ_SECURITY_SIGNATURE_PREIMAGE_INVALID`,
@@ -192,7 +219,10 @@ Signed local event context binds the exact approval, task, sandbox, canonical
 agent, Buzz agent key, nonce, monotonic sequence, and previous digest. Duplicate
 nonces/digests, gaps, forks, wrong predecessor, wrong signer, wrong task, events
 after stop/revocation, and stale approval refuse. Wall-clock order alone is not
-authority.
+authority. The first event's `previousEventDigest` is exactly JSON `null` in
+the closed event payload; every later value is the unpadded base64url raw digest
+of the immediately preceding event. Missing, string `"null"`, empty, all-zero,
+forked, or substituted predecessors refuse before signature verification.
 
 Upstream block/buzz#2603 is treated as an unresolved shared/cross-owner-agent
 boundary unless #428 tests an exact reviewed pin and proves otherwise. The G2
@@ -252,15 +282,16 @@ after G1 closes.
 
 The G2 lifecycle is a total deterministic state machine with these states:
 `not-reviewed`, `declined`, `approval-issued`, `install-verified`,
-`started`, `task-recorded`, `task-held`, `task-rejected`, `stopped`,
+`started`, `task-recorded`, `task-held`, `task-rejected`, `incident-recorded`, `stopped`,
 `revoked`, `uninstalled`, `residual-guidance-recorded`, `reset-verified`, and
 `terminal`. The only normal success branch is:
 `not-reviewed -> approval-issued -> install-verified -> started ->
 task-recorded -> task-held|task-rejected -> stopped -> revoked -> uninstalled
 -> residual-guidance-recorded -> reset-verified -> terminal`. The explicit
 decline branch is `not-reviewed -> declined -> terminal`; decline never creates
-install/start/task authority. Incident branches may transition from any
-non-terminal post-approval state to `stopped`, then `revoked`, then cleanup.
+install/start/task authority. Incident branches transition from any
+non-terminal post-approval state to `incident-recorded`, then `stopped`,
+`revoked`, and cleanup.
 `terminal` is absorbing and cannot be reopened; any later run needs a fresh
 approval and a new sandbox id.
 
@@ -271,6 +302,84 @@ decision. Missing predecessor, predecessor mismatch, skipped state, duplicate
 state id, branch join without the required prior state, post-terminal event,
 or stale approval emits `BUZZ_SECURITY_LIFECYCLE_TRANSITION_INVALID` or
 `BUZZ_SECURITY_APPROVAL_STALE`.
+
+The transition relation is closed by the following matrix. A source/destination
+pair absent from this table is invalid. Set-valued source cells expand to one
+edge per named source; no actor may substitute for the sole actor shown.
+
+| From | To | Sole actor | Required proof |
+|---|---|---|---|
+| genesis | `not-reviewed` | verifier | `local-verifier-genesis-v1` |
+| `not-reviewed` | `declined` | owner | pure-Ed25519 `owner-decision-v1` |
+| `not-reviewed` | `approval-issued` | owner | pure-Ed25519 approval-scope proof defined above |
+| `declined` | `terminal` | verifier | `local-verifier-terminal-v1` |
+| `approval-issued` | `install-verified` | verifier | `local-verifier-install-v1` |
+| `install-verified` | `started` | operator | pure-Ed25519 `operator-action-v1` under the operator key pinned by the approval |
+| `started` | `task-recorded` | operator | pure-Ed25519 `operator-task-submit-v1` under that same key |
+| `task-recorded` | `task-held` | verifier | `local-verifier-policy-decision-v1` |
+| `task-recorded` | `task-rejected` | verifier | `local-verifier-policy-decision-v1` |
+| `task-held`, `task-rejected` | `stopped` | operator | pure-Ed25519 `operator-action-v1` |
+| any of `approval-issued`, `install-verified`, `started`, `task-recorded`, `task-held`, `task-rejected` | `incident-recorded` | verifier | `local-verifier-incident-v1` bound to the incident digest |
+| `incident-recorded` | `stopped` | verifier | `local-verifier-incident-stop-v1` |
+| `stopped` | `revoked` | owner | pure-Ed25519 `owner-revocation-v1` |
+| `revoked` | `uninstalled` | verifier | `local-verifier-uninstall-v1` |
+| `uninstalled` | `residual-guidance-recorded` | verifier | `local-verifier-retention-v1` |
+| `residual-guidance-recorded` | `reset-verified` | verifier | `local-verifier-reset-v1` |
+| `reset-verified` | `terminal` | verifier | `local-verifier-terminal-v1` |
+
+The approval payload pins `operatorKeyId` and `operatorPubkey`; both must equal
+the key id and public key of the current #424-bound owner identity for the same
+canonical ADL, sandbox, task, source pins, and validity interval. They do not
+create another identity or delegation mechanism. Verifier proofs
+are closed deterministic evidence objects emitted by the static verifier, not
+caller assertions or signatures. Agent event signatures prove response/event
+provenance but never authorize a lifecycle edge.
+
+Every state record uses these exact digest rules. `statePayload` excludes
+`statePayloadDigest`, `stateDigest`, `signature`, `proof`, `verified`,
+`decision`, and `diagnostics`. `statePayloadDigest` is the unpadded base64url
+encoding of:
+
+```text
+SHA-256(ASCII("reddiagent.buzz.g2.state-payload.digest.v0.1") || 0x00 ||
+        RFC8785-JCS-UTF8(statePayload))
+```
+
+`stateDigest` is the unpadded base64url encoding of:
+
+```text
+SHA-256(ASCII("reddiagent.buzz.g2.state-record.digest.v0.1") || 0x00 ||
+        RFC8785-JCS-UTF8({
+          "actorRole": actorRole,
+          "evaluationTime": evaluationTime,
+          "predecessorStateDigest": predecessorStateDigest,
+          "proofType": proofType,
+          "state": state,
+          "stateId": stateId,
+          "statePayloadDigest": statePayloadDigest
+        }))
+```
+
+For the sole genesis `not-reviewed` record,
+`predecessorStateDigest` is the JSON value `null` and those literal JCS bytes
+participate in `stateDigest`. For every other record it is the unpadded
+base64url raw digest of the immediately preceding record. Missing, string
+`"null"`, empty, all-zero, wrong-branch, or substituted predecessors refuse.
+Fixtures cover every matrix edge plus every absent edge, wrong actor,
+wrong proof type, agent-event-as-transition-proof, payload/state substitution,
+initial-null variants, skipped predecessor, fork, and post-terminal replay.
+
+For matrix rows whose proof type is pure Ed25519 other than the separately
+defined approval-scope proof, the exact bytes signed are:
+
+```text
+ASCII("reddiagent.buzz.g2.lifecycle.signature.v0.1") || 0x00 || rawStateDigest
+```
+
+The `proofType`, actor role, and actor key id are inside the hashed state
+record, so a proof cannot be relabeled or moved to another edge. The only
+accepted algorithm is pure `Ed25519`; Ed25519ph, signing the JCS payload
+directly, or signing `statePayloadDigest` instead of `stateDigest` refuses.
 
 Decision precedence is total. `refused` outranks `hold`, which outranks
 `g1-threat-evidence-ready`. Signature, schema, pin/digest, stale/revoked
@@ -304,20 +413,49 @@ sha256("reddiagent.rap.g3.economic-intent.v0.1" || 0x00 || <rfc8785-jcs-json-byt
 ```
 
 The JSON bytes bind canonical ADL digest, task digest, principal id, payee id,
-purpose, amount, currency, expiry, revocation pointer, RAP request digest,
-rail id, rail-visible idempotency key, and policy version. This digest is the
+purpose, amount, currency, expiry, revocation pointer, RAP request-core digest,
+rail id, and policy version. The rail-visible idempotency key is derived from,
+and is deliberately excluded from, this payload to avoid a circular digest.
+The request-core digest itself excludes economic-intent/idempotency, attempt,
+receipt, reconciliation, signature/proof, and derived outcome fields; the final
+RAP request envelope then carries both that core digest and the completed
+economic-intent digest without recursive hashing.
+This digest is the
 at-most-once scope. It must be included unchanged in every local attempt record,
-RAP request object, rail metadata/idempotency field where the rail permits it,
+RAP request object, and mandatory rail idempotency field,
 receipt join record, reconciliation record, and rendered evidence. Changing
-payee, amount, currency, task, principal, rail, expiry, idempotency key, or
-policy version creates a different economic intent and cannot be treated as a
-retry of the prior intent.
+payee, amount, currency, task, principal, rail, expiry, or policy version
+creates a different economic intent and cannot be treated as a retry of the
+prior intent. Any idempotency key other than the single derived key below is a
+mismatch and refuses rather than creating a new intent.
 
-Before a first submission, the system records a durable pending attempt. A
-definitive authoritative-rail rejection may permit a policy-bounded new attempt
-under a new attempt id while retaining the same logical idempotency scope. A
-success, duplicate, unknown/timeout, conflicting result, missing receipt, or
-unreconciled state forbids automatic retry. Recovery requires read-only
+Rail support for one immutable, rail-visible idempotency key is mandatory. The
+key is exactly `base64url(rawEconomicIntentDigest)`, must be carried in the
+rail's authenticated request/idempotency field, and must be returned unchanged
+in authenticated status, reconciliation, and final receipt evidence. Unknown
+capability is `hold`; a rail that cannot preserve and return this binding is
+`refused` before submission. A local-only key, mutable metadata, or receipt-text
+echo is insufficient.
+
+Before a first submission, one durable compare-and-swap creates the unique
+attempt row keyed by `economicIntentDigest` and the unique rail idempotency key,
+moving version 0 `not-submitted` to version 1 `pending-recorded`. Only CAS from
+the exact current version may advance the row; duplicate insert, losing worker,
+stale version, key change, or second attempt id refuses. The request bytes and
+request digest are frozen at version 1. Submission may occur once from that
+row. No final rejection, success, duplicate, conflict, key rotation, expiry,
+or revocation permits a new attempt id or a different key for the same economic
+intent.
+
+A same-key transport replay is not a new payment attempt, but is allowed only
+when the exact request bytes/digest are unchanged, the pinned rail contract
+guarantees replay returns the original result without a second economic action,
+and fresh authenticated reconciliation has proved the current rail state. It
+uses the same attempt id and CAS row. `unknown`, timeout, stale/missing
+reconciliation, or a rail without that replay guarantee forbids automatic
+replay and remains `hold`. A success, final rejection, duplicate-final,
+conflicting result, missing authenticated receipt, or unreconciled state
+forbids resubmission. Recovery requires read-only
 authoritative rail reconciliation, exact receipt/request join, and human review
 when the result remains ambiguous. At-most-once applies to the economic intent,
 not merely to one HTTP call. Payment success never proves work success, eval
@@ -337,6 +475,39 @@ These emit `BUZZ_SECURITY_ECONOMIC_INTENT_MISMATCH`,
 `BUZZ_SECURITY_PAYMENT_ATTEMPT_STATE_INVALID`,
 `BUZZ_SECURITY_PAYMENT_RETRY_REFUSED`, or
 `BUZZ_SECURITY_RAIL_RECONCILIATION_REQUIRED`.
+
+The fresh G3 authorization pins the rail trust root (`railId`, root key id,
+raw public-key digest, signature algorithm, reconciliation maximum age, and
+accepted finality policy). A reconciliation payload excludes exactly
+`reconciliationDigest`, `signature`, `signatureAlgorithm`, `proof`, `verified`,
+`decision`, and `diagnostics`, and
+binds economic-intent digest, rail-visible idempotency key, request digest,
+attempt id, rail transaction/reference id or explicit null, status, finality,
+monotonic rail sequence, observed time, valid-until time, and prior
+reconciliation digest or explicit null. Its digest and signed representation
+are exactly:
+
+```text
+reconciliationDigest = SHA-256(
+  ASCII("reddiagent.rap.g3.reconciliation.digest.v0.1") || 0x00 ||
+  RFC8785-JCS-UTF8(closedReconciliationPayload)
+)
+ASCII("reddiagent.rap.g3.reconciliation.signature.v0.1") || 0x00 ||
+rawReconciliationDigest
+```
+
+The pinned rail root signs that representation with pure Ed25519; the only
+accepted reconciliation signature algorithm is `Ed25519`.
+Verification requires `observedTime <= evaluationTime <= validUntilTime`, age
+within the pinned maximum, strictly increasing rail sequence, an unbroken
+reconciliation predecessor chain, and finality matching the pinned policy.
+Only authenticated `final-settled` or `final-rejected` evidence is final;
+`pending`, `unknown`, unfinalized, or stale evidence remains hold. Wrong root,
+wrong signature preimage, altered idempotency/request join, regressed sequence,
+or false finality refuses. Fixtures cover unsupported rails, local-only keys,
+same-key replay with changed bytes, changed-key retry, duplicate CAS workers,
+wrong/stale root, missing/invalid signatures, freshness boundaries, predecessor
+forks, and non-final status presented as final.
 
 ## S — Structure / Files Touched
 
@@ -406,11 +577,13 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
   and re-verification after rotation/revocation. Wildcard, stale, replayed,
   cross-task, cross-sandbox, or altered approvals refuse.
 - [ ] Approval and event signature fixtures prove the exact domain tags, NUL
-  separators, RFC 8785/JCS payload bytes and exclusions, UTF-8 and unpadded
-  base64url encodings, Ed25519 algorithm id, role-specific #424 key binding,
-  and rotation/revocation handling. Omission, substitution, alternate domain,
-  alternate encoding, wrong-key, wrong-role, stale-key, and caller-supplied
-  verified fields refuse before lifecycle evaluation.
+  separators, SHA-256 digest preimages, exhaustive circular/digest/signature
+  field exclusions, exact pure-Ed25519 signed representation, UTF-8 and
+  unpadded base64url encodings, role-specific #424 key binding, and rotation/
+  revocation handling. Omission, substitution, alternate domain/encoding,
+  digest-field injection, Ed25519/Ed25519ph confusion, wrong-key, wrong-role,
+  stale-key, and caller-supplied verified fields refuse before lifecycle
+  evaluation.
 - [ ] Event fixtures prove signer/task/sandbox/approval binding, predecessor and
   sequence integrity, nonce uniqueness, stop/revocation precedence, and no
   authority inference. #2603 stays explicitly unsupported for cross-owner or
@@ -432,7 +605,8 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
   hold-or-reject, stop, revoke, uninstall, residual guidance, and reset states,
   while all external/payment boundaries remain false.
 - [ ] G2 lifecycle fixtures prove all allowed branches, invalid transitions,
-  skipped/reordered states, duplicate states, predecessor/state digest mismatch,
+  the exact closed actor/proof matrix, skipped/reordered states, duplicate
+  states, explicit-null genesis and predecessor/state digest mismatch,
   post-terminal replay, incident branch containment, fresh-approval-after-
   terminal requirements, and refused-before-hold decision precedence.
 - [ ] G3 fixtures prove missing reconciliation, ambiguous/timeout, duplicate,
@@ -440,9 +614,11 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
   and automatic retry all hold or refuse. No fixture enables payment execution.
 - [ ] G3 economic fixtures prove the domain-separated economic-intent digest,
   immutable rail-visible idempotency binding, append-only atomic attempt states,
-  authenticated reconciliation/finality, crash recovery, concurrent workers,
-  key changes, duplicate rails, stale reads, forged receipts, and changed
-  principal/payee/amount/task/rail/policy all hold or refuse. No fixture
+  unique CAS transitions, same-key retry rules, pinned reconciliation trust
+  root/signature preimage/freshness/finality, crash recovery, concurrent
+  workers, unsupported rails, key changes, duplicate rails, stale reads,
+  forged receipts, and changed principal/payee/amount/task/rail/policy all hold
+  or refuse. No fixture
   performs a rail, wallet, RPC, payment, settlement, or delegated-spend action.
 - [ ] Incident fixtures prove containment order: deny new work, stop, preserve
   redacted evidence, revoke approval/key/package as scoped, reconcile any
@@ -471,3 +647,4 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
 |---|---|---|---|
 | 2026-08-01 | Initial #427 threat-model implementation plan; no implementation or runtime action | Created | Deferred until this plan is accepted |
 | 2026-08-01 | Oli exact-head security QA BLOCK required frozen approval/event signature preimages, total G2 lifecycle semantics, and enforceable future G3 economic at-most-once rules | Added byte-level signature wire contract, branch-aware lifecycle state machine with decision precedence, and economic-intent/idempotency/attempt-state requirements | Deferred until this plan is accepted |
+| 2026-08-01 | Second Oli exact-head BLOCK found Ed25519ph/no-prehash conflict, incomplete digest/state wire rules, and optional rail idempotency/reconciliation semantics | Selected pure Ed25519 over domain-separated SHA-256 digests with exhaustive exclusions; added the closed actor/proof transition matrix and explicit-null state chain; made rail-visible idempotency, CAS uniqueness, same-key replay, and pinned reconciliation trust/finality mandatory | Deferred until this plan is accepted |
