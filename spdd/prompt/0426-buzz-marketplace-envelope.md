@@ -59,15 +59,16 @@ localnet, devnet, or mainnet; upstream contact; and work on #427 or later.
 | Entity / object | Purpose | Required fields / invariants |
 |---|---|---|
 | Curation envelope | Deterministic listing evidence root | Format/version, listing id/version, subject digest, publisher, canonical ADL, exact target pins, exporter evidence, tier assertions, losses, permissions, incidents, revocation, provenance, evaluation time, decision, diagnostics, digest |
-| Listing subject | Exact immutable thing being curated | Canonical ADL URI/API version/source digest/schema digest/source commit when repository-backed; report/package/manifest digests; upstream/fork/adapter 40-hex pins; #424 contract version |
-| Issuer registry | Closed local authority input | Registry version/digest, issuer id, exact Ed25519 public key, one closed role, allowed tier set, validity interval, and revocation authority; unknown roles or role/tier pairs refuse the assertion |
+| Listing subject | Exact immutable thing being curated | Canonical ADL URI/API version/source digest/schema digest/source commit when repository-backed; exact #425 report, persona, manifest, and artifact-set digests; upstream/fork/adapter 40-hex pins; #424 contract version |
+| Role trust policy | External authority root input | Separate caller-pinned local file and digest containing one exact Ed25519 root key per closed role; the publisher, owner, listing, envelope, and issuer registry cannot add or replace roots |
+| Issuer registry | Closed local assignment input | Registry version/digest plus independently root-signed assignment for each issuer id, exact Ed25519 key, one closed role/tier, validity interval, assignment sequence, and revocation key; an unsigned/self-signed entry grants no authority |
 | Publisher assertion | Provenance, never authority | Stable publisher issuer id/key, exact listing-subject digest, signed publisher preimage, issued/expiry times; can assert `listed` only and cannot imply owner, reviewer, reputation, or payment authority |
 | Owner binding record | Re-verifiable pin-bound identity evidence | Complete canonical #424 binding object and signature, binding digest, canonical agent id, ADL digest, Buzz agent key, owner key, lifecycle sequence/state/times, rotation predecessor when present, and revocation target; a digest-only summary is insufficient |
 | Tier assertion | One independently signed evidence claim | Assertion id/digest, tier enum, issuer id and registry role, exact listing-subject digest, `asOf`, `expiresAt`, ordered evidence refs/digests, downgrade rule, revocation authority/reference, and Ed25519 signature; no tier inheritance |
 | Review record | Scoped human review evidence | Reviewer id/role, exact subject digest and scope, reviewed time, expiry, decision, findings refs; cannot certify unreviewed fields |
-| Incident/revocation record | Immediate downgrade/withdrawal input | Record id, affected subject/assertion, reason code, effective time, evidence digest, issuer; deterministic precedence over stale positive claims |
+| Incident/revocation record | Immediate downgrade/withdrawal input | Record id, supported target type and exact digest, reason code, effective time, scoped sequence, evidence digest, authorized signer; #424 owner lifecycle records remain separate canonical inputs |
 | Permission/loss disclosure | Owner review surface | Complete #425 boundary flags, ordered loss rows/diagnostics, explicit `paymentMode=none`, install/runtime/network/tool/wallet/spend denials |
-| Install-review handoff | Static input for later #428 review | Envelope/report/package digests, exact pins, warnings, choices, required owner-decision state; `admitted=false`, `installed=false`, `started=false`, every capability false |
+| Install-review handoff | Static input for later #428 review | Envelope/report/persona/manifest/artifact-set digests, exact pins, warnings, choices, required owner-decision state; `admitted=false`, `installed=false`, `started=false`, every capability false |
 | Rendered review | Accessible deterministic evidence | Same decision/tier/loss/expiry/revocation data as JSON, no hidden authority claim, no action that performs installation |
 
 The envelope is a signed-evidence aggregator, not a trust oracle. Validation
@@ -84,8 +85,16 @@ Add a local CLI with separate validate and deterministic render modes:
 
 ```text
 python3 scripts/buzz_curation.py validate --envelope <json> \
+  --adl <canonical-adl> --report <compatibility-report.json> \
+  --persona <persona.json> --manifest <manifest.json> \
+  --identity-binding <424-binding.json> --role-trust-policy <roots.json> \
+  --issuer-registry <assignments.json> \
   --evaluation-time <pinned-utc> --json
 python3 scripts/buzz_curation.py render --envelope <json> \
+  --adl <canonical-adl> --report <compatibility-report.json> \
+  --persona <persona.json> --manifest <manifest.json> \
+  --identity-binding <424-binding.json> --role-trust-policy <roots.json> \
+  --issuer-registry <assignments.json> \
   --evaluation-time <pinned-utc> --output <empty-dir>
 ```
 
@@ -117,10 +126,13 @@ package bytes before hashing.
 
 | Value | Frozen preimage |
 |---|---|
-| `adlDigest`, `reportDigest`, `manifestDigest`, `packageDigest` | SHA-256 over the exact referenced local file bytes |
+| `adlDigest`, `reportDigest`, `personaDigest`, `manifestDigest` | SHA-256 over each exact explicit local file's bytes |
+| `artifactSetDigest` | SHA-256 over ASCII `reddiagent:buzz-export:artifact-set:v1`, one NUL byte, then JCS of exactly `{reportDigest,personaDigest,manifestDigest}`; this names the #425 three-file package without pretending a directory has portable raw bytes |
 | `listingSubjectDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:listing-subject:v1`, one NUL byte, then JCS of `listingSubject` with only `listingSubjectDigest` omitted |
-| `ownerBindingDigest` | SHA-256 over ASCII `reddiagent:buzz:owner-binding:v1`, one NUL byte, then JCS of the complete #424 owner-binding record with only `ownerBindingDigest` and `signature` omitted |
+| `bindingDigest` | Consumed and recomputed unchanged by the exact #424/#425 verifier: domain `reddiagent-buzz-identity-binding-v1` and only the immutable fields defined in #424 section 5.1; #426 defines no owner-binding preimage |
+| `roleTrustPolicyDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:role-trust-policy:v1`, one NUL byte, then JCS of the externally supplied policy with only `roleTrustPolicyDigest` omitted |
 | `issuerRegistryDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:issuer-registry:v1`, one NUL byte, then JCS of the registry with only `issuerRegistryDigest` omitted |
+| `issuerAssignmentDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:issuer-assignment:v1`, one NUL byte, then JCS of the assignment with only `issuerAssignmentDigest` and `rootSignature` omitted |
 | `tierAssertionDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:tier-assertion:v1`, one NUL byte, then JCS of the assertion with only `tierAssertionDigest` and `signature` omitted |
 | `revocationDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:revocation:v1`, one NUL byte, then JCS of the revocation with only `revocationDigest` and `signature` omitted |
 | `envelopeDigest` | SHA-256 over ASCII `reddiagent:buzz-curation:envelope:v1`, one NUL byte, then JCS of the complete envelope with only `envelopeDigest`, derived `evaluation`, and all publisher signatures omitted |
@@ -131,19 +143,40 @@ ASCII `reddiagent:buzz-curation:publisher:v1`, NUL, the 32 raw bytes decoded
 from `envelopeDigest`, NUL, and the 32 raw bytes decoded from
 `listingSubjectDigest`. A tier assertion signs ASCII
 `reddiagent:buzz-curation:tier-assertion:v1`, NUL, and the 32 raw bytes decoded
-from `tierAssertionDigest`; a revocation signs ASCII
+from `tierAssertionDigest`. Each issuer assignment is signed by the exact
+role-specific root over ASCII `reddiagent:buzz-curation:issuer-assignment:v1`,
+NUL, and the 32 raw bytes decoded from `issuerAssignmentDigest`; a revocation signs ASCII
 `reddiagent:buzz-curation:revocation:v1`, NUL, and the raw bytes decoded from
 `revocationDigest`.
-The validator recomputes each digest, verifies each signature against the exact
-key pinned in the issuer registry, and rejects alternative encodings, suites,
-domains, excluded fields, or byte normalization. Publisher signatures bind the
-whole unsigned envelope; tier and revocation signatures remain independently
-portable but exact-subject bound.
+The validator recomputes each digest, first authenticates every registry
+assignment against the exact role root in the separately pinned trust policy,
+then verifies assertion signatures against the assigned issuer key. It rejects
+alternative encodings, suites, domains, excluded fields, byte normalization,
+publisher/owner-controlled trust roots, and registry entries whose root role
+does not equal their asserted role. Publisher signatures bind the whole
+unsigned envelope; tier and revocation signatures remain independently portable
+but exact-subject bound.
 
-The package is the exact #425 package artifact; its manifest and exporter report
-are separate raw-byte inputs. The listing subject carries all three digests and
-the canonical ADL digest. The validator also recomputes the manifest's declared
-package/report/ADL links, so substituting any one artifact refuses the subject.
+The #425 package is supplied as the three explicit regular, non-symlink local
+files emitted by `write_package`: `compatibility-report.json`, `persona.json`,
+and `manifest.json`, plus the canonical ADL input. The validator hashes their
+raw bytes, requires the report/persona bytes to equal `JCS(parsed) + LF`, checks
+the manifest inventory's exact paths, byte lengths, and SHA-256 values for the
+report and persona, checks `manifest.reportDigest == reportDigest`, and checks
+the report/persona canonical ADL URI/digest, pins, false boundaries, losses,
+and `paymentMode=none` agree. It then derives `artifactSetDigest`; there is no
+free-form `packageDigest`. A changed ADL, report, persona, manifest, inventory
+row, or link refuses the subject.
+
+The complete `--identity-binding` file is passed to the same #424 verifier used
+by #425 (factored without semantic changes from `buzz_export.py` if sharing is
+needed). It recomputes the immutable `bindingDigest`, verifies the exact
+`ownerBindingProof`, all `lifecycleEvidence`, every `relatedBindings` proof and
+activation, relationship/sequence chronology, expiry, rotation, supersession,
+and revocation at the pinned evaluation time. The curation envelope carries
+only that verified digest/status summary and requires it to equal the #425
+report's identity summary; it never reconstructs, abbreviates, or independently
+folds owner lifecycle evidence.
 
 ### Independent evidence tiers
 
@@ -168,24 +201,42 @@ remains, but no failed assertion is silently discarded.
 Issuer authority is a closed mapping: `publisher` may assert `listed` only;
 `adl-validator` may assert `validated` only; `human-reviewer` may assert
 `reviewed` only; `rap-receipt-authority` may assert `receipt-backed` only; and
-`rap-payment-authority` may assert `payment-enabled` only. Each issuer registry
-entry contains exactly one role and its exact allowed tier. The registry itself
-is pinned by digest in the envelope and owner-reviewed as local input. Unknown
-roles, multiple roles, role/tier mismatch, invalid/expired issuer entries, or a
-signature under a different key produce `BUZZ_CURATION_ISSUER_UNAUTHORIZED`
-and fail only that assertion unless the publisher/listing subject is affected.
+`rap-payment-authority` may assert `payment-enabled` only. The external trust
+policy contains exactly one preconfigured root for each role and is not signed
+or extended by any publisher, owner, listing, envelope, or registry key. Each
+registry entry contains exactly one role/tier and an assignment signed by that
+role's root. In particular only the externally pinned RAP receipt/payment roots
+can delegate those roles: an owner or publisher key cannot self-designate as a
+RAP authority even if it signs both registry and assertion. Unknown/missing
+roots, multiple roles, role/tier mismatch, invalid/expired/root-signature-failed
+assignments, or a signature under a different key produce
+`BUZZ_CURATION_ISSUER_UNAUTHORIZED` and fail only that assertion unless the
+publisher/`listed` assertion is affected.
 
-Every revocation is a signed object containing a unique id, exact target type
-and target digest, issuer id, authority role, monotonically increasing decimal
-sequence, `effectiveAt`, reason code, and evidence digest. Only the original
-assertion issuer or the registry entry's named revocation authority may revoke
-an assertion; only the owner-binding lifecycle authority may revoke/rotate the
-owner binding; only the publisher's named revocation authority may revoke the
-listing subject. Revocations are ordered by `effectiveAt`, then numeric
-sequence, then revocation id. A valid revocation effective at or before the
-evaluation time wins over every positive assertion regardless of later file
-order; same-sequence conflicts, unauthorized revocations, or contradictory
-targets hold the subject and emit an explicit diagnostic.
+Curation revocations support exactly two target types: `tier-assertion` targets
+an exact `tierAssertionDigest`, and `issuer-assignment` targets an exact
+`issuerAssignmentDigest`. Owner-binding rotation/revocation is forbidden in
+this array and is evaluated only by the unchanged #424 lifecycle verifier.
+Each curation revocation contains a unique id, target type/digest, signer id/key,
+decimal sequence, `effectiveAt`, reason code, and evidence digest. Assertion
+revocation is authorized only by that assignment's named revocation key;
+assignment revocation only by the matching role trust root. Sequence scope is
+the tuple `(targetType,targetDigest,authorizedSignerKey)`; within that scope
+positive sequences are unique and strictly increase with chronological
+`effectiveAt`. Records sort by target type, decoded target digest, parsed
+`effectiveAt`, integer sequence, then decoded revocation digest. Array order has
+no authority. An effective valid revocation is irreversible and wins over its
+target and every later positive claim about that target.
+
+Unknown target types, absent targets, wrong target digests, wrong role roots,
+unauthorized signers, invalid signatures/evidence digests, non-positive or
+duplicate sequences, decreasing sequence/time pairs, or same-sequence
+conflicts are malformed supplied authority evidence: emit
+`BUZZ_CURATION_REVOCATION_INVALID` and `refused`. A well-formed effective
+revocation of the publisher/`listed` assertion or its issuer assignment yields
+`hold`; a well-formed effective revocation of another assertion/assignment
+yields `downgraded`. Incidents are separately issuer-scoped advisory evidence
+and cannot revoke anything.
 
 Every G1 install-review handoff has operational `paymentMode=none`. The positive
 informational payment fixture contains a valid, independently signed
@@ -210,6 +261,7 @@ The evaluator returns one of `eligible-for-static-review`, `downgraded`,
 - `BUZZ_CURATION_EVIDENCE_STALE`
 - `BUZZ_CURATION_ASSERTION_EXPIRED`
 - `BUZZ_CURATION_ASSERTION_REVOKED`
+- `BUZZ_CURATION_REVOCATION_INVALID`
 - `BUZZ_CURATION_ISSUER_UNAUTHORIZED`
 - `BUZZ_CURATION_TIER_INFERENCE_REFUSED`
 - `BUZZ_CURATION_PAYMENT_INFERENCE_REFUSED`
@@ -229,9 +281,9 @@ Decision evaluation is total and uses the first matching row:
 
 | Precedence | Condition | Decision |
 |---|---|---|
-| 1 | Schema parse/closure failure; duplicate object member or semantic id; core subject/report/manifest/package/envelope digest mismatch; invalid required publisher signature; tier/payment inference; false receipt/reputation claim; executable install/runtime/payment authority; or other tampering | `refused` |
+| 1 | Schema parse/closure failure; duplicate object member or semantic id; core subject/report/persona/manifest/artifact-set/envelope digest mismatch; invalid required publisher signature; invalid/unauthorized/wrong-target revocation; tier/payment inference; false receipt/reputation claim; executable install/runtime/payment authority; or other tampering | `refused` |
 | 2 | Public branding/distribution requested before #424 attribution clearance | `hold` with `BUZZ_CURATION_ATTRIBUTION_HOLD` (never install-authority refusal) |
-| 3 | Listing, publisher, owner binding, or issuer registry is expired/revoked/ambiguous; revocation sequence conflicts; required current owner binding cannot be re-verified; or no current `listed` assertion remains | `hold` |
+| 3 | Listing/publisher assertion, its authenticated issuer assignment, owner binding, role trust policy, or issuer registry is expired/revoked/ambiguous; required current #424 binding cannot be re-verified; or no current `listed` assertion remains | `hold` |
 | 4 | Core subject is valid/current and `listed` remains current, but one or more non-core tier assertions is expired, revoked, unauthorized, stale, or invalid | `downgraded` |
 | 5 | Core subject and owner binding are valid/current, `listed` is current, every supplied assertion is current and authorized, and no earlier condition applies | `eligible-for-static-review` |
 
@@ -259,8 +311,13 @@ projection while RAP remains authoritative.
 The handoff has exact false flags for admission, installation, startup,
 external network/relay/provider, ambient credentials, tool/MCP invocation,
 wallet/RPC/payment/delegated spend, public distribution/branding, and
-deployment. Any input asking the generator to flip one emits
-`BUZZ_CURATION_INSTALL_AUTHORITY_REFUSED` and produces no handoff/render output.
+deployment. Authority-request fields are separate from the two review-intent
+fields `publicDistributionRequested` and `publicBrandingRequested`. Setting an
+authority flag true emits `BUZZ_CURATION_INSTALL_AUTHORITY_REFUSED` and produces
+no handoff/render output. Setting either review-intent field true while #424
+clearance remains false instead produces the static review and handoff with all
+authority flags still false, decision `hold`, and only
+`BUZZ_CURATION_ATTRIBUTION_HOLD`; it is never caught by the authority refusal.
 
 Rejected alternatives: ordinal badges; transitive tier inheritance; treating a
 publisher or owner signature as review/payment authority; deriving reputation
@@ -324,6 +381,15 @@ public marketplace/deployment file is modified.
   cross-array uniqueness.
 - [ ] Every assertion is exact-subject, issuer-role, scope, time, evidence, and
   revocation bound; no assertion implies another tier.
+- [ ] Each issuer assignment verifies under a separately pinned role-specific
+  root; owner/publisher self-designation and especially false RAP authority are
+  refused. Tests swap each root, assignment role, issuer key, and signature.
+- [ ] The exact #424 verifier and complete binding input are reused, including
+  proof, lifecycle, related-binding, rotation, revocation, expiry, and report-
+  summary equality tests; #426 defines no alternate owner-binding digest/fold.
+- [ ] Explicit #425 ADL/report/persona/manifest files form a checked inventory
+  and artifact-set digest chain; mutation or substitution of any byte, path,
+  length, digest, pin, loss, or boundary refuses deterministically.
 - [ ] Receipt-backed without independent payment authority remains
   `paymentMode=none`; the informational positive payment-enabled fixture also
   remains operationally `paymentMode=none`; Buzz/Nostr/owner/review evidence
@@ -347,7 +413,10 @@ public marketplace/deployment file is modified.
   network requests, and escaped untrusted text. Tests parse the HTML and assert
   each condition rather than relying on visual inspection.
 - [ ] Attribution/branding flags remain false and public distribution is held
-  under #424 until separately reviewed.
+  under #424 until separately reviewed. Dedicated tests prove branding/
+  distribution review intent renders a hold artifact while every true install,
+  runtime, network, tool, wallet, payment, or deployment authority request
+  refuses with no output.
 - [ ] Two clean runs from identical explicit files and evaluation time produce
   identical JSON/Markdown/HTML bytes and digests.
 - [ ] Planned validation commands:
@@ -371,3 +440,4 @@ public marketplace/deployment file is modified.
 |---|---|---|---|
 | 2026-08-01 | Initial #426 implementation plan; no curation implementation | Created | Deferred until this plan is accepted |
 | 2026-08-01 | Oli/Sara exact-head BLOCK: byte/signature/issuer/revocation/aggregation and objective content/accessibility contracts incomplete | Froze preimages and signature suite; added closed issuer authority, re-verifiable owner record, signed revocation ordering, total precedence, informational payment-positive fixture, attribution hold, and objective cross-surface/accessibility criteria | Still deferred; this bounded step updates the plan only |
+| 2026-08-01 | Fresh Oli/Sara BLOCK: registry entries could self-authorize RAP roles, #424 binding and #425 package chains were redefined/incomplete, revocation scope was partial, and branding hold contradicted the catch-all authority refusal | Added external role-root-signed issuer assignments; unchanged complete #424 verifier reuse; explicit ADL/report/persona/manifest inventory and artifact-set chain; exhaustive curation revocation targets/scope/precedence; and distinct branding/distribution review intent | Still deferred; this bounded step updates the plan only |
