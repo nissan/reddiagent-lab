@@ -54,13 +54,14 @@ localnet, devnet, or mainnet; and work on #428 or #429+.
 | Threat-model registry | Closed machine-readable security contract | Version, normative pin/digest inputs, pinned evaluation time, trust boundaries, actors, assets, threats, controls, gate mappings, residual risk |
 | Threat record | One testable abuse case | Stable id, STRIDE categories, asset, attacker, entry point, preconditions, impact, preventive/detective controls, decision, diagnostics, evidence, response, residual risk, fixture ids |
 | Approval scope | Prevents ambient or stale owner consent | Exact ADL/report/persona/manifest/curation digests, Buzz/source/adapter pins, permission/loss/warning digests, sandbox id, one task digest, nonce, issued/expiry time, owner key and signature |
+| Signature wire contract | Makes approval and event proofs reproducible | Domain tag bytes, NUL separator placement, RFC 8785/JCS payload bytes, excluded signature fields, UTF-8/base64url encodings, Ed25519 algorithm id, signer key id, trust-root binding |
 | Sandbox policy | Defines G2 least privilege without starting it | Local-only, deny-by-default filesystem/network/environment/provider/tool/wallet/payment surfaces; explicit created-path allowlist and resource bounds |
 | Event context | Signed collaboration provenance only | Sandbox/task/approval/agent binding, monotonic local sequence, nonce, prior-event digest, event digest; no mandate/acceptance/payment/reputation authority |
 | Audit evidence | Tamper-evident local history and limitations | Ordered raw records, chain verification, missing-prefix/tail warning, signer/pin context, export digest, explicit non-authority and non-tamper-resistance statement |
 | Retention manifest | Makes cleanup and residual data reviewable | Declared created/read paths, content class, retention need, deletion/reset instruction, before/after presence checks, unverifiable residue disclosure |
 | Incident record | Freezes unsafe continuation | Trigger, affected pins/artifacts/sandbox, evidence digests, containment, revocation/stop state, cleanup state, owner, next approval gate |
-| G2 checklist | Preconditions for #428 local sandbox work | Exact pins, owner review, denied external/payment boundaries, decline/install/task/hold-or-reject/stop/revoke/uninstall/reset evidence |
-| G3 checklist | Static future request-only payment gate | Fresh separate authorization, request/mandate/idempotency bindings, authoritative reconciliation, retry rules, receipt/eval/dispute separation; never executable in #427/#428 |
+| G2 lifecycle state machine | Preconditions for #428 local sandbox work | Exact pins, owner review, denied external/payment boundaries, branch-aware transition table, predecessor/state digests, terminal state rules, decline/install/task/hold-or-reject/stop/revoke/uninstall/reset evidence |
+| G3 economic-intent state machine | Static future request-only payment gate | Fresh separate authorization, request/mandate/idempotency digest, immutable rail-visible binding, atomic attempt states, authoritative reconciliation, retry/finality rules, receipt/eval/dispute separation; never executable in #427/#428 |
 
 Every JSON object is closed. Callers cannot supply derived `verified`, `safe`,
 `approved`, `current`, `reconciled`, or `complete` booleans. The evaluator
@@ -118,8 +119,11 @@ Stable diagnostics include at minimum:
 - `BUZZ_SECURITY_PUBLIC_CONTENT_REFUSED`
 - `BUZZ_SECURITY_PACKAGE_TAMPERED`
 - `BUZZ_SECURITY_IDENTITY_INVALID`
+- `BUZZ_SECURITY_SIGNATURE_PREIMAGE_INVALID`
+- `BUZZ_SECURITY_SIGNATURE_KEY_INVALID`
 - `BUZZ_SECURITY_APPROVAL_STALE`
 - `BUZZ_SECURITY_EVENT_REPLAYED`
+- `BUZZ_SECURITY_LIFECYCLE_TRANSITION_INVALID`
 - `BUZZ_SECURITY_SHARED_AGENT_UNSUPPORTED`
 - `BUZZ_SECURITY_TOOL_CAPABILITY_REFUSED`
 - `BUZZ_SECURITY_AMBIENT_CREDENTIAL_REFUSED`
@@ -127,6 +131,8 @@ Stable diagnostics include at minimum:
 - `BUZZ_SECURITY_RETENTION_HOLD`
 - `BUZZ_SECURITY_AUDIT_LIMITATION`
 - `BUZZ_SECURITY_AUTHORITY_CLAIM_REFUSED`
+- `BUZZ_SECURITY_ECONOMIC_INTENT_MISMATCH`
+- `BUZZ_SECURITY_PAYMENT_ATTEMPT_STATE_INVALID`
 - `BUZZ_SECURITY_PAYMENT_RETRY_REFUSED`
 - `BUZZ_SECURITY_RAIL_RECONCILIATION_REQUIRED`
 - `BUZZ_SECURITY_INCIDENT_HOLD`
@@ -145,6 +151,35 @@ permissions, warnings, sandbox instance, one bounded task digest, a unique
 nonce, and a short issued/expiry window. Approval cannot be wildcarded,
 refreshed implicitly, transferred between sandboxes/tasks, or inferred from a
 Buzz/Nostr event, channel membership, reaction, prior install, or prior phase.
+
+Approval and event signatures use one frozen cryptographic wire contract. The
+preimage is:
+
+```text
+<ascii-domain-tag> || 0x00 || <ascii-version> || 0x00 || <rfc8785-jcs-json-bytes>
+```
+
+The domain tags are exactly `reddiagent.buzz.g2.approval.scope` and
+`reddiagent.buzz.local.event.context`; the version is exactly
+`BUZZ-THREAT-MODEL-v0.1`. The JSON bytes are UTF-8 RFC 8785/JCS canonical form
+of the closed payload object with `signature`, `signatureBytes`, `proof`,
+`verified`, and any caller-supplied derived outcome fields excluded. Binary
+digests, public keys, key ids, nonces, and signatures are unpadded base64url
+strings over their raw bytes. The only accepted algorithm id is
+`Ed25519ph:none`; no hash-prehashed or multi-algorithm negotiation is allowed.
+The signing key must resolve through the #424 owner or agent binding verifier
+for the exact role, canonical ADL digest, source pins, evaluation time, and
+revocation state. A valid cryptographic signature under the wrong role, stale
+binding, superseded key, unrelated ADL, or alternate domain is invalid.
+
+Negative fixtures must cover omitted fields, substituted digests, alternate
+domain tags, missing or duplicated NUL separators, different canonicalization,
+UTF-16 or locale encoding, padded or non-canonical base64url, wrong algorithm,
+wrong owner key, wrong agent key, owner-key-as-agent-key, agent-key-as-owner-key,
+rotation between approval and use, revoked key, and caller-supplied
+`verified=true`. All emit `BUZZ_SECURITY_SIGNATURE_PREIMAGE_INVALID`,
+`BUZZ_SECURITY_SIGNATURE_KEY_INVALID`, `BUZZ_SECURITY_IDENTITY_INVALID`, or the
+more specific pin/digest diagnostic before any later lifecycle decision.
 
 Before any later install/start/task transition, the verifier must re-run the
 unchanged complete #424 identity lifecycle verifier and the #425/#426 artifact
@@ -215,6 +250,39 @@ audit digests. Skipping, reordering, reusing approval, or claiming a later state
 from log text fails. The checklist is designed here but exercised only in #428
 after G1 closes.
 
+The G2 lifecycle is a total deterministic state machine with these states:
+`not-reviewed`, `declined`, `approval-issued`, `install-verified`,
+`started`, `task-recorded`, `task-held`, `task-rejected`, `stopped`,
+`revoked`, `uninstalled`, `residual-guidance-recorded`, `reset-verified`, and
+`terminal`. The only normal success branch is:
+`not-reviewed -> approval-issued -> install-verified -> started ->
+task-recorded -> task-held|task-rejected -> stopped -> revoked -> uninstalled
+-> residual-guidance-recorded -> reset-verified -> terminal`. The explicit
+decline branch is `not-reviewed -> declined -> terminal`; decline never creates
+install/start/task authority. Incident branches may transition from any
+non-terminal post-approval state to `stopped`, then `revoked`, then cleanup.
+`terminal` is absorbing and cannot be reopened; any later run needs a fresh
+approval and a new sandbox id.
+
+Every transition names one actor role (`owner`, `operator`, or `verifier`),
+the required signature or local verifier proof, the predecessor state digest,
+the current state payload digest, the exact evaluation time, and the expected
+decision. Missing predecessor, predecessor mismatch, skipped state, duplicate
+state id, branch join without the required prior state, post-terminal event,
+or stale approval emits `BUZZ_SECURITY_LIFECYCLE_TRANSITION_INVALID` or
+`BUZZ_SECURITY_APPROVAL_STALE`.
+
+Decision precedence is total. `refused` outranks `hold`, which outranks
+`g1-threat-evidence-ready`. Signature, schema, pin/digest, stale/revoked
+approval, executable authority, external/payment boundary, and invalid
+transition failures are `refused`. Retention residue, incomplete cleanup,
+shared-agent unsupported status, unresolved incident evidence, and G3
+preconditions are `hold` when no refusal applies. If a compound fixture contains
+both refused-before-hold evidence, the rendered output must show both
+diagnostics but return `refused`; the hold reason remains visible as secondary
+evidence. Stop and revoke outrank queued work, but they do not erase evidence
+or falsely complete uninstall/reset.
+
 Every G2 state keeps `paymentMode=none`, external network/relay false, ambient
 credentials false, external provider false, wallet/RPC/payment/delegated spend
 false, external testers false, and deployment false. Decline, hold, stop,
@@ -229,6 +297,22 @@ A later payment request must bind canonical ADL/task, principal, payee, purpose,
 amount/currency, expiry, revocation, rail, request digest, idempotency key, and
 attempt number. The Buzz event is context only and cannot be that authority.
 
+The future economic intent digest is domain separated from G2 events:
+
+```text
+sha256("reddiagent.rap.g3.economic-intent.v0.1" || 0x00 || <rfc8785-jcs-json-bytes>)
+```
+
+The JSON bytes bind canonical ADL digest, task digest, principal id, payee id,
+purpose, amount, currency, expiry, revocation pointer, RAP request digest,
+rail id, rail-visible idempotency key, and policy version. This digest is the
+at-most-once scope. It must be included unchanged in every local attempt record,
+RAP request object, rail metadata/idempotency field where the rail permits it,
+receipt join record, reconciliation record, and rendered evidence. Changing
+payee, amount, currency, task, principal, rail, expiry, idempotency key, or
+policy version creates a different economic intent and cannot be treated as a
+retry of the prior intent.
+
 Before a first submission, the system records a durable pending attempt. A
 definitive authoritative-rail rejection may permit a policy-bounded new attempt
 under a new attempt id while retaining the same logical idempotency scope. A
@@ -238,6 +322,21 @@ authoritative rail reconciliation, exact receipt/request join, and human review
 when the result remains ambiguous. At-most-once applies to the economic intent,
 not merely to one HTTP call. Payment success never proves work success, eval
 pass, accounting acceptance, dispute closure, or reputation eligibility.
+
+Future attempt records are atomic and append-only: `not-submitted`,
+`pending-recorded`, `submitted`, `rail-accepted`, `rail-rejected-final`,
+`duplicate-final`, `unknown-requires-reconciliation`,
+`conflict-requires-human-review`, and `terminal`. A process crash, concurrent
+worker, key rotation, or stale owner approval cannot create a second automatic
+submission for the same economic intent. Negative fixtures must model crash
+after pending-before-submit, crash after submit-before-receipt, two workers
+racing the same intent, rail duplicate with success semantics, rail duplicate
+with conflicting metadata, changed key between request and receipt, missing
+authenticated rail signature, stale reconciliation read, and forged receipt.
+These emit `BUZZ_SECURITY_ECONOMIC_INTENT_MISMATCH`,
+`BUZZ_SECURITY_PAYMENT_ATTEMPT_STATE_INVALID`,
+`BUZZ_SECURITY_PAYMENT_RETRY_REFUSED`, or
+`BUZZ_SECURITY_RAIL_RECONCILIATION_REQUIRED`.
 
 ## S — Structure / Files Touched
 
@@ -306,6 +405,12 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
   owner signature, pin/loss/permission/warning binding, sandbox/task isolation,
   and re-verification after rotation/revocation. Wildcard, stale, replayed,
   cross-task, cross-sandbox, or altered approvals refuse.
+- [ ] Approval and event signature fixtures prove the exact domain tags, NUL
+  separators, RFC 8785/JCS payload bytes and exclusions, UTF-8 and unpadded
+  base64url encodings, Ed25519 algorithm id, role-specific #424 key binding,
+  and rotation/revocation handling. Omission, substitution, alternate domain,
+  alternate encoding, wrong-key, wrong-role, stale-key, and caller-supplied
+  verified fields refuse before lifecycle evaluation.
 - [ ] Event fixtures prove signer/task/sandbox/approval binding, predecessor and
   sequence integrity, nonce uniqueness, stop/revocation precedence, and no
   authority inference. #2603 stays explicitly unsupported for cross-owner or
@@ -326,9 +431,19 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
 - [ ] G2 checklist has exact decline, install, start, one task/response with
   hold-or-reject, stop, revoke, uninstall, residual guidance, and reset states,
   while all external/payment boundaries remain false.
+- [ ] G2 lifecycle fixtures prove all allowed branches, invalid transitions,
+  skipped/reordered states, duplicate states, predecessor/state digest mismatch,
+  post-terminal replay, incident branch containment, fresh-approval-after-
+  terminal requirements, and refused-before-hold decision precedence.
 - [ ] G3 fixtures prove missing reconciliation, ambiguous/timeout, duplicate,
   conflicting receipt, changed payee/amount/task, expired/revoked authority,
   and automatic retry all hold or refuse. No fixture enables payment execution.
+- [ ] G3 economic fixtures prove the domain-separated economic-intent digest,
+  immutable rail-visible idempotency binding, append-only atomic attempt states,
+  authenticated reconciliation/finality, crash recovery, concurrent workers,
+  key changes, duplicate rails, stale reads, forged receipts, and changed
+  principal/payee/amount/task/rail/policy all hold or refuse. No fixture
+  performs a rail, wallet, RPC, payment, settlement, or delegated-spend action.
 - [ ] Incident fixtures prove containment order: deny new work, stop, preserve
   redacted evidence, revoke approval/key/package as scoped, reconcile any
   ambiguous authority state, uninstall/reset, document residue, and require a
@@ -355,3 +470,4 @@ wallet/payment, relay, deployment, or public distribution surface is modified.
 | Date | Divergence | Artifact update | Code/test update |
 |---|---|---|---|
 | 2026-08-01 | Initial #427 threat-model implementation plan; no implementation or runtime action | Created | Deferred until this plan is accepted |
+| 2026-08-01 | Oli exact-head security QA BLOCK required frozen approval/event signature preimages, total G2 lifecycle semantics, and enforceable future G3 economic at-most-once rules | Added byte-level signature wire contract, branch-aware lifecycle state machine with decision precedence, and economic-intent/idempotency/attempt-state requirements | Deferred until this plan is accepted |
