@@ -160,13 +160,26 @@ but exact-subject bound.
 The #425 package is supplied as the three explicit regular, non-symlink local
 files emitted by `write_package`: `compatibility-report.json`, `persona.json`,
 and `manifest.json`, plus the canonical ADL input. The validator hashes their
-raw bytes, requires the report/persona bytes to equal `JCS(parsed) + LF`, checks
-the manifest inventory's exact paths, byte lengths, and SHA-256 values for the
-report and persona, checks `manifest.reportDigest == reportDigest`, and checks
-the report/persona canonical ADL URI/digest, pins, false boundaries, losses,
-and `paymentMode=none` agree. It then derives `artifactSetDigest`; there is no
-free-form `packageDigest`. A changed ADL, report, persona, manifest, inventory
-row, or link refuses the subject.
+raw bytes and requires every JSON file to equal `JCS(parsed) + LF`. Before any
+`artifactSetDigest` is derived, `manifest.files` must be the exact ordered
+two-row inventory emitted by #425: `compatibility-report.json` followed by
+`persona.json`, each with its exact media type, raw-byte length, and raw-byte
+SHA-256; duplicate, extra, missing, reordered, or mismatched rows refuse. The
+validator also requires `manifest.reportDigest == reportDigest`.
+
+Pin ownership is deliberately asymmetric: the listing's `upstreamCommit`,
+`forkCommit`, and `adapterCommit` each compare only to the same-named field in
+`compatibility-report.json.target`. `persona.json` has no source-pin fields, so
+the validator neither requires nor synthesizes any. Report/persona agreement is
+limited to the fields #425 actually shares: `report.canonicalAdl` equals
+`persona.source`; `report.surfaceRows` equals `persona.lossReport` in exact
+order; `paymentMode` is `none` in both; and every shared #425 canonical/one-way
+and false boundary flag is equal and retains its required false value. The
+canonical ADL raw-byte digest and supplied URI/version/source-commit conditions
+must independently match `report.canonicalAdl`. Only after the inventory and
+all owned cross-links pass does the validator derive `artifactSetDigest`; there
+is no free-form `packageDigest`. A changed ADL, report, persona, manifest,
+inventory row, owned pin, shared field, or link refuses the subject.
 
 The complete `--identity-binding` file is passed to the same #424 verifier used
 by #425 (factored without semantic changes from `buzz_export.py` if sharing is
@@ -349,6 +362,9 @@ public marketplace/deployment file is modified.
    diagnostics, and fail-closed cross-object bindings.
 4. Add positive and compound negative fixtures proving no tier/payment/install
    inference, explicit downgrade/hold/refusal, and exact repeated JSON bytes.
+   Include three isolated listing/report pin-mismatch fixtures—one each for
+   `upstreamCommit`, `forkCommit`, and `adapterCommit`—without adding pin fields
+   to the persona.
 5. Add the static install-review handoff and accessible renderer only after the
    validator is complete; prove failures leave no partial output.
 6. Run focused checks and full smoke. Update this plan for material divergence
@@ -389,7 +405,11 @@ public marketplace/deployment file is modified.
   summary equality tests; #426 defines no alternate owner-binding digest/fold.
 - [ ] Explicit #425 ADL/report/persona/manifest files form a checked inventory
   and artifact-set digest chain; mutation or substitution of any byte, path,
-  length, digest, pin, loss, or boundary refuses deterministically.
+  length, digest, owned pin, shared canonical ADL field, ordered loss, or
+  boundary refuses deterministically. Listing pins compare only to
+  `report.target`; report/persona parity covers only their actual shared fields,
+  and separate negative fixtures mismatch each of the three pins without
+  inventing persona fields.
 - [ ] Receipt-backed without independent payment authority remains
   `paymentMode=none`; the informational positive payment-enabled fixture also
   remains operationally `paymentMode=none`; Buzz/Nostr/owner/review evidence
@@ -441,3 +461,4 @@ public marketplace/deployment file is modified.
 | 2026-08-01 | Initial #426 implementation plan; no curation implementation | Created | Deferred until this plan is accepted |
 | 2026-08-01 | Oli/Sara exact-head BLOCK: byte/signature/issuer/revocation/aggregation and objective content/accessibility contracts incomplete | Froze preimages and signature suite; added closed issuer authority, re-verifiable owner record, signed revocation ordering, total precedence, informational payment-positive fixture, attribution hold, and objective cross-surface/accessibility criteria | Still deferred; this bounded step updates the plan only |
 | 2026-08-01 | Fresh Oli/Sara BLOCK: registry entries could self-authorize RAP roles, #424 binding and #425 package chains were redefined/incomplete, revocation scope was partial, and branding hold contradicted the catch-all authority refusal | Added external role-root-signed issuer assignments; unchanged complete #424 verifier reuse; explicit ADL/report/persona/manifest inventory and artifact-set chain; exhaustive curation revocation targets/scope/precedence; and distinct branding/distribution review intent | Still deferred; this bounded step updates the plan only |
+| 2026-08-01 | Sara exact-head BLOCK: the plan required persona source pins that #425 does not emit and did not order inventory verification before the artifact-set digest | Assigned all three pins solely to `report.target`; limited report/persona parity to actual shared canonical ADL, ordered loss, payment-none, and false-boundary fields; made exact manifest inventory verification precede digest derivation; required one negative fixture per listing/report pin | Still deferred; this bounded step updates the plan only |
