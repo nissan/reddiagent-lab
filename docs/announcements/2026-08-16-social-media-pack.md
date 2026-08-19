@@ -190,3 +190,33 @@ should have prevented, file an implementation report — that's how v0.3 gets
 designed: https://agent-protocol.reddi.tech/feedback
 
 — The ReddiAgent project
+
+---
+
+## Superteam developer group (Discord/Telegram)
+
+**Just shipped: ADL v0.2.0-beta — an open spec for agents that pay each other on Solana, plus a game that stress-tests it** ⚡
+
+Hey Superteam fam 👋 — the milestone we've been building toward under our grant is now public.
+
+**The problem we're attacking:** USENIX Security 2026 found security-rule violations in *all fifteen* major x402 payment facilitators. The recurring bug is treating "payment succeeded" as "the work was done." When agents start hiring agents, that conflation is how treasuries get drained by work that never happened.
+
+**What we released:** the Agent Definition Language (ADL) v0.2.0-beta — an open spec (Apache-2.0 code, CC BY 4.0 specs) that describes an agent as one machine-validated document: model envelope + operating harness + an optional payment/reputation contract. Alongside it:
+
+▸ a receipt-integrity validator enforcing 10 evidence layers against a 14-case threat model (replay, wrong-payee, paid-but-denied, authority misuse) — 33 adversarial probes, all failing closed
+▸ a 5-level conformance ladder + 16 validated examples, including both sides of an agent-to-agent paid delegation at Level 3
+▸ everything deterministic and offline — no wallet in the validation loop; live settlement stays gated behind external audit
+
+The protocol side runs on Solana: four programs on devnet (registry, escrow, commit-reveal reputation, attestation) with the escrow/receipt flow the spec's payment extension maps onto.
+
+**And because specs earn trust by being attacked, we built the attacker** 🤖⚔️ — **Reddi Arena**, a competitive homebrew-bot game where your bot *is* an ADL document, weight classes are computed from your declaration, league tiers are the conformance levels, and the purse is escrow + receipts on the dry-run rail. Adversarial players trying to get paid without doing the work are the conformance suite. Early access waitlist is open: https://reddi-arena-production.up.railway.app
+
+**The ask:** build against the beta and break it. Building the Arena already put three real spec gaps on the v0.3 backlog (no price-discovery field #440, no non-monetary currency units #441, seller-side `charge` intents escaping the authority envelope #389). If you hit a wall the spec should have prevented, that implementation report is a v0.3 design input.
+
+🧪 Try it in 5 min: `curl -LO https://agent-protocol.reddi.tech/downloads/adl-v0.2.0-beta.zip` → unzip → `python3 scripts/adl_v02_conformance.py examples/v0.2/payment-agent.yaml`
+
+📜 Spec: https://agent-protocol.reddi.tech/spec
+🚀 Release: https://github.com/nissan/reddiagent-lab/releases/tag/v0.2.0-beta
+🗣️ Feedback: https://agent-protocol.reddi.tech/feedback
+
+Happy to answer questions here — and if anyone wants a review buddy for their first ADL doc, ping me. 🫡
