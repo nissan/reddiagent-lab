@@ -1,0 +1,49 @@
+name: Publish ADL v0.2.0-beta release
+
+# One-shot release automation: flips the existing DRAFT release tagged
+# v0.2.0-beta to published (as a pre-release), replacing its body with the
+# canonical notes in docs/release/ADL-v0.2.0-beta-RELEASE-NOTES.md.
+# Runs on push of this file to the release branch, or manually via dispatch.
+# Safe to re-run: it no-ops with a clear error once no draft remains.
+
+on:
+  push:
+    branches: [claude/protocol-audit-signup-flow-k19szi]
+    paths: [".github/workflows/publish-adl-beta-release.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Extract release body from canonical notes
+        # The notes file has a repo-facing preamble above the first `---`
+        # separator; the GitHub release body is everything after it.
+        run: |
+          awk 'flag{print} /^---$/ && !flag{flag=1}' \
+            docs/release/ADL-v0.2.0-beta-RELEASE-NOTES.md > /tmp/release-body.md
+          test -s /tmp/release-body.md
+          head -5 /tmp/release-body.md
+
+      - name: Publish the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          id=$(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
+            --jq '[.[] | select(.draft and .tag_name=="v0.2.0-beta")][0].id')
+          if [ -z "$id" ] || [ "$id" = "null" ]; then
+            echo "No draft release with tag_name v0.2.0-beta found (already published?)" >&2
+            exit 1
+          fi
+          jq -n --rawfile body /tmp/release-body.md \
+            '{tag_name:"v0.2.0-beta", name:"ReddiAgent ADL v0.2.0-beta", draft:false, prerelease:true, body:$body}' \
+            > /tmp/patch.json
+          gh api -X PATCH "repos/${GITHUB_REPOSITORY}/releases/${id}" \
+            --input /tmp/patch.json --jq '"Published: " + .html_url'
