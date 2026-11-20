@@ -51,8 +51,8 @@
           "path": "README.md",
           "exists": true,
           "kind": "file",
-          "sha256": "f1dec8eac2004ef2d50c828e27862903a9aa884be06f6893ac3a0b386211de26",
-          "bytes": 5506
+          "sha256": "9cb27c1e9586bba00a0690dcd6c8797db3ec6629cb2716f4f1656838331faed5",
+          "bytes": 5643
         },
         {
           "path": "docs/INDEX.md",
