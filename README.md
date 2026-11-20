@@ -25,7 +25,7 @@ the rail.
 ## What ADL looks like
 
 ```yaml
-apiVersion: reddiagent.dev/v0.2
+apiVersion: reddiagent.dev/v0.3
 kind: Agent
 metadata:
   name: simple-research-helper
@@ -57,7 +57,7 @@ harness:
       type: output-check
       rule: "Response must include an answer or a clear uncertainty statement."
       required: true
-      # ... evidence contract elided; see examples/v0.2/simple-agent.yaml
+      # ... evidence contract elided; see examples/v0.3/simple-agent.yaml
   runtime:
     target: local-python
 extensions: {}
@@ -65,10 +65,10 @@ extensions: {}
 
 ## Canonical spec
 
-- **[specs/ADL-v0.2.md](specs/ADL-v0.2.md)** — the canonical specification
-- **[specs/ADL-v0.2.schema.json](specs/ADL-v0.2.schema.json)** — the machine-checked schema
-- [examples/v0.2/](examples/v0.2/) — validated examples; [examples/invalid/](examples/invalid/) — negative fixtures a correct validator must reject
-- ADL v0.1 is superseded; see [docs/ADL-v0.1-to-v0.2-MIGRATION.md](docs/ADL-v0.1-to-v0.2-MIGRATION.md)
+- **[specs/ADL-v0.3.md](specs/ADL-v0.3.md)** — the canonical specification
+- **[specs/ADL-v0.3.schema.json](specs/ADL-v0.3.schema.json)** — the machine-checked schema
+- [examples/v0.3/](examples/v0.3/) — validated examples; [examples/invalid/](examples/invalid/) — negative fixtures a correct validator must reject
+- ADL v0.2 is superseded by v0.3 with no compatibility mode; see [docs/ADL-V0.2-TO-V0.3-MIGRATION.md](docs/ADL-V0.2-TO-V0.3-MIGRATION.md). v0.1 is superseded too; see [docs/ADL-v0.1-to-v0.2-MIGRATION.md](docs/ADL-v0.1-to-v0.2-MIGRATION.md)
 
 ## Reading path
 
@@ -107,7 +107,7 @@ approval.
 Requires Python 3.12+ with `pyyaml` and `jsonschema`:
 
     python3 scripts/validate_examples.py                                  # v0.1 example set (legacy)
-    python3 scripts/adl_v02_conformance.py examples/v0.2/simple-agent.yaml  # v0.2 conformance
+    python3 scripts/adl_v03_conformance.py examples/v0.3/simple-agent.yaml  # v0.3 conformance
     python3 -m pytest tests/ -q                                           # full suite
 
 Validation failures default to builder-facing guidance. Use `--format raw` for

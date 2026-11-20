@@ -4,7 +4,7 @@
       "exists": true,
       "issue": 365,
       "path": "tests/fixtures/beta-external-tester-mvp-packet.json",
-      "sha256": "d0137ef93854789ca6bf58699a5b9fa7deec992bcacaa084beb023ac54b85b0d",
+      "sha256": "0543900a6e4ddbf0672be6dfdeda4bc3ee8e78363a70f8c93c844f9449678993",
       "sizeBytes": 19588
     },
     "rapX402Ap2AuditPrep": {
@@ -17,8 +17,8 @@
     "readme": {
       "exists": true,
       "path": "README.md",
-      "sha256": "f1dec8eac2004ef2d50c828e27862903a9aa884be06f6893ac3a0b386211de26",
-      "sizeBytes": 5506
+      "sha256": "9cb27c1e9586bba00a0690dcd6c8797db3ec6629cb2716f4f1656838331faed5",
+      "sizeBytes": 5643
     },
     "roadmap": {
       "exists": true,
