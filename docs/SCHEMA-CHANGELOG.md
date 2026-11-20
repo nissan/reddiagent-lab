@@ -2,6 +2,29 @@
 
 _Loop 71. Anchor issue: #81._
 
+## 2026-11-20 — ADL v0.3: live Solana payments, V1 assets, price and fee, receipt v2 (#452)
+
+- **Breaking. v0.3 replaces v0.2 with no compatibility mode.** A v0.2 document
+  fails v0.3 validation with a pointer to
+  `docs/ADL-V0.2-TO-V0.3-MIGRATION.md`. v0.2 files remain as superseded history.
+- **Breaking.** `currency` (`USD`/`USDC`/`EUR`/`GBP`) is replaced by
+  `asset: { symbol, network, mint }` with symbols `SOL`, `USDC`, `PYUSD`,
+  `USDG`, `AUDD` and networks `solana-devnet`, `solana-mainnet-beta`. Mainnet
+  mints are checked against the protocol allowlist. (#441, in part)
+- **Breaking.** `rails` becomes a single `rail`; `x402-dry-run` is removed as a
+  rail and `extensions.x402.mode` (`dry-run` or `live`) is required. Level 3
+  now permits a live `solana` rail; other rails in live mode fail. (#445)
+- **Breaking.** Charge intents require `price`, `payTo`, `settlement`,
+  `requireReceipt: true`, `receiptRef`, `policyRefs` and a matching payment
+  policy, and are no longer skipped by conformance. (#389 item 1, #440)
+- **Breaking.** Receipt refs require `format`; the only value is
+  `reddi.receipt.v2`.
+- **Additive.** `extensions.x402.protocolFee` (`bps`, `rounding`, `paidBy`);
+  conformance requires 5 bps and requires the block for a live charge.
+- **Additive.** `examples/v0.3/` (the 16 migrated examples plus
+  `live-solana-provider-agent.yaml`), 16 `examples/invalid/adl-v0.3-*`
+  fixtures, and `scripts/adl_v03_conformance.py`.
+
 ## 2026-07-22 — ADL v0.2: observability, x402 hardening, examples (#331–#334)
 
 - **Additive.** Observability minimums: `harness.observability` gains typed
