@@ -3,7 +3,7 @@ kind: Agent
 metadata:
   name: live-solana-pricing-provider
   description: Provider that charges per call in AUDD on Solana mainnet-beta through the Reddi
-    Agent Protocol, declares the 5 bps protocol fee and returns a reddi.receipt.v2 receipt.
+    Agent Protocol, declares the 2.5% protocol fee and returns a reddi.receipt.v2 receipt.
     This document declares a live rail; validating it makes no payment and proves nothing
     about a deployment.
 model:

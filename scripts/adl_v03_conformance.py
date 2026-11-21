@@ -24,8 +24,10 @@ LIVE_GATED_BEFORE_LEVEL_4 = "production deployment descriptor requires Level 4"
 API_VERSION = "reddiagent.dev/v0.3"
 MIGRATION_NOTE = "docs/ADL-V0.2-TO-V0.3-MIGRATION.md"
 RECEIPT_FORMAT = "reddi.receipt.v2"
-# Reddi Agent Protocol fee: 5 basis points of the listed price, rounded down, taken from the provider's side.
-PROTOCOL_FEE_BPS = 5
+# Reddi Agent Protocol fee: 2.5% (250 basis points) of the amount actually paid, rounded down,
+# taken from the provider's side, capped at 0.1 SOL on SOL payments (stablecoins have no cap).
+PROTOCOL_FEE_BPS = 250
+PROTOCOL_FEE_SOL_CAP = "0.1"
 LIVE_RAIL = "solana"
 # Mints the protocol accepts on Solana mainnet-beta (programs/escrow/src/constants.rs in
 # nissan/reddi-agent-protocol). Devnet mints are operator-configured and are not table-checked.
@@ -238,12 +240,13 @@ def payment_policy_matches_intent(policy: dict, intent: dict) -> bool:
         return False
     if limits.get("requireReceipt") is not True:
         return False
-    # A charge is bounded by its price per call; a spend or refund by its maxAmount.
-    bound = (
-        object_or_empty(intent.get("price")).get("amount")
-        if intent.get("direction") == "charge"
-        else intent.get("maxAmount")
-    )
+    # A charge is bounded by its price per call, or by its maximum per call when priced per token;
+    # a spend or refund by its maxAmount.
+    price = object_or_empty(intent.get("price"))
+    if intent.get("direction") == "charge":
+        bound = price.get("maxPerCall") if price.get("per") == "token" else price.get("amount")
+    else:
+        bound = intent.get("maxAmount")
     return limits.get("asset") == object_or_empty(intent.get("asset")).get("symbol") and decimal_string_equal(
         limits.get("maxAmount"),
         bound,
@@ -269,8 +272,12 @@ def payment_semantic_diagnostics(doc: dict) -> list[str]:
     x402 = object_or_empty(extensions.get("x402"))
     mode = payment_mode(doc)
     fee = x402.get("protocolFee")
-    if isinstance(fee, dict) and fee.get("bps") != PROTOCOL_FEE_BPS:
-        problems.append(f"extensions.x402.protocolFee.bps must be {PROTOCOL_FEE_BPS}")
+    if isinstance(fee, dict):
+        if fee.get("bps") != PROTOCOL_FEE_BPS:
+            problems.append(f"extensions.x402.protocolFee.bps must be {PROTOCOL_FEE_BPS}")
+        cap = object_or_empty(fee.get("cap"))
+        if cap.get("symbol") != "SOL" or not decimal_string_equal(cap.get("amount"), PROTOCOL_FEE_SOL_CAP):
+            problems.append(f"extensions.x402.protocolFee.cap must be {PROTOCOL_FEE_SOL_CAP} SOL")
     for intent in payment_intents(doc):
         intent_id = intent.get("id")
         holders = [("", intent)]
@@ -285,6 +292,17 @@ def payment_semantic_diagnostics(doc: dict) -> list[str]:
                         f"extensions.x402.intents[{intent_id}]{suffix}.asset.mint is not the allowlisted "
                         f"{symbol} mint on solana-mainnet-beta"
                     )
+        if intent.get("direction") == "charge":
+            per_token = object_or_empty(intent.get("price")).get("per") == "token"
+            metered = intent.get("settlement") == "metered-escrow"
+            if per_token and not metered:
+                problems.append(
+                    f"extensions.x402.intents[{intent_id}].settlement must be metered-escrow for a per-token price"
+                )
+            elif metered and not per_token:
+                problems.append(
+                    f"extensions.x402.intents[{intent_id}].settlement=metered-escrow needs a per-token price"
+                )
         if mode == "live":
             if intent.get("rail") != LIVE_RAIL:
                 problems.append(
