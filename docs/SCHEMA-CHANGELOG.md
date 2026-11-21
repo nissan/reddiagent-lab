@@ -2,6 +2,22 @@
 
 _Loop 71. Anchor issue: #81._
 
+## 2026-11-21 — ADL v0.3: per-token prices, metered escrow, 2.5% fee
+
+- **Breaking.** The protocol fee is 250 bps (2.5%) of the amount actually
+  paid, with `protocolFee.cap: { symbol: SOL, amount: '0.1' }` required.
+  Conformance rejects 5 bps and a missing or different cap. `protocolFee.base:
+  actual-cost` is optional. Replaces the 5 bps fee below (owner decision,
+  20 November 2026).
+- **Additive.** A charge `price` can be per token: `{ per: token,
+  inputPerMillion, outputPerMillion, maxPerCall }`. `settlement` gains
+  `metered-escrow`; conformance requires per-token prices and
+  `metered-escrow` to go together, and the payment policy bounds a per-token
+  charge by `maxPerCall`.
+- **Additive.** `examples/v0.3/live-solana-per-token-provider-agent.yaml` and
+  four fixtures: `per-token-direct-settlement`, `metered-escrow-per-call-price`,
+  `per-token-missing-max-per-call`, `wrong-protocol-fee-cap`.
+
 ## 2026-11-20 — ADL v0.3: live Solana payments, V1 assets, price and fee, receipt v2 (#452)
 
 - **Breaking. v0.3 replaces v0.2 with no compatibility mode.** A v0.2 document

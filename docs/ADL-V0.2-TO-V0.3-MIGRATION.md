@@ -17,7 +17,7 @@ Documents without `extensions.x402` only need the version line changed.
 | policy `limits.currency` / `limits.maxUsd` | `limits.asset` (the symbol) and `limits.maxAmount` |
 | charge intent with only `maxAmount` | add `price: { amount, per: call }`, `payTo`, `settlement`, `requireReceipt: true`, `receiptRef`, `policyRefs`, and a matching payment policy |
 | receipt ref without a format | add `format: reddi.receipt.v2` |
-| no fee | `extensions.x402.protocolFee: { bps: 5, rounding: down, paidBy: provider }`, required for a live charge |
+| no fee | `extensions.x402.protocolFee: { bps: 250, rounding: down, paidBy: provider, cap: { symbol: SOL, amount: '0.1' } }`, required for a live charge |
 
 Check a migrated document with:
 
