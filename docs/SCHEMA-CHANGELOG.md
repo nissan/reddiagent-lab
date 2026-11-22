@@ -2,6 +2,17 @@
 
 _Loop 71. Anchor issue: #81._
 
+## 2026-11-22 — ADL v0.3: 5% fee with a 2.5% launch rate
+
+- **Breaking.** `protocolFee.bps` must be 500 (5%). The new optional
+  `protocolFee.launchRate: { bps, endsAt }` must be `{ bps: 250, endsAt:
+  '2027-04-01T00:00:00Z' }` when present: the protocol charges 2.5% on payouts
+  before that time and 5% from then on, by the rate in force at payout (owner
+  decision, 22 November 2026; nissan/reddi-agent-protocol#896). The 0.1 SOL
+  cap is unchanged.
+- **Additive.** Fixture `wrong-protocol-launch-rate`; both live examples
+  declare the launch rate.
+
 ## 2026-11-21 — ADL v0.3: per-token prices, metered escrow, 2.5% fee
 
 - **Breaking.** The protocol fee is 250 bps (2.5%) of the amount actually

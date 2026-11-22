@@ -290,7 +290,10 @@ extensions:
     enabled: true
     mode: live
     protocolFee:
-      bps: 250
+      bps: 500
+      launchRate:
+        bps: 250
+        endsAt: '2027-04-01T00:00:00Z'
       rounding: down
       paidBy: provider
       cap:

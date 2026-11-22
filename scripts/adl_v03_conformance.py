@@ -24,9 +24,14 @@ LIVE_GATED_BEFORE_LEVEL_4 = "production deployment descriptor requires Level 4"
 API_VERSION = "reddiagent.dev/v0.3"
 MIGRATION_NOTE = "docs/ADL-V0.2-TO-V0.3-MIGRATION.md"
 RECEIPT_FORMAT = "reddi.receipt.v2"
-# Reddi Agent Protocol fee: 2.5% (250 basis points) of the amount actually paid, rounded down,
-# taken from the provider's side, capped at 0.1 SOL on SOL payments (stablecoins have no cap).
-PROTOCOL_FEE_BPS = 250
+# Reddi Agent Protocol fee: 5% (500 basis points) of the amount actually paid, with a 2.5%
+# (250 basis points) launch rate for payouts before 2027-04-01 00:00 UTC (owner decision,
+# 22 November 2026; LAUNCH_RATE_ENDS_UNIX in programs/pinocchio-escrow/program/src/consts.rs of
+# nissan/reddi-agent-protocol). Rounded down, taken from the provider's side, capped at 0.1 SOL
+# on SOL payments (stablecoins have no cap). The rate is the one in force at payout.
+PROTOCOL_FEE_BPS = 500
+PROTOCOL_LAUNCH_FEE_BPS = 250
+PROTOCOL_LAUNCH_RATE_ENDS_AT = "2027-04-01T00:00:00Z"
 PROTOCOL_FEE_SOL_CAP = "0.1"
 LIVE_RAIL = "solana"
 # Mints the protocol accepts on Solana mainnet-beta (programs/escrow/src/constants.rs in
@@ -275,6 +280,14 @@ def payment_semantic_diagnostics(doc: dict) -> list[str]:
     if isinstance(fee, dict):
         if fee.get("bps") != PROTOCOL_FEE_BPS:
             problems.append(f"extensions.x402.protocolFee.bps must be {PROTOCOL_FEE_BPS}")
+        launch = fee.get("launchRate")
+        if launch is not None:
+            launch = object_or_empty(launch)
+            if launch.get("bps") != PROTOCOL_LAUNCH_FEE_BPS or launch.get("endsAt") != PROTOCOL_LAUNCH_RATE_ENDS_AT:
+                problems.append(
+                    f"extensions.x402.protocolFee.launchRate must be {PROTOCOL_LAUNCH_FEE_BPS} bps "
+                    f"ending {PROTOCOL_LAUNCH_RATE_ENDS_AT}"
+                )
         cap = object_or_empty(fee.get("cap"))
         if cap.get("symbol") != "SOL" or not decimal_string_equal(cap.get("amount"), PROTOCOL_FEE_SOL_CAP):
             problems.append(f"extensions.x402.protocolFee.cap must be {PROTOCOL_FEE_SOL_CAP} SOL")
