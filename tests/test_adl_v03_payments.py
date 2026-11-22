@@ -25,7 +25,8 @@ EXPECTED_CONFORMANCE_FAILURES = {"adapter-loss-export-agent.yaml", "permission-p
 # Valid against the schema; rejected by Level 3 conformance.
 CONFORMANCE_ONLY = {
     "adl-v0.3-mainnet-mint-not-allowlisted.yaml": "is not the allowlisted AUDD mint on solana-mainnet-beta",
-    "adl-v0.3-wrong-protocol-fee.yaml": "extensions.x402.protocolFee.bps must be 250",
+    "adl-v0.3-wrong-protocol-fee.yaml": "extensions.x402.protocolFee.bps must be 500",
+    "adl-v0.3-wrong-protocol-launch-rate.yaml": "extensions.x402.protocolFee.launchRate must be 250 bps ending 2027-04-01T00:00:00Z",
     "adl-v0.3-wrong-protocol-fee-cap.yaml": "extensions.x402.protocolFee.cap must be 0.1 SOL",
     "adl-v0.3-per-token-direct-settlement.yaml": "settlement must be metered-escrow for a per-token price",
     "adl-v0.3-metered-escrow-per-call-price.yaml": "settlement=metered-escrow needs a per-token price",
@@ -55,7 +56,7 @@ def live_doc() -> dict:
 
 def test_example_sets_are_present() -> None:
     assert len(EXAMPLES) == 18
-    assert len(INVALID) == 20
+    assert len(INVALID) == 21
 
 
 @pytest.mark.parametrize("path", EXAMPLES, ids=lambda p: p.name)
@@ -160,13 +161,22 @@ def test_a_per_token_charge_policy_must_bound_the_max_per_call(tmp_path: Path) -
         assert (code == 0) is passes, (limit, missing(rep))
 
 
-def test_protocol_fee_is_250_bps_capped_at_a_tenth_of_a_sol(tmp_path: Path) -> None:
+def test_protocol_fee_is_500_bps_with_a_250_bps_launch_rate_capped_at_a_tenth_of_a_sol(tmp_path: Path) -> None:
     fee = live_doc()["extensions"]["x402"]["protocolFee"]
     assert fee == {
-        "bps": 250, "rounding": "down", "paidBy": "provider",
+        "bps": 500, "launchRate": {"bps": 250, "endsAt": "2027-04-01T00:00:00Z"},
+        "rounding": "down", "paidBy": "provider",
         "cap": {"symbol": "SOL", "amount": "0.1"}, "base": "actual-cost",
     }
-    for change in ({"cap": {"symbol": "USDC", "amount": "0.1"}}, {"cap": None}, {"bps": 5}):
+    for change in (
+        {"cap": {"symbol": "USDC", "amount": "0.1"}},
+        {"cap": None},
+        {"bps": 5},
+        {"bps": 250},
+        {"launchRate": {"bps": 500, "endsAt": "2027-04-01T00:00:00Z"}},
+        {"launchRate": {"bps": 250, "endsAt": "2027-07-01T00:00:00Z"}},
+        {"launchRate": {"bps": 250}},
+    ):
         doc = live_doc()
         doc["extensions"]["x402"]["protocolFee"].update(change)
         if change.get("cap", 0) is None:
@@ -175,6 +185,13 @@ def test_protocol_fee_is_250_bps_capped_at_a_tenth_of_a_sol(tmp_path: Path) -> N
         path.write_text(yaml.safe_dump(doc, sort_keys=False))
         code, _ = report(path)
         assert code == 1, change
+    # Once the launch rate is over, a document may leave it out.
+    doc = live_doc()
+    del doc["extensions"]["x402"]["protocolFee"]["launchRate"]
+    path = tmp_path / "agent.yaml"
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
+    code, rep = report(path)
+    assert code == 0, missing(rep)
 
 
 def test_schema_has_no_v02_payment_vocabulary_left() -> None:
